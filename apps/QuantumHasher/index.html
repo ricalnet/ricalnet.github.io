@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Hasher - RicalNet</title>
+    <meta name="description" content="Quantum Hasher tool for MD5, SHA-1, SHA-256, SHA-512, SHA3-512, and RIPEMD-160 hashing algorithms">
+    <meta name="author" content="RicalNet">
+    <link rel="icon" type="image/x-icon" href="../../img/logo.png">
+    <link rel="stylesheet" href="../css/quantum-hasher.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#8b5cf6',
+                        dark: '#0f172a',
+                        tor: '#7e4798',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            scroll-behavior: smooth;
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #8b5cf6;
+            --dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+        }
+        body {
+            background: linear-gradient(135deg, #0d1525 0%, #0f172a 100%);
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        .tor-blur {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .logo-img {
+            border: 2px solid rgba(126, 71, 152, 0.5);
+            box-shadow: 0 0 15px rgba(126, 71, 152, 0.3);
+        }
+        .card-blur {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .card-blur:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+        .hash-result {
+            font-family: 'Roboto Mono', monospace;
+            word-break: break-all;
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .tab-button.active {
+            color: white;
+        }
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+        .algorithm-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .copy-btn {
+            transition: all 0.2s ease;
+        }
+        .copy-btn:hover {
+            background-color: rgba(138, 180, 248, 0.1);
+        }
+        .file-drop-area {
+            border: 2px dashed rgba(138, 180, 248, 0.3);
+            transition: all 0.3s ease;
+            border-radius: 12px;
+        }
+        .file-drop-area.active {
+            border-color: var(--primary);
+            background-color: rgba(138, 180, 248, 0.05);
+        }
+        .hash-algo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1rem;
+        }
+        @media (min-width: 768px) {
+            .hash-algo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+        }
+        .hero-section {
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.15) 0%, rgba(15, 23, 42, 0.9) 70%), 
+                        radial-gradient(circle at 80% 30%, rgba(126, 71, 152, 0.3) 0%, transparent 40%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(138, 180, 248, 0.05) 0%, transparent 10%),
+                radial-gradient(circle at 90% 70%, rgba(126, 71, 152, 0.05) 0%, transparent 15%);
+            z-index: 0;
+        }
+        .quantum-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(138, 180, 248, 0.4);
+            box-shadow: 0 0 20px rgba(138, 180, 248, 0.4);
+            animation: pulse 3s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.4); opacity: 1; }
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(138, 180, 248, 0.3);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+        .btn-secondary {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background: rgba(30, 41, 59, 0.9);
+            transform: translateY(-2px);
+        }
+        input[type="radio"]:checked + label {
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+        textarea, input[type="text"], input[type="file"] {
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        textarea:focus, input[type="text"]:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            border: 1px solid rgba(126, 71, 152, 0.3);
+            border-radius: 0.5rem;
+            z-index: 1;
+            overflow: hidden;
+            top: 100%;
+            left: 0;
+        }
+        .dropdown-content a {
+            color: #e2e8f0;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(126, 71, 152, 0.1);
+            transition: all 0.3s ease;
+        }
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        .dropdown-content a:hover {
+            background: rgba(126, 71, 152, 0.2);
+            padding-left: 1.25rem;
+        }
+        .dropdown-content a i {
+            margin-right: 0.5rem;
+            width: 20px;
+            text-align: center;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-mobile {
+            display: none;
+        }
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+        .dropdown-toggle::after {
+            content: '\f107';
+            font-family: 'Font Awesome 7 Free';
+            font-weight: 900;
+            margin-left: 0.5rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .dropdown.active .dropdown-toggle::after {
+            transform: rotate(180deg);
+        }
+        /* Mobile dropdown styles */
+        .mobile-dropdown-content {
+            display: none;
+            background: rgba(30, 41, 59, 0.5);
+            padding-left: 1.5rem;
+        }
+        .mobile-dropdown-content.show {
+            display: block;
+        }
+        .mobile-dropdown-content a {
+            display: block;
+            padding: 0.5rem 0;
+            color: #e2e8f0;
+        }
+        @media (max-width: 768px) {
+            .dropdown {
+                display: none;
+            }
+            .dropdown-mobile {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navbar -->
+    <nav class="tor-blur fixed w-full z-50 border-b border-tor/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../../website/index.html" class="flex-shrink-0 flex items-center">
+                        <!-- Logo -->
+                        <div class="h-10 w-10 rounded-full overflow-hidden logo-img">
+                            <img src="../../img/logo.png" 
+                                 alt="RicalNet Logo" 
+                                 class="h-full w-full object-cover">
+                        </div>
+                    </a>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="../../website/index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="../../website/about.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="../../website/coaching.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Coaching</a>
+                        <a href="../../website/resources.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Resources</a>
+                        
+                        <!-- Resources Dropdown -->
+                        <div class="dropdown">
+                            <div class="dropdown-toggle text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                Tools
+                            </div>
+                            <div class="dropdown-content">
+                                <a href="../../apps/ip-finder/index.html"><i class="fa-solid fa-location-crosshairs"></i> IP Finder</a>
+                                <a href="../../apps/lucky-spinner/index.html"><i class="fa-solid fa-dice"></i> Lucky Spinner</a>
+                                <a href="../../apps/qr-builder/index.html"><i class="fa-solid fa-qrcode"></i> QR Builder</a>
+                                <a href="../../apps/QuantumHasher/index.html"><i class="fas fa-atom"></i> Quantum Hasher</a>
+                                <a href="../../apps/UltraPassword/index.html"><i class="fas fa-key"></i> Ultra Password</a>
+                            </div>
+                        </div>
+
+                        <a href="https://ricaldocs.github.io" target="_blank" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Blog <i class="fa-solid fa-up-right-from-square"></i></a>
+                        <a href="../../website/support.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">🤍 Support Us</a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <!-- <a href="" class="hidden md:block bg-tor/20 hover:bg-tor/40 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">🔔</a> -->
+                    <div class="ml-4 flex items-center md:hidden">
+                        <button id="mobile-menu-button" class="text-gray-400 hover:text-white focus:outline-none">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="../../website/index.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="../../website/about.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="../../website/coaching.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Coaching</a>
+                <a href="../../website/resources.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Resources</a>
+                
+                <!-- Mobile Resources Dropdown -->
+                <div class="dropdown-mobile">
+                    <div id="mobile-resources-toggle" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">
+                        Tools <i class="fas fa-chevron-down float-right mt-1 text-sm"></i>
+                    </div>
+                    <div id="mobile-resources-content" class="mobile-dropdown-content">
+                        <a href="../../apps/ip-finder/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-location-crosshairs"></i> IP Finder</a>
+                        <a href="../../apps/lucky-spinner/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-dice"></i> Lucky Spinner</a>
+                        <a href="../../apps/qr-builder/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-qrcode"></i> QR Builder</a>
+                        <a href="../../apps/QuantumHasher/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-atom"></i> Quantum Hasher</a>
+                        <a href="../../apps/UltraPassword/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-key"></i> Ultra Password</a>
+                    </div>
+                </div>
+
+                <a href="https://ricaldocs.github.io" target="_blank" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Blog <i class="fa-solid fa-up-right-from-square"></i></a>
+                <a href="../../website/support.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">🤍 Support Us</a>
+                <!-- <a href="" class="bg-tor/20 hover:bg-tor/40 text-white block px-3 py-2 rounded-md text-base font-medium text-center">🔔</a> -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section pt-32 pb-20">
+        <div class="hero-pattern"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left" data-aos="fade-right">
+                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                        Quantum <span class="gradient-text">Hasher</span>
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8 max-w-xl">
+                        Generate cryptographic hashes for text or files using advanced algorithms and protect your data integrity.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#hash-tool" class="btn-primary text-white font-medium py-3 px-6 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-hashtag mr-2"></i> Start Hashing
+                        </a>
+                        <a href="#features" class="btn-secondary text-white font-medium py-3 px-6 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-star mr-2"></i> Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="relative hidden lg:block" data-aos="fade-left">
+                    <div class="card-blur rounded-2xl p-8 transform rotate-3">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="feature-card rounded-xl p-4" data-aos="fade-up" data-aos-delay="100">
+                                <div class="text-secondary text-3xl mb-3">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                <h3 class="font-bold text-white mb-2">Military-Grade Security</h3>
+                                <p class="text-gray-400 text-sm">SHA-3 and other advanced algorithms</p>
+                            </div>
+                            <div class="feature-card rounded-xl p-4" data-aos="fade-up" data-aos-delay="200">
+                                <div class="text-secondary text-3xl mb-3">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <h3 class="font-bold text-white mb-2">Lightning Fast</h3>
+                                <p class="text-gray-400 text-sm">Optimized for high-speed hashing</p>
+                            </div>
+                            <div class="feature-card rounded-xl p-4" data-aos="fade-up" data-aos-delay="300">
+                                <div class="text-secondary text-3xl mb-3">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h3 class="font-bold text-white mb-2">Privacy First</h3>
+                                <p class="text-gray-400 text-sm">All processing is performed locally</p>
+                            </div>
+                            <div class="feature-card rounded-xl p-4" data-aos="fade-up" data-aos-delay="400">
+                                <div class="text-secondary text-3xl mb-3">
+                                    <i class="fas fa-file"></i>
+                                </div>
+                                <h3 class="font-bold text-white mb-2">File Support</h3>
+                                <p class="text-gray-400 text-sm">Securely hash files of many types</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -top-6 -right-6 w-24 h-24 bg-secondary rounded-full opacity-20 blur-3xl"></div>
+                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-tor rounded-full opacity-20 blur-3xl"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="quantum-particle" style="top: 20%; left: 15%; animation-delay: 0s;"></div>
+        <div class="quantum-particle" style="top: 40%; left: 85%; animation-delay: 1s;"></div>
+        <div class="quantum-particle" style="top: 70%; left: 25%; animation-delay: 2s;"></div>
+        <div class="quantum-particle" style="top: 30%; left: 50%; animation-delay: 0.5s;"></div>
+        <div class="quantum-particle" style="top: 80%; left: 70%; animation-delay: 1.5s;"></div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="pb-16 min-h-screen" id="hash-tool">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Tabs for Text/File Input -->
+            <div class="mb-8">
+                <div class="flex border-b border-gray-700">
+                    <button id="text-tab" class="tab-button py-4 px-6 text-white font-medium active">
+                        <i class="fas fa-font mr-2"></i>Text Input
+                    </button>
+                    <button id="file-tab" class="tab-button py-4 px-6 text-gray-400 hover:text-white font-medium">
+                        <i class="fas fa-file mr-2"></i>File Input
+                    </button>
+                </div>
+            </div>
+
+            <!-- Text Input Section -->
+            <div id="text-section" class="card-blur rounded-xl p-6 mb-8" data-aos="fade-up">
+                <div class="mb-6">
+                    <label for="text-input" class="block text-sm font-medium text-gray-300 mb-2">
+                        Enter text to hash
+                    </label>
+                    <textarea id="text-input" rows="4" class="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Enter text here..."></textarea>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-300 mb-2">
+                        Select hashing algorithm
+                    </label>
+                    <div class="hash-algo-grid">
+                        <div>
+                            <input type="radio" id="md5" name="algorithm" value="md5" class="hidden peer">
+                            <label for="md5" class="algorithm-badge bg-blue-900/50 text-blue-300 peer-checked:bg-blue-900 peer-checked:text-blue-100 cursor-pointer">
+                                <i class="fas fa-fingerprint mr-2"></i>MD5
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" id="sha1" name="algorithm" value="sha1" class="hidden peer">
+                            <label for="sha1" class="algorithm-badge bg-purple-900/50 text-purple-300 peer-checked:bg-purple-900 peer-checked:text-purple-100 cursor-pointer">
+                                <i class="fas fa-fingerprint mr-2"></i>SHA-1
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" id="sha256" name="algorithm" value="sha256" checked class="hidden peer">
+                            <label for="sha256" class="algorithm-badge bg-green-900/50 text-green-300 peer-checked:bg-green-900 peer-checked:text-green-100 cursor-pointer">
+                                <i class="fas fa-fingerprint mr-2"></i>SHA-256
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" id="sha512" name="algorithm" value="sha512" class="hidden peer">
+                            <label for="sha512" class="algorithm-badge bg-yellow-900/50 text-yellow-300 peer-checked:bg-yellow-900 peer-checked:text-yellow-100 cursor-pointer">
+                                <i class="fas fa-fingerprint mr-2"></i>SHA-512
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" id="sha3-512" name="algorithm" value="sha3-512" class="hidden peer">
+                            <label for="sha3-512" class="algorithm-badge bg-red-900/50 text-red-300 peer-checked:bg-red-900 peer-checked:text-red-100 cursor-pointer">
+                                <i class="fas fa-fingerprint mr-2"></i>SHA3-512
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" id="ripemd160" name="algorithm" value="ripemd160" class="hidden peer">
+                            <label for="ripemd160" class="algorithm-badge bg-indigo-900/50 text-indigo-300 peer-checked:bg-indigo-900 peer-checked:text-indigo-100 cursor-pointer">
+                                <i class="fas fa-fingerprint mr-2"></i>RIPEMD-160
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="hash-text-btn" class="w-full btn-primary text-white font-medium py-3 px-4 rounded-lg transition duration-300">
+                    <i class="fas fa-hashtag mr-2"></i>Generate Hash
+                </button>
+            </div>
+
+            <!-- File Input Section -->
+            <div id="file-section" class="card-blur rounded-xl p-6 mb-8 hidden" data-aos="fade-up">
+                <div class="mb-6">
+                    <div id="file-drop-area" class="file-drop-area rounded-xl p-8 text-center cursor-pointer">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-gray-500 mb-4"></i>
+                        <p class="text-gray-400 mb-2">Drag & drop your file here</p>
+                        <p class="text-gray-500 text-sm mb-4">or</p>
+                        <label for="file-input" class="btn-secondary text-white font-medium py-2 px-4 rounded-lg cursor-pointer inline-block">
+                            <i class="fas fa-file-import mr-2"></i>Select File
+                        </label>
+                        <input type="file" id="file-input" class="hidden">
+                    </div>
+                    <div id="file-info" class="mt-4 text-center hidden">
+                        <p class="text-gray-300"><i class="fas fa-file mr-2"></i><span id="file-name"></span></p>
+                        <p class="text-gray-500 text-sm"><span id="file-size"></span></p>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-300 mb-2">
+                        Select hashing algorithm
+                    </label>
+                    <div class="hash-algo-grid">
+                        <div>
+                            <input type="radio" id="file-md5" name="file-algorithm" value="md5" class="hidden peer">
+                            <label for="file-md5" class="algorithm-badge bg-blue-900/50 text-blue-300 peer-checked:bg-blue-900 peer-checked:text-blue-100 cursor-pointer">
+                                <i class="fas fa-fingerprint mr-2"></i>MD5
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" id="file-sha1" name="file-algorithm" value="sha1" class="hidden peer">
+                            <label for="file-sha1" class="algorithm-badge bg-purple-900/50 text-purple-300 peer-checked:bg-purple-900 peer-checked:text-purple-100 cursor-pointer">
+                                <i class="fas fa-fingerprint mr-2"></i>SHA-1
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" id="file-sha256" name="file-algorithm" value="sha256" checked class="hidden peer">
+                            <label for="file-sha256" class="algorithm-badge bg-green-900/50 text-green-300 peer-checked:bg-green-900 peer-checked:text-green-100 cursor-pointer">
+                                <i class="fas fa-fingerprint mr-2"></i>SHA-256
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" id="file-sha512" name="file-algorithm" value="sha512" class="hidden peer">
+                            <label for="file-sha512" class="algorithm-badge bg-yellow-900/50 text-yellow-300 peer-checked:bg-yellow-900 peer-checked:text-yellow-100 cursor-pointer">
+                                <i class="fas fa-fingerprint mr-2"></i>SHA-512
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" id="file-sha3-512" name="file-algorithm" value="sha3-512" class="hidden peer">
+                            <label for="file-sha3-512" class="algorithm-badge bg-red-900/50 text-red-300 peer-checked:bg-red-900 peer-checked:text-red-100 cursor-pointer">
+                                <i class="fas fa-fingerprint mr-2"></i>SHA3-512
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" id="file-ripemd160" name="file-algorithm" value="ripemd160" class="hidden peer">
+                            <label for="file-ripemd160" class="algorithm-badge bg-indigo-900/50 text-indigo-300 peer-checked:bg-indigo-900 peer-checked:text-indigo-100 cursor-pointer">
+                                <i class="fas fa-fingerprint mr-2"></i>RIPEMD-160
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="hash-file-btn" class="w-full btn-primary text-white font-medium py-3 px-4 rounded-lg transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    <i class="fas fa-hashtag mr-2"></i>Generate File Hash
+                </button>
+            </div>
+
+            <!-- Result Section -->
+            <div id="result-section" class="card-blur rounded-xl p-6 hidden" data-aos="fade-up">
+                <h2 class="text-xl font-semibold text-white mb-4 flex items-center">
+                    <i class="fas fa-fingerprint mr-2 text-secondary"></i>Hash Result
+                </h2>
+                
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm text-gray-400">Algorithm:</span>
+                        <span id="result-algorithm" class="text-sm font-medium text-secondary"></span>
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm text-gray-400">Input Type:</span>
+                        <span id="result-input-type" class="text-sm font-medium text-secondary"></span>
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm text-gray-400">Generated:</span>
+                        <span id="result-time" class="text-sm font-medium text-secondary"></span>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div id="hash-result" class="hash-result bg-gray-900 rounded-xl p-4 text-gray-300 mb-4 overflow-x-auto"></div>
+                    <button id="copy-btn" class="copy-btn absolute top-3 right-3 p-2 rounded-lg text-gray-400 hover:text-white">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+
+                <button id="new-hash-btn" class="w-full btn-secondary text-white font-medium py-3 px-4 rounded-lg transition duration-300">
+                    <i class="fas fa-redo mr-2"></i>New Hash
+                </button>
+            </div>
+            
+            <!-- Features Section -->
+            <div class="card-blur rounded-xl p-6 mt-8" id="features" data-aos="fade-up">
+                <h2 class="text-2xl font-bold text-white mb-6 text-center">
+                    Why Choose Quantum Hasher?
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="feature-card rounded-xl p-6">
+                        <div class="text-secondary text-4xl mb-4">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Privacy Focused</h3>
+                        <p class="text-gray-400">All hashing is performed locally in your browser. Your data never leaves your device, ensuring complete privacy and security.</p>
+                    </div>
+                    
+                    <div class="feature-card rounded-xl p-6">
+                        <div class="text-secondary text-4xl mb-4">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Quantum-Resistant</h3>
+                        <p class="text-gray-400">We prioritize algorithms that are resistant to quantum computing attacks, keeping your security future-proof.</p>
+                    </div>
+                    
+                    <div class="feature-card rounded-xl p-6">
+                        <div class="text-secondary text-4xl mb-4">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">High Performance</h3>
+                        <p class="text-gray-400">An optimized WebAssembly implementation delivers very fast hashing speeds, even for large files.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Algorithm Information -->
+            <div class="card-blur rounded-xl p-6 mt-8" data-aos="fade-up">
+                <h2 class="text-xl font-semibold text-white mb-4">
+                    <i class="fas fa-info-circle mr-2 text-secondary"></i>About Hashing Algorithms
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 bg-gray-800/50 rounded-lg">
+                        <h3 class="font-medium text-white mb-2">MD5 (Message Digest Algorithm 5)</h3>
+                        <p class="text-gray-400 text-sm">128-bit hash value. Widely used but considered cryptographically broken and unsuitable for security applications.</p>
+                    </div>
+                    <div class="p-4 bg-gray-800/50 rounded-lg">
+                        <h3 class="font-medium text-white mb-2">SHA-1 (Secure Hash Algorithm 1)</h3>
+                        <p class="text-gray-400 text-sm">160-bit hash value. No longer considered secure against well-funded attackers. Being phased out.</p>
+                    </div>
+                    <div class="p-4 bg-gray-800/50 rounded-lg">
+                        <h3 class="font-medium text-white mb-2">SHA-256 (Secure Hash Algorithm 256-bit)</h3>
+                        <p class="text-gray-400 text-sm">Part of the SHA-2 family. 256-bit hash value. Currently one of the most widely used and recommended hash functions.</p>
+                    </div>
+                    <div class="p-4 bg-gray-800/50 rounded-lg">
+                        <h3 class="font-medium text-white mb-2">SHA-512 (Secure Hash Algorithm 512-bit)</h3>
+                        <p class="text-gray-400 text-sm">Larger 512-bit version from SHA-2. 512-bit hash value. Provides a higher security margin but with a larger output size.</p>
+                    </div>
+                    <div class="p-4 bg-gray-800/50 rounded-lg">
+                        <h3 class="font-medium text-white mb-2">SHA3-512 (Secure Hash Algorithm 3)</h3>
+                        <p class="text-gray-400 text-sm">The newest SHA standard. 512-bit hash value. Based on the Keccak algorithm. Designed as an alternative to SHA-2.</p>
+                    </div>
+                    <div class="p-4 bg-gray-800/50 rounded-lg">
+                        <h3 class="font-medium text-white mb-2">RIPEMD-160 (RACE Integrity Primitives Evaluation Message Digest)</h3>
+                        <p class="text-gray-400 text-sm">160-bit hash function. Developed in the European Union. Used in Bitcoin and other cryptocurrencies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="tor-blur border-t border-tor/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-1">
+                    <a href="../../website/index.html" class="flex items-center">
+                        <!-- Logo di footer -->
+                        <div class="h-10 w-10 rounded-full overflow-hidden logo-img">
+                            <img src="../../img/logo.png" 
+                                 alt="RicalNet Logo" 
+                                 class="h-full w-full object-cover">
+                        </div>
+                        <span class="ml-3 text-xl font-bold ricalnet-text">RicalNet</span>
+                    </a>
+                    <p class="mt-4 text-gray-400">
+                        Memperjuangkan hak digital, privasi, dan kebebasan informasi.
+                    </p>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="https://t.me/share/url?url=https://ricalnet.github.io/website&text=RicalNet - Platform edukasi hak digital dan privasi online" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://www.reddit.com/submit?url=https://ricalnet.github.io/website&title=RicalNet - Platform edukasi hak digital dan privasi online" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-reddit"></i>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://x.com/intent/post?text=RicalNet - Platform edukasi hak digital dan privasi online&url=https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                        <a href="https://wa.me/?text=RicalNet - Platform edukasi hak digital dan privasi online https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Links</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="../../website/about.html" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="../../website/nextcrow/login.html" class="text-gray-400 hover:text-white">Community</a></li>
+                        <li><a href="../../website/support.html" class="text-gray-400 hover:text-white">Support</a></li>
+                        <li><a href="../../website/gallery.html" class="text-gray-400 hover:text-white">Gallery</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Resources</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="../../website/workspace.html" class="text-gray-400 hover:text-white">Workspace</a></li>
+                        <li><a href="../../website/legal-resources/index.html" class="text-gray-400 hover:text-white">Legal Resources</a></li>
+                        <li><a href="../../website/resources.html#apps" class="text-gray-400 hover:text-white">Privacy Tools</a></li>
+                        <li><a href="https://ricaldocs.github.io" target="_blank" class="text-gray-400 hover:text-white">Learning Center <i class="fa-solid fa-up-right-from-square"></i></a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Support Us</h3>
+                    <div class="mt-4 space-y-4">
+                        <button class="w-full bg-tor/20 hover:bg-tor/30 text-white py-2 rounded-lg transition duration-300">
+                            <a href="../../website/support.html">Become a Contributor</a>
+                        </button>
+                        <button class="w-full bg-primary/80 hover:bg-primary text-white py-2 rounded-lg transition duration-300">
+                            <a href="../../website/support.html">Privacy Research</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">RicalNet © 2025</p>
+                <div class="mt-4 md:mt-0">
+                    <ul class="flex space-x-6">
+                        <li><a href="../../website/privacy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a></li>
+                        <li><a href="../../website/terms-of-service.html" class="text-gray-400 hover:text-white text-sm">Terms of Service</a></li>
+                        <li><a href="../../website/contact.html" class="text-gray-400 hover:text-white text-sm">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- CryptoJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-in-out'
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Mobile dropdown toggle
+        document.getElementById('mobile-resources-toggle').addEventListener('click', function() {
+            const content = document.getElementById('mobile-resources-content');
+            content.classList.toggle('show');
+        });
+        
+        // Tab switching
+        const textTab = document.getElementById('text-tab');
+        const fileTab = document.getElementById('file-tab');
+        const textSection = document.getElementById('text-section');
+        const fileSection = document.getElementById('file-section');
+        
+        textTab.addEventListener('click', () => {
+            textTab.classList.add('active');
+            textTab.classList.remove('text-gray-400');
+            textTab.classList.add('text-white');
+            fileTab.classList.remove('active');
+            fileTab.classList.remove('text-white');
+            fileTab.classList.add('text-gray-400');
+            textSection.classList.remove('hidden');
+            fileSection.classList.add('hidden');
+        });
+        
+        fileTab.addEventListener('click', () => {
+            fileTab.classList.add('active');
+            fileTab.classList.remove('text-gray-400');
+            fileTab.classList.add('text-white');
+            textTab.classList.remove('active');
+            textTab.classList.remove('text-white');
+            textTab.classList.add('text-gray-400');
+            fileSection.classList.remove('hidden');
+            textSection.classList.add('hidden');
+        });
+        
+        // File drop area functionality
+        const fileDropArea = document.getElementById('file-drop-area');
+        const fileInput = document.getElementById('file-input');
+        const fileInfo = document.getElementById('file-info');
+        const fileName = document.getElementById('file-name');
+        const fileSize = document.getElementById('file-size');
+        const hashFileBtn = document.getElementById('hash-file-btn');
+        
+        fileDropArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        fileDropArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileDropArea.classList.add('active');
+        });
+        
+        fileDropArea.addEventListener('dragleave', () => {
+            fileDropArea.classList.remove('active');
+        });
+        
+        fileDropArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileDropArea.classList.remove('active');
+            
+            if (e.dataTransfer.files.length) {
+                handleFile(e.dataTransfer.files[0]);
+            }
+        });
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                handleFile(e.target.files[0]);
+            }
+        });
+        
+        function handleFile(file) {
+            fileName.textContent = file.name;
+            fileSize.textContent = formatFileSize(file.size);
+            fileInfo.classList.remove('hidden');
+            hashFileBtn.disabled = false;
+            currentFile = file;
+        }
+        
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        // Hashing functionality
+        const hashTextBtn = document.getElementById('hash-text-btn');
+        const resultSection = document.getElementById('result-section');
+        const hashResult = document.getElementById('hash-result');
+        const resultAlgorithm = document.getElementById('result-algorithm');
+        const resultInputType = document.getElementById('result-input-type');
+        const resultTime = document.getElementById('result-time');
+        const copyBtn = document.getElementById('copy-btn');
+        const newHashBtn = document.getElementById('new-hash-btn');
+        let currentFile = null;
+        
+        hashTextBtn.addEventListener('click', () => {
+            const text = document.getElementById('text-input').value.trim();
+            if (!text) {
+                alert('Please enter some text to hash');
+                return;
+            }
+            
+            const algorithm = document.querySelector('input[name="algorithm"]:checked').value;
+            generateHash(text, algorithm, 'Text');
+        });
+        
+        hashFileBtn.addEventListener('click', () => {
+            if (!currentFile) {
+                alert('Please select a file first');
+                return;
+            }
+            
+            const algorithm = document.querySelector('input[name="file-algorithm"]:checked').value;
+            hashFile(currentFile, algorithm);
+        });
+        
+        function generateHash(input, algorithm, inputType) {
+            let hash;
+            const startTime = performance.now();
+            
+            switch (algorithm) {
+                case 'md5':
+                    hash = CryptoJS.MD5(input).toString();
+                    break;
+                case 'sha1':
+                    hash = CryptoJS.SHA1(input).toString();
+                    break;
+                case 'sha256':
+                    hash = CryptoJS.SHA256(input).toString();
+                    break;
+                case 'sha512':
+                    hash = CryptoJS.SHA512(input).toString();
+                    break;
+                case 'sha3-512':
+                    hash = CryptoJS.SHA3(input, { outputLength: 512 }).toString();
+                    break;
+                case 'ripemd160':
+                    hash = CryptoJS.RIPEMD160(input).toString();
+                    break;
+                default:
+                    hash = 'Unsupported algorithm';
+            }
+            
+            const endTime = performance.now();
+            const timeTaken = (endTime - startTime).toFixed(2);
+            
+            displayResult(hash, algorithm, inputType, timeTaken);
+        }
+        
+        function hashFile(file, algorithm) {
+            const reader = new FileReader();
+            const startTime = performance.now();
+            
+            reader.onload = function(e) {
+                const wordArray = CryptoJS.lib.WordArray.create(e.target.result);
+                let hash;
+                
+                switch (algorithm) {
+                    case 'md5':
+                        hash = CryptoJS.MD5(wordArray).toString();
+                        break;
+                    case 'sha1':
+                        hash = CryptoJS.SHA1(wordArray).toString();
+                        break;
+                    case 'sha256':
+                        hash = CryptoJS.SHA256(wordArray).toString();
+                        break;
+                    case 'sha512':
+                        hash = CryptoJS.SHA512(wordArray).toString();
+                        break;
+                    case 'sha3-512':
+                        hash = CryptoJS.SHA3(wordArray, { outputLength: 512 }).toString();
+                        break;
+                    case 'ripemd160':
+                        hash = CryptoJS.RIPEMD160(wordArray).toString();
+                        break;
+                    default:
+                        hash = 'Unsupported algorithm';
+                }
+                
+                const endTime = performance.now();
+                const timeTaken = (endTime - startTime).toFixed(2);
+                
+                displayResult(hash, algorithm, 'File', timeTaken);
+            };
+            
+            reader.readAsArrayBuffer(file);
+        }
+        
+        function displayResult(hash, algorithm, inputType, timeTaken) {
+            hashResult.textContent = hash;
+            resultAlgorithm.textContent = algorithm.toUpperCase();
+            resultInputType.textContent = inputType;
+            resultTime.textContent = `${timeTaken} ms`;
+            resultSection.classList.remove('hidden');
+            
+            // Scroll to result
+            resultSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(hashResult.textContent).then(() => {
+                // Visual feedback
+                const originalIcon = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalIcon;
+                }, 2000);
+            });
+        });
+        
+        newHashBtn.addEventListener('click', () => {
+            // Reset form and hide result
+            document.getElementById('text-input').value = '';
+            fileInfo.classList.add('hidden');
+            fileInput.value = '';
+            currentFile = null;
+            hashFileBtn.disabled = true;
+            resultSection.classList.add('hidden');
+            
+            // Switch to text tab
+            textTab.click();
+        });
+    </script>
+</body>
+</html>

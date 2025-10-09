@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy & Security Coaching | RicalNet</title>
+    <meta name="description" content="RicalNet menyediakan layanan coaching GRATIS privasi & keamanan digital personal oleh Risnanda Pascal. Coaching gratis dengan donasi sukarela untuk mendukung penelitian privasi.">
+    <meta name="keywords" content="coaching privasi gratis, donasi keamanan digital, coaching keamanan online gratis, perlindungan identitas digital, privasi digital Indonesia, konsultasi keamanan siber gratis">
+    <meta name="image" content="../img/logo.png">
+    <meta name="author" content="RicalNet">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="language" content="Indonesian">
+    <meta name="geo.region" content="ID">
+    <meta name="geo.placename" content="Indonesia">
+    <link rel="icon" type="image/x-icon" href="../img/logo.png">
+    <link rel="canonical" href="/website/coaching.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600&display=swap">
+    </noscript>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ricalnet.github.io/website/coaching.html">
+    <meta property="og:title" content="Privacy & Security Coaching Gratis | RicalNet">
+    <meta property="og:description" content="RicalNet menyediakan layanan coaching GRATIS privasi & keamanan digital dengan donasi sukarela untuk mendukung penelitian privasi.">
+    <meta property="og:image" content="https://ricalnet.github.io/img/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ricalnet.github.io/website/coaching.html">
+    <meta property="twitter:title" content="Privacy & Security Coaching Gratis | RicalNet">
+    <meta property="twitter:description" content="RicalNet menyediakan layanan coaching GRATIS privasi & keamanan digital dengan donasi sukarela untuk mendukung penelitian privasi.">
+    <meta property="twitter:image" content="https://ricalnet.github.io/img/logo.png">
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Privacy & Security Coaching | RicalNet",
+    "provider": {
+        "@type": "Organization",
+        "name": "RicalNet"
+    },
+    "serviceType": "Privacy and Security Coaching",
+    "description": "Layanan coaching GRATIS privasi dan keamanan digital personal untuk perlindungan identitas dan data",
+    "areaServed": "Indonesia",
+    "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": "https://ricalnet.github.io/website/coaching.html"
+    }
+    }
+    </script>
+    <style>
+        :root {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        .logo-img {
+            border: 2px solid rgba(126, 71, 152, 0.5);
+            box-shadow: 0 0 15px rgba(126, 71, 152, 0.3);
+        }
+        .tor-blur {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .card-blur {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(126, 71, 152, 0.3);
+            transition: all 0.3s ease;
+        }
+        .card-blur:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(126, 71, 152, 0.2) 0%, rgba(15, 23, 42, 0) 50%),
+                        radial-gradient(circle at bottom left, rgba(26, 115, 232, 0.2) 0%, rgba(15, 23, 42, 0) 50%);
+        }
+        .floating-card {
+            position: relative;
+            z-index: 10;
+            transform: translateY(-50%);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+        }
+        .testimonial-card {
+            background: rgba(30, 41, 59, 0.7);
+            border-left: 4px solid #7e4798;
+        }
+        .faq-item {
+            border-bottom: 1px solid rgba(126, 71, 152, 0.3);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .accordion.active .accordion-content {
+            max-height: 500px;
+        }
+        .accordion.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        .coach-profile {
+            border: 3px solid rgba(126, 71, 152, 0.5);
+            box-shadow: 0 0 20px rgba(126, 71, 152, 0.3);
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            border: 1px solid rgba(126, 71, 152, 0.3);
+            border-radius: 0.5rem;
+            z-index: 1;
+            overflow: hidden;
+            top: 100%;
+            left: 0;
+        }
+        .dropdown-content a {
+            color: #e2e8f0;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(126, 71, 152, 0.1);
+            transition: all 0.3s ease;
+        }
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        .dropdown-content a:hover {
+            background: rgba(126, 71, 152, 0.2);
+            padding-left: 1.25rem;
+        }
+        .dropdown-content a i {
+            margin-right: 0.5rem;
+            width: 20px;
+            text-align: center;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-mobile {
+            display: none;
+        }
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+        .dropdown-toggle::after {
+            content: '\f107';
+            font-family: 'Font Awesome 7 Free';
+            font-weight: 900;
+            margin-left: 0.5rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .dropdown.active .dropdown-toggle::after {
+            transform: rotate(180deg);
+        }
+        /* Mobile dropdown styles */
+        .mobile-dropdown-content {
+            display: none;
+            background: rgba(30, 41, 59, 0.5);
+            padding-left: 1.5rem;
+        }
+        .mobile-dropdown-content.show {
+            display: block;
+        }
+        .mobile-dropdown-content a {
+            display: block;
+            padding: 0.5rem 0;
+            color: #e2e8f0;
+        }
+        
+        .modern-card {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 16px;
+            border: 1px solid rgba(126, 71, 152, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        .modern-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(126, 71, 152, 0) 0%, rgba(126, 71, 152, 0.5) 50%, rgba(126, 71, 152, 0) 100%);
+        }
+        .modern-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(126, 71, 152, 0.4);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, #7e4798, #1a73e8);
+            border-radius: 3px;
+        }
+        .hero-pattern {
+            background-image: 
+                radial-gradient(at 40% 20%, rgba(126, 71, 152, 0.1) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, rgba(26, 115, 232, 0.1) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, rgba(126, 71, 152, 0.1) 0px, transparent 50%),
+                radial-gradient(at 80% 50%, rgba(26, 115, 232, 0.1) 0px, transparent 50%);
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .coach-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+        .coach-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.2), rgba(15, 23, 42, 0.8));
+        }
+        .donation-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #7e4798, #1a73e8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(126, 71, 152, 0.3);
+            z-index: 10;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @media (max-width: 768px) {
+            .dropdown {
+                display: none;
+            }
+            .dropdown-mobile {
+                display: block;
+            }
+            .section-title::after {
+                width: 100%;
+            }
+            .donation-badge {
+                top: 10px;
+                right: 10px;
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a73e8',
+                        secondary: '#8ab4f8',
+                        dark: '#0f172a',
+                        tor: '#7e4798',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%237e4798\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans">
+    <!-- Navbar -->
+    <nav class="tor-blur fixed w-full z-50 border-b border-tor/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <!-- Logo -->
+                        <div class="h-10 w-10 rounded-full overflow-hidden logo-img">
+                            <img src="../img/logo.png" 
+                                 alt="RicalNet Logo" 
+                                 class="h-full w-full object-cover">
+                        </div>
+                    </a>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="about.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="coaching.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Coaching</a>
+                        <a href="resources.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Resources</a>
+                        
+                        <!-- Resources Dropdown -->
+                        <div class="dropdown">
+                            <div class="dropdown-toggle text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                Tools
+                            </div>
+                            <div class="dropdown-content">
+                                <a href="../apps/ip-finder/index.html"><i class="fa-solid fa-location-crosshairs"></i> IP Finder</a>
+                                <a href="../apps/lucky-spinner/index.html"><i class="fa-solid fa-dice"></i> Lucky Spinner</a>
+                                <a href="../apps/qr-builder/index.html"><i class="fa-solid fa-qrcode"></i> QR Builder</a>
+                                <a href="../apps/QuantumHasher/index.html"><i class="fas fa-atom"></i> Quantum Hasher</a>
+                                <a href="../apps/UltraPassword/index.html"><i class="fas fa-key"></i> Ultra Password</a>
+                            </div>
+                        </div>
+
+                        <a href="https://ricaldocs.github.io" target="_blank" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Blog <i class="fa-solid fa-up-right-from-square"></i></a>
+                        <a href="support.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">🤍 Support Us</a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <!-- <a href="" class="hidden md:block bg-tor/20 hover:bg-tor/40 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">🔔</a> -->
+                    <div class="ml-4 flex items-center md:hidden">
+                        <button id="mobile-menu-button" class="text-gray-400 hover:text-white focus:outline-none">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="about.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="coaching.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Coaching</a>
+                <a href="resources.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Resources</a>
+                
+                <!-- Mobile Resources Dropdown -->
+                <div class="dropdown-mobile">
+                    <div id="mobile-resources-toggle" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">
+                        Tools <i class="fas fa-chevron-down float-right mt-1 text-sm"></i>
+                    </div>
+                    <div id="mobile-resources-content" class="mobile-dropdown-content">
+                        <a href="../apps/ip-finder/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-location-crosshairs"></i> IP Finder</a>
+                        <a href="../apps/lucky-spinner/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-dice"></i> Lucky Spinner</a>
+                        <a href="../apps/qr-builder/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-qrcode"></i> QR Builder</a>
+                        <a href="../apps/QuantumHasher/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-atom"></i> Quantum Hasher</a>
+                        <a href="../apps/UltraPassword/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-key"></i> Ultra Password</a>
+                    </div>
+                </div>
+
+                <a href="https://ricaldocs.github.io" target="_blank" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Blog <i class="fa-solid fa-up-right-from-square"></i></a>
+                <a href="support.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">🤍 Support Us</a>
+                <!-- <a href="" class="bg-tor/20 hover:bg-tor/40 text-white block px-3 py-2 rounded-md text-base font-medium text-center">🔔</a> -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Announcement Section -->
+    <div class="tor-blur pt-16 pb-4 border-b border-tor/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="inline-block px-3 py-1 rounded-full text-sm font-medium bg-tor/20 text-secondary">
+                    <span class="animate-pulse">🎉</span> <span class="font-bold">COACHING GRATIS!</span> Kini menerima donasi sukarela untuk mendukung penelitian privasi
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative py-20 md:py-28 hero-pattern overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-10">
+                <div class="md:w-1/2" data-aos="fade-right">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                        Privacy & Security <span class="gradient-text">Coaching</span>
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8">
+                        Dapatkan bimbingan privasi yang disesuaikan dengan kebutuhan Anda bersama Risnanda Pascal dari RicalNet. Dukungan pribadi yang membantu Anda mengendalikan kehidupan digital dan meningkatkan keamanan online.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#programs" class="bg-primary hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105">
+                            <i class="fa-solid fa-list mr-1"></i> See Programs
+                        </a>
+                        <a href="#testimonials" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300">
+                            <i class="fa-solid fa-quote-left mr-1"></i> Testimonials
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 mt-10 md:mt-0" data-aos="fade-left" data-aos-delay="200">
+                    <div class="modern-card p-2 relative">
+                        <div class="donation-badge">
+                            <i class="fas fa-heart mr-1"></i> Donasi Sukarela
+                        </div>
+                        <div class="bg-gradient-to-br from-tor/20 to-primary/20 rounded-xl p-6">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-dark/80 rounded-lg p-4 flex flex-col items-center justify-center text-center">
+                                    <i class="fas fa-user-shield text-3xl text-tor mb-3"></i>
+                                    <h3 class="text-white font-semibold">Identity Protection</h3>
+                                </div>
+                                <div class="bg-dark/80 rounded-lg p-4 flex flex-col items-center justify-center text-center">
+                                    <i class="fas fa-shield-alt text-3xl text-tor mb-3"></i>
+                                    <h3 class="text-white font-semibold">Data Security</h3>
+                                </div>
+                                <div class="bg-dark/80 rounded-lg p-4 flex flex-col items-center justify-center text-center">
+                                    <i class="fas fa-lock text-3xl text-tor mb-3"></i>
+                                    <h3 class="text-white font-semibold">Online Privacy</h3>
+                                </div>
+                                <div class="bg-dark/80 rounded-lg p-4 flex flex-col items-center justify-center text-center">
+                                    <i class="fas fa-heart text-3xl text-tor mb-3"></i>
+                                    <h3 class="text-white font-semibold">Voluntary Donations</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coach Profile Section -->
+    <!-- <section class="py-20 bg-dark" id="coach">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white section-title" data-aos="fade-up">Tentang Coach</h2>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-2/5" data-aos="fade-right">
+                    <div class="coach-image">
+                        <div class="w-full h-80 bg-gradient-to-br from-tor to-primary rounded-2xl flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="w-32 h-32 rounded-full bg-dark/80 flex items-center justify-center mx-auto mb-4 border-4 border-white/20">
+                                    <span class="text-4xl text-white">
+                                        <img src="../img/pascal.png" alt="" class="rounded-full">
+                                    </span>
+                                </div>
+                                <p class="text-white font-semibold">Risnanda Pascal</p>
+                                <p class="text-gray-300">Privacy & Security Specialist</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-3/5" data-aos="fade-left" data-aos-delay="200">
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-6">Risnanda Pascal - Ahli Keamanan Digital</h3>
+                    <p class="text-gray-300 mb-6">
+                        Dengan pengalaman lebih dari 5 tahun di bidang keamanan siber dan privasi digital, Risnanda Pascal telah membantu individu dan organisasi meningkatkan postur keamanan digital mereka. Kini memberikan coaching dengan sistem donasi sukarela.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start">
+                            <div class="bg-tor/20 p-3 rounded-lg mr-4">
+                                <i class="fas fa-certificate text-tor text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Sertifikasi</h4>
+                                <p class="text-gray-400">Bersertifikat di bidang Cybersecurity dan Privacy Protection</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-tor/20 p-3 rounded-lg mr-4">
+                                <i class="fas fa-users text-tor text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Klien</h4>
+                                <p class="text-gray-400">Telah membantu 250+ klien meningkatkan keamanan digital</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-tor/20 p-3 rounded-lg mr-4">
+                                <i class="fas fa-chalkboard-teacher text-tor text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Pendekatan</h4>
+                                <p class="text-gray-400">Metode coaching yang praktis dan mudah dipahami</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-tor/20 p-3 rounded-lg mr-4">
+                                <i class="fas fa-heart text-tor text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Donasi Sukarela</h4>
+                                <p class="text-gray-400">Coaching gratis dengan donasi untuk penelitian privasi</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#programs" class="inline-flex items-center text-tor hover:text-purple-300 font-semibold">
+                        Lihat program coaching gratis
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Coaching Programs Section -->
+    <section class="py-20 relative" id="programs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white section-title" data-aos="fade-up">Coaching Programs</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+                <!-- Identity Theft Prevention -->
+                <div class="modern-card rounded-xl p-8 text-center relative" data-aos="fade-up">
+                    <div class="donation-badge">
+                        <i class="fas fa-heart mr-1"></i> Donasi Sukarela
+                    </div>
+                    <div class="w-16 h-16 rounded-full bg-tor/20 flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-user-shield text-2xl text-tor"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Identity Protection</h3>
+                    <p class="text-gray-400 mb-6">
+                        Perlindungan terhadap pencurian identitas digital
+                    </p>
+                    <div class="my-6">
+                        <span class="text-3xl font-bold text-green-400">GRATIS</span>
+                        <span class="text-gray-500 block">/ 3 sesi</span>
+                    </div>
+                    <ul class="space-y-3 text-gray-400 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span>Teknik anti-phishing</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span>Manajemen kata sandi</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span>Autentikasi dua faktor</span>
+                        </li>
+                    </ul>
+                    <!-- <button class="w-full bg-tor/20 hover:bg-tor/30 text-white font-bold py-3 px-8 rounded-lg transition duration-300">
+                        Jadwalkan Sekarang
+                    </button> -->
+                </div>
+
+                <!-- Data Security -->
+                <div class="modern-card rounded-xl p-8 text-center relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="donation-badge">
+                        <i class="fas fa-heart mr-1"></i> Donasi Sukarela
+                    </div>
+                    <div class="w-16 h-16 rounded-full bg-tor/20 flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-database text-2xl text-tor"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Data Security</h3>
+                    <p class="text-gray-400 mb-6">
+                        Lindungi data sensitif dari kebocoran dan pelanggaran
+                    </p>
+                    <div class="my-6">
+                        <span class="text-3xl font-bold text-green-400">GRATIS</span>
+                        <span class="text-gray-500 block">/ 5 sesi</span>
+                    </div>
+                    <ul class="space-y-3 text-gray-400 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span>Enkripsi end-to-end</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span>Pengamanan jaringan</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span>Pemantauan ancaman</span>
+                        </li>
+                    </ul>
+                    <!-- <button class="w-full bg-primary/80 hover:bg-primary text-white font-bold py-3 px-8 rounded-lg transition duration-300">
+                        Jadwalkan Sekarang
+                    </button> -->
+                </div>
+
+                <!-- Privacy Mastery -->
+                <div class="modern-card rounded-xl p-8 text-center relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="donation-badge">
+                        <i class="fas fa-heart mr-1"></i> Donasi Sukarela
+                    </div>
+                    <div class="w-16 h-16 rounded-full bg-tor/20 flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-user-secret text-2xl text-tor"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Privacy Mastery</h3>
+                    <p class="text-gray-400 mb-6">
+                        Kuasai seni menjaga privasi di era digital
+                    </p>
+                    <div class="my-6">
+                        <span class="text-3xl font-bold text-green-400">GRATIS</span>
+                        <span class="text-gray-500 block">/ 8 sesi</span>
+                    </div>
+                    <ul class="space-y-3 text-gray-400 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span>Anonimitas digital</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span>Manajemen jejak digital</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span>Tools privacy advanced</span>
+                        </li>
+                    </ul>
+                    <!-- <button class="w-full bg-tor/20 hover:bg-tor/30 text-white font-bold py-3 px-8 rounded-lg transition duration-300">
+                        Jadwalkan Sekarang
+                    </button> -->
+                </div>
+
+                <!-- Enterprise Solution -->
+                <div class="modern-card rounded-xl p-8 text-center relative" data-aos="fade-up" data-aos-delay="300">
+                    <div class="donation-badge">
+                        <i class="fas fa-heart mr-1"></i> Donasi Sukarela
+                    </div>
+                    <div class="w-16 h-16 rounded-full bg-tor/20 flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-building text-2xl text-tor"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Enterprise Solution</h3>
+                    <p class="text-gray-400 mb-6">
+                        Solusi keamanan untuk bisnis dan organisasi
+                    </p>
+                    <div class="my-6">
+                        <span class="text-3xl font-bold text-green-400">GRATIS</span>
+                        <span class="text-gray-500 block">Konsultasi sesuai kebutuhan</span>
+                    </div>
+                    <ul class="space-y-3 text-gray-400 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span>Security assessment</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span>Employee training</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                            <span>Kebijakan keamanan</span>
+                        </li>
+                    </ul>
+                    <!-- <button class="w-full bg-primary/80 hover:bg-primary text-white font-bold py-3 px-8 rounded-lg transition duration-300">
+                        Konsultasi Gratis
+                    </button> -->
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="max-w-4xl mx-auto" data-aos="zoom-in">
+                <div class="bg-gradient-to-r from-tor to-primary rounded-2xl p-10 text-center">
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">Ready to Improve Your Digital Security?</h3>
+                    <p class="text-purple-100 mb-6 max-w-2xl mx-auto">
+                        Jadwalkan coaching sekarang dan dapatkan analisis kebutuhan keamanan digital Anda. Donasi sukarela sangat dihargai untuk mendukung penelitian privasi.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="contact.html">
+                            <button class="bg-white hover:bg-gray-100 text-tor font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105">
+                                Schedule Now
+                            </button>
+                        </a>
+                        <a href="support.html" class="bg-transparent hover:bg-white/10 text-white font-bold py-3 px-8 rounded-lg border border-white transition duration-300 inline-flex items-center justify-center">
+                            <i class="fas fa-heart mr-2"></i> Donate
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-dark" id="testimonials">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white section-title" data-aos="fade-up">What People Are Saying</h2>
+                <!-- <p class="text-xl text-gray-300 max-w-3xl mx-auto mt-6" data-aos="fade-up" data-aos-delay="100">
+                    Berbagai kisah sukses dari individu yang telah meningkatkan keamanan digital mereka dengan coaching
+                </p> -->
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="modern-card rounded-xl p-8" data-aos="fade-up">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-tor/20 flex items-center justify-center mr-4">
+                            <span class="text-xl font-semibold">NA</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">Nuril A.</h4>
+                            <p class="text-gray-500">Mahasiswa Teknologi Telekomunikasi</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic mb-6">
+                        "Materi yang tersedia sangat jelas dan mudah sekali untuk dipahami untuk saya sebagai user Windows, mantap cihuy."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="modern-card rounded-xl p-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-tor/20 flex items-center justify-center mr-4">
+                            <span class="text-xl font-semibold">A</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">Anonim</h4>
+                            <p class="text-gray-500">Jurnalis</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic mb-6">
+                        "Pendekatan personal yang diterapkan oleh Risnanda telah mendukung upaya saya dalam menjaga privasi dalam bidang jurnalisme."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                
+                <div class="modern-card rounded-xl p-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-tor/20 flex items-center justify-center mr-4">
+                            <span class="text-xl font-semibold">KA</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">Karina A.</h4>
+                            <p class="text-gray-500">Mahasiswa</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic mb-6">
+                        "Materi disusun secara bertahap (per step), jadi cocok bagi pemula kaya aku, dengan bagian shortcut yang membantu dalam menyelesaikan soal atau memahami konsep."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="gallery.html">
+                    <button class="bg-tor/20 hover:bg-tor/30 text-white font-bold py-3 px-8 rounded-lg transition duration-300">
+                        View Discussion Gallery
+                    </button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-dark" id="faq">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white section-title" data-aos="fade-up">FAQ</h2>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="modern-card rounded-xl p-6 accordion" data-aos="fade-up">
+                    <button class="w-full flex justify-between items-center text-left">
+                        <h3 class="text-lg font-semibold text-white">Benarkah coaching ini benar-benar gratis?</h3>
+                        <i class="fas fa-chevron-down accordion-icon text-tor transition-transform"></i>
+                    </button>
+                    <div class="accordion-content mt-4">
+                        <p class="text-gray-400">
+                            Ya, coaching kami sepenuhnya gratis! Kami menerapkan model donasi sukarela untuk menjaga keberlangsungan layanan dan mendukung penelitian privasi yang kami lakukan.
+                        </p>
+                        <p class="mt-4 text-gray-400">
+                            Donasi yang Anda berikan akan digunakan untuk:
+                        </p>
+                        <ul class="mt-4 space-y-2 text-gray-400 pl-5 list-disc">
+                            <li>Pengembangan materi coaching yang lebih berkualitas</li>
+                            <li>Penelitian terkini di bidang privasi dan keamanan digital</li>
+                            <li>Pemeliharaan infrastruktur pendukung coaching</li>
+                            <li>Pengembangan tools privasi yang dapat diakses gratis</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="modern-card rounded-xl p-6 accordion" data-aos="fade-up" data-aos-delay="100">
+                    <button class="w-full flex justify-between items-center text-left">
+                        <h3 class="text-lg font-semibold text-white">Bagaimana cara menjadwalkan coaching?</h3>
+                        <i class="fas fa-chevron-down accordion-icon text-tor transition-transform"></i>
+                    </button>
+                    <div class="accordion-content mt-4">
+                        <p class="text-gray-400">
+                            Untuk menjadwalkan coaching, Anda dapat:
+                        </p>
+                        <ol class="mt-4 space-y-2 text-gray-400 pl-5 list-decimal">
+                            <li>Klik tombol "Jadwalkan Sekarang" dan pilih program coaching yang diinginkan</li>
+                            <li>Isi formulir pendaftaran dengan preferensi jadwal Anda</li>
+                            <li>Tunggu konfirmasi jadwal melalui email dalam 1-2 hari kerja</li>
+                            <li>Ikuti link meeting yang akan dikirimkan via email pada hari-H</li>
+                        </ol>
+                        <p class="mt-4 text-gray-400">
+                            Kami akan berusaha menyesuaikan jadwal dengan waktu yang Anda inginkan.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="modern-card rounded-xl p-6 accordion" data-aos="fade-up" data-aos-delay="200">
+                    <button class="w-full flex justify-between items-center text-left">
+                        <h3 class="text-lg font-semibold text-white">Berapa jumlah donasi yang disarankan?</h3>
+                        <i class="fas fa-chevron-down accordion-icon text-tor transition-transform"></i>
+                    </button>
+                    <div class="accordion-content mt-4">
+                        <p class="text-gray-400">
+                            Tidak ada jumlah yang ditentukan untuk donasi. Kami menganut sistem donasi sukarela, yang berarti Anda dapat memberikan donasi sesuai dengan kemampuan dan keinginan Anda.
+                        </p>
+                        <p class="mt-4 text-gray-400">
+                            Sebagai referensi, beberapa peserta coaching biasanya memberikan donasi dalam kisaran:
+                        </p>
+                        <ul class="mt-4 space-y-2 text-gray-400 pl-5 list-disc">
+                            <li>Rp 50.000 - Rp 100.000 untuk coaching 1-3 sesi</li>
+                            <li>Rp 100.000 - Rp 250.000 untuk coaching 4-8 sesi</li>
+                            <li>Rp 250.000+ untuk coaching enterprise atau konsultasi khusus</li>
+                        </ul>
+                        <p class="mt-4 text-gray-400">
+                            Namun sekali lagi, jumlah tersebut hanyalah referensi. Donasi berapapun sangat kami hargai.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12" data-aos="fade-up">
+                <p class="text-gray-400 mb-6">Masih ada pertanyaan?</p>
+                <a href="contact.html">
+                    <button class="bg-primary hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300">
+                        Contact Us
+                    </button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-tor to-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6" data-aos="fade-up">
+                Start Your Digital Security Journey Today
+            </h2>
+            <p class="text-xl text-purple-100 max-w-3xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="100">
+                Dapatkan bimbingan personal dari ahli keamanan digital untuk melindungi identitas dan data Anda
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="200">
+                <a href="contact.html">
+                    <button class="bg-white hover:bg-gray-100 text-tor font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105">
+                        Schedule Coaching
+                    </button>
+                </a>
+                <a href="support.html" class="bg-transparent hover:bg-white/10 text-white font-bold py-3 px-8 rounded-lg border border-white transition duration-300 inline-flex items-center justify-center">
+                    <i class="fas fa-heart mr-2"></i> Make a Donation
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="tor-blur border-t border-tor/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-1">
+                    <a href="index.html" class="flex items-center">
+                        <!-- Logo di footer -->
+                        <div class="h-10 w-10 rounded-full overflow-hidden logo-img">
+                            <img src="../img/logo.png" 
+                                 alt="RicalNet Logo" 
+                                 class="h-full w-full object-cover">
+                        </div>
+                        <span class="ml-3 text-xl font-bold ricalnet-text">RicalNet</span>
+                    </a>
+                    <p class="mt-4 text-gray-400">
+                        Memperjuangkan hak digital, privasi, dan kebebasan informasi.
+                    </p>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="https://t.me/share/url?url=https://ricalnet.github.io/website&text=RicalNet - Platform edukasi hak digital dan privasi online" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://www.reddit.com/submit?url=https://ricalnet.github.io/website&title=RicalNet - Platform edukasi hak digital dan privasi online" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-reddit"></i>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://x.com/intent/post?text=RicalNet - Platform edukasi hak digital dan privasi online&url=https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                        <a href="https://wa.me/?text=RicalNet - Platform edukasi hak digital dan privasi online https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Links</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="nextcrow/login.html" class="text-gray-400 hover:text-white">Community</a></li>
+                        <li><a href="support.html" class="text-gray-400 hover:text-white">Support</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-white">Gallery</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Resources</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="workspace.html" class="text-gray-400 hover:text-white">Workspace</a></li>
+                        <li><a href="legal-resources/index.html" class="text-gray-400 hover:text-white">Legal Resources</a></li>
+                        <li><a href="resources.html#apps" class="text-gray-400 hover:text-white">Privacy Tools</a></li>
+                        <li><a href="https://ricaldocs.github.io" target="_blank" class="text-gray-400 hover:text-white">Learning Center <i class="fa-solid fa-up-right-from-square"></i></a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Support Us</h3>
+                    <div class="mt-4 space-y-4">
+                        <button class="w-full bg-tor/20 hover:bg-tor/30 text-white py-2 rounded-lg transition duration-300">
+                            <a href="support.html">Become a Contributor</a>
+                        </button>
+                        <button class="w-full bg-primary/80 hover:bg-primary text-white py-2 rounded-lg transition duration-300">
+                            <a href="support.html">Privacy Research</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">RicalNet © 2025</p>
+                <div class="mt-4 md:mt-0">
+                    <ul class="flex space-x-6">
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html" class="text-gray-400 hover:text-white text-sm">Terms of Service</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white text-sm">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-in-out'
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Mobile dropdown toggle
+        document.getElementById('mobile-resources-toggle').addEventListener('click', function() {
+            const content = document.getElementById('mobile-resources-content');
+            content.classList.toggle('show');
+        });
+        
+        // FAQ Accordion
+        document.querySelectorAll('.accordion').forEach(accordion => {
+            accordion.querySelector('button').addEventListener('click', () => {
+                accordion.classList.toggle('active');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RicalWiki | RicalNet">
+    <meta name="author" content="Risnanda Pascal">
+    <title>RicalWiki - RicalNet</title>
+    <link rel="icon" type="image/x-icon" href="img/ricaldocs-logo.png">
+    <script src="https://kit.fontawesome.com/8255c1cfb8.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --wikipedia-bg: #f8f9fa;
+            --wikipedia-border: #a2a9b1;
+            --wikipedia-blue: #36c;
+            --wikipedia-link: #3366cc;
+            --wikipedia-link-visited: #795cb2;
+            --wikipedia-header-bg: #eaecf0;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Lato, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: var(--wikipedia-bg);
+            color: #202122;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas: 
+                "sidebar header"
+                "sidebar content"
+                "sidebar footer";
+            min-height: 100vh;
+        }
+        
+        header {
+            grid-area: header;
+            background-color: #fff;
+            border-bottom: 1px solid var(--wikipedia-border);
+            padding: 0.5em 1.5em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo h1 {
+            font-weight: 400;
+            font-size: 1.8em;
+            color: #000;
+            letter-spacing: 0.05em;
+        }
+        
+        .search-box {
+            display: flex;
+            margin: 0.5em 0;
+        }
+        
+        .search-box input {
+            padding: 0.5em;
+            border: 1px solid var(--wikipedia-border);
+            border-right: none;
+            width: 200px;
+        }
+        
+        .search-box button {
+            background: var(--wikipedia-header-bg);
+            border: 1px solid var(--wikipedia-border);
+            padding: 0.5em;
+            cursor: pointer;
+        }
+        
+        .sidebar {
+            grid-area: sidebar;
+            background-color: #f6f6f6;
+            border-right: 1px solid var(--wikipedia-border);
+            width: 200px;
+            padding: 1em 0;
+            min-height: 100vh;
+        }
+        
+        .sidebar-logo {
+            text-align: center;
+            padding: 1em;
+            font-weight: bold;
+            border-bottom: 1px solid var(--wikipedia-border);
+            margin-bottom: 1em;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            padding: 0.5em 1.5em;
+        }
+        
+        .sidebar-menu a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+        
+        .sidebar-menu a:hover {
+            text-decoration: underline;
+        }
+        
+        #main-content {
+            grid-area: content;
+            background-color: #fff;
+            padding: 2em;
+            margin: 1.5em;
+            border: 1px solid var(--wikipedia-border);
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .page-title {
+            font-weight: 400;
+            border-bottom: 1px solid var(--wikipedia-border);
+            padding-bottom: 0.3em;
+            margin-bottom: 1em;
+            font-size: 1.8em;
+            color: #000;
+        }
+        
+        .page-title .fa-book {
+            font-size: 0.9em;
+            margin: 0 0.3em;
+            color: var(--wikipedia-blue);
+        }
+        
+        p {
+            margin: 1em 0;
+            font-size: 0.95em;
+            line-height: 1.65;
+        }
+        
+        a {
+            color: var(--wikipedia-link);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        a:visited {
+            color: var(--wikipedia-link-visited);
+        }
+        
+        #mail {
+            color: #0a3069;
+            font-weight: 500;
+        }
+        
+        footer {
+            grid-area: footer;
+            background-color: var(--wikipedia-header-bg);
+            padding: 1.5em;
+            text-align: center;
+            border-top: 1px solid var(--wikipedia-border);
+            font-size: 0.9em;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5em;
+            margin-top: 0.5em;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "header"
+                    "content"
+                    "footer";
+            }
+            
+            .sidebar {
+                display: none;
+            }
+            
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .search-box {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .search-box input {
+                width: 70%;
+            }
+            
+            #main-content {
+                margin: 0.5em;
+                padding: 1em;
+            }
+            
+            .page-title {
+                font-size: 1.5em;
+            }
+        }
+
+        a[target="_blank"]::after {
+            content: "↗";
+            font-size: 0.75em;
+            margin-left: 0.2em;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .infobox {
+            border: 1px solid var(--wikipedia-border);
+            background-color: #f8f9fa;
+            padding: 0.8em;
+            font-size: 0.9em;
+            float: right;
+            clear: right;
+            margin: 0 0 1em 1.5em;
+            width: 22em;
+        }
+        
+        .infobox-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+        }
+        
+        .infobox-row {
+            display: table-row;
+        }
+        
+        .infobox-label, .infobox-data {
+            display: table-cell;
+            padding: 0.2em 0.5em;
+            vertical-align: top;
+        }
+        
+        .infobox-label {
+            text-align: left;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>RicalNet</h1>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Search RicalWiki...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+    </header>
+    
+    <aside class="sidebar">
+        <div class="sidebar-logo">RicalWiki</div>
+        <ul class="sidebar-menu">
+            <li><a href="#"><i class="fas fa-home"></i> Main Page</a></li>
+            <li><a href="#"><i class="fas fa-circle-info"></i> About</a></li>
+            <li><a href="#"><i class="fas fa-newspaper"></i> Current events</a></li>
+            <li><a href="#"><i class="fas fa-book"></i> Contents</a></li>
+            <li><a href="#"><i class="fas fa-random"></i> Random Article</a></li>
+            <li><hr></li>
+            <li><a href="#"><i class="fas fa-download"></i> Download</a></li>
+            <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><hr></li>
+            <li><a href="#"><i class="fab fa-wikipedia-w"></i> Wikipedia</a></li>
+            <li><a href="#"><i class="fas fa-book-open"></i> MediaWiki</a></li>
+        </ul>
+    </aside>
+    
+    <section id="main-content">
+        <h1 class="page-title">
+            <i class="fa-solid fa-book"></i> RicalWiki
+        </h1>
+        
+        <div class="infobox">
+            <div class="infobox-title">RicalWiki</div>
+            <div class="infobox-row">
+                <div class="infobox-label">Developer</div>
+                <div class="infobox-data">Risnanda Pascal</div>
+            </div>
+            <div class="infobox-row">
+                <div class="infobox-label">Platform</div>
+                <div class="infobox-data">MediaWiki</div>
+            </div>
+            <div class="infobox-row">
+                <div class="infobox-label">Availability</div>
+                <div class="infobox-data">Local network</div>
+            </div>
+            <div class="infobox-row">
+                <div class="infobox-label">Focus</div>
+                <div class="infobox-data">Education, Cybersecurity, AI, IoT</div>
+            </div>
+            <div class="infobox-row">
+                <div class="infobox-label">Website</div>
+                <div class="infobox-data"><a href="#">RicalNet Wiki</a></div>
+            </div>
+        </div>
+        
+        <p>
+            RicalWiki is built on 
+            <a href="https://www.mediawiki.org/wiki/MediaWiki" target="_blank" rel="noopener noreferrer">
+                MediaWiki
+            </a> 
+            and operates solely on a local network for use in "Internet Offline" projects and as a learning module for communities in remote and underdeveloped areas, with a focus on general learning, cybersecurity, artificial intelligence, and the Internet of Things. 
+        </p>
+        
+        <p>
+            If you'd like to 
+            <a href="website/contact.html">
+                obtain it
+            </a>, I'd be happy to provide the entire database and all it's contents.
+        </p>
+        
+        <h2>Purpose</h2>
+        <p>
+            The project aims to provide educational resources in areas with limited internet access, bringing knowledge to communities that would otherwise have difficulty accessing such information.
+        </p>
+        
+        <h2>Inspiration</h2>
+        <p>
+            This project is inspired by the idea of 
+            <a href="https://onnocenter.or.id/wiki/index.php/Onno_W._Purbo" target="_blank" rel="noopener noreferrer">
+                Mr. Onno Widodo Purbo
+            </a>, an Indonesian telecommunications expert known for his work in promoting internet access in developing regions.
+        </p>
+        
+        <h2>Acknowledgements</h2>
+        <p>Thank you to all the authors who have contributed to this project.</p>
+    </section>
+    
+    <footer>
+        <div>This page was last edited on 5 September 2025</div>
+        <div class="footer-links">
+            <a href="#">Privacy policy</a>
+            <a href="#">About RicalWiki</a>
+            <a href="#">Disclaimers</a>
+            <a href="#">Contact</a>
+            <a href="#">Developers</a>
+        </div>
+    </footer>
+</body>
+
+</html>

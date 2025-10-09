@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Tidak Ditemukan | RicalNet</title>
+    <meta name="description" content="Halaman yang Anda cari tidak ditemukan. RicalNet memberdayakan individu dengan pengetahuan privasi digital praktis dan alat keamanan.">
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            overflow-x: hidden;
+            font-family: 'Inter', 'sans-serif';
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(126, 71, 152, 0.2) 0%, rgba(15, 23, 42, 0) 50%),
+                        radial-gradient(circle at bottom left, rgba(26, 115, 232, 0.2) 0%, rgba(15, 23, 42, 0) 50%);
+        }
+        .card-blur {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(126, 71, 152, 0.3);
+            transition: all 0.3s ease;
+        }
+        .card-blur:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .glow {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+        }
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 10px rgba(138, 180, 248, 0.8);
+        }
+        .encryption-text {
+            font-family: 'Roboto Mono', monospace;
+            letter-spacing: 1px;
+            color: #8ab4f8;
+        }
+        .logo-img {
+            border: 2px solid rgba(126, 71, 152, 0.5);
+            box-shadow: 0 0 15px rgba(126, 71, 152, 0.3);
+        }
+        .error-illustration {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 15px rgba(126, 71, 152, 0.3));
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #7e4798, #1a73e8);
+            color: white;
+            font-weight: bold;
+            padding: 12px 32px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .btn-secondary {
+            background: rgba(30, 41, 59, 0.8);
+            color: #8ab4f8;
+            font-weight: bold;
+            padding: 12px 32px;
+            border-radius: 8px;
+            border: 1px solid rgba(126, 71, 152, 0.5);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .btn-secondary:hover {
+            background: rgba(38, 52, 77, 0.8);
+            transform: translateY(-3px);
+        }
+        .link-highlight {
+            color: #8ab4f8;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        .link-highlight:hover {
+            color: #1a73e8;
+        }
+        .error-code {
+            font-size: 10rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #7e4798, #1a73e8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a73e8',
+                        secondary: '#8ab4f8',
+                        dark: '#0f172a',
+                        tor: '#7e4798',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans flex flex-col">
+    <main class="flex-grow">
+        <section class="hero-gradient min-h-screen flex items-center py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="text-center lg:text-left" data-aos="fade-right">
+                        <div class="error-code mb-4">404</div>
+                        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                            Halaman Tidak Ditemukan
+                        </h1>
+                        <p class="text-xl text-gray-300 mb-8 max-w-xl">
+                            Sepertinya Anda tersesat di dunia digital. Halaman yang Anda cari mungkin telah dipindahkan, dihapus, atau tidak pernah ada.
+                        </p>
+                        <div class="encryption-text text-lg md:text-xl p-4 rounded-lg bg-gray-900/50 inline-block mb-10">
+                            <span id="encrypted-text">4572726f72203430343a2050616765206e6f7420666f756e64</span>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                            <a href="https://ricalnet.github.io/website" class="btn-primary">
+                                <i class="fas fa-home mr-2"></i>Kembali ke Beranda
+                            </a>
+                            <a href="https://ricalnet.github.io/website/resources.html" class="btn-secondary">
+                                <i class="fas fa-book mr-2"></i>Lihat Sumber Daya
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center" data-aos="fade-left" data-aos-delay="200">
+                        <div class="relative">
+                            <svg class="error-illustration w-full max-w-md" viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="300" cy="250" r="200" fill="url(#gradient)" opacity="0.1"/>
+                                
+                                <g transform="translate(100, 50)">
+                                    <circle cx="200" cy="200" r="90" fill="none" stroke="#7e4798" stroke-width="8" stroke-dasharray="10,5"/>
+                                    <line x1="270" y1="270" x2="350" y2="350" stroke="#8ab4f8" stroke-width="8" stroke-linecap="round"/>
+                                    
+                                    <path d="M100,250 C100,220 130,200 160,200 C190,200 220,220 220,250 C220,280 190,300 160,300 M160,330 L160,380" 
+                                          stroke="#1a73e8" 
+                                          stroke-width="8" 
+                                          fill="none" 
+                                          stroke-linecap="round"/>
+                                    
+                                    <circle cx="400" cy="120" r="15" fill="#7e4798" opacity="0.7">
+                                        <animate attributeName="cy" values="120;100;120" dur="3s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="450" cy="180" r="10" fill="#1a73e8" opacity="0.7">
+                                        <animate attributeName="cx" values="450;470;450" dur="4s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="350" cy="350" r="8" fill="#8ab4f8" opacity="0.7">
+                                        <animate attributeName="r" values="8;12;8" dur="2.5s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
+                                
+                                <defs>
+                                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#7e4798" />
+                                        <stop offset="100%" stop-color="#1a73e8" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-20 max-w-4xl mx-auto" data-aos="fade-up">
+                    <div class="card-blur rounded-2xl p-8">
+                        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 text-center">
+                            Mungkin Anda mencari salah satu dari ini?
+                        </h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <a href="https://ricalnet.github.io/website/" class="group">
+                                <div class="p-6 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-all duration-300 h-full">
+                                    <div class="w-12 h-12 rounded-full bg-tor/20 flex items-center justify-center mb-4 mx-auto group-hover:bg-tor/40 transition-colors">
+                                        <i class="fas fa-home text-xl text-tor"></i>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-white text-center mb-2">Beranda</h3>
+                                    <p class="text-gray-400 text-sm text-center">Kembali ke halaman utama RicalNet</p>
+                                </div>
+                            </a>
+                            
+                            <a href="https://ricalnet.github.io/website/resources.html" class="group">
+                                <div class="p-6 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-all duration-300 h-full">
+                                    <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-4 mx-auto group-hover:bg-primary/40 transition-colors">
+                                        <i class="fas fa-tools text-xl text-primary"></i>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-white text-center mb-2">Sumber Daya</h3>
+                                    <p class="text-gray-400 text-sm text-center">Alat dan panduan privasi digital</p>
+                                </div>
+                            </a>
+                            
+                            <a href="https://ricaldocs.github.io" target="_blank" class="group">
+                                <div class="p-6 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-all duration-300 h-full">
+                                    <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mb-4 mx-auto group-hover:bg-purple-500/40 transition-colors">
+                                        <i class="fas fa-book-open text-xl text-purple-400"></i>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-white text-center mb-2">RicalDocs</h3>
+                                    <p class="text-gray-400 text-sm text-center">Blog dan dokumentasi pengetahuan</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 border-t border-tor/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <a href="https://ricalnet.github.io/website/index.html" class="flex items-center">
+                        <div class="h-10 w-10 rounded-full overflow-hidden logo-img">
+                            <img src="img/logo.png" alt="ricalNet Logo" class="h-full w-full object-cover">
+                        </div>
+                        <span class="ml-3 text-xl font-bold text-white">RicalNet</span>
+                    </a>
+                </div>
+                
+                <p class="text-gray-400 text-sm text-center md:text-right">
+                    RicalNet &copy; 2025
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-in-out'
+        });
+        
+        // Encryption effect
+        const text = "Error 404: Halaman tidak ditemukan";
+        const encryptedElement = document.getElementById('encrypted-text');
+        
+        function encryptText() {
+            let encrypted = '';
+            for (let i = 0; i < text.length; i++) {
+                encrypted += Math.floor(Math.random() * 16).toString(16);
+            }
+            encryptedElement.textContent = encrypted;
+        }
+        
+        function decryptText() {
+            let currentText = encryptedElement.textContent;
+            let decrypted = '';
+            let i = 0;
+            
+            const decryptInterval = setInterval(() => {
+                if (i < text.length) {
+                    decrypted += text[i];
+                    // Generate random hex for the rest
+                    let remaining = '';
+                    for (let j = i + 1; j < currentText.length; j++) {
+                        remaining += Math.floor(Math.random() * 16).toString(16);
+                    }
+                    encryptedElement.textContent = decrypted + remaining;
+                    i++;
+                } else {
+                    clearInterval(decryptInterval);
+                }
+            }, 50);
+        }
+        
+        encryptText();
+        
+        // Decrypt after a delay
+        setTimeout(() => {
+            decryptText();
+        }, 1000);
+        
+        // Re-encrypt and decrypt periodically
+        setInterval(() => {
+            encryptText();
+            setTimeout(() => {
+                decryptText();
+            }, 2000);
+        }, 10000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Spinner | RicalNet</title>
+    <meta name="description" content="Random name picker tool untuk memilih nama secara acak">
+    <link rel="icon" type="image/x-icon" href="../../img/logo.png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a73e8',
+                        secondary: '#8ab4f8',
+                        dark: '#0f172a',
+                        tor: '#7e4798',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'tor-pattern': "url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'%237e479822\' fill-opacity=\'0.4\' fill-rule=\'evenodd\'/%3E%3C/svg%3E')",
+                        'hero-pattern': "linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%237e4798\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        .tor-blur {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .logo-img {
+            border: 2px solid rgba(126, 71, 152, 0.5);
+            box-shadow: 0 0 15px rgba(126, 71, 152, 0.3);
+        }
+        .card-blur {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(126, 71, 152, 0.3);
+            transition: all 0.3s ease;
+        }
+        .card-blur:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(126, 71, 152, 0.2) 0%, rgba(15, 23, 42, 0) 50%),
+                        radial-gradient(circle at bottom left, rgba(26, 115, 232, 0.2) 0%, rgba(15, 23, 42, 0) 50%);
+        }
+        .text-animation-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(126, 71, 152, 0.2);
+            border: 8px solid #7e4798;
+            box-shadow: 0 0 20px rgba(126, 71, 152, 0.5);
+            overflow: hidden;
+        }
+        .text-scroll-area {
+            width: 80%;
+            height: 80%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .scrolling-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            position: absolute;
+            width: 100%;
+            transition: transform 0.2s ease-out;
+        }
+        .name-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .name-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            margin: 5px 0;
+            background: rgba(30, 41, 59, 0.4);
+            border-radius: 4px;
+        }
+        .remove-btn {
+            color: #ef4444;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .remove-btn:hover {
+            color: #dc2626;
+        }
+        
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            border: 1px solid rgba(126, 71, 152, 0.3);
+            border-radius: 0.5rem;
+            z-index: 1;
+            overflow: hidden;
+            top: 100%;
+            left: 0;
+        }
+        .dropdown-content a {
+            color: #e2e8f0;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(126, 71, 152, 0.1);
+            transition: all 0.3s ease;
+        }
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        .dropdown-content a:hover {
+            background: rgba(126, 71, 152, 0.2);
+            padding-left: 1.25rem;
+        }
+        .dropdown-content a i {
+            margin-right: 0.5rem;
+            width: 20px;
+            text-align: center;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-mobile {
+            display: none;
+        }
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+        .dropdown-toggle::after {
+            content: '\f107';
+            font-family: 'Font Awesome 7 Free';
+            font-weight: 900;
+            margin-left: 0.5rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .dropdown.active .dropdown-toggle::after {
+            transform: rotate(180deg);
+        }
+        /* Mobile dropdown styles */
+        .mobile-dropdown-content {
+            display: none;
+            background: rgba(30, 41, 59, 0.5);
+            padding-left: 1.5rem;
+        }
+        .mobile-dropdown-content.show {
+            display: block;
+        }
+        .mobile-dropdown-content a {
+            display: block;
+            padding: 0.5rem 0;
+            color: #e2e8f0;
+        }
+        @media (max-width: 768px) {
+            .dropdown {
+                display: none;
+            }
+            .dropdown-mobile {
+                display: block;
+            }
+            .text-animation-container {
+                width: 250px;
+                height: 250px;
+            }
+            .scrolling-text {
+                font-size: 1.5rem;
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #7e4798, #1a73e8);
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(126, 71, 152, 0.4);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(126, 71, 152, 0.6); }
+            70% { box-shadow: 0 0 0 10px rgba(126, 71, 152, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(126, 71, 152, 0); }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+        .hero-visual {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .spinning-wheel {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(126, 71, 152, 0.2), rgba(26, 115, 232, 0.2));
+            border: 8px solid rgba(126, 71, 152, 0.5);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(126, 71, 152, 0.3),
+                        inset 0 0 20px rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+        .spinning-wheel::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at center, transparent 30%, rgba(126, 71, 152, 0.3) 100%),
+                repeating-conic-gradient(
+                    from 0deg,
+                    transparent 0deg 10deg,
+                    rgba(255, 255, 255, 0.1) 10deg 20deg
+                );
+            border-radius: 50%;
+        }
+        .wheel-pointer {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 40px;
+            background: #7e4798;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            z-index: 20;
+        }
+        .hero-features {
+            display: flex;
+            justify-content: flex-start;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            background: rgba(30, 41, 59, 0.5);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            backdrop-filter: blur(10px);
+        }
+        .hero-feature i {
+            margin-right: 0.5rem;
+            color: #7e4798;
+        }
+        
+        .modern-card {
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .modern-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .glass-effect {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(126, 71, 152, 0.2);
+        }
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(30, 41, 59, 0.4));
+            border: 1px solid transparent;
+            background-clip: padding-box;
+        }
+        .gradient-border::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(45deg, #7e4798, #1a73e8, #7e4798);
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.4;
+        }
+
+        /* New Modern Styles */
+        .modern-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .modern-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(126, 71, 152, 0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .modern-spinner {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 0deg,
+                #7e4798, #1a73e8, #8ab4f8, #7e4798
+            );
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 50px rgba(126, 71, 152, 0.5);
+            overflow: hidden;
+            transition: transform 1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        }
+        .modern-spinner::before {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            background: #0f172a;
+            border-radius: 50%;
+            z-index: 2;
+        }
+        .modern-spinner-content {
+            position: relative;
+            z-index: 3;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+        }
+        .modern-input {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(126, 71, 152, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .modern-input:focus {
+            outline: none;
+            border-color: #7e4798;
+            box-shadow: 0 0 0 3px rgba(126, 71, 152, 0.3);
+        }
+        .modern-btn {
+            background: linear-gradient(45deg, #7e4798, #1a73e8);
+            border: none;
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(126, 71, 152, 0.3);
+        }
+        .modern-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(126, 71, 152, 0.4);
+        }
+        .modern-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .modern-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(126, 71, 152, 0.5), transparent);
+        }
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navbar -->
+    <nav class="tor-blur fixed w-full z-50 border-b border-tor/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../../website/index.html" class="flex-shrink-0 flex items-center">
+                        <!-- Logo -->
+                        <div class="h-10 w-10 rounded-full overflow-hidden logo-img">
+                            <img src="../../img/logo.png" 
+                                 alt="RicalNet Logo" 
+                                 class="h-full w-full object-cover">
+                        </div>
+                    </a>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="../../website/index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="../../website/about.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="../../website/coaching.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Coaching</a>
+                        <a href="../../website/resources.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Resources</a>
+                        
+                        <!-- Resources Dropdown -->
+                        <div class="dropdown">
+                            <div class="dropdown-toggle text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                Tools
+                            </div>
+                            <div class="dropdown-content">
+                                <a href="../../apps/ip-finder/index.html"><i class="fa-solid fa-location-crosshairs"></i> IP Finder</a>
+                                <a href="../../apps/lucky-spinner/index.html"><i class="fa-solid fa-dice"></i> Lucky Spinner</a>
+                                <a href="../../apps/qr-builder/index.html"><i class="fa-solid fa-qrcode"></i> QR Builder</a>
+                                <a href="../../apps/QuantumHasher/index.html"><i class="fas fa-atom"></i> Quantum Hasher</a>
+                                <a href="../../apps/UltraPassword/index.html"><i class="fas fa-key"></i> Ultra Password</a>
+                            </div>
+                        </div>
+
+                        <a href="https://ricaldocs.github.io" target="_blank" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Blog <i class="fa-solid fa-up-right-from-square"></i></a>
+                        <a href="../../website/support.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">🤍 Support Us</a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <!-- <a href="" class="hidden md:block bg-tor/20 hover:bg-tor/40 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">🔔</a> -->
+                    <div class="ml-4 flex items-center md:hidden">
+                        <button id="mobile-menu-button" class="text-gray-400 hover:text-white focus:outline-none">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="../../website/index.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="../../website/about.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="../../website/coaching.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Coaching</a>
+                <a href="../../website/resources.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Resources</a>
+                
+                <!-- Mobile Resources Dropdown -->
+                <div class="dropdown-mobile">
+                    <div id="mobile-resources-toggle" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">
+                        Tools <i class="fas fa-chevron-down float-right mt-1 text-sm"></i>
+                    </div>
+                    <div id="mobile-resources-content" class="mobile-dropdown-content">
+                        <a href="../../apps/ip-finder/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-location-crosshairs"></i> IP Finder</a>
+                        <a href="../../apps/lucky-spinner/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-dice"></i> Lucky Spinner</a>
+                        <a href="../../apps/qr-builder/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-qrcode"></i> QR Builder</a>
+                        <a href="../../apps/QuantumHasher/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-atom"></i> Quantum Hasher</a>
+                        <a href="../../apps/UltraPassword/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-key"></i> Ultra Password</a>
+                    </div>
+                </div>
+
+                <a href="https://ricaldocs.github.io" target="_blank" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Blog <i class="fa-solid fa-up-right-from-square"></i></a>
+                <a href="../../website/support.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">🤍 Support Us</a>
+                <!-- <a href="" class="bg-tor/20 hover:bg-tor/40 text-white block px-3 py-2 rounded-md text-base font-medium text-center">🔔</a> -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - 2 Column Layout -->
+    <section class="modern-hero py-20 md:py-28 relative overflow-hidden">
+        <!-- Background effects -->
+        <div class="absolute inset-0 hero-gradient"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-tor/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Column -->
+                <div class="hero-content text-left" data-aos="fade-right">
+                    <div class="hero-badge" data-aos="fade-right" data-aos-delay="200">
+                        <i class="fas fa-star mr-2"></i> Fair Random Selection
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                        Lucky Spinner
+                    </h1>
+                    
+                    <p class="text-xl text-gray-300 mb-8">
+                        A random name picker tool to help you make decisions in a fun and fair way. Perfect for classrooms, games, and group activities.
+                    </p>
+                    
+                    <!-- Feature badges -->
+                    <div class="hero-features mb-8">
+                        <div class="hero-feature" data-aos="fade-up" data-aos-delay="100">
+                            <i class="fas fa-check-circle"></i> Easy to Use
+                        </div>
+                        <div class="hero-feature" data-aos="fade-up" data-aos-delay="200">
+                            <i class="fas fa-bolt"></i> Real-time Results
+                        </div>
+                        <div class="hero-feature" data-aos="fade-up" data-aos-delay="300">
+                            <i class="fas fa-shield-alt"></i> No Ads
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#spinner-tool" class="modern-btn flex items-center" data-aos="fade-up" data-aos-delay="400">
+                            <i class="fas fa-play-circle mr-2"></i> Use Now
+                        </a>
+                        <a href="#how-to-use" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 flex items-center" data-aos="fade-up" data-aos-delay="500">
+                            <i class="fas fa-book mr-2"></i> How to Use
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="hero-visual" data-aos="fade-left" data-aos-delay="200">
+                    <div class="modern-spinner floating-element">
+                        <div class="wheel-pointer"></div>
+                        <div class="modern-spinner-content">
+                            Spin & Win!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spinner Tool Section -->
+    <section class="py-16 bg-dark modern-section" id="spinner-tool">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4" data-aos="fade-up">Random Name Picker</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Text Animation Wheel -->
+                <div class="modern-card glass-effect gradient-border rounded-xl p-8 flex flex-col items-center" data-aos="fade-right">
+                    <div class="text-animation-container">
+                        <div class="text-scroll-area" id="textScrollArea">
+                            <div class="scrolling-text" id="scrollingText">Add name</div>
+                        </div>
+                    </div>
+                    <div class="mt-8 text-center">
+                        <h3 class="text-xl font-semibold text-white mb-2" id="selectedName">Selected name will appear here</h3>
+                        <button id="spinButton" class="modern-btn mt-4 w-full">
+                            <i class="fas fa-sync-alt mr-2"></i> Spin!
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Input Names -->
+                <div class="modern-card glass-effect gradient-border rounded-xl p-8" data-aos="fade-left">
+                    <h3 class="text-xl font-semibold text-white mb-6">Name List</h3>
+                    
+                    <div class="mb-6">
+                        <div class="flex">
+                            <input type="text" id="nameInput" placeholder="Enter name" 
+                                class="modern-input flex-grow rounded-r-none">
+                            <button id="addNameButton" class="bg-tor hover:bg-purple-800 text-white font-bold py-3 px-4 rounded-r-lg transition duration-300">
+                                <i class="fa-solid fa-user-plus"></i>
+                            </button>
+                        </div>
+                        <p class="text-gray-400 text-sm mt-2">Press Enter or click the plus button to add a name</p>
+                    </div>
+
+                    <div class="name-list mb-6" id="nameList">
+                        <!-- Names will be added here -->
+                        <div class="text-center py-8 text-gray-500" id="emptyState">
+                            <i class="fas fa-users text-3xl mb-3"></i>
+                            <p>No names added yet. Start by adding names above.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button id="clearAllButton" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex-1">
+                            <i class="fas fa-trash mr-2"></i> Remove all
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section class="py-16 bg-tor-pattern modern-section" id="how-to-use">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4" data-aos="fade-up">How to Use Lucky Spinner</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="modern-card glass-effect gradient-border rounded-xl p-6 text-center" data-aos="fade-up">
+                    <div class="w-16 h-16 rounded-full bg-tor/20 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl text-tor">1</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Add Names</h3>
+                    <p class="text-gray-400">Enter the names you want to include in the list using the input form</p>
+                </div>
+
+                <div class="modern-card glass-effect gradient-border rounded-xl p-6 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 rounded-full bg-tor/20 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl text-tor">2</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Spin the Spinner</h3>
+                    <p class="text-gray-400">Click the "Spin!" button to spin the spinner and let chance pick a name at random</p>
+                </div>
+
+                <div class="modern-card glass-effect gradient-border rounded-xl p-6 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 rounded-full bg-tor/20 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl text-tor">3</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">View Result</h3>
+                    <p class="text-gray-400">The selected name will appear at the top of the spinner. You can remove a name or repeat the process</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="py-16 bg-dark modern-section">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4" data-aos="fade-up">Uses of the Lucky Spinner</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="modern-card glass-effect gradient-border rounded-xl p-6" data-aos="fade-right">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-chalkboard-teacher text-blue-500"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white">Teaching and Learning Activities</h3>
+                    </div>
+                    <p class="text-gray-400">Teachers can use this tool to randomly and fairly select students to answer questions or give presentations.</p>
+                </div>
+
+                <div class="modern-card glass-effect gradient-border rounded-xl p-6" data-aos="fade-left">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-gamepad text-green-500"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white">Games and Quizzes</h3>
+                    </div>
+                    <p class="text-gray-400">Randomly choose players or teams in games, or determine play order in a fun way.</p>
+                </div>
+
+                <div class="modern-card glass-effect gradient-border rounded-xl p-6" data-aos="fade-right">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-users text-purple-500"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white">Group Decision-Making</h3>
+                    </div>
+                    <p class="text-gray-400">When a group struggles to decide, this tool can help randomly select an option or a person in charge.</p>
+                </div>
+
+                <div class="modern-card glass-effect gradient-border rounded-xl p-6" data-aos="fade-left">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-gift text-yellow-500"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white">Raffles and Giveaways</h3>
+                    </div>
+                    <p class="text-gray-400">Randomly and transparently select winners for raffles or prize distributions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="tor-blur border-t border-tor/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-1">
+                    <a href="../../website/index.html" class="flex items-center">
+                        <!-- Logo di footer -->
+                        <div class="h-10 w-10 rounded-full overflow-hidden logo-img">
+                            <img src="../../img/logo.png" 
+                                 alt="RicalNet Logo" 
+                                 class="h-full w-full object-cover">
+                        </div>
+                        <span class="ml-3 text-xl font-bold ricalnet-text">RicalNet</span>
+                    </a>
+                    <p class="mt-4 text-gray-400">
+                        Memperjuangkan hak digital, privasi, dan kebebasan informasi.
+                    </p>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="https://t.me/share/url?url=https://ricalnet.github.io/website&text=RicalNet - Platform edukasi hak digital dan privasi online" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://www.reddit.com/submit?url=https://ricalnet.github.io/website&title=RicalNet - Platform edukasi hak digital dan privasi online" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-reddit"></i>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://x.com/intent/post?text=RicalNet - Platform edukasi hak digital dan privasi online&url=https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                        <a href="https://wa.me/?text=RicalNet - Platform edukasi hak digital dan privasi online https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Links</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="../../website/about.html" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="../../website/nextcrow/login.html" class="text-gray-400 hover:text-white">Community</a></li>
+                        <li><a href="../../website/support.html" class="text-gray-400 hover:text-white">Support</a></li>
+                        <li><a href="../../website/gallery.html" class="text-gray-400 hover:text-white">Gallery</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Resources</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="../../website/workspace.html" class="text-gray-400 hover:text-white">Workspace</a></li>
+                        <li><a href="../../website/legal-resources/index.html" class="text-gray-400 hover:text-white">Legal Resources</a></li>
+                        <li><a href="../../website/resources.html#apps" class="text-gray-400 hover:text-white">Privacy Tools</a></li>
+                        <li><a href="https://ricaldocs.github.io" target="_blank" class="text-gray-400 hover:text-white">Learning Center <i class="fa-solid fa-up-right-from-square"></i></a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Support Us</h3>
+                    <div class="mt-4 space-y-4">
+                        <button class="w-full bg-tor/20 hover:bg-tor/30 text-white py-2 rounded-lg transition duration-300">
+                            <a href="../../website/support.html">Become a Contributor</a>
+                        </button>
+                        <button class="w-full bg-primary/80 hover:bg-primary text-white py-2 rounded-lg transition duration-300">
+                            <a href="../../website/support.html">Privacy Research</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">RicalNet © 2025</p>
+                <div class="mt-4 md:mt-0">
+                    <ul class="flex space-x-6">
+                        <li><a href="../../website/privacy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a></li>
+                        <li><a href="../../website/terms-of-service.html" class="text-gray-400 hover:text-white text-sm">Terms of Service</a></li>
+                        <li><a href="../../website/contact.html" class="text-gray-400 hover:text-white text-sm">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-in-out'
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Mobile dropdown toggle
+        document.getElementById('mobile-resources-toggle').addEventListener('click', function() {
+            const content = document.getElementById('mobile-resources-content');
+            content.classList.toggle('show');
+        });
+
+        // Lucky Spinner Functionality
+        const nameList = document.getElementById('nameList');
+        const nameInput = document.getElementById('nameInput');
+        const addNameButton = document.getElementById('addNameButton');
+        const clearAllButton = document.getElementById('clearAllButton');
+        const spinButton = document.getElementById('spinButton');
+        const scrollingText = document.getElementById('scrollingText');
+        const selectedNameElement = document.getElementById('selectedName');
+        const emptyState = document.getElementById('emptyState');
+        
+        let names = [];
+        let isSpinning = false;
+        let animationInterval;
+        
+        // Add name to list
+        function addName() {
+            const name = nameInput.value.trim();
+            if (name && !names.includes(name)) {
+                names.push(name);
+                updateNameList();
+                updateTextAnimation();
+                nameInput.value = '';
+                
+                // Hide empty state if it exists
+                if (emptyState) {
+                    emptyState.style.display = 'none';
+                }
+            }
+        }
+        
+        // Remove name from list
+        function removeName(index) {
+            names.splice(index, 1);
+            updateNameList();
+            updateTextAnimation();
+            
+            // Show empty state if no names
+            if (names.length === 0 && emptyState) {
+                emptyState.style.display = 'block';
+            }
+        }
+        
+        // Update the name list UI
+        function updateNameList() {
+            nameList.innerHTML = '';
+            
+            if (names.length === 0 && emptyState) {
+                nameList.appendChild(emptyState);
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            names.forEach((name, index) => {
+                const nameItem = document.createElement('div');
+                nameItem.className = 'name-item';
+                nameItem.innerHTML = `
+                    <span>${name}</span>
+                    <span class="remove-btn" data-index="${index}">
+                        <i class="fas fa-times"></i>
+                    </span>
+                `;
+                nameList.appendChild(nameItem);
+            });
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    removeName(index);
+                });
+            });
+        }
+        
+        // Update the text animation display
+        function updateTextAnimation() {
+            if (names.length === 0) {
+                scrollingText.textContent = 'Add name';
+                scrollingText.style.color = 'white';
+            } else {
+                scrollingText.textContent = 'Click Spin!';
+                scrollingText.style.color = 'white';
+            }
+        }
+        
+        // Start text animation
+        function startTextAnimation() {
+            if (isSpinning || names.length === 0) return;
+            
+            isSpinning = true;
+            spinButton.disabled = true;
+            selectedNameElement.textContent = 'Spinning...';
+            
+            let counter = 0;
+            const totalIterations = 30;
+            const initialSpeed = 80;
+            let currentSpeed = initialSpeed;
+            
+            clearInterval(animationInterval);
+            
+            animationInterval = setInterval(() => {
+                // Show random name
+                const randomIndex = Math.floor(Math.random() * names.length);
+                scrollingText.textContent = names[randomIndex];
+                
+                // Gradually slow down
+                counter++;
+                if (counter > totalIterations / 2) {
+                    currentSpeed = initialSpeed + (counter * 10);
+                }
+                
+                // Stop condition
+                if (counter >= totalIterations) {
+                    clearInterval(animationInterval);
+                    
+                    // Select final random name
+                    const finalIndex = Math.floor(Math.random() * names.length);
+                    const selectedName = names[finalIndex];
+                    
+                    // Display selected name
+                    scrollingText.textContent = selectedName;
+                    selectedNameElement.textContent = selectedName;
+                    
+                    // Remove the selected name from the list
+                    names.splice(finalIndex, 1);
+                    updateNameList();
+                    updateTextAnimation();
+                    
+                    isSpinning = false;
+                    spinButton.disabled = false;
+                }
+            }, currentSpeed);
+        }
+        
+        // Event listeners
+        addNameButton.addEventListener('click', addName);
+        nameInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') addName();
+        });
+        clearAllButton.addEventListener('click', function() {
+            names = [];
+            updateNameList();
+            updateTextAnimation();
+            selectedNameElement.textContent = 'Selected name will appear here';
+        });
+        spinButton.addEventListener('click', startTextAnimation);
+        
+        // Initialize the text animation
+        updateTextAnimation();
+    </script>
+</body>
+</html>

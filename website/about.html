@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About RicalNet</title>
+    <meta name="description" content="RicalNet - Platform edukasi privasi digital dan keamanan online terpercaya di Indonesia. Temukan tools open source, panduan hak digital, dan layanan coaching untuk melindungi kebebasan digital Anda.">
+    <meta name="keywords" content="RicalNet, privasi digital Indonesia, keamanan online, hak digital, tools open source, edukasi keamanan siber, coaching privasi digital, Risnanda Pascal, perlindungan data pribadi">
+    <meta name="image" content="../img/logo.png">
+    <meta name="author" content="RicalNet">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="language" content="Indonesian">
+    <meta name="geo.region" content="ID">
+    <meta name="geo.placename" content="Indonesia">
+    <link rel="icon" type="image/x-icon" href="../img/logo.png">
+    <link rel="canonical" href="/website/about.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600&display=swap">
+    </noscript>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ricalnet.github.io/website/about.html">
+    <meta property="og:title" content="About RicalNet">
+    <meta property="og:description" content="RicalNet - Platform edukasi privasi digital dan keamanan online terpercaya di Indonesia. Temukan tools open source, panduan hak digital, dan layanan coaching untuk melindungi kebebasan digital Anda.">
+    <meta property="og:image" content="https://ricalnet.github.io/img/logo.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ricalnet.github.io/website/about.html">
+    <meta property="twitter:title" content="About RicalNet">
+    <meta property="twitter:description" content="RicalNet - Platform edukasi privasi digital dan keamanan online terpercaya di Indonesia. Temukan tools open source, panduan hak digital, dan layanan coaching untuk melindungi kebebasan digital Anda.">
+    <meta property="twitter:image" content="https://ricalnet.github.io/img/logo.png">
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "RicalNet",
+    "url": "https://ricalnet.github.io/website/about.html",
+    "logo": "https://ricalnet.github.io/img/logo.png",
+    "description": "RicalNet - Platform edukasi privasi digital dan keamanan online terpercaya di Indonesia. Temukan tools open source, panduan hak digital, dan layanan coaching untuk melindungi kebebasan digital Anda.",
+    "sameAs": [
+        "https://instagram.com/that_rical",
+        "https://t.me/rical_net",
+        "https://linkedin.com/in/risnandacandraabdurrozaq"
+    ]
+    }
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a73e8',
+                        secondary: '#8ab4f8',
+                        dark: '#0f172a',
+                        tor: '#7e4798',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'tor-pattern': "url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'%237e479822\' fill-opacity=\'0.4\' fill-rule=\'evenodd\'/%3E%3C/svg%3E')",
+                        'hero-pattern': "linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%237e4798\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        .tor-blur {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .card-blur {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(126, 71, 152, 0.3);
+            transition: all 0.3s ease;
+        }
+        .card-blur:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(126, 71, 152, 0.2) 0%, rgba(15, 23, 42, 0) 50%),
+                        radial-gradient(circle at bottom left, rgba(26, 115, 232, 0.2) 0%, rgba(15, 23, 42, 0) 50%);
+        }
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 10px rgba(138, 180, 248, 0.8);
+        }
+        .logo-img {
+            border: 2px solid rgba(126, 71, 152, 0.5);
+            box-shadow: 0 0 15px rgba(126, 71, 152, 0.3);
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+        }
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #7e4798;
+            border: 2px solid #1a73e8;
+        }
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 25px;
+            height: calc(100% - 5px);
+            width: 2px;
+            background: linear-gradient(to bottom, #7e4798, #1a73e8);
+        }
+        .timeline-item:last-child:after {
+            display: none;
+        }
+        .philosophy-card {
+            transition: all 0.3s ease;
+        }
+        .philosophy-card:hover {
+            transform: translateY(-5px);
+            border-color: #1a73e8;
+        }
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(126, 71, 152, 0.3);
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            border: 1px solid rgba(126, 71, 152, 0.3);
+            border-radius: 0.5rem;
+            z-index: 1;
+            overflow: hidden;
+            top: 100%;
+            left: 0;
+        }
+        .dropdown-content a {
+            color: #e2e8f0;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(126, 71, 152, 0.1);
+            transition: all 0.3s ease;
+        }
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        .dropdown-content a:hover {
+            background: rgba(126, 71, 152, 0.2);
+            padding-left: 1.25rem;
+        }
+        .dropdown-content a i {
+            margin-right: 0.5rem;
+            width: 20px;
+            text-align: center;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-mobile {
+            display: none;
+        }
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+        .dropdown-toggle::after {
+            content: '\f107';
+            font-family: 'Font Awesome 7 Free';
+            font-weight: 900;
+            margin-left: 0.5rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .dropdown.active .dropdown-toggle::after {
+            transform: rotate(180deg);
+        }
+        /* Mobile dropdown styles */
+        .mobile-dropdown-content {
+            display: none;
+            background: rgba(30, 41, 59, 0.5);
+            padding-left: 1.5rem;
+        }
+        .mobile-dropdown-content.show {
+            display: block;
+        }
+        .mobile-dropdown-content a {
+            display: block;
+            padding: 0.5rem 0;
+            color: #e2e8f0;
+        }
+        @media (max-width: 768px) {
+            .dropdown {
+                display: none;
+            }
+            .dropdown-mobile {
+                display: block;
+            }
+        }
+        
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(126, 71, 152, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .hero-section {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(26, 35, 61, 0.8) 50%, rgba(15, 23, 42, 0.9) 100%), 
+                        radial-gradient(circle at 20% 80%, rgba(126, 71, 152, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(26, 115, 232, 0.15) 0%, transparent 50%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #8ab4f8 0%, #7e4798 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(126, 71, 152, 0.1) 0%, rgba(26, 115, 232, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, #1a73e8, #7e4798);
+            border-radius: 3px;
+        }
+        
+        .modern-hero {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(26, 35, 61, 0.9) 100%), 
+                        radial-gradient(circle at 20% 80%, rgba(126, 71, 152, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(26, 115, 232, 0.2) 0%, transparent 50%);
+            border-bottom: 1px solid rgba(126, 71, 152, 0.2);
+        }
+        .modern-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(126, 71, 152, 0.25);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .modern-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(126, 71, 152, 0.25);
+            border-color: rgba(126, 71, 152, 0.4);
+        }
+        .accent-border {
+            border-left: 4px solid;
+            border-image: linear-gradient(to bottom, #1a73e8, #7e4798) 1;
+        }
+        .modern-timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+        .modern-timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, #7e4798, #1a73e8, transparent);
+        }
+        .modern-timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        .modern-timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            background: #1a73e8;
+            border: 3px solid #7e4798;
+        }
+        .modern-btn {
+            background: linear-gradient(135deg, #1a73e8 0%, #7e4798 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(126, 71, 152, 0.3);
+        }
+        .modern-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(126, 71, 152, 0.4);
+        }
+        .feature-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.1) 0%, rgba(126, 71, 152, 0.1) 100%);
+            margin-bottom: 1.5rem;
+        }
+        .feature-icon i {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #8ab4f8 0%, #7e4798 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #8ab4f8 0%, #7e4798 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .pattern-bg {
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(126, 71, 152, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(26, 115, 232, 0.1) 0%, transparent 25%);
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navbar -->
+    <nav class="tor-blur fixed w-full z-50 border-b border-tor/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <!-- Logo -->
+                        <div class="h-10 w-10 rounded-full overflow-hidden logo-img">
+                            <img src="../img/logo.png" 
+                                 alt="RicalNet Logo" 
+                                 class="h-full w-full object-cover">
+                        </div>
+                    </a>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="about.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="coaching.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Coaching</a>
+                        <a href="resources.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Resources</a>
+                        
+                        <!-- Resources Dropdown -->
+                        <div class="dropdown">
+                            <div class="dropdown-toggle text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                Tools
+                            </div>
+                            <div class="dropdown-content">
+                                <a href="../apps/ip-finder/index.html"><i class="fa-solid fa-location-crosshairs"></i> IP Finder</a>
+                                <a href="../apps/lucky-spinner/index.html"><i class="fa-solid fa-dice"></i> Lucky Spinner</a>
+                                <a href="../apps/qr-builder/index.html"><i class="fa-solid fa-qrcode"></i> QR Builder</a>
+                                <a href="../apps/QuantumHasher/index.html"><i class="fas fa-atom"></i> Quantum Hasher</a>
+                                <a href="../apps/UltraPassword/index.html"><i class="fas fa-key"></i> Ultra Password</a>
+                            </div>
+                        </div>
+
+                        <a href="https://ricaldocs.github.io" target="_blank" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Blog <i class="fa-solid fa-up-right-from-square"></i></a>
+                        <a href="support.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">🤍 Support Us</a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <!-- <a href="" class="hidden md:block bg-tor/20 hover:bg-tor/40 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">🔔</a> -->
+                    <div class="ml-4 flex items-center md:hidden">
+                        <button id="mobile-menu-button" class="text-gray-400 hover:text-white focus:outline-none">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="about.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="coaching.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Coaching</a>
+                <a href="resources.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Resources</a>
+                
+                <!-- Mobile Resources Dropdown -->
+                <div class="dropdown-mobile">
+                    <div id="mobile-resources-toggle" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">
+                        Tools <i class="fas fa-chevron-down float-right mt-1 text-sm"></i>
+                    </div>
+                    <div id="mobile-resources-content" class="mobile-dropdown-content">
+                        <a href="../apps/ip-finder/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-location-crosshairs"></i> IP Finder</a>
+                        <a href="../apps/lucky-spinner/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-dice"></i> Lucky Spinner</a>
+                        <a href="../apps/qr-builder/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-qrcode"></i> QR Builder</a>
+                        <a href="../apps/QuantumHasher/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-atom"></i> Quantum Hasher</a>
+                        <a href="../apps/UltraPassword/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-key"></i> Ultra Password</a>
+                    </div>
+                </div>
+
+                <a href="https://ricaldocs.github.io" target="_blank" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Blog <i class="fa-solid fa-up-right-from-square"></i></a>
+                <a href="support.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">🤍 Support Us</a>
+                <!-- <a href="" class="bg-tor/20 hover:bg-tor/40 text-white block px-3 py-2 rounded-md text-base font-medium text-center">🔔</a> -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Announcement Section -->
+    <div class="tor-blur pt-16 pb-4 border-b border-tor/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="inline-block px-3 py-1 rounded-full text-sm font-medium bg-tor/20 text-secondary">
+                    <span class="animate-pulse">📢</span> Situs web ini sedang dalam <span class="font-bold">proses pengembangan</span> -  Beberapa informasi mungkin belum tersedia</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="modern-hero pt-32 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white" data-aos="fade-up">
+                        About <span class="gradient-text">RicalNet</span>
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8 max-w-2xl" data-aos="fade-up" data-aos-delay="100">
+                        Memberdayakan masyarakat dengan hak-hak digital, privasi, dan kebebasan melalui teknologi dan pendidikan.
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start" data-aos="fade-up" data-aos-delay="200">
+                        <a href="#mission" class="modern-btn text-white">
+                            <i class="fas fa-bullseye mr-2"></i> Our Mission
+                        </a>
+                        <a href="#founder" class="bg-dark hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300 border border-tor/30">
+                            <i class="fas fa-user-tie mr-2"></i> Founder
+                        </a>
+                    </div>
+                </div>
+                <div class="flex justify-center" data-aos="fade-left" data-aos-delay="300">
+                    <div class="relative">
+                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-tor/30 floating-element">
+                            <img src="../img/logo.png" 
+                                 alt="RicalNet Logo" 
+                                 class="h-full w-full object-cover">
+                        </div>
+                        <!-- <div class="absolute -bottom-4 -right-4 modern-card text-white py-2 px-4 rounded-lg">
+                            <i class="fas fa-quote-left mr-2 text-purple-400"></i>
+                            Pendidikan harus menjadi hak, bukan hak istimewa.
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <!-- <section class="py-16 pattern-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="stats-grid">
+                <div class="modern-card stat-item" data-aos="fade-up">
+                    <div class="w-14 h-14 rounded-full bg-tor/20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tools text-2xl text-tor"></i>
+                    </div>
+                    <h3 class="stat-number">10+</h3>
+                    <p class="text-gray-400">Tools Privacy</p>
+                </div>
+                <div class="modern-card stat-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 rounded-full bg-tor/20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-2xl text-tor"></i>
+                    </div>
+                    <h3 class="stat-number">100+</h3>
+                    <p class="text-gray-400">Sumber Daya</p>
+                </div>
+                <div class="modern-card stat-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 rounded-full bg-tor/20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-file-alt text-2xl text-tor"></i>
+                    </div>
+                    <h3 class="stat-number">50+</h3>
+                    <p class="text-gray-400">Artikel Edukasi</p>
+                </div>
+                <div class="modern-card stat-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 rounded-full bg-tor/20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-calendar-check text-2xl text-tor"></i>
+                    </div>
+                    <h3 class="stat-number">3+</h3>
+                    <p class="text-gray-400">Tahun Berkontribusi</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Mission Section -->
+    <section id="mission" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white section-title" data-aos="fade-up">Mission & Vision</h2>
+                <p class="mt-6 text-xl text-gray-400 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Memberdayakan masyarakat dengan pengetahuan dan alat untuk melindungi privasi digital mereka
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="modern-card rounded-xl p-8 text-center" data-aos="fade-up">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Privacy Protection</h3>
+                    <p class="text-gray-400">Menyediakan alat dan pengetahuan untuk melindungi data pribadi dari ancaman digital</p>
+                </div>
+                
+                <div class="modern-card rounded-xl p-8 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Digital Education</h3>
+                    <p class="text-gray-400">Meningkatkan kesadaran masyarakat tentang hak digital dan keamanan online</p>
+                </div>
+                
+                <div class="modern-card rounded-xl p-8 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Open Source</h3>
+                    <p class="text-gray-400">Mengembangkan solusi sumber terbuka yang transparan dan dapat dipercaya</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section id="founder" class="py-20 pattern-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white section-title" data-aos="fade-up">Founder RicalNet</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="flex justify-center" data-aos="fade-right">
+                    <div class="relative">
+                        <div class="w-64 h-64 rounded-full overflow-hidden border-4 border-tor/30">
+                            <img src="../img/founder.png" 
+                                 alt="Risnanda Pascal" 
+                                 class="h-full w-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 modern-card text-white py-2 px-4 rounded-lg">
+                            <i class="fas fa-quote-left mr-2 text-purple-400"></i>
+                            Pendidikan harus menjadi hak, bukan hak istimewa.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center lg:text-left" data-aos="fade-left">
+                    <h2 class="text-3xl font-bold text-white mb-6">Risnanda Pascal</h2>
+                    <p class="text-xl text-gray-300 mb-8">
+                        The Contributor
+                    </p>
+                    <p class="text-gray-400 mb-8">
+                        Seorang digital rights activist yang berdedikasi untuk memberdayakan masyarakat dengan pengetahuan dan alat untuk melindungi privasi digital mereka. Dengan latar belakang di bidang telekomunikasi dan jaringan komputer, Risnanda memiliki passion dalam mengembangkan solusi open source yang aman dan privasi.
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                        <div class="modern-card px-4 py-2">
+                            <i class="fas fa-earth-asia text-purple-400 mr-2"></i>
+                            <span>Asia/Jakarta</span>
+                        </div>
+                        <div class="modern-card px-4 py-2">
+                            <i class="fa-brands fa-linux text-red-400 mr-2"></i>
+                            <span>Debian User since 2022</span>
+                        </div>
+                        <div class="modern-card px-4 py-2">
+                            <i class="fa-brands fa-android text-green-400 mr-2"></i>
+                            <span>Android Enthusiast</span>
+                        </div>
+                        <div class="modern-card px-4 py-2">
+                            <i class="fa-solid fa-user-shield text-blue-400 mr-2"></i>
+                            <span>Privacy Researcher</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biography Section -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white section-title" data-aos="fade-up">Background & Education</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="modern-card rounded-xl p-8" data-aos="fade-up">
+                    <div class="feature-icon mx-auto mb-6">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white text-center mb-4">Education</h3>
+                    <div class="modern-timeline">
+                        <div class="modern-timeline-item">
+                            <h4 class="font-bold text-white">Diploma Telecommunication Engineering</h4>
+                            <p class="text-gray-400">Telkom University (2023-Present)</p>
+                        </div>
+                        <div class="modern-timeline-item">
+                            <h4 class="font-bold text-white">Computer Network Engineering</h4>
+                            <p class="text-gray-400">SMK Wirakarya 1 Ciparay (2019-2022)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modern-card rounded-xl p-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon mx-auto mb-6">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white text-center mb-4">Digital Journey</h3>
+                    <p class="text-gray-400 mb-6">
+                        Mulai tertarik pada komputasi dan privasi digital sejak 2020 melalui tulisan-tulisan di Blogger sebelum mendirikan RicalDocs.
+                    </p>
+                    <div class="modern-card p-4">
+                        <h4 class="font-bold text-white mb-2">Key Project:</h4>
+                        <p class="text-gray-400">"A Privacy-Preserving Hybrid Telecommunication Architecture for Enterprise Conferencing Using Open-Source Stack Integration"</p>
+                    </div>
+                </div>
+                
+                <div class="modern-card rounded-xl p-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon mx-auto mb-6">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white text-center mb-4">Community Roles</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="w-8 h-8 rounded-full bg-tor/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-shield-alt text-tor"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Cybersecurity Instructor</h4>
+                                <p class="text-gray-400">Cobra & Warriors Community</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-8 h-8 rounded-full bg-tor/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-microphone text-tor"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Speaker</h4>
+                                <p class="text-gray-400">HMDT Tel-U</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-8 h-8 rounded-full bg-tor/20 flex items-center justify-center mr-3">
+                                <i class="fab fa-android text-tor"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Android Custom ROM Tester</h4>
+                                <p class="text-gray-400">Active contributor in Android community</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Source Contributions -->
+    <section class="py-20 pattern-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white section-title" data-aos="fade-up">Open Source Contributions</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="modern-card rounded-xl overflow-hidden project-card" data-aos="fade-up">
+                    <div class="p-6">
+                        <div class="feature-icon mx-auto mb-4">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Prabu Incognito</h3>
+                        <p class="text-gray-400 mb-4">A collection of tools for maintaining anonymity, privacy, and security</p>
+                        <a href="https://github.com/ricalnet/prabu-incognito" target="_blank" class="text-secondary hover:text-primary font-medium">Use the tool <i class="fas fa-arrow-up-right-from-square ml-1"></i></a>
+                    </div>
+                </div>
+                
+                <div class="modern-card rounded-xl overflow-hidden project-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-6">
+                        <div class="feature-icon mx-auto mb-4">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">NextCrow</h3>
+                        <p class="text-gray-400 mb-4">Privacy-Focused Social Platform and Cloud Storage for Hidden Services</p>
+                        <a href="nextcrow/login.html" class="text-secondary hover:text-primary font-medium">Explore Platform <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                
+                <div class="modern-card rounded-xl overflow-hidden project-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-6">
+                        <div class="feature-icon mx-auto mb-4">
+                            <i class="fas fa-file-archive"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Dynamic Archive</h3>
+                        <p class="text-gray-400 mb-4">Protect your file and folder backups with high-grade encryption tools</p>
+                        <a href="https://github.com/ricalnet/DynamicArchive" target="_blank" class="text-secondary hover:text-primary font-medium">Use the tool <i class="fas fa-arrow-up-right-from-square ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center" data-aos="fade-up">
+                <a href="../apps/index.html" class="modern-btn text-white">
+                    <i class="fas fa-tools mr-2"></i> View All
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white section-title" data-aos="fade-up">Philosophy & Approach</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="modern-card rounded-xl p-8 text-center philosophy-card" data-aos="fade-up">
+                    <div class="feature-icon mx-auto mb-6">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Privacy is Not a Crime</h3>
+                    <p class="text-gray-400">Menekankan bahwa kebutuhan untuk melindungi informasi pribadi merupakan hak dasar, bukan sesuatu yang mencurigakan atau ilegal</p>
+                </div>
+                
+                <div class="modern-card rounded-xl p-8 text-center philosophy-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon mx-auto mb-6">
+                        <i class="fab fa-uncharted"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">No Tracking, No Logging</h3>
+                    <p class="text-gray-400">Menerapkan sistem yang menghormati privasi pengguna sejak awal desain, tanpa mengumpulkan data yang tidak diperlukan</p>
+                </div>
+                
+                <div class="modern-card rounded-xl p-8 text-center philosophy-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon mx-auto mb-6">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">FOSS Principles</h3>
+                    <p class="text-gray-400">Komitmen terhadap Perangkat Lunak Bebas dan Sumber Terbuka dalam desain sistem untuk memastikan transparansi dan kepercayaan</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About RicalNet -->
+    <section class="py-20 pattern-bg" id="about">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="modern-card rounded-2xl p-8 md:p-12 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-tor to-primary"></div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-8" data-aos="fade-up">About RicalNet</h2>
+                
+                <div class="text-left text-gray-300 space-y-6" data-aos="fade-up" data-aos-delay="100">
+                    <p>
+                        RicalNet adalah inisiatif yang didirikan oleh Risnanda Pascal untuk memberdayakan individu dengan hak digital, pengetahuan privasi, dan alat keamanan. Kami percaya pada dunia digital di mana privasi merupakan hak asasi manusia yang fundamental, dan teknologi berfungsi untuk memberdayakan rather than mengendalikan.
+                    </p>
+                    
+                    <p>
+                        Misi kami adalah menyediakan sumber daya praktis, pendidikan, dan advokasi untuk membantu orang melindungi data online mereka, memahami hak digital mereka, dan menjelajahi lanskap digital dengan aman dan bebas.
+                    </p>
+                    
+                    <p>
+                        Melalui pengembangan sumber terbuka, keterlibatan komunitas, dan konten pendidikan, RicalNet berupaya menciptakan internet yang lebih privat dan aman bagi semua orang.
+                    </p>
+                </div>
+                
+                <div class="mt-10" data-aos="fade-up" data-aos-delay="200">
+                    <a href="support.html" class="modern-btn text-white">
+                        <i class="fas fa-hands-helping mr-2"></i> Support Our Mission
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="tor-blur border-t border-tor/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-1">
+                    <a href="index.html" class="flex items-center">
+                        <!-- Logo di footer -->
+                        <div class="h-10 w-10 rounded-full overflow-hidden logo-img">
+                            <img src="../img/logo.png" 
+                                 alt="RicalNet Logo" 
+                                 class="h-full w-full object-cover">
+                        </div>
+                        <span class="ml-3 text-xl font-bold ricalnet-text">RicalNet</span>
+                    </a>
+                    <p class="mt-4 text-gray-400">
+                        Memperjuangkan hak digital, privasi, dan kebebasan informasi.
+                    </p>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="https://t.me/share/url?url=https://ricalnet.github.io/website&text=RicalNet - Platform edukasi hak digital dan privasi online" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://www.reddit.com/submit?url=https://ricalnet.github.io/website&title=RicalNet - Platform edukasi hak digital dan privasi online" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-reddit"></i>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://x.com/intent/post?text=RicalNet - Platform edukasi hak digital dan privasi online&url=https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                        <a href="https://wa.me/?text=RicalNet - Platform edukasi hak digital dan privasi online https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Links</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="nextcrow/login.html" class="text-gray-400 hover:text-white">Community</a></li>
+                        <li><a href="support.html" class="text-gray-400 hover:text-white">Support</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-white">Gallery</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Resources</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="workspace.html" class="text-gray-400 hover:text-white">Workspace</a></li>
+                        <li><a href="legal-resources/index.html" class="text-gray-400 hover:text-white">Legal Resources</a></li>
+                        <li><a href="resources.html#apps" class="text-gray-400 hover:text-white">Privacy Tools</a></li>
+                        <li><a href="https://ricaldocs.github.io" target="_blank" class="text-gray-400 hover:text-white">Learning Center <i class="fa-solid fa-up-right-from-square"></i></a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Support Us</h3>
+                    <div class="mt-4 space-y-4">
+                        <button class="w-full bg-tor/20 hover:bg-tor/30 text-white py-2 rounded-lg transition duration-300">
+                            <a href="support.html">Become a Contributor</a>
+                        </button>
+                        <button class="w-full bg-primary/80 hover:bg-primary text-white py-2 rounded-lg transition duration-300">
+                            <a href="support.html">Privacy Research</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">RicalNet © 2025</p>
+                <div class="mt-4 md:mt-0">
+                    <ul class="flex space-x-6">
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html" class="text-gray-400 hover:text-white text-sm">Terms of Service</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white text-sm">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-in-out'
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Mobile dropdown toggle
+        document.getElementById('mobile-resources-toggle').addEventListener('click', function() {
+            const content = document.getElementById('mobile-resources-content');
+            content.classList.toggle('show');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Finder | RicalNet</title>
+    <meta name="description" content="Find IP address, geolocation, ISP, and more with RicalNet's IP Finder">
+    <meta name="author" content="RicalNet">
+    <link rel="icon" type="image/x-icon" href="../../img/logo.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS for maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a73e8',
+                        secondary: '#8ab4f8',
+                        dark: '#0f172a',
+                        tor: '#7e4798',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'tor-pattern': "url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'%237e479822\' fill-opacity=\'0.4\' fill-rule=\'evenodd\'/%3E%3C/svg%3E')",
+                        'hero-pattern': "linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%237e4798\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        .tor-blur {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .card-blur {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(126, 71, 152, 0.3);
+            transition: all 0.3s ease;
+        }
+        .card-blur:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .glow {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+        }
+        .logo-img {
+            border: 2px solid rgba(126, 71, 152, 0.5);
+            box-shadow: 0 0 15px rgba(126, 71, 152, 0.3);
+        }
+        
+        .ip-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 12px;
+            border: 1px solid rgba(126, 71, 152, 0.4);
+            transition: all 0.3s ease;
+        }
+        .ip-card:hover {
+            border-color: rgba(26, 115, 232, 0.7);
+            box-shadow: 0 5px 15px rgba(26, 115, 232, 0.2);
+        }
+        .ip-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .ip-info-item {
+            padding: 15px;
+            background: rgba(20, 30, 48, 0.5);
+            border-radius: 8px;
+            border-left: 3px solid #7e4798;
+        }
+        .ip-info-item i {
+            font-size: 1.2rem;
+            margin-right: 10px;
+            color: #8ab4f8;
+        }
+        #map {
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(126, 71, 152, 0.3);
+            z-index: 1;
+        }
+        .map-container {
+            position: relative;
+        }
+        .map-overlay {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(15, 23, 42, 0.8);
+            padding: 10px 15px;
+            border-radius: 8px;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(126, 71, 152, 0.3);
+        }
+        .locate-btn {
+            background: linear-gradient(45deg, #7e4798, #1a73e8);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .locate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(26, 115, 232, 0.4);
+        }
+        .locate-btn:active {
+            transform: translateY(1px);
+        }
+        .locate-btn.loading {
+            background: linear-gradient(45deg, #4a5568, #2d3748);
+            cursor: not-allowed;
+        }
+        .pulse {
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(26, 115, 232, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(26, 115, 232, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(26, 115, 232, 0); }
+        }
+        .ip-animation {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .search-container {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(126, 71, 152, 0.4);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        .search-input {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(126, 71, 152, 0.4);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 1rem;
+            font-family: 'Roboto Mono', monospace;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: #7e4798;
+            box-shadow: 0 0 0 3px rgba(126, 71, 152, 0.3);
+        }
+        .search-btn {
+            background: linear-gradient(45deg, #7e4798, #1a73e8);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            margin-top: 15px;
+            width: 100%;
+        }
+        .search-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(26, 115, 232, 0.4);
+        }
+        .flag-icon {
+            display: inline-block;
+            width: 24px;
+            height: 16px;
+            background-size: cover;
+            margin-right: 10px;
+            vertical-align: middle;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            border: 1px solid rgba(126, 71, 152, 0.3);
+            border-radius: 0.5rem;
+            z-index: 1;
+            overflow: hidden;
+            top: 100%;
+            left: 0;
+        }
+        .dropdown-content a {
+            color: #e2e8f0;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(126, 71, 152, 0.1);
+            transition: all 0.3s ease;
+        }
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        .dropdown-content a:hover {
+            background: rgba(126, 71, 152, 0.2);
+            padding-left: 1.25rem;
+        }
+        .dropdown-content a i {
+            margin-right: 0.5rem;
+            width: 20px;
+            text-align: center;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-mobile {
+            display: none;
+        }
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+        .dropdown-toggle::after {
+            content: '\f107';
+            font-family: 'Font Awesome 7 Free';
+            font-weight: 900;
+            margin-left: 0.5rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .dropdown.active .dropdown-toggle::after {
+            transform: rotate(180deg);
+        }
+        /* Mobile dropdown styles */
+        .mobile-dropdown-content {
+            display: none;
+            background: rgba(30, 41, 59, 0.5);
+            padding-left: 1.5rem;
+        }
+        .mobile-dropdown-content.show {
+            display: block;
+        }
+        .mobile-dropdown-content a {
+            display: block;
+            padding: 0.5rem 0;
+            color: #e2e8f0;
+        }
+        @media (max-width: 768px) {
+            .dropdown {
+                display: none;
+            }
+            .dropdown-mobile {
+                display: block;
+            }
+        }
+
+        .modern-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(126, 71, 152, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .modern-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(26, 115, 232, 0.15);
+            border-color: rgba(26, 115, 232, 0.3);
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #8ab4f8, #1a73e8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .glass-effect {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-illustration {
+            filter: drop-shadow(0 10px 20px rgba(26, 115, 232, 0.2));
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navbar -->
+    <nav class="tor-blur fixed w-full z-50 border-b border-tor/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../../website/index.html" class="flex-shrink-0 flex items-center">
+                        <!-- Logo -->
+                        <div class="h-10 w-10 rounded-full overflow-hidden logo-img">
+                            <img src="../../img/logo.png" 
+                                 alt="RicalNet Logo" 
+                                 class="h-full w-full object-cover">
+                        </div>
+                    </a>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="../../website/index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="../../website/about.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="../../website/coaching.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Coaching</a>
+                        <a href="../../website/resources.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Resources</a>
+                        
+                        <!-- Resources Dropdown -->
+                        <div class="dropdown">
+                            <div class="dropdown-toggle text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                Tools
+                            </div>
+                            <div class="dropdown-content">
+                                <a href="../../apps/ip-finder/index.html"><i class="fa-solid fa-location-crosshairs"></i> IP Finder</a>
+                                <a href="../../apps/lucky-spinner/index.html"><i class="fa-solid fa-dice"></i> Lucky Spinner</a>
+                                <a href="../../apps/qr-builder/index.html"><i class="fa-solid fa-qrcode"></i> QR Builder</a>
+                                <a href="../../apps/QuantumHasher/index.html"><i class="fas fa-atom"></i> Quantum Hasher</a>
+                                <a href="../../apps/UltraPassword/index.html"><i class="fas fa-key"></i> Ultra Password</a>
+                            </div>
+                        </div>
+
+                        <a href="https://ricaldocs.github.io" target="_blank" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Blog <i class="fa-solid fa-up-right-from-square"></i></a>
+                        <a href="../../website/support.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">🤍 Support Us</a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <!-- <a href="" class="hidden md:block bg-tor/20 hover:bg-tor/40 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">🔔</a> -->
+                    <div class="ml-4 flex items-center md:hidden">
+                        <button id="mobile-menu-button" class="text-gray-400 hover:text-white focus:outline-none">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="../../website/index.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="../../website/about.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="../../website/coaching.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Coaching</a>
+                <a href="../../website/resources.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Resources</a>
+                
+                <!-- Mobile Resources Dropdown -->
+                <div class="dropdown-mobile">
+                    <div id="mobile-resources-toggle" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer">
+                        Tools <i class="fas fa-chevron-down float-right mt-1 text-sm"></i>
+                    </div>
+                    <div id="mobile-resources-content" class="mobile-dropdown-content">
+                        <a href="../../apps/ip-finder/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-location-crosshairs"></i> IP Finder</a>
+                        <a href="../../apps/lucky-spinner/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-dice"></i> Lucky Spinner</a>
+                        <a href="../../apps/qr-builder/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-qrcode"></i> QR Builder</a>
+                        <a href="../../apps/QuantumHasher/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-atom"></i> Quantum Hasher</a>
+                        <a href="../../apps/UltraPassword/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-key"></i> Ultra Password</a>
+                    </div>
+                </div>
+
+                <a href="https://ricaldocs.github.io" target="_blank" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Blog <i class="fa-solid fa-up-right-from-square"></i></a>
+                <a href="../../website/support.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">🤍 Support Us</a>
+                <!-- <a href="" class="bg-tor/20 hover:bg-tor/40 text-white block px-3 py-2 rounded-md text-base font-medium text-center">🔔</a> -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-28 pb-16 md:py-24 bg-dark relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Column -->
+                <div class="order-2 lg:order-1" data-aos="fade-right">
+                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                        Advanced IP <span class="gradient-text">Finder</span>
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8">
+                        Discover your IP address, geolocation, ISP provider, and more with our privacy-focused IP lookup tool. Get accurate results instantly.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                        <div class="pulse">
+                            <button id="locateBtn" class="locate-btn w-full sm:w-auto">
+                                <i class="fa-solid fa-location-crosshairs"></i> Locate My IP
+                            </button>
+                        </div>
+                        <div class="bg-gray-800/50 px-4 py-3 rounded-lg flex items-center">
+                            <i class="fas fa-shield-alt text-secondary mr-3 text-xl"></i>
+                            <span class="text-gray-300 text-sm">We don't store your IP or location data</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center text-gray-400 text-sm">
+                        <div class="flex items-center mr-6">
+                            <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-2">
+                                <i class="fas fa-bolt text-primary"></i>
+                            </div>
+                            Instant Results
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-2">
+                                <i class="fas fa-globe text-primary"></i>
+                            </div>
+                            Global Coverage
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column -->
+                <div class="order-1 lg:order-2" data-aos="fade-left" data-aos-delay="200">
+                    <div class="modern-card p-8">
+                        <div class="text-center mb-6">
+                            <div class="w-20 h-20 mx-auto mb-4 hero-illustration">
+                                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="50" cy="50" r="45" fill="#1a73e8" opacity="0.2" />
+                                    <circle cx="50" cy="50" r="35" fill="#1a73e8" opacity="0.3" />
+                                    <circle cx="50" cy="50" r="25" fill="#1a73e8" opacity="0.4" />
+                                    <circle cx="50" cy="50" r="15" fill="#1a73e8" opacity="0.6" />
+                                    <circle cx="50" cy="50" r="5" fill="#1a73e8" />
+                                    <path d="M50 10 V90 M10 50 H90" stroke="#8ab4f8" stroke-width="2" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-white">IP Lookup Tool</h3>
+                            <p class="text-gray-400 mt-2">Search for any IP address information</p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <input type="text" 
+                                   id="ipSearchInput" 
+                                   class="search-input" 
+                                   placeholder="Enter IP Address (e.g., 8.8.8.8, 2001:4860:4860::8888)" 
+                                   value="">
+                            <button id="searchBtn" class="search-btn mt-4">
+                                <i class="fas fa-search"></i> Search IP Address
+                            </button>
+                        </div>
+                        
+                        <div class="bg-dark/50 p-4 rounded-lg text-sm text-gray-400">
+                            <div class="flex items-start">
+                                <i class="fas fa-info-circle text-secondary mt-1 mr-3"></i>
+                                <p>This tool helps you find information about any IP address, including location, ISP, and network details.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute top-0 left-0 w-full h-full z-0 opacity-20">
+            <div class="absolute top-20 right-20 w-64 h-64 rounded-full bg-primary blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-10 left-10 w-40 h-40 rounded-full bg-tor blur-3xl animate-pulse"></div>
+        </div>
+    </section>
+
+    <!-- IP Information Section -->
+    <section class="py-16 bg-dark" id="ipInfoSection" style="display: none;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up">
+                    <span class="gradient-text">IP Information</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Detailed information about the IP address including geolocation, network provider, and more.
+                </p>
+                <div class="w-24 h-1 bg-gradient-to-r from-tor to-primary mx-auto rounded-full mt-4" data-aos="fade-up"></div>
+            </div>
+            
+            <!-- IP Address Card -->
+            <div class="modern-card max-w-4xl mx-auto p-6 mb-12" data-aos="fade-up">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div>
+                        <h3 class="text-xl font-semibold text-white">Public IP Address</h3>
+                        <div id="ipAddress" class="text-3xl md:text-4xl font-bold text-primary mt-2 font-mono">192.168.1.1</div>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <button id="copyIpBtn" class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg flex items-center transition-all">
+                            <i class="far fa-copy mr-2"></i> Copy
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Detailed Information Grid -->
+            <div class="ip-info-grid max-w-6xl mx-auto" data-aos="fade-up">
+                <div class="modern-card p-5">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-map-marker-alt text-primary"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm">Location</div>
+                            <div id="location" class="text-white font-medium">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modern-card p-5">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-globe-americas text-primary"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm">Country</div>
+                            <div id="country" class="text-white font-medium">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modern-card p-5">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-wifi text-primary"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm">ISP Provider</div>
+                            <div id="isp" class="text-white font-medium">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modern-card p-5">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-map-pin text-primary"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm">Coordinates</div>
+                            <div id="coordinates" class="text-white font-medium">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modern-card p-5">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-clock text-primary"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm">Timezone</div>
+                            <div id="timezone" class="text-white font-medium">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modern-card p-5">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-network-wired text-primary"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm">Network</div>
+                            <div id="network" class="text-white font-medium">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modern-card p-5">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-mail-bulk text-primary"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm">Postal Code</div>
+                            <div id="postal" class="text-white font-medium">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modern-card p-5">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-flag-eu text-primary"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm">European Union</div>
+                            <div id="eu" class="text-white font-medium">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modern-card p-5">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-phone-alt text-primary"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm">Calling Code</div>
+                            <div id="callingCode" class="text-white font-medium">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modern-card p-5">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-money-bill-wave text-primary"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm">Currency</div>
+                            <div id="currency" class="text-white font-medium">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modern-card p-5">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-language text-primary"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm">Languages</div>
+                            <div id="languages" class="text-white font-medium">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modern-card p-5">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-server text-primary"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm">ASN</div>
+                            <div id="asn" class="text-white font-medium">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-16 bg-dark" id="mapSection" style="display: none;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up">
+                    <span class="gradient-text">Geolocation</span> Map
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Approximate location based on the IP address. Note: This may not reflect your actual physical location.
+                </p>
+            </div>
+            
+            <div class="map-container max-w-6xl mx-auto" data-aos="fade-up">
+                <div class="map-overlay glass-effect">
+                    <span id="mapLocation">Location: Loading...</span>
+                </div>
+                <div id="map" class="rounded-xl overflow-hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-16 bg-tor-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white" data-aos="fade-up">
+                    How Our <span class="gradient-text">IP Finder</span> Works
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="modern-card rounded-xl p-6 text-center" data-aos="fade-up">
+                    <div class="w-16 h-16 rounded-full bg-tor/20 flex items-center justify-center mx-auto">
+                        <i class="fas fa-lock text-2xl text-tor"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mt-6">Privacy First</h3>
+                    <p class="mt-3 text-gray-400">We don't store your IP address or location data. Your information is processed securely and deleted immediately.</p>
+                </div>
+                
+                <div class="modern-card rounded-xl p-6 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 rounded-full bg-tor/20 flex items-center justify-center mx-auto">
+                        <i class="fas fa-bolt text-2xl text-tor"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mt-6">Fast & Accurate</h3>
+                    <p class="mt-3 text-gray-400">Our tool uses multiple geolocation databases to provide the most accurate results in seconds.</p>
+                </div>
+                
+                <div class="modern-card rounded-xl p-6 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 rounded-full bg-tor/20 flex items-center justify-center mx-auto">
+                        <i class="fas fa-map-marked-alt text-2xl text-tor"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mt-6">OpenStreetMap</h3>
+                    <p class="mt-3 text-gray-400">We use open-source solutions to display locations with a focus on user privacy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="tor-blur border-t border-tor/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-1">
+                    <a href="../../website/index.html" class="flex items-center">
+                        <!-- Logo di footer -->
+                        <div class="h-10 w-10 rounded-full overflow-hidden logo-img">
+                            <img src="../../img/logo.png" 
+                                 alt="RicalNet Logo" 
+                                 class="h-full w-full object-cover">
+                        </div>
+                        <span class="ml-3 text-xl font-bold ricalnet-text">RicalNet</span>
+                    </a>
+                    <p class="mt-4 text-gray-400">
+                        Memperjuangkan hak digital, privasi, dan kebebasan informasi.
+                    </p>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="https://t.me/share/url?url=https://ricalnet.github.io/website&text=RicalNet - Platform edukasi hak digital dan privasi online" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://www.reddit.com/submit?url=https://ricalnet.github.io/website&title=RicalNet - Platform edukasi hak digital dan privasi online" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-reddit"></i>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://x.com/intent/post?text=RicalNet - Platform edukasi hak digital dan privasi online&url=https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                        <a href="https://wa.me/?text=RicalNet - Platform edukasi hak digital dan privasi online https://ricalnet.github.io/website" class="text-gray-400 hover:text-secondary">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Links</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="../../website/about.html" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="../../website/nextcrow/login.html" class="text-gray-400 hover:text-white">Community</a></li>
+                        <li><a href="../../website/support.html" class="text-gray-400 hover:text-white">Support</a></li>
+                        <li><a href="../../website/gallery.html" class="text-gray-400 hover:text-white">Gallery</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Resources</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="../../website/workspace.html" class="text-gray-400 hover:text-white">Workspace</a></li>
+                        <li><a href="../../website/legal-resources/index.html" class="text-gray-400 hover:text-white">Legal Resources</a></li>
+                        <li><a href="../../website/resources.html#apps" class="text-gray-400 hover:text-white">Privacy Tools</a></li>
+                        <li><a href="https://ricaldocs.github.io" target="_blank" class="text-gray-400 hover:text-white">Learning Center <i class="fa-solid fa-up-right-from-square"></i></a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Support Us</h3>
+                    <div class="mt-4 space-y-4">
+                        <button class="w-full bg-tor/20 hover:bg-tor/30 text-white py-2 rounded-lg transition duration-300">
+                            <a href="../../website/support.html">Become a Contributor</a>
+                        </button>
+                        <button class="w-full bg-primary/80 hover:bg-primary text-white py-2 rounded-lg transition duration-300">
+                            <a href="../../website/support.html">Privacy Research</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">RicalNet © 2025</p>
+                <div class="mt-4 md:mt-0">
+                    <ul class="flex space-x-6">
+                        <li><a href="../../website/privacy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a></li>
+                        <li><a href="../../website/terms-of-service.html" class="text-gray-400 hover:text-white text-sm">Terms of Service</a></li>
+                        <li><a href="../../website/contact.html" class="text-gray-400 hover:text-white text-sm">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-in-out'
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Mobile dropdown toggle
+        document.getElementById('mobile-resources-toggle').addEventListener('click', function() {
+            const content = document.getElementById('mobile-resources-content');
+            content.classList.toggle('show');
+        });
+        
+        let map = null;
+        let marker = null;
+        
+        function initMap(lat, lng) {
+            if (map === null) {
+                map = L.map('map').setView([lat, lng], 13);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+            } else {
+                map.setView([lat, lng], 13);
+            }
+            
+            if (marker) {
+                map.removeLayer(marker);
+            }
+            
+            marker = L.marker([lat, lng]).addTo(map)
+                .bindPopup('Approximate location')
+                .openPopup();
+        }
+        
+        function getIpData(ip = '') {
+            const btn = document.getElementById('locateBtn');
+            const searchBtn = document.getElementById('searchBtn');
+            
+            if (ip === '') {
+                btn.classList.add('loading');
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Locating...';
+            } else {
+                searchBtn.classList.add('loading');
+                searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
+            }
+            
+            const apiUrl = ip ? `https://ipapi.co/${ip}/json/` : 'https://ipapi.co/json/';
+            
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        throw new Error(data.reason || 'Invalid IP address');
+                    }
+                    
+                    document.getElementById('ipAddress').textContent = data.ip;
+                    document.getElementById('location').textContent = `${data.city}, ${data.region}`;
+                    
+                    const flag = data.country_code ? 
+                        `<span class="flag-icon" style="background-image: url('https://flagcdn.com/24x18/${data.country_code.toLowerCase()}.png')"></span>` : '';
+                    document.getElementById('country').innerHTML = `${flag} ${data.country_name} (${data.country})`;
+                    
+                    document.getElementById('isp').textContent = data.org;
+                    document.getElementById('coordinates').textContent = `${data.latitude}, ${data.longitude}`;
+                    document.getElementById('timezone').textContent = data.timezone;
+                    document.getElementById('network').textContent = `${data.asn} (${data.version})`;
+                    document.getElementById('postal').textContent = data.postal || 'N/A';
+                    document.getElementById('eu').textContent = data.in_eu ? 'Yes' : 'No';
+                    document.getElementById('callingCode').textContent = `+${data.country_calling_code}`;
+                    document.getElementById('currency').textContent = `${data.currency} (${data.currency_name})`;
+                    document.getElementById('languages').textContent = data.languages || 'N/A';
+                    document.getElementById('asn').textContent = data.asn || 'N/A';
+                    
+                    document.getElementById('mapLocation').textContent = `Location: ${data.city}, ${data.region}, ${data.country_name}`;
+                    
+                    document.getElementById('ipInfoSection').style.display = 'block';
+                    document.getElementById('mapSection').style.display = 'block';
+                    
+                    if (data.latitude && data.longitude) {
+                        initMap(parseFloat(data.latitude), parseFloat(data.longitude));
+                    }
+                    
+                    const infoItems = document.querySelectorAll('.modern-card');
+                    infoItems.forEach((item, index) => {
+                        item.classList.add('ip-animation');
+                        item.style.animationDelay = `${index * 0.1}s`;
+                    });
+                    
+                    btn.classList.remove('loading');
+                    btn.innerHTML = '<i class="fa-solid fa-location-crosshairs"></i> Locate My IP';
+                    searchBtn.classList.remove('loading');
+                    searchBtn.innerHTML = '<i class="fas fa-search"></i> Search IP Address';
+                    
+                    document.getElementById('ipInfoSection').scrollIntoView({ behavior: 'smooth' });
+                })
+                .catch(error => {
+                    console.error('Error fetching IP data:', error);
+                    alert(`Failed to retrieve IP information: ${error.message}`);
+                    btn.classList.remove('loading');
+                    btn.innerHTML = '<i class="fa-solid fa-location-crosshairs"></i> Locate My IP';
+                    searchBtn.classList.remove('loading');
+                    searchBtn.innerHTML = '<i class="fas fa-search"></i> Search IP Address';
+                });
+        }
+        
+        // Locate IP button functionality
+        document.getElementById('locateBtn').addEventListener('click', function() {
+            getIpData();
+        });
+        
+        // Search IP button functionality
+        document.getElementById('searchBtn').addEventListener('click', function() {
+            const ipInput = document.getElementById('ipSearchInput').value.trim();
+            if (ipInput) {
+                getIpData(ipInput);
+            } else {
+                alert('Please enter an IP address to search');
+            }
+        });
+        
+        document.getElementById('ipSearchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('searchBtn').click();
+            }
+        });
+        
+        // Copy IP button functionality
+        document.getElementById('copyIpBtn').addEventListener('click', function() {
+            const ip = document.getElementById('ipAddress').textContent;
+            navigator.clipboard.writeText(ip)
+                .then(() => {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check mr-2"></i> Copied!';
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Failed to copy IP: ', err);
+                });
+        });
+        
+        window.addEventListener('load', function() {
+            map = L.map('map');
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+        });
+    </script>
+</body>
+</html>
