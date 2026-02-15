@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | RicalNet</title>
-    <meta name="description" content="Hubungi RicalNet melalui email, Telegram, atau Session untuk pertanyaan tentang hak digital dan privasi online.">
-    <meta name="keywords" content="kontak ricalnet, hak digital, privasi online, komunitas privasi, email, telegram, session">
+    <meta name="description" content="Hubungi RicalNet melalui email, Telegram, atau Matrix untuk pertanyaan tentang hak digital dan privasi online.">
+    <meta name="keywords" content="kontak ricalnet, hak digital, privasi online, komunitas privasi, email, telegram, matrix">
     <meta name="image" content="../img/logo.png">
     <meta name="author" content="RicalNet">
     <meta name="robots" content="index, follow">
@@ -34,13 +34,13 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ricalnet.github.io/website/contact.html">
     <meta property="og:title" content="Contact | RicalNet">
-    <meta property="og:description" content="Hubungi RicalNet melalui email, Telegram, atau Session untuk pertanyaan tentang hak digital dan privasi online.">
+    <meta property="og:description" content="Hubungi RicalNet melalui email, Telegram, atau Matrix untuk pertanyaan tentang hak digital dan privasi online.">
     <meta property="og:image" content="https://ricalnet.github.io/img/logo.png">
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ricalnet.github.io/website/contact.html">
     <meta property="twitter:title" content="Contact | RicalNet">
-    <meta property="twitter:description" content="Hubungi RicalNet melalui email, Telegram, atau Session untuk pertanyaan tentang hak digital dan privasi online.">
+    <meta property="twitter:description" content="Hubungi RicalNet melalui email, Telegram, atau Matrix untuk pertanyaan tentang hak digital dan privasi online.">
     <meta property="twitter:image" content="https://ricalnet.github.io/img/logo.png">
     <!-- Schema.org -->
     <script type="application/ld+json">
@@ -50,7 +50,7 @@
     "name": "RicalNet",
     "url": "https://ricalnet.github.io/website/contact.html",
     "logo": "https://ricalnet.github.io/img/logo.png",
-    "description": "Hubungi RicalNet melalui email, Telegram, atau Session untuk pertanyaan tentang hak digital dan privasi online.",
+    "description": "Hubungi RicalNet melalui email, Telegram, atau Matrix untuk pertanyaan tentang hak digital dan privasi online.",
     "sameAs": [
         "https://instagram.com/that_rical",
         "https://t.me/rical_net",
@@ -672,6 +672,8 @@
                                 <a href="../apps/qr-builder/index.html"><i class="fa-solid fa-qrcode"></i> QR Builder</a>
                                 <a href="../apps/QuantumHasher/index.html"><i class="fas fa-atom"></i> Quantum Hasher</a>
                                 <a href="../apps/UltraPassword/index.html"><i class="fas fa-key"></i> Ultra Password</a>
+                                <a href="../apps/whiteboard/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-chalkboard"></i> Whiteboard</a>
+                                <a href="../apps/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-th-list"></i> All Tools</a>
                             </div>
                         </div>
 
@@ -711,6 +713,8 @@
                         <a href="../apps/qr-builder/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-qrcode"></i> QR Builder</a>
                         <a href="../apps/QuantumHasher/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-atom"></i> Quantum Hasher</a>
                         <a href="../apps/UltraPassword/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-key"></i> Ultra Password</a>
+                        <a href="../apps/whiteboard/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-chalkboard"></i> Whiteboard</a>
+                        <a href="../apps/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-th-list"></i> All Tools</a>
                     </div>
                 </div>
 
@@ -785,8 +789,29 @@
                 </div>
 
                 <div class="modern-contact-grid">
-                    <!-- Email -->
+
+                    <!-- Matrix/Element -->
                     <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="0">
+                        <div class="w-20 h-20 rounded-full bg-session/20 flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-shield-alt text-session text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white text-center mb-4">Pesan Aman</h3>
+                        <p class="text-gray-400 text-center mb-6">
+                            Kirim pesan dengan enkripsi end-to-end melalui Matrix/Element. Privasi Anda adalah prioritas kami.
+                        </p>
+                        <div class="text-center">
+                            <p class="text-gray-300 text-sm mb-2">Salin ID Matrix:</p>
+                            <div class="session-id" id="session-id">
+                                @ricalnet:matrix.ricalnet.my.id
+                            </div>
+                            <button class="copy-btn" onclick="copySessionId()">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="100">
                         <div class="w-20 h-20 rounded-full bg-tor/20 flex items-center justify-center mx-auto mb-6">
                             <i class="fas fa-envelope text-tor text-3xl"></i>
                         </div>
@@ -798,26 +823,6 @@
                             <a href="mailto:ricalnet@duck.com" class="inline-block bg-tor/20 hover:bg-tor/30 text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center hover-lift">
                                 <i class="fas fa-envelope mr-2"></i> ricalnet@duck.com
                             </a>
-                        </div>
-                    </div>
-
-                    <!-- Session -->
-                    <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="100">
-                        <div class="w-20 h-20 rounded-full bg-session/20 flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-shield-alt text-session text-3xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white text-center mb-4">Session Messenger</h3>
-                        <p class="text-gray-400 text-center mb-6">
-                            Kirim pesan terenkripsi end-to-end melalui Session. Tidak ada metadata, tidak ada pelacakan, benar-benar privat.
-                        </p>
-                        <div class="text-center">
-                            <p class="text-gray-300 text-sm mb-2">Salin ID Session kami:</p>
-                            <div class="session-id" id="session-id">
-                                05e933772a91dcc820aade33bcbfd7ef4966a10530ca91b4d1c4e90f2ea50e0e18
-                            </div>
-                            <button class="copy-btn" onclick="copySessionId()">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
                         </div>
                     </div>
 
@@ -901,10 +906,10 @@
 
                     <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="100">
                         <h3 class="text-xl font-bold text-white mb-4 flex items-center">
-                            <i class="fas fa-question-circle text-tor mr-3"></i> Bagaimana cara menggunakan Session?
+                            <i class="fas fa-question-circle text-tor mr-3"></i> Bagaimana cara menggunakan Matrix?
                         </h3>
                         <p class="text-gray-400">
-                            Unduh aplikasi Session dari situs resminya, buat akun, lalu salin ID Session kami di atas dan tempelkan di kolom pencarian kontak untuk memulai percakapan.
+                            Gunakan klien Matrix/Element dari situs resminya, buat akun, lalu salin ID Matrix kami di atas dan tempelkan di kolom pencarian kontak untuk memulai percakapan.
                         </p>
                     </div>
 
@@ -985,7 +990,7 @@
                     <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Links</h3>
                     <ul class="mt-4 space-y-2">
                         <li><a href="about.html" class="text-gray-400 hover:text-white">About</a></li>
-                        <li><a href="nextcrow/login.html" class="text-gray-400 hover:text-white">Community</a></li>
+                        <li><a href="https://nextcrow.ricalnet.my.id" class="text-gray-400 hover:text-white">Community</a></li>
                         <li><a href="support.html" class="text-gray-400 hover:text-white">Support</a></li>
                         <li><a href="gallery.html" class="text-gray-400 hover:text-white">Gallery</a></li>
                     </ul>
@@ -1015,7 +1020,7 @@
             </div>
             
             <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm">RicalNet © 2025</p>
+                <p class="text-gray-400 text-sm">RicalNet © 2026</p>
                 <div class="mt-4 md:mt-0">
                     <ul class="flex space-x-6">
                         <li><a href="privacy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a></li>
@@ -1030,7 +1035,7 @@
     <!-- Toast Notification -->
     <div class="toast" id="toast">
         <i class="fas fa-check-circle"></i>
-        <span id="toast-message">ID Session berhasil disalin!</span>
+        <span id="toast-message">ID Matrix berhasil disalin!</span>
     </div>
 
     <!-- Scripts -->
@@ -1057,7 +1062,7 @@
 
         // Copy Session ID function
         function copySessionId() {
-            const sessionId = "05e933772a91dcc820aade33bcbfd7ef4966a10530ca91b4d1c4e90f2ea50e0e18";
+            const sessionId = " @ricalnet:matrix.ricalnet.my.id ";
             navigator.clipboard.writeText(sessionId).then(() => {
                 showToast('ID Session berhasil disalin!');
             }).catch(err => {

@@ -3,53 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Risnanda Pascal | Telco Student & Lab Instructor</title>
+    <title>Risnanda Pascal | Full‑Stack & Infrastructure Engineer</title>
     <link rel="icon" type="image/x-icon" href="img/logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="blur-background"></div>
-    
+    <div class="background"></div>
     <div class="container">
-        <header>
-        </header>
-        
-        <div class="content">
-            <div class="profile-section">
-                <div class="profile-image-container">
-                    <img src="avatar.png" alt="Risnanda Pascal" class="profile-image">
-                </div>
-            </div>
-            
-            <div class="intro-section">
-                <section class="intro">
-                    <h1><span>Risnanda Pascal</span></h1>
-                    <p>Telco Student and Lab Instructor</p>
-                </section>
+        <!-- Profile Section -->
+        <div class="profile">
+            <img src="avatar.png" alt="Risnanda Pascal" class="profile-image">
+            <div class="profile-info">
+                <h1>Risnanda Pascal</h1>
+                <div class="title">Full‑Stack & Infrastructure Engineer</div>
+                <p class="bio">Arsitek sistem hybrid (edge, cloud, on-premise). Spesialis keamanan, privasi data, dan solusi self-hosted yang skalabel.</p>
                 
-                <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/risnandacandraabdurrozaq/" target="_blank" class="icon" title="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                        <span class="tooltip">LinkedIn</span>
-                    </a>
-                    <a href="https://ricaldocs.github.io/" target="_blank" class="icon" title="Blog & IT Documentation">
-                        <i class="fas fa-book"></i>
-                        <span class="tooltip">Blog & IT Documentation</span>
-                    </a>
-                    <a href="website/index.html" target="_blank" class="icon" title="Website">
-                        <i class="fas fa-globe"></i>
-                        <span class="tooltip">Website</span>
-                    </a>
-                    <a href="https://github.com/ricalnet" target="_blank" class="icon" title="GitHub Repository">
-                        <i class="fab fa-github-alt"></i>
-                        <span class="tooltip">GitHub Repository</span>
-                    </a>
+                <p class="quote">"Infrastruktur yang Anda kendalikan sendiri adalah satu-satunya jaminan privasi jangka panjang."</p>
+
+                <div class="social-links">
+                    <a href="https://ricaldocs.github.io/" target="_blank" title="Blog & IT Documentation"><i class="fas fa-book"></i></a>
+                    <a href="https://github.com/ricalnet" target="_blank" title="GitHub"><i class="fab fa-github-alt"></i></a>
+                    <a href="https://www.linkedin.com/in/risnandacandraabdurrozaq/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
+
+        <!-- Services Section (self‑hosted) -->
+        <section class="services">
+            <div class="services-header">
+                <h2>Ekosistem Self-Hosted</h2>
+                <a href="https://buymeacoffee.com/ricalnet" class="donation-badge" target="_blank" rel="noopener" title="Buy Me a Coffee">
+                    <i class="fa-solid fa-mug-hot"></i>
+                    <span>Buy Me a Coffee</span>
+                    <i class="fas fa-arrow-up-right-from-squares"></i>
+                </a>
+            </div>
+            <div class="services-grid">
+                <!-- Search Engine (SearXNG) -->
+                <div class="service-card">
+                    <div class="card-badges">
+                        <span class="badge active">active</span>
+                        <span class="badge public">public</span>
+                    </div>
+                    <div class="service-image">
+                        <img src="img/services/search.png" alt="Search Engine" loading="lazy">
+                    </div>
+                    <div class="service-icon"><i class="fas fa-search"></i></div>
+                    <h3>Search Engine</h3>
+                    <p>Mesin pencari privat. Tanpa pelacakan, tanpa sensor, hasil relevan.</p>
+                    <form class="search-form" action="https://search.ricalnet.my.id/search" method="GET" target="_blank">
+                        <input type="text" name="q" placeholder="Cari..." required>
+                        <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                    </form>
+                </div>
+
+                <!-- Messaging (Matrix Element) -->
+                <div class="service-card">
+                    <div class="card-badges">
+                        <span class="badge active">active</span>
+                        <span class="badge public">public</span>
+                    </div>
+                    <div class="service-image">
+                        <img src="img/services/element.png" alt="Matrix Messaging" loading="lazy">
+                    </div>
+                    <div class="service-icon"><i class="fas fa-comments"></i></div>
+                    <h3>Messaging</h3>
+                    <p>Chat terenkripsi end‑to‑end. Kendali penuh, tanpa celah pihak ketiga.</p>
+                    <div class="service-action">
+                        <span class="domain-tag">matrix.ricalnet.my.id</span>
+                        <button class="copy-btn" onclick="copyToClipboard('matrix.ricalnet.my.id', this)" title="salin homeserver"><i class="far fa-copy"></i></button>
+                        <a href="https://app.element.io/#/login" class="btn btn-primary" target="_blank">Buka Element <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <!-- Cloud Storage (Nextcloud) -->
+                <div class="service-card">
+                    <div class="card-badges">
+                        <span class="badge active">active</span>
+                        <span class="badge private">private</span>
+                    </div>
+                    <div class="service-image">
+                        <img src="img/services/nextcrow.png" alt="Nextcloud" loading="lazy">
+                    </div>
+                    <div class="service-icon"><i class="fas fa-cloud"></i></div>
+                    <h3>Cloud Storage</h3>
+                    <p>Kolaborasi tim dan penyimpanan file. Data tersimpan aman di server privat.</p>
+                    <div class="service-action">
+                        <a href="https://nextcrow.ricalnet.my.id" class="btn btn-primary" target="_blank">Akses <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <span class="domain-tag">nextcrow.ricalnet.my.id</span>
+                    </div>
+                </div>
+
+                <!-- Password Manager (Vaultwarden) -->
+                <div class="service-card">
+                    <div class="card-badges">
+                        <span class="badge active">active</span>
+                        <span class="badge private">private</span>
+                    </div>
+                    <div class="service-image">
+                        <img src="img/services/vault.png" alt="Vaultwarden" loading="lazy">
+                    </div>
+                    <div class="service-icon"><i class="fas fa-lock"></i></div>
+                    <h3>Password Manager</h3>
+                    <p>Kubah digital terenkripsi untuk semua kata sandi. Hanya Anda pemegang akses.</p>
+                    <div class="service-action">
+                        <a href="https://vault.ricalnet.my.id" class="btn btn-primary" target="_blank">Akses <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <span class="domain-tag">vault.ricalnet.my.id</span>
+                    </div>
+                </div>
+
+                <!-- Photos (Immich) -->
+                <div class="service-card">
+                    <div class="card-badges">
+                        <span class="badge active">active</span>
+                        <span class="badge private">private</span>
+                    </div>
+                    <div class="service-image">
+                        <img src="img/services/immich.png" alt="Immich" loading="lazy">
+                    </div>
+                    <div class="service-icon"><i class="fas fa-images"></i></div>
+                    <h3>Photos</h3>
+                    <p>Backup dan kelola foto pribadi. Alternatif Google Photos dengan kendali penuh.</p>
+                    <div class="service-action">
+                        <a href="https://immich.ricalnet.my.id" class="btn btn-primary" target="_blank">Akses <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <span class="domain-tag">immich.ricalnet.my.id</span>
+                    </div>
+                </div>
+
+                <!-- Obfs4 Bridge -->
+                <div class="service-card">
+                    <div class="card-badges">
+                        <span class="badge inactive">deprecated</span>
+                    </div>
+                    <div class="service-image">
+                        <img src="img/services/obfs4-bridge.jpg" alt="Obfs4 Bridge" loading="lazy">
+                    </div>
+                    <div class="service-icon"><i class="fas fa-shield-halved"></i></div>
+                    <h3>Obfs4 Bridge</h3>
+                    <p>Bantuan koneksi Tor yang lebih aman dan tahan sensor.</p>
+                    <div class="bridge-address" id="bridge-address">
+                        obfs4 103.191.92.14:9443 05D0BC729A9BC1E9B1DF8FEF3FDA3C906A35F568 cert=ZHkUD6AQ2IEbCIbnEdkCOfh5QRJZvmZ/XEHk5E1v0ouwObmzkttVUAbcUdRvXxMaKIC1HA iat-mode=0
+                    </div>
+                    <div class="service-action">
+                        <button class="btn btn-outline" onclick="copyToClipboard(document.getElementById('bridge-address').innerText, this)"><i class="far fa-copy"></i> Salin</button>
+                        <span class="domain-tag">obfs4</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack Section -->
+        <section class="tech-stack">
+            <h2>Teknologi yang Digunakan</h2>
+            <div class="stack-grid">
+                <!-- AI/ML & Security -->
+                <span><i class="fa-brands fa-linux"></i> Kali Linux</span>
+                <span><i class="fas fa-brain"></i> Ollama</span>
+
+                <!-- Container & Orchestration -->
+                <span><i class="fa-brands fa-docker"></i> Docker</span>
+                <span><i class="fa-brands fa-cloudflare"></i> Cloudflare</span>
+                
+                <!-- IoT & Embedded -->
+                <span><i class="fa-brands fa-raspberry-pi"></i> Raspberry Pi</span>
+                <span><i class="fas fa-microchip"></i> ESP32</span>
+                <span><i class="fas fa-route"></i> Eclipse Mosquitto</span>
+                <span><i class="fas fa-code"></i> PlatformIO</span>
+            </div>
+        </section>
+
+        <!-- Other Projects Section -->
+        <section class="other-projects">
+            <h2>Proyek Lainnya</h2>
+            <div class="projects-grid">
+                <a href="website/index.html" target="_blank" class="project-card">
+                    <i class="fas fa-user-secret"></i>
+                    <h3>RicalNet</h3>
+                    <p>Literasi digital dan advokasi privasi. Akses sumber daya hukum, rekomendasi alat keamanan, dan komunitas peduli privasi.</p>
+                </a>
+                <a href="https://sokanak.id" target="_blank" class="project-card">
+                    <i class="fas fa-weight-scale"></i>
+                    <h3>Sistem Observasi Kesehatan Gizi</h3>
+                    <p>IoT untuk monitoring tumbuh kembang anak. Data real-time terintegrasi dengan konsultasi gizi berbasis AI lokal.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Bangun Kedaulatan Digital Anda Sendiri</h2>
+                <p>Ingin keluar dari ekosistem big tech dan memiliki kendali penuh atas data Anda? Saya siap membantu merancang dan membangun server pribadi sesuai kebutuhan—dari cloud storage, komunikasi terenkripsi, hingga sistem keamanan terintegrasi. Solusi yang skalabel, aman, dan sepenuhnya milik Anda.</p>
+                <div class="cta-features">
+                    <span><i class="fas fa-shield-alt"></i> Privasi total tanpa celah</span>
+                    <span><i class="fas fa-infinity"></i> Bebas biaya langganan bulanan</span>
+                    <span><i class="fas fa-cogs"></i> Skalabel sesuai pertumbuhan data</span>
+                </div>
+                <a href="mailto:risnandapascal@duck.com?subject=Konsultasi%20Home%20Server" class="btn btn-primary btn-large">Konsultasi Awal Gratis</a>
+                <p class="cta-note">* Gratis konsultasi pertama. Tanpa kewajiban.</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 RicalNet – Kedaulatan Data untuk Semua</p>
+        </footer>
     </div>
 
-    <script src="scripts.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
 </body>
 </html>
