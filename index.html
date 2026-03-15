@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Risnanda Pascal - Infrastructure & Privacy Engineer. Spesialis sistem hybrid, keamanan data, dan ekosistem privat berbasis self-hosted.">
   <meta name="author" content="Risnanda Pascal">
-  <meta name="keywords" content="privacy, self-hosted, Infrastructure & Privacy Engineer, edge computing, cloud, matrix, nextcloud, vaultwarden">
+  <meta name="keywords" content="privacy, self-hosted, Infrastructure & Privacy Engineer, edge computing, cloud, matrix, nextcloud, vaultwarden, yourls">
   <title>Risnanda Pascal · Infrastructure & Privacy Engineer</title>
   <link rel="icon" type="image/x-icon" href="img/logo.png">
 
@@ -205,7 +205,49 @@
           </div>
         </div>
 
-        <!-- 3. LibreTranslate -->
+        <!-- 3. YOURLS (URL Shortener) -->
+        <div class="group glass-card rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full">
+          <div class="flex justify-between items-start mb-2">
+            <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-violet-500/30 group-hover:ring-violet-500/50 transition-all duration-300">
+              <img src="img/icons/url-shortener.png" alt="YOURLS" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%3E%3Crect%20width%3D%2240%22%20height%3D%2240%22%20fill%3D%22%231f2937%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2225%22%20font-size%3D%2216%22%20text-anchor%3D%22middle%22%20fill%3D%22%238b5cf6%22%20font-family%3D%22Inter%22%3EY%3C%2Ftext%3E%3C%2Fsvg%3E';">
+            </div>
+            <span class="bg-violet-500/20 text-violet-400 border border-violet-500/40 text-xs font-semibold px-2 py-0.5 rounded-full">public</span>
+          </div>
+          <div class="w-full h-32 rounded-xl overflow-hidden bg-gray-800 mb-4">
+            <img src="img/services/url-shortener.png" alt="YOURLS URL Shortener" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition">
+          </div>
+          <h3 class="text-xl font-medium text-white mb-2">URL Shortener</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">
+            Pangkas tautan tanpa pelacakan. Tanpa pihak ketiga. Tanpa pelanggaran data.
+          </p>
+          
+          <!-- BASED ON -->
+          <div class="flex items-center gap-1 mb-3 text-xs bg-gray-800/30 rounded-full px-3 py-1 self-start border border-gray-700/50">
+            <i class="fab fa-github text-gray-500"></i>
+            <span class="text-gray-400">based on</span>
+            <a href="https://github.com/YOURLS/YOURLS" target="_blank" rel="noopener" class="text-violet-400 hover:text-violet-300 font-mono">YOURLS</a>
+          </div>
+
+          <!-- Uptime Kuma badge -->
+          <div class="flex items-center gap-2 mt-1 mb-2">
+            <span class="text-xs text-gray-400">Status:</span>
+            <img src="https://uptime.ricalnet.my.id/api/badge/12/uptime?color=%68B030" alt="Uptime Status" class="h-5" onerror="this.style.display='none'">
+          </div>
+          
+          <form class="flex mb-2" action="https://s.ricalnet.my.id" method="GET" target="_blank" rel="noopener">
+            <input type="url" name="url" placeholder="Pendekkan URL..." required
+                  class="flex-1 bg-gray-900/50 border border-gray-700 rounded-l-full py-2 px-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-violet-500">
+            <button type="submit" class="bg-gray-800 border border-l-0 border-gray-700 rounded-r-full px-4 text-gray-400 hover:bg-violet-600 hover:text-white hover:border-violet-600 transition-colors" aria-label="Pendekkan">
+              <i class="fas fa-link"></i>
+            </button>
+          </form>
+          <div class="flex items-center justify-between text-xs text-gray-500 mt-auto">
+            <span class="font-mono">s.ricalnet.my.id</span>
+            <i class="fas fa-copy copy-btn" onclick="copyToClipboard('s.ricalnet.my.id')" title="Salin domain"></i>
+          </div>
+        </div>
+
+        <!-- 4. LibreTranslate -->
         <div class="group glass-card rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full">
           <div class="flex justify-between items-start mb-2">
             <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-violet-500/30 group-hover:ring-violet-500/50 transition-all duration-300">
@@ -243,7 +285,7 @@
           </div>
         </div>
 
-        <!-- 4. Unclouded -->
+        <!-- 5. Unclouded -->
         <div class="group glass-card rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full">
           <div class="flex justify-between items-start mb-2">
             <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-violet-500/30 group-hover:ring-violet-500/50 transition-all duration-300">
@@ -281,7 +323,7 @@
           </div>
         </div>
 
-        <!-- 5. Vault -->
+        <!-- 6. Vault -->
         <div class="group glass-card rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full">
           <div class="flex justify-between items-start mb-2">
             <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-violet-500/30 group-hover:ring-violet-500/50 transition-all duration-300">
@@ -319,7 +361,7 @@
           </div>
         </div>
 
-        <!-- 6. Gallery -->
+        <!-- 7. Gallery -->
         <div class="group glass-card rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full">
           <div class="flex justify-between items-start mb-2">
             <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-violet-500/30 group-hover:ring-violet-500/50 transition-all duration-300">
@@ -357,7 +399,7 @@
           </div>
         </div>
 
-        <!-- 7. Obfs4 Bridge -->
+        <!-- 8. Obfs4 Bridge -->
         <div class="group glass-card rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full">
           <div class="flex justify-between items-start mb-2">
             <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-violet-500/30 group-hover:ring-violet-500/50 transition-all duration-300">
