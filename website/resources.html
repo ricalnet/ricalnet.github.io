@@ -493,6 +493,8 @@
                                 <a href="../apps/qr-builder/index.html"><i class="fa-solid fa-qrcode"></i> QR Builder</a>
                                 <a href="../apps/QuantumHasher/index.html"><i class="fas fa-atom"></i> Quantum Hasher</a>
                                 <a href="../apps/UltraPassword/index.html"><i class="fas fa-key"></i> Ultra Password</a>
+                                <a href="../apps/whiteboard/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-chalkboard"></i> Whiteboard</a>
+                                <a href="../apps/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-th-list"></i> All Tools</a>
                             </div>
                         </div>
                         
@@ -557,18 +559,21 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col lg:flex-row items-center gap-12">
                 <div class="lg:w-1/2 text-center lg:text-left">
+                    <div class="inline-block px-3 py-1 rounded-full text-sm font-medium bg-tor/20 text-secondary mb-6" data-aos="fade-up">
+                        <i class="fas fa-microchip mr-2"></i> #BangunKedaulatanDigital
+                    </div>
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight" data-aos="fade-up">
-                        Privacy & Security <span class="text-transparent bg-clip-text bg-gradient-to-r from-tor to-primary">Resources</span>
+                        <span class="gradient-text">Tools & Infrastruktur</span> untuk Kedaulatan Teknologi
                     </h1>
                     <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0" data-aos="fade-up" data-aos-delay="100">
-                        Temukan rekomendasi alat dan sumber daya terbaik untuk melindungi privasi dan keamanan digital Anda
+                        Dari browser aman hingga server self-hosted — semua yang Anda butuhkan untuk meningkatkan kendali dan membangun infrastruktur digital yang lebih berdaulat
                     </p>
                     <div class="flex flex-wrap gap-4 justify-center lg:justify-start" data-aos="fade-up" data-aos-delay="200">
-                        <a href="#legal" class="btn-modern flex items-center">
-                            <i class="fas fa-balance-scale mr-2"></i> Legal Resources
+                        <a href="#workspace" class="btn-modern flex items-center">
+                            <i class="fas fa-server mr-2"></i> Self-Hosted Workspace
                         </a>
-                        <a href="#workspace" class="btn-outline-modern flex items-center">
-                            <i class="fas fa-building mr-2"></i> Workspace
+                        <a href="#apps" class="btn-outline-modern flex items-center">
+                            <i class="fas fa-tools mr-2"></i> Rekomendasi Tools
                         </a>
                     </div>
                 </div>
@@ -576,31 +581,31 @@
                     <div class="grid grid-cols-2 gap-4">
                         <div class="modern-card p-6 text-center">
                             <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-tor to-primary flex items-center justify-center mb-4">
-                                <i class="fas fa-shield-alt text-2xl text-white"></i>
+                                <i class="fas fa-home text-2xl text-white"></i>
                             </div>
-                            <h3 class="text-lg font-semibold text-white mb-2">Secure Browser</h3>
-                            <p class="text-gray-400 text-sm">Rekomendasi browser terbaik untuk privasi</p>
+                            <h3 class="text-lg font-semibold text-white mb-2">Self-Hosted</h3>
+                            <p class="text-gray-400 text-sm">Server & Cloud pribadi</p>
                         </div>
                         <div class="modern-card p-6 text-center">
                             <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center mb-4">
-                                <i class="fas fa-mobile-alt text-2xl text-white"></i>
+                                <i class="fas fa-lock text-2xl text-white"></i>
                             </div>
-                            <h3 class="text-lg font-semibold text-white mb-2">Encrypted OS</h3>
-                            <p class="text-gray-400 text-sm">Sistem operasi yang mengutamakan keamanan</p>
+                            <h3 class="text-lg font-semibold text-white mb-2">Private & Encrypted</h3>
+                            <p class="text-gray-400 text-sm">Komunikasi aman</p>
                         </div>
                         <div class="modern-card p-6 text-center">
                             <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-4">
-                                <i class="fas fa-lock text-2xl text-white"></i>
+                                <i class="fas fa-database text-2xl text-white"></i>
                             </div>
-                            <h3 class="text-lg font-semibold text-white mb-2">E2EE Messaging</h3>
-                            <p class="text-gray-400 text-sm">Aplikasi pesan dengan enkripsi end-to-end</p>
+                            <h3 class="text-lg font-semibold text-white mb-2">Data Ownership</h3>
+                            <p class="text-gray-400 text-sm">Kendali lebih besar atas data</p>
                         </div>
                         <div class="modern-card p-6 text-center">
                             <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-green-500 to-emerald-400 flex items-center justify-center mb-4">
-                                <i class="fas fa-gavel text-2xl text-white"></i>
+                                <i class="fas fa-code-branch text-2xl text-white"></i>
                             </div>
-                            <h3 class="text-lg font-semibold text-white mb-2">Legal Resources</h3>
-                            <p class="text-gray-400 text-sm">Panduan hukum untuk melindungi hak digital</p>
+                            <h3 class="text-lg font-semibold text-white mb-2">Open Source</h3>
+                            <p class="text-gray-400 text-sm">Transparan & auditabel</p>
                         </div>
                     </div>
                 </div>
@@ -608,15 +613,100 @@
         </div>
     </section>
 
+    <!-- Workspace Section -->
+    <section class="py-20 bg-dark" id="workspace">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="badge-modern mb-4" data-aos="fade-up">Self-Hosted Infrastructure</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up">Bangun <span class="gradient-text">Infrastruktur Mandiri</span></h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Bangun Infrastruktur Berdaulat. Kedaulatan teknologi dimulai dari server sendiri. Kurangi ketergantungan pada cloud asing
+                </p>
+            </div>
+            
+            <div class="feature-grid">
+                <!-- Workspace Card 1 -->
+                <div class="modern-card p-6" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-tor/20 p-3 rounded-lg">
+                            <i class="fas fa-cloud-upload-alt text-xl text-tor"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white ml-4">Private Cloud (Nextcloud)</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Ganti Google Drive, iCloud, atau OneDrive dengan cloud pribadi. File, kontak, kalender — semuanya di server Anda sendiri. Data ownership penuh (open source, dikelola sendiri).
+                    </p>
+                    <div class="mt-2">
+                        <span class="badge-modern text-xs">Self-Hosted</span>
+                        <span class="badge-modern text-xs ml-2 bg-green-500/20 text-green-300">Kendali Penuh</span>
+                    </div>
+                </div>
+                
+                <!-- Workspace Card 2 -->
+                <div class="modern-card p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-500/20 p-3 rounded-lg">
+                            <i class="fas fa-key text-xl text-blue-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white ml-4">Password Manager (Vaultwarden)</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Hosting password manager sendiri. Alternatif open source untuk LastPass/Bitwarden dengan server pribadi. Kredensial Anda hanya dapat diakses oleh Anda (dengan asumsi keamanan server terjaga).
+                    </p>
+                    <div class="mt-2">
+                        <span class="badge-modern text-xs">Self-Hosted</span>
+                        <span class="badge-modern text-xs ml-2 bg-green-500/20 text-green-300">Terenkripsi</span>
+                    </div>
+                </div>
+
+                <!-- Workspace Card 3 -->
+                <div class="modern-card p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-500/20 p-3 rounded-lg">
+                            <i class="fas fa-film text-xl text-purple-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white ml-4">Media Server (Jellyfin)</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Streaming film, musik, dan foto dari server rumah Anda. Alternatif open source untuk Netflix/Spotify yang tidak melacak aktivitas menonton Anda.
+                    </p>
+                    <div class="mt-2">
+                        <span class="badge-modern text-xs">Self-Hosted</span>
+                        <span class="badge-modern text-xs ml-2 bg-green-500/20 text-green-300">Privasi Terjaga</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="300">
+                <div class="modern-card p-8">
+                    <h3 class="text-2xl font-bold text-white mb-4">📌 Mulai dari Nol? Ikuti Panduan Lengkapnya</h3>
+                    <p class="text-gray-400 mb-6 max-w-3xl mx-auto">
+                        Tidak perlu jadi sysadmin berpengalaman. Kami sediakan tutorial langkah demi langkah: dari pilih hardware bekas, install OS server, hingga deploy aplikasi self-hosted.
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <a href="workspace.html" class="btn-modern">
+                            <i class="fas fa-book-open mr-2"></i> Panduan Self-Hosting
+                        </a>
+                        <a href="https://element.ricalnet.my.id" class="btn-outline-modern">
+                            <i class="fas fa-users mr-2"></i> Tanya Komunitas
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
     <!-- Open Course Section -->
     <section class="py-20 bg-dark" id="courses">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="badge-modern mb-4" data-aos="fade-up">Learning</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up">Open Course</h2>
-                <!-- <p class="text-xl text-gray-400 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Pelajari keamanan digital dan privasi secara gratis dengan kursus terbuka kami
-                </p> -->
+                <span class="badge-modern mb-4" data-aos="fade-up">Learning Path</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up">Open Course: <span class="gradient-text">Kedaulatan Digital</span></h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Dari pemula hingga pro — pelajari cara membangun infrastruktur digital yang lebih Anda kuasai
+                </p>
             </div>
             
             <div class="modern-card max-w-4xl mx-auto" data-aos="fade-up">
@@ -624,32 +714,32 @@
                     <div class="flex flex-col md:flex-row items-center gap-8">
                         <div class="flex-shrink-0">
                             <div class="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-tor flex items-center justify-center shadow-lg">
-                                <i class="fas fa-graduation-cap text-4xl text-white"></i>
+                                <i class="fas fa-microchip text-4xl text-white"></i>
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-bold text-white mb-4">Materi Privasi & Keamanan Gratis</h3>
+                            <h3 class="text-2xl font-bold text-white mb-4">Kurikulum Self-Hosting & Privasi</h3>
                             <p class="text-lg text-gray-300 mb-6">
-                                Akses materi kami yang dirancang untuk semua tingkat keahlian. Pelajari dasar-dasar keamanan digital, teknik anonimitas, dan praktik terbaik perlindungan privasi.
+                                Materi gratis yang dirancang untuk semua tingkat keahlian. Mulai dari dasar-dasar enkripsi, instalasi server Linux, hingga deployment aplikasi self-hosted seperti Nextcloud, Vaultwarden, dan Jellyfin.
                             </p>
                             
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                                 <div class="bg-gray-800/50 p-4 rounded-lg text-center">
-                                    <i class="fas fa-newspaper text-purple-400 text-2xl mb-2"></i>
-                                    <span class="text-sm text-gray-300">Articles</span>
+                                    <i class="fas fa-server text-purple-400 text-2xl mb-2"></i>
+                                    <span class="text-sm text-gray-300">Self-Hosted 101</span>
                                 </div>
                                 <div class="bg-gray-800/50 p-4 rounded-lg text-center">
-                                    <i class="fas fa-book text-blue-400 text-2xl mb-2"></i>
-                                    <span class="text-sm text-gray-300">Documentation</span>
+                                    <i class="fas fa-shield-alt text-blue-400 text-2xl mb-2"></i>
+                                    <span class="text-sm text-gray-300">Keamanan Server</span>
                                 </div>
                                 <div class="bg-gray-800/50 p-4 rounded-lg text-center">
-                                    <i class="fas fa-chalkboard-teacher text-green-400 text-2xl mb-2"></i>
-                                    <span class="text-sm text-gray-300">Tutorial</span>
+                                    <i class="fas fa-network-wired text-green-400 text-2xl mb-2"></i>
+                                    <span class="text-sm text-gray-300">IaC</span>
                                 </div>
                             </div>
                             
                             <a href="tahap-pengembangan.html" target="_blank" class="btn-modern inline-flex items-center">
-                                Open Course <i class="fa-solid fa-up-right-from-square ml-2"></i>
+                                Mulai Belajar <i class="fa-solid fa-up-right-from-square ml-2"></i>
                             </a>
                         </div>
                     </div>
@@ -664,52 +754,53 @@
     <section class="py-20 bg-dark" id="legal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="badge-modern mb-4" data-aos="fade-up">Law & Regulations</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up">Legal Resources</h2>
-                <!-- <p class="text-xl text-gray-400 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Ketahui hak-hak digital Anda dan cara melindunginya
-                </p> -->
+                <span class="badge-modern mb-4" data-aos="fade-up">Hukum & Regulasi</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up">Landasan Hukum <span class="gradient-text">Kedaulatan Digital</span></h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Kenali hak Anda atas data pribadi dan landasan hukum untuk melindungi infrastruktur mandiri
+                </p>
             </div>
             
             <div class="modern-card max-w-4xl mx-auto" data-aos="fade-up">
                 <div class="p-8 md:p-10">
                     <div class="flex items-center justify-center mb-6">
                         <div class="w-20 h-20 rounded-full bg-tor/20 flex items-center justify-center">
-                            <i class="fas fa-balance-scale text-3xl text-tor"></i>
+                            <i class="fas fa-gavel text-3xl text-tor"></i>
                         </div>
                     </div>
-                    <h3 class="text-2xl font-bold text-white text-center mb-4">Sumber Daya Hukum Privasi Digital</h3>
-                    <!-- <p class="text-lg text-gray-300 text-center mb-8">
-                        Akses panduan hukum dan alat untuk melindungi hak-hak privasi Anda secara online. Pelajari tentang undang-undang perlindungan data, hak digital, dan cara mengambil tindakan hukum jika diperlukan.
-                    </p> -->
+                    <h3 class="text-2xl font-bold text-white text-center mb-4">Hak Digital & Perlindungan Data</h3>
+                    <p class="text-lg text-gray-300 text-center mb-8">
+                        Kedaulatan teknologi tidak hanya soal server, tapi juga pemahaman hukum. 
+                        Pelajari UU PDP, GDPR, dan hak-hak Anda sebagai pemilik data.
+                    </p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                         <div class="modern-card p-5 text-center">
                             <div class="text-blue-400 mb-3">
                                 <i class="fas fa-file-contract text-3xl"></i>
                             </div>
-                            <h4 class="font-semibold text-white mb-2">GDPR & PDP</h4>
-                            <p class="text-sm text-gray-400">Peraturan perlindungan data di UE dan Indonesia</p>
+                            <h4 class="font-semibold text-white mb-2">UU PDP</h4>
+                            <p class="text-sm text-gray-400">Perlindungan Data Pribadi di Indonesia</p>
                         </div>
                         <div class="modern-card p-5 text-center">
                             <div class="text-purple-400 mb-3">
                                 <i class="fas fa-user-shield text-3xl"></i>
                             </div>
-                            <h4 class="font-semibold text-white mb-2">Digital Rights</h4>
-                            <p class="text-sm text-gray-400">Memahami hak Anda di ruang digital</p>
+                            <h4 class="font-semibold text-white mb-2">GDPR</h4>
+                            <p class="text-sm text-gray-400">Standar global perlindungan data</p>
                         </div>
                         <div class="modern-card p-5 text-center">
                             <div class="text-green-400 mb-3">
-                                <i class="fas fa-gavel text-3xl"></i>
+                                <i class="fas fa-home text-3xl"></i>
                             </div>
-                            <h4 class="font-semibold text-white mb-2">Legal Actions</h4>
-                            <p class="text-sm text-gray-400">Langkah-langkah untuk melindungi privasi Anda</p>
+                            <h4 class="font-semibold text-white mb-2">Self-Hosted & Hukum</h4>
+                            <p class="text-sm text-gray-400">Tanggung jawab operator server pribadi</p>
                         </div>
                     </div>
                     
                     <div class="text-center">
                         <a href="legal-resources/index.html" class="btn-modern">
-                            Explore Legal Resources
+                            <i class="fas fa-balance-scale mr-2"></i> Pelajari Hak Digital Anda
                         </a>
                     </div>
                 </div>
@@ -723,11 +814,11 @@
     <section class="py-20 bg-dark" id="projects">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="badge-modern mb-4" data-aos="fade-up">Projects & Tools</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up">Projects & Tools</h2>
-                <!-- <p class="text-xl text-gray-400 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Alat dan proyek yang kami kembangkan untuk komunitas privasi
-                </p> -->
+                <span class="badge-modern mb-4" data-aos="fade-up">Open Source Projects</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up">Proyek <span class="gradient-text">#DariKitaUntukKita</span></h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Tools open source yang kami kembangkan untuk membantu Anda mewujudkan kedaulatan digital
+                </p>
             </div>
             
             <div class="feature-grid">
@@ -740,10 +831,14 @@
                         <h3 class="text-xl font-bold text-white ml-4">Prabu Incognito</h3>
                     </div>
                     <p class="text-gray-400 mb-4">
-                        Kumpulan alat yang mengutamakan privasi, keamanan, dan anonimitas
+                        Kumpulan alat CLI untuk mendukung anonimitas, privasi, dan keamanan.
                     </p>
-                    <a href="https://github.com/ricalnet/prabu-incognito" target="_blank" class="text-blue-400 hover:text-blue-300 font-medium inline-flex items-center">
-                        Get <i class="fas fa-external-link-alt ml-2 text-xs"></i>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge-modern text-xs">Open Source</span>
+                        <span class="badge-modern text-xs">CLI Tools</span>
+                    </div>
+                    <a href="https://github.com/ricalnet/prabu-incognito" target="_blank" class="text-blue-400 hover:text-blue-300 font-medium inline-flex items-center mt-4">
+                        GitHub <i class="fas fa-external-link-alt ml-2 text-xs"></i>
                     </a>
                 </div>
                 
@@ -756,10 +851,14 @@
                         <h3 class="text-xl font-bold text-white ml-4">Dynamic Archive</h3>
                     </div>
                     <p class="text-gray-400 mb-4">
-                        Lindungi cadangan data Anda dengan arsip folder terenkripsi
+                        Enkripsi file dan folder backup dengan standar yang baik. Lindungi arsip digital Anda dari akses tidak sah.
                     </p>
-                    <a href="https://github.com/ricalnet/DynamicArchive" target="_blank" class="text-blue-400 hover:text-blue-300 font-medium inline-flex items-center">
-                        Get <i class="fas fa-external-link-alt ml-2 text-xs"></i>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge-modern text-xs">Open Source</span>
+                        <span class="badge-modern text-xs">Encryption</span>
+                    </div>
+                    <a href="https://github.com/ricalnet/DynamicArchive" target="_blank" class="text-blue-400 hover:text-blue-300 font-medium inline-flex items-center mt-4">
+                        GitHub <i class="fas fa-external-link-alt ml-2 text-xs"></i>
                     </a>
                 </div>
                 
@@ -772,73 +871,22 @@
                         <h3 class="text-xl font-bold text-white ml-4">AnBrowse</h3>
                     </div>
                     <p class="text-gray-400 mb-4">
-                        Alat privasi browser—alternatif penyamaran untuk jelajah tanpa jejak
+                        Jelajah web tanpa jejak. Alternatif ringan untuk browsing anonim.
                     </p>
-                    <a href="https://github.com/ricalnet/browser" target="_blank" class="text-blue-400 hover:text-blue-300 font-medium inline-flex items-center">
-                        Get <i class="fas fa-external-link-alt ml-2 text-xs"></i>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge-modern text-xs">Open Source</span>
+                        <span class="badge-modern text-xs">Privacy Browser</span>
+                    </div>
+                    <a href="https://github.com/ricalnet/browser" target="_blank" class="text-blue-400 hover:text-blue-300 font-medium inline-flex items-center mt-4">
+                        GitHub <i class="fas fa-external-link-alt ml-2 text-xs"></i>
                     </a>
                 </div>
             </div>
             
             <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="300">
                 <a href="../apps/index.html" class="btn-outline-modern">
-                    View All
+                    <i class="fas fa-th-list mr-2"></i> Lihat Semua Tools
                 </a>
-            </div>
-        </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- Workspace Section -->
-    <section class="py-20 bg-dark" id="workspace">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="badge-modern mb-4" data-aos="fade-up">Infrastructure</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up">Workspace</h2>
-                <!-- <p class="text-xl text-gray-400 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Wujudkan kedaulatan data pribadi Anda dan bangun ekosistem mandiri untuk privasi mutlak
-                </p> -->
-            </div>
-            
-            <div class="feature-grid">
-                <!-- Workspace Card 1 -->
-                <div class="modern-card p-6" data-aos="fade-up">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-tor/20 p-3 rounded-lg">
-                            <i class="fas fa-server text-xl text-tor"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white ml-4">Standalone Infrastructure</h3>
-                    </div>
-                    <p class="text-gray-400 mb-4">
-                        Bangun server pribadi Anda sendiri untuk menyimpan data, hosting layanan, dan mengontrol sepenuhnya informasi digital Anda tanpa bergantung pada penyedia cloud pihak ketiga.
-                    </p>
-                </div>
-                
-                <!-- Workspace Card 2 -->
-                <div class="modern-card p-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-blue-500/20 p-3 rounded-lg">
-                            <i class="fas fa-user-lock text-xl text-blue-400"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white ml-4">Privacy Ecosystem</h3>
-                    </div>
-                    <p class="text-gray-400 mb-4">
-                        Kumpulan alat dan layanan yang terintegrasi untuk menciptakan lingkungan digital yang aman dan mandiri, dari komunikasi hingga penyimpanan data.
-                    </p>
-                </div>
-            </div>
-            
-            <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="200">
-                <div class="modern-card p-8">
-                    <h3 class="text-2xl font-bold text-white mb-4">Start Your Digital Sovereignty Journey</h3>
-                    <p class="text-gray-400 mb-6 max-w-3xl mx-auto">
-                        Dengan Workspace RicalNet, Anda mengambil kendali penuh atas data pribadi dan membangun ekosistem digital yang benar-benar milik Anda. Privasi bukan lagi fitur tambahan, tetapi fondasi utama.
-                    </p>
-                    <a href="workspace.html" class="btn-modern">
-                        Build Your Workspace Now
-                    </a>
-                </div>
             </div>
         </div>
     </section>
@@ -849,15 +897,19 @@
     <section class="py-20 bg-dark" id="apps">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="badge-modern mb-4" data-aos="fade-up">Recommendations</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up">RicalNet Recommendations</h2>
-                <!-- <p class="text-xl text-gray-400 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Alat terbaik untuk melindungi privasi dan keamanan Anda secara online
-                </p> -->
+                <span class="badge-modern mb-4" data-aos="fade-up">#EkosistemMandiri</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up">Peralatan <span class="gradient-text">Kedaulatan Digital</span></h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Dari browser hingga server — bangun tumpukan teknologi yang lebih Anda kendalikan
+                </p>
             </div>
             
             <div class="app-grid">
-                <!-- Browser -->
+                <!-- ==================== -->
+                <!-- 1. BROWSER BERDAULAT -->
+                <!-- ==================== -->
+                
+                <!-- Tor Browser -->
                 <div class="modern-card p-6 app-card" data-aos="fade-up">
                     <div class="flex items-center mb-4">
                         <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fi0.kym-cdn.com%2Fphotos%2Fimages%2Foriginal%2F001%2F292%2F055%2F7b4.png&f=1&nofb=1&ipt=d481f93d27a26a83012a1f434feb741ac6c6a5ecec70ba49994dc71bb86536e3" 
@@ -870,11 +922,12 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-tor/30 text-secondary">Browser</span>
+                        <span class="category-badge bg-purple-500/30 text-purple-300">Anonimitas</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        Tor Browser adalah salah satu pengalaman browsing paling aman dengan mengutamakan anonimitas dan kebebasan informasi di atas segalanya. Ini adalah salah satu alat anonimitas paling efektif dan mudah diakses.
+                        Browsing dengan anonimitas yang baik. Lalu lintas melalui 3 relay Tor. Mengurangi pelacakan dan membuka akses di wilayah dengan sensor.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-sm text-gray-500">Open Source, Gecko</span>
@@ -901,11 +954,12 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-tor/30 text-secondary">Browser</span>
+                        <span class="category-badge bg-blue-500/30 text-blue-300">Privacy-Focused</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        LibreWolf menangani sebagian besar penguatan Firefox secara default dan melakukan pekerjaan yang cukup baik dalam mempertahankan pembaruan keamanan.
+                        Firefox yang dikuatkan untuk privasi. Telemetri dimatikan, fingerprinting dilindungi, dan iklan diblokir secara default.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-sm text-gray-500">Open Source, Gecko</span>
@@ -932,11 +986,12 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-tor/30 text-secondary">Browser</span>
+                        <span class="category-badge bg-blue-500/30 text-blue-300">Ad Blocker Bawaan</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        Brave berusaha menawarkan pengalaman browser yang familiar dengan privasi dan keamanan sebagai fitur bawaan. Brave menawarkan banyak fitur menarik bagi pengguna secara default, tetapi fitur kripto mungkin menjadi gangguan. (Dapat dinonaktifkan)
+                        Browser berbasis Chromium dengan perlindungan privasi bawaan. Blokir iklan & tracker tanpa ekstensi tambahan.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-sm text-gray-500">Open Source, Chromium</span>
@@ -945,13 +1000,16 @@
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star-half-alt text-yellow-400"></i>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Operating System / OS -->
-                 <!-- QubesOS -->
+                <!-- ==================== -->
+                <!-- 2. OPERATING SYSTEM -->
+                <!-- ==================== -->
+                
+                <!-- QubesOS -->
                 <div class="modern-card p-6 app-card" data-aos="fade-up">
                     <div class="flex items-center mb-4">
                         <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.qubes-os.org%2Fattachment%2Ficons%2F512x512%2Fapps%2Fqubes-logo-icon.png&f=1&nofb=1&ipt=00fc9b605e416e610dda3d3619064086c7d068d0d873c75814d3898ecd07fcfb" 
@@ -964,14 +1022,15 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-red-500/30 text-red-300">Operating System</span>
+                        <span class="category-badge bg-purple-500/30 text-purple-300">Security by Isolation</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        Qubes memisahkan program dan sistem operasi ke dalam lingkungan aman untuk keamanan maksimal. Hal ini dapat membuat sistem berjalan lebih lambat dan mungkin mengalami masalah kompatibilitas dengan beberapa perangkat keras.
+                        OS yang mengisolasi aplikasi dalam VM terpisah. Standar emas untuk keamanan dan kedaulatan digital tingkat lanjut.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Open Source, Zen, Advanced</span>
+                        <span class="text-sm text-gray-500">Open Source, Xen-based</span>
                         <div class="flex">
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
@@ -995,25 +1054,26 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-red-500/30 text-red-300">Operating System</span>
+                        <span class="category-badge bg-purple-500/30 text-purple-300">Live OS</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        TailsOS menyediakan lingkungan live yang di-routing melalui Tor untuk privasi dan anonimitas.
+                        OS amnesia yang berjalan dari USB. Semua lalu lintas via Tor. Tidak meninggalkan jejak — matikan, lupakan.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Open Source, Live OS</span>
+                        <span class="text-sm text-gray-500">Open Source, Tor-based</span>
                         <div class="flex">
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
-                            <i class="far fa-star-half-alt text-yellow-400"></i>
+                            <i class="fas fa-star-half-alt text-yellow-400"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- Debian -->
+                <!-- Debian - Rekomendasi untuk Self-Hosted -->
                 <div class="modern-card p-6 app-card" data-aos="fade-up">
                     <div class="flex items-center mb-4">
                         <img src="https://www.debian.org/Pics/openlogo-50.png" 
@@ -1026,11 +1086,12 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-red-500/30 text-red-300">Operating System</span>
+                        <span class="category-badge bg-green-500/30 text-green-300">Self-Hosted Server</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        Debian adalah sistem operasi gratis yang dikembangkan secara terbuka oleh komunitas. Stabil, aman, dan mendukung berbagai arsitektur perangkat keras.
+                        OS server pilihan untuk self-hosting. Stabil, aman, dan didukung ribuan package open source. Fondasi infrastruktur mandiri Anda.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-sm text-gray-500">Open Source, Linux</span>
@@ -1057,53 +1118,21 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-red-500/30 text-red-300">Operating System</span>
                         <span class="category-badge bg-green-500/30 text-green-300">Android</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        Sistem operasi Android open source yang berfokus pada privasi dan keamanan. Memberikan peningkatan keamanan dan kontrol privasi untuk perangkat Android.
+                        OS Android yang di-hardening untuk privasi. Hapus semua layanan Google. Kontrol penuh atas data di ponsel Anda.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Open Source, Security-focused</span>
+                        <span class="text-sm text-gray-500">Open Source, AOSP-based</span>
                         <div class="flex">
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CalyXOS -->
-                <div class="modern-card p-6 app-card" data-aos="fade-up">
-                    <div class="flex items-center mb-4">
-                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdigitalprivacy.shop%2Fimage%2Fcatalog%2Foperating_system%2Fcalyxos-logo-basic.png&f=1&nofb=1&ipt=67219ab82f0a32793238fdb8ff55a20c4bf0714d239370da7c5fa368452f8aed" 
-                            alt="CalyxOS" 
-                            class="app-image">
-                        <div class="ml-4">
-                            <h3 class="text-xl font-bold text-white">CalyxOS</h3>
-                            <a href="https://calyxos.org/" target="_blank" class="app-website">
-                                calyxos.org <i class="fas fa-external-link-alt ml-1 text-xs"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <span class="category-badge bg-red-500/30 text-red-300">Operating System</span>
-                        <span class="category-badge bg-green-500/30 text-green-300">Android</span>
-                    </div>
-                    <p class="text-gray-400 flex-grow">
-                        Sistem operasi Android yang berfokus pada privasi, keamanan, dan kebebasan. Menyediakan fitur privasi bawaan dan dukungan MicroG.
-                    </p>
-                    <div class="mt-4 flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Open Source, Privacy-focused</span>
-                        <div class="flex">
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star-half-alt text-yellow-400"></i>
                         </div>
                     </div>
                 </div>
@@ -1121,12 +1150,12 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-red-500/30 text-red-300">Operating System</span>
                         <span class="category-badge bg-green-500/30 text-green-300">Android</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        Sistem operasi seluler sumber terbuka yang dipadukan dengan aplikasi yang dipilih dengan cermat.
+                        Android tanpa Google. Dilengkapi MicroG dan layanan cloud alternatif. Alternatif ramah pengguna untuk de-Google.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-sm text-gray-500">Open Source, Privacy-focused</span>
@@ -1135,12 +1164,15 @@
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
-                            <i class="far fa-star text-yellow-400"></i>
+                            <i class="fas fa-star-half-alt text-yellow-400"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- Android Tools -->
+                <!-- ==================== -->
+                <!-- 3. ANDROID TOOLS -->
+                <!-- ==================== -->
+                
                 <!-- MicroG -->
                 <div class="modern-card p-6 app-card" data-aos="fade-up">
                     <div class="flex items-center mb-4">
@@ -1154,12 +1186,12 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-green-500/30 text-green-300">Android</span>
-                        <span class="category-badge bg-blue-500/30 text-blue-300">Services</span>
+                        <span class="category-badge bg-blue-500/30 text-blue-300">Google Services</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        Implementasi gratis dari rangkaian layanan Google untuk perangkat Android yang memungkinkan penggunaan aplikasi tanpa layanan Google proprietary.
+                        Implementasi open source layanan Google Play. Jalankan aplikasi yang butuh GMS tanpa melacak aktivitas Anda.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-sm text-gray-500">Open Source, Privacy</span>
@@ -1186,15 +1218,15 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-green-500/30 text-green-300">Android</span>
                         <span class="category-badge bg-blue-500/30 text-blue-300">App Store</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        Toko aplikasi Android yang dapat diinstal yang menyediakan hanya perangkat lunak sumber terbuka. Semua aplikasi dibangun dari kode sumber yang diverifikasi.
+                        Toko aplikasi open source untuk Android. Semua aplikasi diverifikasi — bebas tracker, bebas ikian.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Open Source, App Repository</span>
+                        <span class="text-sm text-gray-500">Open Source, FOSS-only</span>
                         <div class="flex">
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
@@ -1218,12 +1250,12 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-green-500/30 text-green-300">Android</span>
-                        <span class="category-badge bg-blue-500/30 text-blue-300">App Store</span>
+                        <span class="category-badge bg-blue-500/30 text-blue-300">Anonymous Play Store</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        Klien Google Play Store open source yang tidak memerlukan akun Google atau layanan Google Play. Memungkinkan pengunduhan aplikasi secara anonim.
+                        Klien Google Play Store anonim. Unduh aplikasi dari Play Store tanpa login atau melacak identitas Anda.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-sm text-gray-500">Open Source, Anonymous</span>
@@ -1237,9 +1269,12 @@
                     </div>
                 </div>
 
-                <!-- Search Engine -->
-                <!-- SearXNG -->
-                 <div class="modern-card p-6 app-card" data-aos="fade-up">
+                <!-- ==================== -->
+                <!-- 4. SEARCH ENGINE -->
+                <!-- ==================== -->
+                
+                <!-- SearXNG - Self-hosted -->
+                <div class="modern-card p-6 app-card" data-aos="fade-up">
                     <div class="flex items-center mb-4">
                         <img src="https://techlore.tech/assets/knowledgebase/icons/searxng.svg" 
                              alt="SearXNG" 
@@ -1251,15 +1286,15 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-yellow-500/30 text-yellow-300">Search Engine</span>
-                        <span class="category-badge bg-blue-500/30 text-blue-300">Self-hosted</span>
+                        <span class="category-badge bg-green-500/30 text-green-300">Self-Hosted</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        SearXNG adalah mesin pencari meta sumber terbuka, dapat dikonfigurasi, dan dapat dihosting sendiri yang mengumpulkan hasil dari ribuan mesin pencari dalam satu tempat.
+                        Hosting mesin pencari sendiri. Aggregator dari puluhan search engine — dengan hasil yang lebih netral dan privasi yang lebih terjaga.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Open Source, Metasearch</span>
+                        <span class="text-sm text-gray-500">Open Source, Self-hostable</span>
                         <div class="flex">
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
@@ -1283,14 +1318,15 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-yellow-500/30 text-yellow-300">Search Engine</span>
+                        <span class="category-badge bg-blue-500/30 text-blue-300">No Tracking</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        DuckDuckGo adalah mesin pencari meta yang menggunakan hasil pencarian utama dari Bing dan menekankan pada privasi pengguna.
+                        Mesin pencari populer yang tidak melacak. Alternatif siap pakai sebelum beralih ke self-hosted.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Proprietary, Metasearch</span>
+                        <span class="text-sm text-gray-500">Proprietary, Privacy-focused</span>
                         <div class="flex">
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
@@ -1301,38 +1337,10 @@
                     </div>
                 </div>
 
-                <!-- Startpage -->
-                <div class="modern-card p-6 app-card" data-aos="fade-up">
-                    <div class="flex items-center mb-4">
-                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fassets.stickpng.com%2Fimages%2F623afee027d4946aceae2fcc.png&f=1&nofb=1&ipt=c15ed31f5d1a66dffe2a1bdda822608b046a2a848e91d21b7cebcea1c4d4b723" 
-                             alt="Startpage" 
-                             class="app-image">
-                        <div class="ml-4">
-                            <h3 class="text-xl font-bold text-white">Startpage</h3>
-                            <a href="https://www.startpage.com" target="_blank" class="app-website">
-                                startpage.com <i class="fas fa-external-link-alt ml-1 text-xs"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <span class="category-badge bg-yellow-500/30 text-yellow-300">Search Engine</span>
-                    </div>
-                    <p class="text-gray-400 flex-grow">
-                        Startpage adalah mesin pencari meta yang menampilkan hasil pencarian Google dan Bing yang diproksi secara pribadi.
-                    </p>
-                    <div class="mt-4 flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Proprietary, Metasearch</span>
-                        <div class="flex">
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star-half-alt text-yellow-400"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Messaging Apps -->
+                <!-- ==================== -->
+                <!-- 5. MESSAGING -->
+                <!-- ==================== -->
+                
                 <!-- Briar -->
                 <div class="modern-card p-6 app-card" data-aos="fade-up">
                     <div class="flex items-center mb-4">
@@ -1346,15 +1354,15 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-purple-500/30 text-purple-300">Messaging</span>
-                        <span class="category-badge bg-blue-500/30 text-blue-300">P2P</span>
+                        <span class="category-badge bg-blue-500/30 text-blue-300">P2P + Tor</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        Platform pesan terdesentralisasi yang dirancang untuk melindungi privasi dengan komunikasi peer-to-peer melalui Tor. Bekerja tanpa server pusat.
+                        Peer-to-peer messaging via Tor. Tidak ada server pusat — komunikasi Anda hanya antara perangkat.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Open Source, Encrypted</span>
+                        <span class="text-sm text-gray-500">Open Source, P2P</span>
                         <div class="flex">
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
@@ -1378,15 +1386,15 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-purple-500/30 text-purple-300">Messaging</span>
-                        <span class="category-badge bg-blue-500/30 text-blue-300">Decentralized</span>
+                        <span class="category-badge bg-blue-500/30 text-blue-300">No Phone Number</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        Aplikasi pesan privasi yang tidak memerlukan nomor telepon atau informasi pribadi lainnya untuk mendaftar. Menggunakan jaringan terdesentralisasi.
+                        Pesan anonim tanpa nomor telepon. Jaringan onion routing untuk metadata protection.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Open Source, Anonymous</span>
+                        <span class="text-sm text-gray-500">Open Source, Decentralized</span>
                         <div class="flex">
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
@@ -1397,39 +1405,10 @@
                     </div>
                 </div>
 
-                <!-- Molly -->
-                <div class="modern-card p-6 app-card" data-aos="fade-up">
-                    <div class="flex items-center mb-4">
-                        <img src="https://techlore.tech/assets/knowledgebase/icons/molly.svg" 
-                            alt="Molly" 
-                            class="app-image">
-                        <div class="ml-4">
-                            <h3 class="text-xl font-bold text-white">Molly</h3>
-                            <a href="https://molly.im/" target="_blank" class="app-website">
-                                molly.im <i class="fas fa-external-link-alt ml-1 text-xs"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <span class="category-badge bg-purple-500/30 text-purple-300">Messaging</span>
-                        <span class="category-badge bg-blue-500/30 text-blue-300">Security</span>
-                    </div>
-                    <p class="text-gray-400 flex-grow">
-                        Versi Signal yang ditingkatkan keamanannya dengan fitur tambahan seperti enkripsi berbasis sandbox dan perlindungan terhadap cold boot attacks.
-                    </p>
-                    <div class="mt-4 flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Open Source, Encrypted</span>
-                        <div class="flex">
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star-half-alt text-yellow-400"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Notes App -->
+                <!-- ==================== -->
+                <!-- 6. NOTES & CLOUD -->
+                <!-- ==================== -->
+                
                 <!-- Standard Notes -->
                 <div class="modern-card p-6 app-card" data-aos="fade-up">
                     <div class="flex items-center mb-4">
@@ -1443,12 +1422,12 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-blue-500/30 text-blue-300">Notes</span>
-                        <span class="category-badge bg-green-500/30 text-green-300">Encrypted</span>
+                        <span class="category-badge bg-green-500/30 text-green-300">E2EE</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        Aplikasi catatan sederhana dan pribadi dengan enkripsi end-to-end. Fokus pada privasi, kesederhanaan, dan keterbukaan.
+                        Catatan terenkripsi end-to-end. Bisa self-hosted server sinkronisasi sendiri.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-sm text-gray-500">Open Source, Cross-platform</span>
@@ -1462,26 +1441,25 @@
                     </div>
                 </div>
 
-                <!-- Cloud Storage -->
-                <!-- Nextcloud -->
+                <!-- Nextcloud - Self-hosted cloud -->
                 <div class="modern-card p-6 app-card" data-aos="fade-up">
                     <div class="flex items-center mb-4">
                         <img src="https://techlore.tech/assets/knowledgebase/icons/nextcloud.svg" 
                             alt="NextCloud" 
                             class="app-image">
                         <div class="ml-4">
-                            <h3 class="text-xl font-bold text-white">NextCloud</h3>
+                            <h3 class="text-xl font-bold text-white">Nextcloud</h3>
                             <a href="https://nextcloud.com/" target="_blank" class="app-website">
                                 nextcloud.com <i class="fas fa-external-link-alt ml-1 text-xs"></i>
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-indigo-500/30 text-indigo-300">Cloud Storage</span>
-                        <span class="category-badge bg-blue-500/30 text-blue-300">Self-hosted</span>
+                        <span class="category-badge bg-green-500/30 text-green-300">Self-Hosted</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                                Platform produktivitas dan penyimpanan file yang dapat dihosting sendiri. Memberikan kendali penuh atas data Anda dengan fitur kolaborasi dan sinkronisasi.
+                        Alternatif cloud seperti Google Drive. Host di server pribadi. File, kontak, kalender — semua di kendali Anda.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-sm text-gray-500">Open Source, Self-hosted</span>
@@ -1495,71 +1473,10 @@
                     </div>
                 </div>
 
-                <!-- Proton Drive -->
-                <div class="modern-card p-6 app-card" data-aos="fade-up">
-                    <div class="flex items-center mb-4">
-                        <img src="https://techlore.tech/assets/knowledgebase/icons/proton-drive.svg" 
-                            alt="Proton Drive" 
-                            class="app-image">
-                        <div class="ml-4">
-                            <h3 class="text-xl font-bold text-white">Proton Drive</h3>
-                            <a href="https://proton.me/drive" target="_blank" class="app-website">
-                                proton.me/drive <i class="fas fa-external-link-alt ml-1 text-xs"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <span class="category-badge bg-indigo-500/30 text-indigo-300">Cloud Storage</span>
-                        <span class="category-badge bg-green-500/30 text-green-300">Encrypted</span>
-                    </div>
-                    <p class="text-gray-400 flex-grow">
-                        Layanan penyimpanan cloud dengan enkripsi end-to-end dari pembuat ProtonMail. File dienkripsi di perangkat sebelum diunggah ke cloud.
-                    </p>
-                    <div class="mt-4 flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Encrypted, Switzerland-based</span>
-                        <div class="flex">
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star-half-alt text-yellow-400"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- VPN & Tools -->
-                <!-- ProtonVPN -->
-                <div class="modern-card p-6 app-card" data-aos="fade-up">
-                    <div class="flex items-center mb-4">
-                        <img src="https://techlore.tech/assets/knowledgebase/icons/proton-vpn.svg" 
-                            alt="ProtonVPN" 
-                            class="app-image">
-                        <div class="ml-4">
-                            <h3 class="text-xl font-bold text-white">ProtonVPN</h3>
-                            <a href="https://protonvpn.com/" target="_blank" class="app-website">
-                                protonvpn.com <i class="fas fa-external-link-alt ml-1 text-xs"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <span class="category-badge bg-orange-500/30 text-orange-300">VPN</span>
-                        <span class="category-badge bg-green-500/30 text-green-300">Security</span>
-                    </div>
-                    <p class="text-gray-400 flex-grow">
-                        Layanan VPN berkecepatan tinggi yang dibuat oleh CERN scientists dengan fokus pada keamanan dan privasi. Berbasis di Switzerland dengan kebijakan no-logs.
-                    </p>
-                    <div class="mt-4 flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Secure, No-logs Policy</span>
-                        <div class="flex">
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- ==================== -->
+                <!-- 7. VPN & TOOLS -->
+                <!-- ==================== -->
+                
                 <!-- Orbot -->
                 <div class="modern-card p-6 app-card" data-aos="fade-up">
                     <div class="flex items-center mb-4">
@@ -1573,21 +1490,53 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-orange-500/30 text-orange-300">VPN</span>
-                        <span class="category-badge bg-tor/30 text-secondary">Tor</span>
+                        <span class="category-badge bg-tor/30 text-secondary">Tor for Android</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        VPN gratis yang mengarahkan semua lalu lintas perangkat melalui jaringan Tor. Memberikan anonimitas kuat untuk semua aplikasi di perangkat.
+                        VPN gratis via Tor network. Anonimkan semua traffic dari ponsel Anda.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Open Source, Tor Network</span>
+                        <span class="text-sm text-gray-500">Open Source, Tor-based</span>
                         <div class="flex">
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star-half-alt text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vaultwarden - Self-hosted password manager -->
+                <div class="modern-card p-6 app-card" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.icon-icons.com%2Ficons2%2F1381%2FPNG%2F512%2Fkeepassxc_94843.png&f=1&nofb=1&ipt=8fbafb981ab8a55730f9eaadc7b06ae3037957c314a5201fa0a39eba1ed9ca2e" 
+                            alt="Vaultwarden" 
+                            class="app-image">
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold text-white">Vaultwarden</h3>
+                            <a href="https://github.com/dani-garcia/vaultwarden" target="_blank" class="app-website">
+                                vaultwarden <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mb-4 flex flex-wrap gap-2">
+                        <span class="category-badge bg-orange-500/30 text-orange-300">Password Manager</span>
+                        <span class="category-badge bg-green-500/30 text-green-300">Self-Hosted</span>
+                    </div>
+                    <p class="text-gray-400 flex-grow">
+                        Hosting password manager sendiri. Alternatif ringan untuk Bitwarden. Semua kredensial di server Anda.
+                    </p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Open Source, Self-hostable</span>
+                        <div class="flex">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
                         </div>
                     </div>
                 </div>
@@ -1605,23 +1554,34 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 flex flex-wrap gap-2">
                         <span class="category-badge bg-orange-500/30 text-orange-300">Password Manager</span>
-                        <span class="category-badge bg-green-500/30 text-green-300">Security</span>
+                        <span class="category-badge bg-blue-500/30 text-blue-300">Offline First</span>
                     </div>
                     <p class="text-gray-400 flex-grow">
-                        Pengelola kata sandi sumber terbuka dan lintas platform yang menyimpan semua kata sandi Anda dalam database terenkripsi yang aman.
+                        Database kata sandi lokal. Tidak ada cloud, tidak ada server. Anda yang memegang file kunci sepenuhnya.
                     </p>
                     <div class="mt-4 flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Open Source, Cross-platform</span>
+                        <span class="text-sm text-gray-500">Open Source, Offline</span>
                         <div class="flex">
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
                             <i class="fas fa-star text-yellow-400"></i>
-                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star-half-alt text-yellow-400"></i>
                         </div>
                     </div>
+                </div>
+            </div>
+            
+            <!-- Footer note -->
+            <div class="mt-12 text-center" data-aos="fade-up">
+                <div class="modern-card p-6 max-w-3xl mx-auto">
+                    <p class="text-gray-300">
+                        <i class="fas fa-crown text-tor mr-2"></i> 
+                        <strong class="text-white">Kedaulatan teknologi</strong> bukan tentang satu tools, tapi tentang tumpukan (stack) yang lebih Anda kendalikan.
+                        <br>Mulai dari browser → OS → komunikasi → cloud → semuanya.
+                    </p>
                 </div>
             </div>
         </div>
@@ -1670,7 +1630,7 @@
                     <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Links</h3>
                     <ul class="mt-4 space-y-2">
                         <li><a href="about.html" class="text-gray-400 hover:text-white">About</a></li>
-                        <li><a href="nextcrow/login.html" class="text-gray-400 hover:text-white">Community</a></li>
+                        <li><a href="https://element.ricalnet.my.id" class="text-gray-400 hover:text-white">Community</a></li>
                         <li><a href="support.html" class="text-gray-400 hover:text-white">Support</a></li>
                         <li><a href="gallery.html" class="text-gray-400 hover:text-white">Gallery</a></li>
                     </ul>
@@ -1700,7 +1660,7 @@
             </div>
             
             <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm">RicalNet © 2025</p>
+                <p class="text-gray-400 text-sm">RicalNet © 2026 - present</p>
                 <div class="mt-4 md:mt-0">
                     <ul class="flex space-x-6">
                         <li><a href="privacy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a></li>

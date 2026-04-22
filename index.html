@@ -1,55 +1,504 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Risnanda Pascal | Telco Student & Lab Instructor</title>
-    <link rel="icon" type="image/x-icon" href="img/logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Risnanda Pascal - IT/ICT & Privacy Engineer. Spesialis infrastruktur self-hosted, keamanan data, dan ekosistem privat yang efisien.">
+  <meta name="author" content="Risnanda Pascal">
+  <meta name="keywords" content="privacy, self-hosted, IT/ICT, edge computing, cloud, matrix, nextcloud, vaultwarden, yourls">
+  <title>Risnanda Pascal · IT/ICT & Privacy Engineer</title>
+  <link rel="icon" type="image/x-icon" href="img/logo.png">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="blur-background"></div>
-    
-    <div class="container">
-        <header>
-        </header>
-        
-        <div class="content">
-            <div class="profile-section">
-                <div class="profile-image-container">
-                    <img src="avatar.png" alt="Risnanda Pascal" class="profile-image">
-                </div>
-            </div>
-            
-            <div class="intro-section">
-                <section class="intro">
-                    <h1><span>Risnanda Pascal</span></h1>
-                    <p>Telco Student and Lab Instructor</p>
-                </section>
-                
-                <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/risnandacandraabdurrozaq/" target="_blank" class="icon" title="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                        <span class="tooltip">LinkedIn</span>
-                    </a>
-                    <a href="https://ricaldocs.github.io/" target="_blank" class="icon" title="Blog & IT Documentation">
-                        <i class="fas fa-book"></i>
-                        <span class="tooltip">Blog & IT Documentation</span>
-                    </a>
-                    <a href="website/index.html" target="_blank" class="icon" title="Website">
-                        <i class="fas fa-globe"></i>
-                        <span class="tooltip">Website</span>
-                    </a>
-                    <a href="https://github.com/ricalnet" target="_blank" class="icon" title="GitHub Repository">
-                        <i class="fab fa-github-alt"></i>
-                        <span class="tooltip">GitHub Repository</span>
-                    </a>
-                </div>
-            </div>
+<body class="bg-gray-950 text-gray-200 antialiased">
+
+  <div class="fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute top-20 -left-20 w-72 h-72 bg-violet-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <div id="my-banner"></div>
+  <script src="https://keepandroidopen.org/banner.js?lang=id&size=mini&id=my-banner"></script>
+
+  <!-- Main container -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 flex flex-col min-h-screen">
+
+    <!-- ===== PROFILE ===== -->
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-16 fade-slide-up">
+      <!-- Avatar -->
+      <div class="animate-float relative">
+        <img src="rical.jpeg" alt="Risnanda Pascal" loading="lazy"
+             class="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover ring-4 ring-violet-500/30 shadow-2xl"
+             onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22176%22%20height%3D%22176%22%20viewBox%3D%220%200%20176%20176%22%3E%3Crect%20width%3D%22176%22%20height%3D%22176%22%20fill%3D%22%231f2937%22%2F%3E%3Ctext%20x%3D%2288%22%20y%3D%22100%22%20font-size%3D%2240%22%20text-anchor%3D%22middle%22%20fill%3D%22%236b7280%22%20font-family%3D%22Inter%22%3ERP%3C%2Ftext%3E%3C%2Fsvg%3E';">
+        <span class="absolute -bottom-2 -right-2 bg-violet-600 text-white text-xs px-2 py-1 rounded-full shadow-lg">#TechSovereignty</span>
+      </div>
+      <!-- Bio -->
+      <div class="text-center md:text-left max-w-2xl">
+        <div class="flex items-center justify-center md:justify-start gap-2 mb-2 flex-wrap">
+          <h1 class="text-4xl md:text-5xl font-semibold tracking-tight bg-gradient-to-r from-white via-violet-200 to-white bg-clip-text text-transparent">
+            Risnanda Pascal
+          </h1>
         </div>
+        <div class="text-violet-400 text-xl font-medium mt-1">IT/ICT & Privacy Engineer</div>
+        <p class="text-gray-400 text-base mt-3 max-w-lg">
+          Spesialis <strong class="text-violet-400">infrastruktur self-hosted</strong> dan <strong class="text-violet-400">privasi data</strong>. 
+          Membangun ekosistem digital yang aman, terkendali, dan efisien — mulai dari cloud pribadi, komunikasi terenkripsi, hingga pengelola kata sandi mandiri.
+        </p>
+        <!-- quote -->
+        <div class="italic text-gray-400/80 border-l-4 border-violet-500 pl-4 mt-5 text-sm leading-relaxed max-w-md mx-auto md:mx-0">
+          “Sharing is good, and with digital technology, sharing is easy.”
+          <span class="block text-gray-500 text-xs mt-1">— Richard Stallman</span>
+        </div>
+        <!-- Media social -->
+        <div class="flex gap-3 mt-6 justify-center md:justify-start">
+            <!-- Galeri -->
+            <a href="gallery.html"
+                class="w-10 h-10 rounded-xl bg-gray-800/80 border border-gray-700 flex items-center justify-center text-gray-400 hover:bg-violet-600 hover:text-white hover:border-violet-600 hover:-translate-y-1 transition-all duration-200"
+                aria-label="Speaking Gallery"
+                title="Speaking Gallery">
+                <i class="fas fa-images"></i>
+            </a>
+            <a href="website/index.html" rel="noopener noreferrer"
+                class="w-10 h-10 rounded-xl bg-gray-800/80 border border-gray-700 flex items-center justify-center text-gray-400 hover:bg-violet-600 hover:text-white hover:border-violet-600 hover:-translate-y-1 transition-all duration-200"
+                aria-label="RicalNet">
+                <i class="fas fa-globe"></i>
+            </a>
+            <a href="https://ricaldocs.github.io/" target="_blank" rel="noopener noreferrer"
+                class="w-10 h-10 rounded-xl bg-gray-800/80 border border-gray-700 flex items-center justify-center text-gray-400 hover:bg-violet-600 hover:text-white hover:border-violet-600 hover:-translate-y-1 transition-all duration-200"
+                aria-label="Dokumentasi RicalDocs">
+                <i class="fas fa-book"></i>
+            </a>
+            <a href="https://github.com/ricalnet" target="_blank" rel="noopener noreferrer"
+                class="w-10 h-10 rounded-xl bg-gray-800/80 border border-gray-700 flex items-center justify-center text-gray-400 hover:bg-violet-600 hover:text-white hover:border-violet-600 hover:-translate-y-1 transition-all duration-200"
+                aria-label="GitHub Ricalnet">
+                <i class="fab fa-github-alt"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/risnandacandraabdurrozaq/" target="_blank" rel="noopener noreferrer"
+                class="w-10 h-10 rounded-xl bg-gray-800/80 border border-gray-700 flex items-center justify-center text-gray-400 hover:bg-violet-600 hover:text-white hover:border-violet-600 hover:-translate-y-1 transition-all duration-200"
+                aria-label="LinkedIn Risnanda">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <!-- Matrix -->
+            <a href="https://matrix.to/#/@ricalnet:matrix.ricalnet.my.id" target="_blank" rel="noopener noreferrer"
+                class="w-10 h-10 rounded-xl bg-gray-800/80 border border-gray-700 flex items-center justify-center text-gray-400 hover:bg-violet-600 hover:text-white hover:border-violet-600 hover:-translate-y-1 transition-all duration-200"
+                aria-label="Matrix: @ricalnet:matrix.ricalnet.my.id"
+                title="Matrix: @ricalnet:matrix.ricalnet.my.id">
+                <i class="fas fa-comment"></i>
+            </a>
+        </div>
+      </div>
     </div>
 
-    <script src="scripts.js"></script>
+    <!-- ===== SELF-HOSTED INFRASTRUCTURE ===== -->
+    <section class="mt-16 md:mt-20 fade-slide-up" style="animation-delay: 0.1s;">
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+        <h2 class="text-3xl md:text-4xl font-medium section-underline">Infrastruktur Self-Hosted</h2>
+        <a href="mailto:ricalnet@duck.com?subject=Konsultasi%20Infrastruktur%20Mandiri" target="_blank"
+          class="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/50 rounded-full py-2 px-5 text-green-400 font-medium text-sm hover:bg-green-500/20 hover:border-green-400 hover:-translate-y-1 hover:shadow-lg transition-all duration-200"
+          aria-label="Konsultasi infrastruktur mandiri">
+          <i class="fas fa-file-signature"></i>
+          <span>Konsultasi Infrastruktur Mandiri</span>
+        </a>
+      </div>
+
+      <!-- Card grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- 1. SearXNG / Huntor -->
+        <div class="group glass-card rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full">
+          <div class="flex justify-between items-start mb-2">
+            <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-violet-500/30 group-hover:ring-violet-500/50 transition-all duration-300">
+              <img src="img/icons/search.png" alt="Huntor" class="w-full h-full object-cover">
+            </div>
+            <span class="bg-violet-500/20 text-violet-400 border border-violet-500/40 text-xs font-semibold px-2 py-0.5 rounded-full">public</span>
+          </div>
+          <div class="w-full h-32 rounded-xl overflow-hidden bg-gray-800 mb-4">
+            <img src="img/services/search.png" alt="RicalNet search engine" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          </div>
+          <h3 class="text-xl font-medium text-white mb-2">Private Search Engine</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">Mesin pencari yang dikelola sendiri. Meminimalkan pelacakan, tanpa profil pengguna, tanpa iklan tersembunyi.</p>
+          
+          <div class="flex items-center gap-1 mb-3 text-xs bg-gray-800/30 rounded-full px-3 py-1 self-start border border-gray-700/50">
+            <i class="fab fa-github text-gray-500"></i>
+            <span class="text-gray-400">based on</span>
+            <a href="https://github.com/searxng/searxng" target="_blank" rel="noopener" class="text-violet-400 hover:text-violet-300 font-mono">SearXNG</a>
+          </div>
+
+          <div class="flex items-center gap-2 mt-1 mb-2">
+            <span class="text-xs text-gray-400">Status:</span>
+            <img src="https://uptime.ricalnet.my.id/api/badge/5/uptime?color=%68B030" alt="Uptime Status" class="h-5" onerror="this.style.display='none'">
+          </div>
+          
+          <form class="flex mb-2" action="https://search.ricalnet.my.id/search" method="GET" target="_blank" rel="noopener">
+            <input type="text" name="q" placeholder="Cari tanpa dilacak..." required
+                  class="flex-1 bg-gray-900/50 border border-gray-700 rounded-l-full py-2 px-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-violet-500">
+            <button type="submit" class="bg-gray-800 border border-l-0 border-gray-700 rounded-r-full px-4 text-gray-400 hover:bg-violet-600 hover:text-white hover:border-violet-600 transition-colors" aria-label="Cari">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </form>
+          <div class="flex items-center justify-between text-xs text-gray-500 mt-auto">
+            <span class="font-mono">search.ricalnet.my.id</span>
+            <i class="fas fa-copy copy-btn" onclick="copyToClipboard('search.ricalnet.my.id')" title="Salin domain"></i>
+          </div>
+        </div>
+
+        <!-- 2. Matrix / Element -->
+        <div class="group glass-card rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full">
+          <div class="flex justify-between items-start mb-2">
+            <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-violet-500/30 group-hover:ring-violet-500/50 transition-all duration-300">
+              <img src="img/icons/messaging.png" alt="Matrix" class="w-full h-full object-cover">
+            </div>
+            <span class="bg-violet-500/20 text-violet-400 border border-violet-500/40 text-xs font-semibold px-2 py-0.5 rounded-full">private</span>
+          </div>
+          <div class="w-full h-32 rounded-xl overflow-hidden bg-gray-800 mb-4">
+            <img src="img/services/element.png" alt="Matrix chat" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition">
+          </div>
+          <h3 class="text-xl font-medium text-white mb-2">Encrypted Chat Server</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">Komunikasi end-to-end dengan server yang dikelola sendiri. Bridge ke platform lain tersedia sebagai opsi.</p>
+          
+          <div class="flex items-center gap-1 mb-3 text-xs bg-gray-800/30 rounded-full px-3 py-1 self-start border border-gray-700/50">
+            <i class="fab fa-github text-gray-500"></i>
+            <span class="text-gray-400">based on</span>
+            <a href="https://github.com/element-hq/synapse" target="_blank" rel="noopener" class="text-violet-400 hover:text-violet-300 font-mono">Synapse</a>
+            <span class="text-gray-600">+</span>
+            <a href="https://github.com/element-hq/element-web" target="_blank" rel="noopener" class="text-violet-400 hover:text-violet-300 font-mono">Element</a>
+          </div>
+
+          <div class="flex items-center gap-2 mt-1 mb-2">
+            <span class="text-xs text-gray-400">Status:</span>
+            <img src="https://uptime.ricalnet.my.id/api/badge/3/uptime?color=%68B030" alt="Uptime Status" class="h-5" onerror="this.style.display='none'">
+          </div>
+          
+          <div class="flex flex-wrap items-center gap-2 mt-2">
+            <a href="https://element.ricalnet.my.id" target="_blank" rel="noopener noreferrer" class="bg-violet-600 text-white py-1.5 px-4 rounded-full text-sm font-medium hover:bg-violet-700 transition inline-flex items-center gap-1">
+              Buka Element <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+            </a>
+            <div class="flex items-center gap-1">
+              <span class="bg-gray-800 border border-gray-700 text-gray-400 px-3 py-1 rounded-full text-xs font-mono">element.ricalnet.my.id</span>
+              <i class="fas fa-copy copy-btn text-gray-500 hover:text-violet-400" onclick="copyToClipboard('element.ricalnet.my.id')" title="Salin domain"></i>
+            </div>
+          </div>
+          <!-- Bridge Info -->
+          <div class="border-t border-gray-800 pt-3 mt-3">
+            <p class="text-xs text-gray-500 mb-2 flex items-center gap-1">
+              <i class="fas fa-exchange-alt text-violet-400"></i> Bridge tersedia (untuk interoperabilitas):
+            </p>
+            <div class="flex gap-2">
+              <a href="https://matrix.to/#/@telegrambot:matrix.ricalnet.my.id" target="_blank" rel="noopener" 
+                class="bg-gray-800/50 hover:bg-[#0088cc]/20 border border-gray-700 rounded-lg p-2 text-center group transition flex-1">
+                <div class="text-[#0088cc] text-lg"><i class="fab fa-telegram"></i></div>
+                <div class="text-xs text-gray-400 group-hover:text-[#0088cc]">Telegram</div>
+              </a>
+              <a href="https://matrix.to/#/@whatsappbot:matrix.ricalnet.my.id" target="_blank" rel="noopener"
+                class="bg-gray-800/50 hover:bg-[#25D366]/20 border border-gray-700 rounded-lg p-2 text-center group transition flex-1">
+                <div class="text-[#25D366] text-lg"><i class="fab fa-whatsapp"></i></div>
+                <div class="text-xs text-gray-400 group-hover:text-[#25D366]">WhatsApp</div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. YOURLS (URL Shortener) -->
+        <div class="group glass-card rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full">
+          <div class="flex justify-between items-start mb-2">
+            <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-violet-500/30 group-hover:ring-violet-500/50 transition-all duration-300">
+              <img src="img/icons/url-shortener.png" alt="YOURLS" class="w-full h-full object-cover">
+            </div>
+            <span class="bg-violet-500/20 text-violet-400 border border-violet-500/40 text-xs font-semibold px-2 py-0.5 rounded-full">public</span>
+          </div>
+          <div class="w-full h-32 rounded-xl overflow-hidden bg-gray-800 mb-4">
+            <img src="img/services/url-shortener.png" alt="YOURLS URL Shortener" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition">
+          </div>
+          <h3 class="text-xl font-medium text-white mb-2">Private URL Shortener</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">Pemendek tautan yang dikelola sendiri. Melindungi privasi klik dan data analitik dari pihak ketiga.</p>
+          
+          <div class="flex items-center gap-1 mb-3 text-xs bg-gray-800/30 rounded-full px-3 py-1 self-start border border-gray-700/50">
+            <i class="fab fa-github text-gray-500"></i>
+            <span class="text-gray-400">based on</span>
+            <a href="https://github.com/YOURLS/YOURLS" target="_blank" rel="noopener" class="text-violet-400 hover:text-violet-300 font-mono">YOURLS</a>
+          </div>
+
+          <div class="flex items-center gap-2 mt-1 mb-2">
+            <span class="text-xs text-gray-400">Status:</span>
+            <img src="https://uptime.ricalnet.my.id/api/badge/12/uptime?color=%68B030" alt="Uptime Status" class="h-5" onerror="this.style.display='none'">
+          </div>
+          
+          <form class="flex mb-2" action="https://s.ricalnet.my.id" method="GET" target="_blank" rel="noopener">
+            <input type="url" name="url" placeholder="Pendekkan URL..." required
+                  class="flex-1 bg-gray-900/50 border border-gray-700 rounded-l-full py-2 px-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-violet-500">
+            <button type="submit" class="bg-gray-800 border border-l-0 border-gray-700 rounded-r-full px-4 text-gray-400 hover:bg-violet-600 hover:text-white hover:border-violet-600 transition-colors" aria-label="Pendekkan">
+              <i class="fas fa-link"></i>
+            </button>
+          </form>
+          <div class="flex items-center justify-between text-xs text-gray-500 mt-auto">
+            <span class="font-mono">s.ricalnet.my.id</span>
+            <i class="fas fa-copy copy-btn" onclick="copyToClipboard('s.ricalnet.my.id')" title="Salin domain"></i>
+          </div>
+        </div>
+
+        <!-- 4. LibreTranslate -->
+        <div class="group glass-card rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full">
+          <div class="flex justify-between items-start mb-2">
+            <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-violet-500/30 group-hover:ring-violet-500/50 transition-all duration-300">
+              <img src="img/icons/translate.png" alt="LibreTranslate" class="w-full h-full object-cover">
+            </div>
+            <span class="bg-violet-500/20 text-violet-400 border border-violet-500/40 text-xs font-semibold px-2 py-0.5 rounded-full">public</span>
+          </div>
+          <div class="w-full h-32 rounded-xl overflow-hidden bg-gray-800 mb-4">
+            <img src="img/services/translate.png" alt="LibreTranslate" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition">
+          </div>
+          <h3 class="text-xl font-medium text-white mb-2">Private Translation</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">Penerjemah mandiri. Data terjemahan tetap di server pribadi, tidak dikirim ke pihak eksternal.</p>
+          
+          <div class="flex items-center gap-1 mb-3 text-xs bg-gray-800/30 rounded-full px-3 py-1 self-start border border-gray-700/50">
+            <i class="fab fa-github text-gray-500"></i>
+            <span class="text-gray-400">based on</span>
+            <a href="https://github.com/LibreTranslate/LibreTranslate" target="_blank" rel="noopener" class="text-violet-400 hover:text-violet-300 font-mono">LibreTranslate</a>
+          </div>
+
+          <div class="flex items-center gap-2 mt-1 mb-2">
+            <span class="text-xs text-gray-400">Status:</span>
+            <img src="https://uptime.ricalnet.my.id/api/badge/9/uptime?color=%68B030" alt="Uptime Status" class="h-5" onerror="this.style.display='none'">
+          </div>
+          
+          <div class="flex items-center justify-between gap-2 mt-auto">
+            <a href="https://translate.ricalnet.my.id/?source=en&target=id&q=" target="_blank" rel="noopener" class="bg-violet-600 text-white py-1.5 px-4 rounded-full text-sm font-medium hover:bg-violet-700 transition inline-flex items-center gap-1">
+              Buka <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+            </a>
+            <div class="flex items-center gap-1">
+              <span class="bg-gray-800 border border-gray-700 text-gray-400 px-3 py-1 rounded-full text-xs font-mono">translate.ricalnet.my.id</span>
+              <i class="fas fa-copy copy-btn text-gray-500 hover:text-violet-400" onclick="copyToClipboard('translate.ricalnet.my.id')" title="Salin domain"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Unclouded (Nextcloud) -->
+        <div class="group glass-card rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full">
+          <div class="flex justify-between items-start mb-2">
+            <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-violet-500/30 group-hover:ring-violet-500/50 transition-all duration-300">
+              <img src="img/icons/unclouded.png" alt="Unclouded" class="w-full h-full object-cover">
+            </div>
+            <span class="bg-violet-500/20 text-violet-400 border border-violet-500/40 text-xs font-semibold px-2 py-0.5 rounded-full">private</span>
+          </div>
+          <div class="w-full h-32 rounded-xl overflow-hidden bg-gray-800 mb-4">
+            <img src="img/services/unclouded.png" alt="Unclouded" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition">
+          </div>
+          <h3 class="text-xl font-medium text-white mb-2">Private Cloud Storage</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">Penyimpanan cloud pribadi. File tetap di bawah kendali Anda, tanpa analisis konten untuk iklan.</p>
+          
+          <div class="flex items-center gap-1 mb-3 text-xs bg-gray-800/30 rounded-full px-3 py-1 self-start border border-gray-700/50">
+            <i class="fab fa-github text-gray-500"></i>
+            <span class="text-gray-400">based on</span>
+            <a href="https://github.com/nextcloud/server" target="_blank" rel="noopener" class="text-violet-400 hover:text-violet-300 font-mono">Nextcloud</a>
+          </div>
+
+          <div class="flex items-center gap-2 mt-1 mb-2">
+            <span class="text-xs text-gray-400">Status:</span>
+            <img src="https://uptime.ricalnet.my.id/api/badge/7/uptime?color=%68B030" alt="Uptime Status" class="h-5" onerror="this.style.display='none'">
+          </div>
+          
+          <div class="flex items-center justify-between gap-2 mt-auto">
+            <a href="https://cloud.ricalnet.my.id" target="_blank" rel="noopener" class="bg-violet-600 text-white py-1.5 px-4 rounded-full text-sm hover:bg-violet-700 transition inline-flex items-center gap-1">
+              Akses <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+            </a>
+            <div class="flex items-center gap-1">
+              <span class="bg-gray-800 border border-gray-700 text-gray-400 px-3 py-1 rounded-full text-xs font-mono">cloud.ricalnet.my.id</span>
+              <i class="fas fa-copy copy-btn text-gray-500 hover:text-violet-400" onclick="copyToClipboard('cloud.ricalnet.my.id')" title="Salin domain"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Vaultwarden -->
+        <div class="group glass-card rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full">
+          <div class="flex justify-between items-start mb-2">
+            <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-violet-500/30 group-hover:ring-violet-500/50 transition-all duration-300">
+              <img src="img/icons/vault.png" alt="Vaultwarden" class="w-full h-full object-cover">
+            </div>
+            <span class="bg-violet-500/20 text-violet-400 border border-violet-500/40 text-xs font-semibold px-2 py-0.5 rounded-full">private</span>
+          </div>
+          <div class="w-full h-32 rounded-xl overflow-hidden bg-gray-800 mb-4">
+            <img src="img/services/vault.png" alt="Vault" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition">
+          </div>
+          <h3 class="text-xl font-medium text-white mb-2">Private Password Manager</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">Pengelola kata sandi mandiri. Kunci enkripsi berada di bawah kendali penuh Anda.</p>
+          
+          <div class="flex items-center gap-1 mb-3 text-xs bg-gray-800/30 rounded-full px-3 py-1 self-start border border-gray-700/50">
+            <i class="fab fa-github text-gray-500"></i>
+            <span class="text-gray-400">based on</span>
+            <a href="https://github.com/dani-garcia/vaultwarden" target="_blank" rel="noopener" class="text-violet-400 hover:text-violet-300 font-mono">Vaultwarden</a>
+          </div>
+
+          <div class="flex items-center gap-2 mt-1 mb-2">
+            <span class="text-xs text-gray-400">Status:</span>
+            <img src="https://uptime.ricalnet.my.id/api/badge/8/uptime?color=%68B030" alt="Uptime Status" class="h-5" onerror="this.style.display='none'">
+          </div>
+          
+          <div class="flex items-center justify-between gap-2 mt-auto">
+            <a href="https://vault.ricalnet.my.id" target="_blank" rel="noopener" class="bg-violet-600 text-white py-1.5 px-4 rounded-full text-sm hover:bg-violet-700 transition inline-flex items-center gap-1">
+              Akses <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+            </a>
+            <div class="flex items-center gap-1">
+              <span class="bg-gray-800 border border-gray-700 text-gray-400 px-3 py-1 rounded-full text-xs font-mono">vault.ricalnet.my.id</span>
+              <i class="fas fa-copy copy-btn text-gray-500 hover:text-violet-400" onclick="copyToClipboard('vault.ricalnet.my.id')" title="Salin domain"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Immich Gallery -->
+        <div class="group glass-card rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full">
+          <div class="flex justify-between items-start mb-2">
+            <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-violet-500/30 group-hover:ring-violet-500/50 transition-all duration-300">
+              <img src="img/icons/gallery.png" alt="Immich" class="w-full h-full object-cover">
+            </div>
+            <span class="bg-violet-500/20 text-violet-400 border border-violet-500/40 text-xs font-semibold px-2 py-0.5 rounded-full">private</span>
+          </div>
+          <div class="w-full h-32 rounded-xl overflow-hidden bg-gray-800 mb-4">
+            <img src="img/services/immich.png" alt="Gallery" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition">
+          </div>
+          <h3 class="text-xl font-medium text-white mb-2">Private Photo Gallery</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">Galeri foto pribadi. Alternatif mandiri dengan fokus pada privasi data.</p>
+          
+          <div class="flex items-center gap-1 mb-3 text-xs bg-gray-800/30 rounded-full px-3 py-1 self-start border border-gray-700/50">
+            <i class="fab fa-github text-gray-500"></i>
+            <span class="text-gray-400">based on</span>
+            <a href="https://github.com/immich-app/immich" target="_blank" rel="noopener" class="text-violet-400 hover:text-violet-300 font-mono">Immich</a>
+          </div>
+
+          <div class="flex items-center gap-2 mt-1 mb-2">
+            <span class="text-xs text-gray-400">Status:</span>
+            <img src="https://uptime.ricalnet.my.id/api/badge/4/uptime?color=%68B030" alt="Uptime Status" class="h-5" onerror="this.style.display='none'">
+          </div>
+          
+          <div class="flex items-center justify-between gap-2 mt-auto">
+            <a href="https://gallery.ricalnet.my.id" target="_blank" rel="noopener" class="bg-violet-600 text-white py-1.5 px-4 rounded-full text-sm hover:bg-violet-700 transition inline-flex items-center gap-1">
+              Akses <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+            </a>
+            <div class="flex items-center gap-1">
+              <span class="bg-gray-800 border border-gray-700 text-gray-400 px-3 py-1 rounded-full text-xs font-mono">gallery.ricalnet.my.id</span>
+              <i class="fas fa-copy copy-btn text-gray-500 hover:text-violet-400" onclick="copyToClipboard('gallery.ricalnet.my.id')" title="Salin domain"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Obfs4 Bridge (Tor) -->
+        <div class="group glass-card rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full">
+          <div class="flex justify-between items-start mb-2">
+            <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-violet-500/30 group-hover:ring-violet-500/50 transition-all duration-300">
+              <img src="img/icons/obfs4.svg" alt="Tor" class="w-full h-full object-cover">
+            </div>
+            <span class="bg-violet-500/20 text-violet-400 border border-violet-500/40 text-xs font-semibold px-2 py-0.5 rounded-full">private</span>
+          </div>
+          <div class="w-full h-32 rounded-xl overflow-hidden bg-gray-800 mb-4">
+            <img src="img/services/obfs4-bridge.jpg" alt="Obfs4 bridge" loading="lazy"
+                class="w-full h-full object-cover group-hover:scale-110 transition">
+          </div>
+          <h3 class="text-xl font-medium text-white mb-2">Tor Bridge (Obfs4)</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">Bridge Tor untuk akses internet yang lebih terbuka. Membantu koneksi di wilayah dengan pembatasan.</p>
+          
+          <div class="flex items-center gap-1 mb-3 text-xs bg-gray-800/30 rounded-full px-3 py-1 self-start border border-gray-700/50">
+            <i class="fab fa-gitlab text-gray-500"></i>
+            <span class="text-gray-400">based on</span>
+            <a href="https://gitlab.torproject.org/tpo/core/obfs4" target="_blank" rel="noopener" class="text-violet-400 hover:text-violet-300 font-mono">obfs4 (Tor Project)</a>
+          </div>
+          
+          <a href="mailto:ricalnet@duck.com?subject=Minta%20Bridge%20Tor&body=Halo%2C%20saya%20mau%20minta%20bridge%20Tor%20obfs4.%20Makasih!" 
+            class="w-full bg-violet-600 text-white py-3 px-4 rounded-full text-sm font-medium hover:bg-violet-700 transition inline-flex items-center justify-center gap-2 mt-auto">
+            <i class="fas fa-envelope"></i> Request Bridge via Email
+          </a>
+          <p class="text-gray-500 text-xs mt-3 text-center">* Dikirim manual dalam 1x24 jam</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TECH STACK ===== -->
+    <section class="mt-20 fade-slide-up" style="animation-delay: 0.2s;">
+      <h2 class="text-3xl md:text-4xl font-medium section-underline section-underline-center text-center">Technology Stack</h2>
+      <div class="flex flex-wrap justify-center gap-3 mt-10">
+        <span class="bg-gray-800/50 border border-gray-700 rounded-full py-2 px-5 text-gray-300 text-sm flex items-center gap-2 hover:border-violet-500 hover:text-white transition-all duration-200"><i class="fa-brands fa-linux text-violet-400"></i> Debian</span>
+        <span class="bg-gray-800/50 border border-gray-700 rounded-full py-2 px-5 text-gray-300 text-sm flex items-center gap-2 hover:border-violet-500 transition-all"><i class="fas fa-traffic-light text-violet-400"></i> DNS Sinkhole</span>
+        <span class="bg-gray-800/50 border border-gray-700 rounded-full py-2 px-5 text-gray-300 text-sm flex items-center gap-2 hover:border-violet-500 transition-all"><i class="fas fa-brain text-violet-400"></i> Ollama</span>
+        <span class="bg-gray-800/50 border border-gray-700 rounded-full py-2 px-5 text-gray-300 text-sm flex items-center gap-2 hover:border-violet-500 transition-all"><i class="fa-brands fa-docker text-violet-400"></i> Docker</span>
+        <span class="bg-gray-800/50 border border-gray-700 rounded-full py-2 px-5 text-gray-300 text-sm flex items-center gap-2 hover:border-violet-500 transition-all"><i class="fa-brands fa-cloudflare text-violet-400"></i> Cloudflare</span>
+        <span class="bg-gray-800/50 border border-gray-700 rounded-full py-2 px-5 text-gray-300 text-sm flex items-center gap-2 hover:border-violet-500 transition-all"><i class="fa-brands fa-raspberry-pi text-violet-400"></i> Raspberry Pi</span>
+        <span class="bg-gray-800/50 border border-gray-700 rounded-full py-2 px-5 text-gray-300 text-sm flex items-center gap-2 hover:border-violet-500 transition-all"><i class="fas fa-microchip text-violet-400"></i> ESP32</span>
+        <span class="bg-gray-800/50 border border-gray-700 rounded-full py-2 px-5 text-gray-300 text-sm flex items-center gap-2 hover:border-violet-500 transition-all"><i class="fas fa-route text-violet-400"></i> MQTT</span>
+        <span class="bg-gray-800/50 border border-gray-700 rounded-full py-2 px-5 text-gray-300 text-sm flex items-center gap-2 hover:border-violet-500 transition-all"><i class="fas fa-code text-violet-400"></i> PlatformIO</span>
+        <span class="bg-gray-800/50 border border-gray-700 rounded-full py-2 px-5 text-gray-300 text-sm flex items-center gap-2 hover:border-violet-500 transition-all"><i class="fas fa-bell text-violet-400"></i> ntfy</span>
+        <span class="bg-gray-800/50 border border-gray-700 rounded-full py-2 px-5 text-gray-300 text-sm flex items-center gap-2 hover:border-violet-500 transition-all"><i class="fas fa-chart-line text-violet-400"></i> Uptime Kuma</span>
+      </div>
+    </section>
+
+    <!-- ===== FEATURED PROJECTS ===== -->
+    <section class="my-20 fade-slide-up" style="animation-delay: 0.25s;">
+      <h2 class="text-3xl md:text-4xl font-medium text-center section-underline section-underline-center">Proyek Unggulan</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+        <a href="website/index.html" target="_blank" class="group glass-card rounded-2xl p-8 text-center hover:shadow-xl transition-all duration-300 hover:scale-[1.02] block" aria-label="Kunjungi RicalNet">
+          <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden ring-4 ring-violet-500/30 group-hover:ring-violet-500/50 transition-all duration-300">
+            <img src="img/logo.png" alt="RicalNet Logo" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-2xl font-medium text-white">RicalNet</h3>
+          <p class="text-gray-400 text-sm mt-3">Ekosistem literasi digital dan panduan self-hosting. Mengajarkan cara membangun infrastruktur mandiri yang aman dan efisien.</p>
+        </a>
+        <a href="https://sokanak.id" target="_blank" rel="noopener noreferrer" class="group glass-card rounded-2xl p-8 text-center hover:shadow-xl transition-all duration-300 hover:scale-[1.02] block" aria-label="Kunjungi Sokanak.id">
+          <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden ring-4 ring-violet-500/30 group-hover:ring-violet-500/50 transition-all duration-300">
+            <img src="img/icons/sokanak.png" alt="Sokanak.id Logo" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-2xl font-medium text-white">Sokanak.id</h3>
+          <p class="text-gray-400 text-sm mt-3">AIoT child nutrition monitoring. Data kesehatan anak tetap di server lokal, tidak dikirim ke luar negeri.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="my-16 glass-card rounded-3xl p-8 md:p-12 text-center relative overflow-hidden fade-slide-up" style="animation-delay: 0.3s;">
+      <div class="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-transparent to-purple-500/5"></div>
+      <div class="relative z-10 max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-semibold bg-gradient-to-r from-white via-violet-200 to-white bg-clip-text text-transparent">Bangun Infrastruktur Digital Mandiri</h2>
+        <p class="text-gray-300 text-lg mt-5 leading-relaxed">
+          Kendalikan data Anda dengan infrastruktur self-hosted. Saya membantu individu dan organisasi membangun sistem yang aman, privat, dan efisien — dari cloud pribadi, komunikasi terenkripsi, hingga IoT yang menjaga data tetap lokal.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 mt-8">
+          <span class="bg-gray-800/50 border border-gray-700 rounded-full py-2 px-5 text-sm flex items-center gap-2"><i class="fas fa-shield-alt text-violet-400"></i> Zero trust architecture</span>
+          <span class="bg-gray-800/50 border border-gray-700 rounded-full py-2 px-5 text-sm flex items-center gap-2"><i class="fas fa-infinity text-violet-400"></i> Tanpa biaya langganan</span>
+          <span class="bg-gray-800/50 border border-gray-700 rounded-full py-2 px-5 text-sm flex items-center gap-2"><i class="fas fa-cogs text-violet-400"></i> Dikelola sendiri sepenuhnya</span>
+        </div>
+        <div class="flex flex-wrap justify-center gap-4 mt-8">
+          <a href="mailto:ricalnet@duck.com?subject=Diskusi%20Self-Hosted%20Infrastructure&body=Halo%2C%20saya%20tertarik%20membangun%20infrastruktur%20mandiri.%20Bisa%20diskusi%3F" 
+            class="bg-violet-600 text-white text-lg font-medium py-3 px-10 rounded-full shadow-lg hover:bg-violet-700 hover:scale-105 transition-all duration-200 inline-flex items-center gap-2">
+            <i class="fas fa-crown"></i> Mulai Kendalikan Data Anda
+          </a>
+        </div>
+        <p class="text-gray-500 text-sm mt-5">Konsultasi awal tanpa biaya</p>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="mt-auto pt-8 pb-4 text-center text-gray-500 text-sm border-t border-gray-800">
+        <p>
+          © RicalNet – <a href="privacy.html" class="text-gray-400 hover:text-violet-400">Privacy Policy</a> – 
+          <a href="https://uptime.ricalnet.my.id/status/76qqqz4qq5q7hm" class="text-gray-400 hover:text-violet-400" target="_blank">Service Status</a> – 
+          <a href="https://github.com/ricalnet" class="text-gray-400 hover:text-violet-400"><i class="fab fa-github"></i> Source</a>
+          <span class="block mt-2 text-xs text-violet-400/60">#SelfHosted · privacy-focused · infrastructure</span>
+        </p>
+    </footer>
+  </div>
+
+  <!-- Toast for copy -->
+  <div id="copy-toast" class="copy-toast">📋 Tersalin!</div>
+
+  <script src="script.js"></script>
 </body>
 </html>

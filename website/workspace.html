@@ -287,10 +287,13 @@
             background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.8));
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 16px;
-            padding: 2rem;
+            padding: 1.5rem;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         .modern-card:hover {
             transform: translateY(-5px);
@@ -305,6 +308,47 @@
             overflow: hidden;
         }
         
+        .ecosystem-thumb {
+            width: 100%;
+            height: 140px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1.25rem;
+            background: #1e293b;
+        }
+        .ecosystem-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .modern-card:hover .ecosystem-thumb img {
+            transform: scale(1.03);
+        }
+        .public-badge, .private-badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.75rem;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+            color: #cbd5e1;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .private-badge {
+            background: rgba(126, 71, 152, 0.2);
+            color: #d8b4fe;
+            border-color: rgba(126, 71, 152, 0.4);
+        }
+        .status-badge {
+            font-size: 0.75rem;
+            background: rgba(255,255,255,0.05);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
         @media (max-width: 768px) {
             .dropdown {
                 display: none;
@@ -317,6 +361,9 @@
                 right: -5px;
                 font-size: 0.6rem;
                 padding: 3px 8px;
+            }
+            .ecosystem-thumb {
+                height: 120px;
             }
         }
     </style>
@@ -354,6 +401,8 @@
                                 <a href="../apps/qr-builder/index.html"><i class="fa-solid fa-qrcode"></i> QR Builder</a>
                                 <a href="../apps/QuantumHasher/index.html"><i class="fas fa-atom"></i> Quantum Hasher</a>
                                 <a href="../apps/UltraPassword/index.html"><i class="fas fa-key"></i> Ultra Password</a>
+                                <a href="../apps/whiteboard/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-chalkboard"></i> Whiteboard</a>
+                                <a href="../apps/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-th-list"></i> All Tools</a>
                             </div>
                         </div>
 
@@ -393,6 +442,8 @@
                         <a href="../apps/qr-builder/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-qrcode"></i> QR Builder</a>
                         <a href="../apps/QuantumHasher/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-atom"></i> Quantum Hasher</a>
                         <a href="../apps/UltraPassword/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-key"></i> Ultra Password</a>
+                        <a href="../apps/whiteboard/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fa-solid fa-chalkboard"></i> Whiteboard</a>
+                        <a href="../apps/index.html" class="text-gray-300 hover:text-white block px-3 py-2"><i class="fas fa-th-list"></i> All Tools</a>
                     </div>
                 </div>
 
@@ -404,7 +455,7 @@
     </nav>
 
     <!-- Announcement Section -->
-    <div class="tor-blur pt-16 pb-4 border-b border-tor/20">
+    <!-- <div class="tor-blur pt-16 pb-4 border-b border-tor/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <p class="inline-block px-3 py-1 rounded-full text-sm font-medium bg-tor/20 text-secondary">
@@ -412,7 +463,7 @@
                 </p>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Hero Section -->
     <section class="modern-gradient py-20 md:py-28 relative overflow-hidden">
@@ -425,204 +476,226 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <!-- Left Column -->
                 <div class="lg:pr-8" data-aos="fade-right">
+                    <div class="inline-block px-3 py-1 rounded-full text-sm font-medium bg-tor/20 text-secondary mb-6">
+                        <i class="fas fa-microchip mr-2"></i> #SelfHosted #TechSovereignty
+                    </div>
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                        RicalNet <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-tor">Workspace</span>
+                        Bangun <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-tor">Infrastruktur Berdaulat</span>
                     </h1>
                     <p class="text-xl text-gray-300 mb-8">
-                        Wujudkan kedaulatan data pribadi Anda dan bangun ekosistem mandiri untuk privasi mutlak.
+                        Kelola cloud, password, komunikasi, dan data Anda sendiri. 
+                        Kurangi ketergantungan pada Google, Microsoft, dan Meta. <strong class="text-secondary">Kedaulatan dimulai dari sini.</strong>
                     </p>
                     
                     <div class="flex flex-col sm:flex-row gap-4 mb-10">
-                        <a href="#features" class="bg-primary hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-300 text-center">
-                            <i class="fa-solid fa-compass mr-1"></i> Explore
+                        <a href="#ecosystem" class="bg-primary hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-300 text-center">
+                            <i class="fa-solid fa-server mr-1"></i> Lihat Layanan Self-Hosted
                         </a>
-                        <a href="https://ricaldocs.github.io/categories/tech-sovereign/" target="_blank" class="bg-transparent border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-dark transition duration-300 text-center">
-                            View Documentation <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                        <a href="https://ricaldocs.github.io/categories/tech-sovereignty/" target="_blank" class="bg-transparent border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-dark transition duration-300 text-center">
+                            Panduan Lengkap <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
                         </a>
+                    </div>
+                    
+                    <!-- Stat singkat -->
+                    <div class="flex gap-6 text-sm text-gray-400">
+                        <div><i class="fas fa-check-circle text-green-500 mr-1"></i> Berbasis Open Source</div>
+                        <div><i class="fas fa-database text-blue-400 mr-1"></i> Data di tangan Anda</div>
+                        <div><i class="fas fa-shield-alt text-purple-400 mr-1"></i> Privasi Terjaga</div>
                     </div>
                 </div>
                 
                 <!-- Right Column -->
                 <div class="hero-illustration h-80 lg:h-96" data-aos="fade-left">
                     <img src="../img/backgrounds/workspace-hero.png" 
-                         alt="Take back your data." 
+                         alt="Self-Hosted Infrastructure - Take back your data" 
                          class="h-full w-full object-cover">
                 </div>
             </div>
-            
-            <!-- Search Engine Bar -->
-            <!-- <div class="mt-16" data-aos="fade-up" data-aos-delay="200">
-                <form class="search-form max-w-2xl mx-auto" id="search-form" onsubmit="handleSearch(event)">
-                    <input type="text" 
-                           id="search-input"
-                           placeholder="Search with a private search engine..." 
-                           class="w-full px-6 py-4 rounded-xl bg-gray-800/70 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent shadow-lg">
-                    <select class="search-engine-select rounded-lg" id="search-engine">
-                        <option value="duckduckgo">DuckDuckGo</option>
-                        <option value="startpage">StartPage</option>
-                        <option value="qwant">Qwant</option>
-                        <option value="brave">Brave Search</option>
-                        <option value="searx">Searx</option>
-                    </select>
-                </form>
-            </div> -->
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-16 bg-dark">
+    <!-- SELF-HOSTED ECOSYSTEM SECTION -->
+    <section id="ecosystem" class="py-16 bg-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-white section-title mx-auto" data-aos="fade-up">Independent Digital Solutions</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-white section-title mx-auto" data-aos="fade-up">
+                    Ekosistem <span class="gradient-text">Self-Hosted</span>
+                </h2>
                 <p class="text-gray-400 max-w-3xl mx-auto mt-6" data-aos="fade-up" data-aos-delay="100">
-                    Bangun infrastruktur digital pribadi dengan panduan yang kami sediakan untuk mencapai kebebasan digital sepenuhnya
+                    Alternatif berdaulat untuk layanan asing. Server kami, data Anda.
+                    Bukan sebaliknya. <strong class="text-secondary">#TakeBackControl</strong>
                 </p>
             </div>
-            
-            <!-- Workspace Tools Grid -->
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Cloud Storage -->
-                <div class="modern-card rounded-xl overflow-hidden workspace-card group relative" data-aos="fade-up">
-                    <div class="p-6 flex-grow">
-                        <div class="resource-icon mx-auto h-16 w-16 rounded-xl bg-blue-500/20 flex items-center justify-center mb-6 group-hover:bg-blue-500/30 transition-colors">
-                            <i class="fas fa-cloud text-3xl text-blue-500"></i>
+                <!-- 1. Request a Privacy Project (CTA Card) -->
+                <div class="modern-card" data-aos="fade-up">
+                    <div class="flex justify-between items-start mb-3"><span class="public-badge">Custom Self-Hosted</span></div>
+                    <div class="ecosystem-thumb">
+                        <img src="../img/ecosystem/custom-project.jpg" alt="Custom Privacy Project" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-full h-full bg-gradient-to-br from-indigo-500/30 to-purple-500/30 flex items-center justify-center" style="display:none;">
+                            <span class="text-2xl font-bold text-white/80">🤝 Request</span>
                         </div>
-                        <h3 class="text-xl font-semibold text-white text-center mb-4">Cloud Storage</h3>
-                        <p class="text-gray-400 text-center mb-6">
-                            Bangun server cloud pribadi untuk privasi mutlak dan bebas dari langganan bulanan.
-                        </p>
-                        <a href="https://ricaldocs.github.io/posts/home-server/" target="_blank" class="block w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-center font-medium py-3 px-6 rounded-lg transition-all duration-300 transform group-hover:scale-105">
-                            View Guide <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
-                        </a>
                     </div>
-                </div>
-                
-                <!-- Search Engine -->
-                <div class="modern-card rounded-xl overflow-hidden workspace-card group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="p-6 flex-grow">
-                        <div class="resource-icon mx-auto h-16 w-16 rounded-xl bg-purple-500/20 flex items-center justify-center mb-6 group-hover:bg-purple-500/30 transition-colors">
-                            <i class="fa-brands fa-searchengin text-3xl text-purple-500"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-white text-center mb-4">Search Engine</h3>
-                        <p class="text-gray-400 text-center mb-6">
-                            Deploy search engine independen yang tidak mencatat log.
-                        </p>
-                        <a href="https://ricaldocs.github.io/posts/searxng/" target="_blank" class="block w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white text-center font-medium py-3 px-6 rounded-lg transition-all duration-300 transform group-hover:scale-105">
-                            View Guide <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Communication Platform -->
-                <div class="modern-card rounded-xl overflow-hidden workspace-card group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="p-6 flex-grow">
-                        <div class="resource-icon mx-auto h-16 w-16 rounded-xl bg-red-500/20 flex items-center justify-center mb-6 group-hover:bg-red-500/30 transition-colors">
-                            <i class="fas fa-comment-dots text-3xl text-red-500"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-white text-center mb-4">Communication Platform</h3>
-                        <p class="text-gray-400 text-center mb-6">
-                            Bangun platform komunikasi untuk percakapan yang benar-benar privat. 
-                        </p>
-                        <a href="https://ricaldocs.github.io/posts/weebeetalk/" target="_blank" class="block w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-center font-medium py-3 px-6 rounded-lg transition-all duration-300 transform group-hover:scale-105">
-                            View Guide <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
-                        </a>
-                    </div>
+                    <h3 class="text-xl font-semibold text-white text-center mb-2">Bangun Infrastruktur Berdaulat</h3>
+                    <p class="text-gray-400 text-center text-sm mb-4">Butuh solusi self-hosted khusus? Cloud pribadi, password manager, atau komunikasi terenkripsi. Kami bantu wujudkan.</p>
+                    <div class="mt-auto pt-4"><a href="contact.html" class="block w-full bg-indigo-600/80 hover:bg-indigo-600 text-white text-center font-medium py-2.5 rounded-lg transition">Konsultasi Gratis</a></div>
                 </div>
 
-                <!-- Media Server -->
-                <div class="modern-card rounded-xl overflow-hidden workspace-card group" data-aos="fade-up">
-                    <div class="p-6 flex-grow">
-                        <div class="resource-icon mx-auto h-16 w-16 rounded-xl bg-pink-500/20 flex items-center justify-center mb-6 group-hover:bg-pink-500/30 transition-colors">
-                            <i class="fas fa-server text-3xl text-pink-500"></i>
+                <!-- 2. RicalNet Search Engine (SearXNG) -->
+                <div class="modern-card" data-aos="fade-up" data-aos-delay="50">
+                    <div class="flex justify-between items-start mb-3"><span class="public-badge">self-hosted</span></div>
+                    <div class="ecosystem-thumb">
+                        <img src="../img/services/search.png" alt="RicalNet Search" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-full h-full bg-gradient-to-br from-purple-500/30 to-pink-500/30 flex items-center justify-center" style="display:none;">
+                            <span class="text-2xl font-bold text-white/80">🔍 Search</span>
                         </div>
-                        <h3 class="text-xl font-semibold text-white text-center mb-4">Media Server</h3>
-                        <p class="text-gray-400 text-center mb-6">
-                            Hosting konten multimedia pribadi dengan streaming yang aman dan terkendali penuh.
-                        </p>
-                        <a href="https://ricaldocs.github.io/posts/jellyfin/" target="_blank" class="block w-full bg-gradient-to-r from-pink-600 to-pink-700 hover:from-pink-700 hover:to-pink-800 text-white text-center font-medium py-3 px-6 rounded-lg transition-all duration-300 transform group-hover:scale-105">
-                            View Guide <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
-                        </a>
                     </div>
+                    <h3 class="text-xl font-semibold text-white text-center mb-2">Search Engine</h3>
+                    <p class="text-gray-400 text-center text-sm mb-3">Mesin pencari yang tidak melacak Anda. Alternatif berdaulat untuk Google Search. Privat, minim iklan, tanpa filter bubble.</p>
+                    <div class="text-xs text-gray-500 mb-2 text-center">based on SearXNG</div>
+                    <div class="flex justify-center mb-3">
+                        <img src="https://uptime.ricalnet.my.id/api/badge/5/uptime?color=%68B030" alt="Uptime Status" class="h-5" onerror="this.style.display='none'">
+                    </div>
+                    <form action="https://search.ricalnet.my.id/search" method="get" target="_blank" class="mt-2 flex gap-2">
+                        <input type="text" name="q" placeholder="Cari di RicalNet..." class="flex-1 bg-gray-800/70 border border-gray-600 rounded-lg px-3 py-2 text-sm text-white focus:ring-1 focus:ring-primary">
+                        <button type="submit" class="bg-primary/80 hover:bg-primary px-4 rounded-lg text-sm font-medium transition"><i class="fas fa-arrow-right"></i></button>
+                    </form>
+                    <div class="text-center mt-2"><a href="https://search.ricalnet.my.id" target="_blank" class="text-xs text-secondary hover:underline">search.ricalnet.my.id</a></div>
                 </div>
 
-                <!-- Library -->
-                <div class="modern-card rounded-xl overflow-hidden workspace-card group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="p-6 flex-grow">
-                        <div class="resource-icon mx-auto h-16 w-16 rounded-xl bg-green-500/20 flex items-center justify-center mb-6 group-hover:bg-green-500/30 transition-colors">
-                            <i class="fas fa-book-open text-3xl text-green-500"></i>
+                <!-- 3. Matrix Chat -->
+                <div class="modern-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex justify-between items-start mb-3"><span class="private-badge">self-hosted</span></div>
+                    <div class="ecosystem-thumb">
+                        <img src="../img/services/element.png" alt="Matrix Chat" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-full h-full bg-gradient-to-br from-teal-500/30 to-emerald-500/30 flex items-center justify-center" style="display:none;">
+                            <span class="text-2xl font-bold text-white/80">💬 Matrix</span>
                         </div>
-                        <h3 class="text-xl font-semibold text-white text-center mb-4">Digital Library</h3>
-                        <p class="text-gray-400 text-center mb-6">
-                            Bangun arsip digital di server sendiri, bebas dari pelacakan dan sensor.
-                        </p>
-                        <a href="https://ricaldocs.github.io/posts/calibre/" target="_blank" class="block w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white text-center font-medium py-3 px-6 rounded-lg transition-all duration-300 transform group-hover:scale-105">
-                            View Guide <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
-                        </a>
                     </div>
+                    <h3 class="text-xl font-semibold text-white text-center mb-2">Matrix Chat</h3>
+                    <p class="text-gray-400 text-center text-sm mb-3">Alternatif berdaulat untuk WhatsApp/Telegram. Server chat yang Anda kendalikan. End-to-end encryption, dengan privasi yang lebih terjamin.</p>
+                    <div class="text-xs text-gray-500 mb-1 text-center">based on Synapse + Element</div>
+                    <div class="text-[11px] text-center text-gray-400 mb-2">Bridge aktif: Telegram · WhatsApp</div>
+                    <div class="flex justify-center mb-3">
+                        <img src="https://uptime.ricalnet.my.id/api/badge/3/uptime?color=%68B030" alt="Uptime Status" class="h-5" onerror="this.style.display='none'">
+                    </div>
+                    <div class="mt-auto"><a href="https://element.ricalnet.my.id" target="_blank" class="block w-full bg-teal-600/80 hover:bg-teal-600 text-white text-center font-medium py-2.5 rounded-lg transition">Buka Element</a></div>
+                    <div class="text-center mt-2"><a href="https://element.ricalnet.my.id" class="text-xs text-secondary">element.ricalnet.my.id</a></div>
                 </div>
 
-                <!-- Blog -->
-                <div class="modern-card rounded-xl overflow-hidden workspace-card group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="p-6 flex-grow">
-                        <div class="resource-icon mx-auto h-16 w-16 rounded-xl bg-orange-500/20 flex items-center justify-center mb-6 group-hover:bg-orange-500/30 transition-colors">
-                            <i class="fas fa-blog text-3xl text-orange-500"></i>
+                <!-- 4. YOURLS URL Shortener -->
+                <div class="modern-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="flex justify-between items-start mb-3"><span class="public-badge">self-hosted</span></div>
+                    <div class="ecosystem-thumb">
+                        <img src="../img/services//url-shortener.png" alt="YOURLS" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-full h-full bg-gradient-to-br from-blue-500/30 to-cyan-500/30 flex items-center justify-center" style="display:none;">
+                            <span class="text-2xl font-bold text-white/80">🔗 YOURLS</span>
                         </div>
-                        <h3 class="text-xl font-semibold text-white text-center mb-4">Blog</h3>
-                        <p class="text-gray-400 text-center mb-6">
-                            Buat blog pribadi atau profesional Anda dengan platform open source.
-                        </p>
-                        <a href="https://ricaldocs.github.io/posts/ghost/" target="_blank" class="block w-full bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white text-center font-medium py-3 px-6 rounded-lg transition-all duration-300 transform group-hover:scale-105">
-                            View Guide <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
-                        </a>
                     </div>
+                    <h3 class="text-xl font-semibold text-white text-center mb-2">YOURLS</h3>
+                    <p class="text-gray-400 text-center text-sm mb-3">Alternatif berdaulat untuk bit.ly. Shortlink dengan privasi lebih baik. Data klik hanya untuk Anda, tidak untuk dijual ke pengiklan.</p>
+                    <div class="text-xs text-gray-500 mb-3 text-center">based on YOURLS</div>
+                    <div class="flex justify-center mb-3">
+                        <img src="https://uptime.ricalnet.my.id/api/badge/12/uptime?color=%68B030" alt="Uptime Status" class="h-5" onerror="this.style.display='none'">
+                    </div>
+                    <div class="mt-auto"><a href="https://s.ricalnet.my.id" target="_blank" class="block w-full bg-blue-600/80 hover:bg-blue-600 text-white text-center font-medium py-2.5 rounded-lg transition">Pendekkan URL</a></div>
+                    <div class="text-center mt-2"><a href="https://s.ricalnet.my.id" class="text-xs text-secondary">s.ricalnet.my.id</a></div>
                 </div>
 
-                <!-- Forum Diskusi -->
-                <div class="modern-card rounded-xl overflow-hidden workspace-card group" data-aos="fade-up">
-                    <div class="p-6 flex-grow">
-                        <div class="resource-icon mx-auto h-16 w-16 rounded-xl bg-teal-500/20 flex items-center justify-center mb-6 group-hover:bg-teal-500/30 transition-colors">
-                            <i class="fas fa-comments text-3xl text-teal-500"></i>
+                <!-- 5. LibreTranslate -->
+                <div class="modern-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex justify-between items-start mb-3"><span class="public-badge">self-hosted</span></div>
+                    <div class="ecosystem-thumb">
+                        <img src="../img/services//translate.png" alt="LibreTranslate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-full h-full bg-gradient-to-br from-green-500/30 to-lime-500/30 flex items-center justify-center" style="display:none;">
+                            <span class="text-2xl font-bold text-white/80">🌐 Translate</span>
                         </div>
-                        <h3 class="text-xl font-semibold text-white text-center mb-4">Discussion Forum</h3>
-                        <p class="text-gray-400 text-center mb-6">
-                            Bangun forum komunitas yang Anda kendalikan sepenuhnya.
-                        </p>
-                        <a href="https://ricaldocs.github.io/posts/discourse/" target="_blank" class="block w-full bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white text-center font-medium py-3 px-6 rounded-lg transition-all duration-300 transform group-hover:scale-105">
-                            View Guide <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
-                        </a>
                     </div>
+                    <h3 class="text-xl font-semibold text-white text-center mb-2">LibreTranslate</h3>
+                    <p class="text-gray-400 text-center text-sm mb-3">Alternatif berdaulat untuk Google Translate. Terjemahan dengan privasi lebih baik, data Anda tidak dikirim ke server luar.</p>
+                    <div class="text-xs text-gray-500 mb-3 text-center">based on LibreTranslate</div>
+                    <div class="flex justify-center mb-3">
+                        <img src="https://uptime.ricalnet.my.id/api/badge/9/uptime?color=%68B030" alt="Uptime Status" class="h-5" onerror="this.style.display='none'">
+                    </div>
+                    <div class="mt-auto"><a href="https://translate.ricalnet.my.id" target="_blank" class="block w-full bg-green-600/80 hover:bg-green-600 text-white text-center font-medium py-2.5 rounded-lg transition">Buka Penerjemah</a></div>
+                    <div class="text-center mt-2"><a href="https://translate.ricalnet.my.id" class="text-xs text-secondary">translate.ricalnet.my.id</a></div>
                 </div>
 
-                <!-- LMS -->
-                <div class="modern-card rounded-xl overflow-hidden workspace-card group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="p-6 flex-grow">
-                        <div class="resource-icon mx-auto h-16 w-16 rounded-xl bg-yellow-500/20 flex items-center justify-center mb-6 group-hover:bg-yellow-500/30 transition-colors">
-                            <i class="fas fa-graduation-cap text-3xl text-yellow-500"></i>
+                <!-- 6. Unclouded (Nextcloud) -->
+                <div class="modern-card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="flex justify-between items-start mb-3"><span class="private-badge">self-hosted</span></div>
+                    <div class="ecosystem-thumb">
+                        <img src="../img/services/unclouded.png" alt="Unclouded" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-full h-full bg-gradient-to-br from-sky-500/30 to-blue-500/30 flex items-center justify-center" style="display:none;">
+                            <span class="text-2xl font-bold text-white/80">☁️ Unclouded</span>
                         </div>
-                        <h3 class="text-xl font-semibold text-white text-center mb-4">LMS</h3>
-                        <p class="text-gray-400 text-center mb-6">
-                            Akses kursus online dan pelatihan tentang keamanan informasi.
-                        </p>
-                        <a href="tahap-pengembangan.html" class="block w-full bg-gradient-to-r from-yellow-600 to-yellow-700 hover:from-yellow-700 hover:to-yellow-800 text-white text-center font-medium py-3 px-6 rounded-lg transition-all duration-300 transform group-hover:scale-105">
-                            Log in to LMS
-                        </a>
                     </div>
+                    <h3 class="text-xl font-semibold text-white text-center mb-2">Unclouded</h3>
+                    <p class="text-gray-400 text-center text-sm mb-3">Alternatif berdaulat untuk Google Drive/OneDrive. Cloud storage yang Anda kendalikan, bukan hanya "cloud" di server orang lain.</p>
+                    <div class="text-xs text-gray-500 mb-3 text-center">based on Nextcloud</div>
+                    <div class="flex justify-center mb-3">
+                        <img src="https://uptime.ricalnet.my.id/api/badge/7/uptime?color=%68B030" alt="Uptime Status" class="h-5" onerror="this.style.display='none'">
+                    </div>
+                    <div class="mt-auto"><a href="https://cloud.ricalnet.my.id" target="_blank" class="block w-full bg-sky-600/80 hover:bg-sky-600 text-white text-center font-medium py-2.5 rounded-lg transition">Akses Cloud</a></div>
+                    <div class="text-center mt-2"><a href="https://cloud.ricalnet.my.id" class="text-xs text-secondary">cloud.ricalnet.my.id</a></div>
                 </div>
 
-                <!-- Additional Tools -->
-                <div class="modern-card rounded-xl overflow-hidden workspace-card group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="p-6 flex-grow">
-                        <div class="resource-icon mx-auto h-16 w-16 rounded-xl bg-indigo-500/20 flex items-center justify-center mb-6 group-hover:bg-indigo-500/30 transition-colors">
-                            <i class="fas fa-tools text-3xl text-indigo-500"></i>
+                <!-- 7. Vaultwarden (Password Manager) -->
+                <div class="modern-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex justify-between items-start mb-3"><span class="private-badge">self-hosted</span></div>
+                    <div class="ecosystem-thumb">
+                        <img src="../img/services/vault.png" alt="Vaultwarden" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-full h-full bg-gradient-to-br from-rose-500/30 to-pink-500/30 flex items-center justify-center" style="display:none;">
+                            <span class="text-2xl font-bold text-white/80">🔐 Vault</span>
                         </div>
-                        <h3 class="text-xl font-semibold text-white text-center mb-4">Productivity Tools</h3>
-                        <p class="text-gray-400 text-center mb-6">
-                            Temukan berbagai alat yang kami sediakan untuk Anda.
-                        </p>
-                        <a href="../apps/index.html" class="block w-full bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white text-center font-medium py-3 px-6 rounded-lg transition-all duration-300 transform group-hover:scale-105">
-                            Explore Tools
-                        </a>
                     </div>
+                    <h3 class="text-xl font-semibold text-white text-center mb-2">Vaultwarden</h3>
+                    <p class="text-gray-400 text-center text-sm mb-3">Alternatif berdaulat untuk LastPass/Bitwarden. Password manager yang server-nya Anda kendalikan. Kunci tetap di tangan Anda.</p>
+                    <div class="text-xs text-gray-500 mb-3 text-center">based on Vaultwarden</div>
+                    <div class="flex justify-center mb-3">
+                        <img src="https://uptime.ricalnet.my.id/api/badge/8/uptime?color=%68B030" alt="Uptime Status" class="h-5" onerror="this.style.display='none'">
+                    </div>
+                    <div class="mt-auto"><a href="https://vault.ricalnet.my.id" target="_blank" class="block w-full bg-rose-600/80 hover:bg-rose-600 text-white text-center font-medium py-2.5 rounded-lg transition">Kelola Password</a></div>
+                    <div class="text-center mt-2"><a href="https://vault.ricalnet.my.id" class="text-xs text-secondary">vault.ricalnet.my.id</a></div>
+                </div>
+
+                <!-- 8. Immich Gallery -->
+                <div class="modern-card" data-aos="fade-up" data-aos-delay="350">
+                    <div class="flex justify-between items-start mb-3"><span class="private-badge">self-hosted</span></div>
+                    <div class="ecosystem-thumb">
+                        <img src="../img/services/immich.png" alt="Immich" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-full h-full bg-gradient-to-br from-fuchsia-500/30 to-purple-500/30 flex items-center justify-center" style="display:none;">
+                            <span class="text-2xl font-bold text-white/80">🖼️ Immich</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white text-center mb-2">Immich</h3>
+                    <p class="text-gray-400 text-center text-sm mb-3">Alternatif berdaulat untuk Google Photos. Galeri pribadi yang tidak mengirim data wajah Anda ke AI korporasi. Foto Anda, server Anda.</p>
+                    <div class="text-xs text-gray-500 mb-3 text-center">based on Immich</div>
+                    <div class="flex justify-center mb-3">
+                        <img src="https://uptime.ricalnet.my.id/api/badge/4/uptime?color=%68B030" alt="Uptime Status" class="h-5" onerror="this.style.display='none'">
+                    </div>
+                    <div class="mt-auto"><a href="https://gallery.ricalnet.my.id" target="_blank" class="block w-full bg-fuchsia-600/80 hover:bg-fuchsia-600 text-white text-center font-medium py-2.5 rounded-lg transition">Buka Galeri</a></div>
+                    <div class="text-center mt-2"><a href="https://gallery.ricalnet.my.id" class="text-xs text-secondary">gallery.ricalnet.my.id</a></div>
+                </div>
+
+                <!-- 9. Tor Bridge (Obfs4) -->
+                <div class="modern-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex justify-between items-start mb-3"><span class="private-badge">self-hosted</span></div>
+                    <div class="ecosystem-thumb">
+                        <img src="../img/services//obfs4-bridge.jpg" alt="Tor Bridge" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-full h-full bg-gradient-to-br from-orange-500/30 to-red-500/30 flex items-center justify-center" style="display:none;">
+                            <span class="text-2xl font-bold text-white/80">🧅 Tor Bridge</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white text-center mb-2">Tor Bridge (Obfs4)</h3>
+                    <p class="text-gray-400 text-center text-sm mb-3">Akses internet terbuka untuk wilayah dengan sensor. Bridge Tor mandiri untuk kebebasan informasi tanpa batas.</p>
+                    <div class="text-xs text-gray-500 mb-2 text-center">based on obfs4 (Tor Project)</div>
+                    <div class="flex justify-center mb-3">
+                        <img src="https://uptime.ricalnet.my.id/api/badge/5/uptime?color=%68B030" alt="Uptime Status" class="h-5" onerror="this.style.display='none'">
+                    </div>
+                    <div class="text-[11px] text-center text-gray-400 mb-2">* Dikirim manual dalam 1x24 jam</div>
+                    <div class="mt-auto"><a href="mailto:support@ricalnet.my.id?subject=Tor%20Bridge%20Request&body=Mohon%20kirimkan%20obfs4%20bridge%20untuk%20Tor." class="block w-full bg-orange-600/80 hover:bg-orange-600 text-white text-center font-medium py-2.5 rounded-lg transition">Minta Bridge via Email</a></div>
                 </div>
             </div>
         </div>
@@ -634,19 +707,23 @@
             <div class="tech-support-cta p-8 md:p-12 rounded-2xl" data-aos="fade-up">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                     <div>
-                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">No Technical Skills?</h2>
+                        <div class="inline-block px-3 py-1 rounded-full text-sm font-medium bg-tor/20 text-secondary mb-4">
+                            <i class="fas fa-rocket mr-1"></i> Mulai dari Nol
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Belum Punya Pengalaman <span class="gradient-text">Self-Hosting</span>?</h2>
                         <p class="text-xl text-gray-300 mb-6">
-                            Kami siap membantu Anda membangun infrastruktur mandiri yang aman dan privat tanpa perlu pengetahuan teknis yang mendalam.
+                            Tidak perlu jadi sysadmin. Kami bimbing Anda langkah demi langkah.
                         </p>
                         <p class="text-gray-400 mb-8">
-                            Tim ahli kami akan membimbing Anda dari awal hingga infrastruktur digital pribadi Anda siap digunakan.
+                            Dari memilih hardware bekas yang murah, install sistem operasi, hingga deploy layanan seperti Nextcloud, Vaultwarden, dan Matrix — 
+                            semuanya dengan panduan yang mudah diikuti. <strong class="text-secondary">Gratis, tanpa biaya tambahan.</strong>
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4">
                             <a href="contact.html" class="bg-primary text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300 text-center">
-                                Free Consultation
+                                <i class="fas fa-chalkboard-user mr-2"></i> Konsultasi Gratis
                             </a>
-                            <a href="services.html" class="bg-transparent border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-dark transition duration-300 text-center">
-                                Our Services
+                            <a href="https://ricaldocs.github.io/categories/tech-sovereignty/" target="_blank" class="bg-transparent border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-dark transition duration-300 text-center">
+                                Baca Panduan Self-Hosting
                             </a>
                         </div>
                     </div>
@@ -660,13 +737,13 @@
                                     <div class="h-3 w-3 bg-green-500 rounded-full"></div>
                                 </div>
                                 <div class="font-mono text-sm text-gray-300">
-                                    <p class="text-green-400">$ ./deploy-infrastructure.sh</p>
-                                    <p class="ml-4">Initializing your private ecosystem...</p>
-                                    <p class="ml-4 text-blue-400">✓ Secure Cloud Storage deployed</p>
-                                    <p class="ml-4 text-blue-400">✓ Private Search Engine configured</p>
-                                    <p class="ml-4 text-blue-400">✓ Encrypted Communication ready</p>
-                                    <p class="ml-4 text-green-400">Your private infrastructure is ready!</p>
-                                    <p class="mt-2 text-gray-500"># No technical skills required</p>
+                                    <p class="text-green-400">$ ./build-your-sovereignty.sh</p>
+                                    <p class="ml-4">Step 1: Pilih hardware (Rp 500k-an bekas cukup)</p>
+                                    <p class="ml-4">Step 2: Install Debian Server</p>
+                                    <p class="ml-4 text-blue-400">✓ Docker & Portainer running</p>
+                                    <p class="ml-4">Step 3: Deploy Nextcloud, Vaultwarden, Matrix</p>
+                                    <p class="ml-4 text-green-400">✓ Your private cloud is ready!</p>
+                                    <p class="mt-2 text-gray-500"># No sysadmin? Kami bimbing.</p>
                                 </div>
                             </div>
                         </div>
@@ -679,18 +756,24 @@
     <!-- CTA Section -->
     <section class="py-16 bg-gradient-to-r from-primary/20 to-tor/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6" data-aos="fade-up">Ready to Build an Independent Digital Ecosystem?</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6" data-aos="fade-up">
+                Siap <span class="gradient-text">Mengurangi Ketergantungan pada Big Tech?</span>?
+            </h2>
             <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="100">
-                Mulai perjalanan Anda menuju kedaulatan digital dengan panduan lengkap dari kami
+                Mulai dengan satu layanan. Cloud storage, password manager, atau search engine. 
+                Setiap langkah kecil menuju kedaulatan adalah kemenangan.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="200">
-                <a href="https://ricaldocs.github.io" target="_blank" class="bg-white text-dark font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
-                    Explore the Documentation <i class="fa-solid fa-up-right-from-square ml-2"></i>
+                <a href="https://github.com/ricalnet/tech-sovereignty" class="bg-white text-dark font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                    <i class="fas fa-server mr-2"></i> Mulai Self-Hosting
                 </a>
                 <a href="support.html" class="bg-transparent border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-dark transition duration-300 transform hover:scale-105">
-                    Support Our Project
+                    <i class="fas fa-users mr-2"></i> Gabung Gerakan
                 </a>
             </div>
+            <p class="text-gray-500 text-sm mt-8">
+                #TechSovereignty #SelfHosted #TakeBackControl
+            </p>
         </div>
     </section>
 
@@ -737,7 +820,7 @@
                     <h3 class="text-sm font-semibold text-white uppercase tracking-wider">Links</h3>
                     <ul class="mt-4 space-y-2">
                         <li><a href="about.html" class="text-gray-400 hover:text-white">About</a></li>
-                        <li><a href="nextcrow/login.html" class="text-gray-400 hover:text-white">Community</a></li>
+                        <li><a href="https://element.ricalnet.my.id" class="text-gray-400 hover:text-white">Community</a></li>
                         <li><a href="support.html" class="text-gray-400 hover:text-white">Support</a></li>
                         <li><a href="gallery.html" class="text-gray-400 hover:text-white">Gallery</a></li>
                     </ul>
@@ -767,7 +850,7 @@
             </div>
             
             <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm">RicalNet © 2025</p>
+                <p class="text-gray-400 text-sm">RicalNet © 2026 - present</p>
                 <div class="mt-4 md:mt-0">
                     <ul class="flex space-x-6">
                         <li><a href="privacy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a></li>
@@ -800,41 +883,6 @@
             const content = document.getElementById('mobile-resources-content');
             content.classList.toggle('show');
         });
-        
-        // Search form handling
-        function handleSearch(event) {
-            event.preventDefault();
-            const searchQuery = document.getElementById('search-input').value;
-            const searchEngine = document.getElementById('search-engine').value;
-            
-            if (searchQuery.trim() !== '') {
-                let searchUrl;
-                
-                switch(searchEngine) {
-                    case 'duckduckgo':
-                        searchUrl = `https://duckduckgo.com/?q=${encodeURIComponent(searchQuery)}`;
-                        break;
-                    case 'startpage':
-                        searchUrl = `https://www.startpage.com/do/dsearch?query=${encodeURIComponent(searchQuery)}`;
-                        break;
-                    case 'qwant':
-                        searchUrl = `https://www.qwant.com/?q=${encodeURIComponent(searchQuery)}`;
-                        break;
-                    case 'brave':
-                        searchUrl = `https://search.brave.com/search?q=${encodeURIComponent(searchQuery)}`;
-                        break;
-                    case 'searx':
-                        searchUrl = `https://searx.info/search?q=${encodeURIComponent(searchQuery)}`;
-                        break;
-                    default:
-                        searchUrl = `https://duckduckgo.com/?q=${encodeURIComponent(searchQuery)}`;
-                }
-                
-                const newWindow = window.open('', '_blank');
-                newWindow.opener = null;
-                newWindow.location = searchUrl;
-            }
-        }
     </script>
 </body>
 </html>
