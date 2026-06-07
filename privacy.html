@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="Kebijakan Privasi Ricalnet – Komitmen kemandirian digital dan transparansi penuh.">
+  <meta name="author" content="Risnanda Pascal">
+  <meta name="keywords" content="privasi, privacy policy, kedaulatan data, self-hosted">
+  <title>Risnanda Pascal · Kebijakan Privasi</title>
+  <link rel="icon" type="image/x-icon" href="img/logo.png">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" media="print" onload="this.media='all'">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'inter': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            tor: {
+              violet: '#7c3aed',
+              'violet-light': '#a78bfa',
+              'violet-dark': '#5b21b6',
+              accent: '#68B030',
+            },
+            surface: {
+              dark: '#0f1117',
+              card: '#161822',
+              border: '#232636',
+            }
+          },
+          animation: {
+            'fade-slide-up': 'fadeSlideUp 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) forwards',
+            'pulse-glow': 'pulseGlow 2s infinite',
+            'gradient-flow': 'gradientFlow 8s ease infinite',
+            'float': 'float 5s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeSlideUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(124, 58, 237, 0.4)' },
+              '50%': { boxShadow: '0 0 0 12px rgba(124, 58, 237, 0)' },
+            },
+            gradientFlow: {
+              '0%, 100%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @layer utilities {
+      .glass-card {
+        background: rgba(22, 24, 34, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(35, 38, 54, 0.6);
+      }
+      .glass-card:hover {
+        background: rgba(22, 24, 34, 0.85);
+        border-color: rgba(124, 58, 237, 0.5);
+      }
+      .text-gradient-violet {
+        background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 30%, #7c3aed 70%, #c4b5fd 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        background-size: 200% auto;
+      }
+      .bg-grid-pattern {
+        background-image: 
+          linear-gradient(rgba(124, 58, 237, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(124, 58, 237, 0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+      }
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #0f1117; }
+    ::-webkit-scrollbar-thumb { background: #232636; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #7c3aed; }
+  </style>
+</head>
+<body class="font-inter bg-surface-dark text-gray-200 antialiased selection:bg-tor-violet/30 selection:text-white">
+
+  <!-- ===== AMBIENT BACKGROUND ===== -->
+  <div class="fixed inset-0 -z-20 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="absolute inset-0 bg-grid-pattern opacity-50"></div>
+    <div class="absolute top-0 -left-20 w-[500px] h-[500px] bg-tor-violet/10 rounded-full blur-[120px] animate-pulse"></div>
+    <div class="absolute top-1/3 -right-20 w-[600px] h-[600px] bg-purple-700/8 rounded-full blur-[130px] animate-pulse" style="animation-delay: 2s;"></div>
+    <div class="absolute -bottom-20 left-1/3 w-[400px] h-[400px] bg-tor-violet/5 rounded-full blur-[100px] animate-pulse" style="animation-delay: 4s;"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-dark/50 to-surface-dark"></div>
+  </div>
+
+  <!-- ===== MAIN CONTAINER ===== -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-14 flex flex-col min-h-screen relative z-10">
+
+    <!-- ===== BACK BUTTON ===== -->
+    <a href="index.html" 
+       class="inline-flex items-center gap-2 text-gray-400 hover:text-tor-violet-light transition-all duration-300 mb-8 group w-fit">
+      <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform duration-300"></i>
+      <span>Kembali ke Beranda</span>
+    </a>
+
+    <!-- ===== PRIVACY POLICY SECTION ===== -->
+    <section class="animate-fade-slide-up">
+      
+      <!-- Header -->
+      <div class="mb-10">
+        <h1 class="text-4xl md:text-5xl font-bold relative inline-block pb-3">
+          <span class="text-white">Kebijakan</span>
+          <span class="text-gradient-violet animate-gradient-flow"> Privasi</span>
+          <span class="absolute bottom-0 left-0 w-20 h-1 bg-tor-violet rounded-full transition-all duration-300 hover:w-28"></span>
+        </h1>
+        <div class="flex items-center gap-3 mt-4 text-gray-400">
+          <i class="fas fa-calendar-check text-tor-violet-light"></i>
+          <span>Berlaku efektif: <strong class="text-white">28 Mei 2026</strong></span>
+        </div>
+      </div>
+
+      <!-- Policy Content Card -->
+      <div class="glass-card rounded-3xl p-6 md:p-10 transition-all duration-500 hover:shadow-2xl hover:shadow-tor-violet/5">
+        
+        <div class="flex items-center gap-3 mb-8 pb-6 border-b border-surface-border">
+          <div class="w-12 h-12 rounded-xl bg-tor-violet/15 flex items-center justify-center animate-pulse-glow">
+            <i class="fas fa-shield-virus text-tor-violet-light text-xl"></i>
+          </div>
+          <div>
+            <h2 class="text-xl font-semibold text-white">Komitmen Privasi Ricalnet</h2>
+            <p class="text-gray-400 text-sm mt-1">Transparansi penuh · Kedaulatan data · Tanpa kompromi</p>
+          </div>
+        </div>
+
+        <!-- Policy Items -->
+        <div class="space-y-8">
+          
+          <!-- Section 1 -->
+          <div class="group">
+            <div class="flex items-start gap-4">
+              <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-tor-violet/15 flex items-center justify-center text-tor-violet-light font-bold text-sm mt-0.5 group-hover:bg-tor-violet/25 transition-all duration-300">1</span>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-3 group-hover:text-tor-violet-light transition-colors duration-300">Data yang Dikumpulkan</h3>
+                <div class="space-y-3 text-gray-300 leading-relaxed">
+                  <p>Situs ini <strong class="text-white font-medium">tidak mengumpulkan data pribadi</strong> pengunjung. Tidak terdapat penggunaan cookie pelacak maupun layanan analitik pihak ketiga. Server web menyimpan catatan log standar (alamat IP, waktu akses, halaman yang diminta) semata-mata untuk keperluan keamanan dan pemeliharaan sistem. Log tersebut disimpan secara sementara, dirotasi secara berkala, dan <strong class="text-tor-violet-light font-medium">tidak digunakan untuk analisis perilaku pengguna</strong>.</p>
+                  <p>Untuk layanan yang memerlukan pendaftaran akun (seperti RCLOUD, NoCOMINT, Vault, Gallery), data yang diberikan pengguna (nama pengguna, kata sandi terenkripsi, berkas) disimpan di server yang disediakan. <strong class="text-white font-medium">Pengguna memegang kendali penuh</strong> atas data tersebut.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2 -->
+          <div class="group">
+            <div class="flex items-start gap-4">
+              <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-tor-violet/15 flex items-center justify-center text-tor-violet-light font-bold text-sm mt-0.5 group-hover:bg-tor-violet/25 transition-all duration-300">2</span>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-3 group-hover:text-tor-violet-light transition-colors duration-300">Penggunaan Data</h3>
+                <p class="text-gray-300 leading-relaxed">Data log teknis hanya digunakan untuk memastikan stabilitas dan keamanan infrastruktur layanan. Data akun serta konten yang diunggah ke layanan privat (RCLOUD, NoCOMINT, dan sejenisnya) sepenuhnya berada di bawah kendali pengguna. Pihak pengelola <strong class="text-white font-medium">tidak memproses data tersebut</strong> untuk kepentingan lain di luar fungsi operasional dasar layanan.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3 - Highlighted -->
+          <div class="group">
+            <div class="flex items-start gap-4">
+              <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-tor-violet/25 flex items-center justify-center text-tor-violet-light font-bold text-sm mt-0.5">3</span>
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                  <i class="fas fa-shield-alt text-tor-violet-light"></i> 
+                  Komitmen Kedaulatan Data
+                </h3>
+                <div class="bg-tor-violet/5 border border-tor-violet/20 rounded-2xl p-6 space-y-3">
+                  <p class="text-gray-300 leading-relaxed">Pengelola <strong class="text-white font-medium">tidak akan membuka, mengakses, atau menyerahkan data pengguna</strong> kepada pihak mana pun—termasuk lembaga pemerintah, aparat penegak hukum, atau otoritas lainnya—dalam situasi apa pun, kecuali atas instruksi tertulis langsung dari pengguna yang bersangkutan.</p>
+                  <p class="text-gray-300 leading-relaxed">Server berada di bawah kendali fisik dan teknis pengelola, serta <strong class="text-tor-violet-light font-medium">tidak dilengkapi mekanisme akses pintu belakang</strong> (backdoor), akses paksa, maupun kerja sama sukarela atas permintaan data pihak luar.</p>
+                  <p class="text-gray-300 leading-relaxed">Apabila terdapat permintaan hukum yang mengikat, pengelola akan mengupayakan perlawanan dengan segala cara yang tersedia, termasuk namun tidak terbatas pada bantuan hukum dan keterbukaan informasi kepada publik.</p>
+                  <div class="flex items-center gap-2 pt-2 border-t border-tor-violet/10">
+                    <i class="fas fa-quote-right text-tor-violet-light"></i>
+                    <span class="text-tor-violet-light font-medium italic">Data pengguna adalah milik pengguna sepenuhnya.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4 -->
+          <div class="group">
+            <div class="flex items-start gap-4">
+              <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-tor-violet/15 flex items-center justify-center text-tor-violet-light font-bold text-sm mt-0.5 group-hover:bg-tor-violet/25 transition-all duration-300">4</span>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-3 group-hover:text-tor-violet-light transition-colors duration-300">Keamanan</h3>
+                <p class="text-gray-300 leading-relaxed">Praktik keamanan standar industri diterapkan untuk melindungi komunikasi, mencakup pembaruan perangkat lunak secara rutin dan konfigurasi server yang diperketat. Meskipun demikian, perlu dipahami bahwa <strong class="text-white font-medium">tidak ada sistem yang sepenuhnya bebas dari risiko keamanan</strong>. Pengguna bertanggung jawab menjaga kerahasiaan kredensial akun masing-masing.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5 -->
+          <div class="group">
+            <div class="flex items-start gap-4">
+              <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-tor-violet/15 flex items-center justify-center text-tor-violet-light font-bold text-sm mt-0.5 group-hover:bg-tor-violet/25 transition-all duration-300">5</span>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-3 group-hover:text-tor-violet-light transition-colors duration-300">Hak Pengguna</h3>
+                <p class="text-gray-300 leading-relaxed">Pengguna memiliki hak untuk <strong class="text-white font-medium">mengakses, memperbaiki, atau menghapus</strong> data pribadi yang tersimpan di dalam layanan. Untuk akun layanan, tindakan tersebut dapat dilakukan secara mandiri melalui panel kendali masing-masing layanan. Jika menemui kendala teknis, pengguna dapat menghubungi kontak yang tersedia.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 6 -->
+          <div class="group">
+            <div class="flex items-start gap-4">
+              <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-tor-violet/15 flex items-center justify-center text-tor-violet-light font-bold text-sm mt-0.5 group-hover:bg-tor-violet/25 transition-all duration-300">6</span>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-3 group-hover:text-tor-violet-light transition-colors duration-300">Kontak</h3>
+                <p class="text-gray-300 mb-4">Pertanyaan lebih lanjut mengenai kebijakan privasi ini dapat disampaikan melalui:</p>
+                <div class="flex flex-col sm:flex-row gap-3">
+                  <a href="mailto:ricalnet@duck.com" 
+                     class="inline-flex items-center gap-2 bg-surface-card/80 border border-surface-border rounded-full py-2.5 px-5 text-gray-300 hover:bg-tor-violet hover:text-white hover:border-tor-violet hover:-translate-y-1 hover:shadow-lg hover:shadow-tor-violet/25 transition-all duration-300">
+                    <i class="fas fa-envelope text-tor-violet-light"></i>
+                    ricalnet@duck.com
+                  </a>
+                  <a href="https://matrix.to/#/@ricalnet:matrix.ricalnet.my.id" target="_blank" rel="noopener noreferrer" 
+                     class="inline-flex items-center gap-2 bg-surface-card/80 border border-surface-border rounded-full py-2.5 px-5 text-gray-300 hover:bg-tor-violet hover:text-white hover:border-tor-violet hover:-translate-y-1 hover:shadow-lg hover:shadow-tor-violet/25 transition-all duration-300">
+                    <i class="fas fa-comment text-tor-violet-light"></i>
+                    @ricalnet:matrix.ricalnet.my.id
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 7 -->
+          <div class="group">
+            <div class="flex items-start gap-4">
+              <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-tor-violet/15 flex items-center justify-center text-tor-violet-light font-bold text-sm mt-0.5 group-hover:bg-tor-violet/25 transition-all duration-300">7</span>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-3 group-hover:text-tor-violet-light transition-colors duration-300">Perubahan Kebijakan</h3>
+                <p class="text-gray-300 leading-relaxed">Kebijakan ini dapat mengalami penyesuaian dari waktu ke waktu. Setiap perubahan akan diumumkan pada laman ini dengan mencantumkan tanggal revisi terbaru.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Note -->
+        <div class="mt-10 pt-6 border-t border-surface-border flex items-center gap-3 text-gray-500 text-sm">
+          <i class="fas fa-lock text-tor-violet-light"></i>
+          <span>Kebijakan ini terakhir diperbarui pada <strong class="text-gray-400">28 Mei 2026</strong></span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="mt-auto pt-10 pb-6 text-center text-gray-500 text-sm border-t border-surface-border">
+      <p>
+        © Ricalnet – 
+        <a href="index.html" class="hover:text-tor-violet-light transition-colors duration-300">Beranda</a> – 
+        <a href="https://uptime.ricalnet.my.id/status/76qqqz4qq5q7hm" class="hover:text-tor-violet-light transition-colors duration-300" target="_blank" rel="noopener">Status Layanan</a> – 
+        <a href="https://github.com/ricalnet" class="hover:text-tor-violet-light transition-colors duration-300"><i class="fab fa-github"></i> Sumber</a>
+      </p>
+      <p class="text-xs text-tor-violet-light/40 mt-3 tracking-widest">#SelfHosted · privacy-focused · infrastructure</p>
+    </footer>
+
+  </main>
+
+  <!-- ===== COPY TOAST ===== -->
+  <div id="copy-toast" class="fixed bottom-6 right-6 bg-gray-800/95 backdrop-blur-sm text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] opacity-0 translate-y-3 pointer-events-none transition-all duration-300">
+    <i class="fas fa-check-circle text-tor-accent mr-2"></i> Tersalin!
+  </div>
+
+  <script>
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('copy-toast');
+        if (!toast) return;
+        toast.classList.add('!opacity-100', '!translate-y-0');
+        toast.classList.remove('opacity-0', 'translate-y-3');
+        clearTimeout(toast._timeout);
+        toast._timeout = setTimeout(() => {
+          toast.classList.add('opacity-0', 'translate-y-3');
+          toast.classList.remove('!opacity-100', '!translate-y-0');
+        }, 2000);
+      }).catch(() => {
+        alert('Gagal menyalin teks.');
+      });
+    }
+
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('error', function() {
+        if (this.src.includes('img/icons/')) {
+          this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"%3E%3Crect width="40" height="40" fill="%23161822"/%3E%3Ctext x="20" y="25" font-size="12" text-anchor="middle" fill="%2364748b" font-family="Inter"%3Eicon%3C/text%3E%3C/svg%3E';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
