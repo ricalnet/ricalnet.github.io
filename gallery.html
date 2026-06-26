@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="Galeri kegiatan Ricalnet sebagai pembicara — Offline & Online. Privasi, self-hosting, dan kedaulatan digital.">
+  <meta name="author" content="Ricalnet">
+  <title>Speaking · Ricalnet</title>
+  <link rel="icon" type="image/x-icon" href="img/logo.png">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" media="print" onload="this.media='all'">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'inter': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            tor: {
+              violet: '#7c3aed',
+              'violet-light': '#a78bfa',
+              'violet-dark': '#5b21b6',
+              accent: '#68B030',
+            },
+            surface: {
+              dark: '#0f1117',
+              card: '#161822',
+              border: '#232636',
+            }
+          },
+          animation: {
+            'fade-slide-up': 'fadeSlideUp 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) forwards',
+            'pulse-glow': 'pulseGlow 2s infinite',
+            'gradient-flow': 'gradientFlow 8s ease infinite',
+            'float': 'float 5s ease-in-out infinite',
+            'modal-in': 'modalIn 0.3s cubic-bezier(0.2, 0.9, 0.3, 1) forwards',
+            'modal-out': 'modalOut 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+            'overlay-in': 'overlayIn 0.25s ease-out forwards',
+          },
+          keyframes: {
+            fadeSlideUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(124, 58, 237, 0.4)' },
+              '50%': { boxShadow: '0 0 0 12px rgba(124, 58, 237, 0)' },
+            },
+            gradientFlow: {
+              '0%, 100%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            modalIn: {
+              '0%': { opacity: '0', transform: 'scale(0.9) translateY(20px)' },
+              '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
+            },
+            modalOut: {
+              '0%': { opacity: '1', transform: 'scale(1) translateY(0)' },
+              '100%': { opacity: '0', transform: 'scale(0.9) translateY(20px)' },
+            },
+            overlayIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @layer utilities {
+      .glass-card {
+        background: rgba(22, 24, 34, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(35, 38, 54, 0.6);
+      }
+      .glass-card:hover {
+        background: rgba(22, 24, 34, 0.85);
+        border-color: rgba(124, 58, 237, 0.5);
+      }
+      .text-gradient-violet {
+        background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 30%, #7c3aed 70%, #c4b5fd 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        background-size: 200% auto;
+      }
+      .bg-grid-pattern {
+        background-image: 
+          linear-gradient(rgba(124, 58, 237, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(124, 58, 237, 0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+      }
+    }
+    #image-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    #image-modal.active {
+      display: flex;
+    }
+    #image-modal .modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      animation: overlayIn 0.25s ease-out forwards;
+      cursor: pointer;
+    }
+    #image-modal .modal-content {
+      position: relative;
+      z-index: 10;
+      max-width: 90vw;
+      max-height: 88vh;
+      background: rgba(22, 24, 34, 0.95);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(124, 58, 237, 0.3);
+      animation: modalIn 0.3s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+      display: flex;
+      flex-direction: column;
+    }
+    #image-modal.closing .modal-content {
+      animation: modalOut 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    #image-modal .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid rgba(35, 38, 54, 0.6);
+      background: rgba(15, 17, 23, 0.8);
+      backdrop-filter: blur(12px);
+    }
+    #image-modal .modal-header .modal-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #a78bfa;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    #image-modal .modal-close {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    #image-modal .modal-close:hover {
+      background: rgba(124, 58, 237, 0.2);
+      color: #a78bfa;
+      border-color: rgba(124, 58, 237, 0.4);
+      transform: rotate(90deg);
+    }
+    #image-modal .modal-body {
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      overflow: auto;
+    }
+    #image-modal .modal-body img {
+      max-width: 100%;
+      max-height: 70vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    #image-modal .modal-footer {
+      padding: 0.75rem 1.25rem;
+      border-top: 1px solid rgba(35, 38, 54, 0.6);
+      background: rgba(15, 17, 23, 0.8);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.5rem;
+    }
+    #image-modal .modal-footer .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(124, 58, 237, 0.15);
+      color: #a78bfa;
+      border: 1px solid rgba(124, 58, 237, 0.3);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    #image-modal .modal-footer .btn-download:hover {
+      background: #7c3aed;
+      color: white;
+      border-color: #7c3aed;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #0f1117; }
+    ::-webkit-scrollbar-thumb { background: #232636; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #7c3aed; }
+
+    .hero-icon-circle {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 9999px;
+      object-fit: cover;
+      border: 2px solid rgba(124, 58, 237, 0.4);
+      box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4);
+      animation: pulseGlow 2s infinite;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (min-width: 768px) {
+      .hero-icon-circle {
+        width: 6rem;
+        height: 6rem;
+      }
+    }
+    .hero-icon-circle:hover {
+      transform: scale(1.05);
+      border-color: #a78bfa;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+  </style>
+</head>
+<body class="font-inter bg-surface-dark text-gray-200 antialiased selection:bg-tor-violet/30 selection:text-white">
+
+  <!-- ===== AMBIENT BACKGROUND ===== -->
+  <div class="fixed inset-0 -z-20 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="absolute inset-0 bg-grid-pattern opacity-50"></div>
+    <div class="absolute top-0 -left-20 w-[500px] h-[500px] bg-tor-violet/10 rounded-full blur-[120px] animate-pulse"></div>
+    <div class="absolute top-1/3 -right-20 w-[600px] h-[600px] bg-purple-700/8 rounded-full blur-[130px] animate-pulse" style="animation-delay: 2s;"></div>
+    <div class="absolute -bottom-20 left-1/3 w-[400px] h-[400px] bg-tor-violet/5 rounded-full blur-[100px] animate-pulse" style="animation-delay: 4s;"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-dark/50 to-surface-dark"></div>
+  </div>
+
+  <!-- ===== IMAGE MODAL ===== -->
+  <div id="image-modal">
+    <div class="modal-overlay" onclick="closeModal()"></div>
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <span class="modal-title">
+          <i class="fas fa-image text-tor-violet-light"></i>
+          <span id="modal-title-text">Pratinjau Gambar</span>
+        </span>
+        <button class="modal-close" onclick="closeModal()" aria-label="Tutup">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <img id="modal-img" src="" alt="Pratinjau gambar">
+      </div>
+      
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <span class="text-xs text-gray-500 mr-auto" id="modal-resolution"></span>
+        <a id="modal-download" href="#" download class="btn-download" target="_blank">
+          <i class="fas fa-download"></i> Unduh
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN CONTAINER ===== -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-14 flex flex-col min-h-screen relative z-10">
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="mb-14 md:mb-18 animate-fade-slide-up">
+      
+      <!-- Back Button -->
+      <a href="index.html" 
+         class="inline-flex items-center gap-2 text-gray-400 hover:text-tor-violet-light transition-all duration-300 mb-8 group w-fit">
+        <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform duration-300"></i>
+        <span>Kembali ke Beranda</span>
+      </a>
+
+      <div class="glass-card rounded-3xl p-8 md:p-14 text-center relative overflow-hidden border-tor-violet/20">
+        <div class="absolute inset-0 bg-gradient-to-br from-tor-violet/5 via-transparent to-tor-accent/5 pointer-events-none"></div>
+        
+        <div class="relative z-10">
+          <!-- Icon -->
+          <div class="mb-6">
+            <img src="img/founder.jpeg" alt="Ricalnet Logo" class="hero-icon-circle">
+          </div>
+          
+          <!-- Title -->
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-5">
+            <span class="text-white">Speaking</span>
+            <span class="text-gradient-violet animate-gradient-flow"> Gallery</span>
+          </h1>
+          
+          <!-- Description -->
+          <p class="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto mb-8 leading-relaxed">
+            Berbagi wawasan seputar 
+            <strong class="text-tor-violet-light font-medium">self‑hosting</strong>, 
+            <strong class="text-tor-violet-light font-medium">privasi digital</strong>, 
+            <strong class="text-tor-violet-light font-medium">keamanan siber</strong>, dan 
+            <strong class="text-tor-violet-light font-medium">infrastruktur mandiri</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== OFFLINE EVENTS ===== -->
+    <section class="mb-18" style="animation: fadeSlideUp 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.1s both;">
+      
+      <!-- Section Header -->
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-12 h-12 rounded-xl bg-tor-accent/15 flex items-center justify-center text-tor-accent animate-pulse-glow flex-shrink-0">
+          <i class="fas fa-users text-xl"></i>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold relative inline-block pb-3">
+          <span class="text-white">Offline</span>
+          <span class="absolute bottom-0 left-0 w-16 h-1 bg-tor-accent rounded-full transition-all duration-300 hover:w-24"></span>
+        </h2>
+      </div>
+
+      <!-- Offline Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Card: Lab Instructor -->
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+          <div class="h-44 bg-gradient-to-br from-sky-900/40 to-surface-dark relative overflow-hidden">
+            <img src="img/gallery/offline/lab-instructor.JPG" alt="Lab Instructor" 
+                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
+                 onclick="openModal(this.src, 'Lab Instructor - Telkom University')"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%230c4a6e%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%237dd3fc%22 text-anchor=%22middle%22 font-family=%22Inter%22%3ELab Instructor%3C/text%3E%3C/svg%3E';">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-sky-500/40 text-white z-10 pointer-events-none">
+              <i class="far fa-calendar-alt mr-1"></i> 2024 - 2026
+            </div>
+            <!-- Kaca pembesar icon -->
+            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col">
+            <div class="flex items-start justify-between mb-1">
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Lab Instructor</h3>
+              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Mentor</span>
+            </div>
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
+              <i class="fas fa-map-pin text-xs"></i> Telkom University
+            </p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1">Memberikan pendampingan intensif di bidang Telekomunikasi & Jaringan Nirkabel, Operasi Infrastruktur Cloud, Rekayasa Sistem & Jaringan, Full-Stack & DevOps, serta Data & AI Engineering.</p>
+            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
+              <span><i class="fas fa-user-graduate mr-1"></i> Mahasiswa Tel-U</span>
+              <span class="bg-sky-500/10 px-2 py-0.5 rounded-full text-sky-300">#Mentorship</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card: Telkom University 5G -->
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+          <div class="h-44 bg-gradient-to-br from-sky-900/40 to-surface-dark relative overflow-hidden">
+            <img src="img/gallery/offline/mobile-communication.png" alt="Telkom University 5G" 
+                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
+                 onclick="openModal(this.src, 'Telkom University - Implementasi 5G')"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%230c4a6e%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%237dd3fc%22 text-anchor=%22middle%22 font-family=%22Inter%22%3ETelkom University 5G%3C/text%3E%3C/svg%3E';">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-sky-500/40 text-white z-10 pointer-events-none">
+              <i class="far fa-calendar-alt mr-1"></i> 2026
+            </div>
+            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col">
+            <div class="flex items-start justify-between mb-1">
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Telkom University</h3>
+              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Pembicara</span>
+            </div>
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
+              <i class="fas fa-map-pin text-xs"></i> Bandung, Jawa Barat
+            </p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1">Perencanaan dan strategi implementasi jaringan 5G di Indonesia: tantangan teknis dan peluang ekonomi.</p>
+            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
+              <span><i class="fas fa-user-graduate mr-1"></i> 60+ peserta</span>
+              <span class="bg-sky-500/10 px-2 py-0.5 rounded-full text-sky-300">#5G</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card: Desa Sukarame -->
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+          <div class="h-44 bg-gradient-to-br from-rose-900/40 to-surface-dark relative overflow-hidden">
+            <img src="img/gallery/offline/desa-sukarame.jpg" alt="Desa Sukarame IoT Gizi" 
+                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
+                 onclick="openModal(this.src, 'Desa Sukarame - IoT & AI Posyandu')"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%239f1239%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%23fda4af%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EIoT %26 AI Posyandu%3C/text%3E%3C/svg%3E';">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-rose-500/40 text-white z-10 pointer-events-none">
+              <i class="far fa-calendar-alt mr-1"></i> 2026
+            </div>
+            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col">
+            <div class="flex items-start justify-between mb-1">
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Desa Sukarame</h3>
+              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Instruktur</span>
+            </div>
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
+              <i class="fas fa-map-pin text-xs"></i> Bandung, Jawa Barat
+            </p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1">Pelatihan implementasi sistem pemantauan gizi balita berbasis IoT dan kecerdasan buatan untuk kader Posyandu.</p>
+            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
+              <span><i class="fas fa-microchip mr-1"></i> IoT + AI</span>
+              <span class="bg-rose-500/10 px-2 py-0.5 rounded-full text-rose-300">#Sokanak</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card: Ponpes Al Basyariyah 3 -->
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+          <div class="h-44 bg-gradient-to-br from-violet-900/40 to-surface-dark relative overflow-hidden">
+            <img src="img/gallery/offline/albasyariyah3.png" alt="Ponpes Al Basyariyah 3" 
+                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
+                 onclick="openModal(this.src, 'Pondok Pesantren Al Basyariyah 3 - Bandung')"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%231e1b4b%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%23a78bfa%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EPonpes Al Basyariyah 3%3C/text%3E%3C/svg%3E';">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-tor-violet/40 text-white z-10 pointer-events-none">
+              <i class="far fa-calendar-alt mr-1"></i> 2025
+            </div>
+            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col">
+            <div class="flex items-start justify-between mb-1">
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Pondok Pesantren Al Basyariyah 3</h3>
+              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Pemateri</span>
+            </div>
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
+              <i class="fas fa-map-pin text-xs"></i> Bandung, Jawa Barat
+            </p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1">Praktik terbaik pengelolaan jejak digital dan pemanfaatan kecerdasan buatan (AI) untuk meningkatkan keamanan data pribadi.</p>
+            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
+              <span><i class="fas fa-user-graduate mr-1"></i> 100+ peserta</span>
+              <span class="bg-tor-violet/10 px-2 py-0.5 rounded-full text-tor-violet-light">#DigitalFootprint</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card: Desa Sukapura -->
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+          <div class="h-44 bg-gradient-to-br from-emerald-900/40 to-surface-dark relative overflow-hidden">
+            <img src="img/gallery/offline/desa-sukapura.png" alt="Desa Sukapura" 
+                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
+                 onclick="openModal(this.src, 'Desa Sukapura - Social Engineering Awareness')"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%23064e3b%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2220%22 fill=%22%236ee7b7%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EDesa Sukapura%3C/text%3E%3C/svg%3E';">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-emerald-500/40 text-white z-10 pointer-events-none">
+              <i class="far fa-calendar-alt mr-1"></i> 2025
+            </div>
+            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col">
+            <div class="flex items-start justify-between mb-1">
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Desa Sukapura</h3>
+              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Narasumber</span>
+            </div>
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
+              <i class="fas fa-map-pin text-xs"></i> Bandung, Jawa Barat
+            </p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1">Strategi mengenali dan menghindari rekayasa sosial (social engineering) serta melindungi diri dari manipulasi digital.</p>
+            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
+              <span><i class="fas fa-user-graduate mr-1"></i> 30+ peserta</span>
+              <span class="bg-emerald-500/10 px-2 py-0.5 rounded-full text-emerald-300">#SocialEngineering</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card: Panti Asuhan -->
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+          <div class="h-44 bg-gradient-to-br from-amber-900/40 to-surface-dark relative overflow-hidden">
+            <img src="img/gallery/offline/panti-asuhan.png" alt="Panti Asuhan" 
+                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
+                 onclick="openModal(this.src, 'Panti Asuhan Amal Mulia Qurani - Bandung')"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%2378320f%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2220%22 fill=%22%23fcd34d%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EPanti Asuhan%3C/text%3E%3C/svg%3E';">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-amber-500/40 text-white z-10 pointer-events-none">
+              <i class="far fa-calendar-alt mr-1"></i> 2025
+            </div>
+            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col">
+            <div class="flex items-start justify-between mb-1">
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Panti Asuhan Amal Mulia Qurani</h3>
+              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Pemateri</span>
+            </div>
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
+              <i class="fas fa-map-pin text-xs"></i> Bandung, Jawa Barat
+            </p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1">Pentingnya pendidikan digital inklusif dan penggunaan teknologi secara bijak.</p>
+            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
+              <span><i class="fas fa-user-graduate mr-1"></i> 20+ peserta</span>
+              <span class="bg-amber-500/10 px-2 py-0.5 rounded-full text-amber-300">#DigitalInclusion</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== ONLINE EVENTS ===== -->
+    <section class="mb-18" style="animation: fadeSlideUp 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.2s both;">
+      
+      <!-- Section Header -->
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-12 h-12 rounded-xl bg-blue-500/15 flex items-center justify-center text-blue-400 animate-pulse-glow flex-shrink-0">
+          <i class="fas fa-globe text-xl"></i>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold relative inline-block pb-3">
+          <span class="text-white">Online</span>
+          <span class="absolute bottom-0 left-0 w-16 h-1 bg-blue-400 rounded-full transition-all duration-300 hover:w-24"></span>
+        </h2>
+      </div>
+
+      <!-- Online Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Card: TransTRACK Security Awareness -->
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+          <div class="h-44 bg-gradient-to-br from-blue-900/40 to-surface-dark relative overflow-hidden">
+            <img src="img/gallery/online/security-awreness-training.png" alt="TransTRACK Security Awareness" 
+                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
+                 onclick="openModal(this.src, 'TransTRACK - Security Awareness Training')"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%231e3a8a%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%2393c5fd%22 text-anchor=%22middle%22 font-family=%22Inter%22%3ETranstrack Training%3C/text%3E%3C/svg%3E';">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-blue-500/40 text-white z-10 pointer-events-none">
+              <i class="fas fa-video mr-1"></i> Zoom
+            </div>
+            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-blue-500/40 text-white z-10 pointer-events-none">
+              <i class="far fa-calendar-alt mr-1"></i> 2026
+            </div>
+            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col">
+            <div class="flex items-start justify-between mb-1">
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">TransTRACK · Security Awareness</h3>
+              <span class="bg-blue-500/15 text-blue-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-500/30 flex-shrink-0 ml-2">Trainer</span>
+            </div>
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
+              <i class="fas fa-building"></i> TransTRACK
+            </p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1">Membangun budaya keamanan siber di lingkungan korporat melalui pelatihan kesadaran keamanan.</p>
+            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
+              <span><i class="fas fa-user-check mr-1"></i> 100 peserta internal</span>
+              <span class="bg-blue-500/10 px-2 py-0.5 rounded-full text-blue-300">#CyberAware</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card: Open Source Q&A -->
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+          <div class="h-44 bg-gradient-to-br from-teal-900/40 to-surface-dark relative overflow-hidden">
+            <img src="img/gallery/online/q&a.jpeg" alt="Open Source Q&A" 
+                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
+                 onclick="openModal(this.src, 'Open Source Q&A - Cobra & Warriors Community')"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%23134e4a%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%235eead4%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EOpen Source Q%26A%3C/text%3E%3C/svg%3E';">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-teal-500/40 text-white z-10 pointer-events-none">
+              <i class="fab fa-discord mr-1"></i> Cobra & Warriors Community
+            </div>
+            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-teal-500/40 text-white z-10 pointer-events-none">
+              <i class="far fa-calendar-alt mr-1"></i> 2025
+            </div>
+            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col">
+            <div class="flex items-start justify-between mb-1">
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Open Source Q&A</h3>
+              <span class="bg-blue-500/15 text-blue-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-500/30 flex-shrink-0 ml-2">Panelis</span>
+            </div>
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
+              <i class="fas fa-comments"></i> Sesi Tanya Jawab
+            </p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1">Menjawab pertanyaan komunitas seputar ekosistem open source dan tren terkini di industri IT/ICT.</p>
+            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
+              <span><i class="fas fa-question-circle mr-1"></i> Interaktif</span>
+              <span class="bg-teal-500/10 px-2 py-0.5 rounded-full text-teal-300">#OpenSource</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card: Responsi & Ngoprek -->
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+          <div class="h-44 bg-gradient-to-br from-indigo-900/40 to-surface-dark relative overflow-hidden">
+            <img src="img/gallery/online/respek.jpg" alt="Responsi & Ngoprek" 
+                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
+                 onclick="openModal(this.src, 'Responsi & Ngoprek - Komunitas Tel-U')"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%23312e81%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%23a5b4fc%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EResponsi %26 Ngoprek%3C/text%3E%3C/svg%3E';">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-indigo-500/40 text-white z-10 pointer-events-none">
+              <i class="fas fa-user-group mr-1"></i> Microsoft Teams
+            </div>
+            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-indigo-500/40 text-white z-10 pointer-events-none">
+              <i class="far fa-calendar-alt mr-1"></i> 2024-2025
+            </div>
+            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col">
+            <div class="flex items-start justify-between mb-1">
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Responsi & Ngoprek</h3>
+              <span class="bg-blue-500/15 text-blue-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-500/30 flex-shrink-0 ml-2">Instruktur</span>
+            </div>
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
+              <i class="fas fa-users"></i> Komunitas Tel-U
+            </p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1">Sesi kolaboratif berbagi pengetahuan seputar telekomunikasi, komputasi awan, keamanan siber, pemrograman, dan elektronika.</p>
+            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
+              <span><i class="fas fa-clock mr-1"></i> Reguler</span>
+              <span class="bg-indigo-500/10 px-2 py-0.5 rounded-full text-indigo-300">#SharingSession</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card: Membangun Infrastruktur Mandiri -->
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+          <div class="h-44 bg-gradient-to-br from-purple-900/40 to-surface-dark relative overflow-hidden">
+            <img src="img/gallery/online/membangun-infrastruktur-voip-mandiri.jpeg" alt="Infrastruktur Mandiri FOSS" 
+                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
+                 onclick="openModal(this.src, 'Membangun Infrastruktur Mandiri - Komunitas Tel-U')"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%234c1d95%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%23c4b5fd%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EInfrastruktur Mandiri%3C/text%3E%3C/svg%3E';">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-purple-500/40 text-white z-10 pointer-events-none">
+              <i class="fas fa-user-group mr-1"></i> Microsoft Teams
+            </div>
+            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-purple-500/40 text-white z-10 pointer-events-none">
+              <i class="far fa-calendar-alt mr-1"></i> 2025
+            </div>
+            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col">
+            <div class="flex items-start justify-between mb-1">
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Membangun Infrastruktur Mandiri</h3>
+              <span class="bg-blue-500/15 text-blue-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-500/30 flex-shrink-0 ml-2">Instruktur</span>
+            </div>
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
+              <i class="fas fa-users"></i> Komunitas Tel-U
+            </p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1">Mengoptimalkan perangkat lunak sumber terbuka (FOSS) untuk merancang dan mengelola infrastruktur TI yang mandiri dan efisien.</p>
+            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
+              <span><i class="fab fa-linux mr-1"></i> Self-hosting</span>
+              <span class="bg-purple-500/10 px-2 py-0.5 rounded-full text-purple-300">#FOSS</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="mt-auto pt-10 pb-6 text-center text-gray-500 text-sm border-t border-surface-border">
+      <p>
+        © Ricalnet – 
+        <a href="index.html" class="hover:text-tor-violet-light transition-colors duration-300">Beranda</a> – 
+        <a href="https://uptime.ricalnet.my.id/status/76qqqz4qq5q7hm" class="hover:text-tor-violet-light transition-colors duration-300" target="_blank" rel="noopener">Status Layanan</a> – 
+        <a href="https://github.com/ricalnet" class="hover:text-tor-violet-light transition-colors duration-300"><i class="fab fa-github"></i> Sumber</a>
+      </p>
+      <p class="text-xs text-tor-violet-light/40 mt-3 tracking-widest">#TechSovereignty · self-hosted · privacy-focused</p>
+    </footer>
+
+  </main>
+
+  <!-- ===== COPY TOAST ===== -->
+  <div id="copy-toast" class="fixed bottom-6 right-6 bg-gray-800/95 backdrop-blur-sm text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] opacity-0 translate-y-3 pointer-events-none transition-all duration-300">
+    <i class="fas fa-check-circle text-tor-accent mr-2"></i> Tersalin!
+  </div>
+
+  <script>
+    // ===== IMAGE MODAL POPUP =====
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalTitle = document.getElementById('modal-title-text');
+    const modalResolution = document.getElementById('modal-resolution');
+    const modalDownload = document.getElementById('modal-download');
+
+    function openModal(src, title) {
+      modalTitle.textContent = title || 'Pratinjau Gambar';
+      
+      const img = new Image();
+      img.onload = function() {
+        modalImg.src = src;
+        modalResolution.textContent = `${img.naturalWidth} × ${img.naturalHeight} px`;
+        modalDownload.href = src;
+        modalDownload.download = title ? title.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.jpg' : 'gambar.jpg';
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      };
+      img.src = src;
+      
+      if (img.complete) {
+        modalImg.src = src;
+        modalResolution.textContent = `${img.naturalWidth} × ${img.naturalHeight} px`;
+        modalDownload.href = src;
+        modalDownload.download = title ? title.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.jpg' : 'gambar.jpg';
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal() {
+      modal.classList.add('closing');
+      setTimeout(() => {
+        modal.classList.remove('active', 'closing');
+        document.body.style.overflow = '';
+      }, 200);
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+
+    // ===== COPY TO CLIPBOARD =====
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('copy-toast');
+        if (!toast) return;
+        toast.classList.add('!opacity-100', '!translate-y-0');
+        toast.classList.remove('opacity-0', 'translate-y-3');
+        clearTimeout(toast._timeout);
+        toast._timeout = setTimeout(() => {
+          toast.classList.add('opacity-0', 'translate-y-3');
+          toast.classList.remove('!opacity-100', '!translate-y-0');
+        }, 2000);
+      }).catch(() => {
+        alert('Gagal menyalin teks.');
+      });
+    }
+
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('error', function() {
+        if (this.src.includes('img/gallery/')) {
+          this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%23161822"/%3E%3Ctext x="200" y="110" font-size="18" fill="%2394a3b8" text-anchor="middle" font-family="Inter"%3EGambar tidak tersedia%3C/text%3E%3C/svg%3E';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
