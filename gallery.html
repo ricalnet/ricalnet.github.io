@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <meta name="description" content="Galeri kegiatan Ricalnet sebagai pembicara — Offline & Online. Privasi, self-hosting, dan kedaulatan digital.">
+  <title>Speaking Gallery · Ricalnet – Privacy & Self-Hosting Talks</title>
+  <meta name="description" content="Ricalnet speaking gallery: offline & online talks about self‑hosting, digital privacy, cybersecurity, and independent infrastructure. Event highlights & community sessions.">
   <meta name="author" content="Ricalnet">
-  <title>Speaking · Ricalnet</title>
+  <meta name="keywords" content="Ricalnet speaking, privacy talks, self-hosting events, cybersecurity training, digital sovereignty, open source community">
+  <link rel="canonical" href="https://ricalnet.my.id/gallery.html">
+  <meta property="og:title" content="Speaking Gallery · Ricalnet – Privacy & Self-Hosting Talks">
+  <meta property="og:description" content="Explore Ricalnet's speaking engagements: offline and online sessions on self-hosting, digital privacy, cybersecurity, and independent infrastructure.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ricalnet.my.id/gallery.html">
+  <meta property="og:image" content="https://ricalnet.my.id/img/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Speaking Gallery · Ricalnet">
+  <meta name="twitter:description" content="Talks & training on self-hosting, privacy, cybersecurity, and digital sovereignty.">
   <link rel="icon" type="image/x-icon" href="img/logo.png">
 
   <!-- Font Awesome -->
@@ -277,27 +287,22 @@
   <div id="image-modal">
     <div class="modal-overlay" onclick="closeModal()"></div>
     <div class="modal-content" onclick="event.stopPropagation()">
-      <!-- Modal Header -->
       <div class="modal-header">
         <span class="modal-title">
           <i class="fas fa-image text-tor-violet-light"></i>
-          <span id="modal-title-text">Pratinjau Gambar</span>
+          <span id="modal-title-text">Image Preview</span>
         </span>
-        <button class="modal-close" onclick="closeModal()" aria-label="Tutup">
+        <button class="modal-close" onclick="closeModal()" aria-label="Close">
           <i class="fas fa-times"></i>
         </button>
       </div>
-      
-      <!-- Modal Body -->
       <div class="modal-body">
-        <img id="modal-img" src="" alt="Pratinjau gambar">
+        <img id="modal-img" src="" alt="Image preview">
       </div>
-      
-      <!-- Modal Footer -->
       <div class="modal-footer">
         <span class="text-xs text-gray-500 mr-auto" id="modal-resolution"></span>
         <a id="modal-download" href="#" download class="btn-download" target="_blank">
-          <i class="fas fa-download"></i> Unduh
+          <i class="fas fa-download"></i> Download
         </a>
       </div>
     </div>
@@ -313,7 +318,7 @@
       <a href="index.html" 
          class="inline-flex items-center gap-2 text-gray-400 hover:text-tor-violet-light transition-all duration-300 mb-8 group w-fit">
         <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform duration-300"></i>
-        <span>Kembali ke Beranda</span>
+        <span>Back to Home</span>
       </a>
 
       <div class="glass-card rounded-3xl p-8 md:p-14 text-center relative overflow-hidden border-tor-violet/20">
@@ -322,7 +327,7 @@
         <div class="relative z-10">
           <!-- Icon -->
           <div class="mb-6">
-            <img src="img/founder.jpeg" alt="Ricalnet Logo" class="hero-icon-circle">
+            <img src="img/founder.jpeg" alt="Ricalnet logo - speaking gallery" class="hero-icon-circle">
           </div>
           
           <!-- Title -->
@@ -333,11 +338,11 @@
           
           <!-- Description -->
           <p class="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto mb-8 leading-relaxed">
-            Berbagi wawasan seputar 
+            Sharing insights on 
             <strong class="text-tor-violet-light font-medium">self‑hosting</strong>, 
-            <strong class="text-tor-violet-light font-medium">privasi digital</strong>, 
-            <strong class="text-tor-violet-light font-medium">keamanan siber</strong>, dan 
-            <strong class="text-tor-violet-light font-medium">infrastruktur mandiri</strong>.
+            <strong class="text-tor-violet-light font-medium">digital privacy</strong>, 
+            <strong class="text-tor-violet-light font-medium">cybersecurity</strong>, and 
+            <strong class="text-tor-violet-light font-medium">independent infrastructure</strong>.
           </p>
         </div>
       </div>
@@ -361,9 +366,10 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
         <!-- Card: Lab Instructor -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full" itemscope itemtype="https://schema.org/Event">
+          <meta itemprop="eventType" content="Mentorship">
           <div class="h-44 bg-gradient-to-br from-sky-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/offline/lab-instructor.JPG" alt="Lab Instructor" 
+            <img src="img/gallery/offline/lab-instructor.JPG" alt="Lab Instructor at Telkom University" 
                  class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
                  onclick="openModal(this.src, 'Lab Instructor - Telkom University')"
                  onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%230c4a6e%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%237dd3fc%22 text-anchor=%22middle%22 font-family=%22Inter%22%3ELab Instructor%3C/text%3E%3C/svg%3E';">
@@ -371,33 +377,33 @@
             <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-sky-500/40 text-white z-10 pointer-events-none">
               <i class="far fa-calendar-alt mr-1"></i> 2024 - 2026
             </div>
-            <!-- Kaca pembesar icon -->
             <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
               <i class="fas fa-search-plus"></i>
             </div>
           </div>
           <div class="p-5 flex-1 flex flex-col">
             <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Lab Instructor</h3>
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300" itemprop="name">Lab Instructor</h3>
               <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Mentor</span>
             </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3" itemprop="location">
               <i class="fas fa-map-pin text-xs"></i> Telkom University
             </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Memberikan pendampingan intensif di bidang Telekomunikasi & Jaringan Nirkabel, Operasi Infrastruktur Cloud, Rekayasa Sistem & Jaringan, Full-Stack & DevOps, serta Data & AI Engineering.</p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1" itemprop="description">Intensive mentorship in Telecommunications & Wireless Networks, Cloud Infrastructure, Systems & Network Engineering, Full-Stack & DevOps, and Data & AI Engineering.</p>
             <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fas fa-user-graduate mr-1"></i> Mahasiswa Tel-U</span>
+              <span><i class="fas fa-user-graduate mr-1"></i> Tel-U Students</span>
               <span class="bg-sky-500/10 px-2 py-0.5 rounded-full text-sky-300">#Mentorship</span>
             </div>
           </div>
         </article>
 
         <!-- Card: Telkom University 5G -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full" itemscope itemtype="https://schema.org/Event">
+          <meta itemprop="eventType" content="Talk">
           <div class="h-44 bg-gradient-to-br from-sky-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/offline/mobile-communication.png" alt="Telkom University 5G" 
+            <img src="img/gallery/offline/mobile-communication.png" alt="Telkom University 5G talk" 
                  class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
-                 onclick="openModal(this.src, 'Telkom University - Implementasi 5G')"
+                 onclick="openModal(this.src, 'Telkom University - 5G Implementation')"
                  onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%230c4a6e%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%237dd3fc%22 text-anchor=%22middle%22 font-family=%22Inter%22%3ETelkom University 5G%3C/text%3E%3C/svg%3E';">
             <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
             <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-sky-500/40 text-white z-10 pointer-events-none">
@@ -409,24 +415,25 @@
           </div>
           <div class="p-5 flex-1 flex flex-col">
             <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Telkom University</h3>
-              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Pembicara</span>
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300" itemprop="name">Telkom University</h3>
+              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Speaker</span>
             </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-map-pin text-xs"></i> Bandung, Jawa Barat
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3" itemprop="location">
+              <i class="fas fa-map-pin text-xs"></i> Bandung, West Java
             </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Perencanaan dan strategi implementasi jaringan 5G di Indonesia: tantangan teknis dan peluang ekonomi.</p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1" itemprop="description">Planning and implementation strategy for 5G networks in Indonesia: technical challenges and economic opportunities.</p>
             <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fas fa-user-graduate mr-1"></i> 60+ peserta</span>
+              <span><i class="fas fa-user-graduate mr-1"></i> 60+ participants</span>
               <span class="bg-sky-500/10 px-2 py-0.5 rounded-full text-sky-300">#5G</span>
             </div>
           </div>
         </article>
 
         <!-- Card: Desa Sukarame -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full" itemscope itemtype="https://schema.org/Event">
+          <meta itemprop="eventType" content="Training">
           <div class="h-44 bg-gradient-to-br from-rose-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/offline/desa-sukarame.jpg" alt="Desa Sukarame IoT Gizi" 
+            <img src="img/gallery/offline/desa-sukarame.jpg" alt="IoT & AI Posyandu training at Desa Sukarame" 
                  class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
                  onclick="openModal(this.src, 'Desa Sukarame - IoT & AI Posyandu')"
                  onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%239f1239%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%23fda4af%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EIoT %26 AI Posyandu%3C/text%3E%3C/svg%3E';">
@@ -440,13 +447,13 @@
           </div>
           <div class="p-5 flex-1 flex flex-col">
             <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Desa Sukarame</h3>
-              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Instruktur</span>
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300" itemprop="name">Desa Sukarame</h3>
+              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Instructor</span>
             </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-map-pin text-xs"></i> Bandung, Jawa Barat
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3" itemprop="location">
+              <i class="fas fa-map-pin text-xs"></i> Bandung, West Java
             </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Pelatihan implementasi sistem pemantauan gizi balita berbasis IoT dan kecerdasan buatan untuk kader Posyandu.</p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1" itemprop="description">Training on IoT-based and AI-powered toddler nutrition monitoring systems for Posyandu health cadres.</p>
             <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
               <span><i class="fas fa-microchip mr-1"></i> IoT + AI</span>
               <span class="bg-rose-500/10 px-2 py-0.5 rounded-full text-rose-300">#Sokanak</span>
@@ -455,9 +462,10 @@
         </article>
 
         <!-- Card: Ponpes Al Basyariyah 3 -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full" itemscope itemtype="https://schema.org/Event">
+          <meta itemprop="eventType" content="Workshop">
           <div class="h-44 bg-gradient-to-br from-violet-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/offline/albasyariyah3.png" alt="Ponpes Al Basyariyah 3" 
+            <img src="img/gallery/offline/albasyariyah3.png" alt="Ponpes Al Basyariyah 3 digital footprint workshop" 
                  class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
                  onclick="openModal(this.src, 'Pondok Pesantren Al Basyariyah 3 - Bandung')"
                  onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%231e1b4b%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%23a78bfa%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EPonpes Al Basyariyah 3%3C/text%3E%3C/svg%3E';">
@@ -471,24 +479,25 @@
           </div>
           <div class="p-5 flex-1 flex flex-col">
             <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Pondok Pesantren Al Basyariyah 3</h3>
-              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Pemateri</span>
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300" itemprop="name">Pondok Pesantren Al Basyariyah 3</h3>
+              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Presenter</span>
             </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-map-pin text-xs"></i> Bandung, Jawa Barat
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3" itemprop="location">
+              <i class="fas fa-map-pin text-xs"></i> Bandung, West Java
             </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Praktik terbaik pengelolaan jejak digital dan pemanfaatan kecerdasan buatan (AI) untuk meningkatkan keamanan data pribadi.</p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1" itemprop="description">Best practices for managing digital footprints and leveraging AI to enhance personal data security.</p>
             <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fas fa-user-graduate mr-1"></i> 100+ peserta</span>
+              <span><i class="fas fa-user-graduate mr-1"></i> 100+ participants</span>
               <span class="bg-tor-violet/10 px-2 py-0.5 rounded-full text-tor-violet-light">#DigitalFootprint</span>
             </div>
           </div>
         </article>
 
         <!-- Card: Desa Sukapura -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full" itemscope itemtype="https://schema.org/Event">
+          <meta itemprop="eventType" content="Talk">
           <div class="h-44 bg-gradient-to-br from-emerald-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/offline/desa-sukapura.png" alt="Desa Sukapura" 
+            <img src="img/gallery/offline/desa-sukapura.png" alt="Social Engineering awareness at Desa Sukapura" 
                  class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
                  onclick="openModal(this.src, 'Desa Sukapura - Social Engineering Awareness')"
                  onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%23064e3b%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2220%22 fill=%22%236ee7b7%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EDesa Sukapura%3C/text%3E%3C/svg%3E';">
@@ -502,24 +511,25 @@
           </div>
           <div class="p-5 flex-1 flex flex-col">
             <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Desa Sukapura</h3>
-              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Narasumber</span>
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300" itemprop="name">Desa Sukapura</h3>
+              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Speaker</span>
             </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-map-pin text-xs"></i> Bandung, Jawa Barat
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3" itemprop="location">
+              <i class="fas fa-map-pin text-xs"></i> Bandung, West Java
             </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Strategi mengenali dan menghindari rekayasa sosial (social engineering) serta melindungi diri dari manipulasi digital.</p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1" itemprop="description">Strategies to recognize and avoid social engineering attacks and protect against digital manipulation.</p>
             <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fas fa-user-graduate mr-1"></i> 30+ peserta</span>
+              <span><i class="fas fa-user-graduate mr-1"></i> 30+ participants</span>
               <span class="bg-emerald-500/10 px-2 py-0.5 rounded-full text-emerald-300">#SocialEngineering</span>
             </div>
           </div>
         </article>
 
         <!-- Card: Panti Asuhan -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full" itemscope itemtype="https://schema.org/Event">
+          <meta itemprop="eventType" content="Workshop">
           <div class="h-44 bg-gradient-to-br from-amber-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/offline/panti-asuhan.png" alt="Panti Asuhan" 
+            <img src="img/gallery/offline/panti-asuhan.png" alt="Digital inclusion workshop at Panti Asuhan" 
                  class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
                  onclick="openModal(this.src, 'Panti Asuhan Amal Mulia Qurani - Bandung')"
                  onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%2378320f%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2220%22 fill=%22%23fcd34d%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EPanti Asuhan%3C/text%3E%3C/svg%3E';">
@@ -533,15 +543,15 @@
           </div>
           <div class="p-5 flex-1 flex flex-col">
             <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Panti Asuhan Amal Mulia Qurani</h3>
-              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Pemateri</span>
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300" itemprop="name">Panti Asuhan Amal Mulia Qurani</h3>
+              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Presenter</span>
             </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-map-pin text-xs"></i> Bandung, Jawa Barat
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3" itemprop="location">
+              <i class="fas fa-map-pin text-xs"></i> Bandung, West Java
             </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Pentingnya pendidikan digital inklusif dan penggunaan teknologi secara bijak.</p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1" itemprop="description">The importance of inclusive digital education and wise use of technology.</p>
             <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fas fa-user-graduate mr-1"></i> 20+ peserta</span>
+              <span><i class="fas fa-user-graduate mr-1"></i> 20+ participants</span>
               <span class="bg-amber-500/10 px-2 py-0.5 rounded-full text-amber-300">#DigitalInclusion</span>
             </div>
           </div>
@@ -567,9 +577,10 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
         <!-- Card: TransTRACK Security Awareness -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full" itemscope itemtype="https://schema.org/Event">
+          <meta itemprop="eventType" content="Training">
           <div class="h-44 bg-gradient-to-br from-blue-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/online/security-awreness-training.png" alt="TransTRACK Security Awareness" 
+            <img src="img/gallery/online/security-awreness-training.png" alt="TransTRACK Security Awareness training" 
                  class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
                  onclick="openModal(this.src, 'TransTRACK - Security Awareness Training')"
                  onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%231e3a8a%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%2393c5fd%22 text-anchor=%22middle%22 font-family=%22Inter%22%3ETranstrack Training%3C/text%3E%3C/svg%3E';">
@@ -586,24 +597,25 @@
           </div>
           <div class="p-5 flex-1 flex flex-col">
             <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">TransTRACK · Security Awareness</h3>
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300" itemprop="name">TransTRACK · Security Awareness</h3>
               <span class="bg-blue-500/15 text-blue-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-500/30 flex-shrink-0 ml-2">Trainer</span>
             </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3" itemprop="location">
               <i class="fas fa-building"></i> TransTRACK
             </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Membangun budaya keamanan siber di lingkungan korporat melalui pelatihan kesadaran keamanan.</p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1" itemprop="description">Building a cybersecurity culture in the corporate environment through security awareness training.</p>
             <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fas fa-user-check mr-1"></i> 100 peserta internal</span>
+              <span><i class="fas fa-user-check mr-1"></i> 100 internal participants</span>
               <span class="bg-blue-500/10 px-2 py-0.5 rounded-full text-blue-300">#CyberAware</span>
             </div>
           </div>
         </article>
 
         <!-- Card: Open Source Q&A -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full" itemscope itemtype="https://schema.org/Event">
+          <meta itemprop="eventType" content="Panel Discussion">
           <div class="h-44 bg-gradient-to-br from-teal-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/online/q&a.jpeg" alt="Open Source Q&A" 
+            <img src="img/gallery/online/q&a.jpeg" alt="Open Source Q&A panel" 
                  class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
                  onclick="openModal(this.src, 'Open Source Q&A - Cobra & Warriors Community')"
                  onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%23134e4a%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%235eead4%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EOpen Source Q%26A%3C/text%3E%3C/svg%3E';">
@@ -620,26 +632,27 @@
           </div>
           <div class="p-5 flex-1 flex flex-col">
             <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Open Source Q&A</h3>
-              <span class="bg-blue-500/15 text-blue-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-500/30 flex-shrink-0 ml-2">Panelis</span>
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300" itemprop="name">Open Source Q&A</h3>
+              <span class="bg-blue-500/15 text-blue-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-500/30 flex-shrink-0 ml-2">Panelist</span>
             </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-comments"></i> Sesi Tanya Jawab
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3" itemprop="location">
+              <i class="fas fa-comments"></i> Q&A Session
             </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Menjawab pertanyaan komunitas seputar ekosistem open source dan tren terkini di industri IT/ICT.</p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1" itemprop="description">Answering community questions about the open-source ecosystem and current IT/ICT industry trends.</p>
             <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fas fa-question-circle mr-1"></i> Interaktif</span>
+              <span><i class="fas fa-question-circle mr-1"></i> Interactive</span>
               <span class="bg-teal-500/10 px-2 py-0.5 rounded-full text-teal-300">#OpenSource</span>
             </div>
           </div>
         </article>
 
         <!-- Card: Responsi & Ngoprek -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full" itemscope itemtype="https://schema.org/Event">
+          <meta itemprop="eventType" content="Knowledge Sharing">
           <div class="h-44 bg-gradient-to-br from-indigo-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/online/respek.jpg" alt="Responsi & Ngoprek" 
+            <img src="img/gallery/online/respek.jpg" alt="Responsi & Ngoprek knowledge sharing" 
                  class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
-                 onclick="openModal(this.src, 'Responsi & Ngoprek - Komunitas Tel-U')"
+                 onclick="openModal(this.src, 'Responsi & Ngoprek - Tel-U Community')"
                  onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%23312e81%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%23a5b4fc%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EResponsi %26 Ngoprek%3C/text%3E%3C/svg%3E';">
             <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
             <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-indigo-500/40 text-white z-10 pointer-events-none">
@@ -654,26 +667,27 @@
           </div>
           <div class="p-5 flex-1 flex flex-col">
             <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Responsi & Ngoprek</h3>
-              <span class="bg-blue-500/15 text-blue-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-500/30 flex-shrink-0 ml-2">Instruktur</span>
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300" itemprop="name">Responsi & Ngoprek</h3>
+              <span class="bg-blue-500/15 text-blue-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-500/30 flex-shrink-0 ml-2">Instructor</span>
             </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-users"></i> Komunitas Tel-U
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3" itemprop="location">
+              <i class="fas fa-users"></i> Tel-U Community
             </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Sesi kolaboratif berbagi pengetahuan seputar telekomunikasi, komputasi awan, keamanan siber, pemrograman, dan elektronika.</p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1" itemprop="description">Collaborative knowledge-sharing sessions on telecommunications, cloud computing, cybersecurity, programming, and electronics.</p>
             <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fas fa-clock mr-1"></i> Reguler</span>
+              <span><i class="fas fa-clock mr-1"></i> Regular</span>
               <span class="bg-indigo-500/10 px-2 py-0.5 rounded-full text-indigo-300">#SharingSession</span>
             </div>
           </div>
         </article>
 
         <!-- Card: Membangun Infrastruktur Mandiri -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
+        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full" itemscope itemtype="https://schema.org/Event">
+          <meta itemprop="eventType" content="Workshop">
           <div class="h-44 bg-gradient-to-br from-purple-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/online/membangun-infrastruktur-voip-mandiri.jpeg" alt="Infrastruktur Mandiri FOSS" 
+            <img src="img/gallery/online/membangun-infrastruktur-voip-mandiri.jpeg" alt="Building independent infrastructure workshop" 
                  class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
-                 onclick="openModal(this.src, 'Membangun Infrastruktur Mandiri - Komunitas Tel-U')"
+                 onclick="openModal(this.src, 'Building Independent Infrastructure - Tel-U Community')"
                  onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%234c1d95%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%23c4b5fd%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EInfrastruktur Mandiri%3C/text%3E%3C/svg%3E';">
             <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
             <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-purple-500/40 text-white z-10 pointer-events-none">
@@ -688,13 +702,13 @@
           </div>
           <div class="p-5 flex-1 flex flex-col">
             <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Membangun Infrastruktur Mandiri</h3>
-              <span class="bg-blue-500/15 text-blue-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-500/30 flex-shrink-0 ml-2">Instruktur</span>
+              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300" itemprop="name">Building Independent Infrastructure</h3>
+              <span class="bg-blue-500/15 text-blue-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-500/30 flex-shrink-0 ml-2">Instructor</span>
             </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-users"></i> Komunitas Tel-U
+            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3" itemprop="location">
+              <i class="fas fa-users"></i> Tel-U Community
             </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Mengoptimalkan perangkat lunak sumber terbuka (FOSS) untuk merancang dan mengelola infrastruktur TI yang mandiri dan efisien.</p>
+            <p class="text-gray-400 text-sm leading-relaxed flex-1" itemprop="description">Optimizing FOSS to design and manage independent, efficient IT infrastructure.</p>
             <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
               <span><i class="fab fa-linux mr-1"></i> Self-hosting</span>
               <span class="bg-purple-500/10 px-2 py-0.5 rounded-full text-purple-300">#FOSS</span>
@@ -704,22 +718,23 @@
       </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- ========== FOOTER ========== -->
     <footer class="mt-auto pt-10 pb-6 text-center text-gray-500 text-sm border-t border-surface-border">
       <p>
         © Ricalnet – 
-        <a href="index.html" class="hover:text-tor-violet-light transition-colors duration-300">Beranda</a> – 
-        <a href="https://status.ricalnet.my.id" class="hover:text-tor-violet-light transition-colors duration-300" target="_blank" rel="noopener">Status Layanan</a> – 
-        <a href="https://github.com/ricalnet" class="hover:text-tor-violet-light transition-colors duration-300"><i class="fab fa-github"></i> Sumber</a>
+        <a href="index.html" class="hover:text-tor-violet-light transition-colors duration-300" rel="noopener">Home</a> –
+        <a href="mailto:ricalnet@duck.com" class="hover:text-tor-violet-light transition-colors duration-300" target="_blank" rel="noopener">Contact</a> –
+        <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" class="hover:text-tor-violet-light transition-colors duration-300" rel="noopener">Service Status</a> –
+        <a href="https://me.ricalnet.my.id/pages/privacy%20policy" class="hover:text-tor-violet-light transition-colors duration-300">Privacy Policy</a> 
       </p>
-      <p class="text-xs text-tor-violet-light/40 mt-3 tracking-widest">#TechSovereignty · self-hosted · privacy-focused</p>
+      <p class="text-xs text-tor-violet-light/40 mt-3 tracking-widest">#SelfHosted · privacy-focused · infrastructure</p>
     </footer>
 
   </main>
 
   <!-- ===== COPY TOAST ===== -->
   <div id="copy-toast" class="fixed bottom-6 right-6 bg-gray-800/95 backdrop-blur-sm text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] opacity-0 translate-y-3 pointer-events-none transition-all duration-300">
-    <i class="fas fa-check-circle text-tor-accent mr-2"></i> Tersalin!
+    <i class="fas fa-check-circle text-tor-accent mr-2"></i> Copied!
   </div>
 
   <script>
@@ -731,14 +746,14 @@
     const modalDownload = document.getElementById('modal-download');
 
     function openModal(src, title) {
-      modalTitle.textContent = title || 'Pratinjau Gambar';
+      modalTitle.textContent = title || 'Image Preview';
       
       const img = new Image();
       img.onload = function() {
         modalImg.src = src;
         modalResolution.textContent = `${img.naturalWidth} × ${img.naturalHeight} px`;
         modalDownload.href = src;
-        modalDownload.download = title ? title.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.jpg' : 'gambar.jpg';
+        modalDownload.download = title ? title.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.jpg' : 'image.jpg';
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
       };
@@ -748,7 +763,7 @@
         modalImg.src = src;
         modalResolution.textContent = `${img.naturalWidth} × ${img.naturalHeight} px`;
         modalDownload.href = src;
-        modalDownload.download = title ? title.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.jpg' : 'gambar.jpg';
+        modalDownload.download = title ? title.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.jpg' : 'image.jpg';
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
       }
@@ -768,7 +783,6 @@
       }
     });
 
-    // ===== COPY TO CLIPBOARD =====
     function copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
         const toast = document.getElementById('copy-toast');
@@ -781,14 +795,14 @@
           toast.classList.remove('!opacity-100', '!translate-y-0');
         }, 2000);
       }).catch(() => {
-        alert('Gagal menyalin teks.');
+        alert('Failed to copy text.');
       });
     }
 
     document.querySelectorAll('img').forEach(img => {
       img.addEventListener('error', function() {
         if (this.src.includes('img/gallery/')) {
-          this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%23161822"/%3E%3Ctext x="200" y="110" font-size="18" fill="%2394a3b8" text-anchor="middle" font-family="Inter"%3EGambar tidak tersedia%3C/text%3E%3C/svg%3E';
+          this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%23161822"/%3E%3Ctext x="200" y="110" font-size="18" fill="%2394a3b8" text-anchor="middle" font-family="Inter"%3EImage unavailable%3C/text%3E%3C/svg%3E';
         }
       });
     });
