@@ -66,34 +66,24 @@
                     },
                     keyframes: {
                         fadeUp: {
-                            '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': {
-                                opacity: '1',
-                                transform: 'translateY(0)'
-                            }
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
                         },
                         fadeDown: {
-                            '0%': { opacity: '0', transform: 'translateY(-40px)' }, '100%': {
-                                opacity: '1',
-                                transform: 'translateY(0)'
-                            }
+                            '0%': { opacity: '0', transform: 'translateY(-40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
                         },
                         fadeRight: {
-                            '0%': { opacity: '0', transform: 'translateX(-40px)' }, '100%': {
-                                opacity: '1',
-                                transform: 'translateX(0)'
-                            }
+                            '0%': { opacity: '0', transform: 'translateX(-40px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
                         },
                         fadeLeft: {
-                            '0%': { opacity: '0', transform: 'translateX(40px)' }, '100%': {
-                                opacity: '1',
-                                transform: 'translateX(0)'
-                            }
+                            '0%': { opacity: '0', transform: 'translateX(40px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
                         },
                         scaleIn: {
-                            '0%': { opacity: '0', transform: 'scale(0.94)' }, '100%': {
-                                opacity: '1',
-                                transform: 'scale(1)'
-                            }
+                            '0%': { opacity: '0', transform: 'scale(0.94)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' }
                         },
                         float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-14px)' } },
                         pulseSoft: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0.6' } },
@@ -859,7 +849,8 @@
                         class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
                     <div class="leading-tight hidden sm:block">
                         <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
-                        <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
+                        <span
+                            class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
                             Rights
                             · Infrastructure</span>
                     </div>
@@ -867,7 +858,7 @@
 
                 <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down"
                     data-aos-duration="600">
-                    <a href="../index.html#hero" class="nav-link nav-link-active">Home</a>
+                    <a href="../index.html#hero" class="nav-link">Home</a>
 
                     <div class="relative group">
                         <a href="../index.html#pain-points" class="nav-link flex items-center gap-1">
@@ -879,24 +870,26 @@
                             <a href="../index.html#pain-points" class="dropdown-item">Rights at Risk</a>
                             <a href="../index.html#how-it-works" class="dropdown-item">Methodology</a>
                             <a href="../index.html#features" class="dropdown-item">Sovereign Infrastructure</a>
-                            <a href="../about.html" class="dropdown-item">Our Mission</a>
+                            <a href="../resources.html#index.html" class="dropdown-item">Legal Resources</a>
                         </div>
                     </div>
 
                     <div class="relative group">
-                        <a href="../index.html#resources" class="nav-link flex items-center gap-1">
+                        <a href="../resources.html#hero" class="nav-link flex items-center gap-1">
                             Resources
                             <i
                                 class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
                         <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../resources.html#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                            <a href="../resources.html#legal-resources" class="dropdown-item">Legal Resources</a>
+                            <a href="../resources.html#in-house-tools" class="dropdown-item">In-House Tools</a>
                             <a href="../resources.html" class="dropdown-item">All Resources</a>
-                            <a href="../index.html#comparison" class="dropdown-item">Comparison</a>
-                            <a href="../index.html#faq" class="dropdown-item">FAQ</a>
                         </div>
                     </div>
+
                     <div class="relative group">
-                        <a href="../index.html#resources" class="nav-link flex items-center gap-1">
+                        <a href="../resources.html#hero" class="nav-link flex items-center gap-1">
                             Tools
                             <i
                                 class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
@@ -904,14 +897,26 @@
                         <div class="dropdown-panel absolute left-0 mt-2 z-50">
                             <a href="../tools/ip-intelligence.html" class="dropdown-item">IP Intelligence</a>
                             <a href="../tools/password-generator.html" class="dropdown-item">Password Generator</a>
-                            <a href="../tools/qr-builder.html" class="dropdown-item">QR Builder</a>
+                            <a href="../tools/qr-builder.html" class="dropdown-item nav-link-active">QR Builder</a>
                             <a href="../tools/whiteboard.html" class="dropdown-item">Whiteboard</a>
-                            <a href="../tools.html" class="dropdown-item">All Tools</a>
+                            <a href="../resources.html#privacy-tools" class="dropdown-item">Privacy Tools</a>
                         </div>
                     </div>
 
-                    <a href="../index.html#cta" class="nav-link">Contact</a>
-                    <a href="../about.html#cta-support" class="nav-link">Support</a>
+                    <div class="relative group">
+                        <a href="../about.html#hero" class="nav-link flex items-center gap-1">
+                            About
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../about.html#our-mission" class="dropdown-item">Our Mission</a>
+                            <a href="../index.html#comparison" class="dropdown-item">Comparison</a>
+                            <a href="../index.html#faq" class="dropdown-item">FAQ</a>
+                            <a href="../index.html#cta" class="dropdown-item">Contact</a>
+                            <a href="../about.html#cta-support" class="dropdown-item">Support Us</a>
+                        </div>
+                    </div>
                 </nav>
 
                 <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
@@ -971,8 +976,8 @@
                     <a href="../index.html#features" class="sub-link" data-close-mobile>
                         <i class="fas fa-star"></i> Sovereign Infrastructure
                     </a>
-                    <a href="../about.html" class="sub-link" data-close-mobile>
-                        <i class="fas fa-bullseye"></i> Our Mission
+                    <a href="../resources.html#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal Resources
                     </a>
                 </div>
             </div>
@@ -989,14 +994,17 @@
                         class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
                 </button>
                 <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../resources.html#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-lock"></i> Privacy Tools
+                    </a>
+                    <a href="../resources.html#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal Resources
+                    </a>
+                    <a href="../resources.html#in-house-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-cubes"></i> In-House Tools
+                    </a>
                     <a href="../resources.html" class="sub-link" data-close-mobile>
-                        <i class="fas fa-cubes"></i> All Resources
-                    </a>
-                    <a href="../index.html#comparison" class="sub-link" data-close-mobile>
-                        <i class="fas fa-arrows-left-right"></i> Comparison
-                    </a>
-                    <a href="../index.html#faq" class="sub-link" data-close-mobile>
-                        <i class="fas fa-question-circle"></i> FAQ
+                        <i class="fas fa-folder-open"></i> All Resources
                     </a>
                 </div>
             </div>
@@ -1025,28 +1033,51 @@
                     <a href="../tools/whiteboard.html" class="sub-link" data-close-mobile>
                         <i class="fas fa-pen-fancy"></i> Whiteboard
                     </a>
-                    <a href="../tools.html" class="sub-link" data-close-mobile>
-                        <i class="fas fa-shield-alt"></i> All Tools
+                    <a href="../resources.html#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-user-secret"></i> Privacy Tools
                     </a>
                 </div>
             </div>
 
-            <div class="mobile-menu-divider"></div>
-
-            <a href="../index.html#cta" class="nav-item" data-close-mobile>
-                <i class="fas fa-envelope"></i> Contact
-            </a>
-            <a href="../about.html#cta-support" class="nav-item" data-close-mobile>
-                <i class="fas fa-hand-holding-heart"></i> Support
-            </a>
+            <!-- ===== ABOUT DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-about">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../about.html#our-mission" class="sub-link" data-close-mobile>
+                        <i class="fas fa-bullseye"></i> Our Mission
+                    </a>
+                    <a href="../index.html#comparison" class="sub-link" data-close-mobile>
+                        <i class="fas fa-arrows-left-right"></i> Comparison
+                    </a>
+                    <a href="../index.html#faq" class="sub-link" data-close-mobile>
+                        <i class="fas fa-question-circle"></i> FAQ
+                    </a>
+                    <a href="../index.html#cta" class="sub-link" data-close-mobile>
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                    <a href="../about.html#cta-support" class="sub-link" data-close-mobile>
+                        <i class="fas fa-hand-holding-heart"></i> Support Us
+                    </a>
+                </div>
+            </div>
 
             <a href="https://auth.ricalnet.my.id" class="mt-3 block w-full text-center btn-sso justify-center"
                 data-close-mobile>
                 <i class="fas fa-key"></i> Login with SSO
             </a>
 
-            <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
-                <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+            <div
+                class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+                <span
+                    class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
                     <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> Digital Sovereignty · Privacy-First
                 </span>
             </div>
@@ -1294,18 +1325,17 @@
                     locally — your privacy is guaranteed.
                 </p>
             </div>
-
+    
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-8" data-aos="fade-up" data-aos-duration="700">
-
+    
                 <!-- Reader Controls -->
                 <div class="lg:col-span-2">
-                    <div
-                        class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover h-full">
+                    <div class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover h-full">
                         <h3 class="text-xl font-bold text-text-primary mb-6 flex items-center gap-3">
                             <i class="fas fa-sliders-h text-tor-violet"></i>
                             Scan Options
                         </h3>
-
+    
                         <div class="flex gap-2 mb-6 bg-surface-muted rounded-xl p-1">
                             <button id="camera-tab" class="tab-btn active flex-1 text-center">
                                 <i class="fas fa-camera mr-1.5"></i> Camera
@@ -1314,7 +1344,7 @@
                                 <i class="fas fa-upload mr-1.5"></i> Upload
                             </button>
                         </div>
-
+    
                         <div id="camera-panel">
                             <p class="text-sm text-text-secondary mb-4 leading-relaxed">
                                 <i class="fas fa-info-circle text-tor-violet mr-1.5"></i>
@@ -1328,7 +1358,7 @@
                                 <i class="fas fa-stop"></i> Stop Camera
                             </button>
                         </div>
-
+    
                         <div id="upload-panel" class="hidden">
                             <p class="text-sm text-text-secondary mb-4 leading-relaxed">
                                 <i class="fas fa-info-circle text-tor-violet mr-1.5"></i>
@@ -1345,7 +1375,7 @@
                                 </div>
                             </div>
                         </div>
-
+    
                         <div id="qr-result" class="mt-6">
                             <div class="bg-surface-muted rounded-xl p-4 min-h-[60px] flex items-center">
                                 <div class="flex-1">
@@ -1376,11 +1406,10 @@
                         </div>
                     </div>
                 </div>
-
+    
                 <!-- Reader Preview -->
                 <div class="lg:col-span-3">
-                    <div
-                        class="bg-white rounded-3xl p-6 shadow-elevated border border-surface-border/60 card-hover h-full">
+                    <div class="bg-white rounded-3xl p-6 shadow-elevated border border-surface-border/60 card-hover h-full">
                         <h3 class="text-xl font-bold text-text-primary mb-4 flex items-center gap-3">
                             <i class="fas fa-eye text-tor-violet"></i>
                             Scanner View
@@ -1398,7 +1427,7 @@
                         </p>
                     </div>
                 </div>
-
+    
             </div>
         </div>
     </section>
@@ -1504,7 +1533,8 @@
         <div
             class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
         </div>
-        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+        <div
+            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
         </div>
         <div
             class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
@@ -1512,7 +1542,8 @@
 
         <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
 
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+            <div
+                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
 
                 <div class="col-span-2 md:col-span-3 lg:col-span-1">
                     <div class="flex items-center gap-3 mb-4">
@@ -1558,7 +1589,7 @@
                     <ul class="space-y-2.5">
                         <li><a href="../about.html#our-mission" class="footer-link">Our Mission</a></li>
                         <li><a href="../resources.html" class="footer-link">Resources</a></li>
-                        <li><a href="../coaching.html" class="footer-link">Gallery</a></li>
+                        <li><a href="../gallery.html" class="footer-link">Gallery</a></li>
                         <li><a href="https://docs.ricalnet.my.id" class="footer-link">Blog</a></li>
                         <li><a href="../index.html#cta" class="footer-link">Contact</a></li>
                     </ul>
@@ -1568,7 +1599,8 @@
                     <h4 class="footer-heading text-text-primary/60">Infrastructure</h4>
                     <ul class="space-y-2.5">
                         <li><a href="../index.html#features" class="footer-link">Sovereign Infrastructure</a></li>
-                        <li><a href="../index.html#private-digital-services" class="footer-link">Private Services</a></li>
+                        <li><a href="../index.html#private-digital-services" class="footer-link">Private Services</a>
+                        </li>
                         <li><a href="https://search.ricalnet.my.id" class="footer-link">Search Engine</a></li>
                         <li><a href="https://link.ricalnet.my.id" class="footer-link">URL Shortener</a></li>
                         <li><a href="https://translate.ricalnet.my.id" class="footer-link">Translation</a></li>
@@ -1591,7 +1623,8 @@
                 <div>
                     <h4 class="footer-heading text-text-primary/60">Legal</h4>
                     <ul class="space-y-2.5">
-                        <li><a href="https://cloud.ricalnet.my.id/s/H9SM2rJ2M9NfQaq" class="footer-link">Legal Resources</a>
+                        <li><a href="https://cloud.ricalnet.my.id/s/H9SM2rJ2M9NfQaq" class="footer-link">Legal
+                                Resources</a>
                         </li>
                         <li><a href="../terms-of-service.html" class="footer-link">Terms of Service</a></li>
                         <li><a href="../privacy.html" class="footer-link">Privacy Policy</a></li>
@@ -1746,8 +1779,7 @@
                     if (el !== sub) {
                         el.classList.remove('open');
                         el.previousElementSibling?.classList.remove('open');
-                        el.previousElementSibling?.setAttribute('aria-expanded',
-                            'false');
+                        el.previousElementSibling?.setAttribute('aria-expanded', 'false');
                     }
                 });
 
@@ -1764,7 +1796,7 @@
         });
 
         document.querySelectorAll('[data-close-mobile]').forEach(link => {
-            link.addEventListener('click', function (e) {
+            link.addEventListener('click', function () {
                 setTimeout(closeMobileMenu, 100);
             });
         });
@@ -1925,11 +1957,11 @@
 
                 } catch (err) {
                     generatedQr.innerHTML = `
-                        <div class="qr-placeholder text-red-400">
-                            <i class="fas fa-exclamation-triangle text-3xl"></i>
-                            <span class="text-sm">Error: ${err.message}</span>
-                        </div>
-                    `;
+                    <div class="qr-placeholder text-red-400">
+                        <i class="fas fa-exclamation-triangle text-3xl"></i>
+                        <span class="text-sm">Error: ${err.message}</span>
+                    </div>
+                `;
                     qrActions.classList.add('opacity-0', 'pointer-events-none');
                     qrActions.classList.remove('opacity-100', 'pointer-events-auto');
                     currentQrCode = null;
@@ -1977,7 +2009,8 @@
                 const bgColor = currentBgColor;
 
                 // Build SVG
-                let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`;
+                let svg =
+                    `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`;
                 svg += `<rect width="${size}" height="${size}" fill="${bgColor}"/>`;
 
                 // Scan pixels to find dark modules
@@ -2002,7 +2035,8 @@
                         if (modules[row][col] === 1) {
                             const x = col * cellSize;
                             const y = row * cellSize;
-                            svg += `<rect x="${x}" y="${y}" width="${cellSize}" height="${cellSize}" fill="${fgColor}"/>`;
+                            svg +=
+                                `<rect x="${x}" y="${y}" width="${cellSize}" height="${cellSize}" fill="${fgColor}"/>`;
                         }
                     }
                 }
@@ -2069,11 +2103,11 @@
                 }
                 // Reset reader container
                 qrReaderContainer.innerHTML = `
-                    <div class="qr-placeholder">
-                        <i class="fas fa-camera"></i>
-                        <span class="text-sm">Click "Start Camera" to scan</span>
-                    </div>
-                `;
+                <div class="qr-placeholder">
+                    <i class="fas fa-camera"></i>
+                    <span class="text-sm">Click "Start Camera" to scan</span>
+                </div>
+            `;
                 hideResult();
             });
 
@@ -2086,11 +2120,11 @@
                     stopScanner();
                 }
                 qrReaderContainer.innerHTML = `
-                    <div class="qr-placeholder">
-                        <i class="fas fa-upload"></i>
-                        <span class="text-sm">Upload an image to scan</span>
-                    </div>
-                `;
+                <div class="qr-placeholder">
+                    <i class="fas fa-upload"></i>
+                    <span class="text-sm">Upload an image to scan</span>
+                </div>
+            `;
                 hideResult();
             });
 
@@ -2133,8 +2167,8 @@
 
                     // Create reader container
                     qrReaderContainer.innerHTML = `
-                        <div id="qr-reader" style="width:100%;min-height:320px;"></div>
-                    `;
+                    <div id="qr-reader" style="width:100%;min-height:320px;"></div>
+                `;
 
                     const readerElement = document.getElementById('qr-reader');
 
@@ -2162,11 +2196,11 @@
                     console.error('Camera error:', err);
                     showToast('Could not access camera: ' + err.message);
                     qrReaderContainer.innerHTML = `
-                        <div class="qr-placeholder text-red-400">
-                            <i class="fas fa-exclamation-triangle text-3xl"></i>
-                            <span class="text-sm">Camera unavailable: ${err.message}</span>
-                        </div>
-                    `;
+                    <div class="qr-placeholder text-red-400">
+                        <i class="fas fa-exclamation-triangle text-3xl"></i>
+                        <span class="text-sm">Camera unavailable: ${err.message}</span>
+                    </div>
+                `;
                     startCameraBtn.textContent = 'Start Camera';
                     startCameraBtn.disabled = false;
                     stopCameraBtn.classList.add('hidden');
@@ -2181,11 +2215,11 @@
                         startCameraBtn.disabled = false;
                         stopCameraBtn.classList.add('hidden');
                         qrReaderContainer.innerHTML = `
-                            <div class="qr-placeholder">
-                                <i class="fas fa-camera"></i>
-                                <span class="text-sm">Camera stopped</span>
-                            </div>
-                        `;
+                        <div class="qr-placeholder">
+                            <i class="fas fa-camera"></i>
+                            <span class="text-sm">Camera stopped</span>
+                        </div>
+                    `;
                         showToast('Camera stopped.');
                     }).catch(err => {
                         console.error('Stop error:', err);
@@ -2227,8 +2261,8 @@
 
                     // Display image in reader container
                     qrReaderContainer.innerHTML = `
-                        <img src="${imageUrl}" alt="Uploaded QR" class="max-h-[400px] w-auto mx-auto rounded-xl" />
-                    `;
+                    <img src="${imageUrl}" alt="Uploaded QR" class="max-h-[400px] w-auto mx-auto rounded-xl" />
+                `;
 
                     // Use html5-qrcode to decode
                     const tempReader = new Html5Qrcode("qr-reader-container");

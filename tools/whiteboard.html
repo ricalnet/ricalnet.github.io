@@ -379,7 +379,7 @@
                 height: auto;
             }
 
-            /* Mobile menu overrides */
+            /* ---- Mobile menu ---- */
             #mobile-menu {
                 position: fixed;
                 inset: 0;
@@ -503,7 +503,8 @@
                 inset: 0;
                 pointer-events: none;
                 z-index: 0;
-                background: radial-gradient(circle at 20% 10%, rgba(124, 58, 237, 0.06) 0%, transparent 50%),
+                background:
+                    radial-gradient(circle at 20% 10%, rgba(124, 58, 237, 0.06) 0%, transparent 50%),
                     radial-gradient(circle at 80% 90%, rgba(6, 182, 212, 0.04) 0%, transparent 50%);
             }
 
@@ -649,7 +650,7 @@
                 overflow: hidden;
             }
 
-            /* ===== WHITEBOARD SPECIFIC ===== */
+            /* ---- Whiteboard specific ---- */
             .tool-btn {
                 display: flex;
                 align-items: center;
@@ -836,7 +837,6 @@
                 display: none;
             }
 
-            /* Grid overlay for canvas */
             .canvas-grid {
                 position: absolute;
                 inset: 0;
@@ -863,57 +863,28 @@
                 font-family: 'Inter', system-ui, sans-serif;
             }
 
-            .dropdown-tools {
+            .text-input-overlay {
                 position: absolute;
-                top: calc(100% + 0.5rem);
-                left: 0;
+                z-index: 10;
                 background: white;
-                border-radius: 16px;
-                box-shadow: 0 8px 48px rgba(0, 0, 0, 0.06), 0 2px 12px rgba(0, 0, 0, 0.04);
-                border: 1px solid rgba(124, 58, 237, 0.08);
-                padding: 0.5rem;
-                min-width: 180px;
-                opacity: 0;
-                visibility: hidden;
-                transform: translateY(-8px);
-                transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-                z-index: 20;
-            }
-
-            .dropdown-tools.open {
-                opacity: 1;
-                visibility: visible;
-                transform: translateY(0);
-            }
-
-            .dropdown-tools button {
-                display: flex;
-                align-items: center;
-                gap: 0.75rem;
+                border: 2px solid #7c3aed;
+                border-radius: 0.75rem;
                 padding: 0.5rem 0.75rem;
-                border-radius: 10px;
-                width: 100%;
-                border: none;
-                background: transparent;
-                color: #52506e;
-                font-size: 0.8125rem;
-                font-weight: 450;
-                cursor: pointer;
-                transition: all 0.15s ease;
                 font-family: 'Inter', system-ui, sans-serif;
-            }
-
-            .dropdown-tools button:hover {
-                background: #f5f3fa;
+                font-size: 1rem;
                 color: #0f0e1a;
+                box-shadow: 0 8px 48px rgba(0, 0, 0, 0.06), 0 2px 12px rgba(0, 0, 0, 0.04);
+                outline: none;
+                min-width: 120px;
+                max-width: 300px;
             }
 
-            .dropdown-tools button i {
-                width: 1.25rem;
-                color: #7c3aed;
+            .text-input-overlay:focus {
+                outline: none;
+                border-color: #5b21b6;
+                box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
             }
 
-            /* Keyboard shortcut hint */
             .kbd-hint {
                 font-size: 0.55rem;
                 background: #f5f3fa;
@@ -947,7 +918,7 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- ===== NAVBAR =============================================== -->
+    <!-- ===== NAVBAR (exactly like index.html) ===================== -->
     <!-- ============================================================ -->
     <header
         class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
@@ -960,15 +931,15 @@
                         class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
                     <div class="leading-tight hidden sm:block">
                         <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
-                        <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
-                            Rights
-                            · Infrastructure</span>
+                        <span
+                            class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
+                            Rights · Infrastructure</span>
                     </div>
                 </a>
 
                 <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down"
                     data-aos-duration="600">
-                    <a href="../index.html#hero" class="nav-link nav-link-active">Home</a>
+                    <a href="../index.html#hero" class="nav-link">Home</a>
 
                     <div class="relative group">
                         <a href="../index.html#pain-points" class="nav-link flex items-center gap-1">
@@ -980,24 +951,26 @@
                             <a href="../index.html#pain-points" class="dropdown-item">Rights at Risk</a>
                             <a href="../index.html#how-it-works" class="dropdown-item">Methodology</a>
                             <a href="../index.html#features" class="dropdown-item">Sovereign Infrastructure</a>
-                            <a href="../about.html" class="dropdown-item">Our Mission</a>
+                            <a href="../resources.html#index.html" class="dropdown-item">Legal Resources</a>
                         </div>
                     </div>
 
                     <div class="relative group">
-                        <a href="../index.html#resources" class="nav-link flex items-center gap-1">
+                        <a href="../resources.html#hero" class="nav-link flex items-center gap-1">
                             Resources
                             <i
                                 class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
                         <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../resources.html#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                            <a href="../resources.html#legal-resources" class="dropdown-item">Legal Resources</a>
+                            <a href="../resources.html#in-house-tools" class="dropdown-item">In-House Tools</a>
                             <a href="../resources.html" class="dropdown-item">All Resources</a>
-                            <a href="../index.html#comparison" class="dropdown-item">Comparison</a>
-                            <a href="../index.html#faq" class="dropdown-item">FAQ</a>
                         </div>
                     </div>
+
                     <div class="relative group">
-                        <a href="../index.html#resources" class="nav-link flex items-center gap-1">
+                        <a href="../resources.html#hero" class="nav-link flex items-center gap-1">
                             Tools
                             <i
                                 class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
@@ -1006,13 +979,25 @@
                             <a href="../tools/ip-intelligence.html" class="dropdown-item">IP Intelligence</a>
                             <a href="../tools/password-generator.html" class="dropdown-item">Password Generator</a>
                             <a href="../tools/qr-builder.html" class="dropdown-item">QR Builder</a>
-                            <a href="../tools/whiteboard.html" class="dropdown-item">Whiteboard</a>
-                            <a href="../tools.html" class="dropdown-item">All Tools</a>
+                            <a href="../tools/whiteboard.html" class="dropdown-item nav-link-active">Whiteboard</a>
+                            <a href="../resources.html#privacy-tools" class="dropdown-item">Privacy Tools</a>
                         </div>
                     </div>
 
-                    <a href="../index.html#cta" class="nav-link">Contact</a>
-                    <a href="../about.html#cta-support" class="nav-link">Support</a>
+                    <div class="relative group">
+                        <a href="../about.html#hero" class="nav-link flex items-center gap-1">
+                            About
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../about.html#our-mission" class="dropdown-item">Our Mission</a>
+                            <a href="../index.html#comparison" class="dropdown-item">Comparison</a>
+                            <a href="../index.html#faq" class="dropdown-item">FAQ</a>
+                            <a href="../index.html#cta" class="dropdown-item">Contact</a>
+                            <a href="../about.html#cta-support" class="dropdown-item">Support Us</a>
+                        </div>
+                    </div>
                 </nav>
 
                 <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
@@ -1031,7 +1016,7 @@
     </header>
 
     <!-- ============================================================ -->
-    <!-- ===== MOBILE NAV =========================================== -->
+    <!-- ===== MOBILE NAV (exactly like index.html) ================= -->
     <!-- ============================================================ -->
     <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
 
@@ -1072,8 +1057,8 @@
                     <a href="../index.html#features" class="sub-link" data-close-mobile>
                         <i class="fas fa-star"></i> Sovereign Infrastructure
                     </a>
-                    <a href="../about.html" class="sub-link" data-close-mobile>
-                        <i class="fas fa-bullseye"></i> Our Mission
+                    <a href="../resources.html#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal Resources
                     </a>
                 </div>
             </div>
@@ -1090,14 +1075,17 @@
                         class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
                 </button>
                 <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../resources.html#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-lock"></i> Privacy Tools
+                    </a>
+                    <a href="../resources.html#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal Resources
+                    </a>
+                    <a href="../resources.html#in-house-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-cubes"></i> In-House Tools
+                    </a>
                     <a href="../resources.html" class="sub-link" data-close-mobile>
-                        <i class="fas fa-cubes"></i> All Resources
-                    </a>
-                    <a href="../index.html#comparison" class="sub-link" data-close-mobile>
-                        <i class="fas fa-arrows-left-right"></i> Comparison
-                    </a>
-                    <a href="../index.html#faq" class="sub-link" data-close-mobile>
-                        <i class="fas fa-question-circle"></i> FAQ
+                        <i class="fas fa-folder-open"></i> All Resources
                     </a>
                 </div>
             </div>
@@ -1126,28 +1114,51 @@
                     <a href="../tools/whiteboard.html" class="sub-link" data-close-mobile>
                         <i class="fas fa-pen-fancy"></i> Whiteboard
                     </a>
-                    <a href="../tools.html" class="sub-link" data-close-mobile>
-                        <i class="fas fa-shield-alt"></i> All Tools
+                    <a href="../resources.html#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-user-secret"></i> Privacy Tools
                     </a>
                 </div>
             </div>
 
-            <div class="mobile-menu-divider"></div>
-
-            <a href="../index.html#cta" class="nav-item" data-close-mobile>
-                <i class="fas fa-envelope"></i> Contact
-            </a>
-            <a href="../about.html#cta-support" class="nav-item" data-close-mobile>
-                <i class="fas fa-hand-holding-heart"></i> Support
-            </a>
+            <!-- ===== ABOUT DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-about">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../about.html#our-mission" class="sub-link" data-close-mobile>
+                        <i class="fas fa-bullseye"></i> Our Mission
+                    </a>
+                    <a href="../index.html#comparison" class="sub-link" data-close-mobile>
+                        <i class="fas fa-arrows-left-right"></i> Comparison
+                    </a>
+                    <a href="../index.html#faq" class="sub-link" data-close-mobile>
+                        <i class="fas fa-question-circle"></i> FAQ
+                    </a>
+                    <a href="../index.html#cta" class="sub-link" data-close-mobile>
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                    <a href="../about.html#cta-support" class="sub-link" data-close-mobile>
+                        <i class="fas fa-hand-holding-heart"></i> Support Us
+                    </a>
+                </div>
+            </div>
 
             <a href="https://auth.ricalnet.my.id" class="mt-3 block w-full text-center btn-sso justify-center"
                 data-close-mobile>
                 <i class="fas fa-key"></i> Login with SSO
             </a>
 
-            <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
-                <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+            <div
+                class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+                <span
+                    class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
                     <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> Digital Sovereignty · Privacy-First
                 </span>
             </div>
@@ -1334,13 +1345,14 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- ===== FOOTER ===== -->
+    <!-- ===== FOOTER ===================== -->
     <!-- ============================================================ -->
     <footer class="relative overflow-hidden border-t border-tor-violet/10">
         <div
             class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
         </div>
-        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+        <div
+            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
         </div>
         <div
             class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
@@ -1348,7 +1360,8 @@
 
         <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
 
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+            <div
+                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
 
                 <div class="col-span-2 md:col-span-3 lg:col-span-1">
                     <div class="flex items-center gap-3 mb-4">
@@ -1361,8 +1374,7 @@
                             <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
                             <span
                                 class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
-                                Rights
-                                · Infrastructure</span>
+                                Rights · Infrastructure</span>
                         </div>
                     </div>
                     <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
@@ -1394,7 +1406,7 @@
                     <ul class="space-y-2.5">
                         <li><a href="../about.html#our-mission" class="footer-link">Our Mission</a></li>
                         <li><a href="../resources.html" class="footer-link">Resources</a></li>
-                        <li><a href="../coaching.html" class="footer-link">Gallery</a></li>
+                        <li><a href="../gallery.html" class="footer-link">Gallery</a></li>
                         <li><a href="https://docs.ricalnet.my.id" class="footer-link">Blog</a></li>
                         <li><a href="../index.html#cta" class="footer-link">Contact</a></li>
                     </ul>
@@ -1404,7 +1416,8 @@
                     <h4 class="footer-heading text-text-primary/60">Infrastructure</h4>
                     <ul class="space-y-2.5">
                         <li><a href="../index.html#features" class="footer-link">Sovereign Infrastructure</a></li>
-                        <li><a href="../index.html#private-digital-services" class="footer-link">Private Services</a></li>
+                        <li><a href="../index.html#private-digital-services" class="footer-link">Private Services</a>
+                        </li>
                         <li><a href="https://search.ricalnet.my.id" class="footer-link">Search Engine</a></li>
                         <li><a href="https://link.ricalnet.my.id" class="footer-link">URL Shortener</a></li>
                         <li><a href="https://translate.ricalnet.my.id" class="footer-link">Translation</a></li>
@@ -1427,7 +1440,8 @@
                 <div>
                     <h4 class="footer-heading text-text-primary/60">Legal</h4>
                     <ul class="space-y-2.5">
-                        <li><a href="https://cloud.ricalnet.my.id/s/H9SM2rJ2M9NfQaq" class="footer-link">Legal Resources</a>
+                        <li><a href="https://cloud.ricalnet.my.id/s/H9SM2rJ2M9NfQaq" class="footer-link">Legal
+                                Resources</a>
                         </li>
                         <li><a href="../terms-of-service.html" class="footer-link">Terms of Service</a></li>
                         <li><a href="../privacy.html" class="footer-link">Privacy Policy</a></li>
@@ -1543,16 +1557,14 @@
                 }
                 canvas.style.width = displayW + 'px';
                 canvas.style.height = displayH + 'px';
-                // Keep internal resolution at 1200x750 for quality
                 canvas.width = 1200;
                 canvas.height = 750;
-                // Redraw
                 render();
             }
 
             // ---- State ----
             let isDrawing = false;
-            let currentTool = 'pen'; // pen, eraser, rectangle, circle, line, text
+            let currentTool = 'pen';
             let currentColor = '#1a1a2e';
             let strokeWidth = 4;
             let lastX = 0,
@@ -1562,10 +1574,7 @@
             let history = [];
             let historyIndex = -1;
             const MAX_HISTORY = 60;
-
-            // ---- Drawing state ----
             let isTextMode = false;
-            let textInputPos = null;
 
             // ---- DOM refs ----
             const toolBtns = document.querySelectorAll('[data-tool]');
@@ -1577,14 +1586,12 @@
             const redoBtn = document.getElementById('redoBtn');
             const clearBtn = document.getElementById('clearBtn');
             const saveBtn = document.getElementById('saveBtn');
-            const statusText = document.getElementById('statusText');
             const toolStatus = document.getElementById('toolStatus');
             const sizeStatus = document.getElementById('sizeStatus');
             const historyCount = document.getElementById('historyCount');
 
             // ---- Save state ----
             function saveState() {
-                // Trim future states if we're not at the end
                 if (historyIndex < history.length - 1) {
                     history = history.slice(0, historyIndex + 1);
                 }
@@ -1615,7 +1622,6 @@
                 }
                 if (undoBtn) undoBtn.disabled = historyIndex <= 0;
                 if (redoBtn) redoBtn.disabled = historyIndex >= history.length - 1;
-                // Update button styles
                 [undoBtn, redoBtn].forEach(btn => {
                     if (btn) {
                         btn.style.opacity = btn.disabled ? '0.35' : '1';
@@ -1626,7 +1632,6 @@
 
             // ---- Render ----
             function render() {
-                // Just redraw from current history state
                 if (history.length > 0 && historyIndex >= 0) {
                     const img = new Image();
                     img.onload = function () {
@@ -1640,6 +1645,50 @@
             }
 
             // ---- Drawing functions ----
+            function getCanvasCoords(e) {
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
+                let clientX, clientY;
+                if (e.touches) {
+                    clientX = e.touches[0].clientX;
+                    clientY = e.touches[0].clientY;
+                    e.preventDefault();
+                } else {
+                    clientX = e.clientX;
+                    clientY = e.clientY;
+                }
+                return {
+                    x: Math.max(0, Math.min(canvas.width, (clientX - rect.left) * scaleX)),
+                    y: Math.max(0, Math.min(canvas.height, (clientY - rect.top) * scaleY))
+                };
+            }
+
+            function drawShape(x1, y1, x2, y2, type) {
+                const w = x2 - x1;
+                const h = y2 - y1;
+                ctx.lineWidth = strokeWidth;
+                ctx.strokeStyle = currentColor;
+                ctx.fillStyle = 'transparent';
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                if (type === 'rectangle') {
+                    ctx.strokeRect(x1, y1, w, h);
+                } else if (type === 'circle') {
+                    const radius = Math.sqrt(w * w + h * h) / 2;
+                    const cx = (x1 + x2) / 2;
+                    const cy = (y1 + y2) / 2;
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+                    ctx.stroke();
+                } else if (type === 'line') {
+                    ctx.beginPath();
+                    ctx.moveTo(x1, y1);
+                    ctx.lineTo(x2, y2);
+                    ctx.stroke();
+                }
+            }
+
             function startDraw(e) {
                 const pos = getCanvasCoords(e);
                 if (!pos) return;
@@ -1649,18 +1698,12 @@
                 startY = pos.y;
 
                 if (currentTool === 'text') {
-                    // Text tool: click to place text
                     showTextInput(pos.x, pos.y);
                     return;
                 }
 
                 isDrawing = true;
-
-                // For shape tools, save start position
-                if (['rectangle', 'circle', 'line'].includes(currentTool)) {
-                    // We'll draw on mouse move
-                } else {
-                    // Pen/eraser: start a path
+                if (!['rectangle', 'circle', 'line'].includes(currentTool)) {
                     ctx.beginPath();
                     ctx.moveTo(pos.x, pos.y);
                 }
@@ -1669,16 +1712,8 @@
             function draw(e) {
                 const pos = getCanvasCoords(e);
                 if (!pos) return;
-
                 if (currentTool === 'text') return;
-
-                if (!isDrawing) {
-                    // For shape preview without drawing
-                    if (['rectangle', 'circle', 'line'].includes(currentTool) && e.type === 'mousemove') {
-                        // Preview not supported without drawing start
-                    }
-                    return;
-                }
+                if (!isDrawing) return;
 
                 if (currentTool === 'pen') {
                     ctx.lineWidth = strokeWidth;
@@ -1700,18 +1735,6 @@
                     ctx.moveTo(pos.x, pos.y);
                     ctx.globalCompositeOperation = 'source-over';
                 } else if (['rectangle', 'circle', 'line'].includes(currentTool)) {
-                    // For shape tools, we redraw the shape on each move (preview)
-                    // Save current state, draw shape, then restore
-                    const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                    // Restore to the state at start of draw
-                    const restoreImg = new Image();
-                    restoreImg.onload = function () {
-                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-                        ctx.drawImage(restoreImg, 0, 0);
-                        drawShape(startX, startY, pos.x, pos.y, currentTool);
-                    };
-                    // Use the last saved state (from startDraw)
-                    // We'll use history[historyIndex] as base
                     if (history.length > 0 && historyIndex >= 0) {
                         const baseImg = new Image();
                         baseImg.onload = function () {
@@ -1726,14 +1749,12 @@
 
             function endDraw(e) {
                 if (currentTool === 'text') return;
-
                 if (isDrawing && ['pen', 'eraser'].includes(currentTool)) {
                     ctx.closePath();
                     saveState();
                 } else if (isDrawing && ['rectangle', 'circle', 'line'].includes(currentTool)) {
                     const pos = getCanvasCoords(e);
                     if (pos) {
-                        // Draw final shape
                         const baseImg = new Image();
                         baseImg.onload = function () {
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -1744,47 +1765,18 @@
                         if (history.length > 0 && historyIndex >= 0) {
                             baseImg.src = history[historyIndex];
                         } else {
-                            baseImg.src = '';
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
                             drawShape(startX, startY, pos.x, pos.y, currentTool);
                             saveState();
                         }
                     }
                 }
-
                 isDrawing = false;
                 updateHistoryUI();
             }
 
-            function drawShape(x1, y1, x2, y2, type) {
-                const w = x2 - x1;
-                const h = y2 - y1;
-                ctx.lineWidth = strokeWidth;
-                ctx.strokeStyle = currentColor;
-                ctx.fillStyle = 'transparent';
-                ctx.lineCap = 'round';
-                ctx.lineJoin = 'round';
-
-                if (type === 'rectangle') {
-                    ctx.strokeRect(x1, y1, w, h);
-                } else if (type === 'circle') {
-                    const radius = Math.sqrt(w * w + h * h) / 2;
-                    const cx = (x1 + x2) / 2;
-                    const cy = (y1 + y2) / 2;
-                    ctx.beginPath();
-                    ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-                    ctx.stroke();
-                } else if (type === 'line') {
-                    ctx.beginPath();
-                    ctx.moveTo(x1, y1);
-                    ctx.lineTo(x2, y2);
-                    ctx.stroke();
-                }
-            }
-
             // ---- Text input ----
             function showTextInput(x, y) {
-                // Remove any existing text input
                 const existing = document.querySelector('.text-input-overlay');
                 if (existing) existing.remove();
 
@@ -1796,11 +1788,9 @@
                 const input = document.createElement('input');
                 input.type = 'text';
                 input.className =
-                    'text-input-overlay absolute z-10 bg-white border-2 border-tor-violet rounded-lg px-3 py-2 text-text-primary font-inter text-base shadow-elevated focus:outline-none focus:ring-2 focus:ring-tor-violet/30';
+                    'text-input-overlay';
                 input.style.left = (x / scaleX) + 'px';
                 input.style.top = (y / scaleY) + 'px';
-                input.style.minWidth = '120px';
-                input.style.maxWidth = '300px';
                 input.style.fontSize = Math.max(12, strokeWidth * 2.5) + 'px';
                 input.style.color = currentColor;
                 input.placeholder = 'Type text…';
@@ -1842,7 +1832,6 @@
                 });
 
                 input.addEventListener('blur', () => {
-                    // Small delay so click on finish doesn't get lost
                     setTimeout(() => {
                         if (input.parentNode) {
                             finishText();
@@ -1850,30 +1839,8 @@
                     }, 100);
                 });
 
-                // Fix: store reference to remove on tool change
                 window._textInput = input;
                 isTextMode = true;
-            }
-
-            // ---- Utils ----
-            function getCanvasCoords(e) {
-                const rect = canvas.getBoundingClientRect();
-                const scaleX = canvas.width / rect.width;
-                const scaleY = canvas.height / rect.height;
-
-                let clientX, clientY;
-                if (e.touches) {
-                    clientX = e.touches[0].clientX;
-                    clientY = e.touches[0].clientY;
-                    e.preventDefault();
-                } else {
-                    clientX = e.clientX;
-                    clientY = e.clientY;
-                }
-
-                const x = (clientX - rect.left) * scaleX;
-                const y = (clientY - rect.top) * scaleY;
-                return { x: Math.max(0, Math.min(canvas.width, x)), y: Math.max(0, Math.min(canvas.height, y)) };
             }
 
             // ---- Tool switching ----
@@ -1884,21 +1851,12 @@
                     btn.classList.toggle('active', isActive);
                     btn.setAttribute('aria-pressed', isActive);
                 });
-
                 const toolNames = {
-                    pen: 'Pen',
-                    eraser: 'Eraser',
-                    rectangle: 'Rectangle',
-                    circle: 'Circle',
-                    line: 'Line',
-                    text: 'Text'
+                    pen: 'Pen', eraser: 'Eraser', rectangle: 'Rectangle', circle: 'Circle',
+                    line: 'Line', text: 'Text'
                 };
                 if (toolStatus) toolStatus.textContent = toolNames[tool] || tool;
-
-                // Update cursor
                 canvas.style.cursor = tool === 'eraser' ? 'cell' : 'crosshair';
-
-                // Remove any text input
                 if (window._textInput && window._textInput.parentNode) {
                     window._textInput.remove();
                     window._textInput = null;
@@ -1912,14 +1870,8 @@
                 colorSwatches.forEach(el => {
                     el.classList.toggle('active', el.dataset.color === color);
                 });
-                // Update custom color picker to match
-                if (customColorPicker) {
-                    customColorPicker.value = color;
-                }
-                // Update size preview color
-                if (sizePreview) {
-                    sizePreview.style.background = color;
-                }
+                if (customColorPicker) customColorPicker.value = color;
+                if (sizePreview) sizePreview.style.background = color;
             }
 
             // ---- Size ----
@@ -1937,33 +1889,24 @@
 
             // ---- Init ----
             function init() {
-                // Initial save
                 ctx.fillStyle = '#ffffff';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 saveState();
-
-                // Set initial tool
                 setTool('pen');
                 setColor('#1a1a2e');
                 setSize(4);
 
-                // ---- Events ----
-                // Mouse events
                 canvas.addEventListener('mousedown', startDraw);
                 canvas.addEventListener('mousemove', draw);
                 canvas.addEventListener('mouseup', endDraw);
                 canvas.addEventListener('mouseleave', endDraw);
-
-                // Touch events
                 canvas.addEventListener('touchstart', startDraw, { passive: false });
                 canvas.addEventListener('touchmove', draw, { passive: false });
                 canvas.addEventListener('touchend', endDraw, { passive: false });
 
-                // ---- Tool buttons ----
                 toolBtns.forEach(btn => {
                     btn.addEventListener('click', function () {
                         setTool(this.dataset.tool);
-                        // If switching from text, clean up
                         if (window._textInput && window._textInput.parentNode) {
                             window._textInput.remove();
                             window._textInput = null;
@@ -1972,32 +1915,27 @@
                     });
                 });
 
-                // ---- Color swatches ----
                 colorSwatches.forEach(el => {
                     el.addEventListener('click', function () {
                         setColor(this.dataset.color);
                     });
                 });
 
-                // ---- Custom color ----
                 if (customColorPicker) {
                     customColorPicker.addEventListener('input', function () {
                         setColor(this.value);
-                        // Update active swatch
                         colorSwatches.forEach(el => {
                             el.classList.toggle('active', el.dataset.color === this.value);
                         });
                     });
                 }
 
-                // ---- Size slider ----
                 if (sizeSlider) {
                     sizeSlider.addEventListener('input', function () {
                         setSize(this.value);
                     });
                 }
 
-                // ---- Undo/Redo ----
                 if (undoBtn) {
                     undoBtn.addEventListener('click', function () {
                         if (historyIndex > 0) {
@@ -2006,6 +1944,7 @@
                         }
                     });
                 }
+
                 if (redoBtn) {
                     redoBtn.addEventListener('click', function () {
                         if (historyIndex < history.length - 1) {
@@ -2015,16 +1954,8 @@
                     });
                 }
 
-                // ---- Keyboard shortcuts ----
                 document.addEventListener('keydown', function (e) {
-                    // Don't trigger if typing in text input
-                    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-                        if (e.key === 'Enter' && e.target.classList.contains('text-input-overlay')) {
-                            // Handled by input's own handler
-                        }
-                        return;
-                    }
-
+                    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
                     const ctrl = e.ctrlKey || e.metaKey;
                     if (ctrl && e.key === 'z') {
                         e.preventDefault();
@@ -2038,22 +1969,14 @@
                             restoreState(historyIndex + 1);
                             showToast('Redo');
                         }
-                    } else if (e.key === 'p' || e.key === 'P') {
-                        setTool('pen');
-                    } else if (e.key === 'e' || e.key === 'E') {
-                        setTool('eraser');
-                    } else if (e.key === 'r' || e.key === 'R') {
-                        setTool('rectangle');
-                    } else if (e.key === 'c' || e.key === 'C') {
-                        setTool('circle');
-                    } else if (e.key === 'l' || e.key === 'L') {
-                        setTool('line');
-                    } else if (e.key === 't' || e.key === 'T') {
-                        setTool('text');
-                    }
+                    } else if (e.key === 'p' || e.key === 'P') setTool('pen');
+                    else if (e.key === 'e' || e.key === 'E') setTool('eraser');
+                    else if (e.key === 'r' || e.key === 'R') setTool('rectangle');
+                    else if (e.key === 'c' || e.key === 'C') setTool('circle');
+                    else if (e.key === 'l' || e.key === 'L') setTool('line');
+                    else if (e.key === 't' || e.key === 'T') setTool('text');
                 });
 
-                // ---- Clear ----
                 if (clearBtn) {
                     clearBtn.addEventListener('click', function () {
                         if (confirm('Clear the entire canvas? This cannot be undone.')) {
@@ -2067,32 +1990,28 @@
                     });
                 }
 
-                // ---- Save ----
                 if (saveBtn) {
                     saveBtn.addEventListener('click', function () {
                         const link = document.createElement('a');
-                        link.download = 'whiteboard-ricalnet-' + new Date().toISOString().slice(0, 10) + '.png';
+                        link.download = 'whiteboard-ricalnet-' + new Date().toISOString().slice(0, 10) +
+                            '.png';
                         link.href = canvas.toDataURL('image/png');
                         link.click();
                         showToast('Image exported');
                     });
                 }
 
-                // ---- Resize ----
                 window.addEventListener('resize', resizeCanvas);
                 resizeCanvas();
-
                 updateHistoryUI();
             }
 
-            // ---- Init on DOM ready ----
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', init);
             } else {
                 init();
             }
 
-            // Expose for debugging
             window.whiteboard = {
                 canvas,
                 ctx,
@@ -2185,7 +2104,8 @@
                         if (el !== sub) {
                             el.classList.remove('open');
                             el.previousElementSibling?.classList.remove('open');
-                            el.previousElementSibling?.setAttribute('aria-expanded', 'false');
+                            el.previousElementSibling?.setAttribute('aria-expanded',
+                                'false');
                         }
                     });
 
@@ -2202,7 +2122,7 @@
             });
 
             document.querySelectorAll('[data-close-mobile]').forEach(link => {
-                link.addEventListener('click', function (e) {
+                link.addEventListener('click', function () {
                     setTimeout(closeMobileMenu, 100);
                 });
             });
@@ -2231,9 +2151,7 @@
             });
         })();
 
-        // ============================================================
-        // ===== FAQ TOGGLE (for consistency) =========================
-        // ============================================================
+        // ===== FAQ TOGGLE (for consistency) =====
         function toggleFaq(element) {
             const answer = element.nextElementSibling;
             const icon = element.querySelector('.faq-icon');
@@ -2256,6 +2174,7 @@
             }
         }
     </script>
+
 </body>
 
 </html>
