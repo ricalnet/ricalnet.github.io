@@ -101,8 +101,9 @@
         }
     </script>
 
-    <!-- AOS CSS -->
+    <!--  CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/navbar.css" />
 
     <style>
         @layer utilities {
@@ -119,40 +120,6 @@
                 backdrop-filter: blur(24px);
                 -webkit-backdrop-filter: blur(24px);
                 border: 1px solid rgba(255, 255, 255, 0.06);
-            }
-
-            .nav-link {
-                position: relative;
-                color: #52506e;
-                font-weight: 500;
-                font-size: 0.875rem;
-                transition: color 0.2s ease;
-                padding: 0.25rem 0;
-            }
-
-            .nav-link:hover {
-                color: #7c3aed;
-            }
-
-            .nav-link::after {
-                content: '';
-                position: absolute;
-                bottom: -2px;
-                left: 0;
-                width: 0;
-                height: 2px;
-                background: #7c3aed;
-                border-radius: 4px;
-                transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            }
-
-            .nav-link:hover::after,
-            .nav-link-active::after {
-                width: 100%;
-            }
-
-            .nav-link-active {
-                color: #7c3aed;
             }
 
             .btn-primary {
@@ -250,6 +217,31 @@
                 gap: 0.375rem;
             }
 
+            .badge-pgp {
+                background: rgba(6, 182, 212, 0.08);
+                color: #0e7490;
+                border: 1px solid rgba(6, 182, 212, 0.15);
+                padding: 0.25rem 0.75rem;
+                border-radius: 9999px;
+                font-size: 0.65rem;
+                font-weight: 600;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.375rem;
+                font-family: monospace;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                user-select: none;
+            }
+
+            .badge-pgp:hover {
+                background: rgba(6, 182, 212, 0.15);
+                border-color: rgba(6, 182, 212, 0.3);
+                transform: translateY(-1px);
+            }
+
             .pgp-fingerprint {
                 font-family: 'Inter', monospace;
                 font-size: 0.7rem;
@@ -307,6 +299,53 @@
                 background-size: 100% 100%, 48px 48px, 48px 48px;
             }
 
+            .faq-answer {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+                opacity: 0;
+            }
+
+            .faq-answer.open {
+                max-height: 500px;
+                opacity: 1;
+            }
+
+            .faq-icon {
+                transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .faq-icon.open {
+                transform: rotate(180deg);
+            }
+
+            .community-address {
+                word-break: break-all;
+                font-size: 0.7rem;
+                font-family: monospace;
+                background: #f5f3fa;
+                padding: 0.25rem 0.5rem;
+                border-radius: 9999px;
+                border: 1px solid #ede9f0;
+                color: #3b3a54;
+            }
+
+            .copy-btn {
+                background: transparent;
+                border: none;
+                color: #9492ae;
+                cursor: pointer;
+                padding: 0.25rem 0.5rem;
+                border-radius: 9999px;
+                transition: all 0.2s;
+                font-size: 0.7rem;
+            }
+
+            .copy-btn:hover {
+                color: #7c3aed;
+                background: #ede9fe;
+            }
+
             .footer-link {
                 color: #52506e;
                 transition: color 0.2s ease;
@@ -344,41 +383,6 @@
                 letter-spacing: 0.1em;
                 margin-bottom: 1.25rem;
                 opacity: 0.7;
-            }
-
-            .dropdown-panel {
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                border: 1px solid rgba(124, 58, 237, 0.08);
-                box-shadow: 0 16px 64px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(124, 58, 237, 0.04);
-                border-radius: 16px;
-                padding: 0.5rem;
-                min-width: 200px;
-                opacity: 0;
-                visibility: hidden;
-                transform: translateY(-8px);
-                transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            }
-
-            .group:hover .dropdown-panel {
-                opacity: 1;
-                visibility: visible;
-                transform: translateY(0);
-            }
-
-            .dropdown-item {
-                display: block;
-                padding: 0.5rem 1rem;
-                border-radius: 10px;
-                color: #52506e;
-                font-size: 0.875rem;
-                transition: all 0.15s ease;
-            }
-
-            .dropdown-item:hover {
-                background: #f5f3fa;
-                color: #7c3aed;
             }
 
             .pillar-icon {
@@ -466,7 +470,8 @@
                         class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
                     <div class="leading-tight hidden sm:block">
                         <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
-                        <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
+                        <span
+                            class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
                             Rights
                             · Infrastructure</span>
                     </div>
@@ -474,7 +479,7 @@
 
                 <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down"
                     data-aos-duration="600">
-                    <a href="index.html#hero" class="nav-link nav-link-active">Home</a>
+                    <a href="index.html#hero" class="nav-link">Home</a>
 
                     <div class="relative group">
                         <a href="index.html#pain-points" class="nav-link flex items-center gap-1">
@@ -486,7 +491,6 @@
                             <a href="index.html#pain-points" class="dropdown-item">Rights at Risk</a>
                             <a href="index.html#how-it-works" class="dropdown-item">Methodology</a>
                             <a href="index.html#features" class="dropdown-item">Sovereign Infrastructure</a>
-                            <a href="about.html" class="dropdown-item">Our Mission</a>
                         </div>
                     </div>
 
@@ -497,9 +501,10 @@
                                 class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
                         <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="resources.html#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                            <a href="resources.html#legal-resources" class="dropdown-item">Legal Resources</a>
+                            <a href="resources.html#in-house-tools" class="dropdown-item">In-House Tools</a>
                             <a href="resources.html" class="dropdown-item">All Resources</a>
-                            <a href="index.html#comparison" class="dropdown-item">Comparison</a>
-                            <a href="index.html#faq" class="dropdown-item">FAQ</a>
                         </div>
                     </div>
                     <div class="relative group">
@@ -513,12 +518,23 @@
                             <a href="tools/password-generator.html" class="dropdown-item">Password Generator</a>
                             <a href="tools/qr-builder.html" class="dropdown-item">QR Builder</a>
                             <a href="tools/whiteboard.html" class="dropdown-item">Whiteboard</a>
-                            <a href="tools.html" class="dropdown-item">All Tools</a>
+                            <a href="resources.html#privacy-tools" class="dropdown-item">All Tools</a>
                         </div>
                     </div>
-
-                    <a href="index.html#cta" class="nav-link">Contact</a>
-                    <a href="about.html#cta-support" class="nav-link">Support</a>
+                    <div class="relative group">
+                        <a href="about.html#hero" class="nav-link nav-link-active flex items-center gap-1">
+                            About
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="about.html#our-mission" class="dropdown-item">Our Mission</a>
+                            <a href="index.html#comparison" class="dropdown-item">Comparison</a>
+                            <a href="index.html#faq" class="dropdown-item">FAQ</a>
+                            <a href="index.html#cta" class="dropdown-item">Contact</a>
+                            <a href="about.html#cta-support" class="dropdown-item">Support Us</a>
+                        </div>
+                    </div>
                 </nav>
 
                 <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
@@ -537,9 +553,159 @@
     </header>
 
     <!-- ============================================================ -->
+    <!-- ===== MOBILE NAV =========================================== -->
+    <!-- ============================================================ -->
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <img src="img/logo.png" alt="Ricalnet" />
+                <span>Ricalnet</span>
+            </div>
+            <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu-scroll">
+
+            <a href="index.html#hero" class="nav-item" data-close-mobile>
+                <i class="fas fa-home"></i> Home
+            </a>
+
+            <!-- ===== ADVOCACY DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-advocacy">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Advocacy
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="index.html#pain-points" class="sub-link" data-close-mobile>
+                        <i class="fas fa-exclamation-triangle"></i> Rights at Risk
+                    </a>
+                    <a href="index.html#how-it-works" class="sub-link" data-close-mobile>
+                        <i class="fas fa-route"></i> Methodology
+                    </a>
+                    <a href="index.html#features" class="sub-link" data-close-mobile>
+                        <i class="fas fa-star"></i> Sovereign Infrastructure
+                    </a>
+                </div>
+            </div>
+
+            <!-- ===== RESOURCES DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-resources">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="resources.html#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-lock"></i> Privacy Tools
+                    </a>
+                    <a href="resources.html#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal Resources
+                    </a>
+                    <a href="resources.html#in-house-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-cubes"></i> In-House Tools
+                    </a>
+                    <a href="resources.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-folder-open"></i> All Resources
+                    </a>
+                </div>
+            </div>
+
+            <!-- ===== TOOLS DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-tools">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="tools/ip-intelligence.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> IP Intelligence
+                    </a>
+                    <a href="tools/password-generator.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-key"></i> Password Generator
+                    </a>
+                    <a href="tools/qr-builder.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> QR Builder
+                    </a>
+                    <a href="tools/whiteboard.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-pen-fancy"></i> Whiteboard
+                    </a>
+                    <a href="resources.html#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-shield-alt"></i> All Tools
+                    </a>
+                </div>
+            </div>
+
+            <!-- ===== ABOUT DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-about">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="about.html#our-mission" class="sub-link" data-close-mobile>
+                        <i class="fas fa-bullseye"></i> Our Mission
+                    </a>
+                    <a href="index.html#comparison" class="sub-link" data-close-mobile>
+                        <i class="fas fa-arrows-left-right"></i> Comparison
+                    </a>
+                    <a href="index.html#faq" class="sub-link" data-close-mobile>
+                        <i class="fas fa-question-circle"></i> FAQ
+                    </a>
+                    <a href="index.html#cta" class="sub-link" data-close-mobile>
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                    <a href="about.html#cta-support" class="sub-link" data-close-mobile>
+                        <i class="fas fa-hand-holding-heart"></i> Support Us
+                    </a>
+                </div>
+            </div>
+
+            <div class="mobile-menu-divider"></div>
+
+            <a href="https://auth.ricalnet.my.id" class="mt-3 block w-full text-center btn-sso justify-center"
+                data-close-mobile>
+                <i class="fas fa-key"></i> Login with SSO
+            </a>
+
+            <div
+                class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+                <span
+                    class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+                    <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> Digital Sovereignty · Privacy-First
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
     <!-- ===== 1. ABOUT HERO ===== -->
     <!-- ============================================================ -->
-    <section class="relative overflow-hidden pt-[72px] pb-20 md:pt-24 md:pb-32 bg-surface-light">
+    <section id="hero" class="relative overflow-hidden pt-[72px] pb-20 md:pt-24 md:pb-32 bg-surface-light">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
@@ -586,7 +752,7 @@
                         <div class="absolute inset-0 bg-tor-violet/10 rounded-full blur-3xl scale-90"></div>
                         <div
                             class="relative glass-card rounded-3xl p-2 shadow-elevated-lg border border-tor-violet/10 overflow-hidden">
-                            <img src="img/section/boy.png" alt="Ricalnet — building sovereign digital infrastructure"
+                            <img src="img/section/freedom.png" alt="Ricalnet — building sovereign digital infrastructure"
                                 class="rounded-2xl w-full h-auto object-cover img-shadow-soft" />
                             <div class="absolute bottom-4 left-4 right-4 flex flex-wrap justify-between gap-2">
                                 <span
@@ -698,7 +864,7 @@
                 <div data-aos="fade-up" data-aos-delay="0"
                     class="bg-white rounded-3xl overflow-hidden shadow-elevated border border-surface-border/60 card-hover group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="img/backgrounds/data-sovereignty.jpg" alt="Data Sovereignty"
+                        <img src="img/section/data-sovereignty.png" alt="Data Sovereignty"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-tor-violet/70 via-tor-violet/20 to-transparent">
@@ -734,7 +900,7 @@
                 <div data-aos="fade-up" data-aos-delay="150"
                     class="bg-white rounded-3xl overflow-hidden shadow-elevated border border-surface-border/60 card-hover group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="img/backgrounds/identity-access.jpg" alt="Identity & Access Sovereignty"
+                        <img src="img/section/identity-access.png" alt="Identity & Access Sovereignty"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-tor-violet/70 via-tor-violet/20 to-transparent">
@@ -769,7 +935,7 @@
                 <div data-aos="fade-up" data-aos-delay="300"
                     class="bg-white rounded-3xl overflow-hidden shadow-elevated border border-surface-border/60 card-hover group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="img/backgrounds/operational.jpg" alt="Operational Sovereignty"
+                        <img src="img/section/monitoring.png" alt="Operational Sovereignty"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-tor-violet/70 via-tor-violet/20 to-transparent">
@@ -919,7 +1085,8 @@
                         <span class="badge-pill"><i class="fas fa-microphone"></i> Founder's Story</span>
                     </div>
                     <h3 class="text-3xl font-bold text-text-primary">Risnanda Pascal</h3>
-                    <p class="text-text-secondary text-lg font-medium mt-1">Founder &amp; Infrastructure Security Engineer</p>
+                    <p class="text-text-secondary text-lg font-medium mt-1">Founder &amp; Infrastructure Security
+                        Engineer</p>
 
                     <div class="mt-6 relative pl-6 founder-quote">
                         <p class="text-text-secondary text-lg leading-relaxed italic">
@@ -1009,7 +1176,8 @@
             <div
                 class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-tor-violet/[0.04] rounded-full blur-[120px]">
             </div>
-            <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-cyan-400/[0.03] rounded-full blur-[140px]"></div>
+            <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-cyan-400/[0.03] rounded-full blur-[140px]">
+            </div>
         </div>
 
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1032,7 +1200,8 @@
                             </span>
                         </div>
 
-                        <h2 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.08] tracking-tight">
+                        <h2
+                            class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.08] tracking-tight">
                             <span class="text-text-primary">Help us provide </span>
                             <span class="text-tor-violet">access to sovereign</span>
                             <span class="text-text-primary">digital resources </span>
@@ -1047,7 +1216,7 @@
                         </p>
 
                         <div class="flex flex-wrap items-center gap-4 mt-8">
-                            <a href="#support-options" class="btn-primary text-white shadow-glow-tor">
+                            <a href="mailto:ricalnet@duck.com?subject=Support%20Ricalnet" class="btn-primary text-white shadow-glow-tor">
                                 <i class="fas fa-arrow-right"></i> Support Now
                             </a>
                             <a href="#pillars" class="btn-secondary border-tor-violet/10 hover:border-tor-violet/30">
@@ -1138,7 +1307,8 @@
 
                                     <!-- Support options -->
                                     <div id="support-options" class="mt-6 pt-6 border-t border-surface-border/60">
-                                        <p class="text-xs font-semibold text-text-muted uppercase tracking-widest mb-3">Ways
+                                        <p class="text-xs font-semibold text-text-muted uppercase tracking-widest mb-3">
+                                            Ways
                                             to Support</p>
                                         <div class="flex flex-wrap gap-3">
                                             <a href="https://github.com/ricalnet" target="_blank" rel="noopener"
@@ -1187,7 +1357,8 @@
         <div
             class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
         </div>
-        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+        <div
+            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
         </div>
         <div
             class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
@@ -1195,7 +1366,8 @@
 
         <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
 
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+            <div
+                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
 
                 <div class="col-span-2 md:col-span-3 lg:col-span-1">
                     <div class="flex items-center gap-3 mb-4">
@@ -1274,7 +1446,8 @@
                 <div>
                     <h4 class="footer-heading text-text-primary/60">Legal</h4>
                     <ul class="space-y-2.5">
-                        <li><a href="https://cloud.ricalnet.my.id/s/H9SM2rJ2M9NfQaq" class="footer-link">Legal Resources</a>
+                        <li><a href="https://cloud.ricalnet.my.id/s/H9SM2rJ2M9NfQaq" class="footer-link">Legal
+                                Resources</a>
                         </li>
                         <li><a href="terms-of-service.html" class="footer-link">Terms of Service</a></li>
                         <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
@@ -1361,21 +1534,8 @@
                 showToast('Address copied!');
             });
         }
-    </script>
 
-    <script>
-        const toggle = document.getElementById('mobile-menu-toggle');
-        const menu = document.getElementById('mobile-menu');
-        if (toggle && menu) {
-            toggle.addEventListener('click', function () {
-                const expanded = this.getAttribute('aria-expanded') === 'true' ? false : true;
-                this.setAttribute('aria-expanded', expanded);
-                menu.style.maxHeight = expanded ? menu.scrollHeight + 'px' : '0';
-            });
-        }
-    </script>
-
-    <script>
+        // ---- Smooth anchor scroll ----
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
@@ -1384,16 +1544,15 @@
                 const target = document.querySelector(href);
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    const menu = document.getElementById('mobile-menu');
-                    const toggle = document.getElementById('mobile-menu-toggle');
-                    if (menu && toggle && toggle.getAttribute('aria-expanded') === 'true') {
-                        toggle.setAttribute('aria-expanded', 'false');
-                        menu.style.maxHeight = '0';
+                    if (mobileMenu && mobileMenu.classList.contains('open')) {
+                        closeMobileMenu();
                     }
                 }
             });
         });
     </script>
+    
+    <script src="assets/js/navbar.js"></script>
 
 </body>
 
