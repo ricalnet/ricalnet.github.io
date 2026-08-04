@@ -107,6 +107,7 @@
   <!-- CSS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/navbar.css" />
+  <link rel="stylesheet" href="assets/css/footer.css" />
 
   <style>
     @layer utilities {
@@ -304,45 +305,6 @@
           linear-gradient(rgba(124, 58, 237, 0.02) 1px, transparent 1px),
           linear-gradient(90deg, rgba(124, 58, 237, 0.02) 1px, transparent 1px);
         background-size: 100% 100%, 48px 48px, 48px 48px;
-      }
-
-      .footer-link {
-        color: #52506e;
-        transition: color 0.2s ease;
-        font-size: 0.875rem;
-        font-weight: 450;
-        text-decoration: none;
-        position: relative;
-      }
-
-      .footer-link:hover {
-        color: #7c3aed;
-      }
-
-      .footer-link::after {
-        content: '';
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 0;
-        height: 1.5px;
-        background: #7c3aed;
-        border-radius: 4px;
-        transition: width 0.25s ease;
-      }
-
-      .footer-link:hover::after {
-        width: 100%;
-      }
-
-      .footer-heading {
-        color: #0f0e1a;
-        font-weight: 600;
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-bottom: 1.25rem;
-        opacity: 0.7;
       }
 
       ::-webkit-scrollbar {
@@ -1093,14 +1055,13 @@
     </div>
     <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
     </div>
-    <div
-      class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
     </div>
-
+  
     <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-
+  
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
-
+  
         <div class="col-span-2 md:col-span-3 lg:col-span-1">
           <div class="flex items-center gap-3 mb-4">
             <div class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
@@ -1136,18 +1097,18 @@
             </span>
           </div>
         </div>
-
+  
         <div>
           <h4 class="footer-heading text-text-primary/60">Advocacy</h4>
           <ul class="space-y-2.5">
             <li><a href="about.html#our-mission" class="footer-link">Our Mission</a></li>
-            <li><a href="resource.html" class="footer-link">Resources</a></li>
-            <li><a href="coaching.html" class="footer-link">Gallery</a></li>
-            <li><a href="docs.ricalnet.my.id" class="footer-link">Blog</a></li>
+            <li><a href="resources.html" class="footer-link">Resources</a></li>
+            <li><a href="gallery.html" class="footer-link">Gallery</a></li>
+            <li><a href="https://docs.riclanet.my.id" class="footer-link">Blog</a></li>
             <li><a href="index.html#cta" class="footer-link">Contact</a></li>
           </ul>
         </div>
-
+  
         <div>
           <h4 class="footer-heading text-text-primary/60">Infrastructure</h4>
           <ul class="space-y-2.5">
@@ -1158,7 +1119,7 @@
             <li><a href="https://translate.ricalnet.my.id" class="footer-link">Translation</a></li>
           </ul>
         </div>
-
+  
         <div>
           <h4 class="footer-heading text-text-primary/60">Community</h4>
           <ul class="space-y-2.5">
@@ -1170,7 +1131,7 @@
             <li><a href="https://status.ricalnet.my.id" class="footer-link">Status</a></li>
           </ul>
         </div>
-
+  
         <div>
           <h4 class="footer-heading text-text-primary/60">Legal</h4>
           <ul class="space-y-2.5">
@@ -1179,9 +1140,9 @@
             <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
           </ul>
         </div>
-
+  
       </div>
-
+  
       <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
         <p class="text-xs tracking-wide"> COPYRIGHT (CC BY)</p>
         <div class="flex items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
@@ -1200,7 +1161,7 @@
           </span>
         </div>
       </div>
-
+  
     </div>
   </footer>
 
@@ -1276,6 +1237,7 @@
   </script>
 
   <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/footer.js"></script>
 
 </body>
 
