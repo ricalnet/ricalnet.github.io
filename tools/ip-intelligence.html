@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>IP Intelligence — Ricalnet · Digital Sovereignty</title>
+    <meta name="description"
+        content="Enterprise-grade IP intelligence and geolocation lookup. Identify IP addresses, network details, and geographical data with precision." />
+    <link rel="icon" type="image/x-icon" href="../img/logo.png" />
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 220px;
+            width: 100%;
+            border-radius: 1rem;
+            border: 1px solid rgba(124, 58, 237, 0.08);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
+        }
+
+        #map:hover {
+            box-shadow: 0 8px 40px rgba(124, 58, 237, 0.06);
+        }
+
+        .leaflet-control-attribution {
+            font-size: 0.6rem;
+            color: #9492ae;
+        }
+
+        .leaflet-popup-content-wrapper {
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+        }
+
+        .leaflet-popup-content {
+            padding: 0.6rem 1rem;
+        }
+
+        .leaflet-popup-content strong {
+            color: #0f0e1a;
+        }
+    </style>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { inter: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        tor: {
+                            violet: '#7c3aed',
+                            'violet-light': '#8b5cf6',
+                            'violet-dark': '#5b21b6',
+                            'violet-deep': '#4c1d95',
+                            'violet-soft': '#ede9fe',
+                            accent: '#68B030',
+                            'accent-cyan': '#06b6d4',
+                            'accent-amber': '#f59e0b',
+                        },
+                        surface: {
+                            light: '#faf9fe',
+                            card: '#ffffff',
+                            border: '#ede9f0',
+                            muted: '#f5f3fa',
+                            dark: '#0f0e1a',
+                        },
+                        text: {
+                            primary: '#0f0e1a',
+                            secondary: '#52506e',
+                            muted: '#9492ae',
+                            inverse: '#f8f7fc',
+                        }
+                    },
+                    boxShadow: {
+                        'elevated': '0 1px 3px rgba(0,0,0,0.02), 0 8px 40px rgba(124,58,237,0.06), 0 20px 80px rgba(124,58,237,0.04)',
+                        'elevated-lg': '0 1px 3px rgba(0,0,0,0.02), 0 16px 64px rgba(124,58,237,0.08), 0 32px 120px rgba(124,58,237,0.04)',
+                        'glow': '0 0 60px rgba(124,58,237,0.06)',
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-down': 'fadeDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-right': 'fadeRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-left': 'fadeLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'scale-in': 'scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeUp: { '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        fadeDown: { '0%': { opacity: '0', transform: 'translateY(-40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        fadeRight: { '0%': { opacity: '0', transform: 'translateX(-40px)' }, '100%': { opacity: '1', transform: 'translateX(0)' } },
+                        fadeLeft: { '0%': { opacity: '0', transform: 'translateX(40px)' }, '100%': { opacity: '1', transform: 'translateX(0)' } },
+                        scaleIn: { '0%': { opacity: '0', transform: 'scale(0.94)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-14px)' } },
+                        pulseSoft: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0.6' } },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <style>
+        @layer utilities {
+            .glass-card {
+                background: rgba(255, 255, 255, 0.72);
+                backdrop-filter: blur(24px);
+                -webkit-backdrop-filter: blur(24px);
+                border: 1px solid rgba(124, 58, 237, 0.08);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 8px 40px rgba(124, 58, 237, 0.04);
+            }
+
+            .glass-card-dark {
+                background: rgba(15, 14, 26, 0.6);
+                backdrop-filter: blur(24px);
+                -webkit-backdrop-filter: blur(24px);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+            }
+
+            .nav-link {
+                position: relative;
+                color: #52506e;
+                font-weight: 500;
+                font-size: 0.875rem;
+                transition: color 0.2s ease;
+                padding: 0.25rem 0;
+            }
+
+            .nav-link:hover {
+                color: #7c3aed;
+            }
+
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: #7c3aed;
+                border-radius: 4px;
+                transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .nav-link:hover::after,
+            .nav-link-active::after {
+                width: 100%;
+            }
+
+            .nav-link-active {
+                color: #7c3aed;
+            }
+
+            .btn-primary {
+                background: #7c3aed;
+                color: white;
+                font-weight: 600;
+                padding: 0.75rem 2rem;
+                border-radius: 9999px;
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 0 4px 24px rgba(124, 58, 237, 0.2);
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 0.9375rem;
+                border: none;
+                cursor: pointer;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 40px rgba(124, 58, 237, 0.3);
+                background: #5b21b6;
+            }
+
+            .btn-secondary {
+                background: rgba(255, 255, 255, 0.9);
+                color: #0f0e1a;
+                font-weight: 500;
+                padding: 0.75rem 2rem;
+                border-radius: 9999px;
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                border: 1px solid rgba(124, 58, 237, 0.08);
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 0.9375rem;
+                cursor: pointer;
+            }
+
+            .btn-secondary:hover {
+                background: white;
+                border-color: rgba(124, 58, 237, 0.2);
+                box-shadow: 0 4px 24px rgba(124, 58, 237, 0.04);
+                transform: translateY(-2px);
+            }
+
+            .btn-sso {
+                background: #ede9fe;
+                color: #5b21b6;
+                font-weight: 600;
+                padding: 0.5rem 1.25rem;
+                border-radius: 9999px;
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                border: 1px solid #c4b5fd;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 0.875rem;
+                cursor: pointer;
+            }
+
+            .btn-sso:hover {
+                background: #d8cdfa;
+                border-color: #7c3aed;
+                transform: translateY(-2px);
+            }
+
+            .section-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                background: rgba(124, 58, 237, 0.06);
+                border: 1px solid rgba(124, 58, 237, 0.08);
+                padding: 0.375rem 1rem;
+                border-radius: 9999px;
+                font-size: 0.7rem;
+                font-weight: 600;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                color: #5b21b6;
+            }
+
+            .badge-pill {
+                background: rgba(124, 58, 237, 0.08);
+                color: #5b21b6;
+                border: 1px solid rgba(124, 58, 237, 0.12);
+                padding: 0.25rem 0.75rem;
+                border-radius: 9999px;
+                font-size: 0.65rem;
+                font-weight: 600;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.375rem;
+            }
+
+            .badge-pgp {
+                background: rgba(6, 182, 212, 0.08);
+                color: #0e7490;
+                border: 1px solid rgba(6, 182, 212, 0.15);
+                padding: 0.25rem 0.75rem;
+                border-radius: 9999px;
+                font-size: 0.65rem;
+                font-weight: 600;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.375rem;
+                font-family: monospace;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                user-select: none;
+            }
+
+            .badge-pgp:hover {
+                background: rgba(6, 182, 212, 0.15);
+                border-color: rgba(6, 182, 212, 0.3);
+                transform: translateY(-1px);
+            }
+
+            .pgp-fingerprint {
+                font-family: 'Inter', monospace;
+                font-size: 0.7rem;
+                letter-spacing: 0.02em;
+                background: #f5f3fa;
+                padding: 0.2rem 0.6rem;
+                border-radius: 9999px;
+                border: 1px solid #ede9f0;
+                color: #3b3a54;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                white-space: nowrap;
+            }
+
+            .pgp-fingerprint:hover {
+                background: #ede9fe;
+                border-color: #c4b5fd;
+            }
+
+            .pgp-fingerprint .copy-hint {
+                font-size: 0.55rem;
+                opacity: 0.5;
+                font-weight: 400;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+            }
+
+            .pgp-fingerprint .copy-hint:hover {
+                opacity: 1;
+            }
+
+            .card-hover {
+                transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .card-hover:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 16px 64px rgba(124, 58, 237, 0.06), 0 32px 120px rgba(124, 58, 237, 0.04);
+                border-color: rgba(124, 58, 237, 0.15);
+            }
+
+            .bg-grid-subtle {
+                background-image: radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.02) 0%, transparent 60%),
+                    linear-gradient(rgba(124, 58, 237, 0.02) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(124, 58, 237, 0.02) 1px, transparent 1px);
+                background-size: 100% 100%, 48px 48px, 48px 48px;
+            }
+
+            .footer-link {
+                color: #52506e;
+                transition: color 0.2s ease;
+                font-size: 0.875rem;
+                font-weight: 450;
+                text-decoration: none;
+                position: relative;
+            }
+
+            .footer-link:hover {
+                color: #7c3aed;
+            }
+
+            .footer-link::after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 0;
+                height: 1.5px;
+                background: #7c3aed;
+                border-radius: 4px;
+                transition: width 0.25s ease;
+            }
+
+            .footer-link:hover::after {
+                width: 100%;
+            }
+
+            .footer-heading {
+                color: #0f0e1a;
+                font-weight: 600;
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                margin-bottom: 1.25rem;
+                opacity: 0.7;
+            }
+
+            .dropdown-panel {
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(124, 58, 237, 0.08);
+                box-shadow: 0 16px 64px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(124, 58, 237, 0.04);
+                border-radius: 16px;
+                padding: 0.5rem;
+                min-width: 200px;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-8px);
+                transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .group:hover .dropdown-panel {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .dropdown-item {
+                display: block;
+                padding: 0.5rem 1rem;
+                border-radius: 10px;
+                color: #52506e;
+                font-size: 0.875rem;
+                transition: all 0.15s ease;
+            }
+
+            .dropdown-item:hover {
+                background: #f5f3fa;
+                color: #7c3aed;
+            }
+
+            ::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #f5f3fa;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #c4b5fd;
+                border-radius: 8px;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #7c3aed;
+            }
+
+            html,
+            body {
+                overflow-x: hidden;
+                max-width: 100%;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            #mobile-menu {
+                position: fixed;
+                inset: 0;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                height: 100dvh;
+                z-index: 40;
+                background: rgba(255, 255, 255, 0.72);
+                backdrop-filter: blur(28px) saturate(1.4);
+                -webkit-backdrop-filter: blur(28px) saturate(1.4);
+                border: none;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+                visibility: hidden;
+                transform: none;
+            }
+
+            #mobile-menu.open {
+                pointer-events: auto;
+                opacity: 1;
+                visibility: visible;
+            }
+
+            #mobile-menu .mobile-menu-scroll {
+                flex: 1 1 auto;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                padding: 1rem 1.25rem 2rem;
+                scroll-behavior: smooth;
+            }
+
+            #mobile-menu .mobile-menu-scroll::-webkit-scrollbar {
+                width: 4px;
+            }
+
+            #mobile-menu .mobile-menu-scroll::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            #mobile-menu .mobile-menu-scroll::-webkit-scrollbar-thumb {
+                background: rgba(124, 58, 237, 0.3);
+                border-radius: 8px;
+            }
+
+            #mobile-menu .mobile-menu-scroll::-webkit-scrollbar-thumb:hover {
+                background: rgba(124, 58, 237, 0.5);
+            }
+
+            #mobile-menu .mobile-menu-scroll {
+                scrollbar-width: thin;
+                scrollbar-color: rgba(124, 58, 237, 0.3) transparent;
+            }
+
+            .mobile-menu-close {
+                position: absolute;
+                top: 0.75rem;
+                right: 1rem;
+                z-index: 5;
+                width: 2.75rem;
+                height: 2.75rem;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.6);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                border: 1px solid rgba(124, 58, 237, 0.08);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #0f0e1a;
+                font-size: 1.25rem;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            }
+
+            .mobile-menu-close:hover {
+                background: rgba(255, 255, 255, 0.9);
+                border-color: rgba(124, 58, 237, 0.2);
+                transform: scale(1.05);
+            }
+
+            .mobile-menu-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0.75rem 1.25rem;
+                border-bottom: 1px solid rgba(124, 58, 237, 0.06);
+                flex-shrink: 0;
+            }
+
+            .mobile-menu-header .logo {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+            }
+
+            .mobile-menu-header .logo img {
+                width: 2.25rem;
+                height: 2.25rem;
+                border-radius: 50%;
+                object-fit: cover;
+                ring: 2px solid rgba(124, 58, 237, 0.15);
+            }
+
+            .mobile-menu-header .logo span {
+                font-weight: 700;
+                font-size: 1rem;
+                color: #0f0e1a;
+                letter-spacing: -0.02em;
+            }
+
+            #mobile-menu::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                z-index: 0;
+                background:
+                    radial-gradient(circle at 20% 10%, rgba(124, 58, 237, 0.06) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 90%, rgba(6, 182, 212, 0.04) 0%, transparent 50%);
+            }
+
+            #mobile-menu>* {
+                position: relative;
+                z-index: 1;
+            }
+
+            .mobile-menu-scroll .nav-item {
+                font-size: 1.05rem;
+                font-weight: 550;
+                padding: 0.7rem 0.75rem;
+                border-radius: 12px;
+                transition: all 0.15s ease;
+                color: #0f0e1a;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .mobile-menu-scroll .nav-item:hover {
+                background: rgba(124, 58, 237, 0.06);
+                color: #7c3aed;
+            }
+
+            .mobile-menu-scroll .nav-item i {
+                width: 1.25rem;
+                color: #7c3aed;
+                font-size: 0.9rem;
+            }
+
+            .mobile-menu-scroll .sub-link {
+                font-size: 0.9rem;
+                font-weight: 450;
+                padding: 0.5rem 0.75rem;
+                border-radius: 10px;
+                color: #52506e;
+                transition: all 0.15s ease;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .mobile-menu-scroll .sub-link:hover {
+                background: rgba(124, 58, 237, 0.06);
+                color: #7c3aed;
+            }
+
+            .mobile-menu-scroll .sub-link i {
+                width: 1rem;
+                font-size: 0.75rem;
+                color: #9492ae;
+            }
+
+            .mobile-menu-divider {
+                height: 1px;
+                background: linear-gradient(to right, transparent, rgba(124, 58, 237, 0.08), transparent);
+                margin: 0.5rem 0;
+            }
+
+            @media (max-width: 480px) {
+                .mobile-menu-scroll .nav-item {
+                    font-size: 0.95rem;
+                    padding: 0.6rem 0.6rem;
+                }
+
+                .mobile-menu-scroll .sub-link {
+                    font-size: 0.82rem;
+                    padding: 0.4rem 0.6rem;
+                }
+
+                #mobile-menu .mobile-menu-scroll {
+                    padding: 0.75rem 1rem 1.5rem;
+                }
+
+                .mobile-menu-close {
+                    width: 2.25rem;
+                    height: 2.25rem;
+                    font-size: 1rem;
+                    top: 0.6rem;
+                    right: 0.75rem;
+                }
+
+                .mobile-menu-header {
+                    padding: 0.6rem 1rem;
+                }
+
+                .mobile-menu-header .logo img {
+                    width: 1.75rem;
+                    height: 1.75rem;
+                }
+
+                .mobile-menu-header .logo span {
+                    font-size: 0.85rem;
+                }
+            }
+
+            @media (min-width: 768px) {
+                #mobile-menu .mobile-menu-scroll {
+                    padding: 1.5rem 2.5rem 2.5rem;
+                }
+
+                .mobile-menu-scroll .nav-item {
+                    font-size: 1.15rem;
+                    padding: 0.8rem 1rem;
+                }
+
+                .mobile-menu-scroll .sub-link {
+                    font-size: 0.95rem;
+                    padding: 0.55rem 1rem;
+                }
+            }
+
+            @media (min-width: 1024px) {
+                #mobile-menu {
+                    display: none !important;
+                }
+            }
+
+            body.menu-open {
+                overflow: hidden;
+            }
+
+            /* ---- IP Intelligence specific styles ---- */
+            .result-card {
+                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .result-card .label {
+                font-size: 0.6rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+                color: #9492ae;
+            }
+
+            .result-card .value {
+                font-size: 0.95rem;
+                font-weight: 500;
+                color: #0f0e1a;
+                word-break: break-word;
+            }
+
+            .result-card .value-mono {
+                font-family: 'Inter', monospace;
+                font-size: 0.85rem;
+                font-weight: 450;
+                color: #0f0e1a;
+            }
+
+            .ip-display {
+                font-family: 'Inter', monospace;
+                font-size: 1.8rem;
+                font-weight: 700;
+                letter-spacing: -0.02em;
+                color: #0f0e1a;
+            }
+
+            .ip-display-small {
+                font-family: 'Inter', monospace;
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #0f0e1a;
+            }
+
+            .loader {
+                width: 36px;
+                height: 36px;
+                border: 3px solid #ede9f0;
+                border-top-color: #7c3aed;
+                border-radius: 50%;
+                animation: spin 0.8s linear infinite;
+            }
+
+            @keyframes spin {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .copy-btn-ip {
+                background: transparent;
+                border: none;
+                color: #9492ae;
+                cursor: pointer;
+                padding: 0.25rem 0.5rem;
+                border-radius: 9999px;
+                transition: all 0.2s;
+                font-size: 0.7rem;
+            }
+
+            .copy-btn-ip:hover {
+                color: #7c3aed;
+                background: #ede9fe;
+            }
+
+            .glow-pulse {
+                animation: glowPulse 2.5s ease-in-out infinite;
+            }
+
+            @keyframes glowPulse {
+
+                0%,
+                100% {
+                    box-shadow: 0 0 20px rgba(124, 58, 237, 0.05);
+                }
+
+                50% {
+                    box-shadow: 0 0 40px rgba(124, 58, 237, 0.15);
+                }
+            }
+    </style>
+</head>
+
+<body
+    class="font-inter bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+
+    <!-- ===== AMBIENT BG ===== -->
+    <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div class="absolute inset-0 bg-grid-subtle"></div>
+        <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/5 rounded-full blur-[160px]"></div>
+        <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/3 rounded-full blur-[180px]"></div>
+        <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/4 rounded-full blur-[140px]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light"></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ===== NAVBAR =============================================== -->
+    <!-- ============================================================ -->
+    <header
+        class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-[72px]">
+
+                <a href="../index.html" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+                    data-aos-duration="600">
+                    <img src="../img/logo.png" alt="Ricalnet Logo"
+                        class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
+                    <div class="leading-tight hidden sm:block">
+                        <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
+                        <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
+                            Rights
+                            · Infrastructure</span>
+                    </div>
+                </a>
+
+                <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down"
+                    data-aos-duration="600">
+                    <a href="../index.html#hero" class="nav-link nav-link-active">Home</a>
+
+                    <div class="relative group">
+                        <a href="../index.html#pain-points" class="nav-link flex items-center gap-1">
+                            Advocacy
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../index.html#pain-points" class="dropdown-item">Rights at Risk</a>
+                            <a href="../index.html#how-it-works" class="dropdown-item">Methodology</a>
+                            <a href="../index.html#features" class="dropdown-item">Sovereign Infrastructure</a>
+                            <a href="../about.html" class="dropdown-item">Our Mission</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <a href="../index.html#resources" class="nav-link flex items-center gap-1">
+                            Resources
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../resources.html" class="dropdown-item">All Resources</a>
+                            <a href="../index.html#comparison" class="dropdown-item">Comparison</a>
+                            <a href="../index.html#faq" class="dropdown-item">FAQ</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="../index.html#resources" class="nav-link flex items-center gap-1">
+                            Tools
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../tools/ip-intelligence.html" class="dropdown-item">IP Intelligence</a>
+                            <a href="../tools/password-generator.html" class="dropdown-item">Password Generator</a>
+                            <a href="../tools/qr-builder.html" class="dropdown-item">QR Builder</a>
+                            <a href="../tools/whiteboard.html" class="dropdown-item">Whiteboard</a>
+                            <a href="../tools.html" class="dropdown-item">All Tools</a>
+                        </div>
+                    </div>
+
+                    <a href="../index.html#cta" class="nav-link">Contact</a>
+                    <a href="../about.html#cta-support" class="nav-link">Support</a>
+                </nav>
+
+                <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
+                    <a href="https://auth.ricalnet.my.id" class="hidden lg:inline-flex btn-sso">
+                        <i class="fas fa-key"></i> Login with SSO
+                    </a>
+                    <button id="mobile-menu-toggle"
+                        class="lg:hidden w-9 h-9 rounded-full hover:bg-surface-muted flex items-center justify-center transition-colors"
+                        aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars text-text-secondary text-lg"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- ===== MOBILE NAV =========================================== -->
+    <!-- ============================================================ -->
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <img src="../img/logo.png" alt="Ricalnet" />
+                <span>Ricalnet</span>
+            </div>
+            <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu-scroll">
+
+            <a href="../index.html#hero" class="nav-item" data-close-mobile>
+                <i class="fas fa-home"></i> Home
+            </a>
+
+            <!-- ===== ADVOCACY DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-advocacy">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Advocacy
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../index.html#pain-points" class="sub-link" data-close-mobile>
+                        <i class="fas fa-exclamation-triangle"></i> Rights at Risk
+                    </a>
+                    <a href="../index.html#how-it-works" class="sub-link" data-close-mobile>
+                        <i class="fas fa-route"></i> Methodology
+                    </a>
+                    <a href="../index.html#features" class="sub-link" data-close-mobile>
+                        <i class="fas fa-star"></i> Sovereign Infrastructure
+                    </a>
+                    <a href="../about.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-bullseye"></i> Our Mission
+                    </a>
+                </div>
+            </div>
+
+            <!-- ===== RESOURCES DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-resources">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../resources.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-cubes"></i> All Resources
+                    </a>
+                    <a href="../index.html#comparison" class="sub-link" data-close-mobile>
+                        <i class="fas fa-arrows-left-right"></i> Comparison
+                    </a>
+                    <a href="../index.html#faq" class="sub-link" data-close-mobile>
+                        <i class="fas fa-question-circle"></i> FAQ
+                    </a>
+                </div>
+            </div>
+
+            <!-- ===== TOOLS DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-tools">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../tools/ip-intelligence.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> IP Intelligence
+                    </a>
+                    <a href="../tools/password-generator.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-key"></i> Password Generator
+                    </a>
+                    <a href="../tools/qr-builder.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> QR Builder
+                    </a>
+                    <a href="../tools/whiteboard.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-pen-fancy"></i> Whiteboard
+                    </a>
+                    <a href="../tools.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-shield-alt"></i> All Tools
+                    </a>
+                </div>
+            </div>
+
+            <div class="mobile-menu-divider"></div>
+
+            <a href="../index.html#cta" class="nav-item" data-close-mobile>
+                <i class="fas fa-envelope"></i> Contact
+            </a>
+            <a href="../about.html#cta-support" class="nav-item" data-close-mobile>
+                <i class="fas fa-hand-holding-heart"></i> Support
+            </a>
+
+            <a href="https://auth.ricalnet.my.id" class="mt-3 block w-full text-center btn-sso justify-center"
+                data-close-mobile>
+                <i class="fas fa-key"></i> Login with SSO
+            </a>
+
+            <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+                <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+                    <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> Digital Sovereignty · Privacy-First
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ===== HERO — IP INTELLIGENCE ================================ -->
+    <!-- ============================================================ -->
+    <section class="relative overflow-hidden pt-[72px] pb-8 md:pt-24 md:pb-12 bg-surface-light">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto" data-aos="fade-up" data-aos-duration="700">
+                <span class="section-badge"><i class="fas fa-map-pin"></i> IP Intelligence</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mt-5 leading-[1.08] tracking-tight">
+                    <span class="text-text-primary">Network </span>
+                    <span class="text-tor-violet">Intelligence</span>
+                </h1>
+                <p class="text-text-secondary text-lg md:text-xl mt-4 leading-relaxed max-w-2xl mx-auto">
+                    Identify any IP address with
+                    comprehensive data — from geographical coordinates to autonomous system details.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TOOL: SEARCH & LOOKUP ================================= -->
+    <section class="pb-8 md:pb-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start">
+
+                <!-- LEFT: Search & Controls -->
+                <div class="lg:col-span-2" data-aos="fade-right" data-aos-duration="700">
+                    <div class="glass-card rounded-3xl p-6 md:p-8 border border-tor-violet/10 shadow-elevated">
+                        <h2 class="text-lg font-bold text-text-primary mb-1">IP Lookup</h2>
+                        <p class="text-text-secondary text-sm mb-5">Enter an IPv4 or IPv6 address to retrieve detailed
+                            intelligence.</p>
+
+                        <div class="flex flex-col gap-3">
+                            <div class="relative">
+                                <input type="text" id="ip-input" placeholder="e.g. 8.8.8.8 or 2001:4860:4860::8888"
+                                    class="w-full px-4 py-3.5 rounded-2xl border border-surface-border/80 bg-white/80 text-text-primary text-sm placeholder:text-text-muted/60 focus:outline-none focus:ring-2 focus:ring-tor-violet/30 focus:border-tor-violet/40 transition-all duration-200"
+                                    autocomplete="off" />
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <button id="btn-lookup" class="flex-1 btn-primary justify-center px-5 py-3.5 text-sm">
+                                    <i class="fas fa-search"></i> Lookup IP
+                                </button>
+                                <button id="btn-my-ip"
+                                    class="flex-1 btn-secondary justify-center px-5 py-3.5 text-sm border-tor-violet/20 hover:border-tor-violet/40">
+                                    <i class="fas fa-location-dot"></i> Locate My IP
+                                </button>
+                            </div>
+
+                            <div class="mt-1 text-xs text-text-muted flex items-center gap-2">
+                                <i class="fas fa-shield-alt text-tor-violet"></i>
+                                <span>Powered by ipapi.co</span>
+                            </div>
+                        </div>
+
+                        <!-- Quick actions -->
+                        <div class="mt-5 pt-5 border-t border-surface-border/60 flex flex-wrap items-center gap-2">
+                            <span
+                                class="text-[0.6rem] font-semibold uppercase tracking-wider text-text-muted mr-1">Examples:</span>
+                            <button
+                                class="example-ip text-xs px-3 py-1.5 rounded-full bg-surface-muted/60 hover:bg-tor-violet/10 text-text-secondary hover:text-tor-violet transition-all duration-200 border border-transparent hover:border-tor-violet/20"
+                                data-ip="1.1.1.1">1.1.1.1</button>
+                            <button
+                                class="example-ip text-xs px-3 py-1.5 rounded-full bg-surface-muted/60 hover:bg-tor-violet/10 text-text-secondary hover:text-tor-violet transition-all duration-200 border border-transparent hover:border-tor-violet/20"
+                                data-ip="8.8.8.8">8.8.8.8</button>
+                            <button
+                                class="example-ip text-xs px-3 py-1.5 rounded-full bg-surface-muted/60 hover:bg-tor-violet/10 text-text-secondary hover:text-tor-violet transition-all duration-200 border border-transparent hover:border-tor-violet/20"
+                                data-ip="9.9.9.9">9.9.9.9</button>
+                            <button
+                                class="example-ip text-xs px-3 py-1.5 rounded-full bg-surface-muted/60 hover:bg-tor-violet/10 text-text-secondary hover:text-tor-violet transition-all duration-200 border border-transparent hover:border-tor-violet/20"
+                                data-ip="2001:4860:4860::8888">IPv6</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Result Display with Map -->
+                <div class="lg:col-span-3" data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
+                    <div id="result-container"
+                        class="glass-card rounded-3xl p-6 md:p-8 border border-tor-violet/10 shadow-elevated min-h-[320px] transition-all duration-300">
+
+                        <!-- Empty State -->
+                        <div id="empty-state"
+                            class="flex flex-col items-center justify-center text-center py-8 md:py-12">
+                            <div class="w-20 h-20 rounded-full bg-tor-violet/5 flex items-center justify-center mb-4">
+                                <i class="fas fa-map-pin text-3xl text-tor-violet/40"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-text-primary">Ready for Intelligence</h3>
+                            <p class="text-text-secondary text-sm max-w-sm mt-1">
+                                Enter an IP address above or click <strong>“Locate My IP”</strong> to fetch your network
+                                details.
+                            </p>
+                        </div>
+
+                        <!-- Loading State -->
+                        <div id="loading-state" class="hidden flex flex-col items-center justify-center py-12 md:py-16">
+                            <div class="loader"></div>
+                            <p class="text-text-secondary text-sm mt-5 font-medium">Retrieving intelligence data…</p>
+                            <p class="text-text-muted text-xs mt-1">Please wait while we query the network.</p>
+                        </div>
+
+                        <!-- Error State -->
+                        <div id="error-state"
+                            class="hidden flex flex-col items-center justify-center text-center py-8 md:py-12">
+                            <div class="w-16 h-16 rounded-full bg-red-50 flex items-center justify-center mb-4">
+                                <i class="fas fa-exclamation-triangle text-2xl text-red-400"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-text-primary">Lookup Failed</h3>
+                            <p id="error-message" class="text-text-secondary text-sm max-w-sm mt-1">
+                                Unable to retrieve IP intelligence. Please check the address and try again.
+                            </p>
+                        </div>
+
+                        <!-- Results -->
+                        <div id="results-content" class="hidden space-y-6">
+
+                            <!-- IP Header + Map Row -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <!-- Left: IP details -->
+                                <div class="flex flex-col justify-between">
+                                    <div>
+                                        <div class="flex items-center gap-3 flex-wrap">
+                                            <span
+                                                class="badge-pill bg-tor-violet/10 border-tor-violet/20 text-tor-violet">
+                                                <i class="fas fa-wifi"></i> <span id="result-version">IPv4</span>
+                                            </span>
+                                            <span id="result-type"
+                                                class="badge-pill bg-surface-muted border-surface-border text-text-muted">
+                                                Public
+                                            </span>
+                                        </div>
+                                        <div class="flex items-center gap-3 mt-1.5">
+                                            <span id="result-ip" class="ip-display">—</span>
+                                            <button id="copy-ip-btn" class="copy-btn-ip text-base"
+                                                title="Copy IP address">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-xs text-text-muted mt-2">
+                                        <i class="fas fa-clock"></i>
+                                        <span id="result-timestamp">Updated just now</span>
+                                    </div>
+                                </div>
+
+                                <!-- Right: Map -->
+                                <div class="relative">
+                                    <div id="map"
+                                        class="leaflet-container rounded-2xl overflow-hidden shadow-elevated border border-surface-border/50">
+                                    </div>
+                                    <div id="map-attribution"
+                                        class="absolute bottom-1 right-1 text-[0.5rem] text-text-muted/60 bg-white/70 px-1.5 py-0.5 rounded backdrop-blur-sm">
+                                        © OpenStreetMap
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Grid Details (2 columns on md, 3 on lg) -->
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+
+                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
+                                    <div class="label"><i class="fas fa-city mr-1.5"></i> City</div>
+                                    <div id="r-city" class="value">—</div>
+                                </div>
+
+                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
+                                    <div class="label"><i class="fas fa-map-pin mr-1.5"></i> Region</div>
+                                    <div id="r-region" class="value">—</div>
+                                </div>
+
+                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
+                                    <div class="label"><i class="fas fa-flag mr-1.5"></i> Country</div>
+                                    <div id="r-country" class="value">—</div>
+                                </div>
+
+                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
+                                    <div class="label"><i class="fas fa-globe-europe mr-1.5"></i> European Union</div>
+                                    <div id="r-eu" class="value">—</div>
+                                </div>
+
+                                <div class="result-card bg-surface-muted/40 rounded-xl p-4 col-span-2 md:col-span-1">
+                                    <div class="label"><i class="fas fa-location-crosshairs mr-1.5"></i> Coordinates
+                                    </div>
+                                    <div id="r-coords" class="value-mono text-sm">—</div>
+                                </div>
+
+                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
+                                    <div class="label"><i class="fas fa-clock mr-1.5"></i> Time Zone</div>
+                                    <div id="r-timezone" class="value">—</div>
+                                </div>
+
+                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
+                                    <div class="label"><i class="fas fa-phone mr-1.5"></i> Calling Code</div>
+                                    <div id="r-calling" class="value">—</div>
+                                </div>
+
+                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
+                                    <div class="label"><i class="fas fa-coins mr-1.5"></i> Currency</div>
+                                    <div id="r-currency" class="value">—</div>
+                                </div>
+
+                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
+                                    <div class="label"><i class="fas fa-language mr-1.5"></i> Languages</div>
+                                    <div id="r-languages" class="value">—</div>
+                                </div>
+
+                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
+                                    <div class="label"><i class="fas fa-network-wired mr-1.5"></i> ASN</div>
+                                    <div id="r-asn" class="value-mono text-sm">—</div>
+                                </div>
+
+                                <div class="result-card bg-surface-muted/40 rounded-xl p-4 col-span-2 md:col-span-1">
+                                    <div class="label"><i class="fas fa-building mr-1.5"></i> Organization</div>
+                                    <div id="r-org" class="value">—</div>
+                                </div>
+
+                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
+                                    <div class="label"><i class="fas fa-code mr-1.5"></i> Country Code</div>
+                                    <div id="r-country-code" class="value-mono text-sm">—</div>
+                                </div>
+
+                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
+                                    <div class="label"><i class="fas fa-mailbox mr-1.5"></i> Postal</div>
+                                    <div id="r-postal" class="value">—</div>
+                                </div>
+
+                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
+                                    <div class="label"><i class="fas fa-globe mr-1.5"></i> Continent</div>
+                                    <div id="r-continent" class="value">—</div>
+                                </div>
+
+                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
+                                    <div class="label"><i class="fas fa-shield-halved mr-1.5"></i> Security</div>
+                                    <div id="r-security" class="value">—</div>
+                                </div>
+
+                            </div>
+
+                            <!-- Raw JSON toggle -->
+                            <div class="pt-2 border-t border-surface-border/40">
+                                <button id="toggle-raw-btn"
+                                    class="text-xs text-text-muted hover:text-tor-violet transition-colors flex items-center gap-1.5">
+                                    <i class="fas fa-code"></i> View raw data
+                                    <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200"></i>
+                                </button>
+                                <div id="raw-json-container" class="hidden mt-2">
+                                    <pre id="raw-json"
+                                        class="text-[0.65rem] font-mono bg-surface-muted/60 p-4 rounded-xl overflow-x-auto max-h-60 border border-surface-border/50 text-text-secondary leading-relaxed"></pre>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURES / CAPABILITIES ================================ -->
+    <section class="py-12 md:py-16 bg-white/40 border-y border-surface-border/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10" data-aos="fade-up">
+                <span class="section-badge"><i class="fas fa-microchip"></i> Capabilities</span>
+                <h2 class="text-2xl md:text-3xl font-bold mt-4">
+                    <span class="text-text-primary">Comprehensive </span>
+                    <span class="text-tor-violet">Network Intelligence</span>
+                </h2>
+                <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                    Every lookup returns a rich set of data points for network analysis, geolocation, and infrastructure
+                    mapping.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="100">
+                <div
+                    class="bg-white rounded-2xl p-5 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-globe text-tor-violet"></i>
+                    </div>
+                    <h4 class="font-semibold text-sm text-text-primary">Geolocation</h4>
+                    <p class="text-text-muted text-xs mt-1">City, region, country, coordinates</p>
+                </div>
+                <div
+                    class="bg-white rounded-2xl p-5 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-network-wired text-tor-violet"></i>
+                    </div>
+                    <h4 class="font-semibold text-sm text-text-primary">Network</h4>
+                    <p class="text-text-muted text-xs mt-1">ASN, organization, ISP</p>
+                </div>
+                <div
+                    class="bg-white rounded-2xl p-5 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-clock text-tor-violet"></i>
+                    </div>
+                    <h4 class="font-semibold text-sm text-text-primary">Time &amp; Location</h4>
+                    <p class="text-text-muted text-xs mt-1">Timezone, UTC offset, calling code</p>
+                </div>
+                <div
+                    class="bg-white rounded-2xl p-5 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-shield-halved text-tor-violet"></i>
+                    </div>
+                    <h4 class="font-semibold text-sm text-text-primary">Security Context</h4>
+                    <p class="text-text-muted text-xs mt-1">EU membership, threat intelligence</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== FOOTER ===== -->
+    <!-- ============================================================ -->
+    <footer class="relative overflow-hidden border-t border-tor-violet/10">
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
+        </div>
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
+        </div>
+
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+
+                <div class="col-span-2 md:col-span-3 lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
+                            <img src="../img/logo.png" alt="Ricalnet"
+                                class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
+                        </div>
+                        <div>
+                            <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
+                            <span
+                                class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
+                                Rights
+                                · Infrastructure</span>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
+                        Sovereign infrastructure &amp; private digital services. Built for rights, not profit.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 mt-5">
+                        <a href="https://github.com/ricalnet" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fa-brands fa-github text-base"></i>
+                        </a>
+                        <a href="mailto:ricalnet@duck.com"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-envelope text-base"></i>
+                        </a>
+                        <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-heartbeat text-base"></i>
+                        </a>
+                        <span
+                            class="pgp-fingerprint text-[0.6rem] px-3 py-1.5 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                            onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                            <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                        </span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Advocacy</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="../about.html#our-mission" class="footer-link">Our Mission</a></li>
+                        <li><a href="../resources.html" class="footer-link">Resources</a></li>
+                        <li><a href="../coaching.html" class="footer-link">Gallery</a></li>
+                        <li><a href="https://docs.ricalnet.my.id" class="footer-link">Blog</a></li>
+                        <li><a href="../index.html#cta" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Infrastructure</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="../index.html#features" class="footer-link">Sovereign Infrastructure</a></li>
+                        <li><a href="../index.html#private-digital-services" class="footer-link">Private Services</a></li>
+                        <li><a href="https://search.ricalnet.my.id" class="footer-link">Search Engine</a></li>
+                        <li><a href="https://link.ricalnet.my.id" class="footer-link">URL Shortener</a></li>
+                        <li><a href="https://translate.ricalnet.my.id" class="footer-link">Translation</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Community</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
+                                target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="https://github.com/ricalnet/digital-independence" class="footer-link"
+                                target="_blank">Become a
+                                Contributor <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="../about.html#cta-support" class="footer-link">Support</a></li>
+                        <li><a href="https://status.ricalnet.my.id" class="footer-link">Status</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Legal</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://cloud.ricalnet.my.id/s/H9SM2rJ2M9NfQaq" class="footer-link">Legal Resources</a>
+                        </li>
+                        <li><a href="../terms-of-service.html" class="footer-link">Terms of Service</a></li>
+                        <li><a href="../privacy.html" class="footer-link">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+                <p class="text-xs tracking-wide"> COPYRIGHT (CC BY)</p>
+                <div class="flex items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
+                    <span class="text-text-secondary/70">#DigitalSovereignty</span>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span class="text-text-secondary/70">#Privacy</span>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span class="text-text-secondary/70">#NoLockIn</span>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span class="text-tor-violet font-semibold">#RightsFirst</span>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span
+                        class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                        onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                        <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- ===== SCRIPTS ============================================== -->
+    <!-- ============================================================ -->
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+    </script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 30,
+            easing: 'ease-out-cubic',
+            duration: 700,
+            disable: window.innerWidth < 768 ? true : false,
+        });
+
+        const PGP_FINGERPRINT = '45688382B815821F033115B8D92D6A10D29C8380';
+
+        function copyPGP() {
+            navigator.clipboard.writeText(PGP_FINGERPRINT).then(() => {
+                showToast('PGP fingerprint copied!');
+            }).catch(() => {
+                const textArea = document.createElement('textarea');
+                textArea.value = PGP_FINGERPRINT;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast('PGP fingerprint copied!');
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] transition-all duration-300';
+            toast.innerHTML = '<i class="fas fa-check-circle text-tor-accent mr-2"></i> ' + message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Copied!');
+            }).catch(() => {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                showToast('Copied!');
+            });
+        }
+    </script>
+
+    <script>
+        // ============================================================
+        // IP INTELLIGENCE ENGINE with Map
+        // ============================================================
+
+        const API_BASE = 'https://ipapi.co';
+
+        const elements = {
+            input: document.getElementById('ip-input'),
+            btnLookup: document.getElementById('btn-lookup'),
+            btnMyIp: document.getElementById('btn-my-ip'),
+            container: document.getElementById('result-container'),
+            empty: document.getElementById('empty-state'),
+            loading: document.getElementById('loading-state'),
+            error: document.getElementById('error-state'),
+            errorMsg: document.getElementById('error-message'),
+            content: document.getElementById('results-content'),
+
+            ip: document.getElementById('result-ip'),
+            version: document.getElementById('result-version'),
+            type: document.getElementById('result-type'),
+            timestamp: document.getElementById('result-timestamp'),
+            city: document.getElementById('r-city'),
+            region: document.getElementById('r-region'),
+            country: document.getElementById('r-country'),
+            eu: document.getElementById('r-eu'),
+            coords: document.getElementById('r-coords'),
+            timezone: document.getElementById('r-timezone'),
+            calling: document.getElementById('r-calling'),
+            currency: document.getElementById('r-currency'),
+            languages: document.getElementById('r-languages'),
+            asn: document.getElementById('r-asn'),
+            org: document.getElementById('r-org'),
+            countryCode: document.getElementById('r-country-code'),
+            postal: document.getElementById('r-postal'),
+            continent: document.getElementById('r-continent'),
+            security: document.getElementById('r-security'),
+            copyBtn: document.getElementById('copy-ip-btn'),
+            rawToggle: document.getElementById('toggle-raw-btn'),
+            rawContainer: document.getElementById('raw-json-container'),
+            rawJson: document.getElementById('raw-json'),
+        };
+
+        let map = null;
+        let marker = null;
+        let lastData = null;
+
+        // ---- Map initialization ----
+        function initMap(lat, lng, label) {
+            if (!map) {
+                map = L.map('map', {
+                    center: [lat || 0, lng || 0],
+                    zoom: lat ? 4 : 2,
+                    zoomControl: false,
+                    attributionControl: false,
+                });
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '© OpenStreetMap',
+                }).addTo(map);
+                // Add zoom control to top-right
+                L.control.zoom({ position: 'topright' }).addTo(map);
+            }
+
+            if (marker) {
+                map.removeLayer(marker);
+            }
+
+            if (lat && lng && !isNaN(lat) && !isNaN(lng)) {
+                const popupContent = label || '📍 Location';
+                marker = L.marker([lat, lng], {
+                    riseOnHover: true,
+                }).addTo(map);
+                marker.bindPopup(popupContent, { closeButton: false, autoClose: false });
+                marker.openPopup();
+                map.setView([lat, lng], Math.max(4, map.getZoom() || 4), { animate: true });
+            } else {
+                map.setView([0, 0], 2);
+            }
+
+            // Resize map after render
+            setTimeout(() => {
+                if (map) map.invalidateSize();
+            }, 250);
+        }
+
+        // ---- Helpers ----
+        function setVisibility(show) {
+            elements.empty.classList.toggle('hidden', show !== 'empty');
+            elements.loading.classList.toggle('hidden', show !== 'loading');
+            elements.error.classList.toggle('hidden', show !== 'error');
+            elements.content.classList.toggle('hidden', show !== 'result');
+        }
+
+        function formatCoord(val) {
+            if (val === undefined || val === null || val === '') return '—';
+            return parseFloat(val).toFixed(4);
+        }
+
+        function formatEu(val) {
+            if (val === true) return 'Yes';
+            if (val === false) return 'No';
+            return '—';
+        }
+
+        function formatCurrency(data) {
+            if (data && data.currency && data.currency_code) {
+                return data.currency + ' (' + data.currency_code + ')';
+            }
+            if (data && data.currency) return data.currency;
+            return '—';
+        }
+
+        function formatLanguages(data) {
+            if (data && data.languages) {
+                const langs = data.languages;
+                if (Array.isArray(langs)) return langs.join(', ');
+                if (typeof langs === 'string') return langs;
+                if (typeof langs === 'object') return Object.values(langs).join(', ');
+            }
+            return '—';
+        }
+
+        function getSecurityLabel(data) {
+            if (data && data.security) {
+                const s = data.security;
+                if (s.is_tor) return 'Tor Exit Node';
+                if (s.is_proxy) return 'Proxy/VPN';
+                if (s.is_cloud) return 'Cloud Hosting';
+                if (s.is_threat) return 'Threat Detected';
+                if (s.is_abuser) return 'Abuser Reported';
+            }
+            return 'Standard';
+        }
+
+        // ---- Render ----
+        function renderResults(data) {
+            lastData = data;
+
+            const ip = data.ip || '—';
+            const isV6 = ip.includes(':');
+            elements.ip.textContent = ip;
+            elements.version.textContent = isV6 ? 'IPv6' : 'IPv4';
+
+            // Detect type (public/private)
+            const isPrivate = /^(10\.|172\.(1[6-9]|2[0-9]|3[0-1])\.|192\.168\.|127\.|169\.254\.|::1|fc00:|fe80:)/i.test(ip);
+            elements.type.textContent = isPrivate ? 'Private' : 'Public';
+
+            const now = new Date();
+            elements.timestamp.textContent = 'Updated ' + now.toLocaleTimeString();
+
+            // Geo
+            elements.city.textContent = data.city || '—';
+            elements.region.textContent = data.region || data.region_code || '—';
+            elements.country.textContent = data.country_name || data.country || '—';
+            elements.eu.textContent = formatEu(data.in_eu);
+            const lat = parseFloat(data.latitude);
+            const lng = parseFloat(data.longitude);
+            const coordsText = (lat && lng && !isNaN(lat) && !isNaN(lng)) ?
+                formatCoord(lat) + ', ' + formatCoord(lng) :
+                '—';
+            elements.coords.textContent = coordsText;
+
+            elements.timezone.textContent = data.timezone || '—';
+            elements.calling.textContent = data.country_calling_code ? '+' + data.country_calling_code : '—';
+            elements.currency.textContent = formatCurrency(data);
+            elements.languages.textContent = formatLanguages(data);
+
+            elements.asn.textContent = data.asn || data.autonomous_system_number || '—';
+            const orgName = data.org || data.organization || data.asn_org || '—';
+            elements.org.textContent = orgName;
+
+            elements.countryCode.textContent = data.country_code || data.country || '—';
+            elements.postal.textContent = data.postal || data.zip || '—';
+            elements.continent.textContent = data.continent_code || data.continent || '—';
+            elements.security.textContent = getSecurityLabel(data);
+
+            // Raw JSON
+            elements.rawJson.textContent = JSON.stringify(data, null, 2);
+
+            // Map
+            if (lat && lng && !isNaN(lat) && !isNaN(lng)) {
+                const popupLabel = `${data.city || ''}, ${data.country_name || data.country || ''}`.trim() || ip;
+                initMap(lat, lng, popupLabel);
+            } else {
+                initMap(0, 0, null);
+            }
+
+            setVisibility('result');
+        }
+
+        // ---- Fetch ----
+        async function lookupIP(ip) {
+            setVisibility('loading');
+
+            try {
+                const url = ip ? API_BASE + '/' + ip + '/json/' : API_BASE + '/json/';
+                const resp = await fetch(url, {
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (!resp.ok) {
+                    const errText = await resp.text();
+                    throw new Error('API error ' + resp.status + ': ' + errText);
+                }
+
+                const data = await resp.json();
+
+                if (data.error || data.reason) {
+                    throw new Error(data.reason || data.error || 'Invalid IP address');
+                }
+
+                if (!data.ip) {
+                    throw new Error('No IP data returned');
+                }
+
+                renderResults(data);
+
+            } catch (err) {
+                console.error('IP lookup error:', err);
+                elements.errorMsg.textContent = err.message || 'Unable to retrieve IP intelligence. Please check the address and try again.';
+                setVisibility('error');
+                // Reset map
+                initMap(0, 0, null);
+            }
+        }
+
+        // ---- Handlers ----
+        function handleLookup() {
+            const ip = elements.input.value.trim();
+            if (!ip) {
+                showToast('Please enter an IP address.');
+                return;
+            }
+            lookupIP(ip);
+        }
+
+        function handleMyIp() {
+            elements.input.value = '';
+            lookupIP(null);
+        }
+
+        function handleExample(e) {
+            const ip = e.currentTarget.dataset.ip;
+            if (ip) {
+                elements.input.value = ip;
+                lookupIP(ip);
+            }
+        }
+
+        function handleCopyIp() {
+            const ip = elements.ip.textContent;
+            if (ip && ip !== '—') {
+                copyToClipboard(ip);
+            }
+        }
+
+        function toggleRaw() {
+            const isOpen = elements.rawContainer.classList.toggle('hidden');
+            const icon = elements.rawToggle.querySelector('.fa-chevron-down');
+            if (icon) {
+                icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+            }
+        }
+
+        // ---- Enter key ----
+        elements.input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') handleLookup();
+        });
+
+        // ---- Buttons ----
+        elements.btnLookup.addEventListener('click', handleLookup);
+        elements.btnMyIp.addEventListener('click', handleMyIp);
+        elements.copyBtn.addEventListener('click', handleCopyIp);
+        elements.rawToggle.addEventListener('click', toggleRaw);
+
+        // ---- Example buttons ----
+        document.querySelectorAll('.example-ip').forEach(btn => {
+            btn.addEventListener('click', handleExample);
+        });
+
+        // ---- Init map on empty ----
+        document.addEventListener('DOMContentLoaded', () => {
+            // Pre-initialize map in background
+            initMap(0, 0, null);
+            // Auto-locate on load (optional)
+            // setTimeout(handleMyIp, 500);
+        });
+
+        // ---- Resize map when container changes ----
+        window.addEventListener('resize', () => {
+            if (map) setTimeout(() => map.invalidateSize(), 100);
+        });
+
+        // ============================================================
+        // MOBILE NAV (from parent)
+        // ============================================================
+
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const menuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const body = document.body;
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('open');
+            body.classList.add('menu-open');
+            menuToggle.setAttribute('aria-expanded', 'true');
+            document.documentElement.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            body.classList.remove('menu-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            document.documentElement.style.overflow = '';
+            document.querySelectorAll('.mobile-sub-menu.open').forEach(el => {
+                el.classList.remove('open');
+                el.previousElementSibling?.classList.remove('open');
+                el.previousElementSibling?.setAttribute('aria-expanded', 'false');
+            });
+        }
+
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                if (mobileMenu.classList.contains('open')) {
+                    closeMobileMenu();
+                } else {
+                    openMobileMenu();
+                }
+            });
+        }
+
+        if (menuClose) {
+            menuClose.addEventListener('click', closeMobileMenu);
+        }
+
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', function (e) {
+                if (e.target === this) {
+                    closeMobileMenu();
+                }
+            });
+        }
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) {
+                closeMobileMenu();
+            }
+        });
+
+        document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const targetId = this.getAttribute('data-target');
+                const sub = document.getElementById(targetId);
+                if (!sub) return;
+                const isOpen = sub.classList.contains('open');
+
+                document.querySelectorAll('.mobile-sub-menu').forEach(el => {
+                    if (el !== sub) {
+                        el.classList.remove('open');
+                        el.previousElementSibling?.classList.remove('open');
+                        el.previousElementSibling?.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                if (isOpen) {
+                    sub.classList.remove('open');
+                    this.classList.remove('open');
+                    this.setAttribute('aria-expanded', 'false');
+                } else {
+                    sub.classList.add('open');
+                    this.classList.add('open');
+                    this.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        document.querySelectorAll('[data-close-mobile]').forEach(link => {
+            link.addEventListener('click', function () {
+                setTimeout(closeMobileMenu, 100);
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (mobileMenu && mobileMenu.classList.contains('open')) {
+                        closeMobileMenu();
+                    }
+                }
+            });
+        });
+
+        window.addEventListener('resize', function () {
+            if (window.innerWidth >= 1024) {
+                if (mobileMenu && mobileMenu.classList.contains('open')) {
+                    closeMobileMenu();
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

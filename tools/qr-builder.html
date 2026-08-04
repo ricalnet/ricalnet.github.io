@@ -1,0 +1,2309 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Ricalnet — QR Code Builder & Reader · Digital Sovereignty</title>
+    <meta name="description"
+        content="Generate and read QR codes with full privacy. No tracking, no data storage — sovereign QR tools for the free internet." />
+    <link rel="icon" type="image/x-icon" href="../img/logo.png" />
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { inter: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        tor: {
+                            violet: '#7c3aed',
+                            'violet-light': '#8b5cf6',
+                            'violet-dark': '#5b21b6',
+                            'violet-deep': '#4c1d95',
+                            'violet-soft': '#ede9fe',
+                            accent: '#68B030',
+                            'accent-cyan': '#06b6d4',
+                            'accent-amber': '#f59e0b',
+                        },
+                        surface: {
+                            light: '#faf9fe',
+                            card: '#ffffff',
+                            border: '#ede9f0',
+                            muted: '#f5f3fa',
+                            dark: '#0f0e1a',
+                        },
+                        text: {
+                            primary: '#0f0e1a',
+                            secondary: '#52506e',
+                            muted: '#9492ae',
+                            inverse: '#f8f7fc',
+                        }
+                    },
+                    boxShadow: {
+                        'elevated': '0 1px 3px rgba(0,0,0,0.02), 0 8px 40px rgba(124,58,237,0.06), 0 20px 80px rgba(124,58,237,0.04)',
+                        'elevated-lg': '0 1px 3px rgba(0,0,0,0.02), 0 16px 64px rgba(124,58,237,0.08), 0 32px 120px rgba(124,58,237,0.04)',
+                        'glow': '0 0 60px rgba(124,58,237,0.06)',
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-down': 'fadeDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-right': 'fadeRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-left': 'fadeLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'scale-in': 'scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': {
+                                opacity: '1',
+                                transform: 'translateY(0)'
+                            }
+                        },
+                        fadeDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-40px)' }, '100%': {
+                                opacity: '1',
+                                transform: 'translateY(0)'
+                            }
+                        },
+                        fadeRight: {
+                            '0%': { opacity: '0', transform: 'translateX(-40px)' }, '100%': {
+                                opacity: '1',
+                                transform: 'translateX(0)'
+                            }
+                        },
+                        fadeLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(40px)' }, '100%': {
+                                opacity: '1',
+                                transform: 'translateX(0)'
+                            }
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.94)' }, '100%': {
+                                opacity: '1',
+                                transform: 'scale(1)'
+                            }
+                        },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-14px)' } },
+                        pulseSoft: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0.6' } },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- QR Code Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+    </script>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js">
+    </script>
+
+    <style>
+        @layer utilities {
+            .glass-card {
+                background: rgba(255, 255, 255, 0.72);
+                backdrop-filter: blur(24px);
+                -webkit-backdrop-filter: blur(24px);
+                border: 1px solid rgba(124, 58, 237, 0.08);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 8px 40px rgba(124, 58, 237, 0.04);
+            }
+
+            .glass-card-dark {
+                background: rgba(15, 14, 26, 0.6);
+                backdrop-filter: blur(24px);
+                -webkit-backdrop-filter: blur(24px);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+            }
+
+            .nav-link {
+                position: relative;
+                color: #52506e;
+                font-weight: 500;
+                font-size: 0.875rem;
+                transition: color 0.2s ease;
+                padding: 0.25rem 0;
+            }
+
+            .nav-link:hover {
+                color: #7c3aed;
+            }
+
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: #7c3aed;
+                border-radius: 4px;
+                transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .nav-link:hover::after,
+            .nav-link-active::after {
+                width: 100%;
+            }
+
+            .nav-link-active {
+                color: #7c3aed;
+            }
+
+            .btn-primary {
+                background: #7c3aed;
+                color: white;
+                font-weight: 600;
+                padding: 0.75rem 2rem;
+                border-radius: 9999px;
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 0 4px 24px rgba(124, 58, 237, 0.2);
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 0.9375rem;
+                border: none;
+                cursor: pointer;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 40px rgba(124, 58, 237, 0.3);
+                background: #5b21b6;
+            }
+
+            .btn-secondary {
+                background: rgba(255, 255, 255, 0.9);
+                color: #0f0e1a;
+                font-weight: 500;
+                padding: 0.75rem 2rem;
+                border-radius: 9999px;
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                border: 1px solid rgba(124, 58, 237, 0.08);
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 0.9375rem;
+                cursor: pointer;
+            }
+
+            .btn-secondary:hover {
+                background: white;
+                border-color: rgba(124, 58, 237, 0.2);
+                box-shadow: 0 4px 24px rgba(124, 58, 237, 0.04);
+                transform: translateY(-2px);
+            }
+
+            .btn-sso {
+                background: #ede9fe;
+                color: #5b21b6;
+                font-weight: 600;
+                padding: 0.5rem 1.25rem;
+                border-radius: 9999px;
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                border: 1px solid #c4b5fd;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 0.875rem;
+                cursor: pointer;
+            }
+
+            .btn-sso:hover {
+                background: #d8cdfa;
+                border-color: #7c3aed;
+                transform: translateY(-2px);
+            }
+
+            .section-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                background: rgba(124, 58, 237, 0.06);
+                border: 1px solid rgba(124, 58, 237, 0.08);
+                padding: 0.375rem 1rem;
+                border-radius: 9999px;
+                font-size: 0.7rem;
+                font-weight: 600;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                color: #5b21b6;
+            }
+
+            .badge-pill {
+                background: rgba(124, 58, 237, 0.08);
+                color: #5b21b6;
+                border: 1px solid rgba(124, 58, 237, 0.12);
+                padding: 0.25rem 0.75rem;
+                border-radius: 9999px;
+                font-size: 0.65rem;
+                font-weight: 600;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.375rem;
+            }
+
+            .badge-pgp {
+                background: rgba(6, 182, 212, 0.08);
+                color: #0e7490;
+                border: 1px solid rgba(6, 182, 212, 0.15);
+                padding: 0.25rem 0.75rem;
+                border-radius: 9999px;
+                font-size: 0.65rem;
+                font-weight: 600;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.375rem;
+                font-family: monospace;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                user-select: none;
+            }
+
+            .badge-pgp:hover {
+                background: rgba(6, 182, 212, 0.15);
+                border-color: rgba(6, 182, 212, 0.3);
+                transform: translateY(-1px);
+            }
+
+            .pgp-fingerprint {
+                font-family: 'Inter', monospace;
+                font-size: 0.7rem;
+                letter-spacing: 0.02em;
+                background: #f5f3fa;
+                padding: 0.2rem 0.6rem;
+                border-radius: 9999px;
+                border: 1px solid #ede9f0;
+                color: #3b3a54;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                white-space: nowrap;
+            }
+
+            .pgp-fingerprint:hover {
+                background: #ede9fe;
+                border-color: #c4b5fd;
+            }
+
+            .pgp-fingerprint .copy-hint {
+                font-size: 0.55rem;
+                opacity: 0.5;
+                font-weight: 400;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+            }
+
+            .pgp-fingerprint .copy-hint:hover {
+                opacity: 1;
+            }
+
+            .card-hover {
+                transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .card-hover:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 16px 64px rgba(124, 58, 237, 0.06), 0 32px 120px rgba(124, 58, 237, 0.04);
+                border-color: rgba(124, 58, 237, 0.15);
+            }
+
+            .img-cover {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
+
+            .img-shadow-soft {
+                box-shadow: 0 8px 48px rgba(0, 0, 0, 0.04);
+            }
+
+            .bg-grid-subtle {
+                background-image: radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.02) 0%, transparent 60%),
+                    linear-gradient(rgba(124, 58, 237, 0.02) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(124, 58, 237, 0.02) 1px, transparent 1px);
+                background-size: 100% 100%, 48px 48px, 48px 48px;
+            }
+
+            .footer-link {
+                color: #52506e;
+                transition: color 0.2s ease;
+                font-size: 0.875rem;
+                font-weight: 450;
+                text-decoration: none;
+                position: relative;
+            }
+
+            .footer-link:hover {
+                color: #7c3aed;
+            }
+
+            .footer-link::after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 0;
+                height: 1.5px;
+                background: #7c3aed;
+                border-radius: 4px;
+                transition: width 0.25s ease;
+            }
+
+            .footer-link:hover::after {
+                width: 100%;
+            }
+
+            .footer-heading {
+                color: #0f0e1a;
+                font-weight: 600;
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                margin-bottom: 1.25rem;
+                opacity: 0.7;
+            }
+
+            .dropdown-panel {
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(124, 58, 237, 0.08);
+                box-shadow: 0 16px 64px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(124, 58, 237, 0.04);
+                border-radius: 16px;
+                padding: 0.5rem;
+                min-width: 200px;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-8px);
+                transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .group:hover .dropdown-panel {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .dropdown-item {
+                display: block;
+                padding: 0.5rem 1rem;
+                border-radius: 10px;
+                color: #52506e;
+                font-size: 0.875rem;
+                transition: all 0.15s ease;
+            }
+
+            .dropdown-item:hover {
+                background: #f5f3fa;
+                color: #7c3aed;
+            }
+
+            ::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #f5f3fa;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #c4b5fd;
+                border-radius: 8px;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #7c3aed;
+            }
+
+            html,
+            body {
+                overflow-x: hidden;
+                max-width: 100%;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            img,
+            video,
+            iframe {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .mobile-dropdown-toggle .fa-chevron-down {
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .mobile-dropdown-toggle.open .fa-chevron-down {
+                transform: rotate(180deg);
+            }
+
+            .mobile-sub-menu {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, margin 0.3s ease;
+                opacity: 0;
+                margin-top: 0;
+            }
+
+            .mobile-sub-menu.open {
+                max-height: 800px;
+                opacity: 1;
+                margin-top: 0.25rem;
+            }
+
+            #mobile-menu {
+                position: fixed;
+                inset: 0;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                height: 100dvh;
+                z-index: 40;
+                background: rgba(255, 255, 255, 0.72);
+                backdrop-filter: blur(28px) saturate(1.4);
+                -webkit-backdrop-filter: blur(28px) saturate(1.4);
+                border: none;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+                visibility: hidden;
+                transform: none;
+            }
+
+            #mobile-menu.open {
+                pointer-events: auto;
+                opacity: 1;
+                visibility: visible;
+            }
+
+            #mobile-menu .mobile-menu-scroll {
+                flex: 1 1 auto;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                padding: 1rem 1.25rem 2rem;
+                scroll-behavior: smooth;
+            }
+
+            #mobile-menu .mobile-menu-scroll::-webkit-scrollbar {
+                width: 4px;
+            }
+
+            #mobile-menu .mobile-menu-scroll::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            #mobile-menu .mobile-menu-scroll::-webkit-scrollbar-thumb {
+                background: rgba(124, 58, 237, 0.3);
+                border-radius: 8px;
+            }
+
+            #mobile-menu .mobile-menu-scroll::-webkit-scrollbar-thumb:hover {
+                background: rgba(124, 58, 237, 0.5);
+            }
+
+            #mobile-menu .mobile-menu-scroll {
+                scrollbar-width: thin;
+                scrollbar-color: rgba(124, 58, 237, 0.3) transparent;
+            }
+
+            .mobile-menu-close {
+                position: absolute;
+                top: 0.75rem;
+                right: 1rem;
+                z-index: 5;
+                width: 2.75rem;
+                height: 2.75rem;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.6);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                border: 1px solid rgba(124, 58, 237, 0.08);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #0f0e1a;
+                font-size: 1.25rem;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            }
+
+            .mobile-menu-close:hover {
+                background: rgba(255, 255, 255, 0.9);
+                border-color: rgba(124, 58, 237, 0.2);
+                transform: scale(1.05);
+            }
+
+            .mobile-menu-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0.75rem 1.25rem;
+                border-bottom: 1px solid rgba(124, 58, 237, 0.06);
+                flex-shrink: 0;
+            }
+
+            .mobile-menu-header .logo {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+            }
+
+            .mobile-menu-header .logo img {
+                width: 2.25rem;
+                height: 2.25rem;
+                border-radius: 50%;
+                object-fit: cover;
+                ring: 2px solid rgba(124, 58, 237, 0.15);
+            }
+
+            .mobile-menu-header .logo span {
+                font-weight: 700;
+                font-size: 1rem;
+                color: #0f0e1a;
+                letter-spacing: -0.02em;
+            }
+
+            #mobile-menu::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                z-index: 0;
+                background:
+                    radial-gradient(circle at 20% 10%, rgba(124, 58, 237, 0.06) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 90%, rgba(6, 182, 212, 0.04) 0%, transparent 50%);
+            }
+
+            #mobile-menu>* {
+                position: relative;
+                z-index: 1;
+            }
+
+            .mobile-menu-scroll .nav-item {
+                font-size: 1.05rem;
+                font-weight: 550;
+                padding: 0.7rem 0.75rem;
+                border-radius: 12px;
+                transition: all 0.15s ease;
+                color: #0f0e1a;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .mobile-menu-scroll .nav-item:hover {
+                background: rgba(124, 58, 237, 0.06);
+                color: #7c3aed;
+            }
+
+            .mobile-menu-scroll .nav-item i {
+                width: 1.25rem;
+                color: #7c3aed;
+                font-size: 0.9rem;
+            }
+
+            .mobile-menu-scroll .sub-link {
+                font-size: 0.9rem;
+                font-weight: 450;
+                padding: 0.5rem 0.75rem;
+                border-radius: 10px;
+                color: #52506e;
+                transition: all 0.15s ease;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .mobile-menu-scroll .sub-link:hover {
+                background: rgba(124, 58, 237, 0.06);
+                color: #7c3aed;
+            }
+
+            .mobile-menu-scroll .sub-link i {
+                width: 1rem;
+                font-size: 0.75rem;
+                color: #9492ae;
+            }
+
+            .mobile-menu-divider {
+                height: 1px;
+                background: linear-gradient(to right, transparent, rgba(124, 58, 237, 0.08), transparent);
+                margin: 0.5rem 0;
+            }
+
+            @media (max-width: 480px) {
+                .mobile-menu-scroll .nav-item {
+                    font-size: 0.95rem;
+                    padding: 0.6rem 0.6rem;
+                }
+
+                .mobile-menu-scroll .sub-link {
+                    font-size: 0.82rem;
+                    padding: 0.4rem 0.6rem;
+                }
+
+                #mobile-menu .mobile-menu-scroll {
+                    padding: 0.75rem 1rem 1.5rem;
+                }
+
+                .mobile-menu-close {
+                    width: 2.25rem;
+                    height: 2.25rem;
+                    font-size: 1rem;
+                    top: 0.6rem;
+                    right: 0.75rem;
+                }
+
+                .mobile-menu-header {
+                    padding: 0.6rem 1rem;
+                }
+
+                .mobile-menu-header .logo img {
+                    width: 1.75rem;
+                    height: 1.75rem;
+                }
+
+                .mobile-menu-header .logo span {
+                    font-size: 0.85rem;
+                }
+            }
+
+            @media (min-width: 768px) {
+                #mobile-menu .mobile-menu-scroll {
+                    padding: 1.5rem 2.5rem 2.5rem;
+                }
+
+                .mobile-menu-scroll .nav-item {
+                    font-size: 1.15rem;
+                    padding: 0.8rem 1rem;
+                }
+
+                .mobile-menu-scroll .sub-link {
+                    font-size: 0.95rem;
+                    padding: 0.55rem 1rem;
+                }
+            }
+
+            @media (min-width: 1024px) {
+                #mobile-menu {
+                    display: none !important;
+                }
+            }
+
+            body.menu-open {
+                overflow: hidden;
+            }
+
+            /* QR Code specific styles */
+            #qr-result {
+                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            #qr-result .result-content {
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            #qr-result .result-content.show {
+                max-height: 600px;
+                opacity: 1;
+                padding-top: 1rem;
+            }
+
+            #qr-reader-container {
+                min-height: 200px;
+                background: #faf9fe;
+                border-radius: 16px;
+                overflow: hidden;
+                position: relative;
+            }
+
+            #qr-reader-container video {
+                width: 100%;
+                height: auto;
+                border-radius: 16px;
+            }
+
+            .qr-placeholder {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 200px;
+                color: #9492ae;
+                gap: 0.75rem;
+            }
+
+            .qr-placeholder i {
+                font-size: 3rem;
+                opacity: 0.4;
+            }
+
+            #generated-qr {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 200px;
+                background: #faf9fe;
+                border-radius: 16px;
+                border: 2px dashed rgba(124, 58, 237, 0.12);
+                transition: all 0.3s ease;
+            }
+
+            #generated-qr.has-qr {
+                border-color: rgba(124, 58, 237, 0.3);
+                background: white;
+            }
+
+            .qr-color-option {
+                width: 2.25rem;
+                height: 2.25rem;
+                border-radius: 50%;
+                border: 2px solid transparent;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
+
+            .qr-color-option:hover {
+                transform: scale(1.1);
+            }
+
+            .qr-color-option.active {
+                border-color: #7c3aed;
+                box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+            }
+
+            .tab-btn {
+                padding: 0.6rem 1.5rem;
+                border-radius: 9999px;
+                font-weight: 500;
+                font-size: 0.875rem;
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                border: 1px solid transparent;
+                cursor: pointer;
+                background: transparent;
+                color: #52506e;
+            }
+
+            .tab-btn:hover {
+                background: rgba(124, 58, 237, 0.04);
+                color: #7c3aed;
+            }
+
+            .tab-btn.active {
+                background: #7c3aed;
+                color: white;
+                box-shadow: 0 4px 16px rgba(124, 58, 237, 0.2);
+            }
+
+            .tab-btn.active:hover {
+                background: #5b21b6;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="font-inter bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+
+    <!-- ===== AMBIENT BG ===== -->
+    <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div class="absolute inset-0 bg-grid-subtle"></div>
+        <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/5 rounded-full blur-[160px]"></div>
+        <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/3 rounded-full blur-[180px]"></div>
+        <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/4 rounded-full blur-[140px]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light"></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ===== NAVBAR =============================================== -->
+    <!-- ============================================================ -->
+    <header
+        class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-[72px]">
+
+                <a href="../index.html" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+                    data-aos-duration="600">
+                    <img src="../img/logo.png" alt="Ricalnet Logo"
+                        class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
+                    <div class="leading-tight hidden sm:block">
+                        <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
+                        <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
+                            Rights
+                            · Infrastructure</span>
+                    </div>
+                </a>
+
+                <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down"
+                    data-aos-duration="600">
+                    <a href="../index.html#hero" class="nav-link nav-link-active">Home</a>
+
+                    <div class="relative group">
+                        <a href="../index.html#pain-points" class="nav-link flex items-center gap-1">
+                            Advocacy
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../index.html#pain-points" class="dropdown-item">Rights at Risk</a>
+                            <a href="../index.html#how-it-works" class="dropdown-item">Methodology</a>
+                            <a href="../index.html#features" class="dropdown-item">Sovereign Infrastructure</a>
+                            <a href="../about.html" class="dropdown-item">Our Mission</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <a href="../index.html#resources" class="nav-link flex items-center gap-1">
+                            Resources
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../resources.html" class="dropdown-item">All Resources</a>
+                            <a href="../index.html#comparison" class="dropdown-item">Comparison</a>
+                            <a href="../index.html#faq" class="dropdown-item">FAQ</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="../index.html#resources" class="nav-link flex items-center gap-1">
+                            Tools
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../tools/ip-intelligence.html" class="dropdown-item">IP Intelligence</a>
+                            <a href="../tools/password-generator.html" class="dropdown-item">Password Generator</a>
+                            <a href="../tools/qr-builder.html" class="dropdown-item">QR Builder</a>
+                            <a href="../tools/whiteboard.html" class="dropdown-item">Whiteboard</a>
+                            <a href="../tools.html" class="dropdown-item">All Tools</a>
+                        </div>
+                    </div>
+
+                    <a href="../index.html#cta" class="nav-link">Contact</a>
+                    <a href="../about.html#cta-support" class="nav-link">Support</a>
+                </nav>
+
+                <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
+                    <a href="https://auth.ricalnet.my.id" class="hidden lg:inline-flex btn-sso">
+                        <i class="fas fa-key"></i> Login with SSO
+                    </a>
+                    <button id="mobile-menu-toggle"
+                        class="lg:hidden w-9 h-9 rounded-full hover:bg-surface-muted flex items-center justify-center transition-colors"
+                        aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars text-text-secondary text-lg"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- ===== MOBILE NAV =========================================== -->
+    <!-- ============================================================ -->
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <img src="../img/logo.png" alt="Ricalnet" />
+                <span>Ricalnet</span>
+            </div>
+            <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu-scroll">
+
+            <a href="../index.html#hero" class="nav-item" data-close-mobile>
+                <i class="fas fa-home"></i> Home
+            </a>
+
+            <!-- ===== ADVOCACY DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-advocacy">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Advocacy
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../index.html#pain-points" class="sub-link" data-close-mobile>
+                        <i class="fas fa-exclamation-triangle"></i> Rights at Risk
+                    </a>
+                    <a href="../index.html#how-it-works" class="sub-link" data-close-mobile>
+                        <i class="fas fa-route"></i> Methodology
+                    </a>
+                    <a href="../index.html#features" class="sub-link" data-close-mobile>
+                        <i class="fas fa-star"></i> Sovereign Infrastructure
+                    </a>
+                    <a href="../about.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-bullseye"></i> Our Mission
+                    </a>
+                </div>
+            </div>
+
+            <!-- ===== RESOURCES DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-resources">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../resources.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-cubes"></i> All Resources
+                    </a>
+                    <a href="../index.html#comparison" class="sub-link" data-close-mobile>
+                        <i class="fas fa-arrows-left-right"></i> Comparison
+                    </a>
+                    <a href="../index.html#faq" class="sub-link" data-close-mobile>
+                        <i class="fas fa-question-circle"></i> FAQ
+                    </a>
+                </div>
+            </div>
+
+            <!-- ===== TOOLS DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-tools">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../tools/ip-intelligence.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> IP Intelligence
+                    </a>
+                    <a href="../tools/password-generator.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-key"></i> Password Generator
+                    </a>
+                    <a href="../tools/qr-builder.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> QR Builder
+                    </a>
+                    <a href="../tools/whiteboard.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-pen-fancy"></i> Whiteboard
+                    </a>
+                    <a href="../tools.html" class="sub-link" data-close-mobile>
+                        <i class="fas fa-shield-alt"></i> All Tools
+                    </a>
+                </div>
+            </div>
+
+            <div class="mobile-menu-divider"></div>
+
+            <a href="../index.html#cta" class="nav-item" data-close-mobile>
+                <i class="fas fa-envelope"></i> Contact
+            </a>
+            <a href="../about.html#cta-support" class="nav-item" data-close-mobile>
+                <i class="fas fa-hand-holding-heart"></i> Support
+            </a>
+
+            <a href="https://auth.ricalnet.my.id" class="mt-3 block w-full text-center btn-sso justify-center"
+                data-close-mobile>
+                <i class="fas fa-key"></i> Login with SSO
+            </a>
+
+            <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+                <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+                    <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> Digital Sovereignty · Privacy-First
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ===== HERO ================================================= -->
+    <!-- ============================================================ -->
+    <section class="relative overflow-hidden pt-[72px] pb-16 md:pt-24 md:pb-24 bg-surface-light">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+                <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="flex flex-wrap items-center gap-2 mb-6">
+                        <span class="badge-pill"><i class="fas fa-qrcode"></i> QR Tool</span>
+                        <span class="badge-pill"
+                            style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);"><i
+                                class="fas fa-shield-alt"></i> Privacy-First</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] tracking-tight">
+                        <span class="text-text-primary">QR Code </span>
+                        <span class="text-tor-violet">Builder &amp; Reader</span>
+                    </h1>
+                    <p class="text-text-secondary text-lg md:text-xl mt-6 max-w-lg leading-relaxed">
+                        Generate and scan QR codes with full privacy. No tracking, no data storage —
+                        sovereign QR tools for the free internet.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-4 mt-8">
+                        <a href="#generator" class="text-white btn-primary">
+                            <i class="fas fa-plus-circle"></i> Generate QR
+                        </a>
+                        <a href="#reader" class="btn-secondary">
+                            <i class="fas fa-camera"></i> Scan QR
+                        </a>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-5 mt-8 text-sm text-text-muted">
+                        <span class="flex items-center gap-1.5"><i
+                                class="fas fa-check-circle text-tor-accent text-xs"></i>
+                            No data storage</span>
+                        <span class="flex items-center gap-1.5"><i
+                                class="fas fa-check-circle text-tor-accent text-xs"></i>
+                            Client-side only</span>
+                        <span class="flex items-center gap-1.5"><i
+                                class="fas fa-check-circle text-tor-accent text-xs"></i>
+                            Free &amp; open</span>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="200"
+                    class="relative flex justify-center lg:justify-end">
+                    <div class="relative w-full max-w-md lg:max-w-lg">
+                        <div class="absolute inset-0 bg-tor-violet/10 rounded-full blur-3xl scale-90"></div>
+                        <div
+                            class="relative glass-card rounded-3xl p-8 shadow-elevated-lg border border-tor-violet/10 overflow-hidden text-center">
+                            <div class="flex justify-center mb-4">
+                                <div id="hero-qr"
+                                    class="w-48 h-48 bg-white rounded-2xl shadow-elevated p-3 flex items-center justify-center">
+                                    <div class="text-text-muted text-sm animate-pulse-soft">
+                                        <i class="fas fa-qrcode text-6xl opacity-30"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-sm font-medium text-text-primary">Scan or generate</p>
+                            <p class="text-xs text-text-muted mt-1">Privacy-first QR tools</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== GENERATOR ============================================ -->
+    <!-- ============================================================ -->
+    <section id="generator" class="py-16 md:py-24 bg-white/40 border-y border-surface-border/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="section-badge"><i class="fas fa-plus-circle"></i> Generator</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+                    <span class="text-text-primary">Create your </span>
+                    <span class="text-tor-violet">QR Code</span>
+                </h2>
+                <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+                    Enter any text or URL and generate a QR code instantly. All processing is done
+                    client-side — your data never leaves your device.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16" data-aos="fade-up" data-aos-duration="700">
+
+                <!-- Generator Form -->
+                <div>
+                    <div class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover">
+                        <h3 class="text-xl font-bold text-text-primary mb-6 flex items-center gap-3">
+                            <i class="fas fa-pen-fancy text-tor-violet"></i>
+                            QR Code Details
+                        </h3>
+
+                        <div class="space-y-5">
+                            <div>
+                                <label for="qr-input" class="block text-sm font-medium text-text-secondary mb-1.5">
+                                    Content <span class="text-red-400">*</span>
+                                </label>
+                                <textarea id="qr-input" rows="3"
+                                    class="w-full px-4 py-3 rounded-xl border border-surface-border/80 bg-surface-light/50 focus:border-tor-violet/50 focus:ring-2 focus:ring-tor-violet/20 focus:outline-none transition-all duration-200 resize-y text-text-primary placeholder:text-text-muted/60"
+                                    placeholder="Enter text, URL, or any data…">https://ricalnet.my.id</textarea>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label for="qr-size" class="block text-sm font-medium text-text-secondary mb-1.5">
+                                        Size
+                                    </label>
+                                    <select id="qr-size"
+                                        class="w-full px-4 py-2.5 rounded-xl border border-surface-border/80 bg-surface-light/50 focus:border-tor-violet/50 focus:ring-2 focus:ring-tor-violet/20 focus:outline-none transition-all duration-200 text-text-primary">
+                                        <option value="128">128 × 128</option>
+                                        <option value="200" selected>200 × 200</option>
+                                        <option value="300">300 × 300</option>
+                                        <option value="400">400 × 400</option>
+                                        <option value="500">500 × 500</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="qr-level" class="block text-sm font-medium text-text-secondary mb-1.5">
+                                        Error Correction
+                                    </label>
+                                    <select id="qr-level"
+                                        class="w-full px-4 py-2.5 rounded-xl border border-surface-border/80 bg-surface-light/50 focus:border-tor-violet/50 focus:ring-2 focus:ring-tor-violet/20 focus:outline-none transition-all duration-200 text-text-primary">
+                                        <option value="L">Low (7%)</option>
+                                        <option value="M" selected>Medium (15%)</option>
+                                        <option value="Q">Quartile (25%)</option>
+                                        <option value="H">High (30%)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-text-secondary mb-1.5">
+                                    Colors
+                                </label>
+                                <div class="flex flex-wrap items-center gap-3">
+                                    <div>
+                                        <label class="text-xs text-text-muted block mb-1">Foreground</label>
+                                        <div class="flex gap-2">
+                                            <button class="qr-color-option active" style="background:#0f0e1a"
+                                                data-color="#0f0e1a"></button>
+                                            <button class="qr-color-option" style="background:#7c3aed"
+                                                data-color="#7c3aed"></button>
+                                            <button class="qr-color-option" style="background:#06b6d4"
+                                                data-color="#06b6d4"></button>
+                                            <button class="qr-color-option" style="background:#f59e0b"
+                                                data-color="#f59e0b"></button>
+                                            <button class="qr-color-option" style="background:#dc2626"
+                                                data-color="#dc2626"></button>
+                                            <div class="relative">
+                                                <input type="color" id="qr-fg-custom" value="#0f0e1a"
+                                                    class="w-9 h-9 rounded-full border-2 border-surface-border/60 cursor-pointer p-0 bg-transparent appearance-none"
+                                                    style="border-radius:50%;overflow:hidden;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="text-xs text-text-muted block mb-1">Background</label>
+                                        <div class="flex gap-2">
+                                            <button class="qr-color-option active" style="background:#ffffff"
+                                                data-color="#ffffff"></button>
+                                            <button class="qr-color-option" style="background:#f5f3fa"
+                                                data-color="#f5f3fa"></button>
+                                            <button class="qr-color-option" style="background:#ede9fe"
+                                                data-color="#ede9fe"></button>
+                                            <div class="relative">
+                                                <input type="color" id="qr-bg-custom" value="#ffffff"
+                                                    class="w-9 h-9 rounded-full border-2 border-surface-border/60 cursor-pointer p-0 bg-transparent appearance-none"
+                                                    style="border-radius:50%;overflow:hidden;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button id="generate-btn" class="w-full btn-primary justify-center text-base py-3.5 mt-2">
+                                <i class="fas fa-qrcode"></i> Generate QR Code
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generated QR Display -->
+                <div>
+                    <div
+                        class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover h-full flex flex-col">
+                        <h3 class="text-xl font-bold text-text-primary mb-4 flex items-center gap-3">
+                            <i class="fas fa-image text-tor-violet"></i>
+                            Your QR Code
+                        </h3>
+
+                        <div id="generated-qr"
+                            class="flex-1 flex flex-col items-center justify-center min-h-[280px] transition-all duration-300">
+                            <div class="qr-placeholder">
+                                <i class="fas fa-qrcode"></i>
+                                <span class="text-sm">Enter content and click Generate</span>
+                            </div>
+                        </div>
+
+                        <div id="qr-actions"
+                            class="mt-5 flex flex-wrap gap-3 justify-center opacity-0 transition-all duration-300 pointer-events-none">
+                            <button id="download-png-btn" class="btn-secondary text-sm py-2 px-5">
+                                <i class="fas fa-download"></i> PNG
+                            </button>
+                            <button id="download-svg-btn" class="btn-secondary text-sm py-2 px-5">
+                                <i class="fas fa-file-code"></i> SVG
+                            </button>
+                            <button id="copy-qr-btn" class="btn-secondary text-sm py-2 px-5">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+
+                        <p class="text-xs text-text-muted text-center mt-4">
+                            <i class="fas fa-shield-alt text-tor-violet mr-1"></i>
+                            All processing is client-side. Your data is never sent to any server.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== READER =============================================== -->
+    <!-- ============================================================ -->
+    <section id="reader" class="py-16 md:py-24 bg-surface-light">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="section-badge"><i class="fas fa-camera"></i> Reader</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+                    <span class="text-text-primary">Scan &amp; </span>
+                    <span class="text-tor-violet">Read QR Codes</span>
+                </h2>
+                <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+                    Use your camera or upload an image to read QR codes. All processing is done
+                    locally — your privacy is guaranteed.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8" data-aos="fade-up" data-aos-duration="700">
+
+                <!-- Reader Controls -->
+                <div class="lg:col-span-2">
+                    <div
+                        class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover h-full">
+                        <h3 class="text-xl font-bold text-text-primary mb-6 flex items-center gap-3">
+                            <i class="fas fa-sliders-h text-tor-violet"></i>
+                            Scan Options
+                        </h3>
+
+                        <div class="flex gap-2 mb-6 bg-surface-muted rounded-xl p-1">
+                            <button id="camera-tab" class="tab-btn active flex-1 text-center">
+                                <i class="fas fa-camera mr-1.5"></i> Camera
+                            </button>
+                            <button id="upload-tab" class="tab-btn flex-1 text-center">
+                                <i class="fas fa-upload mr-1.5"></i> Upload
+                            </button>
+                        </div>
+
+                        <div id="camera-panel">
+                            <p class="text-sm text-text-secondary mb-4 leading-relaxed">
+                                <i class="fas fa-info-circle text-tor-violet mr-1.5"></i>
+                                Allow camera access when prompted. Point your camera at any QR code to scan.
+                            </p>
+                            <button id="start-camera-btn" class="w-full btn-primary justify-center text-base py-3">
+                                <i class="fas fa-play"></i> Start Camera
+                            </button>
+                            <button id="stop-camera-btn"
+                                class="w-full btn-secondary justify-center text-base py-3 mt-2 hidden">
+                                <i class="fas fa-stop"></i> Stop Camera
+                            </button>
+                        </div>
+
+                        <div id="upload-panel" class="hidden">
+                            <p class="text-sm text-text-secondary mb-4 leading-relaxed">
+                                <i class="fas fa-info-circle text-tor-violet mr-1.5"></i>
+                                Upload a QR code image from your device. Supports PNG, JPG, and WebP.
+                            </p>
+                            <div class="relative">
+                                <input type="file" id="qr-file-input" accept="image/*"
+                                    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                                <div
+                                    class="w-full border-2 border-dashed border-surface-border/80 rounded-xl p-8 text-center hover:border-tor-violet/40 transition-all duration-200 bg-surface-light/30">
+                                    <i class="fas fa-cloud-upload-alt text-3xl text-text-muted/40 mb-2"></i>
+                                    <p class="text-sm font-medium text-text-secondary">Click or drag to upload</p>
+                                    <p class="text-xs text-text-muted mt-1">PNG, JPG, WebP</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="qr-result" class="mt-6">
+                            <div class="bg-surface-muted rounded-xl p-4 min-h-[60px] flex items-center">
+                                <div class="flex-1">
+                                    <div class="result-content">
+                                        <div class="flex items-start gap-3">
+                                            <div
+                                                class="w-8 h-8 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                <i class="fas fa-check-circle text-tor-violet"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <p class="text-xs font-medium text-text-muted uppercase tracking-wider">
+                                                    Decoded Content</p>
+                                                <p id="qr-decoded-text"
+                                                    class="text-sm font-mono text-text-primary break-all mt-1"></p>
+                                                <button id="copy-decoded-btn"
+                                                    class="text-xs text-tor-violet hover:text-tor-violet-dark font-medium mt-2 transition-colors">
+                                                    <i class="fas fa-copy mr-1"></i> Copy
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-text-muted text-sm text-center w-full" id="qr-result-placeholder">
+                                        <i class="fas fa-qrcode opacity-30 mr-2"></i>
+                                        Scan a QR code to see results
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reader Preview -->
+                <div class="lg:col-span-3">
+                    <div
+                        class="bg-white rounded-3xl p-6 shadow-elevated border border-surface-border/60 card-hover h-full">
+                        <h3 class="text-xl font-bold text-text-primary mb-4 flex items-center gap-3">
+                            <i class="fas fa-eye text-tor-violet"></i>
+                            Scanner View
+                        </h3>
+                        <div id="qr-reader-container"
+                            class="relative rounded-xl overflow-hidden bg-surface-muted min-h-[320px] flex items-center justify-center">
+                            <div class="qr-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span class="text-sm">Camera or upload an image to scan</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-text-muted text-center mt-4">
+                            <i class="fas fa-shield-alt text-tor-violet mr-1"></i>
+                            All scanning is done locally. No image is uploaded to any server.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== FEATURES ============================================== -->
+    <!-- ============================================================ -->
+    <section class="py-16 md:py-24 bg-white/40 border-y border-surface-border/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="section-badge"><i class="fas fa-star"></i> Features</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+                    <span class="text-text-primary">Built for </span>
+                    <span class="text-tor-violet">privacy &amp; power</span>
+                </h2>
+                <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+                    A sovereign QR tool suite designed for the free internet.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <div class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover"
+                    data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-12 h-12 rounded-xl bg-tor-violet/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-tor-violet text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">Zero Tracking</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        No analytics, no cookies, no surveillance. Your QR data stays on your device.
+                        We don't store or log anything.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 rounded-xl bg-tor-violet/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-lock text-tor-violet text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">Client-Side Only</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        All QR generation and scanning happens entirely in your browser.
+                        No data ever touches our servers.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 rounded-xl bg-tor-violet/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-palette text-tor-violet text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">Fully Customizable</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Choose size, error correction level, and colors. Generate QR codes that
+                        match your brand or style.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 rounded-xl bg-tor-violet/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-download text-tor-violet text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">Export &amp; Share</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Download QR codes as PNG or SVG. Copy to clipboard for instant sharing
+                        across all your platforms.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover"
+                    data-aos="fade-up" data-aos-delay="150">
+                    <div class="w-12 h-12 rounded-xl bg-tor-violet/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-camera-retro text-tor-violet text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">Camera &amp; Upload</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Scan QR codes with your device camera or upload an image. Both methods
+                        work instantly and privately.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 rounded-xl bg-tor-violet/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-code text-tor-violet text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">Open Source</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Built with transparency. Audit the code, self-host, or contribute —
+                        digital rights require open infrastructure.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== FOOTER ===== -->
+    <!-- ============================================================ -->
+    <footer class="relative overflow-hidden border-t border-tor-violet/10">
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
+        </div>
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
+        </div>
+
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+
+                <div class="col-span-2 md:col-span-3 lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
+                            <img src="../img/logo.png" alt="Ricalnet"
+                                class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
+                        </div>
+                        <div>
+                            <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
+                            <span
+                                class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
+                                Rights
+                                · Infrastructure</span>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
+                        Sovereign infrastructure &amp; private digital services. Built for rights, not profit.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 mt-5">
+                        <a href="https://github.com/ricalnet" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fa-brands fa-github text-base"></i>
+                        </a>
+                        <a href="mailto:ricalnet@duck.com"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-envelope text-base"></i>
+                        </a>
+                        <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-heartbeat text-base"></i>
+                        </a>
+                        <span
+                            class="pgp-fingerprint text-[0.6rem] px-3 py-1.5 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                            onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                            <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                        </span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Advocacy</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="../about.html#our-mission" class="footer-link">Our Mission</a></li>
+                        <li><a href="../resources.html" class="footer-link">Resources</a></li>
+                        <li><a href="../coaching.html" class="footer-link">Gallery</a></li>
+                        <li><a href="https://docs.ricalnet.my.id" class="footer-link">Blog</a></li>
+                        <li><a href="../index.html#cta" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Infrastructure</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="../index.html#features" class="footer-link">Sovereign Infrastructure</a></li>
+                        <li><a href="../index.html#private-digital-services" class="footer-link">Private Services</a></li>
+                        <li><a href="https://search.ricalnet.my.id" class="footer-link">Search Engine</a></li>
+                        <li><a href="https://link.ricalnet.my.id" class="footer-link">URL Shortener</a></li>
+                        <li><a href="https://translate.ricalnet.my.id" class="footer-link">Translation</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Community</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
+                                target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="https://github.com/ricalnet/digital-independence" class="footer-link"
+                                target="_blank">Become a
+                                Contributor <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="../about.html#cta-support" class="footer-link">Support</a></li>
+                        <li><a href="https://status.ricalnet.my.id" class="footer-link">Status</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Legal</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://cloud.ricalnet.my.id/s/H9SM2rJ2M9NfQaq" class="footer-link">Legal Resources</a>
+                        </li>
+                        <li><a href="../terms-of-service.html" class="footer-link">Terms of Service</a></li>
+                        <li><a href="../privacy.html" class="footer-link">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+                <p class="text-xs tracking-wide"> COPYRIGHT (CC BY)</p>
+                <div class="flex items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
+                    <span class="text-text-secondary/70">#DigitalSovereignty</span>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span class="text-text-secondary/70">#Privacy</span>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span class="text-text-secondary/70">#NoLockIn</span>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span class="text-tor-violet font-semibold">#RightsFirst</span>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span
+                        class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                        onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                        <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- ===== SCRIPTS ============================================== -->
+    <!-- ============================================================ -->
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+    </script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 30,
+            easing: 'ease-out-cubic',
+            duration: 700,
+            disable: window.innerWidth < 768 ? true : false,
+        });
+
+        const PGP_FINGERPRINT = '45688382B815821F033115B8D92D6A10D29C8380';
+
+        function copyPGP() {
+            navigator.clipboard.writeText(PGP_FINGERPRINT).then(() => {
+                showToast('PGP fingerprint copied!');
+            }).catch(() => {
+                const textArea = document.createElement('textarea');
+                textArea.value = PGP_FINGERPRINT;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast('PGP fingerprint copied!');
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] transition-all duration-300';
+            toast.innerHTML = '<i class="fas fa-check-circle text-tor-accent mr-2"></i> ' + message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Copied!');
+            }).catch(() => {
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast('Copied!');
+            });
+        }
+    </script>
+
+    <!-- ===== MOBILE NAV SCRIPTS ===== -->
+    <script>
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const menuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const body = document.body;
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('open');
+            body.classList.add('menu-open');
+            menuToggle.setAttribute('aria-expanded', 'true');
+            document.documentElement.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            body.classList.remove('menu-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            document.documentElement.style.overflow = '';
+            document.querySelectorAll('.mobile-sub-menu.open').forEach(el => {
+                el.classList.remove('open');
+                el.previousElementSibling?.classList.remove('open');
+                el.previousElementSibling?.setAttribute('aria-expanded', 'false');
+            });
+        }
+
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                if (mobileMenu.classList.contains('open')) {
+                    closeMobileMenu();
+                } else {
+                    openMobileMenu();
+                }
+            });
+        }
+
+        if (menuClose) {
+            menuClose.addEventListener('click', closeMobileMenu);
+        }
+
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', function (e) {
+                if (e.target === this) {
+                    closeMobileMenu();
+                }
+            });
+        }
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) {
+                closeMobileMenu();
+            }
+        });
+
+        document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const targetId = this.getAttribute('data-target');
+                const sub = document.getElementById(targetId);
+                if (!sub) return;
+                const isOpen = sub.classList.contains('open');
+
+                document.querySelectorAll('.mobile-sub-menu').forEach(el => {
+                    if (el !== sub) {
+                        el.classList.remove('open');
+                        el.previousElementSibling?.classList.remove('open');
+                        el.previousElementSibling?.setAttribute('aria-expanded',
+                            'false');
+                    }
+                });
+
+                if (isOpen) {
+                    sub.classList.remove('open');
+                    this.classList.remove('open');
+                    this.setAttribute('aria-expanded', 'false');
+                } else {
+                    sub.classList.add('open');
+                    this.classList.add('open');
+                    this.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        document.querySelectorAll('[data-close-mobile]').forEach(link => {
+            link.addEventListener('click', function (e) {
+                setTimeout(closeMobileMenu, 100);
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (mobileMenu && mobileMenu.classList.contains('open')) {
+                        closeMobileMenu();
+                    }
+                }
+            });
+        });
+
+        window.addEventListener('resize', function () {
+            if (window.innerWidth >= 1024) {
+                if (mobileMenu && mobileMenu.classList.contains('open')) {
+                    closeMobileMenu();
+                }
+            }
+        });
+    </script>
+
+    <!-- ===== QR CODE SCRIPTS ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // --------------------------------------------------------------
+            // QR CODE GENERATOR
+            // --------------------------------------------------------------
+
+            const qrInput = document.getElementById('qr-input');
+            const generateBtn = document.getElementById('generate-btn');
+            const qrSize = document.getElementById('qr-size');
+            const qrLevel = document.getElementById('qr-level');
+            const generatedQr = document.getElementById('generated-qr');
+            const qrActions = document.getElementById('qr-actions');
+            const downloadPngBtn = document.getElementById('download-png-btn');
+            const downloadSvgBtn = document.getElementById('download-svg-btn');
+            const copyQrBtn = document.getElementById('copy-qr-btn');
+            const heroQr = document.getElementById('hero-qr');
+
+            let currentQrCode = null;
+            let currentFgColor = '#0f0e1a';
+            let currentBgColor = '#ffffff';
+
+            // Color pickers
+            const colorBtns = document.querySelectorAll('.qr-color-option');
+            const fgCustom = document.getElementById('qr-fg-custom');
+            const bgCustom = document.getElementById('qr-bg-custom');
+
+            colorBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const parent = this.parentElement;
+                    parent.querySelectorAll('.qr-color-option').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    const color = this.dataset.color;
+                    // Determine if this is foreground or background
+                    if (parent.parentElement.querySelector('label')?.textContent?.includes('Foreground')) {
+                        currentFgColor = color;
+                        if (fgCustom) fgCustom.value = color;
+                    } else {
+                        currentBgColor = color;
+                        if (bgCustom) bgCustom.value = color;
+                    }
+                    if (currentQrCode) generateQR();
+                });
+            });
+
+            if (fgCustom) {
+                fgCustom.addEventListener('input', function () {
+                    currentFgColor = this.value;
+                    document.querySelectorAll('.qr-color-option[data-color]').forEach(b => b.classList.remove(
+                        'active'));
+                    if (currentQrCode) generateQR();
+                });
+            }
+
+            if (bgCustom) {
+                bgCustom.addEventListener('input', function () {
+                    currentBgColor = this.value;
+                    document.querySelectorAll('.qr-color-option[data-color]').forEach(b => b.classList.remove(
+                        'active'));
+                    if (currentQrCode) generateQR();
+                });
+            }
+
+            function generateQR() {
+                const text = qrInput.value.trim();
+                if (!text) {
+                    showToast('Please enter some content first.');
+                    return;
+                }
+
+                const size = parseInt(qrSize.value);
+                const level = qrLevel.value;
+
+                // Clear previous QR
+                generatedQr.innerHTML = '';
+                generatedQr.classList.add('has-qr');
+
+                // Create QR code
+                const container = document.createElement('div');
+                container.id = 'qr-code-container';
+                container.style.display = 'flex';
+                container.style.justifyContent = 'center';
+                container.style.alignItems = 'center';
+                container.style.width = '100%';
+                container.style.minHeight = '200px';
+                generatedQr.appendChild(container);
+
+                try {
+                    const qr = new QRCode(container, {
+                        text: text,
+                        width: size,
+                        height: size,
+                        colorDark: currentFgColor,
+                        colorLight: currentBgColor,
+                        correctLevel: level === 'L' ? QRCode.CorrectLevel.L :
+                            level === 'M' ? QRCode.CorrectLevel.M :
+                                level === 'Q' ? QRCode.CorrectLevel.Q :
+                                    QRCode.CorrectLevel.H
+                    });
+
+                    currentQrCode = qr;
+
+                    // Show actions
+                    qrActions.classList.remove('opacity-0', 'pointer-events-none');
+                    qrActions.classList.add('opacity-100', 'pointer-events-auto');
+
+                    // Also update hero QR if it exists
+                    if (heroQr) {
+                        heroQr.innerHTML = '';
+                        const heroContainer = document.createElement('div');
+                        heroContainer.style.display = 'flex';
+                        heroContainer.style.justifyContent = 'center';
+                        heroContainer.style.alignItems = 'center';
+                        heroQr.appendChild(heroContainer);
+                        new QRCode(heroContainer, {
+                            text: text,
+                            width: 160,
+                            height: 160,
+                            colorDark: currentFgColor,
+                            colorLight: currentBgColor,
+                            correctLevel: level === 'L' ? QRCode.CorrectLevel.L :
+                                level === 'M' ? QRCode.CorrectLevel.M :
+                                    level === 'Q' ? QRCode.CorrectLevel.Q :
+                                        QRCode.CorrectLevel.H
+                        });
+                    }
+
+                    showToast('QR Code generated successfully!');
+
+                } catch (err) {
+                    generatedQr.innerHTML = `
+                        <div class="qr-placeholder text-red-400">
+                            <i class="fas fa-exclamation-triangle text-3xl"></i>
+                            <span class="text-sm">Error: ${err.message}</span>
+                        </div>
+                    `;
+                    qrActions.classList.add('opacity-0', 'pointer-events-none');
+                    qrActions.classList.remove('opacity-100', 'pointer-events-auto');
+                    currentQrCode = null;
+                }
+            }
+
+            generateBtn.addEventListener('click', generateQR);
+
+            qrInput.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    generateQR();
+                }
+            });
+
+            // Download PNG
+            downloadPngBtn.addEventListener('click', function () {
+                const canvas = document.querySelector('#qr-code-container canvas');
+                if (!canvas) {
+                    showToast('No QR code to download. Generate one first.');
+                    return;
+                }
+                const link = document.createElement('a');
+                link.download = 'qrcode.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+
+            // Download SVG
+            downloadSvgBtn.addEventListener('click', function () {
+                const canvas = document.querySelector('#qr-code-container canvas');
+                if (!canvas) {
+                    showToast('No QR code to download. Generate one first.');
+                    return;
+                }
+                // Get the QR data from the canvas
+                const ctx = canvas.getContext('2d');
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const data = imageData.data;
+
+                // Determine QR size from the canvas
+                const size = canvas.width;
+                const cellSize = Math.ceil(size / 33); // QR codes have 33x33 modules (including quiet zone)
+                const fgColor = currentFgColor;
+                const bgColor = currentBgColor;
+
+                // Build SVG
+                let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`;
+                svg += `<rect width="${size}" height="${size}" fill="${bgColor}"/>`;
+
+                // Scan pixels to find dark modules
+                const threshold = 128;
+                const modules = [];
+                for (let row = 0; row < size; row += cellSize) {
+                    const rowModules = [];
+                    for (let col = 0; col < size; col += cellSize) {
+                        const idx = (row * size + col) * 4;
+                        const r = data[idx];
+                        const g = data[idx + 1];
+                        const b = data[idx + 2];
+                        const brightness = (r + g + b) / 3;
+                        rowModules.push(brightness < threshold ? 1 : 0);
+                    }
+                    modules.push(rowModules);
+                }
+
+                // Draw modules as rects
+                for (let row = 0; row < modules.length; row++) {
+                    for (let col = 0; col < modules[row].length; col++) {
+                        if (modules[row][col] === 1) {
+                            const x = col * cellSize;
+                            const y = row * cellSize;
+                            svg += `<rect x="${x}" y="${y}" width="${cellSize}" height="${cellSize}" fill="${fgColor}"/>`;
+                        }
+                    }
+                }
+
+                svg += '</svg>';
+
+                const blob = new Blob([svg], { type: 'image/svg+xml' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.download = 'qrcode.svg';
+                link.href = url;
+                link.click();
+                URL.revokeObjectURL(url);
+            });
+
+            // Copy QR as image
+            copyQrBtn.addEventListener('click', function () {
+                const canvas = document.querySelector('#qr-code-container canvas');
+                if (!canvas) {
+                    showToast('No QR code to copy. Generate one first.');
+                    return;
+                }
+                canvas.toBlob(function (blob) {
+                    navigator.clipboard.write([
+                        new ClipboardItem({
+                            [blob.type]: blob
+                        })
+                    ]).then(() => {
+                        showToast('QR code copied to clipboard!');
+                    }).catch(() => {
+                        showToast('Unable to copy. Try downloading instead.');
+                    });
+                });
+            });
+
+            // --------------------------------------------------------------
+            // QR CODE READER
+            // --------------------------------------------------------------
+
+            const cameraTab = document.getElementById('camera-tab');
+            const uploadTab = document.getElementById('upload-tab');
+            const cameraPanel = document.getElementById('camera-panel');
+            const uploadPanel = document.getElementById('upload-panel');
+            const startCameraBtn = document.getElementById('start-camera-btn');
+            const stopCameraBtn = document.getElementById('stop-camera-btn');
+            const qrFileInput = document.getElementById('qr-file-input');
+            const qrReaderContainer = document.getElementById('qr-reader-container');
+            const qrResultPlaceholder = document.getElementById('qr-result-placeholder');
+            const qrDecodedText = document.getElementById('qr-decoded-text');
+            const copyDecodedBtn = document.getElementById('copy-decoded-btn');
+            const qrResult = document.getElementById('qr-result');
+
+            let html5QrCode = null;
+            let isScanning = false;
+
+            // Tab switching
+            cameraTab.addEventListener('click', function () {
+                this.classList.add('active');
+                uploadTab.classList.remove('active');
+                cameraPanel.classList.remove('hidden');
+                uploadPanel.classList.add('hidden');
+                if (isScanning) {
+                    stopScanner();
+                }
+                // Reset reader container
+                qrReaderContainer.innerHTML = `
+                    <div class="qr-placeholder">
+                        <i class="fas fa-camera"></i>
+                        <span class="text-sm">Click "Start Camera" to scan</span>
+                    </div>
+                `;
+                hideResult();
+            });
+
+            uploadTab.addEventListener('click', function () {
+                this.classList.add('active');
+                cameraTab.classList.remove('active');
+                cameraPanel.classList.add('hidden');
+                uploadPanel.classList.remove('hidden');
+                if (isScanning) {
+                    stopScanner();
+                }
+                qrReaderContainer.innerHTML = `
+                    <div class="qr-placeholder">
+                        <i class="fas fa-upload"></i>
+                        <span class="text-sm">Upload an image to scan</span>
+                    </div>
+                `;
+                hideResult();
+            });
+
+            function hideResult() {
+                const content = qrResult.querySelector('.result-content');
+                const placeholder = qrResult.querySelector('#qr-result-placeholder');
+                if (content) content.classList.remove('show');
+                if (placeholder) placeholder.style.display = 'block';
+                qrDecodedText.textContent = '';
+            }
+
+            function showResult(text) {
+                const content = qrResult.querySelector('.result-content');
+                const placeholder = qrResult.querySelector('#qr-result-placeholder');
+                if (content) content.classList.add('show');
+                if (placeholder) placeholder.style.display = 'none';
+                qrDecodedText.textContent = text;
+            }
+
+            // Start camera scanner
+            startCameraBtn.addEventListener('click', function () {
+                if (isScanning) {
+                    stopScanner();
+                    return;
+                }
+                startScanner();
+            });
+
+            stopCameraBtn.addEventListener('click', function () {
+                stopScanner();
+            });
+
+            async function startScanner() {
+                try {
+                    // Check if camera is supported
+                    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                        showToast('Camera not supported on this device.');
+                        return;
+                    }
+
+                    // Create reader container
+                    qrReaderContainer.innerHTML = `
+                        <div id="qr-reader" style="width:100%;min-height:320px;"></div>
+                    `;
+
+                    const readerElement = document.getElementById('qr-reader');
+
+                    html5QrCode = new Html5Qrcode("qr-reader");
+
+                    const config = {
+                        fps: 15,
+                        qrbox: { width: 250, height: 250 },
+                        aspectRatio: 1.0
+                    };
+
+                    await html5QrCode.start({ facingMode: "environment" },
+                        config,
+                        onScanSuccess,
+                        onScanError
+                    );
+
+                    isScanning = true;
+                    startCameraBtn.textContent = 'Scanning...';
+                    startCameraBtn.disabled = true;
+                    stopCameraBtn.classList.remove('hidden');
+                    showToast('Camera started. Point at a QR code.');
+
+                } catch (err) {
+                    console.error('Camera error:', err);
+                    showToast('Could not access camera: ' + err.message);
+                    qrReaderContainer.innerHTML = `
+                        <div class="qr-placeholder text-red-400">
+                            <i class="fas fa-exclamation-triangle text-3xl"></i>
+                            <span class="text-sm">Camera unavailable: ${err.message}</span>
+                        </div>
+                    `;
+                    startCameraBtn.textContent = 'Start Camera';
+                    startCameraBtn.disabled = false;
+                    stopCameraBtn.classList.add('hidden');
+                }
+            }
+
+            function stopScanner() {
+                if (html5QrCode && isScanning) {
+                    html5QrCode.stop().then(() => {
+                        isScanning = false;
+                        startCameraBtn.textContent = 'Start Camera';
+                        startCameraBtn.disabled = false;
+                        stopCameraBtn.classList.add('hidden');
+                        qrReaderContainer.innerHTML = `
+                            <div class="qr-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span class="text-sm">Camera stopped</span>
+                            </div>
+                        `;
+                        showToast('Camera stopped.');
+                    }).catch(err => {
+                        console.error('Stop error:', err);
+                    });
+                } else {
+                    startCameraBtn.textContent = 'Start Camera';
+                    startCameraBtn.disabled = false;
+                    stopCameraBtn.classList.add('hidden');
+                }
+            }
+
+            function onScanSuccess(decodedText, decodedResult) {
+                // Show result
+                showResult(decodedText);
+                showToast('QR Code scanned successfully!');
+
+                // Optional: beep or vibrate
+                try {
+                    if (navigator.vibrate) navigator.vibrate(100);
+                } catch (e) { /* ignore */ }
+
+                // Stop scanning after successful scan to avoid repeated scans
+                // Uncomment below to auto-stop after one scan
+                // stopScanner();
+            }
+
+            function onScanError(err) {
+                // This is called frequently, ignore
+            }
+
+            // File upload scanner
+            qrFileInput.addEventListener('change', function (e) {
+                const file = this.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const imageUrl = event.target.result;
+
+                    // Display image in reader container
+                    qrReaderContainer.innerHTML = `
+                        <img src="${imageUrl}" alt="Uploaded QR" class="max-h-[400px] w-auto mx-auto rounded-xl" />
+                    `;
+
+                    // Use html5-qrcode to decode
+                    const tempReader = new Html5Qrcode("qr-reader-container");
+
+                    // We need to create a temporary element for scanning
+                    const tempDiv = document.createElement('div');
+                    tempDiv.id = 'temp-qr-reader';
+                    tempDiv.style.display = 'none';
+                    document.body.appendChild(tempDiv);
+
+                    const scanner = new Html5Qrcode('temp-qr-reader');
+
+                    scanner.scanFile(file, true)
+                        .then(decodedText => {
+                            showResult(decodedText);
+                            showToast('QR Code decoded successfully!');
+                            document.body.removeChild(tempDiv);
+                        })
+                        .catch(err => {
+                            console.error('Decode error:', err);
+                            showToast('Could not decode QR code. Try a different image.');
+                            document.body.removeChild(tempDiv);
+                        });
+                };
+
+                reader.readAsDataURL(file);
+                // Reset input to allow re-upload of same file
+                this.value = '';
+            });
+
+            // Copy decoded text
+            copyDecodedBtn.addEventListener('click', function () {
+                const text = qrDecodedText.textContent;
+                if (text) {
+                    copyToClipboard(text);
+                } else {
+                    showToast('Nothing to copy.');
+                }
+            });
+
+            // --------------------------------------------------------------
+            // AUTO-GENERATE ON LOAD WITH DEFAULT CONTENT
+            // --------------------------------------------------------------
+
+            // Generate a default QR on load
+            setTimeout(() => {
+                if (qrInput.value.trim()) {
+                    generateQR();
+                }
+            }, 400);
+
+            // Also show a sample QR in hero if possible
+            setTimeout(() => {
+                if (heroQr && qrInput.value.trim()) {
+                    const text = qrInput.value.trim();
+                    heroQr.innerHTML = '';
+                    const heroContainer = document.createElement('div');
+                    heroContainer.style.display = 'flex';
+                    heroContainer.style.justifyContent = 'center';
+                    heroContainer.style.alignItems = 'center';
+                    heroQr.appendChild(heroContainer);
+                    new QRCode(heroContainer, {
+                        text: text,
+                        width: 160,
+                        height: 160,
+                        colorDark: '#7c3aed',
+                        colorLight: '#ffffff',
+                        correctLevel: QRCode.CorrectLevel.M
+                    });
+                }
+            }, 500);
+
+        });
+    </script>
+
+</body>
+
+</html>
