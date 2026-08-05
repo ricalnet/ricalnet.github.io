@@ -285,6 +285,201 @@
         .leaflet-popup-tip {
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08) !important;
         }
+
+        /* ===== Search History ===== */
+        .history-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.2rem 0.7rem 0.2rem 0.7rem;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(124, 58, 237, 0.08);
+            color: #52506e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .history-chip:hover {
+            background: white;
+            border-color: rgba(124, 58, 237, 0.2);
+            color: #7c3aed;
+        }
+
+        .history-chip .remove-btn {
+            background: transparent;
+            border: none;
+            color: #9492ae;
+            font-size: 0.6rem;
+            cursor: pointer;
+            padding: 0 0.1rem;
+            transition: color 0.2s;
+        }
+
+        .history-chip .remove-btn:hover {
+            color: #ef4444;
+        }
+
+        .history-scroll {
+            overflow-x: auto;
+            padding-bottom: 0.25rem;
+            scrollbar-width: thin;
+        }
+
+        .history-scroll::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        .history-scroll::-webkit-scrollbar-thumb {
+            background: #c4b5fd;
+            border-radius: 8px;
+        }
+
+        /* ===== Security Badges ===== */
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border: 1px solid transparent;
+        }
+
+        .security-badge.green {
+            background: rgba(104, 176, 48, 0.12);
+            border-color: rgba(104, 176, 48, 0.2);
+            color: #4a7c2a;
+        }
+
+        .security-badge.yellow {
+            background: rgba(245, 158, 11, 0.12);
+            border-color: rgba(245, 158, 11, 0.2);
+            color: #a16207;
+        }
+
+        .security-badge.red {
+            background: rgba(239, 68, 68, 0.12);
+            border-color: rgba(239, 68, 68, 0.2);
+            color: #b91c1c;
+        }
+
+        .security-badge.blue {
+            background: rgba(6, 182, 212, 0.12);
+            border-color: rgba(6, 182, 212, 0.2);
+            color: #0e7490;
+        }
+
+        .security-badge.gray {
+            background: rgba(148, 146, 174, 0.12);
+            border-color: rgba(148, 146, 174, 0.15);
+            color: #52506e;
+        }
+
+        .security-score {
+            width: 2.8rem;
+            height: 2.8rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .security-score.high {
+            background: rgba(104, 176, 48, 0.15);
+            color: #4a7c2a;
+        }
+
+        .security-score.medium {
+            background: rgba(245, 158, 11, 0.15);
+            color: #a16207;
+        }
+
+        .security-score.low {
+            background: rgba(239, 68, 68, 0.15);
+            color: #b91c1c;
+        }
+
+        /* ===== Print Styles ===== */
+        @media print {
+            body {
+                background: white !important;
+            }
+
+            .fixed,
+            #mobile-menu,
+            header,
+            .btn-primary,
+            .btn-secondary,
+            .btn-sso,
+            #lookup-btn,
+            #my-ip-btn,
+            #clear-btn,
+            #raw-toggle,
+            #raw-panel,
+            .example-ip-btn,
+            .copy-tooltip,
+            .history-section,
+            .export-section {
+                display: none !important;
+            }
+
+            .ip-result-card {
+                border: 1px solid #ddd !important;
+                box-shadow: none !important;
+                background: white !important;
+                backdrop-filter: none !important;
+                break-inside: avoid;
+            }
+
+            #results-container {
+                display: block !important;
+            }
+
+            #map {
+                height: 200px !important;
+                border: 1px solid #ddd !important;
+            }
+
+            .glass-card {
+                background: white !important;
+                backdrop-filter: none !important;
+                border: 1px solid #ddd !important;
+                box-shadow: none !important;
+            }
+
+            .pgp-fingerprint,
+            .footer-link::after {
+                display: none !important;
+            }
+
+            footer {
+                border-top: 1px solid #ddd !important;
+            }
+
+            .ip-stat-label {
+                color: #666 !important;
+            }
+
+            .ip-stat-value {
+                color: #000 !important;
+            }
+
+            .security-badge {
+                border: 1px solid #ddd !important;
+            }
+
+            .security-score {
+                border: 1px solid #ddd !important;
+            }
+        }
     </style>
 </head>
 
@@ -307,23 +502,22 @@
         class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 md:h-[72px]">
-
+    
                 <a href="../index" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
                     data-aos-duration="600">
                     <img src="../img/logo.png" alt="Ricalnet Logo"
                         class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
                     <div class="leading-tight hidden sm:block">
                         <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
-                        <span
-                            class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
+                        <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
                             Rights · Infrastructure</span>
                     </div>
                 </a>
-
+    
                 <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down"
                     data-aos-duration="600">
                     <a href="../index#hero" class="nav-link">Home</a>
-
+    
                     <div class="relative group">
                         <a href="../index#pain-points" class="nav-link flex items-center gap-1">
                             Advocacy
@@ -337,7 +531,7 @@
                             <a href="../resources#legal-resources" class="dropdown-item">Legal Resources</a>
                         </div>
                     </div>
-
+    
                     <div class="relative group">
                         <a href="../resources#hero" class="nav-link flex items-center gap-1">
                             Resources
@@ -351,10 +545,9 @@
                             <a href="../resources" class="dropdown-item">All Resources</a>
                         </div>
                     </div>
-
+    
                     <div class="relative group">
-                        <a href="../tools/ip-intelligence"
-                            class="nav-link nav-link-active flex items-center gap-1">
+                        <a href="../tools/ip-intelligence" class="nav-link nav-link-active flex items-center gap-1">
                             Tools
                             <i
                                 class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
@@ -368,7 +561,7 @@
                             <a href="../resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
                         </div>
                     </div>
-
+    
                     <div class="relative group">
                         <a href="../about#hero" class="nav-link flex items-center gap-1">
                             About
@@ -384,7 +577,7 @@
                         </div>
                     </div>
                 </nav>
-
+    
                 <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
                     <a href="https://auth.ricalnet.my.id" class="hidden lg:inline-flex btn-sso">
                         <i class="fas fa-key"></i> Login with SSO
@@ -395,16 +588,16 @@
                         <i class="fas fa-bars text-text-secondary text-lg"></i>
                     </button>
                 </div>
-
+    
             </div>
         </div>
     </header>
-
+    
     <!-- ============================================================ -->
     <!-- ===== MOBILE NAV =========================================== -->
     <!-- ============================================================ -->
     <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
-
+    
         <div class="mobile-menu-header">
             <div class="logo">
                 <img src="../img/logo.png" alt="Ricalnet" />
@@ -414,13 +607,13 @@
                 <i class="fas fa-xmark"></i>
             </button>
         </div>
-
+    
         <div class="mobile-menu-scroll">
-
+    
             <a href="../index#hero" class="nav-item" data-close-mobile>
                 <i class="fas fa-home"></i> Home
             </a>
-
+    
             <!-- ===== ADVOCACY DROPDOWN ===== -->
             <div class="mobile-dropdown">
                 <button
@@ -447,7 +640,7 @@
                     </a>
                 </div>
             </div>
-
+    
             <!-- ===== RESOURCES DROPDOWN ===== -->
             <div class="mobile-dropdown">
                 <button
@@ -474,7 +667,7 @@
                     </a>
                 </div>
             </div>
-
+    
             <!-- ===== TOOLS DROPDOWN ===== -->
             <div class="mobile-dropdown">
                 <button
@@ -507,7 +700,7 @@
                     </a>
                 </div>
             </div>
-
+    
             <!-- ===== ABOUT DROPDOWN ===== -->
             <div class="mobile-dropdown">
                 <button
@@ -537,20 +730,18 @@
                     </a>
                 </div>
             </div>
-
+    
             <a href="https://auth.ricalnet.my.id" class="mt-3 block w-full text-center btn-sso justify-center"
                 data-close-mobile>
                 <i class="fas fa-key"></i> Login with SSO
             </a>
-
-            <div
-                class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
-                <span
-                    class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+    
+            <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+                <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
                     <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> Digital Sovereignty · Privacy-First
                 </span>
             </div>
-
+    
         </div>
     </div>
 
@@ -586,7 +777,7 @@
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <!-- Search Bar -->
-            <div class="max-w-2xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="100">
+            <div class="max-w-2xl mx-auto mb-3" data-aos="fade-up" data-aos-delay="100">
                 <div class="relative">
                     <div
                         class="glass-card rounded-2xl p-1.5 shadow-elevated border border-tor-violet/10 flex items-center gap-1.5 bg-white/80">
@@ -620,6 +811,21 @@
                         </span>
                     </div>
                 </div>
+            </div>
+
+            <!-- ===== SEARCH HISTORY ===== -->
+            <div id="history-section" class="max-w-2xl mx-auto mb-6 hidden" data-aos="fade-up" data-aos-delay="120">
+                <div class="flex items-center justify-between gap-2">
+                    <span
+                        class="text-[0.6rem] font-semibold uppercase tracking-[0.1em] text-text-muted flex items-center gap-1.5">
+                        <i class="fas fa-clock text-tor-violet/60"></i> Recent
+                    </span>
+                    <button id="clear-history-btn"
+                        class="text-[0.55rem] font-medium text-text-muted hover:text-red-500 transition-colors uppercase tracking-wider">
+                        <i class="fas fa-trash-can mr-1"></i> Clear All
+                    </button>
+                </div>
+                <div class="history-scroll flex items-center gap-2 mt-1.5 pb-1" id="history-list"></div>
             </div>
 
             <!-- Loading State -->
@@ -810,6 +1016,31 @@
                         </div>
                     </div>
 
+                    <!-- ===== SECURITY ASSESSMENT CARD (NEW) ===== -->
+                    <div class="ip-result-card rounded-2xl p-5 md:p-6 md:col-span-2" data-aos="fade-up"
+                        data-aos-delay="450">
+                        <div class="ip-section-title"><i class="fas fa-shield-halved mr-2"></i>Security Assessment</div>
+                        <div id="security-content">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                                <div class="flex items-center gap-3">
+                                    <div id="security-score-ring" class="security-score high">A</div>
+                                    <div>
+                                        <div id="security-status" class="font-bold text-text-primary text-lg">Secure
+                                        </div>
+                                        <div id="security-sub" class="text-text-muted text-xs">Risk level: Low</div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap gap-2" id="security-badges">
+                                    <!-- Badges injected by JS -->
+                                </div>
+                            </div>
+                            <div id="security-details"
+                                class="mt-3 text-sm text-text-secondary border-t border-surface-border/60 pt-3 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
+                                <!-- Details injected by JS -->
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- ===== MAP CARD ===== -->
                     <div class="ip-result-card rounded-2xl p-5 md:p-6 md:col-span-2" data-aos="fade-up"
                         data-aos-delay="500">
@@ -825,19 +1056,31 @@
 
                 </div>
 
-                <!-- Raw data toggle -->
-                <div class="mt-6 text-center" data-aos="fade-up" data-aos-delay="450">
+                <!-- ===== EXPORT & RAW ===== -->
+                <div class="mt-6 flex flex-wrap items-center justify-center gap-3" data-aos="fade-up"
+                    data-aos-delay="550">
+                    <!-- Export Buttons -->
+                    <button id="export-csv-btn"
+                        class="text-text-muted hover:text-tor-violet transition-colors text-sm font-medium inline-flex items-center gap-2 px-4 py-2 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20">
+                        <i class="fas fa-file-csv"></i>
+                        <span>Export CSV</span>
+                    </button>
+                    <button id="export-pdf-btn"
+                        class="text-text-muted hover:text-tor-violet transition-colors text-sm font-medium inline-flex items-center gap-2 px-4 py-2 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Print / PDF</span>
+                    </button>
                     <button id="raw-toggle"
-                        class="text-text-muted hover:text-tor-violet transition-colors text-sm font-medium inline-flex items-center gap-2">
+                        class="text-text-muted hover:text-tor-violet transition-colors text-sm font-medium inline-flex items-center gap-2 px-4 py-2 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20">
                         <i class="fas fa-code"></i>
-                        <span>View Raw JSON</span>
+                        <span>Raw JSON</span>
                         <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
                     </button>
-                    <div id="raw-panel" class="hidden mt-3 text-left">
-                        <div
-                            class="bg-[#0f0e1a]/5 rounded-2xl p-4 overflow-x-auto border border-surface-border/60 font-mono text-xs">
-                            <pre id="raw-json" class="text-text-secondary whitespace-pre-wrap break-all"></pre>
-                        </div>
+                </div>
+                <div id="raw-panel" class="hidden mt-3 text-left">
+                    <div
+                        class="bg-[#0f0e1a]/5 rounded-2xl p-4 overflow-x-auto border border-surface-border/60 font-mono text-xs">
+                        <pre id="raw-json" class="text-text-secondary whitespace-pre-wrap break-all"></pre>
                     </div>
                 </div>
 
@@ -1063,7 +1306,320 @@
             });
         }
 
-        // ===== IP INTELLIGENCE =====
+        // ================================================================
+        // ===== SEARCH HISTORY (localStorage) =============================
+        // ================================================================
+        const HISTORY_KEY = 'ip_history';
+        const MAX_HISTORY = 12;
+
+        function getHistory() {
+            try {
+                const raw = localStorage.getItem(HISTORY_KEY);
+                return raw ? JSON.parse(raw) : [];
+            } catch { return []; }
+        }
+
+        function saveHistory(history) {
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+        }
+
+        function addToHistory(ip) {
+            if (!ip || ip === '') return;
+            let history = getHistory();
+            // Remove duplicate
+            history = history.filter(item => item !== ip);
+            // Add to front
+            history.unshift(ip);
+            // Trim
+            if (history.length > MAX_HISTORY) history = history.slice(0, MAX_HISTORY);
+            saveHistory(history);
+            renderHistory();
+        }
+
+        function removeFromHistory(ip) {
+            let history = getHistory();
+            history = history.filter(item => item !== ip);
+            saveHistory(history);
+            renderHistory();
+        }
+
+        function clearHistory() {
+            saveHistory([]);
+            renderHistory();
+        }
+
+        function renderHistory() {
+            const container = document.getElementById('history-list');
+            const section = document.getElementById('history-section');
+            const history = getHistory();
+
+            if (history.length === 0) {
+                section.classList.add('hidden');
+                return;
+            }
+            section.classList.remove('hidden');
+            container.innerHTML = '';
+            history.forEach(ip => {
+                const chip = document.createElement('span');
+                chip.className = 'history-chip';
+                chip.innerHTML = `
+                    <span class="ip-text">${ip}</span>
+                    <button class="remove-btn" data-ip="${ip}" title="Remove from history">
+                        <i class="fas fa-xmark"></i>
+                    </button>
+                `;
+                // Click on the chip (except remove button) triggers lookup
+                chip.addEventListener('click', (e) => {
+                    if (e.target.closest('.remove-btn')) return;
+                    elements.input.value = ip;
+                    lookupIP(ip);
+                });
+                // Remove button
+                const removeBtn = chip.querySelector('.remove-btn');
+                removeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const ipToRemove = removeBtn.dataset.ip;
+                    removeFromHistory(ipToRemove);
+                });
+                container.appendChild(chip);
+            });
+        }
+
+        document.getElementById('clear-history-btn').addEventListener('click', () => {
+            if (getHistory().length === 0) return;
+            if (confirm('Clear all search history?')) {
+                clearHistory();
+                showToast('History cleared');
+            }
+        });
+
+        // ================================================================
+        // ===== SECURITY ASSESSMENT ======================================
+        // ================================================================
+        function assessSecurity(data) {
+            const ip = data.ip || '';
+            const org = (data.org || '').toLowerCase();
+            const asn = (data.asn || '').toLowerCase();
+            const city = (data.city || '').toLowerCase();
+            const country = (data.country_name || '').toLowerCase();
+
+            const badges = [];
+            let riskScore = 0; // 0-100, higher = more risky
+            let riskLevel = 'low';
+            let statusText = 'Secure';
+
+            // ---- Known Public DNS ----
+            const publicDNS = ['8.8.8.8', '8.8.4.4', '1.1.1.1', '1.0.0.1', '9.9.9.9', '149.112.112.112', '208.67.222.222',
+                '208.67.220.220', '76.76.19.19', '185.228.168.168', '185.228.169.168'
+            ];
+            if (publicDNS.includes(ip)) {
+                badges.push({ label: 'Public DNS', type: 'green', icon: 'fa-check-circle' });
+                riskScore += 0;
+            }
+
+            // ---- Hosting / Cloud Provider ----
+            const cloudKeywords = ['aws', 'amazon', 'google cloud', 'gcp', 'azure', 'microsoft', 'digitalocean', 'do-',
+                'linode', 'vultr', 'hetzner', 'ovh', 'scaleway', 'upcloud', 'cloudflare', 'akamai', 'fastly', 'edgecast',
+                'leaseweb', 'iomart', 'netcup', 'contabo', 'ionos', '1&1', 'go daddy', 'godaddy', 'rackspace', 'oracle cloud',
+                'oci', 'alibaba cloud', 'tencent cloud', 'huawei cloud'
+            ];
+            const isCloud = cloudKeywords.some(kw => org.includes(kw) || asn.includes(kw));
+            if (isCloud) {
+                badges.push({ label: 'Hosting / Cloud', type: 'yellow', icon: 'fa-cloud' });
+                riskScore += 10;
+            }
+
+            // ---- VPN / Proxy / Tor ----
+            const vpnKeywords = ['vpn', 'proxy', 'tor', 'nordvpn', 'expressvpn', 'surfshark', 'cyberghost', 'private internet access',
+                'pia', 'mullvad', 'protonvpn', 'windscribe', 'ivpn', 'vyprvpn', 'torguard', 'ipvanish', 'purevpn',
+                'zenmate', 'tunnelbear', 'hide.me', 'hotspot shield', 'avast vpn', 'norton vpn', 'bitdefender vpn',
+                'kaspersky vpn', 'mcafee vpn', 'f-secure', 'freedome', 'anonymous', 'anonymizer', 'socks', 'shadowsocks',
+                'v2ray', 'wireguard', 'openvpn'
+            ];
+            const isVpn = vpnKeywords.some(kw => org.includes(kw) || asn.includes(kw));
+            if (isVpn) {
+                badges.push({ label: 'VPN / Proxy', type: 'red', icon: 'fa-mask' });
+                riskScore += 30;
+            }
+
+            // ---- Data Center / Hosting (general) ----
+            const dcKeywords = ['datacenter', 'data center', 'hosting', 'server', 'colo', 'colocation', 'dedicated', 'vps',
+                'cloud', 'infrastructure', 'as'
+            ];
+            const isDC = dcKeywords.some(kw => org.includes(kw) || asn.includes(kw));
+            if (isDC && !isCloud && !isVpn) {
+                badges.push({ label: 'Data Center', type: 'yellow', icon: 'fa-server' });
+                riskScore += 5;
+            }
+
+            // ---- Residential / ISP ----
+            // If not cloud, not VPN, not DC, likely residential or business ISP
+            if (!isCloud && !isVpn && !isDC) {
+                badges.push({ label: 'ISP / Residential', type: 'green', icon: 'fa-house' });
+                riskScore += 0;
+            }
+
+            // ---- Country risk (heuristic) ----
+            // Some countries have higher risk for certain activities
+            const highRiskCountries = ['ru', 'cn', 'ir', 'kp', 'sy', 've', 'by', 'tr', 'sa', 'pk', 'af', 'iq', 'ly', 'ye',
+                'so', 'sd', 'ss'
+            ];
+            const mediumRiskCountries = ['in', 'br', 'mx', 'za', 'ng', 'bd', 'vn', 'ph', 'eg', 'id', 'th', 'ua', 'ro', 'bg',
+                'pl', 'hu'
+            ];
+            const cc = (data.country_code || '').toLowerCase();
+            if (highRiskCountries.includes(cc)) {
+                riskScore += 20;
+                badges.push({ label: 'High Risk Region', type: 'red', icon: 'fa-triangle-exclamation' });
+            } else if (mediumRiskCountries.includes(cc)) {
+                riskScore += 8;
+                badges.push({ label: 'Medium Risk Region', type: 'yellow', icon: 'fa-triangle-exclamation' });
+            }
+
+            // ---- Cap the score ----
+            riskScore = Math.min(riskScore, 100);
+
+            // Determine level
+            let scoreClass = 'high';
+            if (riskScore >= 40) {
+                riskLevel = 'high';
+                statusText = 'Caution';
+            } else if (riskScore >= 15) {
+                riskLevel = 'medium';
+                statusText = 'Moderate';
+            } else {
+                riskLevel = 'low';
+                statusText = 'Secure';
+            }
+
+            if (riskScore >= 40) scoreClass = 'low';
+            else if (riskScore >= 15) scoreClass = 'medium';
+            else scoreClass = 'high';
+
+            // If no badges were added, add a default "Unknown" badge
+            if (badges.length === 0) {
+                badges.push({ label: 'Unknown Classification', type: 'gray', icon: 'fa-question' });
+            }
+
+            // Deduplicate badges by label
+            const uniqueBadges = [];
+            const seen = new Set();
+            badges.forEach(b => {
+                if (!seen.has(b.label)) {
+                    seen.add(b.label);
+                    uniqueBadges.push(b);
+                }
+            });
+
+            return {
+                badges: uniqueBadges,
+                riskScore,
+                riskLevel,
+                statusText,
+                scoreClass,
+                details: {
+                    'Organization': data.org || '—',
+                    'ASN': data.asn || '—',
+                    'Country': data.country_name || '—',
+                    'City': data.city || '—',
+                }
+            };
+        }
+
+        function renderSecurity(data) {
+            const assessment = assessSecurity(data);
+
+            // Score ring
+            const ring = document.getElementById('security-score-ring');
+            ring.textContent = assessment.riskScore <= 10 ? 'A' : (assessment.riskScore <= 30 ? 'B' : (assessment
+                .riskScore <= 50 ? 'C' : 'D'));
+            ring.className = `security-score ${assessment.scoreClass}`;
+
+            document.getElementById('security-status').textContent = assessment.statusText;
+            document.getElementById('security-sub').textContent = `Risk level: ${assessment.riskLevel} · Score: ${assessment.riskScore}/100`;
+
+            // Badges
+            const badgeContainer = document.getElementById('security-badges');
+            badgeContainer.innerHTML = '';
+            assessment.badges.forEach(b => {
+                const span = document.createElement('span');
+                span.className = `security-badge ${b.type}`;
+                span.innerHTML = `<i class="fas ${b.icon}"></i> ${b.label}`;
+                badgeContainer.appendChild(span);
+            });
+
+            // Details
+            const detailsContainer = document.getElementById('security-details');
+            detailsContainer.innerHTML = '';
+            Object.entries(assessment.details).forEach(([key, value]) => {
+                if (value && value !== '—') {
+                    const div = document.createElement('div');
+                    div.className = 'flex justify-between gap-2 text-xs';
+                    div.innerHTML = `
+                        <span class="text-text-muted">${key}</span>
+                        <span class="text-text-primary font-medium">${value}</span>
+                    `;
+                    detailsContainer.appendChild(div);
+                }
+            });
+        }
+
+        // ================================================================
+        // ===== EXPORT FUNCTIONS =========================================
+        // ================================================================
+        function exportCSV(data) {
+            if (!data) return;
+            const fields = [
+                ['IP', data.ip || ''],
+                ['Version', data.version || ''],
+                ['City', data.city || ''],
+                ['Region', data.region || ''],
+                ['Country', data.country_name || ''],
+                ['Country Code', data.country_code || ''],
+                ['Capital', data.country_capital || ''],
+                ['TLD', data.country_tld || ''],
+                ['Continent', data.continent_code || ''],
+                ['EU Member', data.in_eu ? 'Yes' : 'No'],
+                ['Postal', data.postal || ''],
+                ['Latitude', data.latitude || ''],
+                ['Longitude', data.longitude || ''],
+                ['Timezone', data.timezone || ''],
+                ['UTC Offset', data.utc_offset || ''],
+                ['Currency', data.currency || ''],
+                ['Currency Name', data.currency_name || ''],
+                ['Languages', data.languages || ''],
+                ['Calling Code', data.country_calling_code || ''],
+                ['Area (km²)', data.country_area || ''],
+                ['Population', data.country_population || ''],
+                ['ISO3', data.country_code_iso3 || ''],
+                ['ASN', data.asn || ''],
+                ['Organization', data.org || ''],
+                ['Network', data.network || ''],
+            ];
+
+            let csv = '\uFEFF'; // BOM for Excel
+            csv += fields.map(f => `"${f[0]}"`).join(',') + '\n';
+            csv += fields.map(f => `"${String(f[1]).replace(/"/g, '""')}"`).join(',');
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            const fname = `IP_${data.ip || 'lookup'}_${new Date().toISOString().slice(0, 10)}.csv`;
+            link.download = fname;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(link.href);
+            showToast('CSV exported!');
+        }
+
+        function exportPDF() {
+            window.print();
+        }
+
+        // ================================================================
+        // ===== IP INTELLIGENCE CORE =====================================
+        // ================================================================
         const API_BASE = 'https://ipapi.co';
 
         const elements = {
@@ -1147,46 +1703,29 @@
 
         // ===== Map =====
         function initMap(lat, lng, city, country) {
-            // Destroy previous map if exists
             if (mapInstance) {
                 mapInstance.remove();
                 mapInstance = null;
             }
 
-            // Show map, hide not-available
             elements.mapDiv.classList.remove('hidden');
             elements.mapNotAvailable.classList.add('hidden');
 
-            // Create map
             mapInstance = L.map('map').setView([lat, lng], 10);
-
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(mapInstance);
 
-            // Marker with popup
             const popupText = city && country ? `${city}, ${country}` : (country || 'Location');
             L.marker([lat, lng])
                 .addTo(mapInstance)
                 .bindPopup(popupText)
                 .openPopup();
 
-            // Invalidate size after a moment to ensure correct rendering
-            setTimeout(() => {
-                if (mapInstance) {
-                    mapInstance.invalidateSize();
-                }
-            }, 200);
-
-            // Also invalidate on window resize
-            const resizeHandler = () => {
-                if (mapInstance) {
-                    mapInstance.invalidateSize();
-                }
-            };
+            setTimeout(() => { if (mapInstance) mapInstance.invalidateSize(); }, 200);
+            const resizeHandler = () => { if (mapInstance) mapInstance.invalidateSize(); };
             window.addEventListener('resize', resizeHandler);
-            // Store handler to remove later if needed (but we'll keep it simple)
         }
 
         function showMapNotAvailable() {
@@ -1202,13 +1741,11 @@
         function renderResults(data) {
             currentData = data;
 
-            // IP
             elements.ip.textContent = data.ip || '—';
             elements.version.textContent = data.version || '—';
             elements.org.textContent = data.org || '—';
             elements.asn.textContent = data.asn || '—';
 
-            // Flag & country
             const flagUrl = getFlagUrl(data.country_code);
             if (flagUrl) {
                 elements.flag.style.backgroundImage = `url(${flagUrl})`;
@@ -1219,7 +1756,6 @@
             elements.countryName.textContent = data.country_name || '—';
             elements.countryCode.textContent = data.country_code || '—';
 
-            // Location
             elements.city.textContent = data.city || '—';
             elements.region.textContent = data.region || '—';
             elements.postal.textContent = data.postal || '—';
@@ -1227,13 +1763,11 @@
             const lng = formatCoord(data.longitude);
             elements.coords.textContent = (lat !== '—' || lng !== '—') ? `${lat}, ${lng}` : '—';
 
-            // Network
             elements.network.textContent = data.network || '—';
             elements.asnDetail.textContent = data.asn || '—';
             elements.orgDetail.textContent = data.org || '—';
             elements.versionDetail.textContent = data.version || '—';
 
-            // Country details
             elements.countryFull.textContent = data.country_name || '—';
             elements.countryCodeDetail.textContent = data.country_code || '—';
             elements.capital.textContent = data.country_capital || '—';
@@ -1241,7 +1775,6 @@
             elements.continent.textContent = data.continent_code || '—';
             elements.inEu.textContent = boolToText(data.in_eu);
 
-            // Time & currency
             elements.timezone.textContent = data.timezone || '—';
             elements.utc.textContent = data.utc_offset || '—';
             elements.currency.textContent = data.currency_name ? `${data.currency} (${data.currency_name})` : (data
@@ -1249,20 +1782,21 @@
             elements.languages.textContent = data.languages || '—';
             elements.calling.textContent = data.country_calling_code || '—';
 
-            // Stats
             elements.area.textContent = formatNumber(data.country_area);
             elements.population.textContent = formatNumber(data.country_population);
             elements.iso3.textContent = data.country_code_iso3 || '—';
 
-            // Raw JSON
             elements.rawJson.textContent = JSON.stringify(data, null, 2);
 
-            // ---- Map ----
+            // Map
             if (data.latitude && data.longitude && !isNaN(data.latitude) && !isNaN(data.longitude)) {
                 initMap(data.latitude, data.longitude, data.city, data.country_name);
             } else {
                 showMapNotAvailable();
             }
+
+            // Security Assessment
+            renderSecurity(data);
 
             // Show results
             elements.empty.classList.add('hidden');
@@ -1271,19 +1805,18 @@
             elements.results.classList.remove('hidden');
             elements.results.classList.add('result-enter');
 
-            // Copy IP
-            elements.copyIpBtn.onclick = () => {
-                if (data.ip) copyToClipboard(data.ip);
-            };
+            elements.copyIpBtn.onclick = () => { if (data.ip) copyToClipboard(data.ip); };
 
             lastLookup = data.ip || '';
+
+            // Add to history
+            if (data.ip) addToHistory(data.ip);
         }
 
         // ===== Fetch =====
         async function lookupIP(ip) {
             const trimmed = ip ? ip.trim() : '';
 
-            // Validate IP format (basic)
             if (trimmed) {
                 const ipv4Pattern = /^(\d{1,3}\.){3}\d{1,3}$/;
                 const ipv6Pattern = /^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$/;
@@ -1300,32 +1833,17 @@
             elements.results.classList.add('hidden');
             elements.empty.classList.add('hidden');
 
-            // Hide map if any
             if (mapInstance) {
                 mapInstance.remove();
                 mapInstance = null;
             }
 
             try {
-                const response = await fetch(url, {
-                    headers: {
-                        'Accept': 'application/json',
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-
+                const response = await fetch(url, { headers: { 'Accept': 'application/json' } });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const data = await response.json();
-
-                // Check if we got an error response from ipapi
-                if (data.error || !data.ip) {
-                    throw new Error(data.reason || data.error || 'Invalid IP or request failed');
-                }
-
+                if (data.error || !data.ip) throw new Error(data.reason || data.error || 'Invalid IP or request failed');
                 renderResults(data);
-
             } catch (err) {
                 console.error('IP lookup error:', err);
                 elements.loading.classList.add('hidden');
@@ -1333,7 +1851,6 @@
                 elements.errorMsg.textContent = err.message || 'Unable to fetch IP data. Please try again.';
                 elements.results.classList.add('hidden');
                 elements.empty.classList.add('hidden');
-                // Hide map if error
                 showMapNotAvailable();
             }
         }
@@ -1341,11 +1858,7 @@
         // ===== Events =====
         elements.lookupBtn.addEventListener('click', () => {
             const val = elements.input.value.trim();
-            if (val) {
-                lookupIP(val);
-            } else {
-                showToast('Please enter an IP address or click "My IP"');
-            }
+            if (val) { lookupIP(val); } else { showToast('Please enter an IP address or click "My IP"'); }
         });
 
         elements.input.addEventListener('keydown', (e) => {
@@ -1368,25 +1881,25 @@
             elements.loading.classList.add('hidden');
             currentData = null;
             lastLookup = '';
-            // Destroy map
             if (mapInstance) {
                 mapInstance.remove();
                 mapInstance = null;
             }
             elements.mapDiv.classList.remove('hidden');
             elements.mapNotAvailable.classList.add('hidden');
+            // Clear security
+            document.getElementById('security-badges').innerHTML = '';
+            document.getElementById('security-details').innerHTML = '';
+            document.getElementById('security-score-ring').textContent = '—';
+            document.getElementById('security-status').textContent = '—';
+            document.getElementById('security-sub').textContent = '—';
         });
 
         elements.retryBtn.addEventListener('click', () => {
             const val = elements.input.value.trim();
-            if (val) {
-                lookupIP(val);
-            } else {
-                lookupIP('');
-            }
+            lookupIP(val || '');
         });
 
-        // Example IP buttons
         document.querySelectorAll('.example-ip-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const ip = btn.dataset.ip;
@@ -1399,20 +1912,21 @@
         elements.rawToggle.addEventListener('click', () => {
             const isOpen = elements.rawPanel.classList.toggle('hidden');
             const icon = elements.rawToggle.querySelector('.fa-chevron-down');
-            if (icon) {
-                icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
-            }
-            if (!isOpen && currentData) {
-                elements.rawJson.textContent = JSON.stringify(currentData, null, 2);
-            }
+            if (icon) icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+            if (!isOpen && currentData) elements.rawJson.textContent = JSON.stringify(currentData, null, 2);
         });
+
+        // Export events
+        document.getElementById('export-csv-btn').addEventListener('click', () => {
+            if (currentData) exportCSV(currentData);
+            else showToast('No data to export');
+        });
+        document.getElementById('export-pdf-btn').addEventListener('click', exportPDF);
 
         // ===== Auto-lookup on load =====
         document.addEventListener('DOMContentLoaded', () => {
-            // Small delay to let everything render
-            setTimeout(() => {
-                lookupIP('');
-            }, 400);
+            renderHistory();
+            setTimeout(() => { lookupIP(''); }, 400);
         });
 
         // ===== Smooth anchor scroll =====
@@ -1422,9 +1936,7 @@
                 if (href === '#') return;
                 e.preventDefault();
                 const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
@@ -1441,31 +1953,22 @@
                 document.body.style.overflow = expanded ? '' : 'hidden';
             });
         }
-
         if (mobileClose && mobileMenu) {
             mobileClose.addEventListener('click', () => {
                 mobileMenu.classList.remove('open');
                 document.body.style.overflow = '';
-                if (mobileToggle) {
-                    mobileToggle.setAttribute('aria-expanded', 'false');
-                }
+                if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
             });
         }
-
-        // Close mobile menu on link click
         document.querySelectorAll('[data-close-mobile]').forEach(el => {
             el.addEventListener('click', () => {
                 if (mobileMenu) {
                     mobileMenu.classList.remove('open');
                     document.body.style.overflow = '';
-                    if (mobileToggle) {
-                        mobileToggle.setAttribute('aria-expanded', 'false');
-                    }
+                    if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
                 }
             });
         });
-
-        // Mobile dropdown toggles
         document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
             btn.addEventListener('click', () => {
                 const targetId = btn.dataset.target;
@@ -1474,11 +1977,8 @@
                     const isOpen = target.classList.toggle('open');
                     btn.classList.toggle('open');
                     btn.setAttribute('aria-expanded', isOpen);
-                    // Rotate chevron
                     const chevron = btn.querySelector('.fa-chevron-down');
-                    if (chevron) {
-                        chevron.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
-                    }
+                    if (chevron) chevron.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
                 }
             });
         });
