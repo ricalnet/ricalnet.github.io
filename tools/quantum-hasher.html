@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>Quantum Hasher — Ricalnet</title>
     <meta name="description"
-        content="Hash any text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC with secret key. Verify file integrity with hash comparison. Batch hash multiple files with selectable algorithm." />
+        content="Hash any text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC with secret key. Verify file integrity. Batch hash multiple files. Compare two hashes. Export/Import history." />
     <link rel="icon" type="image/x-icon" href="../img/logo.png" />
 
     <!-- ===== SELF-HOSTED FONTS & ICONS ===== -->
@@ -675,6 +675,103 @@
             transition: width 0.3s ease;
         }
 
+        /* ===== COMPARE ===== */
+        .compare-box {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            word-break: break-all;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            border: 1.5px solid #ede9f0;
+            background: rgba(255, 255, 255, 0.5);
+            min-height: 4rem;
+            transition: all 0.3s ease;
+            resize: vertical;
+            width: 100%;
+            color: #0f0e1a;
+            line-height: 1.8;
+        }
+
+        .compare-box:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.06);
+        }
+
+        .compare-box.match {
+            border-color: rgba(104, 176, 48, 0.4);
+            background: rgba(104, 176, 48, 0.04);
+        }
+
+        .compare-box.mismatch {
+            border-color: rgba(239, 68, 68, 0.4);
+            background: rgba(239, 68, 68, 0.04);
+        }
+
+        .compare-result-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1.2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .compare-result-badge.match {
+            background: rgba(104, 176, 48, 0.12);
+            color: #4a7c2a;
+            border: 1.5px solid rgba(104, 176, 48, 0.25);
+        }
+
+        .compare-result-badge.mismatch {
+            background: rgba(239, 68, 68, 0.10);
+            color: #b91c1c;
+            border: 1.5px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .compare-result-badge.idle {
+            background: rgba(124, 58, 237, 0.06);
+            color: #5b21b6;
+            border: 1.5px solid rgba(124, 58, 237, 0.08);
+        }
+
+        .compare-alg-detect {
+            font-size: 0.6rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            background: rgba(124, 58, 237, 0.08);
+            color: #7c3aed;
+            display: inline-block;
+        }
+
+        .compare-diff-view {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            line-height: 1.8;
+            padding: 0.5rem 0.75rem;
+            border-radius: 10px;
+            background: rgba(15, 14, 26, 0.02);
+            border: 1px solid #ede9f0;
+            max-height: 120px;
+            overflow-y: auto;
+            word-break: break-all;
+        }
+
+        .compare-diff-view .diff-match {
+            color: #4a7c2a;
+            background: rgba(104, 176, 48, 0.08);
+            border-radius: 2px;
+        }
+
+        .compare-diff-view .diff-mismatch {
+            color: #b91c1c;
+            background: rgba(239, 68, 68, 0.10);
+            border-radius: 2px;
+            text-decoration: underline wavy #b91c1c;
+        }
+
         /* Format toggle */
         .format-toggle {
             display: inline-flex;
@@ -705,6 +802,46 @@
 
         .format-toggle button:hover:not(.active) {
             color: #7c3aed;
+        }
+
+        /* History import/export buttons */
+        .history-action-btn {
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1.5px solid #ede9f0;
+            background: rgba(255, 255, 255, 0.8);
+            color: #52506e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .history-action-btn:hover {
+            border-color: #7c3aed;
+            color: #7c3aed;
+            background: #faf9fe;
+        }
+
+        .history-action-btn.primary {
+            background: #7c3aed;
+            color: white;
+            border-color: #7c3aed;
+        }
+
+        .history-action-btn.primary:hover {
+            background: #5b21b6;
+            border-color: #5b21b6;
+        }
+
+        .history-action-btn .file-input-hidden {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
         }
 
         @media (max-width: 640px) {
@@ -752,6 +889,17 @@
 
             .batch-table .file-cell {
                 max-width: 80px;
+            }
+
+            .compare-box {
+                font-size: 0.65rem;
+                padding: 0.5rem 0.75rem;
+                min-height: 3rem;
+            }
+
+            .compare-diff-view {
+                font-size: 0.6rem;
+                max-height: 80px;
             }
         }
     </style>
@@ -1037,6 +1185,10 @@
                         style="background:rgba(245,158,11,0.08);color:#b45309;border-color:rgba(245,158,11,0.12);">
                         <i class="fas fa-layer-group"></i> Batch
                     </span>
+                    <span class="badge-pill"
+                        style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);">
+                        <i class="fas fa-arrow-right-arrow-left"></i> Compare
+                    </span>
                 </div>
                 <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.08] tracking-tight">
                     <span class="text-text-primary">Quantum </span>
@@ -1044,8 +1196,8 @@
                 </h1>
                 <p class="text-text-secondary text-base md:text-lg mt-3 max-w-2xl mx-auto leading-relaxed">
                     Hash any text with SHA‑1, SHA‑256, SHA‑384, SHA‑512, MD5, and HMAC with secret key.
-                    Verify file integrity, batch‑hash multiple files with selectable algorithm — all locally in your
-                    browser.
+                    Verify file integrity, batch‑hash multiple files, compare two hashes, and backup your history — all
+                    locally in your browser.
                 </p>
             </div>
         </div>
@@ -1063,6 +1215,8 @@
                 <button class="hash-tab-btn" data-tab="hmac"><i class="fas fa-key mr-2"></i> HMAC</button>
                 <button class="hash-tab-btn" data-tab="verify"><i class="fas fa-check-double mr-2"></i> Verify</button>
                 <button class="hash-tab-btn" data-tab="batch"><i class="fas fa-layer-group mr-2"></i> Batch</button>
+                <button class="hash-tab-btn" data-tab="compare"><i class="fas fa-arrow-right-arrow-left mr-2"></i>
+                    Compare</button>
                 <button class="hash-tab-btn" data-tab="history"><i class="fas fa-clock-rotate-left mr-2"></i>
                     History</button>
             </div>
@@ -1368,27 +1522,135 @@
                 </div>
             </div>
 
+            <!-- ===== TAB: COMPARE ===== -->
+            <div id="tab-compare" class="hash-tab-panel" data-aos="fade-up" data-aos-delay="150">
+                <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+                    <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+                        <div class="hash-section-title mb-0"><i class="fas fa-arrow-right-arrow-left mr-2"></i>Compare
+                            Two Hashes</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-text-muted">Format:</span>
+                            <div class="format-toggle" id="compare-format-toggle">
+                                <button class="active" data-format="lower">lower</button>
+                                <button data-format="upper">UPPER</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Hash 1 -->
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <label class="text-sm font-medium text-text-secondary">Hash #1</label>
+                                <span id="compare-alg-1" class="compare-alg-detect">—</span>
+                            </div>
+                            <textarea id="compare-hash-1" class="compare-box" rows="3"
+                                placeholder="Paste first hash…">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</textarea>
+                            <div class="mt-1 flex justify-between text-xs text-text-muted">
+                                <span id="compare-len-1">0 characters</span>
+                                <button id="compare-clear-1" class="hover:text-tor-violet transition-colors"><i
+                                        class="fas fa-times"></i> clear</button>
+                            </div>
+                        </div>
+
+                        <!-- Hash 2 -->
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <label class="text-sm font-medium text-text-secondary">Hash #2</label>
+                                <span id="compare-alg-2" class="compare-alg-detect">—</span>
+                            </div>
+                            <textarea id="compare-hash-2" class="compare-box" rows="3"
+                                placeholder="Paste second hash…">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</textarea>
+                            <div class="mt-1 flex justify-between text-xs text-text-muted">
+                                <span id="compare-len-2">0 characters</span>
+                                <button id="compare-clear-2" class="hover:text-tor-violet transition-colors"><i
+                                        class="fas fa-times"></i> clear</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Compare button & result -->
+                    <div class="mt-6 flex flex-wrap items-center gap-4">
+                        <button id="compare-btn" class="hash-gen-btn"><i class="fas fa-arrow-right-arrow-left"></i>
+                            Compare</button>
+                        <button id="compare-swap-btn" class="hash-copy-btn"><i class="fas fa-arrow-up-down"></i>
+                            Swap</button>
+                        <button id="compare-clear-btn" class="hash-copy-btn"><i class="fas fa-eraser"></i> Clear
+                            Both</button>
+                    </div>
+
+                    <!-- Result -->
+                    <div class="mt-6 p-4 bg-surface-muted/30 rounded-xl border border-tor-violet/5"
+                        id="compare-result-container">
+                        <div class="flex items-center gap-3 flex-wrap">
+                            <span id="compare-result-badge" class="compare-result-badge idle">
+                                <i class="fas fa-circle"></i> Ready
+                            </span>
+                            <span id="compare-detail" class="text-sm text-text-muted">Paste two hashes and click
+                                Compare.</span>
+                        </div>
+
+                        <!-- Visual Diff -->
+                        <div id="compare-diff-container" class="hidden mt-3">
+                            <div class="text-xs font-medium text-text-secondary mb-1">Character-by-character comparison:
+                            </div>
+                            <div id="compare-diff-view" class="compare-diff-view"></div>
+                        </div>
+
+                        <!-- Stats -->
+                        <div id="compare-stats" class="hidden mt-3 text-xs text-text-muted">
+                            <span id="compare-match-count">0</span> matching characters,
+                            <span id="compare-mismatch-count">0</span> mismatching characters.
+                            <span id="compare-length-diff" class="hidden text-amber-600">⚠️ Lengths differ!</span>
+                        </div>
+
+                        <div class="mt-3 text-xs text-text-muted border-t border-tor-violet/5 pt-3">
+                            <i class="fas fa-lightbulb text-tor-violet mr-1.5"></i>
+                            <strong>Tip:</strong> Hash algorithms are detected automatically from length:
+                            MD5 (32), SHA-1 (40), SHA-256 (64), SHA-384 (96), SHA-512 (128).
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- ===== TAB: HISTORY ===== -->
             <div id="tab-history" class="hash-tab-panel" data-aos="fade-up" data-aos-delay="150">
                 <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
                     <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
                         <div class="hash-section-title mb-0"><i class="fas fa-clock-rotate-left mr-2"></i>Hash History
                         </div>
-                        <button id="history-clear-btn"
-                            class="hash-copy-btn text-sm px-3 py-1.5 text-red-500 border-red-200 hover:border-red-400 hover:text-red-600"><i
-                                class="fas fa-trash-can"></i> Clear All</button>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <!-- Export -->
+                            <button id="history-export-btn" class="history-action-btn primary">
+                                <i class="fas fa-file-export"></i> Export
+                            </button>
+                            <!-- Import -->
+                            <label class="history-action-btn relative cursor-pointer">
+                                <i class="fas fa-file-import"></i> Import
+                                <input type="file" id="history-import-input" accept=".json" class="file-input-hidden" />
+                            </label>
+                            <button id="history-clear-btn"
+                                class="history-action-btn text-red-500 border-red-200 hover:border-red-400 hover:text-red-600">
+                                <i class="fas fa-trash-can"></i> Clear All
+                            </button>
+                        </div>
                     </div>
                     <div id="history-list" class="history-panel space-y-2">
                         <div class="text-text-muted text-sm text-center py-8">No history yet. Generate a hash to get
                             started.</div>
                     </div>
-                    <div class="mt-3 text-xs text-text-muted text-center"><i class="fas fa-database mr-1.5"></i> History
-                        is stored locally in your browser. <span id="history-count">0</span> entries.</div>
+                    <div class="mt-3 text-xs text-text-muted text-center">
+                        <i class="fas fa-database mr-1.5"></i> History is stored locally in your browser.
+                        <span id="history-count">0</span> entries.
+                        <span class="mx-2">|</span>
+                        <i class="fas fa-arrow-up-from-bracket mr-1"></i> Export as JSON backup.
+                        <i class="fas fa-arrow-down-to-bracket ml-2 mr-1"></i> Import from backup.
+                    </div>
                 </div>
             </div>
 
             <!-- Info cards -->
-            <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="mt-8 grid grid-cols-1 sm:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="hash-card rounded-2xl p-4 text-center">
                     <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-2">
                         <i class="fas fa-shield text-tor-violet"></i>
@@ -1406,10 +1668,16 @@
                 </div>
                 <div class="hash-card rounded-2xl p-4 text-center">
                     <div class="w-10 h-10 rounded-full bg-cyan-50 flex items-center justify-center mx-auto mb-2"><i
-                            class="fas fa-layer-group text-cyan-600"></i></div>
-                    <h4 class="font-semibold text-sm text-text-primary">Batch + Drag &amp; Drop</h4>
-                    <p class="text-text-muted text-xs mt-1">Hash multiple files at once with your chosen algorithm.
-                        Just drag and drop.</p>
+                            class="fas fa-arrow-right-arrow-left text-cyan-600"></i></div>
+                    <h4 class="font-semibold text-sm text-text-primary">Compare &amp; Verify</h4>
+                    <p class="text-text-muted text-xs mt-1">Compare two hashes side-by-side with visual diff. Detect
+                        algorithm automatically.</p>
+                </div>
+                <div class="hash-card rounded-2xl p-4 text-center">
+                    <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-2"><i
+                            class="fas fa-cloud-upload-alt text-emerald-600"></i></div>
+                    <h4 class="font-semibold text-sm text-text-primary">Export / Import</h4>
+                    <p class="text-text-muted text-xs mt-1">Backup your hash history to JSON or restore from backup.</p>
                 </div>
             </div>
 
@@ -1596,6 +1864,7 @@
             return hashFormat === 'upper' ? hash.toUpperCase() : hash.toLowerCase();
         }
 
+        // Setup all format toggles
         document.querySelectorAll('.format-toggle').forEach(toggle => {
             const btns = toggle.querySelectorAll('button');
             btns.forEach(btn => {
@@ -1604,6 +1873,10 @@
                     btn.classList.add('active');
                     hashFormat = btn.dataset.format;
                     refreshAllDisplayedHashes();
+                    // Also update compare tab if visible
+                    if (document.getElementById('tab-compare').classList.contains('active')) {
+                        compareHashes();
+                    }
                     showToast('Format: ' + (hashFormat === 'upper' ? 'UPPERCASE' : 'lowercase'));
                 });
             });
@@ -1711,6 +1984,68 @@
             });
         }
 
+        // ===== EXPORT HISTORY =====
+        function exportHistory() {
+            const history = getHistory();
+            if (history.length === 0) {
+                showToast('No history to export.');
+                return;
+            }
+            const data = {
+                exportedAt: new Date().toISOString(),
+                version: '1.0',
+                count: history.length,
+                entries: history
+            };
+            const json = JSON.stringify(data, null, 2);
+            const blob = new Blob([json], { type: 'application/json;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `quantum_hasher_history_${new Date().toISOString().slice(0, 10)}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 5000);
+            showToast(`Exported ${history.length} entries.`);
+        }
+
+        // ===== IMPORT HISTORY =====
+        function importHistory(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    let entries = [];
+                    // Support both old format (array) and new format (object with entries)
+                    if (Array.isArray(data)) {
+                        entries = data;
+                    } else if (data.entries && Array.isArray(data.entries)) {
+                        entries = data.entries;
+                    } else {
+                        showToast('Invalid backup file format.');
+                        return;
+                    }
+                    if (entries.length === 0) {
+                        showToast('No entries found in backup.');
+                        return;
+                    }
+                    if (!confirm(
+                        `This will replace your current history (${getHistory().length} entries) with ${entries.length} entries from backup. Continue?`
+                    )) {
+                        return;
+                    }
+                    localStorage.setItem(HISTORY_KEY, JSON.stringify(entries));
+                    renderHistory();
+                    showToast(`Imported ${entries.length} entries successfully.`);
+                } catch (err) {
+                    showToast('Error reading backup file: ' + err.message);
+                }
+            };
+            reader.onerror = () => showToast('Error reading file.');
+            reader.readAsText(file);
+        }
+
         // ============================================================
         // ===== AOS ==================================================
         // ============================================================
@@ -1733,6 +2068,7 @@
             hmac: document.getElementById('tab-hmac'),
             verify: document.getElementById('tab-verify'),
             batch: document.getElementById('tab-batch'),
+            compare: document.getElementById('tab-compare'),
             history: document.getElementById('tab-history'),
         };
 
@@ -1743,6 +2079,7 @@
             if (tabId === 'hash') computeHash();
             if (tabId === 'hmac') computeHmac();
             if (tabId === 'batch') renderBatchTable();
+            if (tabId === 'compare') compareHashes();
         }
 
         tabButtons.forEach(btn => {
@@ -2294,8 +2631,6 @@
                 batchDom.algBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 currentBatchAlg = btn.dataset.batchAlg;
-                // If files already have hashes, re-hash them with new algorithm?
-                // We'll just clear hashes so user can re-hash.
                 const hasHashes = batchFiles.some(f => f.hash);
                 if (hasHashes) {
                     if (confirm(
@@ -2305,9 +2640,7 @@
                         showToast('Algorithm changed to ' + currentBatchAlg.toUpperCase() +
                             '. Click "Hash All" to re-hash.');
                     } else {
-                        // revert active button
                         batchDom.algBtns.forEach(b => b.classList.remove('active'));
-                        // find current alg button and set active
                         batchDom.algBtns.forEach(b => {
                             if (b.dataset.batchAlg === currentBatchAlg) b.classList.add('active');
                         });
@@ -2455,7 +2788,6 @@
             });
             body.innerHTML = html;
 
-            // Event listeners for copy/download/remove
             body.querySelectorAll('.batch-copy-hash').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const raw = btn.dataset.hash;
@@ -2508,6 +2840,224 @@
         });
 
         // ============================================================
+        // ===== COMPARE TAB ==========================================
+        // ============================================================
+
+        const compareDom = {
+            hash1: document.getElementById('compare-hash-1'),
+            hash2: document.getElementById('compare-hash-2'),
+            alg1: document.getElementById('compare-alg-1'),
+            alg2: document.getElementById('compare-alg-2'),
+            len1: document.getElementById('compare-len-1'),
+            len2: document.getElementById('compare-len-2'),
+            clear1: document.getElementById('compare-clear-1'),
+            clear2: document.getElementById('compare-clear-2'),
+            swapBtn: document.getElementById('compare-swap-btn'),
+            clearBtn: document.getElementById('compare-clear-btn'),
+            compareBtn: document.getElementById('compare-btn'),
+            resultBadge: document.getElementById('compare-result-badge'),
+            detail: document.getElementById('compare-detail'),
+            diffContainer: document.getElementById('compare-diff-container'),
+            diffView: document.getElementById('compare-diff-view'),
+            matchCount: document.getElementById('compare-match-count'),
+            mismatchCount: document.getElementById('compare-mismatch-count'),
+            lengthDiff: document.getElementById('compare-length-diff'),
+            stats: document.getElementById('compare-stats'),
+        };
+
+        // Detect hash algorithm from length
+        function detectAlgorithm(hash) {
+            if (!hash || hash.trim() === '') return null;
+            const len = hash.trim().length;
+            const nameMap = {
+                32: 'MD5',
+                40: 'SHA-1',
+                64: 'SHA-256',
+                96: 'SHA-384',
+                128: 'SHA-512',
+            };
+            // Also check if it's hex
+            const hex = /^[0-9a-fA-F]+$/.test(hash.trim());
+            if (!hex) return '⚠️ Not hex';
+            return nameMap[len] || `⚠️ Unknown (${len} chars)`;
+        }
+
+        function updateCompareFields() {
+            const h1 = compareDom.hash1.value.trim();
+            const h2 = compareDom.hash2.value.trim();
+
+            // Update algorithm detection
+            const alg1 = detectAlgorithm(h1);
+            const alg2 = detectAlgorithm(h2);
+            compareDom.alg1.textContent = alg1 || '—';
+            compareDom.alg2.textContent = alg2 || '—';
+            compareDom.alg1.className = 'compare-alg-detect' + (alg1 && !alg1.startsWith('⚠️') ? '' : ' opacity-50');
+            compareDom.alg2.className = 'compare-alg-detect' + (alg2 && !alg2.startsWith('⚠️') ? '' : ' opacity-50');
+
+            // Update length
+            compareDom.len1.textContent = h1.length > 0 ? h1.length + ' characters' : '0 characters';
+            compareDom.len2.textContent = h2.length > 0 ? h2.length + ' characters' : '0 characters';
+
+            // Reset result if either field is empty
+            if (!h1 || !h2) {
+                compareDom.resultBadge.className = 'compare-result-badge idle';
+                compareDom.resultBadge.innerHTML = '<i class="fas fa-circle"></i> Ready';
+                compareDom.detail.textContent = 'Paste two hashes and click Compare.';
+                compareDom.diffContainer.classList.add('hidden');
+                compareDom.stats.classList.add('hidden');
+            }
+        }
+
+        function compareHashes() {
+            const h1Raw = compareDom.hash1.value.trim();
+            const h2Raw = compareDom.hash2.value.trim();
+
+            if (!h1Raw || !h2Raw) {
+                showToast('Please paste both hashes.');
+                return;
+            }
+
+            // Use raw values for comparison (case-insensitive)
+            const h1 = h1Raw.toLowerCase();
+            const h2 = h2Raw.toLowerCase();
+
+            const isMatch = h1 === h2;
+            const len1 = h1.length;
+            const len2 = h2.length;
+
+            // Update badges
+            if (isMatch) {
+                compareDom.resultBadge.className = 'compare-result-badge match';
+                compareDom.resultBadge.innerHTML = '<i class="fas fa-check-circle"></i> ✅ MATCH';
+                compareDom.detail.textContent = 'The two hashes are identical!';
+                compareDom.detail.className = 'text-sm text-tor-accent';
+            } else {
+                compareDom.resultBadge.className = 'compare-result-badge mismatch';
+                compareDom.resultBadge.innerHTML = '<i class="fas fa-times-circle"></i> ❌ MISMATCH';
+                if (len1 !== len2) {
+                    compareDom.detail.textContent = `Lengths differ: ${len1} vs ${len2} characters.`;
+                    compareDom.detail.className = 'text-sm text-amber-600';
+                } else {
+                    compareDom.detail.textContent = 'The two hashes are different.';
+                    compareDom.detail.className = 'text-sm text-red-500';
+                }
+            }
+
+            // Show diff
+            compareDom.diffContainer.classList.remove('hidden');
+            compareDom.stats.classList.remove('hidden');
+
+            // Build visual diff
+            const maxLen = Math.max(len1, len2);
+            let diffHtml = '';
+            let matchCount = 0;
+            let mismatchCount = 0;
+
+            for (let i = 0; i < maxLen; i++) {
+                const char1 = i < len1 ? h1[i] : ' ';
+                const char2 = i < len2 ? h2[i] : ' ';
+                if (char1 === char2) {
+                    diffHtml += `<span class="diff-match">${char1}</span>`;
+                    matchCount++;
+                } else {
+                    diffHtml += `<span class="diff-mismatch" title="Mismatch at position ${i + 1}">${char1}</span>`;
+                    mismatchCount++;
+                }
+            }
+
+            compareDom.diffView.innerHTML = diffHtml;
+            compareDom.matchCount.textContent = matchCount;
+            compareDom.mismatchCount.textContent = mismatchCount;
+
+            if (len1 !== len2) {
+                compareDom.lengthDiff.classList.remove('hidden');
+            } else {
+                compareDom.lengthDiff.classList.add('hidden');
+            }
+
+            showToast(isMatch ? '✅ Hashes match!' : '❌ Hashes do not match.');
+        }
+
+        // ---- Compare event listeners ----
+        compareDom.compareBtn.addEventListener('click', compareHashes);
+
+        compareDom.swapBtn.addEventListener('click', () => {
+            const temp = compareDom.hash1.value;
+            compareDom.hash1.value = compareDom.hash2.value;
+            compareDom.hash2.value = temp;
+            updateCompareFields();
+            if (compareDom.hash1.value.trim() && compareDom.hash2.value.trim()) {
+                compareHashes();
+            }
+        });
+
+        compareDom.clear1.addEventListener('click', () => {
+            compareDom.hash1.value = '';
+            updateCompareFields();
+            compareDom.diffContainer.classList.add('hidden');
+            compareDom.stats.classList.add('hidden');
+            compareDom.resultBadge.className = 'compare-result-badge idle';
+            compareDom.resultBadge.innerHTML = '<i class="fas fa-circle"></i> Ready';
+            compareDom.detail.textContent = 'Paste two hashes and click Compare.';
+            compareDom.detail.className = 'text-sm text-text-muted';
+        });
+
+        compareDom.clear2.addEventListener('click', () => {
+            compareDom.hash2.value = '';
+            updateCompareFields();
+            compareDom.diffContainer.classList.add('hidden');
+            compareDom.stats.classList.add('hidden');
+            compareDom.resultBadge.className = 'compare-result-badge idle';
+            compareDom.resultBadge.innerHTML = '<i class="fas fa-circle"></i> Ready';
+            compareDom.detail.textContent = 'Paste two hashes and click Compare.';
+            compareDom.detail.className = 'text-sm text-text-muted';
+        });
+
+        compareDom.clearBtn.addEventListener('click', () => {
+            compareDom.hash1.value = '';
+            compareDom.hash2.value = '';
+            updateCompareFields();
+            compareDom.diffContainer.classList.add('hidden');
+            compareDom.stats.classList.add('hidden');
+            compareDom.resultBadge.className = 'compare-result-badge idle';
+            compareDom.resultBadge.innerHTML = '<i class="fas fa-circle"></i> Ready';
+            compareDom.detail.textContent = 'Paste two hashes and click Compare.';
+            compareDom.detail.className = 'text-sm text-text-muted';
+            showToast('Cleared both hashes.');
+        });
+
+        // Auto-update on input
+        compareDom.hash1.addEventListener('input', updateCompareFields);
+        compareDom.hash2.addEventListener('input', updateCompareFields);
+
+        // Live compare on Enter key in either field
+        compareDom.hash1.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                compareHashes();
+            }
+        });
+        compareDom.hash2.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                compareHashes();
+            }
+        });
+
+        // ============================================================
+        // ===== HISTORY EXPORT/IMPORT ================================
+        // ============================================================
+
+        document.getElementById('history-export-btn')?.addEventListener('click', exportHistory);
+
+        document.getElementById('history-import-input')?.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                importHistory(e.target.files[0]);
+                e.target.value = '';
+            }
+        });
+
+        // ============================================================
         // ===== HISTORY CLEAR ========================================
         // ============================================================
 
@@ -2524,6 +3074,7 @@
             renderHistory();
             renderBatchTable();
             batchDom.progressWrap.style.opacity = '0';
+            updateCompareFields();
         }, 300);
 
         // ============================================================
