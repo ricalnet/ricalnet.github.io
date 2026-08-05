@@ -269,7 +269,8 @@
             box-shadow: none !important;
         }
 
-        .hash-copy-btn {
+        .hash-copy-btn,
+        .hash-download-btn {
             background: rgba(255, 255, 255, 0.9);
             color: #0f0e1a;
             font-weight: 500;
@@ -284,13 +285,15 @@
             font-size: 0.8rem;
         }
 
-        .hash-copy-btn:hover {
+        .hash-copy-btn:hover,
+        .hash-download-btn:hover {
             border-color: #7c3aed;
             color: #7c3aed;
             background: #faf9fe;
         }
 
-        .hash-copy-btn.copied {
+        .hash-copy-btn.copied,
+        .hash-download-btn.copied {
             border-color: #68B030;
             color: #68B030;
             background: rgba(104, 176, 48, 0.06);
@@ -492,6 +495,65 @@
             background: rgba(239, 68, 68, 0.03);
         }
 
+        /* ===== HISTORY PANEL ===== */
+        .history-panel {
+            max-height: 300px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+
+        .history-panel::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .history-panel::-webkit-scrollbar-thumb {
+            background: #7c3aed;
+            border-radius: 9999px;
+        }
+
+        .history-item {
+            padding: 0.5rem 0.75rem;
+            border-radius: 10px;
+            border: 1px solid rgba(124, 58, 237, 0.06);
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .history-item:hover {
+            background: rgba(124, 58, 237, 0.04);
+            border-color: rgba(124, 58, 237, 0.12);
+        }
+
+        .history-item .h-alg {
+            font-size: 0.55rem;
+            font-weight: 700;
+            color: #7c3aed;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .history-item .h-hash {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            word-break: break-all;
+            color: #0f0e1a;
+        }
+
+        .history-item .h-time {
+            font-size: 0.6rem;
+            color: #9492ae;
+        }
+
+        .history-item .h-preview {
+            font-size: 0.65rem;
+            color: #52506e;
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
         @media (max-width: 640px) {
             .hash-tab-btn {
                 padding: 0.4rem 1rem;
@@ -513,13 +575,18 @@
                 justify-content: center;
             }
 
-            .hash-copy-btn {
+            .hash-copy-btn,
+            .hash-download-btn {
                 width: 100%;
                 justify-content: center;
             }
 
             .verify-drop-zone {
                 padding: 1.5rem 1rem;
+            }
+
+            .history-item .h-preview {
+                max-width: 80px;
             }
         }
     </style>
@@ -544,22 +611,23 @@
         class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 md:h-[72px]">
-    
+
                 <a href="../index" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
                     data-aos-duration="600">
                     <img src="../img/logo.png" alt="Ricalnet Logo"
                         class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
                     <div class="leading-tight hidden sm:block">
                         <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
-                        <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
+                        <span
+                            class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
                             Rights · Infrastructure</span>
                     </div>
                 </a>
-    
+
                 <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down"
                     data-aos-duration="600">
                     <a href="../index#hero" class="nav-link">Home</a>
-    
+
                     <div class="relative group">
                         <a href="../index#pain-points" class="nav-link flex items-center gap-1">
                             Advocacy
@@ -573,7 +641,7 @@
                             <a href="../resources#legal-resources" class="dropdown-item">Legal Resources</a>
                         </div>
                     </div>
-    
+
                     <div class="relative group">
                         <a href="../resources#hero" class="nav-link flex items-center gap-1">
                             Resources
@@ -587,7 +655,7 @@
                             <a href="../resources" class="dropdown-item">All Resources</a>
                         </div>
                     </div>
-    
+
                     <div class="relative group">
                         <a href="../tools/ip-intelligence" class="nav-link nav-link-active flex items-center gap-1">
                             Tools
@@ -603,7 +671,7 @@
                             <a href="../resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
                         </div>
                     </div>
-    
+
                     <div class="relative group">
                         <a href="../about#hero" class="nav-link flex items-center gap-1">
                             About
@@ -619,7 +687,7 @@
                         </div>
                     </div>
                 </nav>
-    
+
                 <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
                     <a href="https://auth.ricalnet.my.id" class="hidden lg:inline-flex btn-sso">
                         <i class="fas fa-key"></i> Login with SSO
@@ -630,16 +698,16 @@
                         <i class="fas fa-bars text-text-secondary text-lg"></i>
                     </button>
                 </div>
-    
+
             </div>
         </div>
     </header>
-    
+
     <!-- ============================================================ -->
     <!-- ===== MOBILE NAV =========================================== -->
     <!-- ============================================================ -->
     <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
-    
+
         <div class="mobile-menu-header">
             <div class="logo">
                 <img src="../img/logo.png" alt="Ricalnet" />
@@ -649,13 +717,13 @@
                 <i class="fas fa-xmark"></i>
             </button>
         </div>
-    
+
         <div class="mobile-menu-scroll">
-    
+
             <a href="../index#hero" class="nav-item" data-close-mobile>
                 <i class="fas fa-home"></i> Home
             </a>
-    
+
             <!-- ===== ADVOCACY DROPDOWN ===== -->
             <div class="mobile-dropdown">
                 <button
@@ -682,7 +750,7 @@
                     </a>
                 </div>
             </div>
-    
+
             <!-- ===== RESOURCES DROPDOWN ===== -->
             <div class="mobile-dropdown">
                 <button
@@ -709,7 +777,7 @@
                     </a>
                 </div>
             </div>
-    
+
             <!-- ===== TOOLS DROPDOWN ===== -->
             <div class="mobile-dropdown">
                 <button
@@ -742,7 +810,7 @@
                     </a>
                 </div>
             </div>
-    
+
             <!-- ===== ABOUT DROPDOWN ===== -->
             <div class="mobile-dropdown">
                 <button
@@ -772,18 +840,20 @@
                     </a>
                 </div>
             </div>
-    
+
             <a href="https://auth.ricalnet.my.id" class="mt-3 block w-full text-center btn-sso justify-center"
                 data-close-mobile>
                 <i class="fas fa-key"></i> Login with SSO
             </a>
-    
-            <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
-                <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+
+            <div
+                class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+                <span
+                    class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
                     <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> Digital Sovereignty · Privacy-First
                 </span>
             </div>
-    
+
         </div>
     </div>
 
@@ -832,6 +902,9 @@
                 </button>
                 <button class="hash-tab-btn" data-tab="verify">
                     <i class="fas fa-check-double mr-2"></i> Verify
+                </button>
+                <button class="hash-tab-btn" data-tab="history">
+                    <i class="fas fa-clock-rotate-left mr-2"></i> History
                 </button>
             </div>
 
@@ -883,6 +956,9 @@
                                 <div class="absolute top-2 right-2 flex gap-1.5">
                                     <button id="hash-copy-btn" class="hash-copy-btn text-sm px-2.5 py-1">
                                         <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                    <button id="hash-download-btn" class="hash-download-btn text-sm px-2.5 py-1">
+                                        <i class="fas fa-download"></i> Download
                                     </button>
                                 </div>
                             </div>
@@ -976,6 +1052,9 @@
                                 <div class="absolute top-2 right-2 flex gap-1.5">
                                     <button id="hmac-copy-btn" class="hash-copy-btn text-sm px-2.5 py-1">
                                         <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                    <button id="hmac-download-btn" class="hash-download-btn text-sm px-2.5 py-1">
+                                        <i class="fas fa-download"></i> Download
                                     </button>
                                 </div>
                             </div>
@@ -1148,6 +1227,30 @@
 
             </div>
 
+            <!-- ===== TAB: HISTORY ===== -->
+            <div id="tab-history" class="hash-tab-panel" data-aos="fade-up" data-aos-delay="150">
+                <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+                    <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+                        <div class="hash-section-title mb-0"><i class="fas fa-clock-rotate-left mr-2"></i>Hash History
+                        </div>
+                        <div class="flex gap-2">
+                            <button id="history-clear-btn"
+                                class="hash-copy-btn text-sm px-3 py-1.5 text-red-500 border-red-200 hover:border-red-400 hover:text-red-600">
+                                <i class="fas fa-trash-can"></i> Clear All
+                            </button>
+                        </div>
+                    </div>
+                    <div id="history-list" class="history-panel space-y-2">
+                        <div class="text-text-muted text-sm text-center py-8">No history yet. Generate a hash to get
+                            started.</div>
+                    </div>
+                    <div class="mt-3 text-xs text-text-muted text-center">
+                        <i class="fas fa-database mr-1.5"></i>
+                        History is stored locally in your browser. <span id="history-count">0</span> entries.
+                    </div>
+                </div>
+            </div>
+
             <!-- Info cards -->
             <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="hash-card rounded-2xl p-4 text-center">
@@ -1317,16 +1420,10 @@
     </script>
 
     <script>
-        // ===== AOS =====
-        AOS.init({
-            once: true,
-            offset: 30,
-            easing: 'ease-out-cubic',
-            duration: 700,
-            disable: window.innerWidth < 768 ? true : false,
-        });
+        // ============================================================
+        // ===== UTILITY FUNCTIONS ====================================
+        // ============================================================
 
-        // ===== PGP =====
         const PGP_FINGERPRINT = '45688382B815821F033115B8D92D6A10D29C8380';
 
         function copyPGP() {
@@ -1369,6 +1466,169 @@
             });
         }
 
+        function downloadHash(hash, filename = 'hash.txt') {
+            if (!hash) {
+                showToast('No hash to download.');
+                return;
+            }
+            const blob = new Blob([hash], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 5000);
+        }
+
+        // ============================================================
+        // ===== HISTORY ==============================================
+        // ============================================================
+
+        const HISTORY_KEY = 'quantumHasherHistory';
+        const MAX_HISTORY = 20;
+
+        function getHistory() {
+            try {
+                return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+            } catch { return []; }
+        }
+
+        function saveHistoryEntry(entry) {
+            const history = getHistory();
+            history.unshift({
+                ...entry,
+                timestamp: Date.now()
+            });
+            if (history.length > MAX_HISTORY) history.pop();
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+            renderHistory();
+        }
+
+        function clearHistory() {
+            if (confirm('Clear all hash history?')) {
+                localStorage.removeItem(HISTORY_KEY);
+                renderHistory();
+                showToast('History cleared.');
+            }
+        }
+
+        function renderHistory() {
+            const container = document.getElementById('history-list');
+            const countEl = document.getElementById('history-count');
+            const history = getHistory();
+
+            if (countEl) countEl.textContent = history.length;
+
+            if (!history.length) {
+                container.innerHTML =
+                    '<div class="text-text-muted text-sm text-center py-8">No history yet. Generate a hash to get started.</div>';
+                return;
+            }
+
+            let html = '';
+            history.forEach((item, index) => {
+                const time = new Date(item.timestamp).toLocaleString();
+                const preview = item.text ? (item.text.length > 40 ? item.text.substring(0, 40) + '…' : item.text) :
+                    '[file]';
+                html += `
+                    <div class="history-item flex flex-wrap items-center gap-2 justify-between" data-index="${index}">
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="h-alg">${item.algorithm || 'SHA-256'}</span>
+                                <span class="h-preview">${preview}</span>
+                            </div>
+                            <div class="h-hash">${item.hash}</div>
+                        </div>
+                        <div class="flex items-center gap-1.5 flex-shrink-0">
+                            <span class="h-time hidden sm:inline">${time}</span>
+                            <button class="history-copy-btn text-text-muted hover:text-tor-violet text-sm p-1" data-hash="${item.hash}" title="Copy hash">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <button class="history-load-btn text-text-muted hover:text-tor-violet text-sm p-1" data-hash="${item.hash}" data-text="${item.text || ''}" data-alg="${item.algorithm || 'sha256'}" title="Load into Hash tab">
+                                <i class="fas fa-arrow-right-to-bracket"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+
+            // Event listeners for history items
+            container.querySelectorAll('.history-copy-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    copyToClipboard(btn.dataset.hash);
+                    btn.classList.add('copied');
+                    setTimeout(() => btn.classList.remove('copied'), 2000);
+                });
+            });
+
+            container.querySelectorAll('.history-load-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const hash = btn.dataset.hash;
+                    const text = btn.dataset.text || '';
+                    const alg = btn.dataset.alg || 'sha256';
+                    // Switch to hash tab
+                    switchTab('hash');
+                    // Set input and algorithm
+                    hashDom.input.value = text;
+                    // Set active algorithm
+                    hashDom.algBtns.forEach(b => {
+                        b.classList.toggle('active', b.dataset.alg === alg);
+                    });
+                    currentHashAlg = alg;
+                    computeHash();
+                    showToast('Loaded into Hash tab');
+                });
+            });
+        }
+
+        // ============================================================
+        // ===== AOS ==================================================
+        // ============================================================
+
+        AOS.init({
+            once: true,
+            offset: 30,
+            easing: 'ease-out-cubic',
+            duration: 700,
+            disable: window.innerWidth < 768 ? true : false,
+        });
+
+        // ============================================================
+        // ===== TABS =================================================
+        // ============================================================
+
+        const tabButtons = document.querySelectorAll('.hash-tab-btn');
+        const tabPanels = {
+            hash: document.getElementById('tab-hash'),
+            hmac: document.getElementById('tab-hmac'),
+            verify: document.getElementById('tab-verify'),
+            history: document.getElementById('tab-history'),
+        };
+
+        function switchTab(tabId) {
+            tabButtons.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.tab === tabId);
+            });
+            Object.keys(tabPanels).forEach(key => {
+                tabPanels[key].classList.toggle('active', key === tabId);
+            });
+            if (tabId === 'history') renderHistory();
+            if (tabId === 'hash') computeHash();
+            if (tabId === 'hmac') computeHmac();
+        }
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                switchTab(btn.dataset.tab);
+            });
+        });
+
         // ============================================================
         // ===== HASH TAB =============================================
         // ============================================================
@@ -1378,6 +1638,7 @@
             result: document.getElementById('hash-result'),
             btn: document.getElementById('hash-btn'),
             copyBtn: document.getElementById('hash-copy-btn'),
+            downloadBtn: document.getElementById('hash-download-btn'),
             len: document.getElementById('hash-len'),
             algLabel: document.getElementById('hash-alg-label'),
             status: document.getElementById('hash-status'),
@@ -1412,6 +1673,13 @@
                 hashDom.algLabel.textContent = algo.label;
                 hashDom.status.textContent = '✓ Done';
                 hashDom.status.className = 'text-tor-violet';
+                // Save to history
+                saveHistoryEntry({
+                    text: text,
+                    hash: hash,
+                    algorithm: currentHashAlg.toUpperCase(),
+                    type: 'hash'
+                });
             } catch (err) {
                 hashDom.result.value = 'Error: ' + err.message;
                 hashDom.status.textContent = 'Error';
@@ -1442,6 +1710,17 @@
             }
         });
 
+        hashDom.downloadBtn.addEventListener('click', () => {
+            const val = hashDom.result.value;
+            if (val) {
+                downloadHash(val, `hash_${currentHashAlg}.txt`);
+                hashDom.downloadBtn.classList.add('copied');
+                setTimeout(() => hashDom.downloadBtn.classList.remove('copied'), 2000);
+            } else {
+                showToast('No hash to download');
+            }
+        });
+
         document.querySelectorAll('.sample-hash-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 hashDom.input.value = btn.dataset.text;
@@ -1459,6 +1738,7 @@
             result: document.getElementById('hmac-result'),
             btn: document.getElementById('hmac-btn'),
             copyBtn: document.getElementById('hmac-copy-btn'),
+            downloadBtn: document.getElementById('hmac-download-btn'),
             len: document.getElementById('hmac-len'),
             algLabel: document.getElementById('hmac-alg-label'),
             status: document.getElementById('hmac-status'),
@@ -1503,6 +1783,13 @@
                 hmacDom.algLabel.textContent = algo.label;
                 hmacDom.status.textContent = '✓ Done';
                 hmacDom.status.className = 'text-tor-violet';
+                // Save to history
+                saveHistoryEntry({
+                    text: text + ' [HMAC key: ' + key + ']',
+                    hash: hash,
+                    algorithm: 'HMAC-' + currentHmacAlg.toUpperCase(),
+                    type: 'hmac'
+                });
             } catch (err) {
                 hmacDom.result.value = 'Error: ' + err.message;
                 hmacDom.status.textContent = 'Error';
@@ -1531,6 +1818,17 @@
                 setTimeout(() => hmacDom.copyBtn.classList.remove('copied'), 2000);
             } else {
                 showToast('Nothing to copy');
+            }
+        });
+
+        hmacDom.downloadBtn.addEventListener('click', () => {
+            const val = hmacDom.result.value;
+            if (val) {
+                downloadHash(val, `hmac_${currentHmacAlg}.txt`);
+                hmacDom.downloadBtn.classList.add('copied');
+                setTimeout(() => hmacDom.downloadBtn.classList.remove('copied'), 2000);
+            } else {
+                showToast('No HMAC to download');
             }
         });
 
@@ -1573,7 +1871,6 @@
         let currentFileData = null;
         let currentFileHash = null;
 
-        // Verify algorithm map (same as hash)
         const verAlgMap = {
             'sha1': { label: 'SHA-1', fn: (data) => CryptoJS.SHA1(data).toString(CryptoJS.enc.Hex) },
             'sha256': { label: 'SHA-256', fn: (data) => CryptoJS.SHA256(data).toString(CryptoJS.enc.Hex) },
@@ -1588,11 +1885,10 @@
             verifyDom.modeTextBtn.classList.remove('active');
             verifyMode = 'file';
             verifyDom.fileZone.style.display = 'block';
-            if (currentFileData) {
-                verifyDom.filePreview.classList.remove('hidden');
-            }
+            if (currentFileData) verifyDom.filePreview.classList.remove('hidden');
             verifyDom.textArea.classList.add('hidden');
             clearVerifyResult();
+            liveVerify();
         });
 
         verifyDom.modeTextBtn.addEventListener('click', () => {
@@ -1603,16 +1899,14 @@
             verifyDom.filePreview.classList.add('hidden');
             verifyDom.textArea.classList.remove('hidden');
             clearVerifyResult();
+            liveVerify();
         });
 
         // ---- File handling ----
         verifyDom.fileInput.addEventListener('change', (e) => {
-            if (e.target.files.length > 0) {
-                handleVerifyFile(e.target.files[0]);
-            }
+            if (e.target.files.length > 0) handleVerifyFile(e.target.files[0]);
         });
 
-        // Drag and drop
         verifyDom.fileZone.addEventListener('dragover', (e) => {
             e.preventDefault();
             verifyDom.fileZone.classList.add('dragover');
@@ -1626,9 +1920,7 @@
         verifyDom.fileZone.addEventListener('drop', (e) => {
             e.preventDefault();
             verifyDom.fileZone.classList.remove('dragover');
-            if (e.dataTransfer.files.length > 0) {
-                handleVerifyFile(e.dataTransfer.files[0]);
-            }
+            if (e.dataTransfer.files.length > 0) handleVerifyFile(e.dataTransfer.files[0]);
         });
 
         function handleVerifyFile(file) {
@@ -1636,27 +1928,21 @@
             reader.onload = (e) => {
                 const data = e.target.result;
                 currentFileData = data;
-                // Compute hash immediately
                 const algo = verAlgMap[currentVerAlg];
                 const wordArray = CryptoJS.lib.WordArray.create(data);
                 currentFileHash = algo.fn(wordArray);
-                // Show preview
                 verifyDom.fileName.textContent = file.name;
                 verifyDom.fileSize.textContent = formatFileSize(file.size);
                 verifyDom.filePreview.classList.remove('hidden');
                 verifyDom.fileZone.style.display = 'none';
-                // Auto-fill computed hash
                 verifyDom.computed.textContent = currentFileHash;
                 verifyDom.computed.className = 'verify-compare-box mt-1';
-                // Clear status
                 clearVerifyResult();
-                // Update status
-                setVerifyStatus('idle', 'File loaded. Click "Verify" to compare.');
+                setVerifyStatus('idle', 'File loaded. Waiting for expected hash...');
                 showToast('File loaded: ' + file.name);
+                liveVerify();
             };
-            reader.onerror = () => {
-                showToast('Error reading file');
-            };
+            reader.onerror = () => showToast('Error reading file');
             reader.readAsArrayBuffer(file);
         }
 
@@ -1670,6 +1956,7 @@
             verifyDom.computed.className = 'verify-compare-box mt-1';
             clearVerifyResult();
             setVerifyStatus('idle', 'Ready');
+            liveVerify();
         });
 
         function formatFileSize(bytes) {
@@ -1681,20 +1968,20 @@
         // ---- Text mode ----
         verifyDom.textInput.addEventListener('input', () => {
             if (verifyMode === 'text') {
-                clearVerifyResult();
-                // Auto-compute hash on input
                 const text = verifyDom.textInput.value;
                 if (text) {
                     const algo = verAlgMap[currentVerAlg];
                     const hash = algo.fn(text);
                     verifyDom.computed.textContent = hash;
                     verifyDom.computed.className = 'verify-compare-box mt-1';
-                    setVerifyStatus('idle', 'Text loaded. Click "Verify" to compare.');
+                    setVerifyStatus('idle', 'Text loaded. Waiting for expected hash...');
                 } else {
                     verifyDom.computed.textContent = '—';
                     verifyDom.computed.className = 'verify-compare-box mt-1';
                     setVerifyStatus('idle', 'Ready');
                 }
+                clearVerifyResult();
+                liveVerify();
             }
         });
 
@@ -1704,7 +1991,6 @@
                 verifyDom.algBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 currentVerAlg = btn.dataset.veralg;
-                // Recompute if file or text available
                 if (verifyMode === 'file' && currentFileData) {
                     const algo = verAlgMap[currentVerAlg];
                     const wordArray = CryptoJS.lib.WordArray.create(currentFileData);
@@ -1719,10 +2005,11 @@
                 }
                 clearVerifyResult();
                 setVerifyStatus('idle', 'Algorithm changed');
+                liveVerify();
             });
         });
 
-        // ---- Compute Hash (just compute, don't verify) ----
+        // ---- Compute Hash ----
         verifyDom.calcBtn.addEventListener('click', () => {
             computeVerifyHash();
             showToast('Hash computed');
@@ -1736,6 +2023,7 @@
                 verifyDom.computed.textContent = currentFileHash;
                 verifyDom.computed.className = 'verify-compare-box mt-1';
                 setVerifyStatus('idle', 'Hash computed');
+                liveVerify();
                 return true;
             } else if (verifyMode === 'text' && verifyDom.textInput.value) {
                 const algo = verAlgMap[currentVerAlg];
@@ -1743,6 +2031,7 @@
                 verifyDom.computed.textContent = hash;
                 verifyDom.computed.className = 'verify-compare-box mt-1';
                 setVerifyStatus('idle', 'Hash computed');
+                liveVerify();
                 return true;
             } else {
                 showToast('No data to hash. Please load a file or enter text.');
@@ -1750,46 +2039,72 @@
             }
         }
 
-        // ---- Verify ----
+        // ===== LIVE VERIFY =====
+        let liveVerifyTimeout = null;
+
+        function liveVerify() {
+            clearTimeout(liveVerifyTimeout);
+            liveVerifyTimeout = setTimeout(() => {
+                const computed = verifyDom.computed.textContent;
+                const expected = verifyDom.expected.value.trim();
+
+                if (!computed || computed === '—' || !expected) {
+                    // Reset to idle but keep computed shown
+                    if (computed && computed !== '—') {
+                        setVerifyStatus('idle', 'Enter expected hash to verify');
+                    }
+                    verifyDom.detail.classList.add('hidden');
+                    verifyDom.matchDetail.classList.add('hidden');
+                    verifyDom.mismatchDetail.classList.add('hidden');
+                    verifyDom.computed.className = 'verify-compare-box mt-1';
+                    verifyDom.expectedDisplay.className = 'verify-compare-box mt-1';
+                    return;
+                }
+
+                // Display expected
+                verifyDom.expectedDisplay.textContent = expected;
+                verifyDom.expectedDisplay.className = 'verify-compare-box mt-1';
+
+                const match = computed.toLowerCase() === expected.toLowerCase();
+
+                verifyDom.detail.classList.remove('hidden');
+                if (match) {
+                    verifyDom.matchDetail.classList.remove('hidden');
+                    verifyDom.mismatchDetail.classList.add('hidden');
+                    verifyDom.computed.className = 'verify-compare-box mt-1 match';
+                    verifyDom.expectedDisplay.className = 'verify-compare-box mt-1 match';
+                    setVerifyStatus('success', '✓ VERIFIED — Hash matches!');
+                } else {
+                    verifyDom.mismatchDetail.classList.remove('hidden');
+                    verifyDom.matchDetail.classList.add('hidden');
+                    verifyDom.computed.className = 'verify-compare-box mt-1 mismatch';
+                    verifyDom.expectedDisplay.className = 'verify-compare-box mt-1 mismatch';
+                    setVerifyStatus('fail', '✗ MISMATCH — Hash does not match');
+                }
+            }, 300);
+        }
+
+        // ---- Verify button (manual) ----
         verifyDom.verifyBtn.addEventListener('click', () => {
-            // First, ensure we have a computed hash
             let computed = verifyDom.computed.textContent;
             if (computed === '—' || !computed) {
                 const success = computeVerifyHash();
                 if (!success) return;
                 computed = verifyDom.computed.textContent;
             }
-
             const expected = verifyDom.expected.value.trim();
             if (!expected) {
                 showToast('Please enter the expected hash to compare.');
                 return;
             }
-
-            // Display expected
-            verifyDom.expectedDisplay.textContent = expected;
-            verifyDom.expectedDisplay.className = 'verify-compare-box mt-1';
-
-            // Compare (case insensitive)
-            const match = computed.toLowerCase() === expected.toLowerCase();
-
-            verifyDom.detail.classList.remove('hidden');
-            if (match) {
-                verifyDom.matchDetail.classList.remove('hidden');
-                verifyDom.mismatchDetail.classList.add('hidden');
-                verifyDom.computed.className = 'verify-compare-box mt-1 match';
-                verifyDom.expectedDisplay.className = 'verify-compare-box mt-1 match';
-                setVerifyStatus('success', '✓ VERIFIED — Hash matches!');
-                showToast('✅ Hash verified successfully!');
-            } else {
-                verifyDom.mismatchDetail.classList.remove('hidden');
-                verifyDom.matchDetail.classList.add('hidden');
-                verifyDom.computed.className = 'verify-compare-box mt-1 mismatch';
-                verifyDom.expectedDisplay.className = 'verify-compare-box mt-1 mismatch';
-                setVerifyStatus('fail', '✗ MISMATCH — Hash does not match');
-                showToast('❌ Hash mismatch!');
-            }
+            liveVerify();
         });
+
+        // ---- Live verify on expected input ----
+        verifyDom.expected.addEventListener('input', liveVerify);
+
+        // ---- Live verify when computed changes ----
+        // (Already triggered by text/file input via liveVerify calls)
 
         function clearVerifyResult() {
             verifyDom.detail.classList.add('hidden');
@@ -1812,64 +2127,11 @@
             el.innerHTML = '<i class="fas ' + (icons[type] || 'fa-circle') + '"></i> ' + message;
         }
 
-        // ---- Auto-compute on text input with debounce ----
-        let verifyDebounce = null;
-        verifyDom.textInput.addEventListener('input', () => {
-            clearTimeout(verifyDebounce);
-            verifyDebounce = setTimeout(() => {
-                if (verifyMode === 'text') {
-                    const text = verifyDom.textInput.value;
-                    if (text) {
-                        const algo = verAlgMap[currentVerAlg];
-                        const hash = algo.fn(text);
-                        verifyDom.computed.textContent = hash;
-                        verifyDom.computed.className = 'verify-compare-box mt-1';
-                        setVerifyStatus('idle', 'Text loaded. Click "Verify" to compare.');
-                    } else {
-                        verifyDom.computed.textContent = '—';
-                        verifyDom.computed.className = 'verify-compare-box mt-1';
-                        setVerifyStatus('idle', 'Ready');
-                    }
-                    clearVerifyResult();
-                }
-            }, 300);
-        });
-
         // ============================================================
-        // ===== TABS =================================================
+        // ===== HISTORY CLEAR ========================================
         // ============================================================
 
-        const tabButtons = document.querySelectorAll('.hash-tab-btn');
-        const tabPanels = {
-            hash: document.getElementById('tab-hash'),
-            hmac: document.getElementById('tab-hmac'),
-            verify: document.getElementById('tab-verify'),
-        };
-
-        tabButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const tab = btn.dataset.tab;
-
-                tabButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                Object.keys(tabPanels).forEach(key => {
-                    tabPanels[key].classList.toggle('active', key === tab);
-                });
-
-                if (tab === 'hash') {
-                    computeHash();
-                } else if (tab === 'hmac') {
-                    computeHmac();
-                } else if (tab === 'verify') {
-                    // If file is loaded, show it
-                    if (currentFileData) {
-                        verifyDom.fileZone.style.display = 'none';
-                        verifyDom.filePreview.classList.remove('hidden');
-                    }
-                }
-            });
-        });
+        document.getElementById('history-clear-btn')?.addEventListener('click', clearHistory);
 
         // ============================================================
         // ===== INIT =================================================
@@ -1879,6 +2141,7 @@
             computeHash();
             computeHmac();
             setVerifyStatus('idle', 'Ready — load a file or enter text');
+            renderHistory();
         }, 300);
 
         // ============================================================
@@ -1902,9 +2165,7 @@
             mobileClose.addEventListener('click', () => {
                 mobileMenu.classList.remove('open');
                 document.body.style.overflow = '';
-                if (mobileToggle) {
-                    mobileToggle.setAttribute('aria-expanded', 'false');
-                }
+                if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
             });
         }
 
@@ -1913,9 +2174,7 @@
                 if (mobileMenu) {
                     mobileMenu.classList.remove('open');
                     document.body.style.overflow = '';
-                    if (mobileToggle) {
-                        mobileToggle.setAttribute('aria-expanded', 'false');
-                    }
+                    if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
                 }
             });
         });
@@ -1929,23 +2188,18 @@
                     btn.classList.toggle('open');
                     btn.setAttribute('aria-expanded', isOpen);
                     const chevron = btn.querySelector('.fa-chevron-down');
-                    if (chevron) {
-                        chevron.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
-                    }
+                    if (chevron) chevron.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
                 }
             });
         });
 
-        // ===== Smooth anchor scroll =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
                 if (href === '#') return;
                 e.preventDefault();
                 const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
     </script>
