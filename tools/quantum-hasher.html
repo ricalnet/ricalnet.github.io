@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>Quantum Hasher — Ricalnet</title>
     <meta name="description"
-        content="Hash any text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC with secret key. Verify file integrity with hash comparison." />
+        content="Hash any text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC with secret key. Verify file integrity with hash comparison. Batch hash multiple files." />
     <link rel="icon" type="image/x-icon" href="../img/logo.png" />
 
     <!-- ===== SELF-HOSTED FONTS & ICONS ===== -->
@@ -118,6 +118,7 @@
 
     <!-- Inline tool styles -->
     <style>
+        /* ===== Base ===== */
         .hash-card {
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             border: 1px solid rgba(124, 58, 237, 0.06);
@@ -365,7 +366,7 @@
             font-weight: 600;
         }
 
-        /* Verify specific */
+        /* Verify */
         .verify-drop-zone {
             border: 2.5px dashed #ede9f0;
             border-radius: 16px;
@@ -495,7 +496,7 @@
             background: rgba(239, 68, 68, 0.03);
         }
 
-        /* ===== HISTORY PANEL ===== */
+        /* History */
         .history-panel {
             max-height: 300px;
             overflow-y: auto;
@@ -554,6 +555,111 @@
             white-space: nowrap;
         }
 
+        /* ===== BATCH ===== */
+        .batch-table-wrap {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid rgba(124, 58, 237, 0.06);
+        }
+
+        .batch-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+
+        .batch-table th {
+            text-align: left;
+            padding: 0.6rem 0.75rem;
+            background: rgba(124, 58, 237, 0.04);
+            font-weight: 600;
+            color: #52506e;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.06);
+        }
+
+        .batch-table td {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.04);
+            vertical-align: middle;
+            word-break: break-all;
+        }
+
+        .batch-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .batch-table .hash-cell {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            max-width: 200px;
+            word-break: break-all;
+        }
+
+        .batch-table .file-cell {
+            font-weight: 500;
+            white-space: nowrap;
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .batch-table .size-cell {
+            color: #9492ae;
+            font-size: 0.7rem;
+            white-space: nowrap;
+        }
+
+        .batch-progress {
+            height: 4px;
+            background: rgba(124, 58, 237, 0.1);
+            border-radius: 9999px;
+            overflow: hidden;
+            margin-top: 0.75rem;
+            transition: opacity 0.3s;
+        }
+
+        .batch-progress .bar {
+            height: 100%;
+            background: #7c3aed;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Format toggle */
+        .format-toggle {
+            display: inline-flex;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 9999px;
+            border: 1.5px solid #ede9f0;
+            overflow: hidden;
+            padding: 0.1rem;
+        }
+
+        .format-toggle button {
+            padding: 0.2rem 0.9rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            border: none;
+            background: transparent;
+            color: #52506e;
+            cursor: pointer;
+            border-radius: 9999px;
+            transition: all 0.2s;
+        }
+
+        .format-toggle button.active {
+            background: #7c3aed;
+            color: white;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2);
+        }
+
+        .format-toggle button:hover:not(.active) {
+            color: #7c3aed;
+        }
+
         @media (max-width: 640px) {
             .hash-tab-btn {
                 padding: 0.4rem 1rem;
@@ -586,6 +692,14 @@
             }
 
             .history-item .h-preview {
+                max-width: 80px;
+            }
+
+            .batch-table .hash-cell {
+                font-size: 0.6rem;
+            }
+
+            .batch-table .file-cell {
                 max-width: 80px;
             }
         }
@@ -627,11 +741,9 @@
                 <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down"
                     data-aos-duration="600">
                     <a href="../index#hero" class="nav-link">Home</a>
-
                     <div class="relative group">
                         <a href="../index#pain-points" class="nav-link flex items-center gap-1">
-                            Advocacy
-                            <i
+                            Advocacy <i
                                 class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
                         <div class="dropdown-panel absolute left-0 mt-2 z-50">
@@ -641,11 +753,9 @@
                             <a href="../resources#legal-resources" class="dropdown-item">Legal Resources</a>
                         </div>
                     </div>
-
                     <div class="relative group">
                         <a href="../resources#hero" class="nav-link flex items-center gap-1">
-                            Resources
-                            <i
+                            Resources <i
                                 class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
                         <div class="dropdown-panel absolute left-0 mt-2 z-50">
@@ -655,11 +765,9 @@
                             <a href="../resources" class="dropdown-item">All Resources</a>
                         </div>
                     </div>
-
                     <div class="relative group">
                         <a href="../tools/ip-intelligence" class="nav-link nav-link-active flex items-center gap-1">
-                            Tools
-                            <i
+                            Tools <i
                                 class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
                         <div class="dropdown-panel absolute left-0 mt-2 z-50">
@@ -671,11 +779,9 @@
                             <a href="../resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
                         </div>
                     </div>
-
                     <div class="relative group">
                         <a href="../about#hero" class="nav-link flex items-center gap-1">
-                            About
-                            <i
+                            About <i
                                 class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
                         <div class="dropdown-panel absolute left-0 mt-2 z-50">
@@ -703,149 +809,103 @@
         </div>
     </header>
 
-    <!-- ============================================================ -->
-    <!-- ===== MOBILE NAV =========================================== -->
-    <!-- ============================================================ -->
+    <!-- ===== MOBILE NAV ===== -->
     <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
-
         <div class="mobile-menu-header">
-            <div class="logo">
-                <img src="../img/logo.png" alt="Ricalnet" />
-                <span>Ricalnet</span>
-            </div>
-            <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
-                <i class="fas fa-xmark"></i>
-            </button>
+            <div class="logo"><img src="../img/logo.png" alt="Ricalnet" /><span>Ricalnet</span></div>
+            <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu"><i
+                    class="fas fa-xmark"></i></button>
         </div>
-
         <div class="mobile-menu-scroll">
-
-            <a href="../index#hero" class="nav-item" data-close-mobile>
-                <i class="fas fa-home"></i> Home
-            </a>
-
-            <!-- ===== ADVOCACY DROPDOWN ===== -->
+            <a href="../index#hero" class="nav-item" data-close-mobile><i class="fas fa-home"></i> Home</a>
             <div class="mobile-dropdown">
                 <button
                     class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
                     aria-expanded="false" data-target="sub-advocacy">
-                    <span class="flex items-center gap-2.5">
-                        <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Advocacy
-                    </span>
+                    <span class="flex items-center gap-2.5"><i class="fas fa-gavel text-tor-violet w-5 text-center"></i>
+                        Advocacy</span>
                     <i
                         class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
                 </button>
                 <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
-                    <a href="../index#pain-points" class="sub-link" data-close-mobile>
-                        <i class="fas fa-exclamation-triangle"></i> Rights at Risk
-                    </a>
-                    <a href="../index#how-it-works" class="sub-link" data-close-mobile>
-                        <i class="fas fa-route"></i> Methodology
-                    </a>
-                    <a href="../index#features" class="sub-link" data-close-mobile>
-                        <i class="fas fa-star"></i> Sovereign Infrastructure
-                    </a>
-                    <a href="../resources#legal-resources" class="sub-link" data-close-mobile>
-                        <i class="fas fa-gavel"></i> Legal Resources
-                    </a>
+                    <a href="../index#pain-points" class="sub-link" data-close-mobile><i
+                            class="fas fa-exclamation-triangle"></i> Rights at Risk</a>
+                    <a href="../index#how-it-works" class="sub-link" data-close-mobile><i class="fas fa-route"></i>
+                        Methodology</a>
+                    <a href="../index#features" class="sub-link" data-close-mobile><i class="fas fa-star"></i> Sovereign
+                        Infrastructure</a>
+                    <a href="../resources#legal-resources" class="sub-link" data-close-mobile><i
+                            class="fas fa-gavel"></i> Legal Resources</a>
                 </div>
             </div>
-
-            <!-- ===== RESOURCES DROPDOWN ===== -->
             <div class="mobile-dropdown">
                 <button
                     class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
                     aria-expanded="false" data-target="sub-resources">
-                    <span class="flex items-center gap-2.5">
-                        <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
-                    </span>
+                    <span class="flex items-center gap-2.5"><i
+                            class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources</span>
                     <i
                         class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
                 </button>
                 <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
-                    <a href="../resources#privacy-tools" class="sub-link" data-close-mobile>
-                        <i class="fas fa-lock"></i> Privacy Tools
-                    </a>
-                    <a href="../resources#legal-resources" class="sub-link" data-close-mobile>
-                        <i class="fas fa-gavel"></i> Legal Resources
-                    </a>
-                    <a href="../resources#in-house-tools" class="sub-link" data-close-mobile>
-                        <i class="fas fa-cubes"></i> In-House Tools
-                    </a>
-                    <a href="../resources" class="sub-link" data-close-mobile>
-                        <i class="fas fa-folder-open"></i> All Resources
-                    </a>
+                    <a href="../resources#privacy-tools" class="sub-link" data-close-mobile><i class="fas fa-lock"></i>
+                        Privacy Tools</a>
+                    <a href="../resources#legal-resources" class="sub-link" data-close-mobile><i
+                            class="fas fa-gavel"></i> Legal Resources</a>
+                    <a href="../resources#in-house-tools" class="sub-link" data-close-mobile><i
+                            class="fas fa-cubes"></i> In-House Tools</a>
+                    <a href="../resources" class="sub-link" data-close-mobile><i class="fas fa-folder-open"></i> All
+                        Resources</a>
                 </div>
             </div>
-
-            <!-- ===== TOOLS DROPDOWN ===== -->
             <div class="mobile-dropdown">
                 <button
                     class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
                     aria-expanded="false" data-target="sub-tools">
-                    <span class="flex items-center gap-2.5">
-                        <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
-                    </span>
+                    <span class="flex items-center gap-2.5"><i
+                            class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools</span>
                     <i
                         class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
                 </button>
                 <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
-                    <a href="../tools/ip-intelligence" class="sub-link" data-close-mobile>
-                        <i class="fas fa-map-pin"></i> IP Intelligence
-                    </a>
-                    <a href="../tools/password-generator" class="sub-link" data-close-mobile>
-                        <i class="fas fa-key"></i> Password Generator
-                    </a>
-                    <a href="../tools/qr-builder" class="sub-link" data-close-mobile>
-                        <i class="fas fa-qrcode"></i> QR Builder
-                    </a>
-                    <a href="../tools/quantum-hasher" class="sub-link" data-close-mobile>
-                        <i class="fas fa-qrcode"></i> Quantum Hasher
-                    </a>
-                    <a href="../tools/whiteboard" class="sub-link" data-close-mobile>
-                        <i class="fas fa-pen-fancy"></i> Whiteboard
-                    </a>
-                    <a href="../resources#privacy-tools" class="sub-link" data-close-mobile>
-                        <i class="fas fa-user-secret"></i> Privacy Tools
-                    </a>
+                    <a href="../tools/ip-intelligence" class="sub-link" data-close-mobile><i class="fas fa-map-pin"></i>
+                        IP Intelligence</a>
+                    <a href="../tools/password-generator" class="sub-link" data-close-mobile><i class="fas fa-key"></i>
+                        Password Generator</a>
+                    <a href="../tools/qr-builder" class="sub-link" data-close-mobile><i class="fas fa-qrcode"></i> QR
+                        Builder</a>
+                    <a href="../tools/quantum-hasher" class="sub-link" data-close-mobile><i
+                            class="fas fa-fingerprint"></i> Quantum Hasher</a>
+                    <a href="../tools/whiteboard" class="sub-link" data-close-mobile><i class="fas fa-pen-fancy"></i>
+                        Whiteboard</a>
+                    <a href="../resources#privacy-tools" class="sub-link" data-close-mobile><i
+                            class="fas fa-user-secret"></i> Privacy Tools</a>
                 </div>
             </div>
-
-            <!-- ===== ABOUT DROPDOWN ===== -->
             <div class="mobile-dropdown">
                 <button
                     class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
                     aria-expanded="false" data-target="sub-about">
-                    <span class="flex items-center gap-2.5">
-                        <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
-                    </span>
+                    <span class="flex items-center gap-2.5"><i
+                            class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About</span>
                     <i
                         class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
                 </button>
                 <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
-                    <a href="../about#our-mission" class="sub-link" data-close-mobile>
-                        <i class="fas fa-bullseye"></i> Our Mission
-                    </a>
-                    <a href="../index#comparison" class="sub-link" data-close-mobile>
-                        <i class="fas fa-arrows-left-right"></i> Comparison
-                    </a>
-                    <a href="../index#faq" class="sub-link" data-close-mobile>
-                        <i class="fas fa-question-circle"></i> FAQ
-                    </a>
-                    <a href="../index#cta" class="sub-link" data-close-mobile>
-                        <i class="fas fa-envelope"></i> Contact
-                    </a>
-                    <a href="../about#cta-support" class="sub-link" data-close-mobile>
-                        <i class="fas fa-hand-holding-heart"></i> Support Us
-                    </a>
+                    <a href="../about#our-mission" class="sub-link" data-close-mobile><i class="fas fa-bullseye"></i>
+                        Our Mission</a>
+                    <a href="../index#comparison" class="sub-link" data-close-mobile><i
+                            class="fas fa-arrows-left-right"></i> Comparison</a>
+                    <a href="../index#faq" class="sub-link" data-close-mobile><i class="fas fa-question-circle"></i>
+                        FAQ</a>
+                    <a href="../index#cta" class="sub-link" data-close-mobile><i class="fas fa-envelope"></i>
+                        Contact</a>
+                    <a href="../about#cta-support" class="sub-link" data-close-mobile><i
+                            class="fas fa-hand-holding-heart"></i> Support Us</a>
                 </div>
             </div>
-
             <a href="https://auth.ricalnet.my.id" class="mt-3 block w-full text-center btn-sso justify-center"
-                data-close-mobile>
-                <i class="fas fa-key"></i> Login with SSO
-            </a>
-
+                data-close-mobile><i class="fas fa-key"></i> Login with SSO</a>
             <div
                 class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
                 <span
@@ -853,13 +913,10 @@
                     <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> Digital Sovereignty · Privacy-First
                 </span>
             </div>
-
         </div>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- ===== TOOL HERO ============================================ -->
-    <!-- ============================================================ -->
+    <!-- ===== TOOL HERO ===== -->
     <section class="relative overflow-hidden pt-[72px] pb-6 md:pt-24 md:pb-8 bg-surface-light">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto" data-aos="fade-up" data-aos-duration="700">
@@ -873,14 +930,18 @@
                         style="background:rgba(104,176,48,0.08);color:#4a7c2a;border-color:rgba(104,176,48,0.12);">
                         <i class="fas fa-check-double"></i> Verify
                     </span>
+                    <span class="badge-pill"
+                        style="background:rgba(245,158,11,0.08);color:#b45309;border-color:rgba(245,158,11,0.12);">
+                        <i class="fas fa-layer-group"></i> Batch
+                    </span>
                 </div>
                 <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.08] tracking-tight">
                     <span class="text-text-primary">Quantum </span>
                     <span class="text-tor-violet">Hasher</span>
                 </h1>
                 <p class="text-text-secondary text-base md:text-lg mt-3 max-w-2xl mx-auto leading-relaxed">
-                    Hash any text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC with secret key.
-                    Verify file integrity with hash comparison — all locally in your browser.
+                    Hash any text with SHA‑1, SHA‑256, SHA‑384, SHA‑512, MD5, and HMAC with secret key.
+                    Verify file integrity, batch‑hash multiple files — all locally in your browser.
                 </p>
             </div>
         </div>
@@ -894,34 +955,23 @@
 
             <!-- Tabs -->
             <div class="flex flex-wrap items-center justify-center gap-2 mb-6" data-aos="fade-up" data-aos-delay="100">
-                <button class="hash-tab-btn active" data-tab="hash">
-                    <i class="fas fa-hashtag mr-2"></i> Hash
-                </button>
-                <button class="hash-tab-btn" data-tab="hmac">
-                    <i class="fas fa-key mr-2"></i> HMAC
-                </button>
-                <button class="hash-tab-btn" data-tab="verify">
-                    <i class="fas fa-check-double mr-2"></i> Verify
-                </button>
-                <button class="hash-tab-btn" data-tab="history">
-                    <i class="fas fa-clock-rotate-left mr-2"></i> History
-                </button>
+                <button class="hash-tab-btn active" data-tab="hash"><i class="fas fa-hashtag mr-2"></i> Hash</button>
+                <button class="hash-tab-btn" data-tab="hmac"><i class="fas fa-key mr-2"></i> HMAC</button>
+                <button class="hash-tab-btn" data-tab="verify"><i class="fas fa-check-double mr-2"></i> Verify</button>
+                <button class="hash-tab-btn" data-tab="batch"><i class="fas fa-layer-group mr-2"></i> Batch</button>
+                <button class="hash-tab-btn" data-tab="history"><i class="fas fa-clock-rotate-left mr-2"></i>
+                    History</button>
             </div>
 
             <!-- ===== TAB: HASH ===== -->
             <div id="tab-hash" class="hash-tab-panel active" data-aos="fade-up" data-aos-delay="150">
-
                 <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
-
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-                        <!-- Left: Input & settings -->
+                        <!-- Left -->
                         <div>
-
                             <div class="hash-section-title"><i class="fas fa-pen mr-2"></i>Input Text</div>
                             <textarea id="hash-input" class="hash-textarea"
                                 placeholder="Enter text to hash…">The quick brown fox jumps over the lazy dog</textarea>
-
                             <div class="mt-4 flex flex-wrap items-center gap-2">
                                 <span class="text-sm font-medium text-text-secondary mr-1">Algorithm:</span>
                                 <button class="hash-alg-btn active" data-alg="sha256">SHA-256</button>
@@ -930,49 +980,38 @@
                                 <button class="hash-alg-btn" data-alg="sha512">SHA-512</button>
                                 <button class="hash-alg-btn" data-alg="md5">MD5</button>
                             </div>
-
                             <div class="mt-6">
-                                <button id="hash-btn" class="hash-gen-btn w-full justify-center">
-                                    <i class="fas fa-fingerprint"></i>
-                                    Generate Hash
-                                </button>
+                                <button id="hash-btn" class="hash-gen-btn w-full justify-center"><i
+                                        class="fas fa-fingerprint"></i> Generate Hash</button>
                             </div>
-
-                            <div class="mt-3 text-xs text-text-muted text-center">
-                                <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i>
-                                All hashing is done locally in your browser. Nothing is sent to any server.
-                            </div>
-
+                            <div class="mt-3 text-xs text-text-muted text-center"><i
+                                    class="fas fa-shield-alt text-tor-violet mr-1.5"></i> All hashing is done locally in
+                                your browser. Nothing is sent to any server.</div>
                         </div>
-
-                        <!-- Right: Result -->
+                        <!-- Right -->
                         <div>
-
-                            <div class="hash-section-title"><i class="fas fa-file-lines mr-2"></i>Hash Result</div>
-
+                            <div class="hash-section-title flex items-center justify-between">
+                                <span><i class="fas fa-file-lines mr-2"></i>Hash Result</span>
+                                <div class="format-toggle" id="hash-format-toggle">
+                                    <button class="active" data-format="lower">lower</button>
+                                    <button data-format="upper">UPPER</button>
+                                </div>
+                            </div>
                             <div class="relative">
                                 <textarea id="hash-result" class="hash-result-box w-full resize-none" readonly
                                     placeholder="Hash will appear here…" rows="4"></textarea>
                                 <div class="absolute top-2 right-2 flex gap-1.5">
-                                    <button id="hash-copy-btn" class="hash-copy-btn text-sm px-2.5 py-1">
-                                        <i class="fas fa-copy"></i> Copy
-                                    </button>
-                                    <button id="hash-download-btn" class="hash-download-btn text-sm px-2.5 py-1">
-                                        <i class="fas fa-download"></i> Download
-                                    </button>
+                                    <button id="hash-copy-btn" class="hash-copy-btn text-sm px-2.5 py-1"><i
+                                            class="fas fa-copy"></i> Copy</button>
+                                    <button id="hash-download-btn" class="hash-download-btn text-sm px-2.5 py-1"><i
+                                            class="fas fa-download"></i> Download</button>
                                 </div>
                             </div>
-
                             <div class="mt-3 flex flex-wrap items-center justify-between gap-2 hash-stats">
-                                <span>
-                                    <strong id="hash-len">0</strong> characters
-                                    <span class="mx-1.5">·</span>
-                                    <strong id="hash-alg-label">SHA-256</strong>
-                                </span>
+                                <span><strong id="hash-len">0</strong> characters <span class="mx-1.5">·</span> <strong
+                                        id="hash-alg-label">SHA-256</strong></span>
                                 <span id="hash-status" class="text-tor-violet">Ready</span>
                             </div>
-
-                            <!-- Sample buttons -->
                             <div class="mt-4 flex flex-wrap gap-1.5">
                                 <span class="text-xs text-text-muted mr-1 self-center">Test:</span>
                                 <button
@@ -988,36 +1027,26 @@
                                     class="sample-hash-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
                                     data-text="1234567890">Numbers</button>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
 
             <!-- ===== TAB: HMAC ===== -->
             <div id="tab-hmac" class="hash-tab-panel" data-aos="fade-up" data-aos-delay="150">
-
                 <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
-
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-                        <!-- Left: Input & settings -->
+                        <!-- Left -->
                         <div>
-
                             <div class="hash-section-title"><i class="fas fa-pen mr-2"></i>Message</div>
                             <textarea id="hmac-input" class="hash-textarea"
                                 placeholder="Enter message to hash…">The quick brown fox jumps over the lazy dog</textarea>
-
                             <div class="mt-4">
                                 <label class="hash-section-title block"><i class="fas fa-key mr-2"></i>Secret
                                     Key</label>
                                 <input type="text" id="hmac-key" class="hash-key-input"
                                     placeholder="Enter secret key for HMAC…" value="my-secret-key" />
                             </div>
-
                             <div class="mt-4 flex flex-wrap items-center gap-2">
                                 <span class="text-sm font-medium text-text-secondary mr-1">Algorithm:</span>
                                 <button class="hash-alg-btn active" data-hmac="sha256">SHA-256</button>
@@ -1026,49 +1055,38 @@
                                 <button class="hash-alg-btn" data-hmac="sha512">SHA-512</button>
                                 <button class="hash-alg-btn" data-hmac="md5">MD5</button>
                             </div>
-
                             <div class="mt-6">
-                                <button id="hmac-btn" class="hash-gen-btn w-full justify-center">
-                                    <i class="fas fa-fingerprint"></i>
-                                    Generate HMAC
-                                </button>
+                                <button id="hmac-btn" class="hash-gen-btn w-full justify-center"><i
+                                        class="fas fa-fingerprint"></i> Generate HMAC</button>
                             </div>
-
-                            <div class="mt-3 text-xs text-text-muted text-center">
-                                <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i>
-                                HMAC is generated locally. Your secret key never leaves your browser.
-                            </div>
-
+                            <div class="mt-3 text-xs text-text-muted text-center"><i
+                                    class="fas fa-shield-alt text-tor-violet mr-1.5"></i> HMAC is generated locally.
+                                Your secret key never leaves your browser.</div>
                         </div>
-
-                        <!-- Right: Result -->
+                        <!-- Right -->
                         <div>
-
-                            <div class="hash-section-title"><i class="fas fa-file-lines mr-2"></i>HMAC Result</div>
-
+                            <div class="hash-section-title flex items-center justify-between">
+                                <span><i class="fas fa-file-lines mr-2"></i>HMAC Result</span>
+                                <div class="format-toggle" id="hmac-format-toggle">
+                                    <button class="active" data-format="lower">lower</button>
+                                    <button data-format="upper">UPPER</button>
+                                </div>
+                            </div>
                             <div class="relative">
                                 <textarea id="hmac-result" class="hash-result-box w-full resize-none" readonly
                                     placeholder="HMAC will appear here…" rows="4"></textarea>
                                 <div class="absolute top-2 right-2 flex gap-1.5">
-                                    <button id="hmac-copy-btn" class="hash-copy-btn text-sm px-2.5 py-1">
-                                        <i class="fas fa-copy"></i> Copy
-                                    </button>
-                                    <button id="hmac-download-btn" class="hash-download-btn text-sm px-2.5 py-1">
-                                        <i class="fas fa-download"></i> Download
-                                    </button>
+                                    <button id="hmac-copy-btn" class="hash-copy-btn text-sm px-2.5 py-1"><i
+                                            class="fas fa-copy"></i> Copy</button>
+                                    <button id="hmac-download-btn" class="hash-download-btn text-sm px-2.5 py-1"><i
+                                            class="fas fa-download"></i> Download</button>
                                 </div>
                             </div>
-
                             <div class="mt-3 flex flex-wrap items-center justify-between gap-2 hash-stats">
-                                <span>
-                                    <strong id="hmac-len">0</strong> characters
-                                    <span class="mx-1.5">·</span>
-                                    <strong id="hmac-alg-label">SHA-256</strong>
-                                </span>
+                                <span><strong id="hmac-len">0</strong> characters <span class="mx-1.5">·</span> <strong
+                                        id="hmac-alg-label">SHA-256</strong></span>
                                 <span id="hmac-status" class="text-tor-violet">Ready</span>
                             </div>
-
-                            <!-- Sample buttons -->
                             <div class="mt-4 flex flex-wrap gap-1.5">
                                 <span class="text-xs text-text-muted mr-1 self-center">Test:</span>
                                 <button
@@ -1081,61 +1099,47 @@
                                     class="sample-hmac-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
                                     data-text="Ricalnet">Ricalnet</button>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
 
             <!-- ===== TAB: VERIFY ===== -->
             <div id="tab-verify" class="hash-tab-panel" data-aos="fade-up" data-aos-delay="150">
-
                 <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
-
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-                        <!-- Left: File / Text input -->
+                        <!-- Left -->
                         <div>
-
-                            <div class="hash-section-title"><i class="fas fa-upload mr-2"></i>Source</div>
-
-                            <!-- Toggle: File or Text -->
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <button id="verify-mode-file" class="hash-alg-btn active" data-mode="file">
-                                    <i class="fas fa-file"></i> File
-                                </button>
-                                <button id="verify-mode-text" class="hash-alg-btn" data-mode="text">
-                                    <i class="fas fa-font"></i> Text
-                                </button>
+                            <div class="hash-section-title flex items-center justify-between">
+                                <span><i class="fas fa-upload mr-2"></i>Source</span>
+                                <div class="format-toggle" id="verify-format-toggle">
+                                    <button class="active" data-format="lower">lower</button>
+                                    <button data-format="upper">UPPER</button>
+                                </div>
                             </div>
-
-                            <!-- File drop zone -->
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <button id="verify-mode-file" class="hash-alg-btn active" data-mode="file"><i
+                                        class="fas fa-file"></i> File</button>
+                                <button id="verify-mode-text" class="hash-alg-btn" data-mode="text"><i
+                                        class="fas fa-font"></i> Text</button>
+                            </div>
                             <div id="verify-file-zone" class="verify-drop-zone relative">
                                 <input type="file" id="verify-file-input" class="verify-file-input" />
                                 <span class="icon"><i class="fas fa-cloud-upload-alt"></i></span>
                                 <div class="text">Drop a file here or click to browse</div>
                                 <div class="sub">Any file type supported</div>
                             </div>
-
                             <div id="verify-file-preview" class="verify-preview hidden">
                                 <span class="file-name" id="verify-file-name">file.txt</span>
                                 <span class="file-size" id="verify-file-size">0 bytes</span>
                                 <button id="verify-file-clear"
-                                    class="text-text-muted hover:text-red-500 transition-colors text-sm">
-                                    <i class="fas fa-times"></i>
-                                </button>
+                                    class="text-text-muted hover:text-red-500 transition-colors text-sm"><i
+                                        class="fas fa-times"></i></button>
                             </div>
-
-                            <!-- Text input (hidden by default) -->
                             <div id="verify-text-area" class="hidden mt-2">
                                 <textarea id="verify-text-input" class="hash-textarea" rows="3"
                                     placeholder="Enter text to verify…">The quick brown fox jumps over the lazy dog</textarea>
                             </div>
-
-                            <!-- Algorithm selector -->
                             <div class="mt-4 flex flex-wrap items-center gap-2">
                                 <span class="text-sm font-medium text-text-secondary mr-1">Algorithm:</span>
                                 <button class="hash-alg-btn active" data-veralg="sha256">SHA-256</button>
@@ -1144,87 +1148,102 @@
                                 <button class="hash-alg-btn" data-veralg="sha512">SHA-512</button>
                                 <button class="hash-alg-btn" data-veralg="md5">MD5</button>
                             </div>
-
-                            <!-- Expected hash -->
                             <div class="mt-4">
                                 <label class="hash-section-title block"><i class="fas fa-bullseye mr-2"></i>Expected
                                     Hash</label>
                                 <input type="text" id="verify-expected" class="hash-key-input"
                                     placeholder="Paste the expected hash to compare…" />
                             </div>
-
                             <div class="mt-6 flex flex-wrap gap-3">
-                                <button id="verify-btn" class="hash-gen-btn">
-                                    <i class="fas fa-check-double"></i>
-                                    Verify
-                                </button>
+                                <button id="verify-btn" class="hash-gen-btn"><i class="fas fa-check-double"></i>
+                                    Verify</button>
                                 <button id="verify-calc-btn" class="hash-gen-btn"
-                                    style="background:#6b7280; box-shadow:none;">
-                                    <i class="fas fa-calculator"></i>
-                                    Compute Hash
-                                </button>
+                                    style="background:#6b7280; box-shadow:none;"><i class="fas fa-calculator"></i>
+                                    Compute Hash</button>
                             </div>
-
-                            <div class="mt-3 text-xs text-text-muted text-center">
-                                <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i>
-                                File content is hashed locally. Nothing is uploaded to any server.
-                            </div>
-
+                            <div class="mt-3 text-xs text-text-muted text-center"><i
+                                    class="fas fa-shield-alt text-tor-violet mr-1.5"></i> File content is hashed
+                                locally. Nothing is uploaded to any server.</div>
                         </div>
-
-                        <!-- Right: Result -->
+                        <!-- Right -->
                         <div>
-
                             <div class="hash-section-title"><i class="fas fa-file-lines mr-2"></i>Verification Result
                             </div>
-
-                            <!-- Status -->
-                            <div id="verify-status" class="verify-status idle mb-3">
-                                <i class="fas fa-circle"></i> Ready
+                            <div id="verify-status" class="verify-status idle mb-3"><i class="fas fa-circle"></i> Ready
                             </div>
-
-                            <!-- Computed hash -->
-                            <div class="mb-3">
-                                <span class="text-xs font-medium text-text-secondary">Computed Hash:</span>
+                            <div class="mb-3"><span class="text-xs font-medium text-text-secondary">Computed
+                                    Hash:</span>
                                 <div id="verify-computed" class="verify-compare-box mt-1">—</div>
                             </div>
-
-                            <!-- Expected hash (shown for comparison) -->
-                            <div class="mb-3">
-                                <span class="text-xs font-medium text-text-secondary">Expected Hash:</span>
+                            <div class="mb-3"><span class="text-xs font-medium text-text-secondary">Expected
+                                    Hash:</span>
                                 <div id="verify-expected-display" class="verify-compare-box mt-1">—</div>
                             </div>
-
-                            <!-- Match / mismatch detail -->
                             <div id="verify-detail" class="hidden mt-2 text-sm">
-                                <div id="verify-match-detail" class="hidden text-tor-accent">
-                                    <i class="fas fa-check-circle mr-1.5"></i>
-                                    <span class="font-medium">MATCH</span> — The computed hash matches the expected
-                                    hash.
-                                    File integrity is verified.
-                                </div>
-                                <div id="verify-mismatch-detail" class="hidden text-red-500">
-                                    <i class="fas fa-times-circle mr-1.5"></i>
-                                    <span class="font-medium">MISMATCH</span> — The computed hash does NOT match the
-                                    expected hash.
-                                    File may be corrupted or tampered.
-                                </div>
+                                <div id="verify-match-detail" class="hidden text-tor-accent"><i
+                                        class="fas fa-check-circle mr-1.5"></i> <span class="font-medium">MATCH</span> —
+                                    The computed hash matches the expected hash. File integrity is verified.</div>
+                                <div id="verify-mismatch-detail" class="hidden text-red-500"><i
+                                        class="fas fa-times-circle mr-1.5"></i> <span
+                                        class="font-medium">MISMATCH</span> — The computed hash does NOT match the
+                                    expected hash. File may be corrupted or tampered.</div>
                             </div>
-
-                            <!-- Info -->
                             <div class="mt-4 p-3 bg-surface-muted/40 rounded-xl text-xs text-text-muted">
-                                <i class="fas fa-info-circle text-tor-violet mr-1.5"></i>
-                                <strong>Tip:</strong> Use this tool to verify file integrity by comparing the computed
-                                hash
-                                against a known checksum (e.g., from a software download page).
+                                <i class="fas fa-info-circle text-tor-violet mr-1.5"></i> <strong>Tip:</strong> Use this
+                                tool to verify file integrity by comparing the computed hash against a known checksum
+                                (e.g., from a software download page).
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
+            </div>
 
+            <!-- ===== TAB: BATCH ===== -->
+            <div id="tab-batch" class="hash-tab-panel" data-aos="fade-up" data-aos-delay="150">
+                <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+                    <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                        <div class="hash-section-title mb-0"><i class="fas fa-layer-group mr-2"></i>Batch Hash</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-text-muted">Format:</span>
+                            <div class="format-toggle" id="batch-format-toggle">
+                                <button class="active" data-format="lower">lower</button>
+                                <button data-format="upper">UPPER</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-4">
+                        <label class="hash-gen-btn"
+                            style="background:#4f46e5; box-shadow:none; padding:0.5rem 1.5rem; cursor:pointer;">
+                            <i class="fas fa-plus"></i> Select Files
+                            <input type="file" id="batch-file-input" multiple class="hidden" />
+                        </label>
+                        <button id="batch-hash-btn" class="hash-gen-btn" style="background:#7c3aed;"><i
+                                class="fas fa-play"></i> Hash All</button>
+                        <button id="batch-clear-btn" class="hash-copy-btn"><i class="fas fa-trash-can"></i>
+                            Clear</button>
+                        <button id="batch-download-btn" class="hash-download-btn" disabled><i
+                                class="fas fa-download"></i> Download All</button>
+                        <span id="batch-count" class="text-xs text-text-muted ml-2">0 files</span>
+                    </div>
+                    <div class="batch-progress" id="batch-progress">
+                        <div class="bar" id="batch-progress-bar"></div>
+                    </div>
+                    <div id="batch-status" class="text-xs text-text-muted mt-2">Select files to begin.</div>
+                    <div class="batch-table-wrap mt-4" id="batch-table-wrap" style="display:none;">
+                        <table class="batch-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>File</th>
+                                    <th>Size</th>
+                                    <th>Hash</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="batch-body"></tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <!-- ===== TAB: HISTORY ===== -->
@@ -1233,21 +1252,16 @@
                     <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
                         <div class="hash-section-title mb-0"><i class="fas fa-clock-rotate-left mr-2"></i>Hash History
                         </div>
-                        <div class="flex gap-2">
-                            <button id="history-clear-btn"
-                                class="hash-copy-btn text-sm px-3 py-1.5 text-red-500 border-red-200 hover:border-red-400 hover:text-red-600">
-                                <i class="fas fa-trash-can"></i> Clear All
-                            </button>
-                        </div>
+                        <button id="history-clear-btn"
+                            class="hash-copy-btn text-sm px-3 py-1.5 text-red-500 border-red-200 hover:border-red-400 hover:text-red-600"><i
+                                class="fas fa-trash-can"></i> Clear All</button>
                     </div>
                     <div id="history-list" class="history-panel space-y-2">
                         <div class="text-text-muted text-sm text-center py-8">No history yet. Generate a hash to get
                             started.</div>
                     </div>
-                    <div class="mt-3 text-xs text-text-muted text-center">
-                        <i class="fas fa-database mr-1.5"></i>
-                        History is stored locally in your browser. <span id="history-count">0</span> entries.
-                    </div>
+                    <div class="mt-3 text-xs text-text-muted text-center"><i class="fas fa-database mr-1.5"></i> History
+                        is stored locally in your browser. <span id="history-count">0</span> entries.</div>
                 </div>
             </div>
 
@@ -1255,36 +1269,31 @@
             <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="hash-card rounded-2xl p-4 text-center">
                     <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-2">
-                        <i class="fas fa-shield text-tor-violet"></i>
-                    </div>
+                        <i class="fas fa-shield text-tor-violet"></i></div>
                     <h4 class="font-semibold text-sm text-text-primary">SHA Family</h4>
                     <p class="text-text-muted text-xs mt-1">SHA-1, SHA-256, SHA-384, SHA-512 — secure cryptographic hash
                         functions.</p>
                 </div>
                 <div class="hash-card rounded-2xl p-4 text-center">
-                    <div class="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center mx-auto mb-2">
-                        <i class="fas fa-fingerprint text-amber-600"></i>
-                    </div>
+                    <div class="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center mx-auto mb-2"><i
+                            class="fas fa-fingerprint text-amber-600"></i></div>
                     <h4 class="font-semibold text-sm text-text-primary">MD5 &amp; HMAC</h4>
                     <p class="text-text-muted text-xs mt-1">MD5 for checksums, HMAC for message authentication with a
                         secret key.</p>
                 </div>
                 <div class="hash-card rounded-2xl p-4 text-center">
-                    <div class="w-10 h-10 rounded-full bg-cyan-50 flex items-center justify-center mx-auto mb-2">
-                        <i class="fas fa-check-double text-cyan-600"></i>
-                    </div>
-                    <h4 class="font-semibold text-sm text-text-primary">Verify Integrity</h4>
-                    <p class="text-text-muted text-xs mt-1">Upload a file and compare its hash against a known checksum
-                        to verify integrity.</p>
+                    <div class="w-10 h-10 rounded-full bg-cyan-50 flex items-center justify-center mx-auto mb-2"><i
+                            class="fas fa-layer-group text-cyan-600"></i></div>
+                    <h4 class="font-semibold text-sm text-text-primary">Batch Hash</h4>
+                    <p class="text-text-muted text-xs mt-1">Hash multiple files at once, download all results in one go.
+                    </p>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- ============================================================ -->
-    <!-- ===== FOOTER =============================================== -->
-    <!-- ============================================================ -->
+    <!-- ===== FOOTER ===== -->
     <footer class="relative overflow-hidden border-t border-tor-violet/10">
         <div
             class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
@@ -1295,12 +1304,9 @@
         <div
             class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
         </div>
-
         <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-
             <div
                 class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
-
                 <div class="col-span-2 md:col-span-3 lg:col-span-1">
                     <div class="flex items-center gap-3 mb-4">
                         <div
@@ -1308,37 +1314,29 @@
                             <img src="../img/logo.png" alt="Ricalnet"
                                 class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
                         </div>
-                        <div>
-                            <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
-                            <span
+                        <div><span
+                                class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span><span
                                 class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
-                                Rights · Infrastructure</span>
-                        </div>
+                                Rights · Infrastructure</span></div>
                     </div>
-                    <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
-                        Sovereign infrastructure &amp; private digital services. Built for rights, not profit.
-                    </p>
+                    <p class="text-text-secondary text-sm leading-relaxed max-w-xs">Sovereign infrastructure &amp;
+                        private digital services. Built for rights, not profit.</p>
                     <div class="flex flex-wrap items-center gap-3 mt-5">
                         <a href="https://github.com/ricalnet" target="_blank" rel="noopener"
-                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
-                            <i class="fa-brands fa-github text-base"></i>
-                        </a>
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5"><i
+                                class="fa-brands fa-github text-base"></i></a>
                         <a href="mailto:ricalnet@duck.com"
-                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
-                            <i class="fas fa-envelope text-base"></i>
-                        </a>
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5"><i
+                                class="fas fa-envelope text-base"></i></a>
                         <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" target="_blank" rel="noopener"
-                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
-                            <i class="fas fa-heartbeat text-base"></i>
-                        </a>
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5"><i
+                                class="fas fa-heartbeat text-base"></i></a>
                         <span
                             class="pgp-fingerprint text-[0.6rem] px-3 py-1.5 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
-                            onclick="copyPGP()" title="Click to copy PGP fingerprint">
-                            <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
-                        </span>
+                            onclick="copyPGP()" title="Click to copy PGP fingerprint"><i
+                                class="fas fa-lock text-tor-accent-cyan"></i> PGP</span>
                     </div>
                 </div>
-
                 <div>
                     <h4 class="footer-heading text-text-primary/60">Advocacy</h4>
                     <ul class="space-y-2.5">
@@ -1349,7 +1347,6 @@
                         <li><a href="../index#cta" class="footer-link">Contact</a></li>
                     </ul>
                 </div>
-
                 <div>
                     <h4 class="footer-heading text-text-primary/60">Infrastructure</h4>
                     <ul class="space-y-2.5">
@@ -1360,7 +1357,6 @@
                         <li><a href="https://translate.ricalnet.my.id" class="footer-link">Translation</a></li>
                     </ul>
                 </div>
-
                 <div>
                     <h4 class="footer-heading text-text-primary/60">Community</h4>
                     <ul class="space-y-2.5">
@@ -1368,109 +1364,93 @@
                                 target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
                         <li><a href="https://github.com/ricalnet/digital-independence" class="footer-link"
                                 target="_blank">Become a Contributor <i
-                                    class="fas fa-arrow-up-right-from-square"></i></a>
-                        </li>
+                                    class="fas fa-arrow-up-right-from-square"></i></a></li>
                         <li><a href="../about#cta-support" class="footer-link">Support</a></li>
                         <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
                     </ul>
                 </div>
-
                 <div>
                     <h4 class="footer-heading text-text-primary/60">Legal</h4>
                     <ul class="space-y-2.5">
                         <li><a href="https://cloud.ricalnet.my.id/s/H9SM2rJ2M9NfQaq" class="footer-link">Legal
-                                Resources</a>
-                        </li>
+                                Resources</a></li>
                         <li><a href="../terms-of-service" class="footer-link">Terms of Service</a></li>
                         <li><a href="../privacy" class="footer-link">Privacy Policy</a></li>
                     </ul>
                 </div>
-
             </div>
-
             <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
                 <p class="text-xs tracking-wide"> COPYRIGHT (CC BY)</p>
                 <div class="flex items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
-                    <span class="text-text-secondary/70">#DigitalSovereignty</span>
-                    <span class="w-px h-4 bg-tor-violet/10"></span>
-                    <span class="text-text-secondary/70">#Privacy</span>
-                    <span class="w-px h-4 bg-tor-violet/10"></span>
-                    <span class="text-text-secondary/70">#NoLockIn</span>
-                    <span class="w-px h-4 bg-tor-violet/10"></span>
-                    <span class="text-tor-violet font-semibold">#RightsFirst</span>
-                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span class="text-text-secondary/70">#DigitalSovereignty</span><span
+                        class="w-px h-4 bg-tor-violet/10"></span>
+                    <span class="text-text-secondary/70">#Privacy</span><span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span class="text-text-secondary/70">#NoLockIn</span><span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span class="text-tor-violet font-semibold">#RightsFirst</span><span
+                        class="w-px h-4 bg-tor-violet/10"></span>
                     <span
                         class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
-                        onclick="copyPGP()" title="Click to copy PGP fingerprint">
-                        <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
-                    </span>
+                        onclick="copyPGP()" title="Click to copy PGP fingerprint"><i
+                            class="fas fa-lock text-tor-accent-cyan"></i> PGP</span>
                 </div>
             </div>
-
         </div>
     </footer>
 
     <!-- ============================================================ -->
-    <!-- ===== SCRIPTS ===== -->
+    <!-- ===== SCRIPTS ============================================== -->
     <!-- ============================================================ -->
 
-    <script src="../assets/js/aos.js">
-    </script>
-    <script src="../assets/js/components.js">
-    </script>
+    <script src="../assets/js/aos.js"></script>
+    <script src="../assets/js/components.js"></script>
 
     <script>
         // ============================================================
-        // ===== UTILITY FUNCTIONS ====================================
+        // ===== UTILITY ==============================================
         // ============================================================
 
         const PGP_FINGERPRINT = '45688382B815821F033115B8D92D6A10D29C8380';
 
         function copyPGP() {
-            navigator.clipboard.writeText(PGP_FINGERPRINT).then(() => {
-                showToast('PGP fingerprint copied!');
-            }).catch(() => {
-                const textArea = document.createElement('textarea');
-                textArea.value = PGP_FINGERPRINT;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                showToast('PGP fingerprint copied!');
-            });
+            navigator.clipboard.writeText(PGP_FINGERPRINT).then(() => showToast('PGP fingerprint copied!'))
+                .catch(() => {
+                    const ta = document.createElement('textarea');
+                    ta.value = PGP_FINGERPRINT;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    showToast('PGP fingerprint copied!');
+                });
         }
 
-        function showToast(message) {
-            const toast = document.createElement('div');
-            toast.className =
+        function showToast(msg) {
+            const t = document.createElement('div');
+            t.className =
                 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] transition-all duration-300';
-            toast.innerHTML = '<i class="fas fa-check-circle text-tor-accent mr-2"></i> ' + message;
-            document.body.appendChild(toast);
+            t.innerHTML = '<i class="fas fa-check-circle text-tor-accent mr-2"></i> ' + msg;
+            document.body.appendChild(t);
             setTimeout(() => {
-                toast.classList.add('opacity-0', 'translate-y-4');
-                setTimeout(() => toast.remove(), 300);
+                t.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => t.remove(), 300);
             }, 2500);
         }
 
         function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                showToast('Copied!');
-            }).catch(() => {
-                const textArea = document.createElement('textarea');
-                textArea.value = text;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                showToast('Copied!');
-            });
+            navigator.clipboard.writeText(text).then(() => showToast('Copied!'))
+                .catch(() => {
+                    const ta = document.createElement('textarea');
+                    ta.value = text;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    showToast('Copied!');
+                });
         }
 
         function downloadHash(hash, filename = 'hash.txt') {
-            if (!hash) {
-                showToast('No hash to download.');
-                return;
-            }
+            if (!hash) { showToast('No hash to download.'); return; }
             const blob = new Blob([hash], { type: 'text/plain;charset=utf-8' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -1483,6 +1463,58 @@
         }
 
         // ============================================================
+        // ===== FORMAT OUTPUT =======================================
+        // ============================================================
+
+        let hashFormat = 'lower'; // 'lower' or 'upper'
+
+        function applyFormat(hash) {
+            if (!hash) return hash;
+            return hashFormat === 'upper' ? hash.toUpperCase() : hash.toLowerCase();
+        }
+
+        // Setup all format toggles
+        document.querySelectorAll('.format-toggle').forEach(toggle => {
+            const btns = toggle.querySelectorAll('button');
+            btns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    hashFormat = btn.dataset.format;
+                    // Re-render all displayed hashes
+                    refreshAllDisplayedHashes();
+                    showToast('Format: ' + (hashFormat === 'upper' ? 'UPPERCASE' : 'lowercase'));
+                });
+            });
+        });
+
+        function refreshAllDisplayedHashes() {
+            // Hash tab
+            const hashVal = hashDom._lastRawHash;
+            if (hashVal) {
+                hashDom.result.value = applyFormat(hashVal);
+                hashDom._lastDisplayed = applyFormat(hashVal);
+            }
+            // HMAC tab
+            const hmacVal = hmacDom._lastRawHash;
+            if (hmacVal) {
+                hmacDom.result.value = applyFormat(hmacVal);
+                hmacDom._lastDisplayed = applyFormat(hmacVal);
+            }
+            // Verify computed
+            const compVal = verifyDom._lastRawComputed;
+            if (compVal) {
+                verifyDom.computed.textContent = applyFormat(compVal);
+                // Re-run live verify
+                liveVerify();
+            }
+            // Batch table
+            renderBatchTable();
+            // History items (re-render)
+            renderHistory();
+        }
+
+        // ============================================================
         // ===== HISTORY ==============================================
         // ============================================================
 
@@ -1490,17 +1522,12 @@
         const MAX_HISTORY = 20;
 
         function getHistory() {
-            try {
-                return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
-            } catch { return []; }
+            try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch { return []; }
         }
 
         function saveHistoryEntry(entry) {
             const history = getHistory();
-            history.unshift({
-                ...entry,
-                timestamp: Date.now()
-            });
+            history.unshift({ ...entry, timestamp: Date.now() });
             if (history.length > MAX_HISTORY) history.pop();
             localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
             renderHistory();
@@ -1518,20 +1545,18 @@
             const container = document.getElementById('history-list');
             const countEl = document.getElementById('history-count');
             const history = getHistory();
-
             if (countEl) countEl.textContent = history.length;
-
             if (!history.length) {
                 container.innerHTML =
                     '<div class="text-text-muted text-sm text-center py-8">No history yet. Generate a hash to get started.</div>';
                 return;
             }
-
             let html = '';
             history.forEach((item, index) => {
                 const time = new Date(item.timestamp).toLocaleString();
                 const preview = item.text ? (item.text.length > 40 ? item.text.substring(0, 40) + '…' : item.text) :
                     '[file]';
+                const displayHash = applyFormat(item.hash);
                 html += `
                     <div class="history-item flex flex-wrap items-center gap-2 justify-between" data-index="${index}">
                         <div class="flex-1 min-w-0">
@@ -1539,47 +1564,34 @@
                                 <span class="h-alg">${item.algorithm || 'SHA-256'}</span>
                                 <span class="h-preview">${preview}</span>
                             </div>
-                            <div class="h-hash">${item.hash}</div>
+                            <div class="h-hash">${displayHash}</div>
                         </div>
                         <div class="flex items-center gap-1.5 flex-shrink-0">
                             <span class="h-time hidden sm:inline">${time}</span>
-                            <button class="history-copy-btn text-text-muted hover:text-tor-violet text-sm p-1" data-hash="${item.hash}" title="Copy hash">
-                                <i class="fas fa-copy"></i>
-                            </button>
-                            <button class="history-load-btn text-text-muted hover:text-tor-violet text-sm p-1" data-hash="${item.hash}" data-text="${item.text || ''}" data-alg="${item.algorithm || 'sha256'}" title="Load into Hash tab">
-                                <i class="fas fa-arrow-right-to-bracket"></i>
-                            </button>
+                            <button class="history-copy-btn text-text-muted hover:text-tor-violet text-sm p-1" data-hash="${item.hash}" title="Copy hash"><i class="fas fa-copy"></i></button>
+                            <button class="history-load-btn text-text-muted hover:text-tor-violet text-sm p-1" data-hash="${item.hash}" data-text="${item.text || ''}" data-alg="${item.algorithm ? item.algorithm.toLowerCase().replace('hmac-', '') : 'sha256'}" title="Load into Hash tab"><i class="fas fa-arrow-right-to-bracket"></i></button>
                         </div>
                     </div>
                 `;
             });
-
             container.innerHTML = html;
-
-            // Event listeners for history items
             container.querySelectorAll('.history-copy-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    copyToClipboard(btn.dataset.hash);
+                    const raw = btn.dataset.hash;
+                    copyToClipboard(applyFormat(raw));
                     btn.classList.add('copied');
                     setTimeout(() => btn.classList.remove('copied'), 2000);
                 });
             });
-
             container.querySelectorAll('.history-load-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    const hash = btn.dataset.hash;
                     const text = btn.dataset.text || '';
                     const alg = btn.dataset.alg || 'sha256';
-                    // Switch to hash tab
                     switchTab('hash');
-                    // Set input and algorithm
                     hashDom.input.value = text;
-                    // Set active algorithm
-                    hashDom.algBtns.forEach(b => {
-                        b.classList.toggle('active', b.dataset.alg === alg);
-                    });
+                    hashDom.algBtns.forEach(b => b.classList.toggle('active', b.dataset.alg === alg));
                     currentHashAlg = alg;
                     computeHash();
                     showToast('Loaded into Hash tab');
@@ -1608,25 +1620,21 @@
             hash: document.getElementById('tab-hash'),
             hmac: document.getElementById('tab-hmac'),
             verify: document.getElementById('tab-verify'),
+            batch: document.getElementById('tab-batch'),
             history: document.getElementById('tab-history'),
         };
 
         function switchTab(tabId) {
-            tabButtons.forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.tab === tabId);
-            });
-            Object.keys(tabPanels).forEach(key => {
-                tabPanels[key].classList.toggle('active', key === tabId);
-            });
+            tabButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tabId));
+            Object.keys(tabPanels).forEach(key => tabPanels[key].classList.toggle('active', key === tabId));
             if (tabId === 'history') renderHistory();
             if (tabId === 'hash') computeHash();
             if (tabId === 'hmac') computeHmac();
+            if (tabId === 'batch') renderBatchTable();
         }
 
         tabButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                switchTab(btn.dataset.tab);
-            });
+            btn.addEventListener('click', () => switchTab(btn.dataset.tab));
         });
 
         // ============================================================
@@ -1643,6 +1651,8 @@
             algLabel: document.getElementById('hash-alg-label'),
             status: document.getElementById('hash-status'),
             algBtns: document.querySelectorAll('#tab-hash .hash-alg-btn'),
+            _lastRawHash: null,
+            _lastDisplayed: null,
         };
 
         let currentHashAlg = 'sha256';
@@ -1662,28 +1672,26 @@
                 hashDom.len.textContent = '0';
                 hashDom.status.textContent = 'Empty input';
                 hashDom.status.className = 'text-text-muted';
+                hashDom._lastRawHash = null;
                 return;
             }
-
             try {
                 const algo = algMap[currentHashAlg];
-                const hash = algo.fn(text);
-                hashDom.result.value = hash;
-                hashDom.len.textContent = hash.length;
+                const raw = algo.fn(text);
+                hashDom._lastRawHash = raw;
+                const display = applyFormat(raw);
+                hashDom.result.value = display;
+                hashDom._lastDisplayed = display;
+                hashDom.len.textContent = display.length;
                 hashDom.algLabel.textContent = algo.label;
                 hashDom.status.textContent = '✓ Done';
                 hashDom.status.className = 'text-tor-violet';
-                // Save to history
-                saveHistoryEntry({
-                    text: text,
-                    hash: hash,
-                    algorithm: currentHashAlg.toUpperCase(),
-                    type: 'hash'
-                });
+                saveHistoryEntry({ text, hash: raw, algorithm: currentHashAlg.toUpperCase(), type: 'hash' });
             } catch (err) {
                 hashDom.result.value = 'Error: ' + err.message;
                 hashDom.status.textContent = 'Error';
                 hashDom.status.className = 'text-red-500';
+                hashDom._lastRawHash = null;
             }
         }
 
@@ -1705,20 +1713,17 @@
                 copyToClipboard(val);
                 hashDom.copyBtn.classList.add('copied');
                 setTimeout(() => hashDom.copyBtn.classList.remove('copied'), 2000);
-            } else {
-                showToast('Nothing to copy');
-            }
+            } else showToast('Nothing to copy');
         });
 
         hashDom.downloadBtn.addEventListener('click', () => {
-            const val = hashDom.result.value;
+            const val = hashDom._lastRawHash;
             if (val) {
-                downloadHash(val, `hash_${currentHashAlg}.txt`);
+                downloadHash(applyFormat(val), `hash_${currentHashAlg}.txt`);
                 hashDom.downloadBtn.classList.add('copied');
                 setTimeout(() => hashDom.downloadBtn.classList.remove('copied'), 2000);
-            } else {
-                showToast('No hash to download');
-            }
+            } else showToast(
+                'No hash to download');
         });
 
         document.querySelectorAll('.sample-hash-btn').forEach(btn => {
@@ -1743,6 +1748,8 @@
             algLabel: document.getElementById('hmac-alg-label'),
             status: document.getElementById('hmac-status'),
             algBtns: document.querySelectorAll('#tab-hmac .hash-alg-btn'),
+            _lastRawHash: null,
+            _lastDisplayed: null,
         };
 
         let currentHmacAlg = 'sha256';
@@ -1758,42 +1765,42 @@
         function computeHmac() {
             const text = hmacDom.input.value || '';
             const key = hmacDom.key.value || '';
-
             if (!text) {
                 hmacDom.result.value = '';
                 hmacDom.len.textContent = '0';
                 hmacDom.status.textContent = 'Empty input';
                 hmacDom.status.className = 'text-text-muted';
+                hmacDom._lastRawHash = null;
                 return;
             }
-
             if (!key) {
                 hmacDom.result.value = '';
                 hmacDom.len.textContent = '0';
                 hmacDom.status.textContent = 'Missing secret key';
                 hmacDom.status.className = 'text-text-muted';
+                hmacDom._lastRawHash = null;
                 return;
             }
-
             try {
                 const algo = hmacMap[currentHmacAlg];
-                const hash = algo.fn(text, key);
-                hmacDom.result.value = hash;
-                hmacDom.len.textContent = hash.length;
+                const raw = algo.fn(text, key);
+                hmacDom._lastRawHash = raw;
+                const display = applyFormat(raw);
+                hmacDom.result.value = display;
+                hmacDom._lastDisplayed = display;
+                hmacDom.len.textContent = display.length;
                 hmacDom.algLabel.textContent = algo.label;
                 hmacDom.status.textContent = '✓ Done';
                 hmacDom.status.className = 'text-tor-violet';
-                // Save to history
                 saveHistoryEntry({
-                    text: text + ' [HMAC key: ' + key + ']',
-                    hash: hash,
-                    algorithm: 'HMAC-' + currentHmacAlg.toUpperCase(),
-                    type: 'hmac'
+                    text: text + ' [HMAC key: ' + key + ']', hash: raw, algorithm: 'HMAC-' + currentHmacAlg
+                        .toUpperCase(), type: 'hmac'
                 });
             } catch (err) {
                 hmacDom.result.value = 'Error: ' + err.message;
                 hmacDom.status.textContent = 'Error';
                 hmacDom.status.className = 'text-red-500';
+                hmacDom._lastRawHash = null;
             }
         }
 
@@ -1816,20 +1823,17 @@
                 copyToClipboard(val);
                 hmacDom.copyBtn.classList.add('copied');
                 setTimeout(() => hmacDom.copyBtn.classList.remove('copied'), 2000);
-            } else {
-                showToast('Nothing to copy');
-            }
+            } else showToast('Nothing to copy');
         });
 
         hmacDom.downloadBtn.addEventListener('click', () => {
-            const val = hmacDom.result.value;
+            const val = hmacDom._lastRawHash;
             if (val) {
-                downloadHash(val, `hmac_${currentHmacAlg}.txt`);
+                downloadHash(applyFormat(val), `hmac_${currentHmacAlg}.txt`);
                 hmacDom.downloadBtn.classList.add('copied');
                 setTimeout(() => hmacDom.downloadBtn.classList.remove('copied'), 2000);
-            } else {
-                showToast('No HMAC to download');
-            }
+            } else showToast(
+                'No HMAC to download');
         });
 
         document.querySelectorAll('.sample-hmac-btn').forEach(btn => {
@@ -1864,6 +1868,8 @@
             matchDetail: document.getElementById('verify-match-detail'),
             mismatchDetail: document.getElementById('verify-mismatch-detail'),
             algBtns: document.querySelectorAll('#tab-verify .hash-alg-btn'),
+            _lastRawComputed: null,
+            _lastRawExpected: null,
         };
 
         let verifyMode = 'file';
@@ -1911,12 +1917,10 @@
             e.preventDefault();
             verifyDom.fileZone.classList.add('dragover');
         });
-
         verifyDom.fileZone.addEventListener('dragleave', (e) => {
             e.preventDefault();
             verifyDom.fileZone.classList.remove('dragover');
         });
-
         verifyDom.fileZone.addEventListener('drop', (e) => {
             e.preventDefault();
             verifyDom.fileZone.classList.remove('dragover');
@@ -1930,12 +1934,15 @@
                 currentFileData = data;
                 const algo = verAlgMap[currentVerAlg];
                 const wordArray = CryptoJS.lib.WordArray.create(data);
-                currentFileHash = algo.fn(wordArray);
+                const raw = algo.fn(wordArray);
+                currentFileHash = raw;
+                verifyDom._lastRawComputed = raw;
+                const display = applyFormat(raw);
                 verifyDom.fileName.textContent = file.name;
                 verifyDom.fileSize.textContent = formatFileSize(file.size);
                 verifyDom.filePreview.classList.remove('hidden');
                 verifyDom.fileZone.style.display = 'none';
-                verifyDom.computed.textContent = currentFileHash;
+                verifyDom.computed.textContent = display;
                 verifyDom.computed.className = 'verify-compare-box mt-1';
                 clearVerifyResult();
                 setVerifyStatus('idle', 'File loaded. Waiting for expected hash...');
@@ -1949,6 +1956,7 @@
         verifyDom.fileClear.addEventListener('click', () => {
             currentFileData = null;
             currentFileHash = null;
+            verifyDom._lastRawComputed = null;
             verifyDom.filePreview.classList.add('hidden');
             verifyDom.fileZone.style.display = 'block';
             verifyDom.fileInput.value = '';
@@ -1971,11 +1979,14 @@
                 const text = verifyDom.textInput.value;
                 if (text) {
                     const algo = verAlgMap[currentVerAlg];
-                    const hash = algo.fn(text);
-                    verifyDom.computed.textContent = hash;
+                    const raw = algo.fn(text);
+                    verifyDom._lastRawComputed = raw;
+                    const display = applyFormat(raw);
+                    verifyDom.computed.textContent = display;
                     verifyDom.computed.className = 'verify-compare-box mt-1';
                     setVerifyStatus('idle', 'Text loaded. Waiting for expected hash...');
                 } else {
+                    verifyDom._lastRawComputed = null;
                     verifyDom.computed.textContent = '—';
                     verifyDom.computed.className = 'verify-compare-box mt-1';
                     setVerifyStatus('idle', 'Ready');
@@ -1994,13 +2005,16 @@
                 if (verifyMode === 'file' && currentFileData) {
                     const algo = verAlgMap[currentVerAlg];
                     const wordArray = CryptoJS.lib.WordArray.create(currentFileData);
-                    currentFileHash = algo.fn(wordArray);
-                    verifyDom.computed.textContent = currentFileHash;
+                    const raw = algo.fn(wordArray);
+                    currentFileHash = raw;
+                    verifyDom._lastRawComputed = raw;
+                    verifyDom.computed.textContent = applyFormat(raw);
                     verifyDom.computed.className = 'verify-compare-box mt-1';
                 } else if (verifyMode === 'text' && verifyDom.textInput.value) {
                     const algo = verAlgMap[currentVerAlg];
-                    const hash = algo.fn(verifyDom.textInput.value);
-                    verifyDom.computed.textContent = hash;
+                    const raw = algo.fn(verifyDom.textInput.value);
+                    verifyDom._lastRawComputed = raw;
+                    verifyDom.computed.textContent = applyFormat(raw);
                     verifyDom.computed.className = 'verify-compare-box mt-1';
                 }
                 clearVerifyResult();
@@ -2019,16 +2033,19 @@
             if (verifyMode === 'file' && currentFileData) {
                 const algo = verAlgMap[currentVerAlg];
                 const wordArray = CryptoJS.lib.WordArray.create(currentFileData);
-                currentFileHash = algo.fn(wordArray);
-                verifyDom.computed.textContent = currentFileHash;
+                const raw = algo.fn(wordArray);
+                currentFileHash = raw;
+                verifyDom._lastRawComputed = raw;
+                verifyDom.computed.textContent = applyFormat(raw);
                 verifyDom.computed.className = 'verify-compare-box mt-1';
                 setVerifyStatus('idle', 'Hash computed');
                 liveVerify();
                 return true;
             } else if (verifyMode === 'text' && verifyDom.textInput.value) {
                 const algo = verAlgMap[currentVerAlg];
-                const hash = algo.fn(verifyDom.textInput.value);
-                verifyDom.computed.textContent = hash;
+                const raw = algo.fn(verifyDom.textInput.value);
+                verifyDom._lastRawComputed = raw;
+                verifyDom.computed.textContent = applyFormat(raw);
                 verifyDom.computed.className = 'verify-compare-box mt-1';
                 setVerifyStatus('idle', 'Hash computed');
                 liveVerify();
@@ -2045,28 +2062,39 @@
         function liveVerify() {
             clearTimeout(liveVerifyTimeout);
             liveVerifyTimeout = setTimeout(() => {
-                const computed = verifyDom.computed.textContent;
-                const expected = verifyDom.expected.value.trim();
+                const computedRaw = verifyDom._lastRawComputed;
+                const expectedRaw = verifyDom.expected.value.trim();
+                verifyDom._lastRawExpected = expectedRaw || null;
 
-                if (!computed || computed === '—' || !expected) {
-                    // Reset to idle but keep computed shown
-                    if (computed && computed !== '—') {
-                        setVerifyStatus('idle', 'Enter expected hash to verify');
-                    }
+                if (!computedRaw) {
                     verifyDom.detail.classList.add('hidden');
                     verifyDom.matchDetail.classList.add('hidden');
                     verifyDom.mismatchDetail.classList.add('hidden');
                     verifyDom.computed.className = 'verify-compare-box mt-1';
                     verifyDom.expectedDisplay.className = 'verify-compare-box mt-1';
+                    verifyDom.expectedDisplay.textContent = '—';
+                    setVerifyStatus('idle', 'Compute a hash first');
                     return;
                 }
 
-                // Display expected
-                verifyDom.expectedDisplay.textContent = expected;
+                const computedDisplay = applyFormat(computedRaw);
+                verifyDom.computed.textContent = computedDisplay;
+
+                if (!expectedRaw) {
+                    verifyDom.detail.classList.add('hidden');
+                    verifyDom.matchDetail.classList.add('hidden');
+                    verifyDom.mismatchDetail.classList.add('hidden');
+                    verifyDom.expectedDisplay.textContent = '—';
+                    verifyDom.expectedDisplay.className = 'verify-compare-box mt-1';
+                    setVerifyStatus('idle', 'Enter expected hash');
+                    return;
+                }
+
+                const expectedDisplay = applyFormat(expectedRaw);
+                verifyDom.expectedDisplay.textContent = expectedDisplay;
                 verifyDom.expectedDisplay.className = 'verify-compare-box mt-1';
 
-                const match = computed.toLowerCase() === expected.toLowerCase();
-
+                const match = computedRaw.toLowerCase() === expectedRaw.toLowerCase();
                 verifyDom.detail.classList.remove('hidden');
                 if (match) {
                     verifyDom.matchDetail.classList.remove('hidden');
@@ -2084,27 +2112,17 @@
             }, 300);
         }
 
-        // ---- Verify button (manual) ----
         verifyDom.verifyBtn.addEventListener('click', () => {
-            let computed = verifyDom.computed.textContent;
-            if (computed === '—' || !computed) {
+            if (!verifyDom._lastRawComputed) {
                 const success = computeVerifyHash();
                 if (!success) return;
-                computed = verifyDom.computed.textContent;
             }
             const expected = verifyDom.expected.value.trim();
-            if (!expected) {
-                showToast('Please enter the expected hash to compare.');
-                return;
-            }
+            if (!expected) { showToast('Please enter the expected hash.'); return; }
             liveVerify();
         });
 
-        // ---- Live verify on expected input ----
         verifyDom.expected.addEventListener('input', liveVerify);
-
-        // ---- Live verify when computed changes ----
-        // (Already triggered by text/file input via liveVerify calls)
 
         function clearVerifyResult() {
             verifyDom.detail.classList.add('hidden');
@@ -2119,13 +2137,175 @@
             const el = verifyDom.status;
             el.className = 'verify-status ' + type;
             const icons = {
-                'idle': 'fa-circle',
-                'success': 'fa-check-circle',
-                'fail': 'fa-times-circle',
+                'idle': 'fa-circle', 'success': 'fa-check-circle', 'fail': 'fa-times-circle',
                 'pending': 'fa-spinner fa-spin'
             };
             el.innerHTML = '<i class="fas ' + (icons[type] || 'fa-circle') + '"></i> ' + message;
         }
+
+        // ============================================================
+        // ===== BATCH TAB ============================================
+        // ============================================================
+
+        const batchDom = {
+            fileInput: document.getElementById('batch-file-input'),
+            hashBtn: document.getElementById('batch-hash-btn'),
+            clearBtn: document.getElementById('batch-clear-btn'),
+            downloadBtn: document.getElementById('batch-download-btn'),
+            body: document.getElementById('batch-body'),
+            tableWrap: document.getElementById('batch-table-wrap'),
+            status: document.getElementById('batch-status'),
+            count: document.getElementById('batch-count'),
+            progressBar: document.getElementById('batch-progress-bar'),
+            progressWrap: document.getElementById('batch-progress'),
+        };
+
+        let batchFiles = []; // array of {file, name, size, hash?}
+        let batchHashing = false;
+
+        batchDom.fileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            files.forEach(file => {
+                batchFiles.push({ file, name: file.name, size: file.size, hash: null });
+            });
+            renderBatchTable();
+            batchDom.fileInput.value = '';
+            showToast(`${files.length} file(s) added.`);
+        });
+
+        batchDom.clearBtn.addEventListener('click', () => {
+            if (batchFiles.length === 0) return;
+            if (confirm('Clear all batch files?')) {
+                batchFiles = [];
+                renderBatchTable();
+                showToast('Batch cleared.');
+            }
+        });
+
+        batchDom.hashBtn.addEventListener('click', async () => {
+            if (batchHashing) return;
+            const pending = batchFiles.filter(f => !f.hash);
+            if (pending.length === 0) {
+                showToast('All files already hashed.');
+                return;
+            }
+            batchHashing = true;
+            batchDom.hashBtn.disabled = true;
+            batchDom.hashBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Hashing...';
+            batchDom.progressWrap.style.opacity = '1';
+            let done = 0;
+            const total = pending.length;
+
+            for (const item of pending) {
+                try {
+                    const data = await readFileAsArrayBuffer(item.file);
+                    const wordArray = CryptoJS.lib.WordArray.create(data);
+                    const hash = CryptoJS.SHA256(wordArray).toString(); // always SHA-256 for batch
+                    item.hash = hash;
+                } catch (err) {
+                    item.hash = 'Error: ' + err.message;
+                }
+                done++;
+                const pct = (done / total) * 100;
+                batchDom.progressBar.style.width = pct + '%';
+                renderBatchTable();
+            }
+
+            batchHashing = false;
+            batchDom.hashBtn.disabled = false;
+            batchDom.hashBtn.innerHTML = '<i class="fas fa-play"></i> Hash All';
+            setTimeout(() => { batchDom.progressWrap.style.opacity = '0'; }, 1500);
+            showToast('All files hashed.');
+        });
+
+        function readFileAsArrayBuffer(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result);
+                reader.onerror = (e) => reject(e.target.error);
+                reader.readAsArrayBuffer(file);
+            });
+        }
+
+        function renderBatchTable() {
+            const body = batchDom.body;
+            const wrap = batchDom.tableWrap;
+            const count = batchDom.count;
+            const downloadBtn = batchDom.downloadBtn;
+
+            count.textContent = batchFiles.length + ' files';
+
+            if (batchFiles.length === 0) {
+                wrap.style.display = 'none';
+                batchDom.status.textContent = 'Select files to begin.';
+                downloadBtn.disabled = true;
+                return;
+            }
+
+            wrap.style.display = 'block';
+            const hasAllHashes = batchFiles.every(f => f.hash);
+            downloadBtn.disabled = !hasAllHashes;
+
+            let html = '';
+            batchFiles.forEach((item, idx) => {
+                const sizeStr = formatFileSize(item.size);
+                const hashDisplay = item.hash ? applyFormat(item.hash) : '—';
+                const statusIcon = item.hash ? (item.hash.startsWith('Error') ? '❌' : '✅') : '⏳';
+                html += `
+                    <tr>
+                        <td>${idx + 1}</td>
+                        <td class="file-cell" title="${item.name}">${item.name}</td>
+                        <td class="size-cell">${sizeStr}</td>
+                        <td class="hash-cell">${hashDisplay}</td>
+                        <td>
+                            ${item.hash && !item.hash.startsWith('Error') ? `<button class="batch-copy-hash text-text-muted hover:text-tor-violet text-sm p-1" data-hash="${item.hash}" title="Copy hash"><i class="fas fa-copy"></i></button>` : ''}
+                            ${item.hash && !item.hash.startsWith('Error') ? `<button class="batch-download-hash text-text-muted hover:text-tor-violet text-sm p-1" data-hash="${item.hash}" data-name="${item.name}" title="Download hash"><i class="fas fa-download"></i></button>` : ''}
+                        </td>
+                    </tr>
+                `;
+            });
+            body.innerHTML = html;
+
+            // Event listeners for copy/download in batch
+            body.querySelectorAll('.batch-copy-hash').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const raw = btn.dataset.hash;
+                    copyToClipboard(applyFormat(raw));
+                    btn.classList.add('copied');
+                    setTimeout(() => btn.classList.remove('copied'), 2000);
+                });
+            });
+            body.querySelectorAll('.batch-download-hash').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const raw = btn.dataset.hash;
+                    const name = btn.dataset.name;
+                    downloadHash(applyFormat(raw), `hash_${name}.txt`);
+                });
+            });
+
+            batchDom.status.textContent = hasAllHashes ? 'All files hashed. Ready to download.' : `${batchFiles.filter(f => f.hash).length} / ${batchFiles.length} hashed.`;
+        }
+
+        // Download all batch hashes as one text file (checksum format)
+        batchDom.downloadBtn.addEventListener('click', () => {
+            const hashed = batchFiles.filter(f => f.hash && !f.hash.startsWith('Error'));
+            if (hashed.length === 0) { showToast('No valid hashes to download.'); return; }
+            let content = '';
+            hashed.forEach(item => {
+                const display = applyFormat(item.hash);
+                content += `${display}  ${item.name}\n`;
+            });
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'batch_hashes.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 5000);
+            showToast('Downloaded batch hashes.');
+        });
 
         // ============================================================
         // ===== HISTORY CLEAR ========================================
@@ -2142,6 +2322,8 @@
             computeHmac();
             setVerifyStatus('idle', 'Ready — load a file or enter text');
             renderHistory();
+            renderBatchTable();
+            batchDom.progressWrap.style.opacity = '0';
         }, 300);
 
         // ============================================================
@@ -2160,7 +2342,6 @@
                 document.body.style.overflow = expanded ? '' : 'hidden';
             });
         }
-
         if (mobileClose && mobileMenu) {
             mobileClose.addEventListener('click', () => {
                 mobileMenu.classList.remove('open');
@@ -2168,7 +2349,6 @@
                 if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
             });
         }
-
         document.querySelectorAll('[data-close-mobile]').forEach(el => {
             el.addEventListener('click', () => {
                 if (mobileMenu) {
@@ -2178,7 +2358,6 @@
                 }
             });
         });
-
         document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
             btn.addEventListener('click', () => {
                 const targetId = btn.dataset.target;
@@ -2192,7 +2371,6 @@
                 }
             });
         });
-
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
