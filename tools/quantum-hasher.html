@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Quantum Hasher — Ricalnet</title>
+    <meta name="description"
+        content="Hash any text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC with secret key. Modern cryptographic tools for developers." />
+    <link rel="icon" type="image/x-icon" href="../img/logo.png" />
+
+    <!-- ===== SELF-HOSTED FONTS & ICONS ===== -->
+    <link href="../assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="../assets/fontawesome/css/solid.css" rel="stylesheet" />
+    <link href="../assets/fontawesome/css/brands.css" rel="stylesheet" />
+    <link href="../assets/css/fonts.css" rel="stylesheet" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link href="../assets/css/aos.css" rel="stylesheet" />
+
+    <!-- Crypto libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js">
+    </script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'source-sans-pro': ['"Source Sans Pro"', 'Roboto', 'Inter', 'system-ui', '-apple-system',
+                            'sans-serif'
+                        ],
+                        roboto: ['Roboto', '"Source Sans Pro"', 'Inter', 'system-ui', 'sans-serif'],
+                        inter: ['Inter', 'Roboto', '"Source Sans Pro"', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    colors: {
+                        tor: {
+                            violet: '#7c3aed',
+                            'violet-light': '#8b5cf6',
+                            'violet-dark': '#5b21b6',
+                            'violet-deep': '#4c1d95',
+                            'violet-soft': '#ede9fe',
+                            accent: '#68B030',
+                            'accent-cyan': '#06b6d4',
+                            'accent-amber': '#f59e0b',
+                        },
+                        surface: {
+                            light: '#faf9fe',
+                            card: '#ffffff',
+                            border: '#ede9f0',
+                            muted: '#f5f3fa',
+                            dark: '#0f0e1a',
+                        },
+                        text: {
+                            primary: '#0f0e1a',
+                            secondary: '#52506e',
+                            muted: '#9492ae',
+                            inverse: '#f8f7fc',
+                        }
+                    },
+                    boxShadow: {
+                        'elevated': '0 1px 3px rgba(0,0,0,0.02), 0 8px 40px rgba(124,58,237,0.06), 0 20px 80px rgba(124,58,237,0.04)',
+                        'elevated-lg': '0 1px 3px rgba(0,0,0,0.02), 0 16px 64px rgba(124,58,237,0.08), 0 32px 120px rgba(124,58,237,0.04)',
+                        'glow': '0 0 60px rgba(124,58,237,0.06)',
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-down': 'fadeDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-right': 'fadeRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-left': 'fadeLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'scale-in': 'scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-subtle': 'pulseSubtle 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': {
+                                opacity: '1',
+                                transform: 'translateY(0)'
+                            }
+                        },
+                        fadeDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-40px)' }, '100%': {
+                                opacity: '1',
+                                transform: 'translateY(0)'
+                            }
+                        },
+                        fadeRight: {
+                            '0%': { opacity: '0', transform: 'translateX(-40px)' }, '100%': {
+                                opacity: '1',
+                                transform: 'translateX(0)'
+                            }
+                        },
+                        fadeLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(40px)' }, '100%': {
+                                opacity: '1',
+                                transform: 'translateX(0)'
+                            }
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.94)' }, '100%': {
+                                opacity: '1',
+                                transform: 'scale(1)'
+                            }
+                        },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-14px)' } },
+                        pulseSubtle: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0.6' } },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Inline tool styles -->
+    <style>
+        .hash-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(124, 58, 237, 0.06);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+        }
+
+        .hash-card:hover {
+            border-color: rgba(124, 58, 237, 0.12);
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 8px 48px rgba(124, 58, 237, 0.06);
+        }
+
+        .hash-tab-btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            background: transparent;
+            color: #52506e;
+            position: relative;
+        }
+
+        .hash-tab-btn:hover {
+            color: #7c3aed;
+            background: rgba(124, 58, 237, 0.04);
+        }
+
+        .hash-tab-btn.active {
+            background: #7c3aed;
+            color: white;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.2);
+        }
+
+        .hash-tab-btn.active:hover {
+            background: #5b21b6;
+            box-shadow: 0 6px 28px rgba(124, 58, 237, 0.3);
+        }
+
+        .hash-tab-panel {
+            display: none;
+            animation: hashFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hash-tab-panel.active {
+            display: block;
+        }
+
+        @keyframes hashFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hash-result-box {
+            background: rgba(15, 14, 26, 0.03);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(124, 58, 237, 0.08);
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.85rem;
+            word-break: break-all;
+            min-height: 3.5rem;
+            color: #0f0e1a;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .hash-result-box:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.06);
+        }
+
+        .hash-result-box::selection {
+            background: rgba(124, 58, 237, 0.12);
+            color: #0f0e1a;
+        }
+
+        .hash-alg-btn {
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1.5px solid #ede9f0;
+            background: white;
+            color: #52506e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .hash-alg-btn:hover {
+            border-color: #7c3aed;
+            color: #7c3aed;
+            background: #faf9fe;
+        }
+
+        .hash-alg-btn.active {
+            border-color: #7c3aed;
+            background: #7c3aed;
+            color: white;
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.15);
+        }
+
+        .hash-alg-btn.active:hover {
+            background: #5b21b6;
+            border-color: #5b21b6;
+        }
+
+        .hash-gen-btn {
+            background: #7c3aed;
+            color: white;
+            font-weight: 600;
+            padding: 0.7rem 2rem;
+            border-radius: 9999px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 24px rgba(124, 58, 237, 0.2);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.95rem;
+        }
+
+        .hash-gen-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 40px rgba(124, 58, 237, 0.3);
+            background: #5b21b6;
+        }
+
+        .hash-gen-btn:active {
+            transform: scale(0.97);
+        }
+
+        .hash-gen-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .hash-copy-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: #0f0e1a;
+            font-weight: 500;
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1.5px solid #ede9f0;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+        }
+
+        .hash-copy-btn:hover {
+            border-color: #7c3aed;
+            color: #7c3aed;
+            background: #faf9fe;
+        }
+
+        .hash-copy-btn.copied {
+            border-color: #68B030;
+            color: #68B030;
+            background: rgba(104, 176, 48, 0.06);
+        }
+
+        .hash-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 14px;
+            border: 1.5px solid #ede9f0;
+            background: rgba(255, 255, 255, 0.7);
+            transition: all 0.2s ease;
+            color: #0f0e1a;
+            font-size: 0.95rem;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .hash-textarea:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.06);
+        }
+
+        .hash-textarea::placeholder {
+            color: #9492ae;
+        }
+
+        .hash-section-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #7c3aed;
+            font-weight: 700;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid rgba(124, 58, 237, 0.08);
+            margin-bottom: 0.75rem;
+        }
+
+        .hash-key-input {
+            width: 100%;
+            padding: 0.6rem 1rem;
+            border-radius: 12px;
+            border: 1.5px solid #ede9f0;
+            background: rgba(255, 255, 255, 0.7);
+            transition: all 0.2s ease;
+            color: #0f0e1a;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .hash-key-input:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.06);
+        }
+
+        .hash-key-input::placeholder {
+            color: #9492ae;
+        }
+
+        .hash-stats {
+            font-size: 0.7rem;
+            color: #9492ae;
+        }
+
+        .hash-stats strong {
+            color: #0f0e1a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            .hash-tab-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.75rem;
+            }
+
+            .hash-alg-btn {
+                padding: 0.3rem 0.75rem;
+                font-size: 0.7rem;
+            }
+
+            .hash-result-box {
+                font-size: 0.7rem;
+                padding: 0.5rem 0.75rem;
+            }
+
+            .hash-gen-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hash-copy-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="font-source-sans-pro bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+
+    <!-- ===== AMBIENT BG ===== -->
+    <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div class="absolute inset-0 bg-grid-subtle"></div>
+        <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/5 rounded-full blur-[160px]"></div>
+        <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/3 rounded-full blur-[180px]"></div>
+        <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/4 rounded-full blur-[140px]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light"></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ===== NAVBAR =============================================== -->
+    <!-- ============================================================ -->
+    <header
+        class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-[72px]">
+    
+                <a href="../index" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+                    data-aos-duration="600">
+                    <img src="../img/logo.png" alt="Ricalnet Logo"
+                        class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
+                    <div class="leading-tight hidden sm:block">
+                        <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
+                        <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
+                            Rights · Infrastructure</span>
+                    </div>
+                </a>
+    
+                <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down"
+                    data-aos-duration="600">
+                    <a href="../index#hero" class="nav-link">Home</a>
+    
+                    <div class="relative group">
+                        <a href="../index#pain-points" class="nav-link flex items-center gap-1">
+                            Advocacy
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../index#pain-points" class="dropdown-item">Rights at Risk</a>
+                            <a href="../index#how-it-works" class="dropdown-item">Methodology</a>
+                            <a href="../index#features" class="dropdown-item">Sovereign Infrastructure</a>
+                            <a href="../resources#legal-resources" class="dropdown-item">Legal Resources</a>
+                        </div>
+                    </div>
+    
+                    <div class="relative group">
+                        <a href="../resources#hero" class="nav-link flex items-center gap-1">
+                            Resources
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                            <a href="../resources#legal-resources" class="dropdown-item">Legal Resources</a>
+                            <a href="../resources#in-house-tools" class="dropdown-item">In-House Tools</a>
+                            <a href="../resources" class="dropdown-item">All Resources</a>
+                        </div>
+                    </div>
+    
+                    <div class="relative group">
+                        <a href="../tools/ip-intelligence" class="nav-link nav-link-active flex items-center gap-1">
+                            Tools
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../tools/ip-intelligence" class="dropdown-item">IP Intelligence</a>
+                            <a href="../tools/password-generator" class="dropdown-item">Password Generator</a>
+                            <a href="../tools/qr-builder" class="dropdown-item">QR Builder</a>
+                            <a href="../tools/quantum-hasher" class="dropdown-item">Quantum Hasher</a>
+                            <a href="../tools/whiteboard" class="dropdown-item">Whiteboard</a>
+                            <a href="../resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                        </div>
+                    </div>
+    
+                    <div class="relative group">
+                        <a href="../about#hero" class="nav-link flex items-center gap-1">
+                            About
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../about#our-mission" class="dropdown-item">Our Mission</a>
+                            <a href="../index#comparison" class="dropdown-item">Comparison</a>
+                            <a href="../index#faq" class="dropdown-item">FAQ</a>
+                            <a href="../index#cta" class="dropdown-item">Contact</a>
+                            <a href="../about#cta-support" class="dropdown-item">Support Us</a>
+                        </div>
+                    </div>
+                </nav>
+    
+                <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
+                    <a href="https://auth.ricalnet.my.id" class="hidden lg:inline-flex btn-sso">
+                        <i class="fas fa-key"></i> Login with SSO
+                    </a>
+                    <button id="mobile-menu-toggle"
+                        class="lg:hidden w-9 h-9 rounded-full hover:bg-surface-muted flex items-center justify-center transition-colors"
+                        aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars text-text-secondary text-lg"></i>
+                    </button>
+                </div>
+    
+            </div>
+        </div>
+    </header>
+    
+    <!-- ============================================================ -->
+    <!-- ===== MOBILE NAV =========================================== -->
+    <!-- ============================================================ -->
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <img src="../img/logo.png" alt="Ricalnet" />
+                <span>Ricalnet</span>
+            </div>
+            <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+    
+        <div class="mobile-menu-scroll">
+    
+            <a href="../index#hero" class="nav-item" data-close-mobile>
+                <i class="fas fa-home"></i> Home
+            </a>
+    
+            <!-- ===== ADVOCACY DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-advocacy">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Advocacy
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../index#pain-points" class="sub-link" data-close-mobile>
+                        <i class="fas fa-exclamation-triangle"></i> Rights at Risk
+                    </a>
+                    <a href="../index#how-it-works" class="sub-link" data-close-mobile>
+                        <i class="fas fa-route"></i> Methodology
+                    </a>
+                    <a href="../index#features" class="sub-link" data-close-mobile>
+                        <i class="fas fa-star"></i> Sovereign Infrastructure
+                    </a>
+                    <a href="../resources#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal Resources
+                    </a>
+                </div>
+            </div>
+    
+            <!-- ===== RESOURCES DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-resources">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../resources#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-lock"></i> Privacy Tools
+                    </a>
+                    <a href="../resources#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal Resources
+                    </a>
+                    <a href="../resources#in-house-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-cubes"></i> In-House Tools
+                    </a>
+                    <a href="../resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-folder-open"></i> All Resources
+                    </a>
+                </div>
+            </div>
+    
+            <!-- ===== TOOLS DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-tools">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../tools/ip-intelligence" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> IP Intelligence
+                    </a>
+                    <a href="../tools/password-generator" class="sub-link" data-close-mobile>
+                        <i class="fas fa-key"></i> Password Generator
+                    </a>
+                    <a href="../tools/qr-builder" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> QR Builder
+                    </a>
+                    <a href="../tools/quantum-hasher" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> Quantum Hasher
+                    </a>
+                    <a href="../tools/whiteboard" class="sub-link" data-close-mobile>
+                        <i class="fas fa-pen-fancy"></i> Whiteboard
+                    </a>
+                    <a href="../resources#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-user-secret"></i> Privacy Tools
+                    </a>
+                </div>
+            </div>
+    
+            <!-- ===== ABOUT DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-about">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../about#our-mission" class="sub-link" data-close-mobile>
+                        <i class="fas fa-bullseye"></i> Our Mission
+                    </a>
+                    <a href="../index#comparison" class="sub-link" data-close-mobile>
+                        <i class="fas fa-arrows-left-right"></i> Comparison
+                    </a>
+                    <a href="../index#faq" class="sub-link" data-close-mobile>
+                        <i class="fas fa-question-circle"></i> FAQ
+                    </a>
+                    <a href="../index#cta" class="sub-link" data-close-mobile>
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                    <a href="../about#cta-support" class="sub-link" data-close-mobile>
+                        <i class="fas fa-hand-holding-heart"></i> Support Us
+                    </a>
+                </div>
+            </div>
+    
+            <a href="https://auth.ricalnet.my.id" class="mt-3 block w-full text-center btn-sso justify-center"
+                data-close-mobile>
+                <i class="fas fa-key"></i> Login with SSO
+            </a>
+    
+            <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+                <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+                    <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> Digital Sovereignty · Privacy-First
+                </span>
+            </div>
+    
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ===== TOOL HERO ============================================ -->
+    <!-- ============================================================ -->
+    <section class="relative overflow-hidden pt-[72px] pb-6 md:pt-24 md:pb-8 bg-surface-light">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto" data-aos="fade-up" data-aos-duration="700">
+                <div class="flex flex-wrap items-center justify-center gap-2 mb-4">
+                    <span class="badge-pill"><i class="fas fa-fingerprint"></i> Quantum Hasher</span>
+                    <span class="badge-pill"
+                        style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);">
+                        <i class="fas fa-shield"></i> SHA · MD5 · HMAC
+                    </span>
+                    <span class="badge-pill"
+                        style="background:rgba(245,158,11,0.08);color:#b45309;border-color:rgba(245,158,11,0.12);">
+                        <i class="fas fa-key"></i> Cryptographic
+                    </span>
+                </div>
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.08] tracking-tight">
+                    <span class="text-text-primary">Quantum </span>
+                    <span class="text-tor-violet">Hasher</span>
+                </h1>
+                <p class="text-text-secondary text-base md:text-lg mt-3 max-w-2xl mx-auto leading-relaxed">
+                    Hash any text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC with secret key.
+                    Modern cryptographic tools for developers and security professionals.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== HASHER =============================================== -->
+    <!-- ============================================================ -->
+    <section class="pb-12 md:pb-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Tabs -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-6" data-aos="fade-up" data-aos-delay="100">
+                <button class="hash-tab-btn active" data-tab="hash">
+                    <i class="fas fa-hashtag mr-2"></i> Hash
+                </button>
+                <button class="hash-tab-btn" data-tab="hmac">
+                    <i class="fas fa-key mr-2"></i> HMAC
+                </button>
+            </div>
+
+            <!-- ===== TAB: HASH ===== -->
+            <div id="tab-hash" class="hash-tab-panel active" data-aos="fade-up" data-aos-delay="150">
+
+                <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                        <!-- Left: Input & settings -->
+                        <div>
+
+                            <div class="hash-section-title"><i class="fas fa-pen mr-2"></i>Input Text</div>
+                            <textarea id="hash-input" class="hash-textarea"
+                                placeholder="Enter text to hash…">The quick brown fox jumps over the lazy dog</textarea>
+
+                            <div class="mt-4 flex flex-wrap items-center gap-2">
+                                <span class="text-sm font-medium text-text-secondary mr-1">Algorithm:</span>
+                                <button class="hash-alg-btn active" data-alg="sha256">SHA-256</button>
+                                <button class="hash-alg-btn" data-alg="sha1">SHA-1</button>
+                                <button class="hash-alg-btn" data-alg="sha384">SHA-384</button>
+                                <button class="hash-alg-btn" data-alg="sha512">SHA-512</button>
+                                <button class="hash-alg-btn" data-alg="md5">MD5</button>
+                            </div>
+
+                            <div class="mt-6">
+                                <button id="hash-btn" class="hash-gen-btn w-full justify-center">
+                                    <i class="fas fa-fingerprint"></i>
+                                    Generate Hash
+                                </button>
+                            </div>
+
+                            <div class="mt-3 text-xs text-text-muted text-center">
+                                <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i>
+                                All hashing is done locally in your browser. Nothing is sent to any server.
+                            </div>
+
+                        </div>
+
+                        <!-- Right: Result -->
+                        <div>
+
+                            <div class="hash-section-title"><i class="fas fa-file-lines mr-2"></i>Hash Result</div>
+
+                            <div class="relative">
+                                <textarea id="hash-result" class="hash-result-box w-full resize-none" readonly
+                                    placeholder="Hash will appear here…" rows="4"></textarea>
+                                <div class="absolute top-2 right-2 flex gap-1.5">
+                                    <button id="hash-copy-btn" class="hash-copy-btn text-sm px-2.5 py-1">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="mt-3 flex flex-wrap items-center justify-between gap-2 hash-stats">
+                                <span>
+                                    <strong id="hash-len">0</strong> characters
+                                    <span class="mx-1.5">·</span>
+                                    <strong id="hash-alg-label">SHA-256</strong>
+                                </span>
+                                <span id="hash-status" class="text-tor-violet">Ready</span>
+                            </div>
+
+                            <!-- Sample buttons -->
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="text-xs text-text-muted mr-1 self-center">Test:</span>
+                                <button
+                                    class="sample-hash-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                    data-text="The quick brown fox jumps over the lazy dog">Fox</button>
+                                <button
+                                    class="sample-hash-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                    data-text="Hello, world!">Hello</button>
+                                <button
+                                    class="sample-hash-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                    data-text="Ricalnet">Ricalnet</button>
+                                <button
+                                    class="sample-hash-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                    data-text="1234567890">Numbers</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ===== TAB: HMAC ===== -->
+            <div id="tab-hmac" class="hash-tab-panel" data-aos="fade-up" data-aos-delay="150">
+
+                <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                        <!-- Left: Input & settings -->
+                        <div>
+
+                            <div class="hash-section-title"><i class="fas fa-pen mr-2"></i>Message</div>
+                            <textarea id="hmac-input" class="hash-textarea"
+                                placeholder="Enter message to hash…">The quick brown fox jumps over the lazy dog</textarea>
+
+                            <div class="mt-4">
+                                <label class="hash-section-title block"><i class="fas fa-key mr-2"></i>Secret
+                                    Key</label>
+                                <input type="text" id="hmac-key" class="hash-key-input"
+                                    placeholder="Enter secret key for HMAC…" value="my-secret-key" />
+                            </div>
+
+                            <div class="mt-4 flex flex-wrap items-center gap-2">
+                                <span class="text-sm font-medium text-text-secondary mr-1">Algorithm:</span>
+                                <button class="hash-alg-btn active" data-hmac="sha256">SHA-256</button>
+                                <button class="hash-alg-btn" data-hmac="sha1">SHA-1</button>
+                                <button class="hash-alg-btn" data-hmac="sha384">SHA-384</button>
+                                <button class="hash-alg-btn" data-hmac="sha512">SHA-512</button>
+                                <button class="hash-alg-btn" data-hmac="md5">MD5</button>
+                            </div>
+
+                            <div class="mt-6">
+                                <button id="hmac-btn" class="hash-gen-btn w-full justify-center">
+                                    <i class="fas fa-fingerprint"></i>
+                                    Generate HMAC
+                                </button>
+                            </div>
+
+                            <div class="mt-3 text-xs text-text-muted text-center">
+                                <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i>
+                                HMAC is generated locally. Your secret key never leaves your browser.
+                            </div>
+
+                        </div>
+
+                        <!-- Right: Result -->
+                        <div>
+
+                            <div class="hash-section-title"><i class="fas fa-file-lines mr-2"></i>HMAC Result</div>
+
+                            <div class="relative">
+                                <textarea id="hmac-result" class="hash-result-box w-full resize-none" readonly
+                                    placeholder="HMAC will appear here…" rows="4"></textarea>
+                                <div class="absolute top-2 right-2 flex gap-1.5">
+                                    <button id="hmac-copy-btn" class="hash-copy-btn text-sm px-2.5 py-1">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="mt-3 flex flex-wrap items-center justify-between gap-2 hash-stats">
+                                <span>
+                                    <strong id="hmac-len">0</strong> characters
+                                    <span class="mx-1.5">·</span>
+                                    <strong id="hmac-alg-label">SHA-256</strong>
+                                </span>
+                                <span id="hmac-status" class="text-tor-violet">Ready</span>
+                            </div>
+
+                            <!-- Sample buttons -->
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="text-xs text-text-muted mr-1 self-center">Test:</span>
+                                <button
+                                    class="sample-hmac-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                    data-text="The quick brown fox jumps over the lazy dog">Fox</button>
+                                <button
+                                    class="sample-hmac-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                    data-text="Hello, world!">Hello</button>
+                                <button
+                                    class="sample-hmac-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                    data-text="Ricalnet">Ricalnet</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Info cards -->
+            <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="hash-card rounded-2xl p-4 text-center">
+                    <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-shield text-tor-violet"></i>
+                    </div>
+                    <h4 class="font-semibold text-sm text-text-primary">SHA Family</h4>
+                    <p class="text-text-muted text-xs mt-1">SHA-1, SHA-256, SHA-384, SHA-512 — secure cryptographic hash
+                        functions.</p>
+                </div>
+                <div class="hash-card rounded-2xl p-4 text-center">
+                    <div class="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-fingerprint text-amber-600"></i>
+                    </div>
+                    <h4 class="font-semibold text-sm text-text-primary">MD5 &amp; HMAC</h4>
+                    <p class="text-text-muted text-xs mt-1">MD5 for checksums, HMAC for message authentication with a
+                        secret key.</p>
+                </div>
+                <div class="hash-card rounded-2xl p-4 text-center">
+                    <div class="w-10 h-10 rounded-full bg-cyan-50 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-lock text-cyan-600"></i>
+                    </div>
+                    <h4 class="font-semibold text-sm text-text-primary">Local &amp; Private</h4>
+                    <p class="text-text-muted text-xs mt-1">All processing happens in your browser. No data is sent to
+                        any server.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== FOOTER =============================================== -->
+    <!-- ============================================================ -->
+    <footer class="relative overflow-hidden border-t border-tor-violet/10">
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
+        </div>
+        <div
+            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
+        </div>
+
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+
+            <div
+                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+
+                <div class="col-span-2 md:col-span-3 lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
+                            <img src="../img/logo.png" alt="Ricalnet"
+                                class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
+                        </div>
+                        <div>
+                            <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
+                            <span
+                                class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
+                                Rights · Infrastructure</span>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
+                        Sovereign infrastructure &amp; private digital services. Built for rights, not profit.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 mt-5">
+                        <a href="https://github.com/ricalnet" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fa-brands fa-github text-base"></i>
+                        </a>
+                        <a href="mailto:ricalnet@duck.com"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-envelope text-base"></i>
+                        </a>
+                        <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-heartbeat text-base"></i>
+                        </a>
+                        <span
+                            class="pgp-fingerprint text-[0.6rem] px-3 py-1.5 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                            onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                            <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                        </span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Advocacy</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="../about#our-mission" class="footer-link">Our Mission</a></li>
+                        <li><a href="../resources" class="footer-link">Resources</a></li>
+                        <li><a href="../gallery" class="footer-link">Gallery</a></li>
+                        <li><a href="https://docs.ricalnet.my.id" class="footer-link">Blog</a></li>
+                        <li><a href="../index#cta" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Infrastructure</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="../index#features" class="footer-link">Sovereign Infrastructure</a></li>
+                        <li><a href="../index#private-digital-services" class="footer-link">Private Services</a></li>
+                        <li><a href="https://search.ricalnet.my.id" class="footer-link">Search Engine</a></li>
+                        <li><a href="https://link.ricalnet.my.id" class="footer-link">URL Shortener</a></li>
+                        <li><a href="https://translate.ricalnet.my.id" class="footer-link">Translation</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Community</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
+                                target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="https://github.com/ricalnet/digital-independence" class="footer-link"
+                                target="_blank">Become a Contributor <i
+                                    class="fas fa-arrow-up-right-from-square"></i></a>
+                        </li>
+                        <li><a href="../about#cta-support" class="footer-link">Support</a></li>
+                        <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Legal</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://cloud.ricalnet.my.id/s/H9SM2rJ2M9NfQaq" class="footer-link">Legal
+                                Resources</a>
+                        </li>
+                        <li><a href="../terms-of-service" class="footer-link">Terms of Service</a></li>
+                        <li><a href="../privacy" class="footer-link">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+                <p class="text-xs tracking-wide"> COPYRIGHT (CC BY)</p>
+                <div class="flex items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
+                    <span class="text-text-secondary/70">#DigitalSovereignty</span>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span class="text-text-secondary/70">#Privacy</span>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span class="text-text-secondary/70">#NoLockIn</span>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span class="text-tor-violet font-semibold">#RightsFirst</span>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span
+                        class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                        onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                        <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- ===== SCRIPTS ===== -->
+    <!-- ============================================================ -->
+
+    <script src="../assets/js/aos.js">
+    </script>
+    <script src="../assets/js/components.js">
+    </script>
+
+    <script>
+        // ===== AOS =====
+        AOS.init({
+            once: true,
+            offset: 30,
+            easing: 'ease-out-cubic',
+            duration: 700,
+            disable: window.innerWidth < 768 ? true : false,
+        });
+
+        // ===== PGP =====
+        const PGP_FINGERPRINT = '45688382B815821F033115B8D92D6A10D29C8380';
+
+        function copyPGP() {
+            navigator.clipboard.writeText(PGP_FINGERPRINT).then(() => {
+                showToast('PGP fingerprint copied!');
+            }).catch(() => {
+                const textArea = document.createElement('textarea');
+                textArea.value = PGP_FINGERPRINT;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast('PGP fingerprint copied!');
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className =
+                'fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] transition-all duration-300';
+            toast.innerHTML = '<i class="fas fa-check-circle text-tor-accent mr-2"></i> ' + message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Copied!');
+            }).catch(() => {
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast('Copied!');
+            });
+        }
+
+        // ============================================================
+        // ===== HASH TAB =============================================
+        // ============================================================
+
+        const hashDom = {
+            input: document.getElementById('hash-input'),
+            result: document.getElementById('hash-result'),
+            btn: document.getElementById('hash-btn'),
+            copyBtn: document.getElementById('hash-copy-btn'),
+            len: document.getElementById('hash-len'),
+            algLabel: document.getElementById('hash-alg-label'),
+            status: document.getElementById('hash-status'),
+            algBtns: document.querySelectorAll('#tab-hash .hash-alg-btn'),
+        };
+
+        let currentHashAlg = 'sha256';
+
+        // Algorithm mapping
+        const algMap = {
+            'sha1': { label: 'SHA-1', fn: (text) => CryptoJS.SHA1(text).toString(CryptoJS.enc.Hex) },
+            'sha256': { label: 'SHA-256', fn: (text) => CryptoJS.SHA256(text).toString(CryptoJS.enc.Hex) },
+            'sha384': { label: 'SHA-384', fn: (text) => CryptoJS.SHA384(text).toString(CryptoJS.enc.Hex) },
+            'sha512': { label: 'SHA-512', fn: (text) => CryptoJS.SHA512(text).toString(CryptoJS.enc.Hex) },
+            'md5': { label: 'MD5', fn: (text) => CryptoJS.MD5(text).toString(CryptoJS.enc.Hex) },
+        };
+
+        function computeHash() {
+            const text = hashDom.input.value || '';
+            if (!text) {
+                hashDom.result.value = '';
+                hashDom.len.textContent = '0';
+                hashDom.status.textContent = 'Empty input';
+                hashDom.status.className = 'text-text-muted';
+                return;
+            }
+
+            try {
+                const algo = algMap[currentHashAlg];
+                const hash = algo.fn(text);
+                hashDom.result.value = hash;
+                hashDom.len.textContent = hash.length;
+                hashDom.algLabel.textContent = algo.label;
+                hashDom.status.textContent = '✓ Done';
+                hashDom.status.className = 'text-tor-violet';
+            } catch (err) {
+                hashDom.result.value = 'Error: ' + err.message;
+                hashDom.status.textContent = 'Error';
+                hashDom.status.className = 'text-red-500';
+            }
+        }
+
+        // Hash algorithm selection
+        hashDom.algBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                hashDom.algBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentHashAlg = btn.dataset.alg;
+                computeHash();
+            });
+        });
+
+        // Hash events
+        hashDom.btn.addEventListener('click', computeHash);
+        hashDom.input.addEventListener('input', computeHash);
+
+        // Copy
+        hashDom.copyBtn.addEventListener('click', () => {
+            const val = hashDom.result.value;
+            if (val) {
+                copyToClipboard(val);
+                hashDom.copyBtn.classList.add('copied');
+                setTimeout(() => hashDom.copyBtn.classList.remove('copied'), 2000);
+            } else {
+                showToast('Nothing to copy');
+            }
+        });
+
+        // Sample buttons
+        document.querySelectorAll('.sample-hash-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                hashDom.input.value = btn.dataset.text;
+                computeHash();
+            });
+        });
+
+        // ============================================================
+        // ===== HMAC TAB =============================================
+        // ============================================================
+
+        const hmacDom = {
+            input: document.getElementById('hmac-input'),
+            key: document.getElementById('hmac-key'),
+            result: document.getElementById('hmac-result'),
+            btn: document.getElementById('hmac-btn'),
+            copyBtn: document.getElementById('hmac-copy-btn'),
+            len: document.getElementById('hmac-len'),
+            algLabel: document.getElementById('hmac-alg-label'),
+            status: document.getElementById('hmac-status'),
+            algBtns: document.querySelectorAll('#tab-hmac .hash-alg-btn'),
+        };
+
+        let currentHmacAlg = 'sha256';
+
+        // HMAC algorithm mapping
+        const hmacMap = {
+            'sha1': { label: 'SHA-1', fn: (text, key) => CryptoJS.HmacSHA1(text, key).toString(CryptoJS.enc.Hex) },
+            'sha256': { label: 'SHA-256', fn: (text, key) => CryptoJS.HmacSHA256(text, key).toString(CryptoJS.enc.Hex) },
+            'sha384': { label: 'SHA-384', fn: (text, key) => CryptoJS.HmacSHA384(text, key).toString(CryptoJS.enc.Hex) },
+            'sha512': { label: 'SHA-512', fn: (text, key) => CryptoJS.HmacSHA512(text, key).toString(CryptoJS.enc.Hex) },
+            'md5': { label: 'MD5', fn: (text, key) => CryptoJS.HmacMD5(text, key).toString(CryptoJS.enc.Hex) },
+        };
+
+        function computeHmac() {
+            const text = hmacDom.input.value || '';
+            const key = hmacDom.key.value || '';
+
+            if (!text) {
+                hmacDom.result.value = '';
+                hmacDom.len.textContent = '0';
+                hmacDom.status.textContent = 'Empty input';
+                hmacDom.status.className = 'text-text-muted';
+                return;
+            }
+
+            if (!key) {
+                hmacDom.result.value = '';
+                hmacDom.len.textContent = '0';
+                hmacDom.status.textContent = 'Missing secret key';
+                hmacDom.status.className = 'text-text-muted';
+                return;
+            }
+
+            try {
+                const algo = hmacMap[currentHmacAlg];
+                const hash = algo.fn(text, key);
+                hmacDom.result.value = hash;
+                hmacDom.len.textContent = hash.length;
+                hmacDom.algLabel.textContent = algo.label;
+                hmacDom.status.textContent = '✓ Done';
+                hmacDom.status.className = 'text-tor-violet';
+            } catch (err) {
+                hmacDom.result.value = 'Error: ' + err.message;
+                hmacDom.status.textContent = 'Error';
+                hmacDom.status.className = 'text-red-500';
+            }
+        }
+
+        // HMAC algorithm selection
+        hmacDom.algBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                hmacDom.algBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentHmacAlg = btn.dataset.hmac;
+                computeHmac();
+            });
+        });
+
+        // HMAC events
+        hmacDom.btn.addEventListener('click', computeHmac);
+        hmacDom.input.addEventListener('input', computeHmac);
+        hmacDom.key.addEventListener('input', computeHmac);
+
+        // Copy
+        hmacDom.copyBtn.addEventListener('click', () => {
+            const val = hmacDom.result.value;
+            if (val) {
+                copyToClipboard(val);
+                hmacDom.copyBtn.classList.add('copied');
+                setTimeout(() => hmacDom.copyBtn.classList.remove('copied'), 2000);
+            } else {
+                showToast('Nothing to copy');
+            }
+        });
+
+        // Sample buttons
+        document.querySelectorAll('.sample-hmac-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                hmacDom.input.value = btn.dataset.text;
+                computeHmac();
+            });
+        });
+
+        // ============================================================
+        // ===== TABS =================================================
+        // ============================================================
+
+        const tabButtons = document.querySelectorAll('.hash-tab-btn');
+        const tabPanels = {
+            hash: document.getElementById('tab-hash'),
+            hmac: document.getElementById('tab-hmac'),
+        };
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tab = btn.dataset.tab;
+
+                // Update buttons
+                tabButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Update panels
+                Object.keys(tabPanels).forEach(key => {
+                    tabPanels[key].classList.toggle('active', key === tab);
+                });
+
+                // Trigger compute on switch
+                if (tab === 'hash') {
+                    computeHash();
+                } else {
+                    computeHmac();
+                }
+            });
+        });
+
+        // ============================================================
+        // ===== INIT =================================================
+        // ============================================================
+
+        // Initial compute
+        setTimeout(() => {
+            computeHash();
+            computeHmac();
+        }, 300);
+
+        // ============================================================
+        // ===== MOBILE MENU ==========================================
+        // ============================================================
+
+        const mobileToggle = document.getElementById('mobile-menu-toggle');
+        const mobileClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileToggle && mobileMenu) {
+            mobileToggle.addEventListener('click', () => {
+                const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+                mobileToggle.setAttribute('aria-expanded', !expanded);
+                mobileMenu.classList.toggle('open');
+                document.body.style.overflow = expanded ? '' : 'hidden';
+            });
+        }
+
+        if (mobileClose && mobileMenu) {
+            mobileClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+                if (mobileToggle) {
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        document.querySelectorAll('[data-close-mobile]').forEach(el => {
+            el.addEventListener('click', () => {
+                if (mobileMenu) {
+                    mobileMenu.classList.remove('open');
+                    document.body.style.overflow = '';
+                    if (mobileToggle) {
+                        mobileToggle.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.dataset.target;
+                const target = document.getElementById(targetId);
+                if (target) {
+                    const isOpen = target.classList.toggle('open');
+                    btn.classList.toggle('open');
+                    btn.setAttribute('aria-expanded', isOpen);
+                    const chevron = btn.querySelector('.fa-chevron-down');
+                    if (chevron) {
+                        chevron.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+                    }
+                }
+            });
+        });
+
+        // ===== Smooth anchor scroll =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -4,55 +4,25 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-    <title>IP Intelligence — Ricalnet · Digital Sovereignty</title>
+    <title>IP Intelligence — Ricalnet</title>
     <meta name="description"
-        content="Enterprise-grade IP intelligence and geolocation lookup. Identify IP addresses, network details, and geographical data with precision." />
+        content="IP Intelligence tool powered by ipapi.co. Get detailed geolocation, network, and country data for any IP address." />
     <link rel="icon" type="image/x-icon" href="../img/logo.png" />
 
-    <!-- Fonts & Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet" />
+    <!-- ===== SELF-HOSTED FONTS & ICONS ===== -->
+    <link href="../assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="../assets/fontawesome/css/solid.css" rel="stylesheet" />
+    <link href="../assets/fontawesome/css/brands.css" rel="stylesheet" />
+    <link href="../assets/css/fonts.css" rel="stylesheet" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link href="../assets/css/aos.css" rel="stylesheet" />
 
     <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <style>
-        #map {
-            height: 220px;
-            width: 100%;
-            border-radius: 1rem;
-            border: 1px solid rgba(124, 58, 237, 0.08);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
-            transition: all 0.3s ease;
-        }
-
-        #map:hover {
-            box-shadow: 0 8px 40px rgba(124, 58, 237, 0.06);
-        }
-
-        .leaflet-control-attribution {
-            font-size: 0.6rem;
-            color: #9492ae;
-        }
-
-        .leaflet-popup-content-wrapper {
-            border-radius: 12px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-        }
-
-        .leaflet-popup-content {
-            padding: 0.6rem 1rem;
-        }
-
-        .leaflet-popup-content strong {
-            color: #0f0e1a;
-        }
-    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com">
@@ -61,7 +31,13 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { inter: ['Source Sans Pro', 'Helvetica', 'sans-serif'] },
+                    fontFamily: {
+                        'source-sans-pro': ['"Source Sans Pro"', 'Roboto', 'Inter', 'system-ui', '-apple-system',
+                            'sans-serif'
+                        ],
+                        roboto: ['Roboto', '"Source Sans Pro"', 'Inter', 'system-ui', 'sans-serif'],
+                        inter: ['Inter', 'Roboto', '"Source Sans Pro"', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
                     colors: {
                         tor: {
                             violet: '#7c3aed',
@@ -99,689 +75,221 @@
                         'fade-left': 'fadeLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
                         'scale-in': 'scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
                         'float': 'float 6s ease-in-out infinite',
-                        'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
+                        'pulse-subtle': 'pulseSubtle 3s ease-in-out infinite',
                     },
                     keyframes: {
-                        fadeUp: { '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-                        fadeDown: { '0%': { opacity: '0', transform: 'translateY(-40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-                        fadeRight: { '0%': { opacity: '0', transform: 'translateX(-40px)' }, '100%': { opacity: '1', transform: 'translateX(0)' } },
-                        fadeLeft: { '0%': { opacity: '0', transform: 'translateX(40px)' }, '100%': { opacity: '1', transform: 'translateX(0)' } },
-                        scaleIn: { '0%': { opacity: '0', transform: 'scale(0.94)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': {
+                                opacity: '1',
+                                transform: 'translateY(0)'
+                            }
+                        },
+                        fadeDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-40px)' }, '100%': {
+                                opacity: '1',
+                                transform: 'translateY(0)'
+                            }
+                        },
+                        fadeRight: {
+                            '0%': { opacity: '0', transform: 'translateX(-40px)' }, '100%': {
+                                opacity: '1',
+                                transform: 'translateX(0)'
+                            }
+                        },
+                        fadeLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(40px)' }, '100%': {
+                                opacity: '1',
+                                transform: 'translateX(0)'
+                            }
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.94)' }, '100%': {
+                                opacity: '1',
+                                transform: 'scale(1)'
+                            }
+                        },
                         float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-14px)' } },
-                        pulseSoft: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0.6' } },
+                        pulseSubtle: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0.6' } },
                     }
                 }
             }
         }
     </script>
 
-    <!-- AOS CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
+    <!-- Inline tool styles -->
     <style>
-        @layer utilities {
-            .glass-card {
-                background: rgba(255, 255, 255, 0.72);
-                backdrop-filter: blur(24px);
-                -webkit-backdrop-filter: blur(24px);
-                border: 1px solid rgba(124, 58, 237, 0.08);
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 8px 40px rgba(124, 58, 237, 0.04);
-            }
+        /* IP Intelligence specific */
+        .ip-result-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(124, 58, 237, 0.06);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+        }
 
-            .glass-card-dark {
-                background: rgba(15, 14, 26, 0.6);
-                backdrop-filter: blur(24px);
-                -webkit-backdrop-filter: blur(24px);
-                border: 1px solid rgba(255, 255, 255, 0.06);
-            }
+        .ip-result-card:hover {
+            border-color: rgba(124, 58, 237, 0.12);
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 8px 48px rgba(124, 58, 237, 0.06);
+        }
 
-            .nav-link {
-                position: relative;
-                color: #52506e;
-                font-weight: 500;
-                font-size: 0.875rem;
-                transition: color 0.2s ease;
-                padding: 0.25rem 0;
-            }
+        .ip-stat-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #9492ae;
+            font-weight: 600;
+        }
 
-            .nav-link:hover {
-                color: #7c3aed;
-            }
+        .ip-stat-value {
+            font-weight: 600;
+            color: #0f0e1a;
+            word-break: break-all;
+        }
 
-            .nav-link::after {
-                content: '';
-                position: absolute;
-                bottom: -2px;
-                left: 0;
-                width: 0;
-                height: 2px;
-                background: #7c3aed;
-                border-radius: 4px;
-                transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            }
+        .ip-stat-value .highlight {
+            color: #7c3aed;
+        }
 
-            .nav-link:hover::after,
-            .nav-link-active::after {
-                width: 100%;
-            }
+        .ip-section-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #7c3aed;
+            font-weight: 700;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(124, 58, 237, 0.08);
+            margin-bottom: 1rem;
+        }
 
-            .nav-link-active {
-                color: #7c3aed;
-            }
+        .search-input:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.08);
+        }
 
-            .btn-primary {
-                background: #7c3aed;
-                color: white;
-                font-weight: 600;
-                padding: 0.75rem 2rem;
-                border-radius: 9999px;
-                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-                box-shadow: 0 4px 24px rgba(124, 58, 237, 0.2);
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                font-size: 0.9375rem;
-                border: none;
-                cursor: pointer;
-            }
+        .search-input {
+            transition: all 0.3s ease;
+        }
 
-            .btn-primary:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 8px 40px rgba(124, 58, 237, 0.3);
-                background: #5b21b6;
-            }
+        .loading-spinner {
+            display: inline-block;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid rgba(124, 58, 237, 0.15);
+            border-top-color: #7c3aed;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
 
-            .btn-secondary {
-                background: rgba(255, 255, 255, 0.9);
-                color: #0f0e1a;
-                font-weight: 500;
-                padding: 0.75rem 2rem;
-                border-radius: 9999px;
-                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-                border: 1px solid rgba(124, 58, 237, 0.08);
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                font-size: 0.9375rem;
-                cursor: pointer;
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
             }
+        }
 
-            .btn-secondary:hover {
-                background: white;
-                border-color: rgba(124, 58, 237, 0.2);
-                box-shadow: 0 4px 24px rgba(124, 58, 237, 0.04);
-                transform: translateY(-2px);
-            }
+        .result-enter {
+            animation: resultFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
 
-            .btn-sso {
-                background: #ede9fe;
-                color: #5b21b6;
-                font-weight: 600;
-                padding: 0.5rem 1.25rem;
-                border-radius: 9999px;
-                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-                border: 1px solid #c4b5fd;
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                font-size: 0.875rem;
-                cursor: pointer;
-            }
-
-            .btn-sso:hover {
-                background: #d8cdfa;
-                border-color: #7c3aed;
-                transform: translateY(-2px);
-            }
-
-            .section-badge {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                background: rgba(124, 58, 237, 0.06);
-                border: 1px solid rgba(124, 58, 237, 0.08);
-                padding: 0.375rem 1rem;
-                border-radius: 9999px;
-                font-size: 0.7rem;
-                font-weight: 600;
-                letter-spacing: 0.04em;
-                text-transform: uppercase;
-                color: #5b21b6;
-            }
-
-            .badge-pill {
-                background: rgba(124, 58, 237, 0.08);
-                color: #5b21b6;
-                border: 1px solid rgba(124, 58, 237, 0.12);
-                padding: 0.25rem 0.75rem;
-                border-radius: 9999px;
-                font-size: 0.65rem;
-                font-weight: 600;
-                letter-spacing: 0.04em;
-                text-transform: uppercase;
-                display: inline-flex;
-                align-items: center;
-                gap: 0.375rem;
-            }
-
-            .badge-pgp {
-                background: rgba(6, 182, 212, 0.08);
-                color: #0e7490;
-                border: 1px solid rgba(6, 182, 212, 0.15);
-                padding: 0.25rem 0.75rem;
-                border-radius: 9999px;
-                font-size: 0.65rem;
-                font-weight: 600;
-                letter-spacing: 0.04em;
-                text-transform: uppercase;
-                display: inline-flex;
-                align-items: center;
-                gap: 0.375rem;
-                font-family: monospace;
-                cursor: pointer;
-                transition: all 0.2s ease;
-                user-select: none;
-            }
-
-            .badge-pgp:hover {
-                background: rgba(6, 182, 212, 0.15);
-                border-color: rgba(6, 182, 212, 0.3);
-                transform: translateY(-1px);
-            }
-
-            .pgp-fingerprint {
-                font-family: 'Inter', monospace;
-                font-size: 0.7rem;
-                letter-spacing: 0.02em;
-                background: #f5f3fa;
-                padding: 0.2rem 0.6rem;
-                border-radius: 9999px;
-                border: 1px solid #ede9f0;
-                color: #3b3a54;
-                cursor: pointer;
-                transition: all 0.2s ease;
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                white-space: nowrap;
-            }
-
-            .pgp-fingerprint:hover {
-                background: #ede9fe;
-                border-color: #c4b5fd;
-            }
-
-            .pgp-fingerprint .copy-hint {
-                font-size: 0.55rem;
-                opacity: 0.5;
-                font-weight: 400;
-                text-transform: uppercase;
-                letter-spacing: 0.08em;
-            }
-
-            .pgp-fingerprint .copy-hint:hover {
-                opacity: 1;
-            }
-
-            .card-hover {
-                transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            }
-
-            .card-hover:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 16px 64px rgba(124, 58, 237, 0.06), 0 32px 120px rgba(124, 58, 237, 0.04);
-                border-color: rgba(124, 58, 237, 0.15);
-            }
-
-            .bg-grid-subtle {
-                background-image: radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.02) 0%, transparent 60%),
-                    linear-gradient(rgba(124, 58, 237, 0.02) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(124, 58, 237, 0.02) 1px, transparent 1px);
-                background-size: 100% 100%, 48px 48px, 48px 48px;
-            }
-
-            .footer-link {
-                color: #52506e;
-                transition: color 0.2s ease;
-                font-size: 0.875rem;
-                font-weight: 450;
-                text-decoration: none;
-                position: relative;
-            }
-
-            .footer-link:hover {
-                color: #7c3aed;
-            }
-
-            .footer-link::after {
-                content: '';
-                position: absolute;
-                bottom: -2px;
-                left: 0;
-                width: 0;
-                height: 1.5px;
-                background: #7c3aed;
-                border-radius: 4px;
-                transition: width 0.25s ease;
-            }
-
-            .footer-link:hover::after {
-                width: 100%;
-            }
-
-            .footer-heading {
-                color: #0f0e1a;
-                font-weight: 600;
-                font-size: 0.7rem;
-                text-transform: uppercase;
-                letter-spacing: 0.1em;
-                margin-bottom: 1.25rem;
-                opacity: 0.7;
-            }
-
-            .dropdown-panel {
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                border: 1px solid rgba(124, 58, 237, 0.08);
-                box-shadow: 0 16px 64px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(124, 58, 237, 0.04);
-                border-radius: 16px;
-                padding: 0.5rem;
-                min-width: 200px;
+        @keyframes resultFadeIn {
+            from {
                 opacity: 0;
-                visibility: hidden;
-                transform: translateY(-8px);
-                transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+                transform: translateY(20px) scale(0.98);
             }
 
-            .group:hover .dropdown-panel {
+            to {
                 opacity: 1;
-                visibility: visible;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
+        }
 
-            .dropdown-item {
-                display: block;
-                padding: 0.5rem 1rem;
-                border-radius: 10px;
-                color: #52506e;
-                font-size: 0.875rem;
-                transition: all 0.15s ease;
-            }
+        .copy-tooltip {
+            position: relative;
+            cursor: pointer;
+        }
 
-            .dropdown-item:hover {
-                background: #f5f3fa;
-                color: #7c3aed;
-            }
+        .copy-tooltip::after {
+            content: 'Copy';
+            position: absolute;
+            bottom: calc(100% + 6px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0f0e1a;
+            color: white;
+            font-size: 0.6rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            white-space: nowrap;
+            font-weight: 500;
+        }
 
-            ::-webkit-scrollbar {
-                width: 6px;
-            }
+        .copy-tooltip:hover::after {
+            opacity: 1;
+        }
 
-            ::-webkit-scrollbar-track {
-                background: #f5f3fa;
-            }
+        .copy-tooltip.copied::after {
+            content: 'Copied!';
+            background: #68B030;
+        }
 
-            ::-webkit-scrollbar-thumb {
-                background: #c4b5fd;
-                border-radius: 8px;
-            }
+        .flag-icon {
+            display: inline-block;
+            width: 1.4rem;
+            height: 1rem;
+            border-radius: 2px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
 
-            ::-webkit-scrollbar-thumb:hover {
-                background: #7c3aed;
-            }
+        /* Map container */
+        #map {
+            height: 280px;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
 
-            html,
-            body {
-                overflow-x: hidden;
-                max-width: 100%;
-            }
-
-            * {
-                box-sizing: border-box;
-            }
-
-            #mobile-menu {
-                position: fixed;
-                inset: 0;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                height: 100dvh;
-                z-index: 40;
-                background: rgba(255, 255, 255, 0.72);
-                backdrop-filter: blur(28px) saturate(1.4);
-                -webkit-backdrop-filter: blur(28px) saturate(1.4);
-                border: none;
-                overflow: hidden;
-                display: flex;
-                flex-direction: column;
-                pointer-events: none;
-                opacity: 0;
-                transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
-                visibility: hidden;
-                transform: none;
-            }
-
-            #mobile-menu.open {
-                pointer-events: auto;
-                opacity: 1;
-                visibility: visible;
-            }
-
-            #mobile-menu .mobile-menu-scroll {
-                flex: 1 1 auto;
-                overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
-                padding: 1rem 1.25rem 2rem;
-                scroll-behavior: smooth;
-            }
-
-            #mobile-menu .mobile-menu-scroll::-webkit-scrollbar {
-                width: 4px;
-            }
-
-            #mobile-menu .mobile-menu-scroll::-webkit-scrollbar-track {
-                background: transparent;
-            }
-
-            #mobile-menu .mobile-menu-scroll::-webkit-scrollbar-thumb {
-                background: rgba(124, 58, 237, 0.3);
-                border-radius: 8px;
-            }
-
-            #mobile-menu .mobile-menu-scroll::-webkit-scrollbar-thumb:hover {
-                background: rgba(124, 58, 237, 0.5);
-            }
-
-            #mobile-menu .mobile-menu-scroll {
-                scrollbar-width: thin;
-                scrollbar-color: rgba(124, 58, 237, 0.3) transparent;
-            }
-
-            .mobile-menu-close {
-                position: absolute;
-                top: 0.75rem;
-                right: 1rem;
-                z-index: 5;
-                width: 2.75rem;
-                height: 2.75rem;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, 0.6);
-                backdrop-filter: blur(8px);
-                -webkit-backdrop-filter: blur(8px);
-                border: 1px solid rgba(124, 58, 237, 0.08);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #0f0e1a;
-                font-size: 1.25rem;
-                cursor: pointer;
-                transition: all 0.2s ease;
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-            }
-
-            .mobile-menu-close:hover {
-                background: rgba(255, 255, 255, 0.9);
-                border-color: rgba(124, 58, 237, 0.2);
-                transform: scale(1.05);
-            }
-
-            .mobile-menu-header {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 0.75rem 1.25rem;
-                border-bottom: 1px solid rgba(124, 58, 237, 0.06);
-                flex-shrink: 0;
-            }
-
-            .mobile-menu-header .logo {
-                display: flex;
-                align-items: center;
-                gap: 0.75rem;
-            }
-
-            .mobile-menu-header .logo img {
-                width: 2.25rem;
-                height: 2.25rem;
-                border-radius: 50%;
-                object-fit: cover;
-                ring: 2px solid rgba(124, 58, 237, 0.15);
-            }
-
-            .mobile-menu-header .logo span {
-                font-weight: 700;
-                font-size: 1rem;
-                color: #0f0e1a;
-                letter-spacing: -0.02em;
-            }
-
-            #mobile-menu::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                pointer-events: none;
-                z-index: 0;
-                background:
-                    radial-gradient(circle at 20% 10%, rgba(124, 58, 237, 0.06) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 90%, rgba(6, 182, 212, 0.04) 0%, transparent 50%);
-            }
-
-            #mobile-menu>* {
-                position: relative;
-                z-index: 1;
-            }
-
-            .mobile-menu-scroll .nav-item {
-                font-size: 1.05rem;
-                font-weight: 550;
-                padding: 0.7rem 0.75rem;
-                border-radius: 12px;
-                transition: all 0.15s ease;
-                color: #0f0e1a;
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-            }
-
-            .mobile-menu-scroll .nav-item:hover {
-                background: rgba(124, 58, 237, 0.06);
-                color: #7c3aed;
-            }
-
-            .mobile-menu-scroll .nav-item i {
-                width: 1.25rem;
-                color: #7c3aed;
+        @media (max-width: 640px) {
+            .ip-stat-value {
                 font-size: 0.9rem;
             }
 
-            .mobile-menu-scroll .sub-link {
-                font-size: 0.9rem;
-                font-weight: 450;
-                padding: 0.5rem 0.75rem;
-                border-radius: 10px;
-                color: #52506e;
-                transition: all 0.15s ease;
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
+            #map {
+                height: 200px;
             }
+        }
 
-            .mobile-menu-scroll .sub-link:hover {
-                background: rgba(124, 58, 237, 0.06);
-                color: #7c3aed;
-            }
+        /* Leaflet overrides for dark theme */
+        .leaflet-control-zoom a {
+            background: white !important;
+            color: #0f0e1a !important;
+            border-color: #ede9f0 !important;
+        }
 
-            .mobile-menu-scroll .sub-link i {
-                width: 1rem;
-                font-size: 0.75rem;
-                color: #9492ae;
-            }
+        .leaflet-control-zoom a:hover {
+            background: #f5f3fa !important;
+        }
 
-            .mobile-menu-divider {
-                height: 1px;
-                background: linear-gradient(to right, transparent, rgba(124, 58, 237, 0.08), transparent);
-                margin: 0.5rem 0;
-            }
+        .leaflet-popup-content-wrapper {
+            border-radius: 12px !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08) !important;
+        }
 
-            @media (max-width: 480px) {
-                .mobile-menu-scroll .nav-item {
-                    font-size: 0.95rem;
-                    padding: 0.6rem 0.6rem;
-                }
-
-                .mobile-menu-scroll .sub-link {
-                    font-size: 0.82rem;
-                    padding: 0.4rem 0.6rem;
-                }
-
-                #mobile-menu .mobile-menu-scroll {
-                    padding: 0.75rem 1rem 1.5rem;
-                }
-
-                .mobile-menu-close {
-                    width: 2.25rem;
-                    height: 2.25rem;
-                    font-size: 1rem;
-                    top: 0.6rem;
-                    right: 0.75rem;
-                }
-
-                .mobile-menu-header {
-                    padding: 0.6rem 1rem;
-                }
-
-                .mobile-menu-header .logo img {
-                    width: 1.75rem;
-                    height: 1.75rem;
-                }
-
-                .mobile-menu-header .logo span {
-                    font-size: 0.85rem;
-                }
-            }
-
-            @media (min-width: 768px) {
-                #mobile-menu .mobile-menu-scroll {
-                    padding: 1.5rem 2.5rem 2.5rem;
-                }
-
-                .mobile-menu-scroll .nav-item {
-                    font-size: 1.15rem;
-                    padding: 0.8rem 1rem;
-                }
-
-                .mobile-menu-scroll .sub-link {
-                    font-size: 0.95rem;
-                    padding: 0.55rem 1rem;
-                }
-            }
-
-            @media (min-width: 1024px) {
-                #mobile-menu {
-                    display: none !important;
-                }
-            }
-
-            body.menu-open {
-                overflow: hidden;
-            }
-
-            /* ---- IP Intelligence specific styles ---- */
-            .result-card {
-                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            }
-
-            .result-card .label {
-                font-size: 0.6rem;
-                font-weight: 600;
-                text-transform: uppercase;
-                letter-spacing: 0.06em;
-                color: #9492ae;
-            }
-
-            .result-card .value {
-                font-size: 0.95rem;
-                font-weight: 500;
-                color: #0f0e1a;
-                word-break: break-word;
-            }
-
-            .result-card .value-mono {
-                font-family: 'Inter', monospace;
-                font-size: 0.85rem;
-                font-weight: 450;
-                color: #0f0e1a;
-            }
-
-            .ip-display {
-                font-family: 'Inter', monospace;
-                font-size: 1.8rem;
-                font-weight: 700;
-                letter-spacing: -0.02em;
-                color: #0f0e1a;
-            }
-
-            .ip-display-small {
-                font-family: 'Inter', monospace;
-                font-size: 1.1rem;
-                font-weight: 600;
-                color: #0f0e1a;
-            }
-
-            .loader {
-                width: 36px;
-                height: 36px;
-                border: 3px solid #ede9f0;
-                border-top-color: #7c3aed;
-                border-radius: 50%;
-                animation: spin 0.8s linear infinite;
-            }
-
-            @keyframes spin {
-                to {
-                    transform: rotate(360deg);
-                }
-            }
-
-            .copy-btn-ip {
-                background: transparent;
-                border: none;
-                color: #9492ae;
-                cursor: pointer;
-                padding: 0.25rem 0.5rem;
-                border-radius: 9999px;
-                transition: all 0.2s;
-                font-size: 0.7rem;
-            }
-
-            .copy-btn-ip:hover {
-                color: #7c3aed;
-                background: #ede9fe;
-            }
-
-            .glow-pulse {
-                animation: glowPulse 2.5s ease-in-out infinite;
-            }
-
-            @keyframes glowPulse {
-
-                0%,
-                100% {
-                    box-shadow: 0 0 20px rgba(124, 58, 237, 0.05);
-                }
-
-                50% {
-                    box-shadow: 0 0 40px rgba(124, 58, 237, 0.15);
-                }
-            }
+        .leaflet-popup-tip {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08) !important;
+        }
     </style>
 </head>
 
 <body
-    class="font-inter bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+    class="font-source-sans-pro bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
 
     <!-- ===== AMBIENT BG ===== -->
     <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
@@ -800,7 +308,7 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 md:h-[72px]">
 
-                <a href="../index.html" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+                <a href="../index" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
                     data-aos-duration="600">
                     <img src="../img/logo.png" alt="Ricalnet Logo"
                         class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
@@ -808,70 +316,71 @@
                         <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
                         <span
                             class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
-                            Rights
-                            · Infrastructure</span>
+                            Rights · Infrastructure</span>
                     </div>
                 </a>
 
                 <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down"
                     data-aos-duration="600">
-                    <a href="../index.html#hero" class="nav-link">Home</a>
+                    <a href="../index#hero" class="nav-link">Home</a>
 
                     <div class="relative group">
-                        <a href="../index.html#pain-points" class="nav-link flex items-center gap-1">
+                        <a href="../index#pain-points" class="nav-link flex items-center gap-1">
                             Advocacy
                             <i
                                 class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
                         <div class="dropdown-panel absolute left-0 mt-2 z-50">
-                            <a href="../index.html#pain-points" class="dropdown-item">Rights at Risk</a>
-                            <a href="../index.html#how-it-works" class="dropdown-item">Methodology</a>
-                            <a href="../index.html#features" class="dropdown-item">Sovereign Infrastructure</a>
-                            <a href="../resources.html#index.html" class="dropdown-item">Legal Resources</a>
+                            <a href="../index#pain-points" class="dropdown-item">Rights at Risk</a>
+                            <a href="../index#how-it-works" class="dropdown-item">Methodology</a>
+                            <a href="../index#features" class="dropdown-item">Sovereign Infrastructure</a>
+                            <a href="../resources#legal-resources" class="dropdown-item">Legal Resources</a>
                         </div>
                     </div>
 
                     <div class="relative group">
-                        <a href="../resources.html#hero" class="nav-link flex items-center gap-1">
+                        <a href="../resources#hero" class="nav-link flex items-center gap-1">
                             Resources
                             <i
                                 class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
                         <div class="dropdown-panel absolute left-0 mt-2 z-50">
-                            <a href="../resources.html#privacy-tools" class="dropdown-item">Privacy Tools</a>
-                            <a href="../resources.html#legal-resources" class="dropdown-item">Legal Resources</a>
-                            <a href="../resources.html#in-house-tools" class="dropdown-item">In-House Tools</a>
-                            <a href="../resources.html" class="dropdown-item">All Resources</a>
+                            <a href="../resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                            <a href="../resources#legal-resources" class="dropdown-item">Legal Resources</a>
+                            <a href="../resources#in-house-tools" class="dropdown-item">In-House Tools</a>
+                            <a href="../resources" class="dropdown-item">All Resources</a>
                         </div>
                     </div>
 
                     <div class="relative group">
-                        <a href="../resources.html#hero" class="nav-link flex items-center gap-1">
+                        <a href="../tools/ip-intelligence"
+                            class="nav-link nav-link-active flex items-center gap-1">
                             Tools
                             <i
                                 class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
                         <div class="dropdown-panel absolute left-0 mt-2 z-50">
-                            <a href="../tools/ip-intelligence.html" class="dropdown-item">IP Intelligence</a>
-                            <a href="../tools/password-generator.html" class="dropdown-item">Password Generator</a>
-                            <a href="../tools/qr-builder.html" class="dropdown-item">QR Builder</a>
-                            <a href="../tools/whiteboard.html" class="dropdown-item">Whiteboard</a>
-                            <a href="../resources.html#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                            <a href="../tools/ip-intelligence" class="dropdown-item">IP Intelligence</a>
+                            <a href="../tools/password-generator" class="dropdown-item">Password Generator</a>
+                            <a href="../tools/qr-builder" class="dropdown-item">QR Builder</a>
+                            <a href="../tools/quantum-hasher" class="dropdown-item">Quantum Hasher</a>
+                            <a href="../tools/whiteboard" class="dropdown-item">Whiteboard</a>
+                            <a href="../resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
                         </div>
                     </div>
 
                     <div class="relative group">
-                        <a href="../about.html#hero" class="nav-link flex items-center gap-1">
+                        <a href="../about#hero" class="nav-link flex items-center gap-1">
                             About
                             <i
                                 class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
                         <div class="dropdown-panel absolute left-0 mt-2 z-50">
-                            <a href="../about.html#our-mission" class="dropdown-item">Our Mission</a>
-                            <a href="../index.html#comparison" class="dropdown-item">Comparison</a>
-                            <a href="../index.html#faq" class="dropdown-item">FAQ</a>
-                            <a href="../index.html#cta" class="dropdown-item">Contact</a>
-                            <a href="../about.html#cta-support" class="dropdown-item">Support Us</a>
+                            <a href="../about#our-mission" class="dropdown-item">Our Mission</a>
+                            <a href="../index#comparison" class="dropdown-item">Comparison</a>
+                            <a href="../index#faq" class="dropdown-item">FAQ</a>
+                            <a href="../index#cta" class="dropdown-item">Contact</a>
+                            <a href="../about#cta-support" class="dropdown-item">Support Us</a>
                         </div>
                     </div>
                 </nav>
@@ -908,7 +417,7 @@
 
         <div class="mobile-menu-scroll">
 
-            <a href="../index.html#hero" class="nav-item" data-close-mobile>
+            <a href="../index#hero" class="nav-item" data-close-mobile>
                 <i class="fas fa-home"></i> Home
             </a>
 
@@ -924,16 +433,16 @@
                         class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
                 </button>
                 <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
-                    <a href="../index.html#pain-points" class="sub-link" data-close-mobile>
+                    <a href="../index#pain-points" class="sub-link" data-close-mobile>
                         <i class="fas fa-exclamation-triangle"></i> Rights at Risk
                     </a>
-                    <a href="../index.html#how-it-works" class="sub-link" data-close-mobile>
+                    <a href="../index#how-it-works" class="sub-link" data-close-mobile>
                         <i class="fas fa-route"></i> Methodology
                     </a>
-                    <a href="../index.html#features" class="sub-link" data-close-mobile>
+                    <a href="../index#features" class="sub-link" data-close-mobile>
                         <i class="fas fa-star"></i> Sovereign Infrastructure
                     </a>
-                    <a href="../resources.html#legal-resources" class="sub-link" data-close-mobile>
+                    <a href="../resources#legal-resources" class="sub-link" data-close-mobile>
                         <i class="fas fa-gavel"></i> Legal Resources
                     </a>
                 </div>
@@ -951,16 +460,16 @@
                         class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
                 </button>
                 <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
-                    <a href="../resources.html#privacy-tools" class="sub-link" data-close-mobile>
+                    <a href="../resources#privacy-tools" class="sub-link" data-close-mobile>
                         <i class="fas fa-lock"></i> Privacy Tools
                     </a>
-                    <a href="../resources.html#legal-resources" class="sub-link" data-close-mobile>
+                    <a href="../resources#legal-resources" class="sub-link" data-close-mobile>
                         <i class="fas fa-gavel"></i> Legal Resources
                     </a>
-                    <a href="../resources.html#in-house-tools" class="sub-link" data-close-mobile>
+                    <a href="../resources#in-house-tools" class="sub-link" data-close-mobile>
                         <i class="fas fa-cubes"></i> In-House Tools
                     </a>
-                    <a href="../resources.html" class="sub-link" data-close-mobile>
+                    <a href="../resources" class="sub-link" data-close-mobile>
                         <i class="fas fa-folder-open"></i> All Resources
                     </a>
                 </div>
@@ -978,19 +487,22 @@
                         class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
                 </button>
                 <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
-                    <a href="../tools/ip-intelligence.html" class="sub-link" data-close-mobile>
+                    <a href="../tools/ip-intelligence" class="sub-link" data-close-mobile>
                         <i class="fas fa-map-pin"></i> IP Intelligence
                     </a>
-                    <a href="../tools/password-generator.html" class="sub-link" data-close-mobile>
+                    <a href="../tools/password-generator" class="sub-link" data-close-mobile>
                         <i class="fas fa-key"></i> Password Generator
                     </a>
-                    <a href="../tools/qr-builder.html" class="sub-link" data-close-mobile>
+                    <a href="../tools/qr-builder" class="sub-link" data-close-mobile>
                         <i class="fas fa-qrcode"></i> QR Builder
                     </a>
-                    <a href="../tools/whiteboard.html" class="sub-link" data-close-mobile>
+                    <a href="../tools/quantum-hasher" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> Quantum Hasher
+                    </a>
+                    <a href="../tools/whiteboard" class="sub-link" data-close-mobile>
                         <i class="fas fa-pen-fancy"></i> Whiteboard
                     </a>
-                    <a href="../resources.html#privacy-tools" class="sub-link" data-close-mobile>
+                    <a href="../resources#privacy-tools" class="sub-link" data-close-mobile>
                         <i class="fas fa-user-secret"></i> Privacy Tools
                     </a>
                 </div>
@@ -1008,19 +520,19 @@
                         class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
                 </button>
                 <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
-                    <a href="../about.html#our-mission" class="sub-link" data-close-mobile>
+                    <a href="../about#our-mission" class="sub-link" data-close-mobile>
                         <i class="fas fa-bullseye"></i> Our Mission
                     </a>
-                    <a href="../index.html#comparison" class="sub-link" data-close-mobile>
+                    <a href="../index#comparison" class="sub-link" data-close-mobile>
                         <i class="fas fa-arrows-left-right"></i> Comparison
                     </a>
-                    <a href="../index.html#faq" class="sub-link" data-close-mobile>
+                    <a href="../index#faq" class="sub-link" data-close-mobile>
                         <i class="fas fa-question-circle"></i> FAQ
                     </a>
-                    <a href="../index.html#cta" class="sub-link" data-close-mobile>
+                    <a href="../index#cta" class="sub-link" data-close-mobile>
                         <i class="fas fa-envelope"></i> Contact
                     </a>
-                    <a href="../about.html#cta-support" class="sub-link" data-close-mobile>
+                    <a href="../about#cta-support" class="sub-link" data-close-mobile>
                         <i class="fas fa-hand-holding-heart"></i> Support Us
                     </a>
                 </div>
@@ -1043,317 +555,322 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- ===== HERO — IP INTELLIGENCE ================================ -->
+    <!-- ===== TOOL HERO ============================================ -->
     <!-- ============================================================ -->
-    <section class="relative overflow-hidden pt-[72px] pb-8 md:pt-24 md:pb-12 bg-surface-light">
+    <section class="relative overflow-hidden pt-[72px] pb-12 md:pt-24 md:pb-16 bg-surface-light">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto" data-aos="fade-up" data-aos-duration="700">
-                <span class="section-badge"><i class="fas fa-map-pin"></i> IP Intelligence</span>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mt-5 leading-[1.08] tracking-tight">
-                    <span class="text-text-primary">Network </span>
+                <div class="flex flex-wrap items-center justify-center gap-2 mb-5">
+                    <span class="badge-pill"><i class="fas fa-map-pin"></i> IP Intelligence</span>
+                    <span class="badge-pill"
+                        style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);">
+                        <i class="fas fa-shield-alt"></i> Privacy-First
+                    </span>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight">
+                    <span class="text-text-primary">IP </span>
                     <span class="text-tor-violet">Intelligence</span>
                 </h1>
-                <p class="text-text-secondary text-lg md:text-xl mt-4 leading-relaxed max-w-2xl mx-auto">
-                    Identify any IP address with
-                    comprehensive data — from geographical coordinates to autonomous system details.
+                <p class="text-text-secondary text-lg md:text-xl mt-4 max-w-2xl mx-auto leading-relaxed">
+                    Get detailed geolocation, network, and country data for any IP address.
+                    Completely free.
                 </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== TOOL: SEARCH & LOOKUP ================================= -->
-    <section class="pb-8 md:pb-12">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start">
-
-                <!-- LEFT: Search & Controls -->
-                <div class="lg:col-span-2" data-aos="fade-right" data-aos-duration="700">
-                    <div class="glass-card rounded-3xl p-6 md:p-8 border border-tor-violet/10 shadow-elevated">
-                        <h2 class="text-lg font-bold text-text-primary mb-1">IP Lookup</h2>
-                        <p class="text-text-secondary text-sm mb-5">Enter an IPv4 or IPv6 address to retrieve detailed
-                            intelligence.</p>
-
-                        <div class="flex flex-col gap-3">
-                            <div class="relative">
-                                <input type="text" id="ip-input" placeholder="e.g. 8.8.8.8 or 2001:4860:4860::8888"
-                                    class="w-full px-4 py-3.5 rounded-2xl border border-surface-border/80 bg-white/80 text-text-primary text-sm placeholder:text-text-muted/60 focus:outline-none focus:ring-2 focus:ring-tor-violet/30 focus:border-tor-violet/40 transition-all duration-200"
-                                    autocomplete="off" />
-                            </div>
-
-                            <div class="flex flex-col sm:flex-row gap-3">
-                                <button id="btn-lookup" class="flex-1 btn-primary justify-center px-5 py-3.5 text-sm">
-                                    <i class="fas fa-search"></i> Lookup IP
-                                </button>
-                                <button id="btn-my-ip"
-                                    class="flex-1 btn-secondary justify-center px-5 py-3.5 text-sm border-tor-violet/20 hover:border-tor-violet/40">
-                                    <i class="fas fa-location-dot"></i> Locate My IP
-                                </button>
-                            </div>
-
-                            <div class="mt-1 text-xs text-text-muted flex items-center gap-2">
-                                <i class="fas fa-shield-alt text-tor-violet"></i>
-                                <span>Powered by ipapi.co</span>
-                            </div>
-                        </div>
-
-                        <!-- Quick actions -->
-                        <div class="mt-5 pt-5 border-t border-surface-border/60 flex flex-wrap items-center gap-2">
-                            <span
-                                class="text-[0.6rem] font-semibold uppercase tracking-wider text-text-muted mr-1">Examples:</span>
-                            <button
-                                class="example-ip text-xs px-3 py-1.5 rounded-full bg-surface-muted/60 hover:bg-tor-violet/10 text-text-secondary hover:text-tor-violet transition-all duration-200 border border-transparent hover:border-tor-violet/20"
-                                data-ip="1.1.1.1">1.1.1.1</button>
-                            <button
-                                class="example-ip text-xs px-3 py-1.5 rounded-full bg-surface-muted/60 hover:bg-tor-violet/10 text-text-secondary hover:text-tor-violet transition-all duration-200 border border-transparent hover:border-tor-violet/20"
-                                data-ip="8.8.8.8">8.8.8.8</button>
-                            <button
-                                class="example-ip text-xs px-3 py-1.5 rounded-full bg-surface-muted/60 hover:bg-tor-violet/10 text-text-secondary hover:text-tor-violet transition-all duration-200 border border-transparent hover:border-tor-violet/20"
-                                data-ip="9.9.9.9">9.9.9.9</button>
-                            <button
-                                class="example-ip text-xs px-3 py-1.5 rounded-full bg-surface-muted/60 hover:bg-tor-violet/10 text-text-secondary hover:text-tor-violet transition-all duration-200 border border-transparent hover:border-tor-violet/20"
-                                data-ip="2001:4860:4860::8888">IPv6</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- RIGHT: Result Display with Map -->
-                <div class="lg:col-span-3" data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
-                    <div id="result-container"
-                        class="glass-card rounded-3xl p-6 md:p-8 border border-tor-violet/10 shadow-elevated min-h-[320px] transition-all duration-300">
-
-                        <!-- Empty State -->
-                        <div id="empty-state"
-                            class="flex flex-col items-center justify-center text-center py-8 md:py-12">
-                            <div class="w-20 h-20 rounded-full bg-tor-violet/5 flex items-center justify-center mb-4">
-                                <i class="fas fa-map-pin text-3xl text-tor-violet/40"></i>
-                            </div>
-                            <h3 class="text-lg font-semibold text-text-primary">Ready for Intelligence</h3>
-                            <p class="text-text-secondary text-sm max-w-sm mt-1">
-                                Enter an IP address above or click <strong>“Locate My IP”</strong> to fetch your network
-                                details.
-                            </p>
-                        </div>
-
-                        <!-- Loading State -->
-                        <div id="loading-state" class="hidden flex flex-col items-center justify-center py-12 md:py-16">
-                            <div class="loader"></div>
-                            <p class="text-text-secondary text-sm mt-5 font-medium">Retrieving intelligence data…</p>
-                            <p class="text-text-muted text-xs mt-1">Please wait while we query the network.</p>
-                        </div>
-
-                        <!-- Error State -->
-                        <div id="error-state"
-                            class="hidden flex flex-col items-center justify-center text-center py-8 md:py-12">
-                            <div class="w-16 h-16 rounded-full bg-red-50 flex items-center justify-center mb-4">
-                                <i class="fas fa-exclamation-triangle text-2xl text-red-400"></i>
-                            </div>
-                            <h3 class="text-lg font-semibold text-text-primary">Lookup Failed</h3>
-                            <p id="error-message" class="text-text-secondary text-sm max-w-sm mt-1">
-                                Unable to retrieve IP intelligence. Please check the address and try again.
-                            </p>
-                        </div>
-
-                        <!-- Results -->
-                        <div id="results-content" class="hidden space-y-6">
-
-                            <!-- IP Header + Map Row -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <!-- Left: IP details -->
-                                <div class="flex flex-col justify-between">
-                                    <div>
-                                        <div class="flex items-center gap-3 flex-wrap">
-                                            <span
-                                                class="badge-pill bg-tor-violet/10 border-tor-violet/20 text-tor-violet">
-                                                <i class="fas fa-wifi"></i> <span id="result-version">IPv4</span>
-                                            </span>
-                                            <span id="result-type"
-                                                class="badge-pill bg-surface-muted border-surface-border text-text-muted">
-                                                Public
-                                            </span>
-                                        </div>
-                                        <div class="flex items-center gap-3 mt-1.5">
-                                            <span id="result-ip" class="ip-display">—</span>
-                                            <button id="copy-ip-btn" class="copy-btn-ip text-base"
-                                                title="Copy IP address">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-2 text-xs text-text-muted mt-2">
-                                        <i class="fas fa-clock"></i>
-                                        <span id="result-timestamp">Updated just now</span>
-                                    </div>
-                                </div>
-
-                                <!-- Right: Map -->
-                                <div class="relative">
-                                    <div id="map"
-                                        class="leaflet-container rounded-2xl overflow-hidden shadow-elevated border border-surface-border/50">
-                                    </div>
-                                    <div id="map-attribution"
-                                        class="absolute bottom-1 right-1 text-[0.5rem] text-text-muted/60 bg-white/70 px-1.5 py-0.5 rounded backdrop-blur-sm">
-                                        © OpenStreetMap
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Grid Details (2 columns on md, 3 on lg) -->
-                            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-
-                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
-                                    <div class="label"><i class="fas fa-city mr-1.5"></i> City</div>
-                                    <div id="r-city" class="value">—</div>
-                                </div>
-
-                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
-                                    <div class="label"><i class="fas fa-map-pin mr-1.5"></i> Region</div>
-                                    <div id="r-region" class="value">—</div>
-                                </div>
-
-                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
-                                    <div class="label"><i class="fas fa-flag mr-1.5"></i> Country</div>
-                                    <div id="r-country" class="value">—</div>
-                                </div>
-
-                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
-                                    <div class="label"><i class="fas fa-globe-europe mr-1.5"></i> European Union</div>
-                                    <div id="r-eu" class="value">—</div>
-                                </div>
-
-                                <div class="result-card bg-surface-muted/40 rounded-xl p-4 col-span-2 md:col-span-1">
-                                    <div class="label"><i class="fas fa-location-crosshairs mr-1.5"></i> Coordinates
-                                    </div>
-                                    <div id="r-coords" class="value-mono text-sm">—</div>
-                                </div>
-
-                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
-                                    <div class="label"><i class="fas fa-clock mr-1.5"></i> Time Zone</div>
-                                    <div id="r-timezone" class="value">—</div>
-                                </div>
-
-                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
-                                    <div class="label"><i class="fas fa-phone mr-1.5"></i> Calling Code</div>
-                                    <div id="r-calling" class="value">—</div>
-                                </div>
-
-                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
-                                    <div class="label"><i class="fas fa-coins mr-1.5"></i> Currency</div>
-                                    <div id="r-currency" class="value">—</div>
-                                </div>
-
-                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
-                                    <div class="label"><i class="fas fa-language mr-1.5"></i> Languages</div>
-                                    <div id="r-languages" class="value">—</div>
-                                </div>
-
-                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
-                                    <div class="label"><i class="fas fa-network-wired mr-1.5"></i> ASN</div>
-                                    <div id="r-asn" class="value-mono text-sm">—</div>
-                                </div>
-
-                                <div class="result-card bg-surface-muted/40 rounded-xl p-4 col-span-2 md:col-span-1">
-                                    <div class="label"><i class="fas fa-building mr-1.5"></i> Organization</div>
-                                    <div id="r-org" class="value">—</div>
-                                </div>
-
-                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
-                                    <div class="label"><i class="fas fa-code mr-1.5"></i> Country Code</div>
-                                    <div id="r-country-code" class="value-mono text-sm">—</div>
-                                </div>
-
-                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
-                                    <div class="label"><i class="fas fa-mailbox mr-1.5"></i> Postal</div>
-                                    <div id="r-postal" class="value">—</div>
-                                </div>
-
-                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
-                                    <div class="label"><i class="fas fa-globe mr-1.5"></i> Continent</div>
-                                    <div id="r-continent" class="value">—</div>
-                                </div>
-
-                                <div class="result-card bg-surface-muted/40 rounded-xl p-4">
-                                    <div class="label"><i class="fas fa-shield-halved mr-1.5"></i> Security</div>
-                                    <div id="r-security" class="value">—</div>
-                                </div>
-
-                            </div>
-
-                            <!-- Raw JSON toggle -->
-                            <div class="pt-2 border-t border-surface-border/40">
-                                <button id="toggle-raw-btn"
-                                    class="text-xs text-text-muted hover:text-tor-violet transition-colors flex items-center gap-1.5">
-                                    <i class="fas fa-code"></i> View raw data
-                                    <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200"></i>
-                                </button>
-                                <div id="raw-json-container" class="hidden mt-2">
-                                    <pre id="raw-json"
-                                        class="text-[0.65rem] font-mono bg-surface-muted/60 p-4 rounded-xl overflow-x-auto max-h-60 border border-surface-border/50 text-text-secondary leading-relaxed"></pre>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== FEATURES / CAPABILITIES ================================ -->
-    <section class="py-12 md:py-16 bg-white/40 border-y border-surface-border/60">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-10" data-aos="fade-up">
-                <span class="section-badge"><i class="fas fa-microchip"></i> Capabilities</span>
-                <h2 class="text-2xl md:text-3xl font-bold mt-4">
-                    <span class="text-text-primary">Comprehensive </span>
-                    <span class="text-tor-violet">Network Intelligence</span>
-                </h2>
-                <p class="text-text-secondary text-sm mt-2 leading-relaxed">
-                    Every lookup returns a rich set of data points for network analysis, geolocation, and infrastructure
-                    mapping.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="100">
-                <div
-                    class="bg-white rounded-2xl p-5 shadow-elevated border border-surface-border/60 card-hover text-center">
-                    <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-3">
-                        <i class="fas fa-globe text-tor-violet"></i>
-                    </div>
-                    <h4 class="font-semibold text-sm text-text-primary">Geolocation</h4>
-                    <p class="text-text-muted text-xs mt-1">City, region, country, coordinates</p>
-                </div>
-                <div
-                    class="bg-white rounded-2xl p-5 shadow-elevated border border-surface-border/60 card-hover text-center">
-                    <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-3">
-                        <i class="fas fa-network-wired text-tor-violet"></i>
-                    </div>
-                    <h4 class="font-semibold text-sm text-text-primary">Network</h4>
-                    <p class="text-text-muted text-xs mt-1">ASN, organization, ISP</p>
-                </div>
-                <div
-                    class="bg-white rounded-2xl p-5 shadow-elevated border border-surface-border/60 card-hover text-center">
-                    <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-3">
-                        <i class="fas fa-clock text-tor-violet"></i>
-                    </div>
-                    <h4 class="font-semibold text-sm text-text-primary">Time &amp; Location</h4>
-                    <p class="text-text-muted text-xs mt-1">Timezone, UTC offset, calling code</p>
-                </div>
-                <div
-                    class="bg-white rounded-2xl p-5 shadow-elevated border border-surface-border/60 card-hover text-center">
-                    <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-3">
-                        <i class="fas fa-shield-halved text-tor-violet"></i>
-                    </div>
-                    <h4 class="font-semibold text-sm text-text-primary">Security Context</h4>
-                    <p class="text-text-muted text-xs mt-1">EU membership, threat intelligence</p>
-                </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================================ -->
-    <!-- ===== FOOTER ===== -->
+    <!-- ===== SEARCH & RESULTS ===================================== -->
+    <!-- ============================================================ -->
+    <section class="pb-16 md:pb-24">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Search Bar -->
+            <div class="max-w-2xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="100">
+                <div class="relative">
+                    <div
+                        class="glass-card rounded-2xl p-1.5 shadow-elevated border border-tor-violet/10 flex items-center gap-1.5 bg-white/80">
+                        <div class="pl-4 pr-1 text-text-muted">
+                            <i class="fas fa-search text-sm"></i>
+                        </div>
+                        <input type="text" id="ip-input"
+                            class="search-input flex-1 bg-transparent border-none py-3 px-2 text-text-primary placeholder:text-text-muted/60 text-base font-medium min-w-0"
+                            placeholder="Enter IP address (e.g. 8.8.8.8) or leave blank for your IP" autocomplete="off"
+                            spellcheck="false" />
+                        <button id="lookup-btn"
+                            class="btn-primary text-sm py-2.5 px-5 rounded-full flex-shrink-0 shadow-none hover:shadow-lg hover:shadow-tor-violet/25">
+                            <i class="fas fa-arrow-right"></i>
+                            <span class="hidden sm:inline">Lookup</span>
+                        </button>
+                    </div>
+                    <div class="mt-2.5 flex flex-wrap items-center justify-between gap-2 text-xs text-text-muted">
+                        <span>
+                            <i class="fas fa-info-circle mr-1 text-tor-violet/60"></i>
+                            Powered by ipapi.co
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <button id="my-ip-btn"
+                                class="text-tor-violet hover:underline font-medium transition-colors">
+                                <i class="fas fa-satellite-dish mr-1"></i> My IP
+                            </button>
+                            <span class="opacity-30">|</span>
+                            <button id="clear-btn" class="text-text-muted hover:text-text-primary transition-colors">
+                                <i class="fas fa-undo-alt mr-1"></i> Clear
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading-state" class="hidden text-center py-12" data-aos="fade-up">
+                <div class="loading-spinner mx-auto mb-4"></div>
+                <p class="text-text-secondary text-sm font-medium">Fetching IP intelligence…</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="error-state" class="hidden max-w-lg mx-auto text-center py-8" data-aos="fade-up">
+                <div class="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-exclamation-triangle text-red-500 text-xl"></i>
+                </div>
+                <h4 class="text-text-primary font-bold text-lg">Something went wrong</h4>
+                <p id="error-message" class="text-text-secondary text-sm mt-1">Unable to fetch IP data. Please try
+                    again.
+                </p>
+                <button id="retry-btn" class="mt-4 text-tor-violet font-semibold text-sm hover:underline">
+                    <i class="fas fa-rotate-right mr-1.5"></i> Retry
+                </button>
+            </div>
+
+            <!-- Results -->
+            <div id="results-container" class="hidden result-enter">
+
+                <!-- Quick Summary Card -->
+                <div class="glass-card rounded-2xl p-6 md:p-8 border border-tor-violet/10 shadow-elevated mb-6"
+                    data-aos="fade-up" data-aos-delay="150">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-tor-violet/10 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-network-wired text-tor-violet text-2xl"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2.5 flex-wrap">
+                                    <span id="result-ip"
+                                        class="text-2xl font-bold text-text-primary font-mono tracking-tight"></span>
+                                    <span id="result-version"
+                                        class="text-[0.6rem] font-semibold px-2 py-0.5 rounded-full bg-surface-muted text-text-muted uppercase tracking-wider"></span>
+                                    <button id="copy-ip-btn"
+                                        class="copy-tooltip text-text-muted hover:text-tor-violet transition-colors text-sm p-1"
+                                        title="Copy IP">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <div class="flex items-center gap-3 mt-1 flex-wrap">
+                                    <span id="result-org" class="text-text-secondary text-sm font-medium"></span>
+                                    <span class="w-px h-4 bg-surface-border/60"></span>
+                                    <span id="result-asn" class="text-text-muted text-xs font-mono"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 flex-wrap">
+                            <span id="result-flag" class="flag-icon"></span>
+                            <span id="result-country-name" class="text-text-primary font-semibold text-lg"></span>
+                            <span id="result-country-code"
+                                class="text-[0.6rem] font-bold px-2 py-0.5 rounded bg-surface-muted text-text-muted uppercase tracking-wider"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+
+                    <!-- Location -->
+                    <div class="ip-result-card rounded-2xl p-5 md:p-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="ip-section-title"><i class="fas fa-location-dot mr-2"></i>Location</div>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">City</span>
+                                <span id="result-city" class="ip-stat-value text-right">—</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">Region</span>
+                                <span id="result-region" class="ip-stat-value text-right">—</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">Postal Code</span>
+                                <span id="result-postal" class="ip-stat-value text-right font-mono">—</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">Coordinates</span>
+                                <span id="result-coords" class="ip-stat-value text-right font-mono text-sm">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network -->
+                    <div class="ip-result-card rounded-2xl p-5 md:p-6" data-aos="fade-up" data-aos-delay="250">
+                        <div class="ip-section-title"><i class="fas fa-globe mr-2"></i>Network</div>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">Network</span>
+                                <span id="result-network" class="ip-stat-value text-right font-mono text-sm">—</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">ASN</span>
+                                <span id="result-asn-detail" class="ip-stat-value text-right font-mono">—</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">Organization</span>
+                                <span id="result-org-detail" class="ip-stat-value text-right">—</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">Version</span>
+                                <span id="result-version-detail" class="ip-stat-value text-right">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Country Details -->
+                    <div class="ip-result-card rounded-2xl p-5 md:p-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="ip-section-title"><i class="fas fa-flag mr-2"></i>Country Details</div>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">Country</span>
+                                <span id="result-country-full" class="ip-stat-value text-right">—</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">Code</span>
+                                <span id="result-country-code-detail"
+                                    class="ip-stat-value text-right font-mono">—</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">Capital</span>
+                                <span id="result-capital" class="ip-stat-value text-right">—</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">TLD</span>
+                                <span id="result-tld" class="ip-stat-value text-right font-mono">—</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">Continent</span>
+                                <span id="result-continent" class="ip-stat-value text-right">—</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">EU Member</span>
+                                <span id="result-in-eu" class="ip-stat-value text-right">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Time & Currency -->
+                    <div class="ip-result-card rounded-2xl p-5 md:p-6" data-aos="fade-up" data-aos-delay="350">
+                        <div class="ip-section-title"><i class="fas fa-clock mr-2"></i>Time &amp; Currency</div>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">Timezone</span>
+                                <span id="result-timezone" class="ip-stat-value text-right">—</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">UTC Offset</span>
+                                <span id="result-utc" class="ip-stat-value text-right font-mono">—</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">Currency</span>
+                                <span id="result-currency" class="ip-stat-value text-right">—</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">Languages</span>
+                                <span id="result-languages" class="ip-stat-value text-right">—</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="ip-stat-label">Calling Code</span>
+                                <span id="result-calling" class="ip-stat-value text-right font-mono">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="ip-result-card rounded-2xl p-5 md:p-6 md:col-span-2" data-aos="fade-up"
+                        data-aos-delay="400">
+                        <div class="ip-section-title"><i class="fas fa-chart-simple mr-2"></i>Statistics</div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div class="text-center p-3 rounded-xl bg-surface-muted/40">
+                                <span class="ip-stat-label block">Area (km²)</span>
+                                <span id="result-area" class="ip-stat-value text-lg block mt-1">—</span>
+                            </div>
+                            <div class="text-center p-3 rounded-xl bg-surface-muted/40">
+                                <span class="ip-stat-label block">Population</span>
+                                <span id="result-population" class="ip-stat-value text-lg block mt-1">—</span>
+                            </div>
+                            <div class="text-center p-3 rounded-xl bg-surface-muted/40">
+                                <span class="ip-stat-label block">ISO3 Code</span>
+                                <span id="result-iso3" class="ip-stat-value text-lg block mt-1 font-mono">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== MAP CARD ===== -->
+                    <div class="ip-result-card rounded-2xl p-5 md:p-6 md:col-span-2" data-aos="fade-up"
+                        data-aos-delay="500">
+                        <div class="ip-section-title"><i class="fas fa-map mr-2"></i>Location Map</div>
+                        <div id="map-container">
+                            <div id="map"></div>
+                            <div id="map-not-available" class="text-text-secondary text-sm text-center py-8 hidden">
+                                <i class="fas fa-map-pin text-tor-violet/40 text-2xl block mb-2"></i>
+                                Location coordinates not available for this IP.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Raw data toggle -->
+                <div class="mt-6 text-center" data-aos="fade-up" data-aos-delay="450">
+                    <button id="raw-toggle"
+                        class="text-text-muted hover:text-tor-violet transition-colors text-sm font-medium inline-flex items-center gap-2">
+                        <i class="fas fa-code"></i>
+                        <span>View Raw JSON</span>
+                        <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <div id="raw-panel" class="hidden mt-3 text-left">
+                        <div
+                            class="bg-[#0f0e1a]/5 rounded-2xl p-4 overflow-x-auto border border-surface-border/60 font-mono text-xs">
+                            <pre id="raw-json" class="text-text-secondary whitespace-pre-wrap break-all"></pre>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Empty / Welcome State -->
+            <div id="empty-state" class="text-center py-16" data-aos="fade-up">
+                <div class="w-20 h-20 rounded-full bg-tor-violet/5 flex items-center justify-center mx-auto mb-5">
+                    <i class="fas fa-map-pin text-tor-violet text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-text-primary">IP Intelligence at your fingertips</h3>
+                <p class="text-text-secondary text-sm max-w-sm mx-auto mt-2 leading-relaxed">
+                    Enter an IP address above or click <strong class="text-tor-violet">"My IP"</strong> to look up your
+                    own.
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-3 mt-4">
+                    <button
+                        class="example-ip-btn text-sm px-4 py-2 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                        data-ip="8.8.8.8">8.8.8.8</button>
+                    <button
+                        class="example-ip-btn text-sm px-4 py-2 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                        data-ip="1.1.1.1">1.1.1.1</button>
+                    <button
+                        class="example-ip-btn text-sm px-4 py-2 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                        data-ip="9.9.9.9">9.9.9.9</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== FOOTER =============================================== -->
     <!-- ============================================================ -->
     <footer class="relative overflow-hidden border-t border-tor-violet/10">
         <div
@@ -1382,8 +899,7 @@
                             <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
                             <span
                                 class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
-                                Rights
-                                · Infrastructure</span>
+                                Rights · Infrastructure</span>
                         </div>
                     </div>
                     <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
@@ -1413,20 +929,19 @@
                 <div>
                     <h4 class="footer-heading text-text-primary/60">Advocacy</h4>
                     <ul class="space-y-2.5">
-                        <li><a href="../about.html#our-mission" class="footer-link">Our Mission</a></li>
-                        <li><a href="../resources.html" class="footer-link">Resources</a></li>
-                        <li><a href="../gallery.html" class="footer-link">Gallery</a></li>
+                        <li><a href="../about#our-mission" class="footer-link">Our Mission</a></li>
+                        <li><a href="../resources" class="footer-link">Resources</a></li>
+                        <li><a href="../gallery" class="footer-link">Gallery</a></li>
                         <li><a href="https://docs.ricalnet.my.id" class="footer-link">Blog</a></li>
-                        <li><a href="../index.html#cta" class="footer-link">Contact</a></li>
+                        <li><a href="../index#cta" class="footer-link">Contact</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h4 class="footer-heading text-text-primary/60">Infrastructure</h4>
                     <ul class="space-y-2.5">
-                        <li><a href="../index.html#features" class="footer-link">Sovereign Infrastructure</a></li>
-                        <li><a href="../index.html#private-digital-services" class="footer-link">Private Services</a>
-                        </li>
+                        <li><a href="../index#features" class="footer-link">Sovereign Infrastructure</a></li>
+                        <li><a href="../index#private-digital-services" class="footer-link">Private Services</a></li>
                         <li><a href="https://search.ricalnet.my.id" class="footer-link">Search Engine</a></li>
                         <li><a href="https://link.ricalnet.my.id" class="footer-link">URL Shortener</a></li>
                         <li><a href="https://translate.ricalnet.my.id" class="footer-link">Translation</a></li>
@@ -1439,10 +954,11 @@
                         <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
                                 target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
                         <li><a href="https://github.com/ricalnet/digital-independence" class="footer-link"
-                                target="_blank">Become a
-                                Contributor <i class="fas fa-arrow-up-right-from-square"></i></a></li>
-                        <li><a href="../about.html#cta-support" class="footer-link">Support</a></li>
-                        <li><a href="https://status.ricalnet.my.id" class="footer-link">Status</a></li>
+                                target="_blank">Become a Contributor <i
+                                    class="fas fa-arrow-up-right-from-square"></i></a>
+                        </li>
+                        <li><a href="../about#cta-support" class="footer-link">Support</a></li>
+                        <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
                     </ul>
                 </div>
 
@@ -1452,8 +968,8 @@
                         <li><a href="https://cloud.ricalnet.my.id/s/H9SM2rJ2M9NfQaq" class="footer-link">Legal
                                 Resources</a>
                         </li>
-                        <li><a href="../terms-of-service.html" class="footer-link">Terms of Service</a></li>
-                        <li><a href="../privacy.html" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="../terms-of-service" class="footer-link">Terms of Service</a></li>
+                        <li><a href="../privacy" class="footer-link">Privacy Policy</a></li>
                     </ul>
                 </div>
 
@@ -1482,16 +998,20 @@
     </footer>
 
     <!-- ============================================================ -->
-    <!-- ===== SCRIPTS ============================================== -->
+    <!-- ===== SCRIPTS ===== -->
     <!-- ============================================================ -->
 
     <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script src="../assets/js/aos.js">
+    </script>
+    <script src="../assets/js/components.js">
     </script>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
-    </script>
     <script>
+        // ===== AOS =====
         AOS.init({
             once: true,
             offset: 30,
@@ -1500,6 +1020,7 @@
             disable: window.innerWidth < 768 ? true : false,
         });
 
+        // ===== PGP =====
         const PGP_FINGERPRINT = '45688382B815821F033115B8D92D6A10D29C8380';
 
         function copyPGP() {
@@ -1518,7 +1039,8 @@
 
         function showToast(message) {
             const toast = document.createElement('div');
-            toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] transition-all duration-300';
+            toast.className =
+                'fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] transition-all duration-300';
             toast.innerHTML = '<i class="fas fa-check-circle text-tor-accent mr-2"></i> ' + message;
             document.body.appendChild(toast);
             setTimeout(() => {
@@ -1531,402 +1053,369 @@
             navigator.clipboard.writeText(text).then(() => {
                 showToast('Copied!');
             }).catch(() => {
-                const ta = document.createElement('textarea');
-                ta.value = text;
-                document.body.appendChild(ta);
-                ta.select();
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
                 document.execCommand('copy');
-                document.body.removeChild(ta);
+                document.body.removeChild(textArea);
                 showToast('Copied!');
             });
         }
-    </script>
 
-    <script>
-        // ============================================================
-        // IP INTELLIGENCE ENGINE with Map
-        // ============================================================
-
+        // ===== IP INTELLIGENCE =====
         const API_BASE = 'https://ipapi.co';
 
         const elements = {
             input: document.getElementById('ip-input'),
-            btnLookup: document.getElementById('btn-lookup'),
-            btnMyIp: document.getElementById('btn-my-ip'),
-            container: document.getElementById('result-container'),
-            empty: document.getElementById('empty-state'),
+            lookupBtn: document.getElementById('lookup-btn'),
+            myIpBtn: document.getElementById('my-ip-btn'),
+            clearBtn: document.getElementById('clear-btn'),
+            retryBtn: document.getElementById('retry-btn'),
             loading: document.getElementById('loading-state'),
             error: document.getElementById('error-state'),
             errorMsg: document.getElementById('error-message'),
-            content: document.getElementById('results-content'),
-
+            results: document.getElementById('results-container'),
+            empty: document.getElementById('empty-state'),
+            rawToggle: document.getElementById('raw-toggle'),
+            rawPanel: document.getElementById('raw-panel'),
+            rawJson: document.getElementById('raw-json'),
+            copyIpBtn: document.getElementById('copy-ip-btn'),
+            // result fields
             ip: document.getElementById('result-ip'),
             version: document.getElementById('result-version'),
-            type: document.getElementById('result-type'),
-            timestamp: document.getElementById('result-timestamp'),
-            city: document.getElementById('r-city'),
-            region: document.getElementById('r-region'),
-            country: document.getElementById('r-country'),
-            eu: document.getElementById('r-eu'),
-            coords: document.getElementById('r-coords'),
-            timezone: document.getElementById('r-timezone'),
-            calling: document.getElementById('r-calling'),
-            currency: document.getElementById('r-currency'),
-            languages: document.getElementById('r-languages'),
-            asn: document.getElementById('r-asn'),
-            org: document.getElementById('r-org'),
-            countryCode: document.getElementById('r-country-code'),
-            postal: document.getElementById('r-postal'),
-            continent: document.getElementById('r-continent'),
-            security: document.getElementById('r-security'),
-            copyBtn: document.getElementById('copy-ip-btn'),
-            rawToggle: document.getElementById('toggle-raw-btn'),
-            rawContainer: document.getElementById('raw-json-container'),
-            rawJson: document.getElementById('raw-json'),
+            org: document.getElementById('result-org'),
+            asn: document.getElementById('result-asn'),
+            flag: document.getElementById('result-flag'),
+            countryName: document.getElementById('result-country-name'),
+            countryCode: document.getElementById('result-country-code'),
+            city: document.getElementById('result-city'),
+            region: document.getElementById('result-region'),
+            postal: document.getElementById('result-postal'),
+            coords: document.getElementById('result-coords'),
+            network: document.getElementById('result-network'),
+            asnDetail: document.getElementById('result-asn-detail'),
+            orgDetail: document.getElementById('result-org-detail'),
+            versionDetail: document.getElementById('result-version-detail'),
+            countryFull: document.getElementById('result-country-full'),
+            countryCodeDetail: document.getElementById('result-country-code-detail'),
+            capital: document.getElementById('result-capital'),
+            tld: document.getElementById('result-tld'),
+            continent: document.getElementById('result-continent'),
+            inEu: document.getElementById('result-in-eu'),
+            timezone: document.getElementById('result-timezone'),
+            utc: document.getElementById('result-utc'),
+            currency: document.getElementById('result-currency'),
+            languages: document.getElementById('result-languages'),
+            calling: document.getElementById('result-calling'),
+            area: document.getElementById('result-area'),
+            population: document.getElementById('result-population'),
+            iso3: document.getElementById('result-iso3'),
+            mapContainer: document.getElementById('map-container'),
+            mapDiv: document.getElementById('map'),
+            mapNotAvailable: document.getElementById('map-not-available'),
         };
 
-        let map = null;
-        let marker = null;
-        let lastData = null;
+        let currentData = null;
+        let lastLookup = '';
+        let mapInstance = null;
 
-        // ---- Map initialization ----
-        function initMap(lat, lng, label) {
-            if (!map) {
-                map = L.map('map', {
-                    center: [lat || 0, lng || 0],
-                    zoom: lat ? 4 : 2,
-                    zoomControl: false,
-                    attributionControl: false,
-                });
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 19,
-                    attribution: '© OpenStreetMap',
-                }).addTo(map);
-                // Add zoom control to top-right
-                L.control.zoom({ position: 'topright' }).addTo(map);
+        // ===== Format helpers =====
+        function formatNumber(n) {
+            if (n === null || n === undefined || n === '') return '—';
+            if (typeof n === 'number') {
+                return n.toLocaleString();
+            }
+            return String(n);
+        }
+
+        function formatCoord(v) {
+            if (v === null || v === undefined || v === '') return '—';
+            return typeof v === 'number' ? v.toFixed(4) : String(v);
+        }
+
+        function getFlagUrl(code) {
+            if (!code) return '';
+            return `https://flagcdn.com/w40/${code.toLowerCase()}.png`;
+        }
+
+        function boolToText(v) {
+            if (v === true) return 'Yes';
+            if (v === false) return 'No';
+            return '—';
+        }
+
+        // ===== Map =====
+        function initMap(lat, lng, city, country) {
+            // Destroy previous map if exists
+            if (mapInstance) {
+                mapInstance.remove();
+                mapInstance = null;
             }
 
-            if (marker) {
-                map.removeLayer(marker);
-            }
+            // Show map, hide not-available
+            elements.mapDiv.classList.remove('hidden');
+            elements.mapNotAvailable.classList.add('hidden');
 
-            if (lat && lng && !isNaN(lat) && !isNaN(lng)) {
-                const popupContent = label || '📍 Location';
-                marker = L.marker([lat, lng], {
-                    riseOnHover: true,
-                }).addTo(map);
-                marker.bindPopup(popupContent, { closeButton: false, autoClose: false });
-                marker.openPopup();
-                map.setView([lat, lng], Math.max(4, map.getZoom() || 4), { animate: true });
-            } else {
-                map.setView([0, 0], 2);
-            }
+            // Create map
+            mapInstance = L.map('map').setView([lat, lng], 10);
 
-            // Resize map after render
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(mapInstance);
+
+            // Marker with popup
+            const popupText = city && country ? `${city}, ${country}` : (country || 'Location');
+            L.marker([lat, lng])
+                .addTo(mapInstance)
+                .bindPopup(popupText)
+                .openPopup();
+
+            // Invalidate size after a moment to ensure correct rendering
             setTimeout(() => {
-                if (map) map.invalidateSize();
-            }, 250);
+                if (mapInstance) {
+                    mapInstance.invalidateSize();
+                }
+            }, 200);
+
+            // Also invalidate on window resize
+            const resizeHandler = () => {
+                if (mapInstance) {
+                    mapInstance.invalidateSize();
+                }
+            };
+            window.addEventListener('resize', resizeHandler);
+            // Store handler to remove later if needed (but we'll keep it simple)
         }
 
-        // ---- Helpers ----
-        function setVisibility(show) {
-            elements.empty.classList.toggle('hidden', show !== 'empty');
-            elements.loading.classList.toggle('hidden', show !== 'loading');
-            elements.error.classList.toggle('hidden', show !== 'error');
-            elements.content.classList.toggle('hidden', show !== 'result');
-        }
-
-        function formatCoord(val) {
-            if (val === undefined || val === null || val === '') return '—';
-            return parseFloat(val).toFixed(4);
-        }
-
-        function formatEu(val) {
-            if (val === true) return 'Yes';
-            if (val === false) return 'No';
-            return '—';
-        }
-
-        function formatCurrency(data) {
-            if (data && data.currency && data.currency_code) {
-                return data.currency + ' (' + data.currency_code + ')';
+        function showMapNotAvailable() {
+            if (mapInstance) {
+                mapInstance.remove();
+                mapInstance = null;
             }
-            if (data && data.currency) return data.currency;
-            return '—';
+            elements.mapDiv.classList.add('hidden');
+            elements.mapNotAvailable.classList.remove('hidden');
         }
 
-        function formatLanguages(data) {
-            if (data && data.languages) {
-                const langs = data.languages;
-                if (Array.isArray(langs)) return langs.join(', ');
-                if (typeof langs === 'string') return langs;
-                if (typeof langs === 'object') return Object.values(langs).join(', ');
-            }
-            return '—';
-        }
-
-        function getSecurityLabel(data) {
-            if (data && data.security) {
-                const s = data.security;
-                if (s.is_tor) return 'Tor Exit Node';
-                if (s.is_proxy) return 'Proxy/VPN';
-                if (s.is_cloud) return 'Cloud Hosting';
-                if (s.is_threat) return 'Threat Detected';
-                if (s.is_abuser) return 'Abuser Reported';
-            }
-            return 'Standard';
-        }
-
-        // ---- Render ----
+        // ===== Render =====
         function renderResults(data) {
-            lastData = data;
+            currentData = data;
 
-            const ip = data.ip || '—';
-            const isV6 = ip.includes(':');
-            elements.ip.textContent = ip;
-            elements.version.textContent = isV6 ? 'IPv6' : 'IPv4';
+            // IP
+            elements.ip.textContent = data.ip || '—';
+            elements.version.textContent = data.version || '—';
+            elements.org.textContent = data.org || '—';
+            elements.asn.textContent = data.asn || '—';
 
-            // Detect type (public/private)
-            const isPrivate = /^(10\.|172\.(1[6-9]|2[0-9]|3[0-1])\.|192\.168\.|127\.|169\.254\.|::1|fc00:|fe80:)/i.test(ip);
-            elements.type.textContent = isPrivate ? 'Private' : 'Public';
+            // Flag & country
+            const flagUrl = getFlagUrl(data.country_code);
+            if (flagUrl) {
+                elements.flag.style.backgroundImage = `url(${flagUrl})`;
+                elements.flag.style.display = 'inline-block';
+            } else {
+                elements.flag.style.display = 'none';
+            }
+            elements.countryName.textContent = data.country_name || '—';
+            elements.countryCode.textContent = data.country_code || '—';
 
-            const now = new Date();
-            elements.timestamp.textContent = 'Updated ' + now.toLocaleTimeString();
-
-            // Geo
+            // Location
             elements.city.textContent = data.city || '—';
-            elements.region.textContent = data.region || data.region_code || '—';
-            elements.country.textContent = data.country_name || data.country || '—';
-            elements.eu.textContent = formatEu(data.in_eu);
-            const lat = parseFloat(data.latitude);
-            const lng = parseFloat(data.longitude);
-            const coordsText = (lat && lng && !isNaN(lat) && !isNaN(lng)) ?
-                formatCoord(lat) + ', ' + formatCoord(lng) :
-                '—';
-            elements.coords.textContent = coordsText;
+            elements.region.textContent = data.region || '—';
+            elements.postal.textContent = data.postal || '—';
+            const lat = formatCoord(data.latitude);
+            const lng = formatCoord(data.longitude);
+            elements.coords.textContent = (lat !== '—' || lng !== '—') ? `${lat}, ${lng}` : '—';
 
+            // Network
+            elements.network.textContent = data.network || '—';
+            elements.asnDetail.textContent = data.asn || '—';
+            elements.orgDetail.textContent = data.org || '—';
+            elements.versionDetail.textContent = data.version || '—';
+
+            // Country details
+            elements.countryFull.textContent = data.country_name || '—';
+            elements.countryCodeDetail.textContent = data.country_code || '—';
+            elements.capital.textContent = data.country_capital || '—';
+            elements.tld.textContent = data.country_tld || '—';
+            elements.continent.textContent = data.continent_code || '—';
+            elements.inEu.textContent = boolToText(data.in_eu);
+
+            // Time & currency
             elements.timezone.textContent = data.timezone || '—';
-            elements.calling.textContent = data.country_calling_code ? '+' + data.country_calling_code : '—';
-            elements.currency.textContent = formatCurrency(data);
-            elements.languages.textContent = formatLanguages(data);
+            elements.utc.textContent = data.utc_offset || '—';
+            elements.currency.textContent = data.currency_name ? `${data.currency} (${data.currency_name})` : (data
+                .currency || '—');
+            elements.languages.textContent = data.languages || '—';
+            elements.calling.textContent = data.country_calling_code || '—';
 
-            elements.asn.textContent = data.asn || data.autonomous_system_number || '—';
-            const orgName = data.org || data.organization || data.asn_org || '—';
-            elements.org.textContent = orgName;
-
-            elements.countryCode.textContent = data.country_code || data.country || '—';
-            elements.postal.textContent = data.postal || data.zip || '—';
-            elements.continent.textContent = data.continent_code || data.continent || '—';
-            elements.security.textContent = getSecurityLabel(data);
+            // Stats
+            elements.area.textContent = formatNumber(data.country_area);
+            elements.population.textContent = formatNumber(data.country_population);
+            elements.iso3.textContent = data.country_code_iso3 || '—';
 
             // Raw JSON
             elements.rawJson.textContent = JSON.stringify(data, null, 2);
 
-            // Map
-            if (lat && lng && !isNaN(lat) && !isNaN(lng)) {
-                const popupLabel = `${data.city || ''}, ${data.country_name || data.country || ''}`.trim() || ip;
-                initMap(lat, lng, popupLabel);
+            // ---- Map ----
+            if (data.latitude && data.longitude && !isNaN(data.latitude) && !isNaN(data.longitude)) {
+                initMap(data.latitude, data.longitude, data.city, data.country_name);
             } else {
-                initMap(0, 0, null);
+                showMapNotAvailable();
             }
 
-            setVisibility('result');
+            // Show results
+            elements.empty.classList.add('hidden');
+            elements.loading.classList.add('hidden');
+            elements.error.classList.add('hidden');
+            elements.results.classList.remove('hidden');
+            elements.results.classList.add('result-enter');
+
+            // Copy IP
+            elements.copyIpBtn.onclick = () => {
+                if (data.ip) copyToClipboard(data.ip);
+            };
+
+            lastLookup = data.ip || '';
         }
 
-        // ---- Fetch ----
+        // ===== Fetch =====
         async function lookupIP(ip) {
-            setVisibility('loading');
+            const trimmed = ip ? ip.trim() : '';
+
+            // Validate IP format (basic)
+            if (trimmed) {
+                const ipv4Pattern = /^(\d{1,3}\.){3}\d{1,3}$/;
+                const ipv6Pattern = /^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$/;
+                if (!ipv4Pattern.test(trimmed) && !ipv6Pattern.test(trimmed) && trimmed !== '') {
+                    showToast('Please enter a valid IP address');
+                    return;
+                }
+            }
+
+            const url = trimmed ? `${API_BASE}/${trimmed}/json/` : `${API_BASE}/json/`;
+
+            elements.loading.classList.remove('hidden');
+            elements.error.classList.add('hidden');
+            elements.results.classList.add('hidden');
+            elements.empty.classList.add('hidden');
+
+            // Hide map if any
+            if (mapInstance) {
+                mapInstance.remove();
+                mapInstance = null;
+            }
 
             try {
-                const url = ip ? API_BASE + '/' + ip + '/json/' : API_BASE + '/json/';
-                const resp = await fetch(url, {
-                    headers: { 'Accept': 'application/json' }
+                const response = await fetch(url, {
+                    headers: {
+                        'Accept': 'application/json',
+                    }
                 });
 
-                if (!resp.ok) {
-                    const errText = await resp.text();
-                    throw new Error('API error ' + resp.status + ': ' + errText);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
                 }
 
-                const data = await resp.json();
+                const data = await response.json();
 
-                if (data.error || data.reason) {
-                    throw new Error(data.reason || data.error || 'Invalid IP address');
-                }
-
-                if (!data.ip) {
-                    throw new Error('No IP data returned');
+                // Check if we got an error response from ipapi
+                if (data.error || !data.ip) {
+                    throw new Error(data.reason || data.error || 'Invalid IP or request failed');
                 }
 
                 renderResults(data);
 
             } catch (err) {
                 console.error('IP lookup error:', err);
-                elements.errorMsg.textContent = err.message || 'Unable to retrieve IP intelligence. Please check the address and try again.';
-                setVisibility('error');
-                // Reset map
-                initMap(0, 0, null);
+                elements.loading.classList.add('hidden');
+                elements.error.classList.remove('hidden');
+                elements.errorMsg.textContent = err.message || 'Unable to fetch IP data. Please try again.';
+                elements.results.classList.add('hidden');
+                elements.empty.classList.add('hidden');
+                // Hide map if error
+                showMapNotAvailable();
             }
         }
 
-        // ---- Handlers ----
-        function handleLookup() {
-            const ip = elements.input.value.trim();
-            if (!ip) {
-                showToast('Please enter an IP address.');
-                return;
+        // ===== Events =====
+        elements.lookupBtn.addEventListener('click', () => {
+            const val = elements.input.value.trim();
+            if (val) {
+                lookupIP(val);
+            } else {
+                showToast('Please enter an IP address or click "My IP"');
             }
-            lookupIP(ip);
-        }
+        });
 
-        function handleMyIp() {
+        elements.input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                elements.lookupBtn.click();
+            }
+        });
+
+        elements.myIpBtn.addEventListener('click', () => {
             elements.input.value = '';
-            lookupIP(null);
-        }
+            lookupIP('');
+        });
 
-        function handleExample(e) {
-            const ip = e.currentTarget.dataset.ip;
-            if (ip) {
+        elements.clearBtn.addEventListener('click', () => {
+            elements.input.value = '';
+            elements.results.classList.add('hidden');
+            elements.empty.classList.remove('hidden');
+            elements.error.classList.add('hidden');
+            elements.loading.classList.add('hidden');
+            currentData = null;
+            lastLookup = '';
+            // Destroy map
+            if (mapInstance) {
+                mapInstance.remove();
+                mapInstance = null;
+            }
+            elements.mapDiv.classList.remove('hidden');
+            elements.mapNotAvailable.classList.add('hidden');
+        });
+
+        elements.retryBtn.addEventListener('click', () => {
+            const val = elements.input.value.trim();
+            if (val) {
+                lookupIP(val);
+            } else {
+                lookupIP('');
+            }
+        });
+
+        // Example IP buttons
+        document.querySelectorAll('.example-ip-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const ip = btn.dataset.ip;
                 elements.input.value = ip;
                 lookupIP(ip);
-            }
-        }
+            });
+        });
 
-        function handleCopyIp() {
-            const ip = elements.ip.textContent;
-            if (ip && ip !== '—') {
-                copyToClipboard(ip);
-            }
-        }
-
-        function toggleRaw() {
-            const isOpen = elements.rawContainer.classList.toggle('hidden');
+        // Raw toggle
+        elements.rawToggle.addEventListener('click', () => {
+            const isOpen = elements.rawPanel.classList.toggle('hidden');
             const icon = elements.rawToggle.querySelector('.fa-chevron-down');
             if (icon) {
                 icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
             }
-        }
-
-        // ---- Enter key ----
-        elements.input.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') handleLookup();
-        });
-
-        // ---- Buttons ----
-        elements.btnLookup.addEventListener('click', handleLookup);
-        elements.btnMyIp.addEventListener('click', handleMyIp);
-        elements.copyBtn.addEventListener('click', handleCopyIp);
-        elements.rawToggle.addEventListener('click', toggleRaw);
-
-        // ---- Example buttons ----
-        document.querySelectorAll('.example-ip').forEach(btn => {
-            btn.addEventListener('click', handleExample);
-        });
-
-        // ---- Init map on empty ----
-        document.addEventListener('DOMContentLoaded', () => {
-            // Pre-initialize map in background
-            initMap(0, 0, null);
-            // Auto-locate on load (optional)
-            // setTimeout(handleMyIp, 500);
-        });
-
-        // ---- Resize map when container changes ----
-        window.addEventListener('resize', () => {
-            if (map) setTimeout(() => map.invalidateSize(), 100);
-        });
-
-        // ============================================================
-        // MOBILE NAV (from parent)
-        // ============================================================
-
-        const menuToggle = document.getElementById('mobile-menu-toggle');
-        const menuClose = document.getElementById('mobile-menu-close');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const body = document.body;
-
-        function openMobileMenu() {
-            mobileMenu.classList.add('open');
-            body.classList.add('menu-open');
-            menuToggle.setAttribute('aria-expanded', 'true');
-            document.documentElement.style.overflow = 'hidden';
-        }
-
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('open');
-            body.classList.remove('menu-open');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            document.documentElement.style.overflow = '';
-            document.querySelectorAll('.mobile-sub-menu.open').forEach(el => {
-                el.classList.remove('open');
-                el.previousElementSibling?.classList.remove('open');
-                el.previousElementSibling?.setAttribute('aria-expanded', 'false');
-            });
-        }
-
-        if (menuToggle && mobileMenu) {
-            menuToggle.addEventListener('click', function (e) {
-                e.stopPropagation();
-                if (mobileMenu.classList.contains('open')) {
-                    closeMobileMenu();
-                } else {
-                    openMobileMenu();
-                }
-            });
-        }
-
-        if (menuClose) {
-            menuClose.addEventListener('click', closeMobileMenu);
-        }
-
-        if (mobileMenu) {
-            mobileMenu.addEventListener('click', function (e) {
-                if (e.target === this) {
-                    closeMobileMenu();
-                }
-            });
-        }
-
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) {
-                closeMobileMenu();
+            if (!isOpen && currentData) {
+                elements.rawJson.textContent = JSON.stringify(currentData, null, 2);
             }
         });
 
-        document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
-            btn.addEventListener('click', function (e) {
-                e.stopPropagation();
-                const targetId = this.getAttribute('data-target');
-                const sub = document.getElementById(targetId);
-                if (!sub) return;
-                const isOpen = sub.classList.contains('open');
-
-                document.querySelectorAll('.mobile-sub-menu').forEach(el => {
-                    if (el !== sub) {
-                        el.classList.remove('open');
-                        el.previousElementSibling?.classList.remove('open');
-                        el.previousElementSibling?.setAttribute('aria-expanded', 'false');
-                    }
-                });
-
-                if (isOpen) {
-                    sub.classList.remove('open');
-                    this.classList.remove('open');
-                    this.setAttribute('aria-expanded', 'false');
-                } else {
-                    sub.classList.add('open');
-                    this.classList.add('open');
-                    this.setAttribute('aria-expanded', 'true');
-                }
-            });
+        // ===== Auto-lookup on load =====
+        document.addEventListener('DOMContentLoaded', () => {
+            // Small delay to let everything render
+            setTimeout(() => {
+                lookupIP('');
+            }, 400);
         });
 
-        document.querySelectorAll('[data-close-mobile]').forEach(link => {
-            link.addEventListener('click', function () {
-                setTimeout(closeMobileMenu, 100);
-            });
-        });
-
+        // ===== Smooth anchor scroll =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
@@ -1935,19 +1424,63 @@
                 const target = document.querySelector(href);
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    if (mobileMenu && mobileMenu.classList.contains('open')) {
-                        closeMobileMenu();
+                }
+            });
+        });
+
+        // ===== Mobile menu toggle =====
+        const mobileToggle = document.getElementById('mobile-menu-toggle');
+        const mobileClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileToggle && mobileMenu) {
+            mobileToggle.addEventListener('click', () => {
+                const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+                mobileToggle.setAttribute('aria-expanded', !expanded);
+                mobileMenu.classList.toggle('open');
+                document.body.style.overflow = expanded ? '' : 'hidden';
+            });
+        }
+
+        if (mobileClose && mobileMenu) {
+            mobileClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+                if (mobileToggle) {
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        // Close mobile menu on link click
+        document.querySelectorAll('[data-close-mobile]').forEach(el => {
+            el.addEventListener('click', () => {
+                if (mobileMenu) {
+                    mobileMenu.classList.remove('open');
+                    document.body.style.overflow = '';
+                    if (mobileToggle) {
+                        mobileToggle.setAttribute('aria-expanded', 'false');
                     }
                 }
             });
         });
 
-        window.addEventListener('resize', function () {
-            if (window.innerWidth >= 1024) {
-                if (mobileMenu && mobileMenu.classList.contains('open')) {
-                    closeMobileMenu();
+        // Mobile dropdown toggles
+        document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.dataset.target;
+                const target = document.getElementById(targetId);
+                if (target) {
+                    const isOpen = target.classList.toggle('open');
+                    btn.classList.toggle('open');
+                    btn.setAttribute('aria-expanded', isOpen);
+                    // Rotate chevron
+                    const chevron = btn.querySelector('.fa-chevron-down');
+                    if (chevron) {
+                        chevron.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+                    }
                 }
-            }
+            });
         });
     </script>
 

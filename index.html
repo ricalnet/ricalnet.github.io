@@ -9,13 +9,16 @@
     content="Building sovereign digital infrastructure that protects rights. Zero vendor lock-in, complete data control, and private services for a free and open internet." />
   <link rel="icon" type="image/x-icon" href="img/logo.png" />
 
-  <!-- Fonts & Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-    rel="stylesheet" />
+  <!-- ===== SELF-HOSTED FONTS & ICONS ===== -->
+  <link href="assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="assets/fontawesome/css/solid.css" rel="stylesheet" />
+  <link href="assets/fontawesome/css/brands.css" rel="stylesheet" />
+  <link href="assets/css/fonts.css" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link href="assets/css/aos.css" rel="stylesheet" />
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com">
@@ -24,7 +27,13 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { inter: ['Source Sans Pro', 'Helvetica', 'sans-serif'] },
+          fontFamily: {
+            'source-sans-pro': ['"Source Sans Pro"', 'Roboto', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+
+            roboto: ['Roboto', '"Source Sans Pro"', 'Inter', 'system-ui', 'sans-serif'],
+
+            inter: ['Inter', 'Roboto', '"Source Sans Pro"', 'system-ui', '-apple-system', 'sans-serif'],
+          },
           colors: {
             tor: {
               violet: '#7c3aed',
@@ -75,296 +84,10 @@
       }
     }
   </script>
-
-  <!-- CSS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/navbar.css" />
-  <link rel="stylesheet" href="assets/css/footer.css" />
-
-  <style>
-    @layer utilities {
-      .glass-card {
-        background: rgba(255, 255, 255, 0.72);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        border: 1px solid rgba(124, 58, 237, 0.08);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 8px 40px rgba(124, 58, 237, 0.04);
-      }
-
-      .glass-card-dark {
-        background: rgba(15, 14, 26, 0.6);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-      }
-
-      .btn-primary {
-        background: #7c3aed;
-        color: white;
-        font-weight: 600;
-        padding: 0.75rem 2rem;
-        border-radius: 9999px;
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        box-shadow: 0 4px 24px rgba(124, 58, 237, 0.2);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.9375rem;
-        border: none;
-        cursor: pointer;
-      }
-
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 40px rgba(124, 58, 237, 0.3);
-        background: #5b21b6;
-      }
-
-      .btn-secondary {
-        background: rgba(255, 255, 255, 0.9);
-        color: #0f0e1a;
-        font-weight: 500;
-        padding: 0.75rem 2rem;
-        border-radius: 9999px;
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        border: 1px solid rgba(124, 58, 237, 0.08);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.9375rem;
-        cursor: pointer;
-      }
-
-      .btn-secondary:hover {
-        background: white;
-        border-color: rgba(124, 58, 237, 0.2);
-        box-shadow: 0 4px 24px rgba(124, 58, 237, 0.04);
-        transform: translateY(-2px);
-      }
-
-      .btn-sso {
-        background: #ede9fe;
-        color: #5b21b6;
-        font-weight: 600;
-        padding: 0.5rem 1.25rem;
-        border-radius: 9999px;
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        border: 1px solid #c4b5fd;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.875rem;
-        cursor: pointer;
-      }
-
-      .btn-sso:hover {
-        background: #d8cdfa;
-        border-color: #7c3aed;
-        transform: translateY(-2px);
-      }
-
-      .section-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: rgba(124, 58, 237, 0.06);
-        border: 1px solid rgba(124, 58, 237, 0.08);
-        padding: 0.375rem 1rem;
-        border-radius: 9999px;
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: #5b21b6;
-      }
-
-      .badge-pill {
-        background: rgba(124, 58, 237, 0.08);
-        color: #5b21b6;
-        border: 1px solid rgba(124, 58, 237, 0.12);
-        padding: 0.25rem 0.75rem;
-        border-radius: 9999px;
-        font-size: 0.65rem;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.375rem;
-      }
-
-      .badge-pgp {
-        background: rgba(6, 182, 212, 0.08);
-        color: #0e7490;
-        border: 1px solid rgba(6, 182, 212, 0.15);
-        padding: 0.25rem 0.75rem;
-        border-radius: 9999px;
-        font-size: 0.65rem;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.375rem;
-        font-family: monospace;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        user-select: none;
-      }
-
-      .badge-pgp:hover {
-        background: rgba(6, 182, 212, 0.15);
-        border-color: rgba(6, 182, 212, 0.3);
-        transform: translateY(-1px);
-      }
-
-      .pgp-fingerprint {
-        font-family: 'Inter', monospace;
-        font-size: 0.7rem;
-        letter-spacing: 0.02em;
-        background: #f5f3fa;
-        padding: 0.2rem 0.6rem;
-        border-radius: 9999px;
-        border: 1px solid #ede9f0;
-        color: #3b3a54;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        white-space: nowrap;
-      }
-
-      .pgp-fingerprint:hover {
-        background: #ede9fe;
-        border-color: #c4b5fd;
-      }
-
-      .pgp-fingerprint .copy-hint {
-        font-size: 0.55rem;
-        opacity: 0.5;
-        font-weight: 400;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-      }
-
-      .pgp-fingerprint .copy-hint:hover {
-        opacity: 1;
-      }
-
-      .card-hover {
-        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-
-      .card-hover:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 16px 64px rgba(124, 58, 237, 0.06), 0 32px 120px rgba(124, 58, 237, 0.04);
-        border-color: rgba(124, 58, 237, 0.15);
-      }
-
-      .img-cover {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-      }
-
-      .img-shadow-soft {
-        box-shadow: 0 8px 48px rgba(0, 0, 0, 0.04);
-      }
-
-      .bg-grid-subtle {
-        background-image: radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.02) 0%, transparent 60%),
-          linear-gradient(rgba(124, 58, 237, 0.02) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(124, 58, 237, 0.02) 1px, transparent 1px);
-        background-size: 100% 100%, 48px 48px, 48px 48px;
-      }
-
-      .faq-answer {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
-        opacity: 0;
-      }
-
-      .faq-answer.open {
-        max-height: 500px;
-        opacity: 1;
-      }
-
-      .faq-icon {
-        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-
-      .faq-icon.open {
-        transform: rotate(180deg);
-      }
-
-      .community-address {
-        word-break: break-all;
-        font-size: 0.7rem;
-        font-family: monospace;
-        background: #f5f3fa;
-        padding: 0.25rem 0.5rem;
-        border-radius: 9999px;
-        border: 1px solid #ede9f0;
-        color: #3b3a54;
-      }
-
-      .copy-btn {
-        background: transparent;
-        border: none;
-        color: #9492ae;
-        cursor: pointer;
-        padding: 0.25rem 0.5rem;
-        border-radius: 9999px;
-        transition: all 0.2s;
-        font-size: 0.7rem;
-      }
-
-      .copy-btn:hover {
-        color: #7c3aed;
-        background: #ede9fe;
-      }
-
-      ::-webkit-scrollbar {
-        width: 6px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background: #f5f3fa;
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background: #c4b5fd;
-        border-radius: 8px;
-      }
-
-      ::-webkit-scrollbar-thumb:hover {
-        background: #7c3aed;
-      }
-
-      html,
-      body {
-        overflow-x: hidden;
-        max-width: 100%;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      img,
-      video,
-      iframe {
-        max-width: 100%;
-        height: auto;
-      }
-    }
-  </style>
 </head>
 
 <body
-  class="font-inter bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+  class="font-source-sans-pro bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
 
   <!-- ===== AMBIENT BG ===== -->
   <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
@@ -383,7 +106,7 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 md:h-[72px]">
 
-        <a href="index.html" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+        <a href="index" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
           data-aos-duration="600">
           <img src="img/logo.png" alt="Ricalnet Logo"
             class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
@@ -395,57 +118,58 @@
         </a>
 
         <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down" data-aos-duration="600">
-          <a href="index.html#hero" class="nav-link nav-link-active">Home</a>
+          <a href="index#hero" class="nav-link nav-link-active">Home</a>
 
           <div class="relative group">
-            <a href="index.html#pain-points" class="nav-link flex items-center gap-1">
+            <a href="index#pain-points" class="nav-link flex items-center gap-1">
               Advocacy
               <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
             </a>
             <div class="dropdown-panel absolute left-0 mt-2 z-50">
-              <a href="index.html#pain-points" class="dropdown-item">Rights at Risk</a>
-              <a href="index.html#how-it-works" class="dropdown-item">Methodology</a>
-              <a href="index.html#features" class="dropdown-item">Sovereign Infrastructure</a>
-              <a href="resources.html#index.html" class="dropdown-item">Legal Resources</a>
+              <a href="index#pain-points" class="dropdown-item">Rights at Risk</a>
+              <a href="index#how-it-works" class="dropdown-item">Methodology</a>
+              <a href="index#features" class="dropdown-item">Sovereign Infrastructure</a>
+              <a href="resources#legal-resources" class="dropdown-item">Legal Resources</a>
             </div>
           </div>
 
           <div class="relative group">
-            <a href="resources.html#hero" class="nav-link flex items-center gap-1">
+            <a href="resources#hero" class="nav-link flex items-center gap-1">
               Resources
               <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
             </a>
             <div class="dropdown-panel absolute left-0 mt-2 z-50">
-              <a href="resources.html#privacy-tools" class="dropdown-item">Privacy Tools</a>
-              <a href="resources.html#legal-resources" class="dropdown-item">Legal Resources</a>
-              <a href="resources.html#in-house-tools" class="dropdown-item">In-House Tools</a>
-              <a href="resources.html" class="dropdown-item">All Resources</a>
+              <a href="resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+              <a href="resources#legal-resources" class="dropdown-item">Legal Resources</a>
+              <a href="resources#in-house-tools" class="dropdown-item">In-House Tools</a>
+              <a href="resources" class="dropdown-item">All Resources</a>
             </div>
           </div>
           <div class="relative group">
-            <a href="resources.html#hero" class="nav-link flex items-center gap-1">
+            <a href="resources#hero" class="nav-link flex items-center gap-1">
               Tools
               <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
             </a>
             <div class="dropdown-panel absolute left-0 mt-2 z-50">
-              <a href="tools/ip-intelligence.html" class="dropdown-item">IP Intelligence</a>
-              <a href="tools/password-generator.html" class="dropdown-item">Password Generator</a>
-              <a href="tools/qr-builder.html" class="dropdown-item">QR Builder</a>
-              <a href="tools/whiteboard.html" class="dropdown-item">Whiteboard</a>
-              <a href="resources.html#privacy-tools" class="dropdown-item">Privacy Tools</a>
+              <a href="tools/ip-intelligence" class="dropdown-item">IP Intelligence</a>
+              <a href="tools/password-generator" class="dropdown-item">Password Generator</a>
+              <a href="tools/qr-builder" class="dropdown-item">QR Builder</a>
+              <a href="tools/quantum-hasher" class="dropdown-item">Quantum Hasher</a>
+              <a href="tools/whiteboard" class="dropdown-item">Whiteboard</a>
+              <a href="resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
             </div>
           </div>
           <div class="relative group">
-            <a href="about.html#hero" class="nav-link flex items-center gap-1">
+            <a href="about#hero" class="nav-link flex items-center gap-1">
               About
               <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
             </a>
             <div class="dropdown-panel absolute left-0 mt-2 z-50">
-              <a href="about.html#our-mission" class="dropdown-item">Our Mission</a>
-              <a href="index.html#comparison" class="dropdown-item">Comparison</a>
-              <a href="index.html#faq" class="dropdown-item">FAQ</a>
-              <a href="index.html#cta" class="dropdown-item">Contact</a>
-              <a href="about.html#cta-support" class="dropdown-item">Support Us</a>
+              <a href="about#our-mission" class="dropdown-item">Our Mission</a>
+              <a href="index#comparison" class="dropdown-item">Comparison</a>
+              <a href="index#faq" class="dropdown-item">FAQ</a>
+              <a href="index#cta" class="dropdown-item">Contact</a>
+              <a href="about#cta-support" class="dropdown-item">Support Us</a>
             </div>
           </div>
         </nav>
@@ -482,7 +206,7 @@
 
     <div class="mobile-menu-scroll">
 
-      <a href="index.html#hero" class="nav-item" data-close-mobile>
+      <a href="index#hero" class="nav-item" data-close-mobile>
         <i class="fas fa-home"></i> Home
       </a>
 
@@ -498,15 +222,15 @@
             class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
         </button>
         <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
-          <a href="index.html#pain-points" class="sub-link" data-close-mobile>
+          <a href="index#pain-points" class="sub-link" data-close-mobile>
             <i class="fas fa-exclamation-triangle"></i> Rights at Risk
           </a>
-          <a href="index.html#how-it-works" class="sub-link" data-close-mobile>
+          <a href="index#how-it-works" class="sub-link" data-close-mobile>
             <i class="fas fa-route"></i> Methodology
           </a>
-          <a href="index.html#features" class="sub-link" data-close-mobile>
+          <a href="index#features" class="sub-link" data-close-mobile>
             <i class="fas fa-star"></i> Sovereign Infrastructure
-          </a><a href="resources.html#legal-resources" class="sub-link" data-close-mobile>
+          </a><a href="resources#legal-resources" class="sub-link" data-close-mobile>
             <i class="fas fa-gavel"></i> Legal Resources
           </a>
         </div>
@@ -524,16 +248,16 @@
             class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
         </button>
         <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
-          <a href="resources.html#privacy-tools" class="sub-link" data-close-mobile>
+          <a href="resources#privacy-tools" class="sub-link" data-close-mobile>
             <i class="fas fa-lock"></i> Privacy Tools
           </a>
-          <a href="resources.html#legal-resources" class="sub-link" data-close-mobile>
+          <a href="resources#legal-resources" class="sub-link" data-close-mobile>
             <i class="fas fa-gavel"></i> Legal Resources
           </a>
-          <a href="resources.html#in-house-tools" class="sub-link" data-close-mobile>
+          <a href="resources#in-house-tools" class="sub-link" data-close-mobile>
             <i class="fas fa-cubes"></i> In-House Tools
           </a>
-          <a href="resources.html" class="sub-link" data-close-mobile>
+          <a href="resources" class="sub-link" data-close-mobile>
             <i class="fas fa-folder-open"></i> All Resources
           </a>
         </div>
@@ -551,19 +275,22 @@
             class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
         </button>
         <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
-          <a href="tools/ip-intelligence.html" class="sub-link" data-close-mobile>
+          <a href="tools/ip-intelligence" class="sub-link" data-close-mobile>
             <i class="fas fa-map-pin"></i> IP Intelligence
           </a>
-          <a href="tools/password-generator.html" class="sub-link" data-close-mobile>
+          <a href="tools/password-generator" class="sub-link" data-close-mobile>
             <i class="fas fa-key"></i> Password Generator
           </a>
-          <a href="tools/qr-builder.html" class="sub-link" data-close-mobile>
+          <a href="tools/qr-builder" class="sub-link" data-close-mobile>
             <i class="fas fa-qrcode"></i> QR Builder
           </a>
-          <a href="tools/whiteboard.html" class="sub-link" data-close-mobile>
+          <a href="tools/quantum-hasher" class="sub-link" data-close-mobile>
+            <i class="fas fa-qrcode"></i> Quantum Hasher
+          </a>
+          <a href="tools/whiteboard" class="sub-link" data-close-mobile>
             <i class="fas fa-pen-fancy"></i> Whiteboard
           </a>
-          <a href="resources.html#privacy-tools" class="sub-link" data-close-mobile>
+          <a href="resources#privacy-tools" class="sub-link" data-close-mobile>
             <i class="fas fa-user-secret"></i> Privacy Tools
           </a>
         </div>
@@ -581,19 +308,19 @@
             class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
         </button>
         <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
-          <a href="about.html#our-mission" class="sub-link" data-close-mobile>
+          <a href="about#our-mission" class="sub-link" data-close-mobile>
             <i class="fas fa-bullseye"></i> Our Mission
           </a>
-          <a href="index.html#comparison" class="sub-link" data-close-mobile>
+          <a href="index#comparison" class="sub-link" data-close-mobile>
             <i class="fas fa-arrows-left-right"></i> Comparison
           </a>
-          <a href="index.html#faq" class="sub-link" data-close-mobile>
+          <a href="index#faq" class="sub-link" data-close-mobile>
             <i class="fas fa-question-circle"></i> FAQ
           </a>
-          <a href="index.html#cta" class="sub-link" data-close-mobile>
+          <a href="index#cta" class="sub-link" data-close-mobile>
             <i class="fas fa-envelope"></i> Contact
           </a>
-          <a href="about.html#cta-support" class="sub-link" data-close-mobile>
+          <a href="about#cta-support" class="sub-link" data-close-mobile>
             <i class="fas fa-hand-holding-heart"></i> Support Us
           </a>
         </div>
@@ -1086,7 +813,7 @@
 
         <div class="mt-6 p-4 bg-tor-violet/5 border border-tor-violet/20 rounded-2xl text-center">
           <p class="text-text-secondary text-sm">
-            <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i>
+            <i class="fab fa-tor-browser text-tor-violet mr-1.5"></i>
             Private services are free and accessible via Tor Browser.
           </p>
         </div>
@@ -1316,7 +1043,7 @@
                 class="text-white btn-primary">
                 <i class="fas fa-envelope"></i> Join the Movement
               </a>
-              <a href="#" class="btn-secondary border-tor-violet/10 hover:border-tor-violet/20">
+              <a href="#features" class="btn-secondary border-tor-violet/10 hover:border-tor-violet/20">
                 <i class="fas fa-users"></i> Explore Private Services
               </a>
             </div>
@@ -1463,7 +1190,7 @@
           </div>
 
           <div class="pt-4">
-            <a href="resources.html"
+            <a href="resources"
               class="inline-flex items-center gap-2 text-white bg-tor-violet hover:bg-tor-violet-dark px-8 py-3.5 rounded-full font-semibold shadow-lg shadow-tor-violet/30 transition-all duration-300 hover:shadow-xl hover:shadow-tor-violet/40 hover:-translate-y-0.5">
               <i class="fas fa-folder-open"></i> Access All Resources
               <i class="fas fa-arrow-right text-sm"></i>
@@ -1534,19 +1261,19 @@
         <div>
           <h4 class="footer-heading text-text-primary/60">Advocacy</h4>
           <ul class="space-y-2.5">
-            <li><a href="about.html#our-mission" class="footer-link">Our Mission</a></li>
-            <li><a href="resources.html" class="footer-link">Resources</a></li>
-            <li><a href="gallery.html" class="footer-link">Gallery</a></li>
-            <li><a href="https://docs.riclanet.my.id" class="footer-link">Blog</a></li>
-            <li><a href="index.html#cta" class="footer-link">Contact</a></li>
+            <li><a href="about#our-mission" class="footer-link">Our Mission</a></li>
+            <li><a href="resources" class="footer-link">Resources</a></li>
+            <li><a href="gallery" class="footer-link">Gallery</a></li>
+            <li><a href="https://docs.ricalnet.my.id" class="footer-link">Blog</a></li>
+            <li><a href="index#cta" class="footer-link">Contact</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="footer-heading text-text-primary/60">Infrastructure</h4>
           <ul class="space-y-2.5">
-            <li><a href="index.html#features" class="footer-link">Sovereign Infrastructure</a></li>
-            <li><a href="index.html#private-digital-services" class="footer-link">Private Services</a></li>
+            <li><a href="index#features" class="footer-link">Sovereign Infrastructure</a></li>
+            <li><a href="index#private-digital-services" class="footer-link">Private Services</a></li>
             <li><a href="https://search.ricalnet.my.id" class="footer-link">Search Engine</a></li>
             <li><a href="https://link.ricalnet.my.id" class="footer-link">URL Shortener</a></li>
             <li><a href="https://translate.ricalnet.my.id" class="footer-link">Translation</a></li>
@@ -1560,8 +1287,8 @@
                 target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
             <li><a href="https://github.com/ricalnet/digital-independence" class="footer-link" target="_blank">Become a
                 Contributor <i class="fas fa-arrow-up-right-from-square"></i></a></li>
-            <li><a href="about.html#cta-support" class="footer-link">Support</a></li>
-            <li><a href="https://status.ricalnet.my.id" class="footer-link">Status</a></li>
+            <li><a href="about#cta-support" class="footer-link">Support</a></li>
+            <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
           </ul>
         </div>
 
@@ -1569,8 +1296,8 @@
           <h4 class="footer-heading text-text-primary/60">Legal</h4>
           <ul class="space-y-2.5">
             <li><a href="https://cloud.ricalnet.my.id/s/H9SM2rJ2M9NfQaq" class="footer-link">Legal Resources</a></li>
-            <li><a href="terms-of-service.html" class="footer-link">Terms of Service</a></li>
-            <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
+            <li><a href="terms-of-service" class="footer-link">Terms of Service</a></li>
+            <li><a href="privacy" class="footer-link">Privacy Policy</a></li>
           </ul>
         </div>
 
@@ -1602,7 +1329,7 @@
   <!-- ===== SCRIPTS ===== -->
   <!-- ============================================================ -->
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+  <script src="assets/js/aos.js">
   </script>
   <script>
     AOS.init({
@@ -1698,8 +1425,7 @@
     });
   </script>
 
-  <script src="assets/js/navbar.js"></script>
-  <script src="assets/js/footer.js"></script>
+  <script src="assets/js/components.js"></script>
 
 </body>
 
