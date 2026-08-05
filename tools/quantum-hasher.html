@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>Quantum Hasher — Ricalnet</title>
     <meta name="description"
-        content="Hash any text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC with secret key. Modern cryptographic tools for developers." />
+        content="Hash any text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC with secret key. Verify file integrity with hash comparison." />
     <link rel="icon" type="image/x-icon" href="../img/logo.png" />
 
     <!-- ===== SELF-HOSTED FONTS & ICONS ===== -->
@@ -362,6 +362,136 @@
             font-weight: 600;
         }
 
+        /* Verify specific */
+        .verify-drop-zone {
+            border: 2.5px dashed #ede9f0;
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .verify-drop-zone:hover {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.02);
+        }
+
+        .verify-drop-zone.dragover {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.05);
+            transform: scale(1.01);
+        }
+
+        .verify-drop-zone .icon {
+            font-size: 2.5rem;
+            color: #7c3aed;
+            opacity: 0.5;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .verify-drop-zone .text {
+            color: #52506e;
+            font-size: 0.9rem;
+        }
+
+        .verify-drop-zone .sub {
+            color: #9492ae;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        .verify-file-input {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .verify-preview {
+            margin-top: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: rgba(124, 58, 237, 0.04);
+            border-radius: 10px;
+            border: 1px solid rgba(124, 58, 237, 0.08);
+            font-size: 0.85rem;
+            color: #0f0e1a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .verify-preview .file-name {
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .verify-preview .file-size {
+            color: #9492ae;
+            font-size: 0.75rem;
+        }
+
+        .verify-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .verify-status.success {
+            background: rgba(104, 176, 48, 0.1);
+            color: #4a7c2a;
+            border: 1px solid rgba(104, 176, 48, 0.2);
+        }
+
+        .verify-status.fail {
+            background: rgba(239, 68, 68, 0.08);
+            color: #b91c1c;
+            border: 1px solid rgba(239, 68, 68, 0.15);
+        }
+
+        .verify-status.pending {
+            background: rgba(245, 158, 11, 0.08);
+            color: #b45309;
+            border: 1px solid rgba(245, 158, 11, 0.15);
+        }
+
+        .verify-status.idle {
+            background: rgba(124, 58, 237, 0.06);
+            color: #5b21b6;
+            border: 1px solid rgba(124, 58, 237, 0.08);
+        }
+
+        .verify-compare-box {
+            background: rgba(15, 14, 26, 0.02);
+            border-radius: 10px;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #ede9f0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            word-break: break-all;
+            color: #52506e;
+            max-height: 80px;
+            overflow-y: auto;
+        }
+
+        .verify-compare-box.match {
+            border-color: rgba(104, 176, 48, 0.3);
+            background: rgba(104, 176, 48, 0.03);
+        }
+
+        .verify-compare-box.mismatch {
+            border-color: rgba(239, 68, 68, 0.3);
+            background: rgba(239, 68, 68, 0.03);
+        }
+
         @media (max-width: 640px) {
             .hash-tab-btn {
                 padding: 0.4rem 1rem;
@@ -386,6 +516,10 @@
             .hash-copy-btn {
                 width: 100%;
                 justify-content: center;
+            }
+
+            .verify-drop-zone {
+                padding: 1.5rem 1rem;
             }
         }
     </style>
@@ -666,8 +800,8 @@
                         <i class="fas fa-shield"></i> SHA · MD5 · HMAC
                     </span>
                     <span class="badge-pill"
-                        style="background:rgba(245,158,11,0.08);color:#b45309;border-color:rgba(245,158,11,0.12);">
-                        <i class="fas fa-key"></i> Cryptographic
+                        style="background:rgba(104,176,48,0.08);color:#4a7c2a;border-color:rgba(104,176,48,0.12);">
+                        <i class="fas fa-check-double"></i> Verify
                     </span>
                 </div>
                 <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.08] tracking-tight">
@@ -676,7 +810,7 @@
                 </h1>
                 <p class="text-text-secondary text-base md:text-lg mt-3 max-w-2xl mx-auto leading-relaxed">
                     Hash any text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC with secret key.
-                    Modern cryptographic tools for developers and security professionals.
+                    Verify file integrity with hash comparison — all locally in your browser.
                 </p>
             </div>
         </div>
@@ -695,6 +829,9 @@
                 </button>
                 <button class="hash-tab-btn" data-tab="hmac">
                     <i class="fas fa-key mr-2"></i> HMAC
+                </button>
+                <button class="hash-tab-btn" data-tab="verify">
+                    <i class="fas fa-check-double mr-2"></i> Verify
                 </button>
             </div>
 
@@ -874,6 +1011,143 @@
 
             </div>
 
+            <!-- ===== TAB: VERIFY ===== -->
+            <div id="tab-verify" class="hash-tab-panel" data-aos="fade-up" data-aos-delay="150">
+
+                <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                        <!-- Left: File / Text input -->
+                        <div>
+
+                            <div class="hash-section-title"><i class="fas fa-upload mr-2"></i>Source</div>
+
+                            <!-- Toggle: File or Text -->
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <button id="verify-mode-file" class="hash-alg-btn active" data-mode="file">
+                                    <i class="fas fa-file"></i> File
+                                </button>
+                                <button id="verify-mode-text" class="hash-alg-btn" data-mode="text">
+                                    <i class="fas fa-font"></i> Text
+                                </button>
+                            </div>
+
+                            <!-- File drop zone -->
+                            <div id="verify-file-zone" class="verify-drop-zone relative">
+                                <input type="file" id="verify-file-input" class="verify-file-input" />
+                                <span class="icon"><i class="fas fa-cloud-upload-alt"></i></span>
+                                <div class="text">Drop a file here or click to browse</div>
+                                <div class="sub">Any file type supported</div>
+                            </div>
+
+                            <div id="verify-file-preview" class="verify-preview hidden">
+                                <span class="file-name" id="verify-file-name">file.txt</span>
+                                <span class="file-size" id="verify-file-size">0 bytes</span>
+                                <button id="verify-file-clear"
+                                    class="text-text-muted hover:text-red-500 transition-colors text-sm">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+
+                            <!-- Text input (hidden by default) -->
+                            <div id="verify-text-area" class="hidden mt-2">
+                                <textarea id="verify-text-input" class="hash-textarea" rows="3"
+                                    placeholder="Enter text to verify…">The quick brown fox jumps over the lazy dog</textarea>
+                            </div>
+
+                            <!-- Algorithm selector -->
+                            <div class="mt-4 flex flex-wrap items-center gap-2">
+                                <span class="text-sm font-medium text-text-secondary mr-1">Algorithm:</span>
+                                <button class="hash-alg-btn active" data-veralg="sha256">SHA-256</button>
+                                <button class="hash-alg-btn" data-veralg="sha1">SHA-1</button>
+                                <button class="hash-alg-btn" data-veralg="sha384">SHA-384</button>
+                                <button class="hash-alg-btn" data-veralg="sha512">SHA-512</button>
+                                <button class="hash-alg-btn" data-veralg="md5">MD5</button>
+                            </div>
+
+                            <!-- Expected hash -->
+                            <div class="mt-4">
+                                <label class="hash-section-title block"><i class="fas fa-bullseye mr-2"></i>Expected
+                                    Hash</label>
+                                <input type="text" id="verify-expected" class="hash-key-input"
+                                    placeholder="Paste the expected hash to compare…" />
+                            </div>
+
+                            <div class="mt-6 flex flex-wrap gap-3">
+                                <button id="verify-btn" class="hash-gen-btn">
+                                    <i class="fas fa-check-double"></i>
+                                    Verify
+                                </button>
+                                <button id="verify-calc-btn" class="hash-gen-btn"
+                                    style="background:#6b7280; box-shadow:none;">
+                                    <i class="fas fa-calculator"></i>
+                                    Compute Hash
+                                </button>
+                            </div>
+
+                            <div class="mt-3 text-xs text-text-muted text-center">
+                                <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i>
+                                File content is hashed locally. Nothing is uploaded to any server.
+                            </div>
+
+                        </div>
+
+                        <!-- Right: Result -->
+                        <div>
+
+                            <div class="hash-section-title"><i class="fas fa-file-lines mr-2"></i>Verification Result
+                            </div>
+
+                            <!-- Status -->
+                            <div id="verify-status" class="verify-status idle mb-3">
+                                <i class="fas fa-circle"></i> Ready
+                            </div>
+
+                            <!-- Computed hash -->
+                            <div class="mb-3">
+                                <span class="text-xs font-medium text-text-secondary">Computed Hash:</span>
+                                <div id="verify-computed" class="verify-compare-box mt-1">—</div>
+                            </div>
+
+                            <!-- Expected hash (shown for comparison) -->
+                            <div class="mb-3">
+                                <span class="text-xs font-medium text-text-secondary">Expected Hash:</span>
+                                <div id="verify-expected-display" class="verify-compare-box mt-1">—</div>
+                            </div>
+
+                            <!-- Match / mismatch detail -->
+                            <div id="verify-detail" class="hidden mt-2 text-sm">
+                                <div id="verify-match-detail" class="hidden text-tor-accent">
+                                    <i class="fas fa-check-circle mr-1.5"></i>
+                                    <span class="font-medium">MATCH</span> — The computed hash matches the expected
+                                    hash.
+                                    File integrity is verified.
+                                </div>
+                                <div id="verify-mismatch-detail" class="hidden text-red-500">
+                                    <i class="fas fa-times-circle mr-1.5"></i>
+                                    <span class="font-medium">MISMATCH</span> — The computed hash does NOT match the
+                                    expected hash.
+                                    File may be corrupted or tampered.
+                                </div>
+                            </div>
+
+                            <!-- Info -->
+                            <div class="mt-4 p-3 bg-surface-muted/40 rounded-xl text-xs text-text-muted">
+                                <i class="fas fa-info-circle text-tor-violet mr-1.5"></i>
+                                <strong>Tip:</strong> Use this tool to verify file integrity by comparing the computed
+                                hash
+                                against a known checksum (e.g., from a software download page).
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
             <!-- Info cards -->
             <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="hash-card rounded-2xl p-4 text-center">
@@ -894,11 +1168,11 @@
                 </div>
                 <div class="hash-card rounded-2xl p-4 text-center">
                     <div class="w-10 h-10 rounded-full bg-cyan-50 flex items-center justify-center mx-auto mb-2">
-                        <i class="fas fa-lock text-cyan-600"></i>
+                        <i class="fas fa-check-double text-cyan-600"></i>
                     </div>
-                    <h4 class="font-semibold text-sm text-text-primary">Local &amp; Private</h4>
-                    <p class="text-text-muted text-xs mt-1">All processing happens in your browser. No data is sent to
-                        any server.</p>
+                    <h4 class="font-semibold text-sm text-text-primary">Verify Integrity</h4>
+                    <p class="text-text-muted text-xs mt-1">Upload a file and compare its hash against a known checksum
+                        to verify integrity.</p>
                 </div>
             </div>
 
@@ -1112,7 +1386,6 @@
 
         let currentHashAlg = 'sha256';
 
-        // Algorithm mapping
         const algMap = {
             'sha1': { label: 'SHA-1', fn: (text) => CryptoJS.SHA1(text).toString(CryptoJS.enc.Hex) },
             'sha256': { label: 'SHA-256', fn: (text) => CryptoJS.SHA256(text).toString(CryptoJS.enc.Hex) },
@@ -1146,7 +1419,6 @@
             }
         }
 
-        // Hash algorithm selection
         hashDom.algBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 hashDom.algBtns.forEach(b => b.classList.remove('active'));
@@ -1156,11 +1428,9 @@
             });
         });
 
-        // Hash events
         hashDom.btn.addEventListener('click', computeHash);
         hashDom.input.addEventListener('input', computeHash);
 
-        // Copy
         hashDom.copyBtn.addEventListener('click', () => {
             const val = hashDom.result.value;
             if (val) {
@@ -1172,7 +1442,6 @@
             }
         });
 
-        // Sample buttons
         document.querySelectorAll('.sample-hash-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 hashDom.input.value = btn.dataset.text;
@@ -1198,7 +1467,6 @@
 
         let currentHmacAlg = 'sha256';
 
-        // HMAC algorithm mapping
         const hmacMap = {
             'sha1': { label: 'SHA-1', fn: (text, key) => CryptoJS.HmacSHA1(text, key).toString(CryptoJS.enc.Hex) },
             'sha256': { label: 'SHA-256', fn: (text, key) => CryptoJS.HmacSHA256(text, key).toString(CryptoJS.enc.Hex) },
@@ -1242,7 +1510,6 @@
             }
         }
 
-        // HMAC algorithm selection
         hmacDom.algBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 hmacDom.algBtns.forEach(b => b.classList.remove('active'));
@@ -1252,12 +1519,10 @@
             });
         });
 
-        // HMAC events
         hmacDom.btn.addEventListener('click', computeHmac);
         hmacDom.input.addEventListener('input', computeHmac);
         hmacDom.key.addEventListener('input', computeHmac);
 
-        // Copy
         hmacDom.copyBtn.addEventListener('click', () => {
             const val = hmacDom.result.value;
             if (val) {
@@ -1269,12 +1534,305 @@
             }
         });
 
-        // Sample buttons
         document.querySelectorAll('.sample-hmac-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 hmacDom.input.value = btn.dataset.text;
                 computeHmac();
             });
+        });
+
+        // ============================================================
+        // ===== VERIFY TAB ===========================================
+        // ============================================================
+
+        const verifyDom = {
+            modeFileBtn: document.getElementById('verify-mode-file'),
+            modeTextBtn: document.getElementById('verify-mode-text'),
+            fileZone: document.getElementById('verify-file-zone'),
+            fileInput: document.getElementById('verify-file-input'),
+            filePreview: document.getElementById('verify-file-preview'),
+            fileName: document.getElementById('verify-file-name'),
+            fileSize: document.getElementById('verify-file-size'),
+            fileClear: document.getElementById('verify-file-clear'),
+            textArea: document.getElementById('verify-text-area'),
+            textInput: document.getElementById('verify-text-input'),
+            expected: document.getElementById('verify-expected'),
+            verifyBtn: document.getElementById('verify-btn'),
+            calcBtn: document.getElementById('verify-calc-btn'),
+            status: document.getElementById('verify-status'),
+            computed: document.getElementById('verify-computed'),
+            expectedDisplay: document.getElementById('verify-expected-display'),
+            detail: document.getElementById('verify-detail'),
+            matchDetail: document.getElementById('verify-match-detail'),
+            mismatchDetail: document.getElementById('verify-mismatch-detail'),
+            algBtns: document.querySelectorAll('#tab-verify .hash-alg-btn'),
+        };
+
+        let verifyMode = 'file';
+        let currentVerAlg = 'sha256';
+        let currentFileData = null;
+        let currentFileHash = null;
+
+        // Verify algorithm map (same as hash)
+        const verAlgMap = {
+            'sha1': { label: 'SHA-1', fn: (data) => CryptoJS.SHA1(data).toString(CryptoJS.enc.Hex) },
+            'sha256': { label: 'SHA-256', fn: (data) => CryptoJS.SHA256(data).toString(CryptoJS.enc.Hex) },
+            'sha384': { label: 'SHA-384', fn: (data) => CryptoJS.SHA384(data).toString(CryptoJS.enc.Hex) },
+            'sha512': { label: 'SHA-512', fn: (data) => CryptoJS.SHA512(data).toString(CryptoJS.enc.Hex) },
+            'md5': { label: 'MD5', fn: (data) => CryptoJS.MD5(data).toString(CryptoJS.enc.Hex) },
+        };
+
+        // ---- Mode toggle ----
+        verifyDom.modeFileBtn.addEventListener('click', () => {
+            verifyDom.modeFileBtn.classList.add('active');
+            verifyDom.modeTextBtn.classList.remove('active');
+            verifyMode = 'file';
+            verifyDom.fileZone.style.display = 'block';
+            if (currentFileData) {
+                verifyDom.filePreview.classList.remove('hidden');
+            }
+            verifyDom.textArea.classList.add('hidden');
+            clearVerifyResult();
+        });
+
+        verifyDom.modeTextBtn.addEventListener('click', () => {
+            verifyDom.modeTextBtn.classList.add('active');
+            verifyDom.modeFileBtn.classList.remove('active');
+            verifyMode = 'text';
+            verifyDom.fileZone.style.display = 'none';
+            verifyDom.filePreview.classList.add('hidden');
+            verifyDom.textArea.classList.remove('hidden');
+            clearVerifyResult();
+        });
+
+        // ---- File handling ----
+        verifyDom.fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleVerifyFile(e.target.files[0]);
+            }
+        });
+
+        // Drag and drop
+        verifyDom.fileZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            verifyDom.fileZone.classList.add('dragover');
+        });
+
+        verifyDom.fileZone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            verifyDom.fileZone.classList.remove('dragover');
+        });
+
+        verifyDom.fileZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            verifyDom.fileZone.classList.remove('dragover');
+            if (e.dataTransfer.files.length > 0) {
+                handleVerifyFile(e.dataTransfer.files[0]);
+            }
+        });
+
+        function handleVerifyFile(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const data = e.target.result;
+                currentFileData = data;
+                // Compute hash immediately
+                const algo = verAlgMap[currentVerAlg];
+                const wordArray = CryptoJS.lib.WordArray.create(data);
+                currentFileHash = algo.fn(wordArray);
+                // Show preview
+                verifyDom.fileName.textContent = file.name;
+                verifyDom.fileSize.textContent = formatFileSize(file.size);
+                verifyDom.filePreview.classList.remove('hidden');
+                verifyDom.fileZone.style.display = 'none';
+                // Auto-fill computed hash
+                verifyDom.computed.textContent = currentFileHash;
+                verifyDom.computed.className = 'verify-compare-box mt-1';
+                // Clear status
+                clearVerifyResult();
+                // Update status
+                setVerifyStatus('idle', 'File loaded. Click "Verify" to compare.');
+                showToast('File loaded: ' + file.name);
+            };
+            reader.onerror = () => {
+                showToast('Error reading file');
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        verifyDom.fileClear.addEventListener('click', () => {
+            currentFileData = null;
+            currentFileHash = null;
+            verifyDom.filePreview.classList.add('hidden');
+            verifyDom.fileZone.style.display = 'block';
+            verifyDom.fileInput.value = '';
+            verifyDom.computed.textContent = '—';
+            verifyDom.computed.className = 'verify-compare-box mt-1';
+            clearVerifyResult();
+            setVerifyStatus('idle', 'Ready');
+        });
+
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / 1048576).toFixed(1) + ' MB';
+        }
+
+        // ---- Text mode ----
+        verifyDom.textInput.addEventListener('input', () => {
+            if (verifyMode === 'text') {
+                clearVerifyResult();
+                // Auto-compute hash on input
+                const text = verifyDom.textInput.value;
+                if (text) {
+                    const algo = verAlgMap[currentVerAlg];
+                    const hash = algo.fn(text);
+                    verifyDom.computed.textContent = hash;
+                    verifyDom.computed.className = 'verify-compare-box mt-1';
+                    setVerifyStatus('idle', 'Text loaded. Click "Verify" to compare.');
+                } else {
+                    verifyDom.computed.textContent = '—';
+                    verifyDom.computed.className = 'verify-compare-box mt-1';
+                    setVerifyStatus('idle', 'Ready');
+                }
+            }
+        });
+
+        // ---- Algorithm selection ----
+        verifyDom.algBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                verifyDom.algBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentVerAlg = btn.dataset.veralg;
+                // Recompute if file or text available
+                if (verifyMode === 'file' && currentFileData) {
+                    const algo = verAlgMap[currentVerAlg];
+                    const wordArray = CryptoJS.lib.WordArray.create(currentFileData);
+                    currentFileHash = algo.fn(wordArray);
+                    verifyDom.computed.textContent = currentFileHash;
+                    verifyDom.computed.className = 'verify-compare-box mt-1';
+                } else if (verifyMode === 'text' && verifyDom.textInput.value) {
+                    const algo = verAlgMap[currentVerAlg];
+                    const hash = algo.fn(verifyDom.textInput.value);
+                    verifyDom.computed.textContent = hash;
+                    verifyDom.computed.className = 'verify-compare-box mt-1';
+                }
+                clearVerifyResult();
+                setVerifyStatus('idle', 'Algorithm changed');
+            });
+        });
+
+        // ---- Compute Hash (just compute, don't verify) ----
+        verifyDom.calcBtn.addEventListener('click', () => {
+            computeVerifyHash();
+            showToast('Hash computed');
+        });
+
+        function computeVerifyHash() {
+            if (verifyMode === 'file' && currentFileData) {
+                const algo = verAlgMap[currentVerAlg];
+                const wordArray = CryptoJS.lib.WordArray.create(currentFileData);
+                currentFileHash = algo.fn(wordArray);
+                verifyDom.computed.textContent = currentFileHash;
+                verifyDom.computed.className = 'verify-compare-box mt-1';
+                setVerifyStatus('idle', 'Hash computed');
+                return true;
+            } else if (verifyMode === 'text' && verifyDom.textInput.value) {
+                const algo = verAlgMap[currentVerAlg];
+                const hash = algo.fn(verifyDom.textInput.value);
+                verifyDom.computed.textContent = hash;
+                verifyDom.computed.className = 'verify-compare-box mt-1';
+                setVerifyStatus('idle', 'Hash computed');
+                return true;
+            } else {
+                showToast('No data to hash. Please load a file or enter text.');
+                return false;
+            }
+        }
+
+        // ---- Verify ----
+        verifyDom.verifyBtn.addEventListener('click', () => {
+            // First, ensure we have a computed hash
+            let computed = verifyDom.computed.textContent;
+            if (computed === '—' || !computed) {
+                const success = computeVerifyHash();
+                if (!success) return;
+                computed = verifyDom.computed.textContent;
+            }
+
+            const expected = verifyDom.expected.value.trim();
+            if (!expected) {
+                showToast('Please enter the expected hash to compare.');
+                return;
+            }
+
+            // Display expected
+            verifyDom.expectedDisplay.textContent = expected;
+            verifyDom.expectedDisplay.className = 'verify-compare-box mt-1';
+
+            // Compare (case insensitive)
+            const match = computed.toLowerCase() === expected.toLowerCase();
+
+            verifyDom.detail.classList.remove('hidden');
+            if (match) {
+                verifyDom.matchDetail.classList.remove('hidden');
+                verifyDom.mismatchDetail.classList.add('hidden');
+                verifyDom.computed.className = 'verify-compare-box mt-1 match';
+                verifyDom.expectedDisplay.className = 'verify-compare-box mt-1 match';
+                setVerifyStatus('success', '✓ VERIFIED — Hash matches!');
+                showToast('✅ Hash verified successfully!');
+            } else {
+                verifyDom.mismatchDetail.classList.remove('hidden');
+                verifyDom.matchDetail.classList.add('hidden');
+                verifyDom.computed.className = 'verify-compare-box mt-1 mismatch';
+                verifyDom.expectedDisplay.className = 'verify-compare-box mt-1 mismatch';
+                setVerifyStatus('fail', '✗ MISMATCH — Hash does not match');
+                showToast('❌ Hash mismatch!');
+            }
+        });
+
+        function clearVerifyResult() {
+            verifyDom.detail.classList.add('hidden');
+            verifyDom.matchDetail.classList.add('hidden');
+            verifyDom.mismatchDetail.classList.add('hidden');
+            verifyDom.computed.className = 'verify-compare-box mt-1';
+            verifyDom.expectedDisplay.className = 'verify-compare-box mt-1';
+            verifyDom.expectedDisplay.textContent = '—';
+        }
+
+        function setVerifyStatus(type, message) {
+            const el = verifyDom.status;
+            el.className = 'verify-status ' + type;
+            const icons = {
+                'idle': 'fa-circle',
+                'success': 'fa-check-circle',
+                'fail': 'fa-times-circle',
+                'pending': 'fa-spinner fa-spin'
+            };
+            el.innerHTML = '<i class="fas ' + (icons[type] || 'fa-circle') + '"></i> ' + message;
+        }
+
+        // ---- Auto-compute on text input with debounce ----
+        let verifyDebounce = null;
+        verifyDom.textInput.addEventListener('input', () => {
+            clearTimeout(verifyDebounce);
+            verifyDebounce = setTimeout(() => {
+                if (verifyMode === 'text') {
+                    const text = verifyDom.textInput.value;
+                    if (text) {
+                        const algo = verAlgMap[currentVerAlg];
+                        const hash = algo.fn(text);
+                        verifyDom.computed.textContent = hash;
+                        verifyDom.computed.className = 'verify-compare-box mt-1';
+                        setVerifyStatus('idle', 'Text loaded. Click "Verify" to compare.');
+                    } else {
+                        verifyDom.computed.textContent = '—';
+                        verifyDom.computed.className = 'verify-compare-box mt-1';
+                        setVerifyStatus('idle', 'Ready');
+                    }
+                    clearVerifyResult();
+                }
+            }, 300);
         });
 
         // ============================================================
@@ -1285,26 +1843,30 @@
         const tabPanels = {
             hash: document.getElementById('tab-hash'),
             hmac: document.getElementById('tab-hmac'),
+            verify: document.getElementById('tab-verify'),
         };
 
         tabButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 const tab = btn.dataset.tab;
 
-                // Update buttons
                 tabButtons.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
 
-                // Update panels
                 Object.keys(tabPanels).forEach(key => {
                     tabPanels[key].classList.toggle('active', key === tab);
                 });
 
-                // Trigger compute on switch
                 if (tab === 'hash') {
                     computeHash();
-                } else {
+                } else if (tab === 'hmac') {
                     computeHmac();
+                } else if (tab === 'verify') {
+                    // If file is loaded, show it
+                    if (currentFileData) {
+                        verifyDom.fileZone.style.display = 'none';
+                        verifyDom.filePreview.classList.remove('hidden');
+                    }
                 }
             });
         });
@@ -1313,10 +1875,10 @@
         // ===== INIT =================================================
         // ============================================================
 
-        // Initial compute
         setTimeout(() => {
             computeHash();
             computeHmac();
+            setVerifyStatus('idle', 'Ready — load a file or enter text');
         }, 300);
 
         // ============================================================
