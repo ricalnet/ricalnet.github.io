@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Metadata Cleaner — Ricalnet</title>
+    <meta name="description"
+        content="Remove hidden metadata from PDF, JPG, PNG, DOCX, and more. All processing stays local, no uploads." />
+    <link rel="icon" type="image/x-icon" href="../img/logo.png" />
+
+    <!-- ===== SELF-HOSTED FONTS & ICONS ===== -->
+    <link href="../assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="../assets/fontawesome/css/solid.css" rel="stylesheet" />
+    <link href="../assets/fontawesome/css/brands.css" rel="stylesheet" />
+    <link href="../assets/css/fonts.css" rel="stylesheet" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link href="../assets/css/aos.css" rel="stylesheet" />
+
+    <!-- EXIFR -->
+    <script src="lib/metadata-cleaner/exifr.min.js"></script>
+    <!-- FileSaver -->
+    <script src="lib/metadata-cleaner/FileSaver.min.js"></script>
+    <!-- JSZip -->
+    <script src="lib/metadata-cleaner/jszip.min.js"></script>
+    <!-- PDF-LIB -->
+    <script src="lib/metadata-cleaner/pdf-lib.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'source-sans-pro': ['"Source Sans Pro"', 'Roboto', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        roboto: ['Roboto', '"Source Sans Pro"', 'Inter', 'system-ui', 'sans-serif'],
+                        inter: ['Inter', 'Roboto', '"Source Sans Pro"', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    colors: {
+                        tor: {
+                            violet: '#7c3aed',
+                            'violet-light': '#8b5cf6',
+                            'violet-dark': '#5b21b6',
+                            'violet-deep': '#4c1d95',
+                            'violet-soft': '#ede9fe',
+                            accent: '#68B030',
+                            'accent-cyan': '#06b6d4',
+                            'accent-amber': '#f59e0b',
+                        },
+                        surface: {
+                            light: '#faf9fe',
+                            card: '#ffffff',
+                            border: '#ede9f0',
+                            muted: '#f5f3fa',
+                            dark: '#0f0e1a',
+                        },
+                        text: {
+                            primary: '#0f0e1a',
+                            secondary: '#52506e',
+                            muted: '#9492ae',
+                            inverse: '#f8f7fc',
+                        }
+                    },
+                    boxShadow: {
+                        'elevated': '0 1px 3px rgba(0,0,0,0.02), 0 8px 40px rgba(124,58,237,0.06), 0 20px 80px rgba(124,58,237,0.04)',
+                        'elevated-lg': '0 1px 3px rgba(0,0,0,0.02), 0 16px 64px rgba(124,58,237,0.08), 0 32px 120px rgba(124,58,237,0.04)',
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-down': 'fadeDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-right': 'fadeRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-left': 'fadeLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'scale-in': 'scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-soft': 'pulseSoft 2.4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeUp: { '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        fadeDown: { '0%': { opacity: '0', transform: 'translateY(-40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        fadeRight: { '0%': { opacity: '0', transform: 'translateX(-40px)' }, '100%': { opacity: '1', transform: 'translateX(0)' } },
+                        fadeLeft: { '0%': { opacity: '0', transform: 'translateX(40px)' }, '100%': { opacity: '1', transform: 'translateX(0)' } },
+                        scaleIn: { '0%': { opacity: '0', transform: 'scale(0.94)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-14px)' } },
+                        pulseSoft: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0.5' } },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .drop-zone {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 2px dashed #ede9f0;
+            background: #faf9fe;
+        }
+
+        .drop-zone.dragover {
+            border-color: #7c3aed;
+            background: #ede9fe;
+            transform: scale(1.01);
+        }
+
+        .drop-zone .file-icon-wrapper {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .drop-zone:hover .file-icon-wrapper {
+            transform: translateY(-4px) scale(1.04);
+        }
+
+        .badge-format {
+            font-size: 0.55rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            padding: 0.25rem 0.7rem;
+            border-radius: 9999px;
+            background: #ede9fe;
+            color: #5b21b6;
+            border: 1px solid rgba(124, 58, 237, 0.12);
+        }
+
+        .badge-format.badge-pdf {
+            background: #fef3c7;
+            color: #b45309;
+            border-color: rgba(180, 83, 9, 0.12);
+        }
+
+        .badge-format.badge-img {
+            background: #dbeafe;
+            color: #1e40af;
+            border-color: rgba(30, 64, 175, 0.12);
+        }
+
+        .badge-format.badge-doc {
+            background: #d1fae5;
+            color: #065f46;
+            border-color: rgba(6, 95, 70, 0.12);
+        }
+
+        .badge-format.badge-other {
+            background: #f3e8ff;
+            color: #6d28d9;
+            border-color: rgba(109, 40, 217, 0.12);
+        }
+
+        .cleaned-badge {
+            background: #68B030;
+            color: white;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            padding: 0.2rem 0.7rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .privacy-pill {
+            background: rgba(124, 58, 237, 0.06);
+            border: 1px solid rgba(124, 58, 237, 0.10);
+            border-radius: 9999px;
+            padding: 0.3rem 1rem;
+            font-size: 0.7rem;
+            color: #52506e;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .privacy-pill i {
+            color: #7c3aed;
+        }
+
+        .risk-badge {
+            font-size: 0.55rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            padding: 0.2rem 0.65rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            border: 1px solid transparent;
+        }
+
+        .risk-badge.risk-high {
+            background: #fef2f2;
+            color: #b91c1c;
+            border-color: rgba(185, 28, 28, 0.15);
+        }
+
+        .risk-badge.risk-medium {
+            background: #fffbeb;
+            color: #b45309;
+            border-color: rgba(180, 83, 9, 0.15);
+        }
+
+        .risk-badge.risk-low {
+            background: #ecfdf5;
+            color: #065f46;
+            border-color: rgba(6, 95, 70, 0.15);
+        }
+
+        .risk-badge.risk-none {
+            background: #f3f4f6;
+            color: #6b7280;
+            border-color: rgba(107, 114, 128, 0.12);
+        }
+
+        .meta-table-row:hover {
+            background: #f5f3fa;
+        }
+
+        .file-thumb {
+            width: 56px;
+            height: 56px;
+            border-radius: 10px;
+            object-fit: cover;
+            background: #f5f3fa;
+            flex-shrink: 0;
+            border: 1px solid #ede9f0;
+            transition: transform 0.2s ease;
+        }
+
+        .file-thumb:hover {
+            transform: scale(1.05);
+        }
+
+        .file-thumb-placeholder {
+            width: 56px;
+            height: 56px;
+            border-radius: 10px;
+            background: #ede9fe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #7c3aed;
+            flex-shrink: 0;
+            border: 1px solid #ede9f0;
+        }
+
+        @media (max-width: 640px) {
+            .drop-zone {
+                padding: 1.5rem 1rem;
+            }
+
+            .badge-format {
+                font-size: 0.45rem;
+                padding: 0.15rem 0.5rem;
+            }
+
+            .file-thumb,
+            .file-thumb-placeholder {
+                width: 44px;
+                height: 44px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="font-source-sans-pro bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+
+    <!-- ===== AMBIENT BG ===== -->
+    <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div class="absolute inset-0 bg-grid-subtle"></div>
+        <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/5 rounded-full blur-[160px]"></div>
+        <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/3 rounded-full blur-[180px]"></div>
+        <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/4 rounded-full blur-[140px]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light"></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ===== NAVBAR =============================================== -->
+    <!-- ============================================================ -->
+    <header
+        class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-[72px]">
+    
+                <a href="../index" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+                    data-aos-duration="600">
+                    <img src="../img/logo.png" alt="Ricalnet Logo"
+                        class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
+                    <div class="leading-tight hidden sm:block">
+                        <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
+                        <span
+                            class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Open‑Source
+                            Privacy
+                            Stack</span>
+                    </div>
+                </a>
+    
+                <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down"
+                    data-aos-duration="600">
+                    <a href="../index#hero" class="nav-link">Home</a>
+    
+                    <div class="relative group">
+                        <a href="../index#pain-points" class="nav-link flex items-center gap-1">
+                            Why Self‑Host
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../index#pain-points" class="dropdown-item">The Lock‑in Trap</a>
+                            <a href="../index#how-it-works" class="dropdown-item">Our Approach</a>
+                            <a href="../index#features" class="dropdown-item">Sovereign Stack</a>
+                            <a href="../resources#legal-resources" class="dropdown-item">Legal &amp; Advocacy</a>
+                        </div>
+                    </div>
+    
+                    <div class="relative group">
+                        <a href="../resources#hero" class="nav-link flex items-center gap-1">
+                            Resources
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                            <a href="../resources#legal-resources" class="dropdown-item">Legal Resources</a>
+                            <a href="../resources#in-house-tools" class="dropdown-item">In‑House Tools</a>
+                            <a href="../resources" class="dropdown-item">All Resources</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="../resources#hero" class="nav-link nav-link-active flex items-center gap-1">
+                            Tools
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../tools/metadata-cleaner" class="dropdown-item">Metadata Cleaner</a>
+                            <a href="../tools/quantum-hasher" class="dropdown-item">Quantum Hasher</a>
+                            <a href="../tools/ip-intelligence" class="dropdown-item">IP Intelligence</a>
+                            <a href="../tools/password-generator" class="dropdown-item">Password Generator</a>
+                            <a href="../tools/qr-builder" class="dropdown-item">QR Builder</a>
+                            <a href="../tools/whiteboard" class="dropdown-item">Whiteboard</a>
+                            <a href="../resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="about#hero" class="nav-link flex items-center gap-1">
+                            About
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../about#our-mission" class="dropdown-item">Our Mission</a>
+                            <a href="../index#comparison" class="dropdown-item">Comparison</a/>
+                            <a href="../index#faq" class="dropdown-item">FAQ</a>
+                            <a href="../index#cta" class="dropdown-item">Contact</a>
+                            <a href="../about#cta-support" class="dropdown-item">Support Us</a>
+                        </div>
+                    </div>
+                </nav>
+    
+                <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
+                    <a href="https://auth.ricalnet.my.id" class="hidden lg:inline-flex btn-sso">
+                        <i class="fas fa-key"></i> Login with SSO
+                    </a>
+                    <button id="mobile-menu-toggle"
+                        class="lg:hidden w-9 h-9 rounded-full hover:bg-surface-muted flex items-center justify-center transition-colors"
+                        aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars text-text-secondary text-lg"></i>
+                    </button>
+                </div>
+    
+            </div>
+        </div>
+    </header>
+    
+    <!-- ============================================================ -->
+    <!-- ===== MOBILE NAV =========================================== -->
+    <!-- ============================================================ -->
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <img src="../img/logo.png" alt="Ricalnet" />
+                <span>Ricalnet</span>
+            </div>
+            <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+    
+        <div class="mobile-menu-scroll">
+    
+            <a href="../index#hero" class="nav-item" data-close-mobile>
+                <i class="fas fa-home"></i> Home
+            </a>
+    
+            <!-- ===== ADVOCACY DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-advocacy">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Why Self‑Host
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../index#pain-points" class="sub-link" data-close-mobile>
+                        <i class="fas fa-exclamation-triangle"></i> The Lock‑in Trap
+                    </a>
+                    <a href="../index#how-it-works" class="sub-link" data-close-mobile>
+                        <i class="fas fa-route"></i> Our Approach
+                    </a>
+                    <a href="../index#features" class="sub-link" data-close-mobile>
+                        <i class="fas fa-star"></i> Sovereign Stack
+                    </a><a href="../resources#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal &amp; Advocacy
+                    </a>
+                </div>
+            </div>
+    
+            <!-- ===== RESOURCES DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-resources">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../resources#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-lock"></i> Privacy Tools
+                    </a>
+                    <a href="../resources#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal Resources
+                    </a>
+                    <a href="../resources#in-house-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-cubes"></i> In‑House Tools
+                    </a>
+                    <a href="../resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-folder-open"></i> All Resources
+                    </a>
+                </div>
+            </div>
+    
+            <!-- ===== TOOLS DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-tools">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../tools/metadata-cleaner" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> Metadata Cleaner
+                    </a>
+                    <a href="../tools/quantum-hasher" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> Quantum Hasher
+                    </a>
+                    <a href="../tools/ip-intelligence" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> IP Intelligence
+                    </a>
+                    <a href="../tools/password-generator" class="sub-link" data-close-mobile>
+                        <i class="fas fa-key"></i> Password Generator
+                    </a>
+                    <a href="../tools/qr-builder" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> QR Builder
+                    </a>
+                    <a href="../tools/whiteboard" class="sub-link" data-close-mobile>
+                        <i class="fas fa-pen-fancy"></i> Whiteboard
+                    </a>
+                    <a href="../resources#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-user-secret"></i> Privacy Tools
+                    </a>
+                </div>
+            </div>
+    
+            <!-- ===== ABOUT DROPDOWN ===== -->
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-about">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../about#our-mission" class="sub-link" data-close-mobile>
+                        <i class="fas fa-bullseye"></i> Our Mission
+                    </a>
+                    <a href="../index#comparison" class="sub-link" data-close-mobile>
+                        <i class="fas fa-arrows-left-right"></i> Comparison
+                    </a>
+                    <a href="../index#faq" class="sub-link" data-close-mobile>
+                        <i class="fas fa-question-circle"></i> FAQ
+                    </a>
+                    <a href="../index#cta" class="sub-link" data-close-mobile>
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                    <a href="../about#cta-support" class="sub-link" data-close-mobile>
+                        <i class="fas fa-hand-holding-heart"></i> Support Us
+                    </a>
+                </div>
+            </div>
+    
+            <a href="https://auth.ricalnet.my.id" class="mt-3 block w-full text-center btn-sso justify-center"
+                data-close-mobile>
+                <i class="fas fa-key"></i> Login with SSO
+            </a>
+    
+            <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+                <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+                    <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> Open‑Source · Zero‑Trust · No Lock‑in
+                </span>
+            </div>
+    
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ===== TOOL SECTION ========================================= -->
+    <!-- ============================================================ -->
+    <section class="relative overflow-hidden pt-[72px] pb-12 md:pt-24 md:pb-16 bg-surface-light">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-start gap-4" data-aos="fade-up" data-aos-duration="700">
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="badge-pill"><i class="fas fa-shield-alt"></i> Privacy Tool</span>
+                    <span class="badge-pill"
+                        style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);">
+                        <i class="fas fa-microchip"></i> 100% Local
+                    </span>
+                    <span class="badge-pill"
+                        style="background:rgba(245,158,11,0.08);color:#b45309;border-color:rgba(245,158,11,0.12);">
+                        <i class="fas fa-chart-simple"></i> Risk Score
+                    </span>
+                    <span class="badge-pill"
+                        style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);">
+                        <i class="fas fa-image"></i> Preview
+                    </span>
+                </div>
+                <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.08] tracking-tight">
+                    <span class="text-text-primary">Metadata</span>
+                    <span class="text-tor-violet">Cleaner</span>
+                </h1>
+                <p class="text-text-secondary text-lg md:text-xl max-w-2xl leading-relaxed">
+                    Strip hidden metadata from PDFs, images, office documents, and more.
+                    <strong class="text-text-primary">Everything stays on your device.</strong>
+                </p>
+                <div class="flex flex-wrap items-center gap-3 text-sm text-text-muted">
+                    <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-tor-accent text-xs"></i>
+                        PDF · JPG · PNG · DOCX · PPTX · XLSX</span>
+                    <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-tor-accent text-xs"></i>
+                        EXIF · IPTC · XMP · Core properties</span>
+                    <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-tor-accent text-xs"></i>
+                        Zero upload · Private</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TOOL MAIN ===== -->
+    <section class="py-8 pb-20 md:pb-28">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- ===== DROP ZONE ===== -->
+            <div data-aos="fade-up" data-aos-duration="700" data-aos-delay="100">
+                <div id="dropZone"
+                    class="drop-zone rounded-3xl p-8 md:p-12 text-center cursor-pointer relative transition-all duration-300 shadow-elevated border border-surface-border/60 bg-white/60 backdrop-blur-sm">
+                    <input type="file" id="fileInput" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                        multiple accept=".pdf,.jpg,.jpeg,.png,.gif,.bmp,.webp,.tiff,.tif,.docx,.pptx,.xlsx,.txt,.csv" />
+                    <div class="file-icon-wrapper transition-transform pointer-events-none">
+                        <div
+                            class="w-20 h-20 mx-auto rounded-2xl bg-tor-violet/10 flex items-center justify-center text-tor-violet text-3xl mb-4">
+                            <i class="fas fa-file-upload"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-text-primary">Drop your files here</h3>
+                        <p class="text-text-secondary text-sm mt-1">or</p>
+                        <button id="selectFilesBtn"
+                            class="mt-3 inline-flex items-center gap-2 bg-tor-violet hover:bg-tor-violet-dark text-white px-6 py-3 rounded-full font-semibold shadow-md shadow-tor-violet/25 transition-all duration-300 hover:shadow-lg hover:shadow-tor-violet/40 pointer-events-auto relative z-10">
+                            <i class="fas fa-folder-open"></i> Select Files
+                        </button>
+                        <div class="flex flex-wrap justify-center gap-1.5 mt-4">
+                            <span class="badge-format badge-pdf">PDF</span>
+                            <span class="badge-format badge-img">JPG</span>
+                            <span class="badge-format badge-img">PNG</span>
+                            <span class="badge-format badge-doc">DOCX</span>
+                            <span class="badge-format badge-doc">PPTX</span>
+                            <span class="badge-format badge-doc">XLSX</span>
+                            <span class="badge-format badge-other">GIF · WEBP · TIFF</span>
+                        </div>
+                        <div class="mt-4 flex items-center justify-center gap-3 text-xs text-text-muted">
+                            <span class="privacy-pill"><i class="fas fa-lock"></i> All processing is local — nothing is
+                                uploaded</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== FILE LIST ===== -->
+            <div id="fileListContainer" class="mt-8 hidden" data-aos="fade-up" data-aos-duration="600"
+                data-aos-delay="200">
+                <div
+                    class="bg-white/70 backdrop-blur-sm rounded-2xl border border-surface-border/60 shadow-elevated overflow-hidden">
+                    <div
+                        class="px-6 py-4 border-b border-surface-border/60 flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex items-center gap-3">
+                            <span class="font-semibold text-text-primary flex items-center gap-2">
+                                <i class="fas fa-list text-tor-violet"></i>
+                                <span id="fileCount">0</span> file(s)
+                            </span>
+                            <span class="text-text-muted text-sm">·</span>
+                            <span class="text-text-muted text-sm" id="totalSize">0 KB</span>
+                        </div>
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <button id="downloadZipBtn"
+                                class="text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-2 rounded-full text-sm font-semibold shadow-md shadow-emerald-600/25 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-600/40 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2">
+                                <i class="fas fa-file-zipper"></i> ZIP All
+                            </button>
+                            <button id="cleanAllBtn"
+                                class="text-white bg-tor-violet hover:bg-tor-violet-dark px-4 py-2 rounded-full text-sm font-semibold shadow-md shadow-tor-violet/25 transition-all duration-300 hover:shadow-lg hover:shadow-tor-violet/40 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2">
+                                <i class="fas fa-broom"></i> Clean All
+                            </button>
+                            <button id="clearAllBtn"
+                                class="text-text-muted hover:text-red-500 px-3 py-2 rounded-full text-sm transition-colors">
+                                <i class="fas fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="fileList" class="divide-y divide-surface-border/50 max-h-[520px] overflow-y-auto">
+                        <!-- dynamically populated -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== SUPPORTED FORMATS ===== -->
+            <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4" data-aos="fade-up" data-aos-duration="600"
+                data-aos-delay="300">
+                <div
+                    class="bg-white/60 backdrop-blur-sm rounded-2xl p-5 border border-surface-border/60 shadow-elevated flex items-start gap-3">
+                    <div
+                        class="w-9 h-9 rounded-xl bg-tor-violet/10 flex items-center justify-center flex-shrink-0 text-tor-violet">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-text-primary text-sm">PDF</h4>
+                        <p class="text-text-muted text-xs">Author, creator, producer, creation date, subject, keywords,
+                            custom properties</p>
+                    </div>
+                </div>
+                <div
+                    class="bg-white/60 backdrop-blur-sm rounded-2xl p-5 border border-surface-border/60 shadow-elevated flex items-start gap-3">
+                    <div
+                        class="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center flex-shrink-0 text-amber-600">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-text-primary text-sm">Images (JPG, PNG, WEBP, GIF, TIFF)</h4>
+                        <p class="text-text-muted text-xs">EXIF, IPTC, XMP — GPS, camera model, timestamp, software,
+                            copyright, comments</p>
+                    </div>
+                </div>
+                <div
+                    class="bg-white/60 backdrop-blur-sm rounded-2xl p-5 border border-surface-border/60 shadow-elevated flex items-start gap-3">
+                    <div
+                        class="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0 text-emerald-600">
+                        <i class="fas fa-file-word"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-text-primary text-sm">Office (DOCX, PPTX, XLSX)</h4>
+                        <p class="text-text-muted text-xs">Author, last modified by, company, revision, creation date,
+                            template, custom properties</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== PRIVACY INFO ===== -->
+            <div class="mt-8 p-5 bg-tor-violet/5 border border-tor-violet/10 rounded-2xl flex flex-wrap items-center justify-between gap-3"
+                data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
+                <div class="flex items-center gap-3 text-sm text-text-secondary">
+                    <i class="fas fa-shield-alt text-tor-violet text-lg"></i>
+                    <span><strong class="text-text-primary">Your privacy is guaranteed.</strong> All files are processed
+                        entirely in your browser. No data is ever sent to a server.</span>
+                </div>
+                <a href="https://github.com/ricalnet/ricalnet.github.io/" target="_blank" rel="noopener"
+                    class="text-xs text-tor-violet font-medium hover:underline flex items-center gap-1">
+                    <i class="fab fa-github"></i> Source code
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== FOOTER ===== -->
+    <!-- ============================================================ -->
+    <footer class="relative overflow-hidden border-t border-tor-violet/10">
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
+        </div>
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
+        </div>
+    
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+    
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+    
+                <div class="col-span-2 md:col-span-3 lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
+                            <img src="../img/logo.png" alt="Ricalnet"
+                                class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
+                        </div>
+                        <div>
+                            <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
+                            <span
+                                class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Open‑Source
+                                Privacy
+                                Stack</span>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
+                        Sovereign infrastructure &amp; private digital services. No lock‑in, zero‑trust, and built for
+                        freedom.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 mt-5">
+                        <a href="https://github.com/ricalnet" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fa-brands fa-github text-base"></i>
+                        </a>
+                        <a href="mailto:ricalnet@duck.com"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-envelope text-base"></i>
+                        </a>
+                        <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-heartbeat text-base"></i>
+                        </a>
+                        <span
+                            class="pgp-fingerprint text-[0.6rem] px-3 py-1.5 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                            onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                            <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                        </span>
+                    </div>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Why Self‑Host</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="../about#our-mission" class="footer-link">Our Mission</a></li>
+                        <li><a href="../resources" class="footer-link">Resources</a></li>
+                        <li><a href="../gallery" class="footer-link">Gallery</a></li>
+                        <li><a href="https://docs.ricalnet.my.id" class="footer-link">Blog</a></li>
+                        <li><a href="../index#cta" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Stack</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="../index#features" class="footer-link">Sovereign Infrastructure</a></li>
+                        <li><a href="../index#private-digital-services" class="footer-link">Private Services</a></li>
+                        <li><a href="https://search.ricalnet.my.id" class="footer-link">Search Engine</a></li>
+                        <li><a href="https://link.ricalnet.my.id" class="footer-link">URL Shortener</a></li>
+                        <li><a href="https://translate.ricalnet.my.id" class="footer-link">Translation</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Community</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
+                                target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="https://github.com/ricalnet/digital-independence" class="footer-link"
+                                target="_blank">Become a
+                                Contributor <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="../about#cta-support" class="footer-link">Support</a></li>
+                        <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Legal</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="../resources#legal-resources" class="footer-link">Legal Resources</a></li>
+                        <li><a href="../terms-of-service" class="footer-link">Terms of Service</a></li>
+                        <li><a href="../privacy" class="footer-link">Privacy Policy</a></li>
+                    </ul>
+                </div>
+    
+            </div>
+    
+            <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+                <p class="text-xs tracking-wide"> COPYRIGHT (CC BY)</p>
+                <div class="flex items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
+                    <span class="text-text-secondary/70">#OpenSource</span>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span class="text-text-secondary/70">#NoLockIn</span>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span class="text-text-secondary/70">#ZeroTrust</span>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span class="text-tor-violet font-semibold">#PrivacyFirst</span>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span
+                        class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                        onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                        <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                    </span>
+                </div>
+            </div>
+    
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- ===== SCRIPTS ============================================== -->
+    <!-- ============================================================ -->
+
+    <script src="../assets/js/aos.js"></script>
+    <script src="../assets/js/components.js"></script>
+
+    <script>
+        // ================================================================
+        //  PGP / Toast
+        // ================================================================
+        const PGP_FINGERPRINT = 'ABCD 1234 EFGH 5678 IJKL 9012 MNOP 3456 QRST 7890';
+
+        function copyPGP() {
+            navigator.clipboard.writeText(PGP_FINGERPRINT).then(() => {
+                showToast('PGP fingerprint copied!');
+            }).catch(() => {
+                const ta = document.createElement('textarea');
+                ta.value = PGP_FINGERPRINT;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                showToast('PGP fingerprint copied!');
+            });
+        }
+
+        function showToast(msg) {
+            const el = document.createElement('div');
+            el.className =
+                'fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] transition-all duration-300';
+            el.innerHTML = '<i class="fas fa-check-circle text-tor-accent mr-2"></i> ' + msg;
+            document.body.appendChild(el);
+            setTimeout(() => {
+                el.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => el.remove(), 300);
+            }, 2500);
+        }
+
+        // ================================================================
+        //  METADATA CLEANER
+        // ================================================================
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // ---- DOM refs ----
+            const dropZone = document.getElementById('dropZone');
+            const fileInput = document.getElementById('fileInput');
+            const selectFilesBtn = document.getElementById('selectFilesBtn');
+            const fileList = document.getElementById('fileList');
+            const fileListContainer = document.getElementById('fileListContainer');
+            const fileCount = document.getElementById('fileCount');
+            const totalSize = document.getElementById('totalSize');
+            const cleanAllBtn = document.getElementById('cleanAllBtn');
+            const clearAllBtn = document.getElementById('clearAllBtn');
+            const downloadZipBtn = document.getElementById('downloadZipBtn');
+
+            // ---- state ----
+            let files = [];
+            let idCounter = 0;
+            let isProcessing = false;
+
+            // ---- helpers ----
+            function formatSize(bytes) {
+                if (bytes < 1024) return bytes + ' B';
+                if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+                return (bytes / 1048576).toFixed(1) + ' MB';
+            }
+
+            function getFileExtension(name) {
+                return name.split('.').pop().toLowerCase();
+            }
+
+            function getFormatBadge(ext) {
+                const map = {
+                    pdf: 'badge-pdf', jpg: 'badge-img', jpeg: 'badge-img', png: 'badge-img', gif: 'badge-img',
+                    webp: 'badge-img', bmp: 'badge-img', tiff: 'badge-img', tif: 'badge-img', docx: 'badge-doc',
+                    pptx: 'badge-doc', xlsx: 'badge-doc'
+                };
+                return map[ext] || 'badge-other';
+            }
+
+            function getFormatIcon(ext) {
+                const map = {
+                    pdf: 'fa-file-pdf', jpg: 'fa-file-image', jpeg: 'fa-file-image', png: 'fa-file-image',
+                    gif: 'fa-file-image', webp: 'fa-file-image', bmp: 'fa-file-image', tiff: 'fa-file-image',
+                    tif: 'fa-file-image', docx: 'fa-file-word', pptx: 'fa-file-powerpoint', xlsx: 'fa-file-excel'
+                };
+                return map[ext] || 'fa-file';
+            }
+
+            function isImage(ext) { return ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'tiff', 'tif'].includes(ext); }
+
+            function isPDF(ext) { return ext === 'pdf'; }
+
+            function isOffice(ext) { return ['docx', 'pptx', 'xlsx'].includes(ext); }
+
+            // ---- generate thumbnail ----
+            function generateThumbnail(file) {
+                return new Promise((resolve) => {
+                    const ext = getFileExtension(file.name);
+                    if (isImage(ext)) {
+                        const url = URL.createObjectURL(file);
+                        const img = new Image();
+                        img.onload = function () {
+                            const canvas = document.createElement('canvas');
+                            // Maintain aspect ratio, max 120px width/height
+                            let w = this.naturalWidth || this.width;
+                            let h = this.naturalHeight || this.height;
+                            const max = 120;
+                            if (w > h) {
+                                if (w > max) {
+                                    h = (h / w) * max;
+                                    w = max;
+                                }
+                            } else {
+                                if (h > max) {
+                                    w = (w / h) * max;
+                                    h = max;
+                                }
+                            }
+                            canvas.width = w;
+                            canvas.height = h;
+                            const ctx = canvas.getContext('2d');
+                            ctx.drawImage(this, 0, 0, w, h);
+                            const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+                            URL.revokeObjectURL(url);
+                            resolve(dataUrl);
+                        };
+                        img.onerror = function () {
+                            URL.revokeObjectURL(url);
+                            resolve(null);
+                        };
+                        img.src = url;
+                    } else {
+                        // Non-image: return null (will use placeholder)
+                        resolve(null);
+                    }
+                });
+            }
+
+            // ---- risk score ----
+            function calculateRiskScore(metadata) {
+                if (!metadata || Object.keys(metadata).length === 0) {
+                    return { level: 'none', label: 'No Risk', icon: 'fa-circle', color: 'risk-none' };
+                }
+                let highRisk = false,
+                    mediumRisk = false;
+                const sensitiveKeys = ['gps', 'latitude', 'longitude', 'altitude', 'gpsaltitude', 'gpslatitude',
+                    'gpslongitude'
+                ];
+                const mediumKeys = ['author', 'creator', 'producer', 'company', 'manager', 'lastmodifiedby',
+                    'organization', 'copyright', 'contact', 'email', 'phone'
+                ];
+                for (const key of Object.keys(metadata)) {
+                    const lowerKey = key.toLowerCase();
+                    if (sensitiveKeys.some(s => lowerKey.includes(s))) highRisk = true;
+                    if (mediumKeys.some(s => lowerKey.includes(s))) mediumRisk = true;
+                    const val = String(metadata[key]).toLowerCase();
+                    if (val.includes('gps') || val.includes('latitude') || val.includes('longitude') ||
+                        val.match(/[-+]?\d+\.\d+,\s*[-+]?\d+\.\d+/)) highRisk = true;
+                }
+                const basicKeys = ['file name', 'file size', 'file type', 'last modified'];
+                const allKeys = Object.keys(metadata).map(k => k.toLowerCase());
+                const isOnlyBasic = allKeys.every(k => basicKeys.some(b => k.includes(b) || k === b));
+                if (highRisk) return {
+                    level: 'high', label: 'High Risk', icon: 'fa-triangle-exclamation',
+                    color: 'risk-high'
+                };
+                if (mediumRisk) return {
+                    level: 'medium', label: 'Medium Risk', icon: 'fa-circle-exclamation',
+                    color: 'risk-medium'
+                };
+                if (isOnlyBasic || allKeys.length === 0) return {
+                    level: 'low', label: 'Low Risk',
+                    icon: 'fa-circle-check', color: 'risk-low'
+                };
+                return { level: 'medium', label: 'Medium Risk', icon: 'fa-circle-exclamation', color: 'risk-medium' };
+            }
+
+            // ---- metadata extraction ----
+            async function extractMetadata(file) {
+                const ext = getFileExtension(file.name);
+                const meta = {};
+                if (isImage(ext)) {
+                    try {
+                        const buffer = await file.arrayBuffer();
+                        const exif = await exifr.parse(buffer, { gps: true, xmp: true, iptc: true });
+                        if (exif) {
+                            for (const [k, v] of Object.entries(exif)) {
+                                if (v === undefined || v === null || v === '') continue;
+                                if (typeof v === 'string' && v.length > 200) continue;
+                                if (k === 'thumbnail' || k === 'thumb') continue;
+                                meta[k] = v;
+                            }
+                        }
+                    } catch (_) { }
+                }
+                if (isPDF(ext)) {
+                    try {
+                        const buffer = await file.arrayBuffer();
+                        const pdfDoc = await PDFLib.PDFDocument.load(buffer, { ignoreEncryption: true });
+                        const info = pdfDoc.getDocumentInfo();
+                        if (info) {
+                            for (const [k, v] of Object.entries(info)) {
+                                if (v && v.length > 0 && v.length < 500) meta[k] = v;
+                            }
+                        }
+                    } catch (_) { }
+                }
+                if (isOffice(ext)) {
+                    try {
+                        const buffer = await file.arrayBuffer();
+                        const zip = await JSZip.loadAsync(buffer);
+                        const coreFile = zip.file('docProps/core.xml');
+                        if (coreFile) {
+                            const xml = await coreFile.async('text');
+                            const parser = new DOMParser();
+                            const doc = parser.parseFromString(xml, 'text/xml');
+                            const titles = doc.getElementsByTagNameNS('http://purl.org/dc/elements/1.1/', 'title');
+                            const creators = doc.getElementsByTagNameNS('http://purl.org/dc/elements/1.1/', 'creator');
+                            const subjects = doc.getElementsByTagNameNS('http://purl.org/dc/elements/1.1/', 'subject');
+                            const descs = doc.getElementsByTagNameNS('http://purl.org/dc/elements/1.1/', 'description');
+                            const created = doc.getElementsByTagNameNS('http://purl.org/dc/terms/', 'created');
+                            const modified = doc.getElementsByTagNameNS('http://purl.org/dc/terms/', 'modified');
+                            const lastModifiedBy = doc.getElementsByTagNameNS(
+                                'http://schemas.openxmlformats.org/package/2006/metadata/core-properties',
+                                'lastModifiedBy');
+                            const revision = doc.getElementsByTagNameNS(
+                                'http://schemas.openxmlformats.org/package/2006/metadata/core-properties', 'revision');
+                            if (titles.length) meta['dc:title'] = titles[0].textContent;
+                            if (creators.length) meta['dc:creator'] = creators[0].textContent;
+                            if (subjects.length) meta['dc:subject'] = subjects[0].textContent;
+                            if (descs.length) meta['dc:description'] = descs[0].textContent;
+                            if (created.length) meta['dcterms:created'] = created[0].textContent;
+                            if (modified.length) meta['dcterms:modified'] = modified[0].textContent;
+                            if (lastModifiedBy.length) meta['cp:lastModifiedBy'] = lastModifiedBy[0].textContent;
+                            if (revision.length) meta['cp:revision'] = revision[0].textContent;
+                        }
+                        const appFile = zip.file('docProps/app.xml');
+                        if (appFile) {
+                            const xml = await appFile.async('text');
+                            const parser = new DOMParser();
+                            const doc = parser.parseFromString(xml, 'text/xml');
+                            const company = doc.getElementsByTagNameNS(
+                                'http://schemas.openxmlformats.org/officeDocument/2006/extended-properties', 'Company');
+                            const manager = doc.getElementsByTagNameNS(
+                                'http://schemas.openxmlformats.org/officeDocument/2006/extended-properties', 'Manager');
+                            const template = doc.getElementsByTagNameNS(
+                                'http://schemas.openxmlformats.org/officeDocument/2006/extended-properties', 'Template');
+                            if (company.length) meta['Company'] = company[0].textContent;
+                            if (manager.length) meta['Manager'] = manager[0].textContent;
+                            if (template.length) meta['Template'] = template[0].textContent;
+                        }
+                    } catch (_) { }
+                }
+                const basic = {
+                    'File Name': file.name,
+                    'File Size': formatSize(file.size),
+                    'File Type': file.type || 'unknown',
+                    'Last Modified': new Date(file.lastModified).toLocaleString(),
+                };
+                return { ...basic, ...meta };
+            }
+
+            // ---- cleaning ----
+            async function cleanFile(file, metadata) {
+                const ext = getFileExtension(file.name);
+                let cleanedBlob = null;
+                let cleanedName = file.name;
+                if (isImage(ext)) {
+                    try {
+                        const url = URL.createObjectURL(file);
+                        const img = new Image();
+                        await new Promise((resolve, reject) => {
+                            img.onload = resolve;
+                            img.onerror = reject;
+                            img.src = url;
+                        });
+                        const canvas = document.createElement('canvas');
+                        canvas.width = img.naturalWidth || img.width;
+                        canvas.height = img.naturalHeight || img.height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0);
+                        let mimeType = 'image/png',
+                            extOut = 'png';
+                        if (ext === 'jpg' || ext === 'jpeg') {
+                            mimeType = 'image/jpeg';
+                            extOut = 'jpg';
+                        } else if (ext === 'webp') {
+                            mimeType = 'image/webp';
+                            extOut = 'webp';
+                        } else if (ext === 'bmp') {
+                            mimeType = 'image/bmp';
+                            extOut = 'bmp';
+                        } else {
+                            mimeType = 'image/png';
+                            extOut = 'png';
+                        }
+                        const quality = (ext === 'jpg' || ext === 'jpeg') ? 0.92 : 1.0;
+                        cleanedBlob = await new Promise(resolve => canvas.toBlob(resolve, mimeType, quality));
+                        URL.revokeObjectURL(url);
+                        cleanedName = file.name.replace(/\.[^.]+$/, '') + '_cleaned.' + extOut;
+                    } catch (e) {
+                        console.warn('Image cleaning failed:', e);
+                        cleanedBlob = file.slice(0, file.size);
+                        cleanedName = file.name.replace(/\.[^.]+$/, '') + '_cleaned.' + ext;
+                    }
+                } else if (isPDF(ext)) {
+                    try {
+                        const buffer = await file.arrayBuffer();
+                        const pdfDoc = await PDFLib.PDFDocument.load(buffer, { ignoreEncryption: true });
+                        pdfDoc.setTitle('');
+                        pdfDoc.setAuthor('');
+                        pdfDoc.setSubject('');
+                        pdfDoc.setCreator('');
+                        pdfDoc.setProducer('');
+                        pdfDoc.setKeywords('');
+                        pdfDoc.setCreationDate(null);
+                        pdfDoc.setModificationDate(null);
+                        const newBytes = await pdfDoc.save();
+                        cleanedBlob = new Blob([newBytes], { type: 'application/pdf' });
+                        cleanedName = file.name.replace(/\.[^.]+$/, '') + '_cleaned.pdf';
+                    } catch (e) {
+                        console.warn('PDF cleaning failed:', e);
+                        cleanedBlob = file.slice(0, file.size);
+                        cleanedName = file.name.replace(/\.[^.]+$/, '') + '_cleaned.' + ext;
+                    }
+                } else if (isOffice(ext)) {
+                    try {
+                        const buffer = await file.arrayBuffer();
+                        const zip = await JSZip.loadAsync(buffer);
+                        const coreFile = zip.file('docProps/core.xml');
+                        if (coreFile) {
+                            const xml = await coreFile.async('text');
+                            const parser = new DOMParser();
+                            const doc = parser.parseFromString(xml, 'text/xml');
+                            const tagsToClear = ['creator', 'lastModifiedBy', 'revision', 'title', 'subject',
+                                'description'
+                            ];
+                            for (const tag of tagsToClear) {
+                                const els = doc.getElementsByTagNameNS('http://purl.org/dc/elements/1.1/', tag);
+                                for (const el of els) { el.textContent = ''; }
+                                const els2 = doc.getElementsByTagNameNS(
+                                    'http://schemas.openxmlformats.org/package/2006/metadata/core-properties', tag);
+                                for (const el of els2) { el.textContent = ''; }
+                            }
+                            const created = doc.getElementsByTagNameNS('http://purl.org/dc/terms/', 'created');
+                            for (const el of created) { el.textContent = ''; }
+                            const modified = doc.getElementsByTagNameNS('http://purl.org/dc/terms/', 'modified');
+                            for (const el of modified) { el.textContent = ''; }
+                            const serializer = new XMLSerializer();
+                            const newXml = serializer.serializeToString(doc);
+                            zip.file('docProps/core.xml', newXml);
+                        }
+                        const appFile = zip.file('docProps/app.xml');
+                        if (appFile) {
+                            const xml = await appFile.async('text');
+                            const parser = new DOMParser();
+                            const doc = parser.parseFromString(xml, 'text/xml');
+                            const tagsToClear = ['Company', 'Manager', 'Template'];
+                            for (const tag of tagsToClear) {
+                                const els = doc.getElementsByTagNameNS(
+                                    'http://schemas.openxmlformats.org/officeDocument/2006/extended-properties',
+                                    tag);
+                                for (const el of els) { el.textContent = ''; }
+                            }
+                            const serializer = new XMLSerializer();
+                            const newXml = serializer.serializeToString(doc);
+                            zip.file('docProps/app.xml', newXml);
+                        }
+                        const newBlob = await zip.generateAsync({ type: 'blob' });
+                        cleanedBlob = newBlob;
+                        cleanedName = file.name.replace(/\.[^.]+$/, '') + '_cleaned.' + ext;
+                    } catch (e) {
+                        console.warn('Office cleaning failed:', e);
+                        cleanedBlob = file.slice(0, file.size);
+                        cleanedName = file.name.replace(/\.[^.]+$/, '') + '_cleaned.' + ext;
+                    }
+                } else {
+                    cleanedBlob = file.slice(0, file.size);
+                    cleanedName = file.name.replace(/\.[^.]+$/, '') + '_cleaned.' + ext;
+                }
+                return { cleanedBlob, cleanedName };
+            }
+
+            // ---- render ----
+            function renderFiles() {
+                if (files.length === 0) {
+                    fileListContainer.classList.add('hidden');
+                    downloadZipBtn.disabled = true;
+                    return;
+                }
+                fileListContainer.classList.remove('hidden');
+                fileCount.textContent = files.length;
+                const total = files.reduce((acc, f) => acc + f.file.size, 0);
+                totalSize.textContent = formatSize(total);
+
+                const hasCleaned = files.some(f => f.cleaned === true);
+                downloadZipBtn.disabled = !hasCleaned;
+
+                fileList.innerHTML = '';
+                files.forEach((item) => {
+                    const ext = getFileExtension(item.file.name);
+                    const isCleaned = item.cleaned === true;
+                    const metaEntries = Object.entries(item.metadata || {});
+                    const hasMeta = metaEntries.length > 0;
+                    const risk = item.riskScore || calculateRiskScore(item.metadata);
+                    item.riskScore = risk;
+
+                    // Determine thumbnail
+                    let thumbHtml = '';
+                    if (item.thumbnail) {
+                        thumbHtml =
+                            `<img src="${item.thumbnail}" class="file-thumb" alt="Preview" loading="lazy" />`;
+                    } else {
+                        const icon = getFormatIcon(ext);
+                        thumbHtml =
+                            `<div class="file-thumb-placeholder"><i class="fas ${icon}"></i></div>`;
+                    }
+
+                    const div = document.createElement('div');
+                    div.className = 'p-4 flex flex-col gap-2 hover:bg-surface-muted/30 transition-colors';
+                    div.dataset.id = item.id;
+
+                    const header = document.createElement('div');
+                    header.className = 'flex items-center justify-between gap-3 flex-wrap';
+                    header.innerHTML = `
+                    <div class="flex items-center gap-3 min-w-0 flex-wrap">
+                      <div class="flex items-center gap-2">
+                        ${thumbHtml}
+                        <div class="min-w-0">
+                          <span class="font-medium text-text-primary text-sm truncate block">${item.file.name}</span>
+                          <span class="text-text-muted text-xs">${formatSize(item.file.size)} · ${ext.toUpperCase()}</span>
+                          <span class="badge-format ${getFormatBadge(ext)} ml-1.5">${ext.toUpperCase()}</span>
+                          ${isCleaned ? '<span class="cleaned-badge ml-1.5"><i class="fas fa-check"></i> Cleaned</span>' : ''}
+                        </div>
+                      </div>
+                      <span class="risk-badge ${risk.color}"><i class="fas ${risk.icon}"></i> ${risk.label}</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 flex-shrink-0 flex-wrap">
+                      ${!isCleaned && hasMeta ? `<button class="clean-single-btn text-white bg-tor-violet hover:bg-tor-violet-dark px-3 py-1.5 rounded-full text-xs font-medium shadow-md shadow-tor-violet/20 transition-all duration-300 hover:shadow-lg flex items-center gap-1.5" data-id="${item.id}">
+                        <i class="fas fa-broom"></i> Clean
+                      </button>` : ''}
+                      ${isCleaned ? `<button class="download-single-btn text-tor-violet border border-tor-violet/30 hover:bg-tor-violet/5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors flex items-center gap-1.5" data-id="${item.id}">
+                        <i class="fas fa-download"></i> Download
+                      </button>` : ''}
+                      <button class="remove-single-btn text-text-muted hover:text-red-500 px-2 py-1.5 rounded-full text-sm transition-colors" data-id="${item.id}">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  `;
+                    div.appendChild(header);
+
+                    if (hasMeta) {
+                        const metaDiv = document.createElement('div');
+                        metaDiv.className =
+                            'mt-1.5 ml-11 overflow-x-auto bg-surface-muted/40 rounded-xl border border-surface-border/40';
+                        let tableHtml =
+                            `
+                      <table class="w-full text-xs">
+                        <thead>
+                          <tr class="border-b border-surface-border/40 text-text-muted">
+                            <th class="text-left py-1.5 px-3 font-medium">Field</th>
+                            <th class="text-left py-1.5 px-3 font-medium">Value</th>
+                            ${isCleaned ? '<th class="text-left py-1.5 px-3 font-medium text-tor-accent">Status</th>' : ''}
+                          </tr>
+                        </thead>
+                        <tbody>
+                    `;
+                        metaEntries.forEach(([k, v]) => {
+                            const val = typeof v === 'string' ? v : JSON.stringify(v);
+                            const truncated = val.length > 80 ? val.slice(0, 80) + '…' : val;
+                            tableHtml += `
+                        <tr class="meta-table-row border-b border-surface-border/30 last:border-0">
+                          <td class="py-1.5 px-3 font-medium text-text-primary break-words max-w-[140px]">${k}</td>
+                          <td class="py-1.5 px-3 text-text-secondary break-words max-w-[240px]">${truncated}</td>
+                          ${isCleaned ? '<td class="py-1.5 px-3 text-tor-accent"><i class="fas fa-check-circle"></i> removed</td>' : ''}
+                        </tr>
+                      `;
+                        });
+                        tableHtml += '</tbody></table>';
+                        metaDiv.innerHTML = tableHtml;
+                        div.appendChild(metaDiv);
+                    } else {
+                        const noMeta = document.createElement('div');
+                        noMeta.className = 'mt-1.5 ml-11 text-xs text-text-muted italic';
+                        noMeta.textContent = isCleaned ? '✓ All metadata removed' : 'No metadata detected';
+                        div.appendChild(noMeta);
+                    }
+
+                    fileList.appendChild(div);
+                });
+
+                // ---- attach events ----
+                document.querySelectorAll('.clean-single-btn').forEach(btn => {
+                    btn.addEventListener('click', async function (e) {
+                        e.stopPropagation();
+                        const id = parseInt(this.dataset.id);
+                        await processSingle(id);
+                    });
+                });
+                document.querySelectorAll('.download-single-btn').forEach(btn => {
+                    btn.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        const id = parseInt(this.dataset.id);
+                        const item = files.find(f => f.id === id);
+                        if (item && item.cleanedBlob) {
+                            saveAs(item.cleanedBlob, item.cleanedName);
+                            showToast('Downloading: ' + item.cleanedName);
+                        }
+                    });
+                });
+                document.querySelectorAll('.remove-single-btn').forEach(btn => {
+                    btn.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        const id = parseInt(this.dataset.id);
+                        files = files.filter(f => f.id !== id);
+                        renderFiles();
+                        showToast('File removed');
+                    });
+                });
+
+                const anyUncleaned = files.some(f => !f.cleaned && f.metadata && Object.keys(f.metadata).length > 0);
+                cleanAllBtn.disabled = !anyUncleaned || isProcessing;
+            }
+
+            // ---- process single ----
+            async function processSingle(id) {
+                if (isProcessing) { showToast('Please wait for current operation to finish'); return; }
+                const idx = files.findIndex(f => f.id === id);
+                if (idx === -1) return;
+                const item = files[idx];
+                if (item.cleaned) { showToast('Already cleaned'); return; }
+                isProcessing = true;
+                cleanAllBtn.disabled = true;
+                try {
+                    showToast('Cleaning: ' + item.file.name + ' ...');
+                    const result = await cleanFile(item.file, item.metadata);
+                    item.cleaned = true;
+                    item.cleanedBlob = result.cleanedBlob;
+                    item.cleanedName = result.cleanedName;
+                    showToast('✅ Cleaned: ' + item.file.name);
+                } catch (e) {
+                    console.error('Clean failed:', e);
+                    showToast('❌ Error cleaning ' + item.file.name);
+                }
+                isProcessing = false;
+                renderFiles();
+            }
+
+            // ---- clean all ----
+            cleanAllBtn.addEventListener('click', async function () {
+                if (isProcessing) { showToast('Please wait for current operation to finish'); return; }
+                const toClean = files.filter(f => !f.cleaned && f.metadata && Object.keys(f.metadata).length > 0);
+                if (toClean.length === 0) { showToast('No files to clean'); return; }
+                isProcessing = true;
+                this.disabled = true;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cleaning…';
+                let cleanedCount = 0;
+                for (const item of toClean) {
+                    try {
+                        const result = await cleanFile(item.file, item.metadata);
+                        item.cleaned = true;
+                        item.cleanedBlob = result.cleanedBlob;
+                        item.cleanedName = result.cleanedName;
+                        cleanedCount++;
+                        if (cleanedCount % 3 === 0 || cleanedCount === toClean.length) renderFiles();
+                    } catch (e) { console.error('Clean failed for:', item.file.name, e); }
+                    await new Promise(r => setTimeout(r, 50));
+                }
+                this.innerHTML = '<i class="fas fa-broom"></i> Clean All';
+                isProcessing = false;
+                renderFiles();
+                showToast(`✅ Cleaned ${cleanedCount} file(s)`);
+            });
+
+            // ---- clear all ----
+            clearAllBtn.addEventListener('click', function () {
+                if (files.length === 0) return;
+                if (confirm('Remove all files from the list?')) {
+                    files = [];
+                    renderFiles();
+                    showToast('All files cleared');
+                }
+            });
+
+            // ---- download ZIP ----
+            downloadZipBtn.addEventListener('click', async function () {
+                if (isProcessing) { showToast('Please wait for current operation to finish'); return; }
+                const cleanedFiles = files.filter(f => f.cleaned === true && f.cleanedBlob);
+                if (cleanedFiles.length === 0) { showToast('No cleaned files to download.'); return; }
+                this.disabled = true;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Zipping…';
+                try {
+                    const zip = new JSZip();
+                    for (const item of cleanedFiles) {
+                        const blob = item.cleanedBlob;
+                        const name = item.cleanedName || item.file.name.replace(/\.[^.]+$/, '') + '_cleaned.' +
+                            getFileExtension(item.file.name);
+                        zip.file(name, blob);
+                    }
+                    const zipBlob = await zip.generateAsync({ type: 'blob' });
+                    saveAs(zipBlob, 'cleaned_metadata_files.zip');
+                    showToast(`📦 Downloaded ${cleanedFiles.length} file(s) as ZIP`);
+                } catch (e) {
+                    console.error('ZIP creation failed:', e);
+                    showToast('❌ Failed to create ZIP archive.');
+                }
+                this.innerHTML = '<i class="fas fa-file-zipper"></i> ZIP All';
+                const hasCleaned = files.some(f => f.cleaned === true);
+                this.disabled = !hasCleaned;
+            });
+
+            // ---- file input handler ----
+            async function handleFiles(fileListInput) {
+                if (isProcessing) { showToast('Please wait for current operation to finish'); return; }
+                const newFiles = Array.from(fileListInput);
+                let added = 0;
+                for (const file of newFiles) {
+                    try {
+                        const metadata = await extractMetadata(file);
+                        const riskScore = calculateRiskScore(metadata);
+                        // Generate thumbnail
+                        const thumbData = await generateThumbnail(file);
+                        files.push({
+                            id: ++idCounter,
+                            file: file,
+                            name: file.name,
+                            size: file.size,
+                            type: file.type,
+                            metadata: metadata,
+                            cleaned: false,
+                            cleanedBlob: null,
+                            cleanedName: null,
+                            status: 'idle',
+                            riskScore: riskScore,
+                            thumbnail: thumbData, // dataURL or null
+                        });
+                        added++;
+                    } catch (e) { console.error('Error processing file:', file.name, e); }
+                }
+                renderFiles();
+                if (added > 0) showToast(`📁 Added ${added} file(s)`);
+            }
+
+            // ---- events ----
+            fileInput.addEventListener('change', function (e) {
+                if (this.files.length > 0) handleFiles(this.files);
+                this.value = '';
+            });
+
+            selectFilesBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                fileInput.click();
+            });
+
+            dropZone.addEventListener('click', function (e) {
+                if (e.target.closest('#selectFilesBtn')) return;
+                fileInput.click();
+            });
+
+            dropZone.addEventListener('dragover', function (e) {
+                e.preventDefault();
+                this.classList.add('dragover');
+            });
+            dropZone.addEventListener('dragleave', function (e) {
+                e.preventDefault();
+                this.classList.remove('dragover');
+            });
+            dropZone.addEventListener('drop', function (e) {
+                e.preventDefault();
+                this.classList.remove('dragover');
+                if (e.dataTransfer.files.length > 0) handleFiles(e.dataTransfer.files);
+            });
+
+            console.log('✅ Metadata Cleaner ready with File Preview!');
+        });
+
+        // ---- AOS ----
+        AOS.init({
+            once: true,
+            offset: 30,
+            easing: 'ease-out-cubic',
+            duration: 700,
+            disable: window.innerWidth < 768 ? true : false,
+        });
+
+        // ---- smooth anchor ----
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ---- mobile menu ----
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const close = document.getElementById('mobile-menu-close');
+            const menu = document.getElementById('mobile-menu');
+            if (toggle && menu) {
+                toggle.addEventListener('click', () => {
+                    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+                    toggle.setAttribute('aria-expanded', !expanded);
+                    menu.classList.toggle('open');
+                    document.body.classList.toggle('overflow-hidden');
+                });
+            }
+            if (close && menu) {
+                close.addEventListener('click', () => {
+                    toggle.setAttribute('aria-expanded', 'false');
+                    menu.classList.remove('open');
+                    document.body.classList.remove('overflow-hidden');
+                });
+            }
+            document.querySelectorAll('[data-close-mobile]').forEach(el => {
+                el.addEventListener('click', () => {
+                    if (menu) {
+                        toggle.setAttribute('aria-expanded', 'false');
+                        menu.classList.remove('open');
+                        document.body.classList.remove('overflow-hidden');
+                    }
+                });
+            });
+            document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const target = document.getElementById(this.dataset.target);
+                    const parent = this.closest('.mobile-dropdown');
+                    if (target) {
+                        const siblings = parent.parentElement.querySelectorAll('.mobile-sub-menu');
+                        siblings.forEach(s => { if (s !== target) s.classList.remove('open'); });
+                        target.classList.toggle('open');
+                        this.classList.toggle('open');
+                    }
+                });
+            });
+        });
+
+        console.log('🔒 Metadata Cleaner loaded — all processing is local.');
+        console.log('📦 Features: Download All as ZIP · Metadata Risk Score · File Preview');
+    </script>
+
+</body>
+
+</html>

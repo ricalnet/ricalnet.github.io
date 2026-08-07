@@ -21,10 +21,8 @@
     <link href="../assets/css/aos.css" rel="stylesheet" />
 
     <!-- QR Code Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js">
-    </script>
+    <script src="lib/qr-builder/qrcode.min.js"></script>
+    <script src="lib/qr-builder/jsqr.js"></script>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com">
@@ -563,8 +561,10 @@
                         class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
                     <div class="leading-tight hidden sm:block">
                         <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
-                        <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
-                            Rights · Infrastructure</span>
+                        <span
+                            class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Open‑Source
+                            Privacy
+                            Stack</span>
                     </div>
                 </a>
     
@@ -574,15 +574,15 @@
     
                     <div class="relative group">
                         <a href="../index#pain-points" class="nav-link flex items-center gap-1">
-                            Advocacy
+                            Why Self‑Host
                             <i
                                 class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
                         <div class="dropdown-panel absolute left-0 mt-2 z-50">
-                            <a href="../index#pain-points" class="dropdown-item">Rights at Risk</a>
-                            <a href="../index#how-it-works" class="dropdown-item">Methodology</a>
-                            <a href="../index#features" class="dropdown-item">Sovereign Infrastructure</a>
-                            <a href="../resources#legal-resources" class="dropdown-item">Legal Resources</a>
+                            <a href="../index#pain-points" class="dropdown-item">The Lock‑in Trap</a>
+                            <a href="../index#how-it-works" class="dropdown-item">Our Approach</a>
+                            <a href="../index#features" class="dropdown-item">Sovereign Stack</a>
+                            <a href="../resources#legal-resources" class="dropdown-item">Legal &amp; Advocacy</a>
                         </div>
                     </div>
     
@@ -595,18 +595,18 @@
                         <div class="dropdown-panel absolute left-0 mt-2 z-50">
                             <a href="../resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
                             <a href="../resources#legal-resources" class="dropdown-item">Legal Resources</a>
-                            <a href="../resources#in-house-tools" class="dropdown-item">In-House Tools</a>
+                            <a href="../resources#in-house-tools" class="dropdown-item">In‑House Tools</a>
                             <a href="../resources" class="dropdown-item">All Resources</a>
                         </div>
                     </div>
-    
                     <div class="relative group">
-                        <a href="../tools/ip-intelligence" class="nav-link nav-link-active flex items-center gap-1">
+                        <a href="../resources#hero" class="nav-link nav-link-active flex items-center gap-1">
                             Tools
                             <i
                                 class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
                         <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="../tools/metadata-cleaner" class="dropdown-item">Metadata Cleaner</a>
                             <a href="../tools/quantum-hasher" class="dropdown-item">Quantum Hasher</a>
                             <a href="../tools/ip-intelligence" class="dropdown-item">IP Intelligence</a>
                             <a href="../tools/password-generator" class="dropdown-item">Password Generator</a>
@@ -615,16 +615,15 @@
                             <a href="../resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
                         </div>
                     </div>
-    
                     <div class="relative group">
-                        <a href="../about#hero" class="nav-link flex items-center gap-1">
+                        <a href="about#hero" class="nav-link flex items-center gap-1">
                             About
                             <i
                                 class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
                         <div class="dropdown-panel absolute left-0 mt-2 z-50">
                             <a href="../about#our-mission" class="dropdown-item">Our Mission</a>
-                            <a href="../index#comparison" class="dropdown-item">Comparison</a>
+                            <a href="../index#comparison" class="dropdown-item">Comparison</a />
                             <a href="../index#faq" class="dropdown-item">FAQ</a>
                             <a href="../index#cta" class="dropdown-item">Contact</a>
                             <a href="../about#cta-support" class="dropdown-item">Support Us</a>
@@ -674,23 +673,22 @@
                     class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
                     aria-expanded="false" data-target="sub-advocacy">
                     <span class="flex items-center gap-2.5">
-                        <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Advocacy
+                        <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Why Self‑Host
                     </span>
                     <i
                         class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
                 </button>
                 <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
                     <a href="../index#pain-points" class="sub-link" data-close-mobile>
-                        <i class="fas fa-exclamation-triangle"></i> Rights at Risk
+                        <i class="fas fa-exclamation-triangle"></i> The Lock‑in Trap
                     </a>
                     <a href="../index#how-it-works" class="sub-link" data-close-mobile>
-                        <i class="fas fa-route"></i> Methodology
+                        <i class="fas fa-route"></i> Our Approach
                     </a>
                     <a href="../index#features" class="sub-link" data-close-mobile>
-                        <i class="fas fa-star"></i> Sovereign Infrastructure
-                    </a>
-                    <a href="../resources#legal-resources" class="sub-link" data-close-mobile>
-                        <i class="fas fa-gavel"></i> Legal Resources
+                        <i class="fas fa-star"></i> Sovereign Stack
+                    </a><a href="../resources#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal &amp; Advocacy
                     </a>
                 </div>
             </div>
@@ -714,7 +712,7 @@
                         <i class="fas fa-gavel"></i> Legal Resources
                     </a>
                     <a href="../resources#in-house-tools" class="sub-link" data-close-mobile>
-                        <i class="fas fa-cubes"></i> In-House Tools
+                        <i class="fas fa-cubes"></i> In‑House Tools
                     </a>
                     <a href="../resources" class="sub-link" data-close-mobile>
                         <i class="fas fa-folder-open"></i> All Resources
@@ -734,10 +732,13 @@
                         class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
                 </button>
                 <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="../tools/metadata-cleaner" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> Metadata Cleaner
+                    </a>
+                    <a href="../tools/quantum-hasher" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> Quantum Hasher
+                    </a>
                     <a href="../tools/ip-intelligence" class="sub-link" data-close-mobile>
-                        <a href="../tools/quantum-hasher" class="sub-link" data-close-mobile>
-                            <i class="fas fa-qrcode"></i> Quantum Hasher
-                        </a>
                         <i class="fas fa-map-pin"></i> IP Intelligence
                     </a>
                     <a href="../tools/password-generator" class="sub-link" data-close-mobile>
@@ -792,7 +793,7 @@
     
             <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
                 <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
-                    <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> Digital Sovereignty · Privacy-First
+                    <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> Open‑Source · Zero‑Trust · No Lock‑in
                 </span>
             </div>
     
@@ -1069,24 +1070,22 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- ===== FOOTER =============================================== -->
+    <!-- ===== FOOTER ===== -->
     <!-- ============================================================ -->
     <footer class="relative overflow-hidden border-t border-tor-violet/10">
         <div
             class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
         </div>
-        <div
-            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
         </div>
         <div
             class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
         </div>
-
+    
         <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-
-            <div
-                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
-
+    
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+    
                 <div class="col-span-2 md:col-span-3 lg:col-span-1">
                     <div class="flex items-center gap-3 mb-4">
                         <div
@@ -1097,12 +1096,14 @@
                         <div>
                             <span class="block text-base font-bold text-text-primary tracking-tight">Ricalnet</span>
                             <span
-                                class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Digital
-                                Rights · Infrastructure</span>
+                                class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Open‑Source
+                                Privacy
+                                Stack</span>
                         </div>
                     </div>
                     <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
-                        Sovereign infrastructure &amp; private digital services. Built for rights, not profit.
+                        Sovereign infrastructure &amp; private digital services. No lock‑in, zero‑trust, and built for
+                        freedom.
                     </p>
                     <div class="flex flex-wrap items-center gap-3 mt-5">
                         <a href="https://github.com/ricalnet" target="_blank" rel="noopener"
@@ -1124,9 +1125,9 @@
                         </span>
                     </div>
                 </div>
-
+    
                 <div>
-                    <h4 class="footer-heading text-text-primary/60">Advocacy</h4>
+                    <h4 class="footer-heading text-text-primary/60">Why Self‑Host</h4>
                     <ul class="space-y-2.5">
                         <li><a href="../about#our-mission" class="footer-link">Our Mission</a></li>
                         <li><a href="../resources" class="footer-link">Resources</a></li>
@@ -1135,9 +1136,9 @@
                         <li><a href="../index#cta" class="footer-link">Contact</a></li>
                     </ul>
                 </div>
-
+    
                 <div>
-                    <h4 class="footer-heading text-text-primary/60">Infrastructure</h4>
+                    <h4 class="footer-heading text-text-primary/60">Stack</h4>
                     <ul class="space-y-2.5">
                         <li><a href="../index#features" class="footer-link">Sovereign Infrastructure</a></li>
                         <li><a href="../index#private-digital-services" class="footer-link">Private Services</a></li>
@@ -1146,44 +1147,41 @@
                         <li><a href="https://translate.ricalnet.my.id" class="footer-link">Translation</a></li>
                     </ul>
                 </div>
-
+    
                 <div>
                     <h4 class="footer-heading text-text-primary/60">Community</h4>
                     <ul class="space-y-2.5">
                         <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
                                 target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
                         <li><a href="https://github.com/ricalnet/digital-independence" class="footer-link"
-                                target="_blank">Become a Contributor <i
-                                    class="fas fa-arrow-up-right-from-square"></i></a>
-                        </li>
+                                target="_blank">Become a
+                                Contributor <i class="fas fa-arrow-up-right-from-square"></i></a></li>
                         <li><a href="../about#cta-support" class="footer-link">Support</a></li>
                         <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
                     </ul>
                 </div>
-
+    
                 <div>
                     <h4 class="footer-heading text-text-primary/60">Legal</h4>
                     <ul class="space-y-2.5">
-                        <li><a href="https://cloud.ricalnet.my.id/s/H9SM2rJ2M9NfQaq" class="footer-link">Legal
-                                Resources</a>
-                        </li>
+                        <li><a href="../resources#legal-resources" class="footer-link">Legal Resources</a></li>
                         <li><a href="../terms-of-service" class="footer-link">Terms of Service</a></li>
                         <li><a href="../privacy" class="footer-link">Privacy Policy</a></li>
                     </ul>
                 </div>
-
+    
             </div>
-
+    
             <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
                 <p class="text-xs tracking-wide"> COPYRIGHT (CC BY)</p>
                 <div class="flex items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
-                    <span class="text-text-secondary/70">#DigitalSovereignty</span>
-                    <span class="w-px h-4 bg-tor-violet/10"></span>
-                    <span class="text-text-secondary/70">#Privacy</span>
+                    <span class="text-text-secondary/70">#OpenSource</span>
                     <span class="w-px h-4 bg-tor-violet/10"></span>
                     <span class="text-text-secondary/70">#NoLockIn</span>
                     <span class="w-px h-4 bg-tor-violet/10"></span>
-                    <span class="text-tor-violet font-semibold">#RightsFirst</span>
+                    <span class="text-text-secondary/70">#ZeroTrust</span>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span class="text-tor-violet font-semibold">#PrivacyFirst</span>
                     <span class="w-px h-4 bg-tor-violet/10"></span>
                     <span
                         class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
@@ -1192,7 +1190,7 @@
                     </span>
                 </div>
             </div>
-
+    
         </div>
     </footer>
 
