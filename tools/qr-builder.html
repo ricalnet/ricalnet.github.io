@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>QR Builder — Generate and Read QR Codes Online | RICALNET</title>
+    <meta name="description"
+        content="Generate custom QR codes from text or URLs, and decode QR codes from uploaded images. Free, private, and built for your digital sovereignty. No uploads, all local." />
+    <meta name="keywords"
+        content="qr code generator, qr code reader, create qr code, scan qr code, custom qr, qr builder, ricalnet" />
+    <link rel="canonical" href="https://ricalnet.my.id/tools/qr-builder" />
+    <link rel="icon" type="image/x-icon" href="../img/logo.png" />
+
+    <meta property="og:title" content="QR Builder — Generate and Read QR Codes Online | RICALNET" />
+    <meta property="og:description"
+        content="Generate custom QR codes from text or URLs, and decode QR codes from uploaded images. 100% local, no uploads. Free and private." />
+    <meta property="og:url" content="https://ricalnet.my.id/tools/qr-builder" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://ricalnet.my.id/img/og-image.png" />
+    <meta property="og:image:alt" content="QR Builder tool interface showing QR code generation" />
+    <meta property="og:site_name" content="RICALNET" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="QR Builder — Generate and Read QR Codes Online | RICALNET" />
+    <meta name="twitter:description"
+        content="Generate custom QR codes from text or URLs, and decode QR codes from uploaded images. 100% local." />
+    <meta name="twitter:image" content="https://ricalnet.my.id/img/og-image.png" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ricalnet.my.id/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://ricalnet.my.id/tools/" },
+        { "@type": "ListItem", "position": 3, "name": "QR Builder", "item": "https://ricalnet.my.id/tools/qr-builder" }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "QR Builder",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "description": "Generate custom QR codes from text or URLs, and decode QR codes from uploaded images. All processing is done locally in your browser.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "RICALNET"
+      },
+      "url": "https://ricalnet.my.id/tools/qr-builder",
+      "applicationSuite": "RICALNET Tools",
+      "featureList": "QR code generation, QR code decoding, Custom colors, Error correction levels, Size control, Sample presets"
+    }
+    </script>
+
+    <link href="../assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="../assets/fontawesome/css/solid.css" rel="stylesheet" />
+    <link href="../assets/fontawesome/css/brands.css" rel="stylesheet" />
+    <link href="../assets/css/fonts.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link href="../assets/css/aos.css" rel="stylesheet" />
+
+    <script src="lib/qr-builder/qrcode.min.js"></script>
+    <script src="lib/qr-builder/jsqr.js"></script>
+
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'source-sans-pro': ['"Source Sans Pro"', 'Roboto', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        roboto: ['Roboto', '"Source Sans Pro"', 'Inter', 'system-ui', 'sans-serif'],
+                        inter: ['Inter', 'Roboto', '"Source Sans Pro"', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    colors: {
+                        tor: {
+                            violet: '#7c3aed',
+                            'violet-light': '#8b5cf6',
+                            'violet-dark': '#5b21b6',
+                            'violet-deep': '#4c1d95',
+                            'violet-soft': '#ede9fe',
+                            accent: '#68B030',
+                            'accent-cyan': '#06b6d4',
+                            'accent-amber': '#f59e0b',
+                        },
+                        surface: {
+                            light: '#faf9fe',
+                            card: '#ffffff',
+                            border: '#ede9f0',
+                            muted: '#f5f3fa',
+                            dark: '#0f0e1a',
+                        },
+                        text: {
+                            primary: '#0f0e1a',
+                            secondary: '#52506e',
+                            muted: '#9492ae',
+                            inverse: '#f8f7fc',
+                        }
+                    },
+                    boxShadow: {
+                        'elevated': '0 1px 3px rgba(0,0,0,0.02), 0 8px 40px rgba(124,58,237,0.06), 0 20px 80px rgba(124,58,237,0.04)',
+                        'elevated-lg': '0 1px 3px rgba(0,0,0,0.02), 0 16px 64px rgba(124,58,237,0.08), 0 32px 120px rgba(124,58,237,0.04)',
+                        'glow': '0 0 60px rgba(124,58,237,0.06)',
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-down': 'fadeDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-right': 'fadeRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-left': 'fadeLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'scale-in': 'scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-subtle': 'pulseSubtle 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeUp: { '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        fadeDown: { '0%': { opacity: '0', transform: 'translateY(-40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        fadeRight: { '0%': { opacity: '0', transform: 'translateX(-40px)' }, '100%': { opacity: '1', transform: 'translateX(0)' } },
+                        fadeLeft: { '0%': { opacity: '0', transform: 'translateX(40px)' }, '100%': { opacity: '1', transform: 'translateX(0)' } },
+                        scaleIn: { '0%': { opacity: '0', transform: 'scale(0.94)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-14px)' } },
+                        pulseSubtle: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0.6' } },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .qr-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(124, 58, 237, 0.06);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+        }
+
+        .qr-card:hover {
+            border-color: rgba(124, 58, 237, 0.12);
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 8px 48px rgba(124, 58, 237, 0.06);
+        }
+
+        .qr-tab-btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            background: transparent;
+            color: #52506e;
+            position: relative;
+        }
+
+        .qr-tab-btn:hover {
+            color: #7c3aed;
+            background: rgba(124, 58, 237, 0.04);
+        }
+
+        .qr-tab-btn.active {
+            background: #7c3aed;
+            color: white;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.2);
+        }
+
+        .qr-tab-btn.active:hover {
+            background: #5b21b6;
+            box-shadow: 0 6px 28px rgba(124, 58, 237, 0.3);
+        }
+
+        .qr-tab-panel {
+            display: none;
+            animation: qrFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .qr-tab-panel.active {
+            display: block;
+        }
+
+        @keyframes qrFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .qr-setting-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #0f0e1a;
+        }
+
+        .qr-setting-desc {
+            font-size: 0.7rem;
+            color: #9492ae;
+        }
+
+        .qr-number-input {
+            width: 4.5rem;
+            padding: 0.3rem 0.5rem;
+            border-radius: 10px;
+            border: 1.5px solid #ede9f0;
+            background: white;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            color: #0f0e1a;
+        }
+
+        .qr-number-input:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+        }
+
+        .qr-color-input {
+            width: 2.8rem;
+            height: 2.8rem;
+            border-radius: 12px;
+            border: 2px solid #ede9f0;
+            padding: 0.15rem;
+            cursor: pointer;
+            background: white;
+            transition: all 0.2s ease;
+        }
+
+        .qr-color-input:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+        }
+
+        .qr-color-input:hover {
+            border-color: #7c3aed;
+        }
+
+        .qr-range-input {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 4px;
+            background: #ede9f0;
+            outline: none;
+            transition: background 0.2s ease;
+        }
+
+        .qr-range-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #7c3aed;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+        }
+
+        .qr-range-input::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.35);
+        }
+
+        .qr-range-input::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #7c3aed;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+        }
+
+        .qr-dropdown {
+            padding: 0.4rem 0.8rem;
+            border-radius: 10px;
+            border: 1.5px solid #ede9f0;
+            background: white;
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: #0f0e1a;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 80px;
+        }
+
+        .qr-dropdown:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+        }
+
+        .qr-dropdown:hover {
+            border-color: #b8b5d0;
+        }
+
+        .qr-gen-btn {
+            background: #7c3aed;
+            color: white;
+            font-weight: 600;
+            padding: 0.7rem 2rem;
+            border-radius: 9999px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 24px rgba(124, 58, 237, 0.2);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.95rem;
+        }
+
+        .qr-gen-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 40px rgba(124, 58, 237, 0.3);
+            background: #5b21b6;
+        }
+
+        .qr-gen-btn:active {
+            transform: scale(0.97);
+        }
+
+        .qr-gen-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .qr-download-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: #0f0e1a;
+            font-weight: 500;
+            padding: 0.5rem 1.2rem;
+            border-radius: 9999px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1.5px solid #ede9f0;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .qr-download-btn:hover {
+            border-color: #7c3aed;
+            color: #7c3aed;
+            background: #faf9fe;
+        }
+
+        .qr-copy-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: #0f0e1a;
+            font-weight: 500;
+            padding: 0.5rem 1.2rem;
+            border-radius: 9999px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1.5px solid #ede9f0;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .qr-copy-btn:hover {
+            border-color: #7c3aed;
+            color: #7c3aed;
+            background: #faf9fe;
+        }
+
+        .qr-copy-btn.copied {
+            border-color: #68B030;
+            color: #68B030;
+            background: rgba(104, 176, 48, 0.06);
+        }
+
+        .qr-display-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            border: 2px dashed #ede9f0;
+            transition: all 0.3s ease;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .qr-display-container.has-qr {
+            border-style: solid;
+            border-color: rgba(124, 58, 237, 0.15);
+        }
+
+        .qr-display-container #qrcode {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-display-container #qrcode canvas,
+        .qr-display-container #qrcode img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .qr-placeholder {
+            color: #9492ae;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .qr-placeholder i {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            opacity: 0.4;
+        }
+
+        .qr-drop-zone {
+            border: 2.5px dashed #ede9f0;
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .qr-drop-zone:hover {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.02);
+        }
+
+        .qr-drop-zone.dragover {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.05);
+            transform: scale(1.01);
+        }
+
+        .qr-drop-zone .icon {
+            font-size: 2.5rem;
+            color: #7c3aed;
+            opacity: 0.5;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .qr-drop-zone .text {
+            color: #52506e;
+            font-size: 0.9rem;
+        }
+
+        .qr-drop-zone .sub {
+            color: #9492ae;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        .qr-preview-container {
+            margin-top: 1rem;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #ede9f0;
+            max-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #faf9fe;
+        }
+
+        .qr-preview-container img {
+            max-width: 100%;
+            max-height: 280px;
+            object-fit: contain;
+        }
+
+        .qr-result-box {
+            background: rgba(15, 14, 26, 0.03);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            border: 1px solid rgba(124, 58, 237, 0.08);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            min-height: 3rem;
+            color: #0f0e1a;
+        }
+
+        .qr-section-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #7c3aed;
+            font-weight: 700;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(124, 58, 237, 0.08);
+            margin-bottom: 1rem;
+        }
+
+        .qr-file-input {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        @media (max-width: 640px) {
+            .qr-tab-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.75rem;
+            }
+
+            .qr-display-container {
+                min-height: 150px;
+                padding: 1rem;
+            }
+
+            .qr-drop-zone {
+                padding: 1.5rem 1rem;
+            }
+
+            .qr-gen-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .qr-download-btn,
+            .qr-copy-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="font-source-sans-pro bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+
+    <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div class="absolute inset-0 bg-grid-subtle"></div>
+        <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/5 rounded-full blur-[160px]"></div>
+        <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/3 rounded-full blur-[180px]"></div>
+        <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/4 rounded-full blur-[140px]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light"></div>
+    </div>
+
+    <header
+        class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-[72px]">
+                <a href="https://ricalnet.my.id" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+                    data-aos-duration="600">
+                    <img src="../img/logo.png" alt="RICALNET Logo"
+                        class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
+                    <div class="leading-tight hidden sm:block">
+                        <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+                        <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust
+                            · Control · Access · Libre</span>
+                    </div>
+                </a>
+                <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down"
+                    data-aos-duration="600">
+                    <a href="https://ricalnet.my.id/index#hero" class="nav-link">Home</a>
+                    <div class="relative group">
+                        <a href="../index#pain-points" class="nav-link flex items-center gap-1">
+                            Why Self‑Host
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/index#pain-points" class="dropdown-item">The Lock‑in Trap</a>
+                            <a href="https://ricalnet.my.id/index#how-it-works" class="dropdown-item">The Approach</a>
+                            <a href="https://ricalnet.my.id/index#features" class="dropdown-item">Sovereign Stack</a>
+                            <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal &amp;
+                                Advocacy</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/resources#hero" class="nav-link flex items-center gap-1">
+                            Resources
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                            <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal
+                                Resources</a>
+                            <a href="https://ricalnet.my.id/resources#in-house-tools" class="dropdown-item">In‑House
+                                Tools</a>
+                            <a href="https://ricalnet.my.id/resources" class="dropdown-item">All Resources</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/resources#hero"
+                            class="nav-link nav-link-active flex items-center gap-1">
+                            Tools
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="dropdown-item">Metadata
+                                Cleaner</a>
+                            <a href="https://ricalnet.my.id/tools/quantum-hasher" class="dropdown-item">Quantum Hasher</a>
+                            <a href="https://ricalnet.my.id/tools/ip-intelligence" class="dropdown-item">IP Intelligence</a>
+                            <a href="https://ricalnet.my.id/tools/password-generator" class="dropdown-item">Password
+                                Generator</a>
+                            <a href="https://ricalnet.my.id/tools/qr-builder" class="dropdown-item">QR Builder</a>
+                            <a href="https://ricalnet.my.id/tools/whiteboard" class="dropdown-item">Whiteboard</a>
+                            <a href="https://ricalnet.my.id/tools/chantik" class="dropdown-item">Chantik</a>
+                            <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/about#hero" class="nav-link flex items-center gap-1">
+                            About
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/about#our-mission" class="dropdown-item">Mission</a>
+                            <a href="https://ricalnet.my.id/index#comparison" class="dropdown-item">Comparison</a>
+                            <a href="https://ricalnet.my.id/index#faq" class="dropdown-item">FAQ</a>
+                            <a href="https://ricalnet.my.id/index#cta" class="dropdown-item">Contact</a>
+                            <a href="https://ricalnet.my.id/about#cta-support" class="dropdown-item">Support</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
+                    <a href="https://ricalnet.my.id/index#hidden-services" class="hidden lg:inline-flex btn-sso">
+                        <i class="fas fa-key"></i> Login with SSO
+                    </a>
+                    <button id="mobile-menu-toggle"
+                        class="lg:hidden w-9 h-9 rounded-full hover:bg-surface-muted flex items-center justify-center transition-colors"
+                        aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars text-text-secondary text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <img src="https://ricalnet.my.id/img/logo.png" alt="RICALNET" />
+                <span>RICALNET</span>
+            </div>
+            <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-scroll">
+            <a href="https://ricalnet.my.id/index#hero" class="nav-item" data-close-mobile>
+                <i class="fas fa-home"></i> Home
+            </a>
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-advocacy">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Why Self‑Host
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/index#pain-points" class="sub-link" data-close-mobile>
+                        <i class="fas fa-exclamation-triangle"></i> The Lock‑in Trap
+                    </a>
+                    <a href="https://ricalnet.my.id/index#how-it-works" class="sub-link" data-close-mobile>
+                        <i class="fas fa-route"></i> The Approach
+                    </a>
+                    <a href="https://ricalnet.my.id/index#features" class="sub-link" data-close-mobile>
+                        <i class="fas fa-star"></i> Sovereign Stack
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal &amp; Advocacy
+                    </a>
+                </div>
+            </div>
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-resources">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-lock"></i> Privacy Tools
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal Resources
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#in-house-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-cubes"></i> In‑House Tools
+                    </a>
+                    <a href="https://ricalnet.my.id/resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-folder-open"></i> All Resources
+                    </a>
+                </div>
+            </div>
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-tools">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> Metadata Cleaner
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/quantum-hasher" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> Quantum Hasher
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/ip-intelligence" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> IP Intelligence
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/password-generator" class="sub-link" data-close-mobile>
+                        <i class="fas fa-key"></i> Password Generator
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/qr-builder" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> QR Builder
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/whiteboard" class="sub-link" data-close-mobile>
+                        <i class="fas fa-pen-fancy"></i> Whiteboard
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/chantik" class="sub-link" data-close-mobile>
+                        <i class="fas fa-floppy-disk"></i> Chantik
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-user-secret"></i> Privacy Tools
+                    </a>
+                </div>
+            </div>
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-about">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/about#our-mission" class="sub-link" data-close-mobile>
+                        <i class="fas fa-bullseye"></i> Mission
+                    </a>
+                    <a href="https://ricalnet.my.id/index#comparison" class="sub-link" data-close-mobile>
+                        <i class="fas fa-arrows-left-right"></i> Comparison
+                    </a>
+                    <a href="https://ricalnet.my.id/index#faq" class="sub-link" data-close-mobile>
+                        <i class="fas fa-question-circle"></i> FAQ
+                    </a>
+                    <a href="https://ricalnet.my.id/index#cta" class="sub-link" data-close-mobile>
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                    <a href="https://ricalnet.my.id/about#cta-support" class="sub-link" data-close-mobile>
+                        <i class="fas fa-hand-holding-heart"></i> Support
+                    </a>
+                </div>
+            </div>
+            <a href="https://ricalnet.my.id/index#hidden-services"
+                class="mt-3 block w-full text-center btn-sso justify-center" data-close-mobile>
+                <i class="fas fa-key"></i> Login with SSO
+            </a>
+            <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+                <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+                    <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> RICALNET — Robust · Control · Access ·
+                    Libre
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <section class="relative overflow-hidden pt-[72px] pb-8 md:pt-24 md:pb-12 bg-surface-light">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto" data-aos="fade-up" data-aos-duration="700">
+                <div class="flex flex-wrap items-center justify-center gap-2 mb-5">
+                    <span class="badge-pill"><i class="fas fa-qrcode"></i> QR Builder</span>
+                    <span class="badge-pill"
+                        style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);">
+                        <i class="fas fa-arrows-rotate"></i> Generate &amp; Read
+                    </span>
+                    <span class="badge-pill"
+                        style="background:rgba(245,158,11,0.08);color:#b45309;border-color:rgba(245,158,11,0.12);">
+                        <i class="fas fa-image"></i> Image Upload
+                    </span>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight">
+                    <span class="text-text-primary">QR </span>
+                    <span class="text-tor-violet">Builder</span>
+                </h1>
+                <p class="text-text-secondary text-lg md:text-xl mt-4 max-w-2xl mx-auto leading-relaxed">
+                    Generate custom QR codes from text or URLs, and decode QR codes from uploaded images.
+                    Simple, private, and built for your digital sovereignty.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-16 md:pb-24">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-8" data-aos="fade-up" data-aos-delay="100">
+                <button class="qr-tab-btn active" data-tab="generate">
+                    <i class="fas fa-pen-ruler mr-2"></i> Generate QR
+                </button>
+                <button class="qr-tab-btn" data-tab="read">
+                    <i class="fas fa-camera mr-2"></i> Read QR
+                </button>
+            </div>
+
+            <div id="tab-generate" class="qr-tab-panel active" data-aos="fade-up" data-aos-delay="150">
+
+                <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                        <div>
+
+                            <div class="mb-5">
+                                <label for="qr-text" class="qr-setting-label block mb-1.5">Text or URL</label>
+                                <textarea id="qr-text" rows="2"
+                                    class="w-full px-4 py-2.5 rounded-xl border border-surface-border/60 bg-white/60 focus:border-tor-violet focus:ring-4 focus:ring-tor-violet/10 transition-all duration-200 text-text-primary placeholder:text-text-muted/50 text-sm resize-y"
+                                    placeholder="Enter text or URL to encode…">https://ricalnet.my.id</textarea>
+                                <div class="mt-1.5 flex flex-wrap gap-1.5">
+                                    <button
+                                        class="sample-text-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                        data-text="https://ricalnet.my.id">Ricalnet</button>
+                                    <button
+                                        class="sample-text-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                        data-text="https://github.com/ricalnet">GitHub</button>
+                                    <button
+                                        class="sample-text-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                        data-text="Hello, world! 👋">Hello World</button>
+                                    <button
+                                        class="sample-text-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                        data-text="mailto:ricalnet@duck.com">Email</button>
+                                </div>
+                            </div>
+
+                            <div class="mb-5">
+                                <div class="flex items-center justify-between">
+                                    <label for="qr-size" class="qr-setting-label">Size (px)</label>
+                                    <span id="qr-size-display" class="text-sm font-bold text-tor-violet">256</span>
+                                </div>
+                                <input type="range" id="qr-size" class="qr-range-input mt-1.5" min="100" max="600"
+                                    step="10" value="256" />
+                                <div class="flex justify-between text-[0.55rem] text-text-muted mt-0.5 px-0.5">
+                                    <span>100</span>
+                                    <span>600</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 mb-5">
+                                <div>
+                                    <label class="qr-setting-label block mb-1.5">Foreground</label>
+                                    <input type="color" id="qr-fg" class="qr-color-input" value="#0f0e1a" />
+                                </div>
+                                <div>
+                                    <label class="qr-setting-label block mb-1.5">Background</label>
+                                    <input type="color" id="qr-bg" class="qr-color-input" value="#ffffff" />
+                                </div>
+                            </div>
+
+                            <div class="mb-5">
+                                <label for="qr-ec" class="qr-setting-label block mb-1.5">Error Correction</label>
+                                <select id="qr-ec" class="qr-dropdown w-full">
+                                    <option value="L">L (Low — 7%)</option>
+                                    <option value="M" selected>M (Medium — 15%)</option>
+                                    <option value="Q">Q (Quartile — 25%)</option>
+                                    <option value="H">H (High — 30%)</option>
+                                </select>
+                                <p class="qr-setting-desc mt-1">Higher correction = more robust but larger QR code.</p>
+                            </div>
+
+                            <button id="qr-generate-btn" class="qr-gen-btn w-full justify-center">
+                                <i class="fas fa-qrcode"></i>
+                                Generate QR Code
+                            </button>
+
+                            <div class="mt-3 text-xs text-text-muted text-center">
+                                <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i>
+                                Generated entirely in your browser. Nothing is sent to any server.
+                            </div>
+
+                        </div>
+
+                        <div>
+
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="qr-setting-label">Your QR Code</span>
+                                <div class="flex gap-2">
+                                    <button id="qr-download-btn" class="qr-download-btn text-sm px-3 py-1.5">
+                                        <i class="fas fa-download"></i> Download PNG
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="qr-display" class="qr-display-container">
+                                <div id="qrcode"></div>
+                                <div id="qr-placeholder" class="qr-placeholder">
+                                    <i class="fas fa-qrcode"></i>
+                                    Enter text and click Generate
+                                </div>
+                            </div>
+
+                            <div id="qr-info" class="mt-3 text-xs text-text-muted text-center hidden">
+                                <span id="qr-info-text">QR code generated</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="tab-read" class="qr-tab-panel" data-aos="fade-up" data-aos-delay="150">
+
+                <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                        <div>
+
+                            <div class="qr-section-title"><i class="fas fa-upload mr-2"></i>Upload QR Code Image</div>
+
+                            <div id="qr-drop-zone" class="qr-drop-zone relative">
+                                <input type="file" id="qr-file-input" class="qr-file-input" accept="image/*" />
+                                <span class="icon"><i class="fas fa-cloud-upload-alt"></i></span>
+                                <div class="text">Drop an image here or click to browse</div>
+                                <div class="sub">Supports PNG, JPG, BMP, WEBP</div>
+                            </div>
+
+                            <div id="qr-preview-container" class="qr-preview-container hidden">
+                                <img id="qr-preview" alt="QR code preview" />
+                            </div>
+
+                            <button id="qr-decode-btn" class="qr-gen-btn w-full justify-center mt-4" disabled>
+                                <i class="fas fa-qrcode"></i>
+                                Decode QR Code
+                            </button>
+
+                            <div class="mt-3 text-xs text-text-muted text-center">
+                                <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i>
+                                All processing is done locally in your browser. Your images are never uploaded.
+                            </div>
+
+                        </div>
+
+                        <div>
+
+                            <div class="qr-section-title"><i class="fas fa-file-lines mr-2"></i>Decoded Result</div>
+
+                            <div id="qr-result-container">
+                                <div id="qr-result-placeholder" class="text-text-muted text-sm py-8 text-center">
+                                    <i class="fas fa-qrcode text-3xl block mb-3 opacity-30"></i>
+                                    Upload a QR code image and click "Decode QR Code" to see the result.
+                                </div>
+
+                                <div id="qr-result-content" class="hidden">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="text-sm font-medium text-text-secondary">Decoded text:</span>
+                                        <button id="qr-result-copy" class="qr-copy-btn text-sm px-3 py-1.5 ml-auto">
+                                            <i class="fas fa-copy"></i> Copy
+                                        </button>
+                                    </div>
+                                    <div id="qr-result-text" class="qr-result-box"></div>
+                                    <div id="qr-result-type" class="mt-2 text-xs text-text-muted">
+                                        <span class="font-medium">Type:</span> <span id="qr-type-label">Text</span>
+                                    </div>
+                                </div>
+
+                                <div id="qr-result-error" class="hidden text-red-500 text-sm mt-4">
+                                    <i class="fas fa-exclamation-circle mr-1.5"></i>
+                                    <span id="qr-error-msg">Could not decode QR code. Please try a different
+                                        image.</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="qr-card rounded-2xl p-4 text-center">
+                    <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-palette text-tor-violet"></i>
+                    </div>
+                    <h4 class="font-semibold text-sm text-text-primary">Custom Colors</h4>
+                    <p class="text-text-muted text-xs mt-1">Match your brand or style with custom foreground and
+                        background colors.</p>
+                </div>
+                <div class="qr-card rounded-2xl p-4 text-center">
+                    <div class="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-shield text-amber-600"></i>
+                    </div>
+                    <h4 class="font-semibold text-sm text-text-primary">Error Correction</h4>
+                    <p class="text-text-muted text-xs mt-1">Choose from L, M, Q, H levels to balance size and
+                        robustness.</p>
+                </div>
+                <div class="qr-card rounded-2xl p-4 text-center">
+                    <div class="w-10 h-10 rounded-full bg-cyan-50 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-camera text-cyan-600"></i>
+                    </div>
+                    <h4 class="font-semibold text-sm text-text-primary">Read QR Codes</h4>
+                    <p class="text-text-muted text-xs mt-1">Upload any QR code image and decode its content instantly.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="relative overflow-hidden border-t border-tor-violet/10">
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
+        </div>
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
+        </div>
+    
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+    
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+    
+                <div class="col-span-2 md:col-span-3 lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
+                            <img src="../img/logo.png" alt="RICALNET open-source self-hosted infrastructure logo"
+                                class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
+                        </div>
+                        <div>
+                            <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+                            <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust
+                                · Control
+                                · Access · Libre</span>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
+                        RICALNET — Robust Infrastructure for Control, Access, &amp; Libre NETwork.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 mt-5">
+                        <a href="https://github.com/ricalnet" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fa-brands fa-github text-base"></i>
+                        </a>
+                        <a href="mailto:ricalnet@duck.com"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-envelope text-base"></i>
+                        </a>
+                        <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-heartbeat text-base"></i>
+                        </a>
+                        <span
+                            class="pgp-fingerprint text-[0.6rem] px-3 py-1.5 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                            onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                            <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                        </span>
+                    </div>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Why Self‑Host</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/about#our-mission" class="footer-link">Mission</a></li>
+                        <li><a href="https://ricalnet.my.id/resources" class="footer-link">Resources</a></li>
+                        <li><a href="https://ricalnet.my.id/gallery" class="footer-link">Gallery</a></li>
+                        <li><a href="https://docs.ricalnet.my.id" class="footer-link">Blog</a></li>
+                        <li><a href="https://ricalnet.my.id/#cta" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Stack</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/#features" class="footer-link">Sovereign Infrastructure</a></li>
+                        <li><a href="https://ricalnet.my.id/#private-digital-services" class="footer-link">What You Need</a>
+                        </li>
+                        <li><a href="https://ricalnet.my.id/#hidden-services" class="footer-link">Hidden Services</a></li>
+                        <li><a href="https://ricalnet.my.id/tools/metadata-cleaner" class="footer-link">Metadata Cleaner</a>
+                        </li>
+                        <li><a href="https://ricalnet.my.id/tools/quantum-hasher" class="footer-link">Quantum Hasher</a>
+                        </li>
+                        <li><a href="https://link.ricalnet.my.id" class="footer-link">URL Shortener</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Docs &amp; Resources</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
+                                target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="https://github.com/ricalnet/digital-independence" class="footer-link"
+                                target="_blank">Repository <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="https://ricalnet.my.id/about#cta-support" class="footer-link">Support</a></li>
+                        <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Legal</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/resources#legal-resources" class="footer-link">Legal
+                                Resources</a></li>
+                        <li><a href="https://ricalnet.my.id/terms-of-service" class="footer-link">Terms of Service</a></li>
+                        <li><a href="https://ricalnet.my.id/privacy" class="footer-link">Privacy Policy</a></li>
+                    </ul>
+                </div>
+    
+            </div>
+    
+            <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+                <p class="text-xs tracking-wide">
+                    COPYRIGHT (CC BY) — <a href="https://ricalnet.my.id/"
+                        class="hover:text-tor-violet transition-colors">Open
+                        Source Self-Hosted Infrastructure</a>
+                </p>
+                <div class="flex flex-wrap items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
+                    <a href="https://ricalnet.my.id/"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#OpenSource</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/#pain-points"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#NoLockIn</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/#features"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#ZeroTrust</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/"
+                        class="text-tor-violet font-semibold hover:text-tor-violet-dark transition-colors">#ControlAccessLibre</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span
+                        class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                        onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                        <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                    </span>
+                </div>
+            </div>
+    
+        </div>
+    </footer>
+
+    <script src="../assets/js/aos.js">
+    </script>
+    <script src="../assets/js/components.js">
+    </script>
+
+    <script>
+        AOS.init({
+            once: true,
+            offset: 30,
+            easing: 'ease-out-expo',
+            duration: 900,
+            disable: window.innerWidth < 768 ? true : false,
+        });
+
+        const PGP_FINGERPRINT = '45688382B815821F033115B8D92D6A10D29C8380';
+
+        function copyPGP() {
+            navigator.clipboard.writeText(PGP_FINGERPRINT).then(() => {
+                showToast('PGP fingerprint copied!');
+            }).catch(() => {
+                const textArea = document.createElement('textarea');
+                textArea.value = PGP_FINGERPRINT;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast('PGP fingerprint copied!');
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] transition-all duration-300';
+            toast.innerHTML = '<i class="fas fa-check-circle text-tor-accent mr-2"></i> ' + message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Copied!');
+            }).catch(() => {
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast('Copied!');
+            });
+        }
+
+        const qrDom = {
+            text: document.getElementById('qr-text'),
+            size: document.getElementById('qr-size'),
+            sizeDisplay: document.getElementById('qr-size-display'),
+            fg: document.getElementById('qr-fg'),
+            bg: document.getElementById('qr-bg'),
+            ec: document.getElementById('qr-ec'),
+            generateBtn: document.getElementById('qr-generate-btn'),
+            downloadBtn: document.getElementById('qr-download-btn'),
+            display: document.getElementById('qrcode'),
+            placeholder: document.getElementById('qr-placeholder'),
+            info: document.getElementById('qr-info'),
+            infoText: document.getElementById('qr-info-text'),
+        };
+
+        let qrCodeInstance = null;
+        let currentQrDataUrl = null;
+
+        const ecMap = {
+            'L': QRCode.CorrectLevel.L,
+            'M': QRCode.CorrectLevel.M,
+            'Q': QRCode.CorrectLevel.Q,
+            'H': QRCode.CorrectLevel.H
+        };
+
+        function generateQR() {
+            const text = qrDom.text.value.trim();
+            if (!text) {
+                showToast('Please enter text or a URL to encode.');
+                return;
+            }
+
+            const size = parseInt(qrDom.size.value) || 256;
+            const fg = qrDom.fg.value;
+            const bg = qrDom.bg.value;
+            const ecLevel = qrDom.ec.value;
+
+            qrDom.display.innerHTML = '';
+            qrDom.placeholder.classList.add('hidden');
+            qrDom.info.classList.remove('hidden');
+
+            try {
+                qrCodeInstance = new QRCode(qrDom.display, {
+                    text: text,
+                    width: size,
+                    height: size,
+                    colorDark: fg,
+                    colorLight: bg,
+                    correctLevel: ecMap[ecLevel] || QRCode.CorrectLevel.M,
+                });
+
+                const canvas = qrDom.display.querySelector('canvas');
+                if (canvas) {
+                    currentQrDataUrl = canvas.toDataURL('image/png');
+                }
+
+                qrDom.infoText.textContent = '✅ QR Code generated — ' + text.length + ' characters, ' + size + '×' + size + 'px';
+                qrDom.downloadBtn.disabled = false;
+
+            } catch (err) {
+                console.error('QR generation error:', err);
+                showToast('Error generating QR code: ' + err.message);
+                qrDom.placeholder.classList.remove('hidden');
+                qrDom.info.classList.add('hidden');
+                currentQrDataUrl = null;
+                qrDom.downloadBtn.disabled = true;
+            }
+        }
+
+        function downloadQR() {
+            if (!currentQrDataUrl) {
+                showToast('Generate a QR code first.');
+                return;
+            }
+
+            const link = document.createElement('a');
+            link.download = 'qrcode.png';
+            link.href = currentQrDataUrl;
+            link.click();
+            showToast('QR code downloaded!');
+        }
+
+        qrDom.generateBtn.addEventListener('click', generateQR);
+
+        qrDom.text.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                generateQR();
+            }
+        });
+
+        qrDom.size.addEventListener('input', () => {
+            qrDom.sizeDisplay.textContent = qrDom.size.value;
+            if (qrDom.text.value.trim()) {
+                generateQR();
+            }
+        });
+
+        qrDom.fg.addEventListener('input', () => {
+            if (qrDom.text.value.trim()) generateQR();
+        });
+
+        qrDom.bg.addEventListener('input', () => {
+            if (qrDom.text.value.trim()) generateQR();
+        });
+
+        qrDom.ec.addEventListener('change', () => {
+            if (qrDom.text.value.trim()) generateQR();
+        });
+
+        qrDom.downloadBtn.addEventListener('click', downloadQR);
+
+        document.querySelectorAll('.sample-text-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                qrDom.text.value = btn.dataset.text;
+                generateQR();
+            });
+        });
+
+        setTimeout(() => {
+            if (qrDom.text.value.trim()) {
+                generateQR();
+            } else {
+                qrDom.text.value = 'https://ricalnet.my.id';
+                generateQR();
+            }
+        }, 400);
+
+        const readerDom = {
+            dropZone: document.getElementById('qr-drop-zone'),
+            fileInput: document.getElementById('qr-file-input'),
+            previewContainer: document.getElementById('qr-preview-container'),
+            preview: document.getElementById('qr-preview'),
+            decodeBtn: document.getElementById('qr-decode-btn'),
+            resultPlaceholder: document.getElementById('qr-result-placeholder'),
+            resultContent: document.getElementById('qr-result-content'),
+            resultText: document.getElementById('qr-result-text'),
+            resultType: document.getElementById('qr-type-label'),
+            resultError: document.getElementById('qr-result-error'),
+            errorMsg: document.getElementById('qr-error-msg'),
+            copyBtn: document.getElementById('qr-result-copy'),
+        };
+
+        let currentFileData = null;
+
+        function handleFile(file) {
+            if (!file || !file.type.startsWith('image/')) {
+                showToast('Please select a valid image file.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                currentFileData = e.target.result;
+                readerDom.preview.src = currentFileData;
+                readerDom.previewContainer.classList.remove('hidden');
+                readerDom.decodeBtn.disabled = false;
+                readerDom.resultContent.classList.add('hidden');
+                readerDom.resultError.classList.add('hidden');
+                readerDom.resultPlaceholder.classList.remove('hidden');
+            };
+            reader.onerror = () => {
+                showToast('Error reading file.');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        readerDom.dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            readerDom.dropZone.classList.add('dragover');
+        });
+
+        readerDom.dropZone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            readerDom.dropZone.classList.remove('dragover');
+        });
+
+        readerDom.dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            readerDom.dropZone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+
+        readerDom.fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        });
+
+        readerDom.decodeBtn.addEventListener('click', () => {
+            if (!currentFileData) {
+                showToast('Please upload an image first.');
+                return;
+            }
+
+            const img = new Image();
+            img.onload = () => {
+                try {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0, img.width, img.height);
+
+                    const imageData = ctx.getImageData(0, 0, img.width, img.height);
+                    const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+                    if (code && code.data) {
+                        readerDom.resultPlaceholder.classList.add('hidden');
+                        readerDom.resultError.classList.add('hidden');
+                        readerDom.resultContent.classList.remove('hidden');
+                        readerDom.resultText.textContent = code.data;
+
+                        let type = 'Text';
+                        if (code.data.startsWith('http://') || code.data.startsWith('https://')) {
+                            type = 'URL';
+                        } else if (code.data.startsWith('mailto:')) {
+                            type = 'Email';
+                        } else if (code.data.startsWith('tel:')) {
+                            type = 'Phone';
+                        } else if (code.data.startsWith('WIFI:')) {
+                            type = 'Wi-Fi Config';
+                        } else if (code.data.startsWith('BEGIN:VCARD') || code.data.startsWith('BEGIN:VCARD')) {
+                            type = 'Contact (vCard)';
+                        } else if (code.data.startsWith('geo:')) {
+                            type = 'Geo Location';
+                        }
+                        readerDom.resultType.textContent = type;
+
+                        showToast('QR code decoded successfully!');
+                    } else {
+                        readerDom.resultPlaceholder.classList.add('hidden');
+                        readerDom.resultContent.classList.add('hidden');
+                        readerDom.resultError.classList.remove('hidden');
+                        readerDom.errorMsg.textContent = 'No QR code found in the image. Please try a different image with a clear QR code.';
+                    }
+                } catch (err) {
+                    console.error('Decode error:', err);
+                    readerDom.resultPlaceholder.classList.add('hidden');
+                    readerDom.resultContent.classList.add('hidden');
+                    readerDom.resultError.classList.remove('hidden');
+                    readerDom.errorMsg.textContent = 'Error decoding image: ' + err.message;
+                }
+            };
+
+            img.onerror = () => {
+                showToast('Error loading image for decoding.');
+            };
+
+            img.src = currentFileData;
+        });
+
+        readerDom.copyBtn.addEventListener('click', () => {
+            const text = readerDom.resultText.textContent;
+            if (text) {
+                copyToClipboard(text);
+                readerDom.copyBtn.classList.add('copied');
+                setTimeout(() => readerDom.copyBtn.classList.remove('copied'), 2000);
+            }
+        });
+
+        const tabButtons = document.querySelectorAll('.qr-tab-btn');
+        const tabPanels = {
+            generate: document.getElementById('tab-generate'),
+            read: document.getElementById('tab-read'),
+        };
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tab = btn.dataset.tab;
+                tabButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                Object.keys(tabPanels).forEach(key => {
+                    tabPanels[key].classList.toggle('active', key === tab);
+                });
+            });
+        });
+
+        const mobileToggle = document.getElementById('mobile-menu-toggle');
+        const mobileClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileToggle && mobileMenu) {
+            mobileToggle.addEventListener('click', () => {
+                const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+                mobileToggle.setAttribute('aria-expanded', !expanded);
+                mobileMenu.classList.toggle('open');
+                document.body.style.overflow = expanded ? '' : 'hidden';
+            });
+        }
+
+        if (mobileClose && mobileMenu) {
+            mobileClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+                if (mobileToggle) {
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        document.querySelectorAll('[data-close-mobile]').forEach(el => {
+            el.addEventListener('click', () => {
+                if (mobileMenu) {
+                    mobileMenu.classList.remove('open');
+                    document.body.style.overflow = '';
+                    if (mobileToggle) {
+                        mobileToggle.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.dataset.target;
+                const target = document.getElementById(targetId);
+                if (target) {
+                    const isOpen = target.classList.toggle('open');
+                    btn.classList.toggle('open');
+                    btn.setAttribute('aria-expanded', isOpen);
+                    const chevron = btn.querySelector('.fa-chevron-down');
+                    if (chevron) {
+                        chevron.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

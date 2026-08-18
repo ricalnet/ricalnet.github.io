@@ -1,324 +1,723 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Tidak Ditemukan | RicalNet</title>
-    <meta name="description" content="Halaman yang Anda cari tidak ditemukan. RicalNet memberdayakan individu dengan pengetahuan privasi digital praktis dan alat keamanan.">
-    <link rel="icon" type="image/x-icon" href="img/logo.png">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- AOS CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            scroll-behavior: smooth;
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>404 — Page Not Found | RICALNET · Open Source Infrastructure</title>
+    <meta name="description"
+        content="Page not found. RICALNET provides open-source self-hosted infrastructure with zero-trust security. Return to our homepage to explore privacy tools and sovereign resources." />
+    <meta name="keywords"
+        content="404 page not found, RICALNET, open source infrastructure, self-hosted, vendor lock-in, zero-trust, privacy" />
+    <link rel="canonical" href="https://ricalnet.my.id/404" />
+    <link rel="alternate" hreflang="en" href="https://ricalnet.my.id/404" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://ricalnet.my.id/sitemap.xml" />
+    <link rel="icon" type="image/x-icon" href="img/logo.png" />
+    <meta property="og:title" content="404 — Page Not Found | RICALNET" />
+    <meta property="og:description"
+        content="Page not found. Return to RICALNET for open-source privacy tools, legal resources, and sovereign infrastructure." />
+    <meta property="og:url" content="https://ricalnet.my.id/404" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://ricalnet.my.id/img/og-404.png" />
+    <meta property="og:image:alt" content="RICALNET 404 page — time machine illustration" />
+    <meta property="og:site_name" content="RICALNET" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="404 — Page Not Found | RICALNET" />
+    <meta name="twitter:description"
+        content="Page not found. Return to RICALNET for open-source privacy tools, legal resources, and sovereign infrastructure." />
+    <meta name="twitter:image" content="https://ricalnet.my.id/img/og-404.png" />
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "404 — Page Not Found",
+        "description": "Page not found. RICALNET provides open-source self-hosted infrastructure with zero-trust security.",
+        "url": "https://ricalnet.my.id/404",
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ricalnet.my.id/" },
+                { "@type": "ListItem", "position": 2, "name": "404", "item": "https://ricalnet.my.id/404" }
+            ]
         }
-        body {
-            background-color: #0f172a;
-            color: #e2e8f0;
-            overflow-x: hidden;
-            font-family: 'Inter', 'sans-serif';
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "RICALNET",
+        "url": "https://ricalnet.my.id/",
+        "logo": "https://ricalnet.my.id/img/logo.png",
+        "sameAs": ["https://github.com/ricalnet"],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "ricalnet@duck.com",
+            "contactType": "technical support"
         }
-        .hero-gradient {
-            background: radial-gradient(circle at top right, rgba(126, 71, 152, 0.2) 0%, rgba(15, 23, 42, 0) 50%),
-                        radial-gradient(circle at bottom left, rgba(26, 115, 232, 0.2) 0%, rgba(15, 23, 42, 0) 50%);
-        }
-        .card-blur {
-            background: rgba(30, 41, 59, 0.6);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(126, 71, 152, 0.3);
-            transition: all 0.3s ease;
-        }
-        .card-blur:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        .glow {
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
-        }
-        .social-icon {
-            transition: all 0.3s ease;
-        }
-        .social-icon:hover {
-            transform: scale(1.1);
-            text-shadow: 0 0 10px rgba(138, 180, 248, 0.8);
-        }
-        .encryption-text {
-            font-family: 'Roboto Mono', monospace;
-            letter-spacing: 1px;
-            color: #8ab4f8;
-        }
-        .logo-img {
-            border: 2px solid rgba(126, 71, 152, 0.5);
-            box-shadow: 0 0 15px rgba(126, 71, 152, 0.3);
-        }
-        .error-illustration {
-            max-width: 100%;
-            height: auto;
-            filter: drop-shadow(0 10px 15px rgba(126, 71, 152, 0.3));
-        }
-        .btn-primary {
-            background: linear-gradient(90deg, #7e4798, #1a73e8);
-            color: white;
-            font-weight: bold;
-            padding: 12px 32px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        .btn-secondary {
-            background: rgba(30, 41, 59, 0.8);
-            color: #8ab4f8;
-            font-weight: bold;
-            padding: 12px 32px;
-            border-radius: 8px;
-            border: 1px solid rgba(126, 71, 152, 0.5);
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        .btn-secondary:hover {
-            background: rgba(38, 52, 77, 0.8);
-            transform: translateY(-3px);
-        }
-        .link-highlight {
-            color: #8ab4f8;
-            text-decoration: underline;
-            transition: color 0.3s ease;
-        }
-        .link-highlight:hover {
-            color: #1a73e8;
-        }
-        .error-code {
-            font-size: 10rem;
-            font-weight: 800;
-            background: linear-gradient(90deg, #7e4798, #1a73e8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1;
-            margin-bottom: 1rem;
-        }
-        @media (max-width: 768px) {
-            .error-code {
-                font-size: 6rem;
-            }
-        }
-    </style>
+    }
+    </script>
+    <link href="assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="assets/fontawesome/css/solid.css" rel="stylesheet" />
+    <link href="assets/fontawesome/css/brands.css" rel="stylesheet" />
+    <link href="assets/css/fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link href="assets/css/aos.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com">
+    </script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        primary: '#1a73e8',
-                        secondary: '#8ab4f8',
-                        dark: '#0f172a',
-                        tor: '#7e4798',
-                    },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Roboto Mono', 'monospace'],
+                        'source-sans-pro': ['"Source Sans Pro"', 'Inter', 'Roboto', 'system-ui', '-apple-system', 'sans-serif'],
+                        roboto: ['Roboto', '"Source Sans Pro"', 'Inter', 'system-ui', 'sans-serif'],
+                        inter: ['Inter', '"Source Sans Pro"', 'Roboto', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    colors: {
+                        tor: {
+                            violet: '#7c3aed',
+                            'violet-light': '#8b5cf6',
+                            'violet-dark': '#5b21b6',
+                            'violet-deep': '#4c1d95',
+                            'violet-soft': '#ede9fe',
+                            accent: '#68B030',
+                            'accent-cyan': '#06b6d4',
+                            'accent-amber': '#f59e0b',
+                        },
+                        surface: {
+                            light: '#faf9fe',
+                            card: '#ffffff',
+                            border: '#ede9f0',
+                            muted: '#f5f3fa',
+                            dark: '#0f0e1a',
+                        },
+                        text: {
+                            primary: '#0f0e1a',
+                            secondary: '#52506e',
+                            muted: '#9492ae',
+                            inverse: '#f8f7fc',
+                        }
+                    },
+                    boxShadow: {
+                        'elevated': '0 1px 3px rgba(0,0,0,0.02), 0 8px 40px rgba(124,58,237,0.06), 0 20px 80px rgba(124,58,237,0.04)',
+                        'elevated-lg': '0 1px 3px rgba(0,0,0,0.02), 0 16px 64px rgba(124,58,237,0.08), 0 32px 120px rgba(124,58,237,0.04)',
+                        'glow': '0 0 60px rgba(124,58,237,0.06)',
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-down': 'fadeDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-right': 'fadeRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-left': 'fadeLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'scale-in': 'scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 20s linear infinite',
+                        'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': {
+                                opacity: '1',
+                                transform: 'translateY(0)'
+                            }
+                        },
+                        fadeDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-40px)' }, '100%': {
+                                opacity: '1',
+                                transform: 'translateY(0)'
+                            }
+                        },
+                        fadeRight: {
+                            '0%': { opacity: '0', transform: 'translateX(-40px)' }, '100%': {
+                                opacity: '1',
+                                transform: 'translateX(0)'
+                            }
+                        },
+                        fadeLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(40px)' }, '100%': {
+                                opacity: '1',
+                                transform: 'translateX(0)'
+                            }
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.94)' }, '100%': {
+                                opacity: '1',
+                                transform: 'scale(1)'
+                            }
+                        },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-14px)' } },
+                        pulseSoft: { '0%, 100%': { opacity: '0.6' }, '50%': { opacity: '1' } },
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="font-sans flex flex-col">
-    <main class="flex-grow">
-        <section class="hero-gradient min-h-screen flex items-center py-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <div class="text-center lg:text-left" data-aos="fade-right">
-                        <div class="error-code mb-4">404</div>
-                        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
-                            Halaman Tidak Ditemukan
-                        </h1>
-                        <p class="text-xl text-gray-300 mb-8 max-w-xl">
-                            Sepertinya Anda tersesat di dunia digital. Halaman yang Anda cari mungkin telah dipindahkan, dihapus, atau tidak pernah ada.
-                        </p>
-                        <div class="encryption-text text-lg md:text-xl p-4 rounded-lg bg-gray-900/50 inline-block mb-10">
-                            <span id="encrypted-text">4572726f72203430343a2050616765206e6f7420666f756e64</span>
-                        </div>
-                        
-                        <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-                            <a href="https://ricalnet.github.io/website" class="btn-primary">
-                                <i class="fas fa-home mr-2"></i>Kembali ke Beranda
-                            </a>
-                            <a href="https://ricalnet.github.io/website/resources.html" class="btn-secondary">
-                                <i class="fas fa-compass mr-2"></i>Lihat Sumber Daya
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="flex justify-center" data-aos="fade-left" data-aos-delay="200">
-                        <div class="relative">
-                            <svg class="error-illustration w-full max-w-md" viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="300" cy="250" r="200" fill="url(#gradient)" opacity="0.1"/>
-                                
-                                <g transform="translate(100, 50)">
-                                    <circle cx="200" cy="200" r="90" fill="none" stroke="#7e4798" stroke-width="8" stroke-dasharray="10,5"/>
-                                    <line x1="270" y1="270" x2="350" y2="350" stroke="#8ab4f8" stroke-width="8" stroke-linecap="round"/>
-                                    
-                                    <path d="M100,250 C100,220 130,200 160,200 C190,200 220,220 220,250 C220,280 190,300 160,300 M160,330 L160,380" 
-                                          stroke="#1a73e8" 
-                                          stroke-width="8" 
-                                          fill="none" 
-                                          stroke-linecap="round"/>
-                                    
-                                    <circle cx="400" cy="120" r="15" fill="#7e4798" opacity="0.7">
-                                        <animate attributeName="cy" values="120;100;120" dur="3s" repeatCount="indefinite"/>
-                                    </circle>
-                                    <circle cx="450" cy="180" r="10" fill="#1a73e8" opacity="0.7">
-                                        <animate attributeName="cx" values="450;470;450" dur="4s" repeatCount="indefinite"/>
-                                    </circle>
-                                    <circle cx="350" cy="350" r="8" fill="#8ab4f8" opacity="0.7">
-                                        <animate attributeName="r" values="8;12;8" dur="2.5s" repeatCount="indefinite"/>
-                                    </circle>
-                                </g>
-                                
-                                <defs>
-                                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#7e4798" />
-                                        <stop offset="100%" stop-color="#1a73e8" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mt-20 max-w-4xl mx-auto" data-aos="fade-up">
-                    <div class="card-blur rounded-2xl p-8">
-                        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 text-center">
-                            Mungkin Anda mencari salah satu dari ini?
-                        </h2>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <a href="https://ricalnet.github.io/website/" class="group">
-                                <div class="p-6 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-all duration-300 h-full">
-                                    <div class="w-12 h-12 rounded-full bg-tor/20 flex items-center justify-center mb-4 mx-auto group-hover:bg-tor/40 transition-colors">
-                                        <i class="fas fa-home text-xl text-tor"></i>
-                                    </div>
-                                    <h3 class="text-lg font-semibold text-white text-center mb-2">Beranda</h3>
-                                    <p class="text-gray-400 text-sm text-center">Kembali ke halaman utama Ricalnet</p>
-                                </div>
-                            </a>
-                            
-                            <a href="https://ricalnet.github.io/website/resources.html" class="group">
-                                <div class="p-6 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-all duration-300 h-full">
-                                    <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-4 mx-auto group-hover:bg-primary/40 transition-colors">
-                                        <i class="fas fa-tools text-xl text-primary"></i>
-                                    </div>
-                                    <h3 class="text-lg font-semibold text-white text-center mb-2">Sumber Daya</h3>
-                                    <p class="text-gray-400 text-sm text-center">Alat dan panduan privasi digital</p>
-                                </div>
-                            </a>
-                            
-                            <a href="https://ricaldocs.github.io" target="_blank" class="group">
-                                <div class="p-6 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-all duration-300 h-full">
-                                    <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mb-4 mx-auto group-hover:bg-purple-500/40 transition-colors">
-                                        <i class="fas fa-book-open text-xl text-purple-400"></i>
-                                    </div>
-                                    <h3 class="text-lg font-semibold text-white text-center mb-2">RicalDocs</h3>
-                                    <p class="text-gray-400 text-sm text-center">Blog dan dokumentasi pengetahuan</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
 
-    <footer class="py-8 border-t border-tor/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="flex items-center mb-4 md:mb-0">
-                    <a href="https://ricalnet.github.io/website/index.html" class="flex items-center">
-                        <div class="h-10 w-10 rounded-full overflow-hidden logo-img">
-                            <img src="https://ricalnet.my.id/img/logo.png" alt="Ricalnet Logo" class="h-full w-full object-cover">
+<body
+    class="font-source-sans-pro bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+    <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div class="absolute inset-0 bg-grid-subtle"></div>
+        <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/5 rounded-full blur-[160px]"></div>
+        <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/3 rounded-full blur-[180px]"></div>
+        <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/4 rounded-full blur-[140px]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light"></div>
+    </div>
+    <header
+        class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-[72px]">
+    
+                <a href="https://ricalnet.my.id/" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+                    data-aos-duration="600">
+                    <img src="img/logo.png" alt="RICALNET Open Source Self-Hosted Infrastructure Logo"
+                        class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
+                    <div class="leading-tight hidden sm:block">
+                        <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+                        <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust ·
+                            Control ·
+                            Access · Libre</span>
+                    </div>
+                </a>
+    
+                <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down"
+                    data-aos-duration="600">
+                    <a href="https://ricalnet.my.id/#hero" class="nav-link">Home</a>
+    
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/#pain-points" class="nav-link flex items-center gap-1">
+                            Why Self‑Host
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/#pain-points" class="dropdown-item">The Lock‑in Trap</a>
+                            <a href="https://ricalnet.my.id/#how-it-works" class="dropdown-item">The Approach</a>
+                            <a href="https://ricalnet.my.id/#features" class="dropdown-item">Sovereign Stack</a>
+                            <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal &amp;
+                                Advocacy</a>
                         </div>
-                        <span class="ml-3 text-xl font-bold text-white">Ricalnet</span>
+                    </div>
+    
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/resources#hero" class="nav-link flex items-center gap-1">
+                            Resources
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                            <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal
+                                Resources</a>
+                            <a href="https://ricalnet.my.id/resources#in-house-tools" class="dropdown-item">In‑House
+                                Tools</a>
+                            <a href="https://ricalnet.my.id/resources" class="dropdown-item">All Resources</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/resources#hero" class="nav-link flex items-center gap-1">
+                            Tools
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="dropdown-item">Metadata
+                                Cleaner</a>
+                            <a href="https://ricalnet.my.id/tools/quantum-hasher" class="dropdown-item">Quantum Hasher</a>
+                            <a href="https://ricalnet.my.id/tools/ip-intelligence" class="dropdown-item">IP Intelligence</a>
+                            <a href="https://ricalnet.my.id/tools/password-generator" class="dropdown-item">Password
+                                Generator</a>
+                            <a href="https://ricalnet.my.id/tools/qr-builder" class="dropdown-item">QR Builder</a>
+                            <a href="https://ricalnet.my.id/tools/whiteboard" class="dropdown-item">Whiteboard</a>
+                            <a href="https://ricalnet.my.id/tools/chantik" class="dropdown-item">Chantik</a>
+                            <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/about#hero" class="nav-link flex items-center gap-1">
+                            About
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/about#our-mission" class="dropdown-item">Mission</a>
+                            <a href="https://ricalnet.my.id/#comparison" class="dropdown-item">Comparison</a>
+                            <a href="https://ricalnet.my.id/#faq" class="dropdown-item">FAQ</a>
+                            <a href="https://ricalnet.my.id/#cta" class="dropdown-item">Contact</a>
+                            <a href="https://ricalnet.my.id/about#cta-support" class="dropdown-item">Support</a>
+                        </div>
+                    </div>
+                </nav>
+    
+                <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
+                    <a href="https://ricalnet.my.id/#hidden-services" class="hidden lg:inline-flex btn-sso">
+                        <i class="fas fa-key"></i> Login with SSO
                     </a>
+                    <button id="mobile-menu-toggle"
+                        class="lg:hidden w-9 h-9 rounded-full hover:bg-surface-muted flex items-center justify-center transition-colors"
+                        aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars text-text-secondary text-lg"></i>
+                    </button>
                 </div>
-                
-                <p class="text-gray-400 text-sm text-center md:text-right">
-                    &copy; Ricalnet
-                </p>
+    
             </div>
         </div>
+    </header>
+    
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <img src="img/logo.png" alt="RICALNET" />
+                <span>RICALNET</span>
+            </div>
+            <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+    
+        <div class="mobile-menu-scroll">
+    
+            <a href="https://ricalnet.my.id/#hero" class="nav-item" data-close-mobile>
+                <i class="fas fa-home"></i> Home
+            </a>
+    
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-advocacy">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Why Self‑Host
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/#pain-points" class="sub-link" data-close-mobile>
+                        <i class="fas fa-exclamation-triangle"></i> The Lock‑in Trap
+                    </a>
+                    <a href="https://ricalnet.my.id/#how-it-works" class="sub-link" data-close-mobile>
+                        <i class="fas fa-route"></i> The Approach
+                    </a>
+                    <a href="https://ricalnet.my.id/#features" class="sub-link" data-close-mobile>
+                        <i class="fas fa-star"></i> Sovereign Stack
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal &amp; Advocacy
+                    </a>
+                </div>
+            </div>
+    
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-resources">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-lock"></i> Privacy Tools
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal Resources
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#in-house-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-cubes"></i> In‑House Tools
+                    </a>
+                    <a href="https://ricalnet.my.id/resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-folder-open"></i> All Resources
+                    </a>
+                </div>
+            </div>
+    
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-tools">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> Metadata Cleaner
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/quantum-hasher" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> Quantum Hasher
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/ip-intelligence" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> IP Intelligence
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/password-generator" class="sub-link" data-close-mobile>
+                        <i class="fas fa-key"></i> Password Generator
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/qr-builder" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> QR Builder
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/whiteboard" class="sub-link" data-close-mobile>
+                        <i class="fas fa-pen-fancy"></i> Whiteboard
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/chantik" class="sub-link" data-close-mobile>
+                        <i class="fa-solid fa-floppy-disk"></i> Chantik
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-user-secret"></i> Privacy Tools
+                    </a>
+                </div>
+            </div>
+    
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-about">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/about#our-mission" class="sub-link" data-close-mobile>
+                        <i class="fas fa-bullseye"></i> Mission
+                    </a>
+                    <a href="https://ricalnet.my.id/#comparison" class="sub-link" data-close-mobile>
+                        <i class="fas fa-arrows-left-right"></i> Comparison
+                    </a>
+                    <a href="https://ricalnet.my.id/#faq" class="sub-link" data-close-mobile>
+                        <i class="fas fa-question-circle"></i> FAQ
+                    </a>
+                    <a href="https://ricalnet.my.id/#cta" class="sub-link" data-close-mobile>
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                    <a href="https://ricalnet.my.id/about#cta-support" class="sub-link" data-close-mobile>
+                        <i class="fas fa-hand-holding-heart"></i> Support
+                    </a>
+                </div>
+            </div>
+    
+            <a href="https://ricalnet.my.id/#hidden-services" class="mt-3 block w-full text-center btn-sso justify-center"
+                data-close-mobile>
+                <i class="fas fa-key"></i> Login with SSO
+            </a>
+    
+            <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+                <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+                    <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> RICALNET — Robust · Control · Access · Libre
+                </span>
+            </div>
+    
+        </div>
+    </div>
+    <nav aria-label="Breadcrumb" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 text-xs">
+        <ol class="flex flex-wrap items-center gap-2 text-text-muted">
+            <li><a href="https://ricalnet.my.id/" class="hover:text-tor-violet transition-colors">Home</a></li>
+            <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
+            <li class="text-tor-violet font-medium">404 — Page Not Found</li>
+        </ol>
+    </nav>
+    <section id="hero"
+        class="relative min-h-[calc(100vh-200px)] flex items-center overflow-hidden pt-[72px] pb-12 md:pb-16">
+        <div class="particle" aria-hidden="true"></div>
+        <div class="particle" aria-hidden="true"></div>
+        <div class="particle" aria-hidden="true"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="100" class="text-center lg:text-left">
+                    <div class="flex justify-center lg:justify-start mb-6">
+                        <span class="section-badge">
+                            <i class="fas fa-exclamation-triangle"></i> Error 404
+                        </span>
+                    </div>
+                    <div class="error-code mb-2">404</div>
+                    <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-text-primary leading-tight">
+                        Page not found
+                    </h1>
+                    <p class="text-text-secondary text-lg md:text-xl mt-4 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+                        Sorry. Unless you've got a time machine, that content is unavailable.
+                    </p>
+                    <div class="flex items-center justify-center lg:justify-start gap-3 mt-3 text-text-muted text-sm">
+                        <i class="fas fa-clock text-tor-violet/60"></i>
+                        <span>This page might have moved, been retired, or never existed.</span>
+                    </div>
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-8">
+                        <a href="https://ricalnet.my.id" class="text-white btn-primary">
+                            <i class="fas fa-home"></i> Back to Home
+                        </a>
+                        <a href="https://ricalnet.my.id/index#cta"
+                            class="btn-secondary border-tor-violet/10 hover:border-tor-violet/30">
+                            <i class="fas fa-envelope"></i> Contact Us
+                        </a>
+                    </div>
+                </div>
+                <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="200"
+                    class="relative flex justify-center lg:justify-end">
+                    <div class="relative w-full max-w-md lg:max-w-lg">
+                        <div class="absolute inset-0 bg-tor-violet/10 rounded-full blur-3xl scale-90 glow-ring"></div>
+                        <div
+                            class="relative glass-card rounded-3xl p-6 md:p-8 shadow-elevated-lg border border-tor-violet/10 overflow-hidden">
+                            <div class="flex flex-col items-center">
+                                <div class="flex items-center gap-6 mb-4">
+                                    <div class="time-machine-icon text-5xl md:text-6xl text-tor-violet/70">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="time-machine-icon text-5xl md:text-6xl text-tor-violet/50">
+                                        <i class="fas fa-hourglass-half"></i>
+                                    </div>
+                                    <div class="time-machine-icon text-5xl md:text-6xl text-tor-violet/70">
+                                        <i class="fas fa-rocket"></i>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-full max-w-xs h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent mb-4">
+                                </div>
+                                <div class="grid grid-cols-3 gap-2 w-full max-w-xs">
+                                    <div class="h-1.5 rounded-full bg-tor-violet/10"></div>
+                                    <div class="h-1.5 rounded-full bg-tor-violet/20"></div>
+                                    <div class="h-1.5 rounded-full bg-tor-violet/10"></div>
+                                    <div class="h-1.5 rounded-full bg-tor-violet/30"></div>
+                                    <div class="h-1.5 rounded-full bg-tor-violet/10"></div>
+                                    <div class="h-1.5 rounded-full bg-tor-violet/20"></div>
+                                    <div class="h-1.5 rounded-full bg-tor-violet/10"></div>
+                                    <div class="h-1.5 rounded-full bg-tor-violet/40"></div>
+                                    <div class="h-1.5 rounded-full bg-tor-violet/10"></div>
+                                </div>
+                                <div
+                                    class="mt-4 flex items-center gap-2 text-xs text-text-muted font-mono tracking-wider">
+                                    <span class="w-2 h-2 rounded-full bg-tor-violet/40 animate-pulse"></span>
+                                    <span>404 · RESOURCE_NOT_FOUND</span>
+                                    <span class="w-2 h-2 rounded-full bg-tor-violet/40 animate-pulse"></span>
+                                </div>
+                                <div
+                                    class="mt-3 px-4 py-1.5 rounded-full bg-tor-violet/5 border border-tor-violet/10 text-[0.6rem] font-mono text-text-muted tracking-[0.15em]">
+                                    <i class="fas fa-terminal mr-1.5 text-tor-violet/50"></i>
+                                    curl -I /missing → 404 Not Found
+                                </div>
+                            </div>
+                            <div
+                                class="absolute top-3 right-3 bg-white/80 backdrop-blur rounded-full px-3 py-1.5 border border-tor-violet/10 shadow-elevated text-[0.55rem] font-semibold text-text-muted tracking-wider flex items-center gap-1.5">
+                                <i class="fas fa-circle text-red-400 text-[0.3rem]"></i>
+                                <span>404</span>
+                            </div>
+                            <div
+                                class="absolute bottom-3 left-3 bg-white/80 backdrop-blur rounded-full px-3 py-1.5 border border-tor-violet/10 shadow-elevated text-[0.55rem] font-semibold text-text-muted tracking-wider flex items-center gap-1.5">
+                                <i class="fas fa-clock text-tor-violet/60"></i>
+                                <span>⏳ time machine required</span>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute -bottom-3 -right-3 bg-white rounded-2xl px-4 py-2.5 shadow-elevated border border-tor-violet/10 flex items-center gap-2 text-sm font-medium text-text-primary animate-float">
+                            <i class="fas fa-undo-alt text-tor-violet"></i>
+                            <span>Go back</span>
+                        </div>
+                        <div class="absolute -top-3 -left-3 bg-tor-violet/10 rounded-full px-4 py-2.5 shadow-elevated border border-tor-violet/20 text-sm font-medium text-tor-violet animate-float"
+                            style="animation-delay:1.8s;">
+                            <i class="fas fa-search mr-1.5"></i> Lost?
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="relative overflow-hidden border-t border-tor-violet/10">
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
+        </div>
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
+        </div>
+    
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+    
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+    
+                <div class="col-span-2 md:col-span-3 lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
+                            <img src="img/logo.png" alt="RICALNET open-source self-hosted infrastructure logo"
+                                class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
+                        </div>
+                        <div>
+                            <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+                            <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust
+                                · Control
+                                · Access · Libre</span>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
+                        RICALNET — Robust Infrastructure for Control, Access, &amp; Libre NETwork.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 mt-5">
+                        <a href="https://github.com/ricalnet" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fa-brands fa-github text-base"></i>
+                        </a>
+                        <a href="mailto:ricalnet@duck.com"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-envelope text-base"></i>
+                        </a>
+                        <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-heartbeat text-base"></i>
+                        </a>
+                        <span
+                            class="pgp-fingerprint text-[0.6rem] px-3 py-1.5 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                            onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                            <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                        </span>
+                    </div>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Why Self‑Host</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/about#our-mission" class="footer-link">Mission</a></li>
+                        <li><a href="https://ricalnet.my.id/resources" class="footer-link">Resources</a></li>
+                        <li><a href="https://ricalnet.my.id/gallery" class="footer-link">Gallery</a></li>
+                        <li><a href="https://docs.ricalnet.my.id" class="footer-link">Blog</a></li>
+                        <li><a href="https://ricalnet.my.id/#cta" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Stack</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/#features" class="footer-link">Sovereign Infrastructure</a></li>
+                        <li><a href="https://ricalnet.my.id/#private-digital-services" class="footer-link">What You Need</a>
+                        </li>
+                        <li><a href="https://ricalnet.my.id/#hidden-services" class="footer-link">Hidden Services</a></li>
+                        <li><a href="https://ricalnet.my.id/tools/metadata-cleaner" class="footer-link">Metadata Cleaner</a>
+                        </li>
+                        <li><a href="https://ricalnet.my.id/tools/quantum-hasher" class="footer-link">Quantum Hasher</a>
+                        </li>
+                        <li><a href="https://link.ricalnet.my.id" class="footer-link">URL Shortener</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Docs &amp; Resources</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
+                                target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="https://github.com/ricalnet/digital-independence" class="footer-link"
+                                target="_blank">Repository <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="https://ricalnet.my.id/about#cta-support" class="footer-link">Support</a></li>
+                        <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Legal</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/resources#legal-resources" class="footer-link">Legal
+                                Resources</a></li>
+                        <li><a href="https://ricalnet.my.id/terms-of-service" class="footer-link">Terms of Service</a></li>
+                        <li><a href="https://ricalnet.my.id/privacy" class="footer-link">Privacy Policy</a></li>
+                    </ul>
+                </div>
+    
+            </div>
+    
+            <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+                <p class="text-xs tracking-wide">
+                    COPYRIGHT (CC BY) — <a href="https://ricalnet.my.id/"
+                        class="hover:text-tor-violet transition-colors">Open
+                        Source Self-Hosted Infrastructure</a>
+                </p>
+                <div class="flex flex-wrap items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
+                    <a href="https://ricalnet.my.id/"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#OpenSource</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/#pain-points"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#NoLockIn</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/#features"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#ZeroTrust</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/"
+                        class="text-tor-violet font-semibold hover:text-tor-violet-dark transition-colors">#ControlAccessLibre</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span
+                        class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                        onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                        <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                    </span>
+                </div>
+            </div>
+    
+        </div>
     </footer>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true,
-            easing: 'ease-in-out'
-        });
-        
-        // Encryption effect
-        const text = "Error 404: Halaman tidak ditemukan";
-        const encryptedElement = document.getElementById('encrypted-text');
-        
-        function encryptText() {
-            let encrypted = '';
-            for (let i = 0; i < text.length; i++) {
-                encrypted += Math.floor(Math.random() * 16).toString(16);
-            }
-            encryptedElement.textContent = encrypted;
-        }
-        
-        function decryptText() {
-            let currentText = encryptedElement.textContent;
-            let decrypted = '';
-            let i = 0;
-            
-            const decryptInterval = setInterval(() => {
-                if (i < text.length) {
-                    decrypted += text[i];
-                    // Generate random hex for the rest
-                    let remaining = '';
-                    for (let j = i + 1; j < currentText.length; j++) {
-                        remaining += Math.floor(Math.random() * 16).toString(16);
-                    }
-                    encryptedElement.textContent = decrypted + remaining;
-                    i++;
-                } else {
-                    clearInterval(decryptInterval);
-                }
-            }, 50);
-        }
-        
-        encryptText();
-        
-        // Decrypt after a delay
-        setTimeout(() => {
-            decryptText();
-        }, 1000);
-        
-        // Re-encrypt and decrypt periodically
-        setInterval(() => {
-            encryptText();
-            setTimeout(() => {
-                decryptText();
-            }, 2000);
-        }, 10000);
+    <script src="assets/js/aos.js">
     </script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 30,
+            easing: 'ease-out-expo',
+            duration: 900,
+            disable: window.innerWidth < 768 ? true : false,
+        });
+        const PGP_FINGERPRINT = '45688382B815821F033115B8D92D6A10D29C8380';
+        function copyPGP() {
+            navigator.clipboard.writeText(PGP_FINGERPRINT).then(() => {
+                showToast('PGP fingerprint copied!');
+            }).catch(() => {
+                const textArea = document.createElement('textarea');
+                textArea.value = PGP_FINGERPRINT;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast('PGP fingerprint copied!');
+            });
+        }
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] transition-all duration-300';
+            toast.innerHTML = '<i class="fas fa-check-circle text-tor-accent mr-2"></i> ' + message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        }
+        const toggle = document.getElementById('mobile-menu-toggle');
+        const menu = document.getElementById('mobile-menu');
+        if (toggle && menu) {
+            toggle.addEventListener('click', function () {
+                const expanded = this.getAttribute('aria-expanded') === 'true' ? false : true;
+                this.setAttribute('aria-expanded', expanded);
+                menu.style.maxHeight = expanded ? menu.scrollHeight + 'px' : '0';
+            });
+        }
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const menu = document.getElementById('mobile-menu');
+                    const toggle = document.getElementById('mobile-menu-toggle');
+                    if (menu && toggle && toggle.getAttribute('aria-expanded') === 'true') {
+                        toggle.setAttribute('aria-expanded', 'false');
+                        menu.style.maxHeight = '0';
+                    }
+                }
+            });
+        });
+    </script>
+    <script src="assets/js/components.js"></script>
 </body>
+
 </html>

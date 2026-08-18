@@ -1,414 +1,853 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <meta name="description" content="Kebijakan Privasi Ricalnet – Komitmen kemandirian digital dan transparansi penuh.">
-  <meta name="author" content="Ricalnet">
-  <meta name="keywords" content="privasi, privacy policy, kedaulatan data, self-hosted">
-  <title>Ricalnet · Kebijakan Privasi</title>
-  <link rel="icon" type="image/x-icon" href="img/logo.png">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" media="print" onload="this.media='all'">
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Privacy Commitment — Data Sovereignty & Zero-Trust | RICALNET</title>
+  <meta name="description"
+    content="RICALNET's privacy commitment: full transparency, data sovereignty, no tracking, no third-party analytics. Your data, your control. Zero-trust infrastructure." />
+  <meta name="keywords"
+    content="privacy commitment, data sovereignty, zero-trust, no tracking, GDPR compliance, RICALNET privacy" />
+  <link rel="canonical" href="https://ricalnet.my.id/privacy" />
+  <link rel="alternate" hreflang="en" href="https://ricalnet.my.id/privacy" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://ricalnet.my.id/sitemap.xml" />
+  <link rel="icon" type="image/x-icon" href="img/logo.png" />
+  <meta property="og:title" content="Privacy Commitment — Data Sovereignty & Zero-Trust | RICALNET" />
+  <meta property="og:description"
+    content="RICALNET's privacy commitment: full transparency, data sovereignty, no tracking, no third-party analytics. Your data, your control." />
+  <meta property="og:url" content="https://ricalnet.my.id/privacy" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://ricalnet.my.id/img/og-privacy.png" />
+  <meta property="og:image:alt" content="RICALNET privacy commitment — data sovereignty" />
+  <meta property="og:site_name" content="RICALNET" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Privacy Commitment — Data Sovereignty & Zero-Trust | RICALNET" />
+  <meta name="twitter:description"
+    content="RICALNET's privacy commitment: full transparency, data sovereignty, no tracking, no third-party analytics. Your data, your control." />
+  <meta name="twitter:image" content="https://ricalnet.my.id/img/og-privacy.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Privacy Commitment — Data Sovereignty & Zero-Trust",
+      "description": "RICALNET's privacy commitment: full transparency, data sovereignty, no tracking, no third-party analytics.",
+      "url": "https://ricalnet.my.id/privacy",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ricalnet.my.id/" },
+          { "@type": "ListItem", "position": 2, "name": "Privacy", "item": "https://ricalnet.my.id/privacy" }
+        ]
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "RICALNET",
+      "url": "https://ricalnet.my.id/",
+      "logo": "https://ricalnet.my.id/img/logo.png",
+      "sameAs": ["https://github.com/ricalnet"],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "ricalnet@duck.com",
+        "contactType": "technical support"
+      }
+    }
+  </script>
+  <link href="assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="assets/fontawesome/css/solid.css" rel="stylesheet" />
+  <link href="assets/fontawesome/css/brands.css" rel="stylesheet" />
+  <link href="assets/css/fonts.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link href="assets/css/aos.css" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            'inter': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            'source-sans-pro': ['"Source Sans Pro"', 'Inter', 'Roboto', 'system-ui', '-apple-system', 'sans-serif'],
+            roboto: ['Roboto', '"Source Sans Pro"', 'Inter', 'system-ui', 'sans-serif'],
+            inter: ['Inter', '"Source Sans Pro"', 'Roboto', 'system-ui', '-apple-system', 'sans-serif'],
           },
           colors: {
             tor: {
               violet: '#7c3aed',
-              'violet-light': '#a78bfa',
+              'violet-light': '#8b5cf6',
               'violet-dark': '#5b21b6',
+              'violet-deep': '#4c1d95',
+              'violet-soft': '#ede9fe',
               accent: '#68B030',
+              'accent-cyan': '#06b6d4',
+              'accent-amber': '#f59e0b',
             },
             surface: {
-              dark: '#0f1117',
-              card: '#161822',
-              border: '#232636',
+              light: '#faf9fe',
+              card: '#ffffff',
+              border: '#ede9f0',
+              muted: '#f5f3fa',
+              dark: '#0f0e1a',
+            },
+            text: {
+              primary: '#0f0e1a',
+              secondary: '#52506e',
+              muted: '#9492ae',
+              inverse: '#f8f7fc',
             }
           },
+          boxShadow: {
+            'elevated': '0 1px 3px rgba(0,0,0,0.02), 0 8px 40px rgba(124,58,237,0.06), 0 20px 80px rgba(124,58,237,0.04)',
+            'elevated-lg': '0 1px 3px rgba(0,0,0,0.02), 0 16px 64px rgba(124,58,237,0.08), 0 32px 120px rgba(124,58,237,0.04)',
+            'glow': '0 0 60px rgba(124,58,237,0.06)',
+            'corporate': '0 1px 2px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.02), 0 16px 48px rgba(124,58,237,0.04)',
+          },
           animation: {
-            'fade-slide-up': 'fadeSlideUp 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) forwards',
-            'pulse-glow': 'pulseGlow 2s infinite',
-            'gradient-flow': 'gradientFlow 8s ease infinite',
-            'float': 'float 5s ease-in-out infinite',
+            'fade-up': 'fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'fade-down': 'fadeDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'fade-right': 'fadeRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'fade-left': 'fadeLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'scale-in': 'scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
           },
           keyframes: {
-            fadeSlideUp: {
-              '0%': { opacity: '0', transform: 'translateY(24px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' }
             },
-            pulseGlow: {
-              '0%, 100%': { boxShadow: '0 0 0 0 rgba(124, 58, 237, 0.4)' },
-              '50%': { boxShadow: '0 0 0 12px rgba(124, 58, 237, 0)' },
+            fadeDown: {
+              '0%': { opacity: '0', transform: 'translateY(-40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' }
             },
-            gradientFlow: {
-              '0%, 100%': { backgroundPosition: '0% 50%' },
-              '50%': { backgroundPosition: '100% 50%' },
+            fadeRight: {
+              '0%': { opacity: '0', transform: 'translateX(-40px)' }, '100%': { opacity: '1', transform: 'translateX(0)' }
             },
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-8px)' },
+            fadeLeft: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' }, '100%': { opacity: '1', transform: 'translateX(0)' }
             },
+            scaleIn: {
+              '0%': { opacity: '0', transform: 'scale(0.94)' }, '100%': { opacity: '1', transform: 'scale(1)' }
+            },
+            float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-14px)' } },
+            pulseSoft: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0.6' } },
           }
         }
       }
     }
   </script>
-
-  <style>
-    @layer utilities {
-      .glass-card {
-        background: rgba(22, 24, 34, 0.7);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(35, 38, 54, 0.6);
-      }
-      .glass-card:hover {
-        background: rgba(22, 24, 34, 0.85);
-        border-color: rgba(124, 58, 237, 0.5);
-      }
-      .text-gradient-violet {
-        background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 30%, #7c3aed 70%, #c4b5fd 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        background-size: 200% auto;
-      }
-      .bg-grid-pattern {
-        background-image: 
-          linear-gradient(rgba(124, 58, 237, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(124, 58, 237, 0.03) 1px, transparent 1px);
-        background-size: 60px 60px;
-      }
-    }
-
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #0f1117; }
-    ::-webkit-scrollbar-thumb { background: #232636; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #7c3aed; }
-  </style>
 </head>
-<body class="font-inter bg-surface-dark text-gray-200 antialiased selection:bg-tor-violet/30 selection:text-white">
 
-  <!-- ===== AMBIENT BACKGROUND ===== -->
-  <div class="fixed inset-0 -z-20 overflow-hidden pointer-events-none" aria-hidden="true">
-    <div class="absolute inset-0 bg-grid-pattern opacity-50"></div>
-    <div class="absolute top-0 -left-20 w-[500px] h-[500px] bg-tor-violet/10 rounded-full blur-[120px] animate-pulse"></div>
-    <div class="absolute top-1/3 -right-20 w-[600px] h-[600px] bg-purple-700/8 rounded-full blur-[130px] animate-pulse" style="animation-delay: 2s;"></div>
-    <div class="absolute -bottom-20 left-1/3 w-[400px] h-[400px] bg-tor-violet/5 rounded-full blur-[100px] animate-pulse" style="animation-delay: 4s;"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-dark/50 to-surface-dark"></div>
+<body
+  class="font-source-sans-pro bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+  <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
+    <div class="absolute inset-0 bg-grid-subtle"></div>
+    <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/5 rounded-full blur-[160px]"></div>
+    <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/3 rounded-full blur-[180px]"></div>
+    <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/4 rounded-full blur-[140px]"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light"></div>
   </div>
-
-  <!-- ===== LANGUAGE SWITCHER ===== -->
-  <div class="fixed top-4 right-4 z-50 flex gap-2">
-    <button id="lang-id" class="px-3 py-1.5 rounded-full text-xs font-medium bg-tor-violet/20 text-tor-violet-light border border-tor-violet/30 hover:bg-tor-violet/40 transition-all duration-300 active">ID</button>
-    <button id="lang-en" class="px-3 py-1.5 rounded-full text-xs font-medium bg-surface-card/50 text-gray-400 border border-surface-border hover:bg-tor-violet/20 hover:text-tor-violet-light transition-all duration-300">EN</button>
-  </div>
-
-  <!-- ===== MAIN CONTAINER ===== -->
-  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-14 flex flex-col min-h-screen relative z-10">
-
-    <!-- ===== BACK BUTTON ===== -->
-    <a href="index.html" 
-       class="inline-flex items-center gap-2 text-gray-400 hover:text-tor-violet-light transition-all duration-300 mb-8 group w-fit">
-      <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform duration-300"></i>
-      <span data-i18n="back">Kembali ke Beranda</span>
-    </a>
-
-    <!-- ===== PRIVACY POLICY SECTION ===== -->
-    <section class="animate-fade-slide-up">
-      
-      <!-- Header -->
-      <div class="mb-10">
-        <h1 class="text-4xl md:text-5xl font-bold relative inline-block pb-3">
-          <span class="text-white" data-i18n="policy-title-1">Kebijakan</span>
-          <span class="text-gradient-violet animate-gradient-flow" data-i18n="policy-title-2"> Privasi</span>
-          <span class="absolute bottom-0 left-0 w-20 h-1 bg-tor-violet rounded-full transition-all duration-300 hover:w-28"></span>
-        </h1>
-        <div class="flex items-center gap-3 mt-4 text-gray-400">
-          <i class="fas fa-calendar-check text-tor-violet-light"></i>
-          <span data-i18n="effective-label">Berlaku efektif: <strong class="text-white">28 Mei 2026</strong></span>
+  <header
+    class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-[72px]">
+  
+        <a href="https://ricalnet.my.id/" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+          data-aos-duration="600">
+          <img src="img/logo.png" alt="RICALNET Open Source Self-Hosted Infrastructure Logo"
+            class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
+          <div class="leading-tight hidden sm:block">
+            <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+            <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust · Control ·
+              Access · Libre</span>
+          </div>
+        </a>
+  
+        <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down" data-aos-duration="600">
+          <a href="https://ricalnet.my.id/#hero" class="nav-link">Home</a>
+  
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/#pain-points" class="nav-link flex items-center gap-1">
+              Why Self‑Host
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/#pain-points" class="dropdown-item">The Lock‑in Trap</a>
+              <a href="https://ricalnet.my.id/#how-it-works" class="dropdown-item">The Approach</a>
+              <a href="https://ricalnet.my.id/#features" class="dropdown-item">Sovereign Stack</a>
+              <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal &amp; Advocacy</a>
+            </div>
+          </div>
+  
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/resources#hero" class="nav-link flex items-center gap-1">
+              Resources
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+              <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal Resources</a>
+              <a href="https://ricalnet.my.id/resources#in-house-tools" class="dropdown-item">In‑House Tools</a>
+              <a href="https://ricalnet.my.id/resources" class="dropdown-item">All Resources</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/resources#hero" class="nav-link flex items-center gap-1">
+              Tools
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="dropdown-item">Metadata Cleaner</a>
+              <a href="https://ricalnet.my.id/tools/quantum-hasher" class="dropdown-item">Quantum Hasher</a>
+              <a href="https://ricalnet.my.id/tools/ip-intelligence" class="dropdown-item">IP Intelligence</a>
+              <a href="https://ricalnet.my.id/tools/password-generator" class="dropdown-item">Password Generator</a>
+              <a href="https://ricalnet.my.id/tools/qr-builder" class="dropdown-item">QR Builder</a>
+              <a href="https://ricalnet.my.id/tools/whiteboard" class="dropdown-item">Whiteboard</a>
+              <a href="https://ricalnet.my.id/tools/chantik" class="dropdown-item">Chantik</a>
+              <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/about#hero" class="nav-link flex items-center gap-1">
+              About
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/about#our-mission" class="dropdown-item">Mission</a>
+              <a href="https://ricalnet.my.id/#comparison" class="dropdown-item">Comparison</a>
+              <a href="https://ricalnet.my.id/#faq" class="dropdown-item">FAQ</a>
+              <a href="https://ricalnet.my.id/#cta" class="dropdown-item">Contact</a>
+              <a href="https://ricalnet.my.id/about#cta-support" class="dropdown-item">Support</a>
+            </div>
+          </div>
+        </nav>
+  
+        <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
+          <a href="https://ricalnet.my.id/#hidden-services" class="hidden lg:inline-flex btn-sso">
+            <i class="fas fa-key"></i> Login with SSO
+          </a>
+          <button id="mobile-menu-toggle"
+            class="lg:hidden w-9 h-9 rounded-full hover:bg-surface-muted flex items-center justify-center transition-colors"
+            aria-label="Toggle menu" aria-expanded="false">
+            <i class="fas fa-bars text-text-secondary text-lg"></i>
+          </button>
+        </div>
+  
+      </div>
+    </div>
+  </header>
+  
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+  
+    <div class="mobile-menu-header">
+      <div class="logo">
+        <img src="img/logo.png" alt="RICALNET" />
+        <span>RICALNET</span>
+      </div>
+      <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+        <i class="fas fa-xmark"></i>
+      </button>
+    </div>
+  
+    <div class="mobile-menu-scroll">
+  
+      <a href="https://ricalnet.my.id/#hero" class="nav-item" data-close-mobile>
+        <i class="fas fa-home"></i> Home
+      </a>
+  
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-advocacy">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Why Self‑Host
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/#pain-points" class="sub-link" data-close-mobile>
+            <i class="fas fa-exclamation-triangle"></i> The Lock‑in Trap
+          </a>
+          <a href="https://ricalnet.my.id/#how-it-works" class="sub-link" data-close-mobile>
+            <i class="fas fa-route"></i> The Approach
+          </a>
+          <a href="https://ricalnet.my.id/#features" class="sub-link" data-close-mobile>
+            <i class="fas fa-star"></i> Sovereign Stack
+          </a>
+          <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+            <i class="fas fa-gavel"></i> Legal &amp; Advocacy
+          </a>
         </div>
       </div>
-
-      <!-- Policy Content Card -->
-      <div class="glass-card rounded-3xl p-6 md:p-10 transition-all duration-500 hover:shadow-2xl hover:shadow-tor-violet/5">
-        
-        <div class="flex items-center gap-3 mb-8 pb-6 border-b border-surface-border">
-          <div class="w-12 h-12 rounded-xl bg-tor-violet/15 flex items-center justify-center animate-pulse-glow">
-            <i class="fas fa-shield-virus text-tor-violet-light text-xl"></i>
-          </div>
-          <div>
-            <h2 class="text-xl font-semibold text-white" data-i18n="commitment-title">Komitmen Privasi Ricalnet</h2>
-            <p class="text-gray-400 text-sm mt-1" data-i18n="commitment-sub">Transparansi penuh · Kedaulatan data · Tanpa kompromi</p>
-          </div>
+  
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-resources">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-lock"></i> Privacy Tools
+          </a>
+          <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+            <i class="fas fa-gavel"></i> Legal Resources
+          </a>
+          <a href="https://ricalnet.my.id/resources#in-house-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-cubes"></i> In‑House Tools
+          </a>
+          <a href="https://ricalnet.my.id/resources" class="sub-link" data-close-mobile>
+            <i class="fas fa-folder-open"></i> All Resources
+          </a>
         </div>
-
-        <!-- Policy Items -->
-        <div class="space-y-8">
-          
-          <!-- Section 1 -->
-          <div class="group">
+      </div>
+  
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-tools">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="sub-link" data-close-mobile>
+            <i class="fas fa-map-pin"></i> Metadata Cleaner
+          </a>
+          <a href="https://ricalnet.my.id/tools/quantum-hasher" class="sub-link" data-close-mobile>
+            <i class="fas fa-qrcode"></i> Quantum Hasher
+          </a>
+          <a href="https://ricalnet.my.id/tools/ip-intelligence" class="sub-link" data-close-mobile>
+            <i class="fas fa-map-pin"></i> IP Intelligence
+          </a>
+          <a href="https://ricalnet.my.id/tools/password-generator" class="sub-link" data-close-mobile>
+            <i class="fas fa-key"></i> Password Generator
+          </a>
+          <a href="https://ricalnet.my.id/tools/qr-builder" class="sub-link" data-close-mobile>
+            <i class="fas fa-qrcode"></i> QR Builder
+          </a>
+          <a href="https://ricalnet.my.id/tools/whiteboard" class="sub-link" data-close-mobile>
+            <i class="fas fa-pen-fancy"></i> Whiteboard
+          </a>
+          <a href="https://ricalnet.my.id/tools/chantik" class="sub-link" data-close-mobile>
+            <i class="fa-solid fa-floppy-disk"></i> Chantik
+          </a>
+          <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-user-secret"></i> Privacy Tools
+          </a>
+        </div>
+      </div>
+  
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-about">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/about#our-mission" class="sub-link" data-close-mobile>
+            <i class="fas fa-bullseye"></i> Mission
+          </a>
+          <a href="https://ricalnet.my.id/#comparison" class="sub-link" data-close-mobile>
+            <i class="fas fa-arrows-left-right"></i> Comparison
+          </a>
+          <a href="https://ricalnet.my.id/#faq" class="sub-link" data-close-mobile>
+            <i class="fas fa-question-circle"></i> FAQ
+          </a>
+          <a href="https://ricalnet.my.id/#cta" class="sub-link" data-close-mobile>
+            <i class="fas fa-envelope"></i> Contact
+          </a>
+          <a href="https://ricalnet.my.id/about#cta-support" class="sub-link" data-close-mobile>
+            <i class="fas fa-hand-holding-heart"></i> Support
+          </a>
+        </div>
+      </div>
+  
+      <a href="https://ricalnet.my.id/#hidden-services" class="mt-3 block w-full text-center btn-sso justify-center"
+        data-close-mobile>
+        <i class="fas fa-key"></i> Login with SSO
+      </a>
+  
+      <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+        <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+          <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> RICALNET — Robust · Control · Access · Libre
+        </span>
+      </div>
+  
+    </div>
+  </div>
+  <nav aria-label="Breadcrumb" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 text-xs">
+    <ol class="flex flex-wrap items-center gap-2 text-text-muted">
+      <li><a href="https://ricalnet.my.id/" class="hover:text-tor-violet transition-colors">Home</a></li>
+      <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
+      <li class="text-tor-violet font-medium">Privacy Commitment</li>
+    </ol>
+  </nav>
+  <section id="hero" class="relative overflow-hidden pt-12 pb-16 md:pt-20 md:pb-24 bg-white/30">
+    <div class="absolute inset-0 -z-10">
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-tor-violet/3 rounded-full blur-[140px]">
+      </div>
+    </div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center" data-aos="fade-up" data-aos-duration="800">
+        <div class="flex items-center justify-center gap-3 mb-6">
+          <span class="badge-corporate">
+            <i class="fas fa-shield-alt"></i> Privacy Commitment
+          </span>
+          <span class="w-px h-6 bg-tor-violet/10"></span>
+          <span class="badge-corporate"
+            style="background:rgba(6,182,212,0.04);border-color:rgba(6,182,212,0.08);color:#0e7490;">
+            <i class="fas fa-lock"></i> Data Sovereignty
+          </span>
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight">
+          <span class="hero-gradient-text">Privacy Commitment</span>
+        </h1>
+        <p class="text-text-secondary text-lg md:text-xl mt-4 max-w-2xl mx-auto leading-relaxed">
+          Full transparency · Data sovereignty · No compromise — built with <strong
+            class="text-tor-violet">RICALNET</strong>.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4 mt-6 text-sm text-text-muted">
+          <span class="flex items-center gap-2"><i class="fas fa-check-circle text-tor-accent text-xs"></i> No
+            tracking</span>
+          <span class="w-px h-4 bg-surface-border"></span>
+          <span class="flex items-center gap-2"><i class="fas fa-check-circle text-tor-accent text-xs"></i> No
+            third-party analytics</span>
+          <span class="w-px h-4 bg-surface-border"></span>
+          <span class="flex items-center gap-2"><i class="fas fa-check-circle text-tor-accent text-xs"></i> Your data,
+            your control</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="corporate-divider max-w-5xl mx-auto px-4"></div>
+  <main class="py-12 md:py-20 bg-white/20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="data-collected" class="privacy-section mb-12 md:mb-16" data-aos="fade-up" data-aos-duration="700">
+        <div class="privacy-card rounded-3xl p-8 md:p-10 border border-surface-border/60">
+          <div class="card-glow"></div>
+          <div class="relative">
+            <span class="privacy-number">1</span>
             <div class="flex items-start gap-4">
-              <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-tor-violet/15 flex items-center justify-center text-tor-violet-light font-bold text-sm mt-0.5 group-hover:bg-tor-violet/25 transition-all duration-300">1</span>
-              <div>
-                <h3 class="text-lg font-semibold text-white mb-3 group-hover:text-tor-violet-light transition-colors duration-300" data-i18n="s1-title">Data yang Dikumpulkan</h3>
-                <div class="space-y-3 text-gray-300 leading-relaxed">
-                  <p data-i18n="s1-p1">Situs ini <strong class="text-white font-medium">tidak mengumpulkan data pribadi</strong> pengunjung. Tidak terdapat penggunaan cookie pelacak maupun layanan analitik pihak ketiga. Server web menyimpan catatan log standar (alamat IP, waktu akses, halaman yang diminta) semata-mata untuk keperluan keamanan dan pemeliharaan sistem. Log tersebut disimpan secara sementara, dirotasi secara berkala, dan <strong class="text-tor-violet-light font-medium">tidak digunakan untuk analisis perilaku pengguna</strong>.</p>
-                  <p data-i18n="s1-p2">Untuk layanan yang memerlukan pendaftaran akun (seperti RCLOUD, NoCOMINT, Vault, Gallery), data yang diberikan pengguna (nama pengguna, kata sandi terenkripsi, berkas) disimpan di server yang disediakan. <strong class="text-white font-medium">Pengguna memegang kendali penuh</strong> atas data tersebut.</p>
+              <div class="privacy-icon-wrap relative">
+                <div class="icon-ring"></div>
+                <i class="fas fa-database text-lg"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h2 class="text-xl md:text-2xl font-bold text-text-primary mb-3">Data Collected</h2>
+                <div class="space-y-3 text-text-secondary text-sm md:text-base leading-relaxed">
+                  <p>
+                    This site does not collect personal data from visitors. There are no tracking
+                    cookies or third-party analytics services. The web server stores standard log
+                    records (IP address, access time, requested pages) solely for security and
+                    system maintenance purposes. These logs are stored temporarily, rotated
+                    periodically, and not used for user behavior analysis.
+                  </p>
+                  <p>
+                    For services requiring account registration user-provided data (username, encrypted password, files)
+                    is stored
+                    on the provided servers. Users retain full control over their data.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- Section 2 -->
-          <div class="group">
+        </div>
+      </section>
+      <section id="data-usage" class="privacy-section mb-12 md:mb-16" data-aos="fade-up" data-aos-duration="700"
+        data-aos-delay="80">
+        <div class="privacy-card rounded-3xl p-8 md:p-10 border border-surface-border/60">
+          <div class="card-glow"></div>
+          <div class="relative">
+            <span class="privacy-number">2</span>
             <div class="flex items-start gap-4">
-              <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-tor-violet/15 flex items-center justify-center text-tor-violet-light font-bold text-sm mt-0.5 group-hover:bg-tor-violet/25 transition-all duration-300">2</span>
-              <div>
-                <h3 class="text-lg font-semibold text-white mb-3 group-hover:text-tor-violet-light transition-colors duration-300" data-i18n="s2-title">Penggunaan Data</h3>
-                <p class="text-gray-300 leading-relaxed" data-i18n="s2-p1">Data log teknis hanya digunakan untuk memastikan stabilitas dan keamanan infrastruktur layanan. Data akun serta konten yang diunggah ke layanan privat (RCLOUD, NoCOMINT, dan sejenisnya) sepenuhnya berada di bawah kendali pengguna. Pihak pengelola <strong class="text-white font-medium">tidak memproses data tersebut</strong> untuk kepentingan lain di luar fungsi operasional dasar layanan.</p>
+              <div class="privacy-icon-wrap relative">
+                <div class="icon-ring"></div>
+                <i class="fas fa-chart-pie text-lg"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h2 class="text-xl md:text-2xl font-bold text-text-primary mb-3">Data Usage</h2>
+                <div class="space-y-3 text-text-secondary text-sm md:text-base leading-relaxed">
+                  <p>
+                    Technical log data is used only to ensure service infrastructure stability and
+                    security. Account data and content uploaded to private services remain entirely under user control.
+                    The service operator does not process this data for any purpose beyond basic operational service
+                    functions.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-
-          <!-- Section 3 - Highlighted -->
-          <div class="group">
+        </div>
+      </section>
+      <section id="sovereignty" class="privacy-section mb-12 md:mb-16" data-aos="fade-up" data-aos-duration="700"
+        data-aos-delay="160">
+        <div class="privacy-card rounded-3xl p-8 md:p-10 border border-tor-violet/10 bg-tor-violet/5">
+          <div class="card-glow"
+            style="background:radial-gradient(ellipse at 30% 20%, rgba(124,58,237,0.06), transparent 70%);"></div>
+          <div class="relative">
+            <span class="privacy-number" style="opacity:0.12;">3</span>
             <div class="flex items-start gap-4">
-              <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-tor-violet/25 flex items-center justify-center text-tor-violet-light font-bold text-sm mt-0.5">3</span>
-              <div class="flex-1">
-                <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2" data-i18n="s3-title">
-                  <i class="fas fa-shield-alt text-tor-violet-light"></i> 
-                  Komitmen Kedaulatan Data
-                </h3>
-                <div class="bg-tor-violet/5 border border-tor-violet/20 rounded-2xl p-6 space-y-3">
-                  <p class="text-gray-300 leading-relaxed" data-i18n="s3-p1">Pengelola <strong class="text-white font-medium">tidak akan membuka, mengakses, atau menyerahkan data pengguna</strong> kepada pihak mana pun—termasuk lembaga pemerintah, aparat penegak hukum, atau otoritas lainnya—dalam situasi apa pun, kecuali atas instruksi tertulis langsung dari pengguna yang bersangkutan.</p>
-                  <p class="text-gray-300 leading-relaxed" data-i18n="s3-p2">Server berada di bawah kendali fisik dan teknis pengelola, serta <strong class="text-tor-violet-light font-medium">tidak dilengkapi mekanisme akses pintu belakang</strong> (backdoor), akses paksa, maupun kerja sama sukarela atas permintaan data pihak luar.</p>
-                  <p class="text-gray-300 leading-relaxed" data-i18n="s3-p3">Apabila terdapat permintaan hukum yang mengikat, pengelola akan mengupayakan perlawanan dengan segala cara yang tersedia, termasuk namun tidak terbatas pada bantuan hukum dan keterbukaan informasi kepada publik.</p>
-                  <div class="flex items-center gap-2 pt-2 border-t border-tor-violet/10">
-                    <i class="fas fa-quote-right text-tor-violet-light"></i>
-                    <span class="text-tor-violet-light font-medium italic" data-i18n="s3-quote">Data pengguna adalah milik pengguna sepenuhnya.</span>
+              <div class="privacy-icon-wrap relative" style="background:rgba(124,58,237,0.12);color:#5b21b6;">
+                <div class="icon-ring" style="border-color:rgba(124,58,237,0.15);"></div>
+                <i class="fas fa-crown text-lg"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h2 class="text-xl md:text-2xl font-bold text-text-primary mb-3">Data Sovereignty Commitment</h2>
+                <div class="space-y-3 text-text-secondary text-sm md:text-base leading-relaxed">
+                  <p>
+                    The operator will not open, access, or disclose user data to any party—
+                    including government agencies, law enforcement, or other authorities—under
+                    any circumstances, except upon direct written instruction from the user concerned.
+                  </p>
+                  <p>
+                    Servers are under the physical and technical control of the operator, and are
+                    not equipped with backdoor mechanisms, forced access, or voluntary
+                    cooperation with external data requests.
+                  </p>
+                  <p>
+                    In the event of a binding legal request, the operator will resist by all
+                    available means, including but not limited to legal assistance and public disclosure of information.
+                  </p>
+                  <div class="mt-4 p-4 bg-white/60 rounded-2xl border border-tor-violet/10 text-center">
+                    <p class="text-sm font-semibold text-tor-violet">
+                      <i class="fas fa-shield-alt mr-2"></i>
+                      User data belongs entirely to the user. <span class="font-normal text-text-secondary">—
+                        RICALNET</span>
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- Section 4 -->
-          <div class="group">
+        </div>
+      </section>
+      <section id="security" class="privacy-section mb-12 md:mb-16" data-aos="fade-up" data-aos-duration="700"
+        data-aos-delay="240">
+        <div class="privacy-card rounded-3xl p-8 md:p-10 border border-surface-border/60">
+          <div class="card-glow"></div>
+          <div class="relative">
+            <span class="privacy-number">4</span>
             <div class="flex items-start gap-4">
-              <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-tor-violet/15 flex items-center justify-center text-tor-violet-light font-bold text-sm mt-0.5 group-hover:bg-tor-violet/25 transition-all duration-300">4</span>
-              <div>
-                <h3 class="text-lg font-semibold text-white mb-3 group-hover:text-tor-violet-light transition-colors duration-300" data-i18n="s4-title">Keamanan</h3>
-                <p class="text-gray-300 leading-relaxed" data-i18n="s4-p1">Praktik keamanan standar industri diterapkan untuk melindungi komunikasi, mencakup pembaruan perangkat lunak secara rutin dan konfigurasi server yang diperketat. Meskipun demikian, perlu dipahami bahwa <strong class="text-white font-medium">tidak ada sistem yang sepenuhnya bebas dari risiko keamanan</strong>. Pengguna bertanggung jawab menjaga kerahasiaan kredensial akun masing-masing.</p>
+              <div class="privacy-icon-wrap relative">
+                <div class="icon-ring"></div>
+                <i class="fas fa-shield-virus text-lg"></i>
               </div>
-            </div>
-          </div>
-
-          <!-- Section 5 -->
-          <div class="group">
-            <div class="flex items-start gap-4">
-              <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-tor-violet/15 flex items-center justify-center text-tor-violet-light font-bold text-sm mt-0.5 group-hover:bg-tor-violet/25 transition-all duration-300">5</span>
-              <div>
-                <h3 class="text-lg font-semibold text-white mb-3 group-hover:text-tor-violet-light transition-colors duration-300" data-i18n="s5-title">Hak Pengguna</h3>
-                <p class="text-gray-300 leading-relaxed" data-i18n="s5-p1">Pengguna memiliki hak untuk <strong class="text-white font-medium">mengakses, memperbaiki, atau menghapus</strong> data pribadi yang tersimpan di dalam layanan. Untuk akun layanan, tindakan tersebut dapat dilakukan secara mandiri melalui panel kendali masing-masing layanan. Jika menemui kendala teknis, pengguna dapat menghubungi kontak yang tersedia.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Section 6 -->
-          <div class="group">
-            <div class="flex items-start gap-4">
-              <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-tor-violet/15 flex items-center justify-center text-tor-violet-light font-bold text-sm mt-0.5 group-hover:bg-tor-violet/25 transition-all duration-300">6</span>
-              <div>
-                <h3 class="text-lg font-semibold text-white mb-3 group-hover:text-tor-violet-light transition-colors duration-300" data-i18n="s6-title">Kontak</h3>
-                <p class="text-gray-300 mb-4" data-i18n="s6-p1">Pertanyaan lebih lanjut mengenai kebijakan privasi ini dapat disampaikan melalui:</p>
-                <div class="flex flex-col sm:flex-row gap-3">
-                  <a href="mailto:ricalnet@duck.com" 
-                     class="inline-flex items-center gap-2 bg-surface-card/80 border border-surface-border rounded-full py-2.5 px-5 text-gray-300 hover:bg-tor-violet hover:text-white hover:border-tor-violet hover:-translate-y-1 hover:shadow-lg hover:shadow-tor-violet/25 transition-all duration-300">
-                    <i class="fas fa-envelope text-tor-violet-light"></i>
-                    ricalnet@duck.com
-                  </a>
-                  <a href="https://matrix.to/#/@ricalnet:matrix.ricalnet.my.id" target="_blank" rel="noopener noreferrer" 
-                     class="inline-flex items-center gap-2 bg-surface-card/80 border border-surface-border rounded-full py-2.5 px-5 text-gray-300 hover:bg-tor-violet hover:text-white hover:border-tor-violet hover:-translate-y-1 hover:shadow-lg hover:shadow-tor-violet/25 transition-all duration-300">
-                    <i class="fas fa-comment text-tor-violet-light"></i>
-                    @ricalnet:matrix.ricalnet.my.id
-                  </a>
+              <div class="flex-1 min-w-0">
+                <h2 class="text-xl md:text-2xl font-bold text-text-primary mb-3">Security</h2>
+                <div class="space-y-3 text-text-secondary text-sm md:text-base leading-relaxed">
+                  <p>
+                    Industry-standard security practices are applied to protect communication,
+                    including regular software updates and tightened server configurations.
+                    Nevertheless, it should be understood that no system is completely free from
+                    security risks. Users are responsible for keeping their account credentials confidential.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- Section 7 -->
-          <div class="group">
+        </div>
+      </section>
+      <section id="user-rights" class="privacy-section mb-12 md:mb-16" data-aos="fade-up" data-aos-duration="700"
+        data-aos-delay="320">
+        <div class="privacy-card rounded-3xl p-8 md:p-10 border border-surface-border/60">
+          <div class="card-glow"></div>
+          <div class="relative">
+            <span class="privacy-number">5</span>
             <div class="flex items-start gap-4">
-              <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-tor-violet/15 flex items-center justify-center text-tor-violet-light font-bold text-sm mt-0.5 group-hover:bg-tor-violet/25 transition-all duration-300">7</span>
-              <div>
-                <h3 class="text-lg font-semibold text-white mb-3 group-hover:text-tor-violet-light transition-colors duration-300" data-i18n="s7-title">Perubahan Kebijakan</h3>
-                <p class="text-gray-300 leading-relaxed" data-i18n="s7-p1">Kebijakan ini dapat mengalami penyesuaian dari waktu ke waktu. Setiap perubahan akan diumumkan pada laman ini dengan mencantumkan tanggal revisi terbaru.</p>
+              <div class="privacy-icon-wrap relative">
+                <div class="icon-ring"></div>
+                <i class="fas fa-user-check text-lg"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h2 class="text-xl md:text-2xl font-bold text-text-primary mb-3">User Rights</h2>
+                <div class="space-y-3 text-text-secondary text-sm md:text-base leading-relaxed">
+                  <p>
+                    Users have the right to access, correct, or delete personal data stored in the
+                    services. For service accounts, these actions can be performed independently
+                    through each service's control panel. If technical issues arise, users can
+                    contact the available support channels.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-
         </div>
-
-        <!-- Note -->
-        <div class="mt-10 pt-6 border-t border-surface-border flex items-center gap-3 text-gray-500 text-sm">
-          <i class="fas fa-lock text-tor-violet-light"></i>
-          <span data-i18n="updated-note">Kebijakan ini terakhir diperbarui pada <strong class="text-gray-400">28 Mei 2026</strong></span>
+      </section>
+      <section id="contact-privacy" class="privacy-section mb-12 md:mb-16" data-aos="fade-up" data-aos-duration="700"
+        data-aos-delay="400">
+        <div class="privacy-card rounded-3xl p-8 md:p-10 border border-surface-border/60">
+          <div class="card-glow"></div>
+          <div class="relative">
+            <span class="privacy-number">6</span>
+            <div class="flex items-start gap-4">
+              <div class="privacy-icon-wrap relative">
+                <div class="icon-ring"></div>
+                <i class="fas fa-envelope text-lg"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h2 class="text-xl md:text-2xl font-bold text-text-primary mb-3">Contact</h2>
+                <div class="space-y-3 text-text-secondary text-sm md:text-base leading-relaxed">
+                  <p>Further questions regarding this privacy policy can be directed to:</p>
+                  <div class="flex flex-wrap items-center gap-3 mt-2">
+                    <a href="mailto:ricalnet@duck.com"
+                      class="inline-flex items-center gap-2 text-tor-violet font-medium hover:underline transition-all">
+                      <i class="fas fa-envelope"></i> ricalnet@duck.com
+                    </a>
+                    <span class="text-text-muted text-xs">·</span>
+                    <a href="https://matrix.to/#/@rical:matrix.ricalnet.my.id" target="_blank"
+                      class="inline-flex items-center gap-2 text-tor-violet font-medium hover:underline transition-all">
+                      <i class="fas fa-message"></i> @rical:matrix.ricalnet.my.id
+                    </a>
+                  </div>
+                  <div class="mt-3 flex items-center gap-3 text-xs">
+                    <span class="pgp-fingerprint" onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                      <i class="fas fa-lock text-tor-accent-cyan"></i>
+                      <span id="pgp-fingerprint-text">45688382B815821F033115B8D92D6A10D29C8380</span>
+                      <span class="copy-hint">click to copy</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="policy-changes" class="privacy-section" data-aos="fade-up" data-aos-duration="700"
+        data-aos-delay="480">
+        <div class="privacy-card rounded-3xl p-8 md:p-10 border border-surface-border/60">
+          <div class="card-glow"></div>
+          <div class="relative">
+            <span class="privacy-number">7</span>
+            <div class="flex items-start gap-4">
+              <div class="privacy-icon-wrap relative">
+                <div class="icon-ring"></div>
+                <i class="fas fa-clock-rotate-left text-lg"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h2 class="text-xl md:text-2xl font-bold text-text-primary mb-3">Policy Changes</h2>
+                <div class="space-y-3 text-text-secondary text-sm md:text-base leading-relaxed">
+                  <p>This policy may be adjusted from time to time. Any changes will be announced on this page with the
+                    latest revision date.</p>
+                  <p class="text-text-muted text-xs mt-4">
+                    <i class="fas fa-calendar-alt mr-1.5"></i> Last revised: <span
+                      class="font-medium text-text-secondary">August 3, 2026</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="corporate-divider my-12"></div>
+      <div class="text-center" data-aos="fade-up" data-aos-duration="700" data-aos-delay="550">
+        <div
+          class="inline-flex items-center gap-2 bg-tor-violet/5 border border-tor-violet/10 rounded-2xl px-6 py-4 md:px-8 md:py-5">
+          <i class="fas fa-shield-alt text-tor-violet text-xl md:text-2xl"></i>
+          <span class="text-text-secondary text-sm md:text-base font-medium">
+            Your privacy is <strong class="text-text-primary">non-negotiable</strong>.
+            <span class="hidden sm:inline">—</span>
+            <span class="text-tor-violet font-semibold">#ControlAccessLibre</span>
+          </span>
         </div>
       </div>
-
-    </section>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="mt-auto pt-10 pb-6 text-center text-gray-500 text-sm border-t border-surface-border">
-      <p>
-        © Ricalnet – 
-        <a href="index.html" class="hover:text-tor-violet-light transition-colors duration-300" data-i18n="footer-home">Beranda</a> – 
-        <a href="https://uptime.ricalnet.my.id/status/76qqqz4qq5q7hm" class="hover:text-tor-violet-light transition-colors duration-300" target="_blank" rel="noopener" data-i18n="footer-status">Status Layanan</a>
-      </p>
-      <p class="text-xs text-tor-violet-light/40 mt-3 tracking-widest">#SelfHosted · privacy-focused · infrastructure</p>
-    </footer>
-
+    </div>
   </main>
-
-  <!-- ===== TOAST ===== -->
-  <div id="copy-toast" class="fixed bottom-6 right-6 left-6 sm:left-auto bg-gray-800/95 backdrop-blur-sm text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] opacity-0 translate-y-3 pointer-events-none transition-all duration-300 text-center sm:text-left">
-    <i class="fas fa-check-circle text-tor-accent mr-2"></i> <span data-i18n="copied-toast">Tersalin!</span>
-  </div>
-
+  <footer class="relative overflow-hidden border-t border-tor-violet/10">
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
+    </div>
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
+    </div>
+  
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+  
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+  
+        <div class="col-span-2 md:col-span-3 lg:col-span-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
+              <img src="img/logo.png" alt="RICALNET open-source self-hosted infrastructure logo"
+                class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
+            </div>
+            <div>
+              <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+              <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust · Control
+                · Access · Libre</span>
+            </div>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
+            RICALNET — Robust Infrastructure for Control, Access, &amp; Libre NETwork.
+          </p>
+          <div class="flex flex-wrap items-center gap-3 mt-5">
+            <a href="https://github.com/ricalnet" target="_blank" rel="noopener"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fa-brands fa-github text-base"></i>
+            </a>
+            <a href="mailto:ricalnet@duck.com"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fas fa-envelope text-base"></i>
+            </a>
+            <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" target="_blank" rel="noopener"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fas fa-heartbeat text-base"></i>
+            </a>
+            <span
+              class="pgp-fingerprint text-[0.6rem] px-3 py-1.5 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+              onclick="copyPGP()" title="Click to copy PGP fingerprint">
+              <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+            </span>
+          </div>
+        </div>
+  
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Why Self‑Host</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/about#our-mission" class="footer-link">Mission</a></li>
+            <li><a href="https://ricalnet.my.id/resources" class="footer-link">Resources</a></li>
+            <li><a href="https://ricalnet.my.id/gallery" class="footer-link">Gallery</a></li>
+            <li><a href="https://docs.ricalnet.my.id" class="footer-link">Blog</a></li>
+            <li><a href="https://ricalnet.my.id/#cta" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+  
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Stack</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/#features" class="footer-link">Sovereign Infrastructure</a></li>
+            <li><a href="https://ricalnet.my.id/#private-digital-services" class="footer-link">What You Need</a></li>
+            <li><a href="https://ricalnet.my.id/#hidden-services" class="footer-link">Hidden Services</a></li>
+            <li><a href="https://ricalnet.my.id/tools/metadata-cleaner" class="footer-link">Metadata Cleaner</a></li>
+            <li><a href="https://ricalnet.my.id/tools/quantum-hasher" class="footer-link">Quantum Hasher</a></li>
+            <li><a href="https://link.ricalnet.my.id" class="footer-link">URL Shortener</a></li>
+          </ul>
+        </div>
+  
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Docs &amp; Resources</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
+                target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+            <li><a href="https://github.com/ricalnet/digital-independence" class="footer-link" target="_blank">Repository
+                <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+            <li><a href="https://ricalnet.my.id/about#cta-support" class="footer-link">Support</a></li>
+            <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
+          </ul>
+        </div>
+  
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Legal</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/resources#legal-resources" class="footer-link">Legal Resources</a></li>
+            <li><a href="https://ricalnet.my.id/terms-of-service" class="footer-link">Terms of Service</a></li>
+            <li><a href="https://ricalnet.my.id/privacy" class="footer-link">Privacy Policy</a></li>
+          </ul>
+        </div>
+  
+      </div>
+  
+      <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+        <p class="text-xs tracking-wide">
+          COPYRIGHT (CC BY) — <a href="https://ricalnet.my.id/" class="hover:text-tor-violet transition-colors">Open
+            Source Self-Hosted Infrastructure</a>
+        </p>
+        <div class="flex flex-wrap items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
+          <a href="https://ricalnet.my.id/"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#OpenSource</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/#pain-points"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#NoLockIn</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/#features"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#ZeroTrust</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/"
+            class="text-tor-violet font-semibold hover:text-tor-violet-dark transition-colors">#ControlAccessLibre</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <span
+            class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+            onclick="copyPGP()" title="Click to copy PGP fingerprint">
+            <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+          </span>
+        </div>
+      </div>
+  
+    </div>
+  </footer>
+  <script src="assets/js/aos.js"></script>
   <script>
-    // ===== MULTI-LANGUAGE =====
-    const translations = {
-      id: {
-        back: 'Kembali ke Beranda',
-        'policy-title-1': 'Kebijakan',
-        'policy-title-2': ' Privasi',
-        'effective-label': 'Berlaku efektif: <strong class="text-white">28 Mei 2026</strong>',
-        'commitment-title': 'Komitmen Privasi Ricalnet',
-        'commitment-sub': 'Transparansi penuh · Kedaulatan data · Tanpa kompromi',
-        's1-title': 'Data yang Dikumpulkan',
-        's1-p1': 'Situs ini <strong class="text-white font-medium">tidak mengumpulkan data pribadi</strong> pengunjung. Tidak terdapat penggunaan cookie pelacak maupun layanan analitik pihak ketiga. Server web menyimpan catatan log standar (alamat IP, waktu akses, halaman yang diminta) semata-mata untuk keperluan keamanan dan pemeliharaan sistem. Log tersebut disimpan secara sementara, dirotasi secara berkala, dan <strong class="text-tor-violet-light font-medium">tidak digunakan untuk analisis perilaku pengguna</strong>.',
-        's1-p2': 'Untuk layanan yang memerlukan pendaftaran akun (seperti RCLOUD, NoCOMINT, Vault, Gallery), data yang diberikan pengguna (nama pengguna, kata sandi terenkripsi, berkas) disimpan di server yang disediakan. <strong class="text-white font-medium">Pengguna memegang kendali penuh</strong> atas data tersebut.',
-        's2-title': 'Penggunaan Data',
-        's2-p1': 'Data log teknis hanya digunakan untuk memastikan stabilitas dan keamanan infrastruktur layanan. Data akun serta konten yang diunggah ke layanan privat (RCLOUD, NoCOMINT, dan sejenisnya) sepenuhnya berada di bawah kendali pengguna. Pihak pengelola <strong class="text-white font-medium">tidak memproses data tersebut</strong> untuk kepentingan lain di luar fungsi operasional dasar layanan.',
-        's3-title': 'Komitmen Kedaulatan Data',
-        's3-p1': 'Pengelola <strong class="text-white font-medium">tidak akan membuka, mengakses, atau menyerahkan data pengguna</strong> kepada pihak mana pun—termasuk lembaga pemerintah, aparat penegak hukum, atau otoritas lainnya—dalam situasi apa pun, kecuali atas instruksi tertulis langsung dari pengguna yang bersangkutan.',
-        's3-p2': 'Server berada di bawah kendali fisik dan teknis pengelola, serta <strong class="text-tor-violet-light font-medium">tidak dilengkapi mekanisme akses pintu belakang</strong> (backdoor), akses paksa, maupun kerja sama sukarela atas permintaan data pihak luar.',
-        's3-p3': 'Apabila terdapat permintaan hukum yang mengikat, pengelola akan mengupayakan perlawanan dengan segala cara yang tersedia, termasuk namun tidak terbatas pada bantuan hukum dan keterbukaan informasi kepada publik.',
-        's3-quote': 'Data pengguna adalah milik pengguna sepenuhnya.',
-        's4-title': 'Keamanan',
-        's4-p1': 'Praktik keamanan standar industri diterapkan untuk melindungi komunikasi, mencakup pembaruan perangkat lunak secara rutin dan konfigurasi server yang diperketat. Meskipun demikian, perlu dipahami bahwa <strong class="text-white font-medium">tidak ada sistem yang sepenuhnya bebas dari risiko keamanan</strong>. Pengguna bertanggung jawab menjaga kerahasiaan kredensial akun masing-masing.',
-        's5-title': 'Hak Pengguna',
-        's5-p1': 'Pengguna memiliki hak untuk <strong class="text-white font-medium">mengakses, memperbaiki, atau menghapus</strong> data pribadi yang tersimpan di dalam layanan. Untuk akun layanan, tindakan tersebut dapat dilakukan secara mandiri melalui panel kendali masing-masing layanan. Jika menemui kendala teknis, pengguna dapat menghubungi kontak yang tersedia.',
-        's6-title': 'Kontak',
-        's6-p1': 'Pertanyaan lebih lanjut mengenai kebijakan privasi ini dapat disampaikan melalui:',
-        's7-title': 'Perubahan Kebijakan',
-        's7-p1': 'Kebijakan ini dapat mengalami penyesuaian dari waktu ke waktu. Setiap perubahan akan diumumkan pada laman ini dengan mencantumkan tanggal revisi terbaru.',
-        'updated-note': 'Kebijakan ini terakhir diperbarui pada <strong class="text-gray-400">28 Mei 2026</strong>',
-        'footer-home': 'Beranda',
-        'footer-status': 'Status Layanan',
-        'footer-source': 'Sumber',
-        'copied-toast': 'Tersalin!'
-      },
-      en: {
-        back: 'Back to Home',
-        'policy-title-1': 'Privacy',
-        'policy-title-2': ' Policy',
-        'effective-label': 'Effective: <strong class="text-white">May 28, 2026</strong>',
-        'commitment-title': 'Ricalnet Privacy Commitment',
-        'commitment-sub': 'Full transparency · Data sovereignty · No compromise',
-        's1-title': 'Data Collected',
-        's1-p1': 'This site <strong class="text-white font-medium">does not collect personal data</strong> from visitors. There are no tracking cookies or third-party analytics services. The web server stores standard log records (IP address, access time, requested pages) solely for security and system maintenance purposes. These logs are stored temporarily, rotated periodically, and <strong class="text-tor-violet-light font-medium">not used for user behavior analysis</strong>.',
-        's1-p2': 'For services requiring account registration (such as RCLOUD, NoCOMINT, Vault, Gallery), user-provided data (username, encrypted password, files) is stored on the provided servers. <strong class="text-white font-medium">Users retain full control</strong> over their data.',
-        's2-title': 'Data Usage',
-        's2-p1': 'Technical log data is used only to ensure service infrastructure stability and security. Account data and content uploaded to private services (RCLOUD, NoCOMINT, and similar) remain entirely under user control. The service operator <strong class="text-white font-medium">does not process this data</strong> for any purpose beyond basic operational service functions.',
-        's3-title': 'Data Sovereignty Commitment',
-        's3-p1': 'The operator <strong class="text-white font-medium">will not open, access, or disclose user data</strong> to any party—including government agencies, law enforcement, or other authorities—under any circumstances, except upon direct written instruction from the user concerned.',
-        's3-p2': 'Servers are under the physical and technical control of the operator, and <strong class="text-tor-violet-light font-medium">are not equipped with backdoor mechanisms</strong>, forced access, or voluntary cooperation with external data requests.',
-        's3-p3': 'In the event of a binding legal request, the operator will resist by all available means, including but not limited to legal assistance and public disclosure of information.',
-        's3-quote': 'User data belongs entirely to the user.',
-        's4-title': 'Security',
-        's4-p1': 'Industry-standard security practices are applied to protect communication, including regular software updates and tightened server configurations. Nevertheless, it should be understood that <strong class="text-white font-medium">no system is completely free from security risks</strong>. Users are responsible for keeping their account credentials confidential.',
-        's5-title': 'User Rights',
-        's5-p1': 'Users have the right to <strong class="text-white font-medium">access, correct, or delete</strong> personal data stored in the services. For service accounts, these actions can be performed independently through each service\'s control panel. If technical issues arise, users can contact the available support channels.',
-        's6-title': 'Contact',
-        's6-p1': 'Further questions regarding this privacy policy can be directed to:',
-        's7-title': 'Policy Changes',
-        's7-p1': 'This policy may be adjusted from time to time. Any changes will be announced on this page with the latest revision date.',
-        'updated-note': 'This policy was last updated on <strong class="text-gray-400">May 28, 2026</strong>',
-        'footer-home': 'Home',
-        'footer-status': 'Service Status',
-        'footer-source': 'Source',
-        'copied-toast': 'Copied!'
-      }
-    };
-
-    let currentLang = 'id';
-
-    function setLanguage(lang) {
-      currentLang = lang;
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
-          el.innerHTML = translations[lang][key];
-        }
+    AOS.init({
+      once: true,
+      offset: 30,
+      easing: 'ease-out-expo',
+      duration: 900,
+      disable: window.innerWidth < 768 ? true : false,
+    });
+    const PGP_FINGERPRINT = '45688382B815821F033115B8D92D6A10D29C8380';
+    function copyPGP() {
+      navigator.clipboard.writeText(PGP_FINGERPRINT).then(() => {
+        showToast('PGP fingerprint copied!');
+      }).catch(() => {
+        const textArea = document.createElement('textarea');
+        textArea.value = PGP_FINGERPRINT;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showToast('PGP fingerprint copied!');
       });
-      // Update active button
-      document.getElementById('lang-id').className = lang === 'id' 
-        ? 'px-3 py-1.5 rounded-full text-xs font-medium bg-tor-violet/20 text-tor-violet-light border border-tor-violet/30 hover:bg-tor-violet/40 transition-all duration-300 active'
-        : 'px-3 py-1.5 rounded-full text-xs font-medium bg-surface-card/50 text-gray-400 border border-surface-border hover:bg-tor-violet/20 hover:text-tor-violet-light transition-all duration-300';
-      document.getElementById('lang-en').className = lang === 'en'
-        ? 'px-3 py-1.5 rounded-full text-xs font-medium bg-tor-violet/20 text-tor-violet-light border border-tor-violet/30 hover:bg-tor-violet/40 transition-all duration-300 active'
-        : 'px-3 py-1.5 rounded-full text-xs font-medium bg-surface-card/50 text-gray-400 border border-surface-border hover:bg-tor-violet/20 hover:text-tor-violet-light transition-all duration-300';
     }
-
-    document.getElementById('lang-id').addEventListener('click', () => setLanguage('id'));
-    document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
-
-    // ===== COPY TOAST =====
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] copy-toast';
+      toast.innerHTML = '<i class="fas fa-check-circle text-tor-accent mr-2"></i> ' + message;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-4');
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
     function copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
-        const toast = document.getElementById('copy-toast');
-        if (!toast) return;
-        toast.classList.add('!opacity-100', '!translate-y-0');
-        toast.classList.remove('opacity-0', 'translate-y-3');
-        clearTimeout(toast._timeout);
-        toast._timeout = setTimeout(() => {
-          toast.classList.add('opacity-0', 'translate-y-3');
-          toast.classList.remove('!opacity-100', '!translate-y-0');
-        }, 2000);
+        showToast('Address copied!');
       }).catch(() => {
-        alert('Failed to copy text.');
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showToast('Address copied!');
       });
     }
-
-    // ===== IMAGE ERROR FALLBACK =====
-    document.querySelectorAll('img').forEach(img => {
-      img.addEventListener('error', function() {
-        if (this.src.includes('img/icons/')) {
-          this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"%3E%3Crect width="40" height="40" fill="%23161822"/%3E%3Ctext x="20" y="25" font-size="12" text-anchor="middle" fill="%2364748b" font-family="Inter"%3Eicon%3C/text%3E%3C/svg%3E';
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     });
-
-    // ===== INITIAL LANGUAGE =====
-    setLanguage('id');
   </script>
-
+  <script src="assets/js/components.js"></script>
 </body>
+
 </html>

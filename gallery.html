@@ -1,798 +1,805 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <meta name="description" content="Galeri kegiatan Ricalnet sebagai pembicara — Offline & Online. Privasi, self-hosting, dan kedaulatan digital.">
-  <meta name="author" content="Ricalnet">
-  <title>Speaking · Ricalnet</title>
-  <link rel="icon" type="image/x-icon" href="img/logo.png">
+<html lang="en" class="scroll-smooth overflow-x-hidden">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" media="print" onload="this.media='all'">
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-  
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Gallery — Open Source Workshops & Events | RICALNET</title>
+  <meta name="description"
+    content="Explore RICALNET's gallery of workshops, talks, and community events promoting open-source, zero-trust infrastructure and digital sovereignty. Learn from our engagements." />
+  <meta name="keywords"
+    content="RICALNET gallery, open source workshops, zero-trust events, digital sovereignty, community engagement, privacy infrastructure" />
+  <link rel="canonical" href="https://ricalnet.my.id/gallery" />
+  <link rel="alternate" hreflang="en" href="https://ricalnet.my.id/gallery" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://ricalnet.my.id/sitemap.xml" />
+  <link rel="icon" type="image/x-icon" href="img/logo.png" />
+  <meta property="og:title" content="Gallery — Open Source Workshops & Events | RICALNET" />
+  <meta property="og:description"
+    content="Explore RICALNET's gallery of workshops, talks, and community events promoting open-source, zero-trust infrastructure and digital sovereignty." />
+  <meta property="og:url" content="https://ricalnet.my.id/gallery" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://ricalnet.my.id/img/og-gallery.png" />
+  <meta property="og:image:alt" content="RICALNET gallery — community events and workshops" />
+  <meta property="og:site_name" content="RICALNET" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Gallery — Open Source Workshops & Events | RICALNET" />
+  <meta name="twitter:description"
+    content="Explore RICALNET's gallery of workshops, talks, and community events promoting open-source, zero-trust infrastructure and digital sovereignty." />
+  <meta name="twitter:image" content="https://ricalnet.my.id/img/og-gallery.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Gallery — Open Source Workshops & Events",
+      "description": "Explore RICALNET's gallery of workshops, talks, and community events promoting open-source, zero-trust infrastructure and digital sovereignty.",
+      "url": "https://ricalnet.my.id/gallery",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ricalnet.my.id/" },
+          { "@type": "ListItem", "position": 2, "name": "Gallery", "item": "https://ricalnet.my.id/gallery" }
+        ]
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "RICALNET",
+      "url": "https://ricalnet.my.id/",
+      "logo": "https://ricalnet.my.id/img/logo.png",
+      "sameAs": ["https://github.com/ricalnet"],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "ricalnet@duck.com",
+        "contactType": "technical support"
+      }
+    }
+  </script>
+  <link href="assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="assets/fontawesome/css/solid.css" rel="stylesheet" />
+  <link href="assets/fontawesome/css/brands.css" rel="stylesheet" />
+  <link href="assets/css/fonts.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link href="assets/css/aos.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com">
+  </script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            'inter': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            'source-sans-pro': ['"Source Sans Pro"', 'Inter', 'Roboto', 'system-ui', '-apple-system', 'sans-serif'],
+            roboto: ['Roboto', '"Source Sans Pro"', 'Inter', 'system-ui', 'sans-serif'],
+            inter: ['Inter', '"Source Sans Pro"', 'Roboto', 'system-ui', '-apple-system', 'sans-serif'],
           },
           colors: {
             tor: {
               violet: '#7c3aed',
-              'violet-light': '#a78bfa',
+              'violet-light': '#8b5cf6',
               'violet-dark': '#5b21b6',
+              'violet-deep': '#4c1d95',
+              'violet-soft': '#ede9fe',
               accent: '#68B030',
+              'accent-cyan': '#06b6d4',
+              'accent-amber': '#f59e0b',
             },
             surface: {
-              dark: '#0f1117',
-              card: '#161822',
-              border: '#232636',
+              light: '#faf9fe',
+              card: '#ffffff',
+              border: '#ede9f0',
+              muted: '#f5f3fa',
+              dark: '#0f0e1a',
+            },
+            text: {
+              primary: '#0f0e1a',
+              secondary: '#52506e',
+              muted: '#9492ae',
+              inverse: '#f8f7fc',
             }
           },
+          boxShadow: {
+            'elevated': '0 1px 3px rgba(0,0,0,0.02), 0 8px 40px rgba(124,58,237,0.06), 0 20px 80px rgba(124,58,237,0.04)',
+            'elevated-lg': '0 1px 3px rgba(0,0,0,0.02), 0 16px 64px rgba(124,58,237,0.08), 0 32px 120px rgba(124,58,237,0.04)',
+            'glow': '0 0 60px rgba(124,58,237,0.06)',
+          },
           animation: {
-            'fade-slide-up': 'fadeSlideUp 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) forwards',
-            'pulse-glow': 'pulseGlow 2s infinite',
-            'gradient-flow': 'gradientFlow 8s ease infinite',
-            'float': 'float 5s ease-in-out infinite',
-            'modal-in': 'modalIn 0.3s cubic-bezier(0.2, 0.9, 0.3, 1) forwards',
-            'modal-out': 'modalOut 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-            'overlay-in': 'overlayIn 0.25s ease-out forwards',
+            'fade-up': 'fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'fade-down': 'fadeDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'fade-right': 'fadeRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'fade-left': 'fadeLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'scale-in': 'scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'float': 'float 6s ease-in-out infinite',
           },
           keyframes: {
-            fadeSlideUp: {
-              '0%': { opacity: '0', transform: 'translateY(24px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': {
+                opacity: '1',
+                transform: 'translateY(0)'
+              }
             },
-            pulseGlow: {
-              '0%, 100%': { boxShadow: '0 0 0 0 rgba(124, 58, 237, 0.4)' },
-              '50%': { boxShadow: '0 0 0 12px rgba(124, 58, 237, 0)' },
+            fadeDown: {
+              '0%': { opacity: '0', transform: 'translateY(-40px)' }, '100%': {
+                opacity: '1',
+                transform: 'translateY(0)'
+              }
             },
-            gradientFlow: {
-              '0%, 100%': { backgroundPosition: '0% 50%' },
-              '50%': { backgroundPosition: '100% 50%' },
+            fadeRight: {
+              '0%': { opacity: '0', transform: 'translateX(-40px)' }, '100%': {
+                opacity: '1',
+                transform: 'translateX(0)'
+              }
             },
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-8px)' },
+            fadeLeft: {
+              '0%': { opacity: '0', transform: 'translateX(40px)' }, '100%': {
+                opacity: '1',
+                transform: 'translateX(0)'
+              }
             },
-            modalIn: {
-              '0%': { opacity: '0', transform: 'scale(0.9) translateY(20px)' },
-              '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
+            scaleIn: {
+              '0%': { opacity: '0', transform: 'scale(0.94)' }, '100%': {
+                opacity: '1',
+                transform: 'scale(1)'
+              }
             },
-            modalOut: {
-              '0%': { opacity: '1', transform: 'scale(1) translateY(0)' },
-              '100%': { opacity: '0', transform: 'scale(0.9) translateY(20px)' },
-            },
-            overlayIn: {
-              '0%': { opacity: '0' },
-              '100%': { opacity: '1' },
-            },
+            float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-14px)' } },
           }
         }
       }
     }
   </script>
-
-  <style>
-    @layer utilities {
-      .glass-card {
-        background: rgba(22, 24, 34, 0.7);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(35, 38, 54, 0.6);
-      }
-      .glass-card:hover {
-        background: rgba(22, 24, 34, 0.85);
-        border-color: rgba(124, 58, 237, 0.5);
-      }
-      .text-gradient-violet {
-        background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 30%, #7c3aed 70%, #c4b5fd 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        background-size: 200% auto;
-      }
-      .bg-grid-pattern {
-        background-image: 
-          linear-gradient(rgba(124, 58, 237, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(124, 58, 237, 0.03) 1px, transparent 1px);
-        background-size: 60px 60px;
-      }
-    }
-    #image-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-    #image-modal.active {
-      display: flex;
-    }
-    #image-modal .modal-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      animation: overlayIn 0.25s ease-out forwards;
-      cursor: pointer;
-    }
-    #image-modal .modal-content {
-      position: relative;
-      z-index: 10;
-      max-width: 90vw;
-      max-height: 88vh;
-      background: rgba(22, 24, 34, 0.95);
-      border-radius: 1.5rem;
-      overflow: hidden;
-      box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.6);
-      border: 1px solid rgba(124, 58, 237, 0.3);
-      animation: modalIn 0.3s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
-      display: flex;
-      flex-direction: column;
-    }
-    #image-modal.closing .modal-content {
-      animation: modalOut 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-    #image-modal .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 1.25rem;
-      border-bottom: 1px solid rgba(35, 38, 54, 0.6);
-      background: rgba(15, 17, 23, 0.8);
-      backdrop-filter: blur(12px);
-    }
-    #image-modal .modal-header .modal-title {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: #a78bfa;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    #image-modal .modal-close {
-      width: 2.25rem;
-      height: 2.25rem;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #94a3b8;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-size: 1.25rem;
-      flex-shrink: 0;
-    }
-    #image-modal .modal-close:hover {
-      background: rgba(124, 58, 237, 0.2);
-      color: #a78bfa;
-      border-color: rgba(124, 58, 237, 0.4);
-      transform: rotate(90deg);
-    }
-    #image-modal .modal-body {
-      padding: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex: 1;
-      overflow: auto;
-    }
-    #image-modal .modal-body img {
-      max-width: 100%;
-      max-height: 70vh;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      border-radius: 0.75rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-    #image-modal .modal-footer {
-      padding: 0.75rem 1.25rem;
-      border-top: 1px solid rgba(35, 38, 54, 0.6);
-      background: rgba(15, 17, 23, 0.8);
-      backdrop-filter: blur(12px);
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 0.5rem;
-    }
-    #image-modal .modal-footer .btn-download {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: rgba(124, 58, 237, 0.15);
-      color: #a78bfa;
-      border: 1px solid rgba(124, 58, 237, 0.3);
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-    #image-modal .modal-footer .btn-download:hover {
-      background: #7c3aed;
-      color: white;
-      border-color: #7c3aed;
-    }
-
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #0f1117; }
-    ::-webkit-scrollbar-thumb { background: #232636; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #7c3aed; }
-
-    .hero-icon-circle {
-      width: 5rem;
-      height: 5rem;
-      border-radius: 9999px;
-      object-fit: cover;
-      border: 2px solid rgba(124, 58, 237, 0.4);
-      box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4);
-      animation: pulseGlow 2s infinite;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    @media (min-width: 768px) {
-      .hero-icon-circle {
-        width: 6rem;
-        height: 6rem;
-      }
-    }
-    .hero-icon-circle:hover {
-      transform: scale(1.05);
-      border-color: #a78bfa;
-      transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-  </style>
 </head>
-<body class="font-inter bg-surface-dark text-gray-200 antialiased selection:bg-tor-violet/30 selection:text-white">
 
-  <!-- ===== AMBIENT BACKGROUND ===== -->
-  <div class="fixed inset-0 -z-20 overflow-hidden pointer-events-none" aria-hidden="true">
-    <div class="absolute inset-0 bg-grid-pattern opacity-50"></div>
-    <div class="absolute top-0 -left-20 w-[500px] h-[500px] bg-tor-violet/10 rounded-full blur-[120px] animate-pulse"></div>
-    <div class="absolute top-1/3 -right-20 w-[600px] h-[600px] bg-purple-700/8 rounded-full blur-[130px] animate-pulse" style="animation-delay: 2s;"></div>
-    <div class="absolute -bottom-20 left-1/3 w-[400px] h-[400px] bg-tor-violet/5 rounded-full blur-[100px] animate-pulse" style="animation-delay: 4s;"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-dark/50 to-surface-dark"></div>
+<body
+  class="font-source-sans-pro bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+  <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
+    <div class="absolute inset-0 bg-grid-subtle"></div>
+    <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/5 rounded-full blur-[160px]"></div>
+    <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/3 rounded-full blur-[180px]"></div>
+    <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/4 rounded-full blur-[140px]"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light"></div>
   </div>
-
-  <!-- ===== IMAGE MODAL ===== -->
-  <div id="image-modal">
-    <div class="modal-overlay" onclick="closeModal()"></div>
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <span class="modal-title">
-          <i class="fas fa-image text-tor-violet-light"></i>
-          <span id="modal-title-text">Pratinjau Gambar</span>
-        </span>
-        <button class="modal-close" onclick="closeModal()" aria-label="Tutup">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      
-      <!-- Modal Body -->
-      <div class="modal-body">
-        <img id="modal-img" src="" alt="Pratinjau gambar">
-      </div>
-      
-      <!-- Modal Footer -->
-      <div class="modal-footer">
-        <span class="text-xs text-gray-500 mr-auto" id="modal-resolution"></span>
-        <a id="modal-download" href="#" download class="btn-download" target="_blank">
-          <i class="fas fa-download"></i> Unduh
+  <header
+    class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-[72px]">
+  
+        <a href="https://ricalnet.my.id/" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+          data-aos-duration="600">
+          <img src="img/logo.png" alt="RICALNET Open Source Self-Hosted Infrastructure Logo"
+            class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
+          <div class="leading-tight hidden sm:block">
+            <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+            <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust · Control ·
+              Access · Libre</span>
+          </div>
         </a>
+  
+        <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down" data-aos-duration="600">
+          <a href="https://ricalnet.my.id/#hero" class="nav-link">Home</a>
+  
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/#pain-points" class="nav-link flex items-center gap-1">
+              Why Self‑Host
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/#pain-points" class="dropdown-item">The Lock‑in Trap</a>
+              <a href="https://ricalnet.my.id/#how-it-works" class="dropdown-item">The Approach</a>
+              <a href="https://ricalnet.my.id/#features" class="dropdown-item">Sovereign Stack</a>
+              <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal &amp; Advocacy</a>
+            </div>
+          </div>
+  
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/resources#hero" class="nav-link flex items-center gap-1">
+              Resources
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+              <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal Resources</a>
+              <a href="https://ricalnet.my.id/resources#in-house-tools" class="dropdown-item">In‑House Tools</a>
+              <a href="https://ricalnet.my.id/resources" class="dropdown-item">All Resources</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/resources#hero" class="nav-link flex items-center gap-1">
+              Tools
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="dropdown-item">Metadata Cleaner</a>
+              <a href="https://ricalnet.my.id/tools/quantum-hasher" class="dropdown-item">Quantum Hasher</a>
+              <a href="https://ricalnet.my.id/tools/ip-intelligence" class="dropdown-item">IP Intelligence</a>
+              <a href="https://ricalnet.my.id/tools/password-generator" class="dropdown-item">Password Generator</a>
+              <a href="https://ricalnet.my.id/tools/qr-builder" class="dropdown-item">QR Builder</a>
+              <a href="https://ricalnet.my.id/tools/whiteboard" class="dropdown-item">Whiteboard</a>
+              <a href="https://ricalnet.my.id/tools/chantik" class="dropdown-item">Chantik</a>
+              <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/about#hero" class="nav-link flex items-center gap-1">
+              About
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/about#our-mission" class="dropdown-item">Mission</a>
+              <a href="https://ricalnet.my.id/#comparison" class="dropdown-item">Comparison</a>
+              <a href="https://ricalnet.my.id/#faq" class="dropdown-item">FAQ</a>
+              <a href="https://ricalnet.my.id/#cta" class="dropdown-item">Contact</a>
+              <a href="https://ricalnet.my.id/about#cta-support" class="dropdown-item">Support</a>
+            </div>
+          </div>
+        </nav>
+  
+        <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
+          <a href="https://ricalnet.my.id/#hidden-services" class="hidden lg:inline-flex btn-sso">
+            <i class="fas fa-key"></i> Login with SSO
+          </a>
+          <button id="mobile-menu-toggle"
+            class="lg:hidden w-9 h-9 rounded-full hover:bg-surface-muted flex items-center justify-center transition-colors"
+            aria-label="Toggle menu" aria-expanded="false">
+            <i class="fas fa-bars text-text-secondary text-lg"></i>
+          </button>
+        </div>
+  
       </div>
     </div>
-  </div>
-
-  <!-- ===== MAIN CONTAINER ===== -->
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-14 flex flex-col min-h-screen relative z-10">
-
-    <!-- ===== HERO SECTION ===== -->
-    <section class="mb-14 md:mb-18 animate-fade-slide-up">
-      
-      <!-- Back Button -->
-      <a href="index.html" 
-         class="inline-flex items-center gap-2 text-gray-400 hover:text-tor-violet-light transition-all duration-300 mb-8 group w-fit">
-        <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform duration-300"></i>
-        <span>Kembali ke Beranda</span>
+  </header>
+  
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+  
+    <div class="mobile-menu-header">
+      <div class="logo">
+        <img src="img/logo.png" alt="RICALNET" />
+        <span>RICALNET</span>
+      </div>
+      <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+        <i class="fas fa-xmark"></i>
+      </button>
+    </div>
+  
+    <div class="mobile-menu-scroll">
+  
+      <a href="https://ricalnet.my.id/#hero" class="nav-item" data-close-mobile>
+        <i class="fas fa-home"></i> Home
       </a>
-
-      <div class="glass-card rounded-3xl p-8 md:p-14 text-center relative overflow-hidden border-tor-violet/20">
-        <div class="absolute inset-0 bg-gradient-to-br from-tor-violet/5 via-transparent to-tor-accent/5 pointer-events-none"></div>
-        
-        <div class="relative z-10">
-          <!-- Icon -->
-          <div class="mb-6">
-            <img src="img/founder.jpeg" alt="Ricalnet Logo" class="hero-icon-circle">
-          </div>
-          
-          <!-- Title -->
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-5">
-            <span class="text-white">Speaking</span>
-            <span class="text-gradient-violet animate-gradient-flow"> Gallery</span>
-          </h1>
-          
-          <!-- Description -->
-          <p class="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto mb-8 leading-relaxed">
-            Berbagi wawasan seputar 
-            <strong class="text-tor-violet-light font-medium">self‑hosting</strong>, 
-            <strong class="text-tor-violet-light font-medium">privasi digital</strong>, 
-            <strong class="text-tor-violet-light font-medium">keamanan siber</strong>, dan 
-            <strong class="text-tor-violet-light font-medium">infrastruktur mandiri</strong>.
-          </p>
+  
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-advocacy">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Why Self‑Host
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/#pain-points" class="sub-link" data-close-mobile>
+            <i class="fas fa-exclamation-triangle"></i> The Lock‑in Trap
+          </a>
+          <a href="https://ricalnet.my.id/#how-it-works" class="sub-link" data-close-mobile>
+            <i class="fas fa-route"></i> The Approach
+          </a>
+          <a href="https://ricalnet.my.id/#features" class="sub-link" data-close-mobile>
+            <i class="fas fa-star"></i> Sovereign Stack
+          </a>
+          <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+            <i class="fas fa-gavel"></i> Legal &amp; Advocacy
+          </a>
         </div>
       </div>
-    </section>
-
-    <!-- ===== OFFLINE EVENTS ===== -->
-    <section class="mb-18" style="animation: fadeSlideUp 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.1s both;">
-      
-      <!-- Section Header -->
-      <div class="flex items-center gap-4 mb-8">
-        <div class="w-12 h-12 rounded-xl bg-tor-accent/15 flex items-center justify-center text-tor-accent animate-pulse-glow flex-shrink-0">
-          <i class="fas fa-users text-xl"></i>
+  
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-resources">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-lock"></i> Privacy Tools
+          </a>
+          <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+            <i class="fas fa-gavel"></i> Legal Resources
+          </a>
+          <a href="https://ricalnet.my.id/resources#in-house-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-cubes"></i> In‑House Tools
+          </a>
+          <a href="https://ricalnet.my.id/resources" class="sub-link" data-close-mobile>
+            <i class="fas fa-folder-open"></i> All Resources
+          </a>
         </div>
-        <h2 class="text-3xl md:text-4xl font-bold relative inline-block pb-3">
-          <span class="text-white">Offline</span>
-          <span class="absolute bottom-0 left-0 w-16 h-1 bg-tor-accent rounded-full transition-all duration-300 hover:w-24"></span>
-        </h2>
       </div>
-
-      <!-- Offline Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
-        <!-- Card: Lab Instructor -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
-          <div class="h-44 bg-gradient-to-br from-sky-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/offline/lab-instructor.JPG" alt="Lab Instructor" 
-                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
-                 onclick="openModal(this.src, 'Lab Instructor - Telkom University')"
-                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%230c4a6e%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%237dd3fc%22 text-anchor=%22middle%22 font-family=%22Inter%22%3ELab Instructor%3C/text%3E%3C/svg%3E';">
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-sky-500/40 text-white z-10 pointer-events-none">
-              <i class="far fa-calendar-alt mr-1"></i> 2024 - 2026
-            </div>
-            <!-- Kaca pembesar icon -->
-            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="p-5 flex-1 flex flex-col">
-            <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Lab Instructor</h3>
-              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Mentor</span>
-            </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-map-pin text-xs"></i> Telkom University
-            </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Memberikan pendampingan intensif di bidang Telekomunikasi & Jaringan Nirkabel, Operasi Infrastruktur Cloud, Rekayasa Sistem & Jaringan, Full-Stack & DevOps, serta Data & AI Engineering.</p>
-            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fas fa-user-graduate mr-1"></i> Mahasiswa Tel-U</span>
-              <span class="bg-sky-500/10 px-2 py-0.5 rounded-full text-sky-300">#Mentorship</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card: Telkom University 5G -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
-          <div class="h-44 bg-gradient-to-br from-sky-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/offline/mobile-communication.png" alt="Telkom University 5G" 
-                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
-                 onclick="openModal(this.src, 'Telkom University - Implementasi 5G')"
-                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%230c4a6e%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%237dd3fc%22 text-anchor=%22middle%22 font-family=%22Inter%22%3ETelkom University 5G%3C/text%3E%3C/svg%3E';">
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-sky-500/40 text-white z-10 pointer-events-none">
-              <i class="far fa-calendar-alt mr-1"></i> 2026
-            </div>
-            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="p-5 flex-1 flex flex-col">
-            <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Telkom University</h3>
-              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Pembicara</span>
-            </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-map-pin text-xs"></i> Bandung, Jawa Barat
-            </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Perencanaan dan strategi implementasi jaringan 5G di Indonesia: tantangan teknis dan peluang ekonomi.</p>
-            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fas fa-user-graduate mr-1"></i> 60+ peserta</span>
-              <span class="bg-sky-500/10 px-2 py-0.5 rounded-full text-sky-300">#5G</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card: Desa Sukarame -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
-          <div class="h-44 bg-gradient-to-br from-rose-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/offline/desa-sukarame.jpg" alt="Desa Sukarame IoT Gizi" 
-                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
-                 onclick="openModal(this.src, 'Desa Sukarame - IoT & AI Posyandu')"
-                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%239f1239%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%23fda4af%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EIoT %26 AI Posyandu%3C/text%3E%3C/svg%3E';">
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-rose-500/40 text-white z-10 pointer-events-none">
-              <i class="far fa-calendar-alt mr-1"></i> 2026
-            </div>
-            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="p-5 flex-1 flex flex-col">
-            <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Desa Sukarame</h3>
-              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Instruktur</span>
-            </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-map-pin text-xs"></i> Bandung, Jawa Barat
-            </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Pelatihan implementasi sistem pemantauan gizi balita berbasis IoT dan kecerdasan buatan untuk kader Posyandu.</p>
-            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fas fa-microchip mr-1"></i> IoT + AI</span>
-              <span class="bg-rose-500/10 px-2 py-0.5 rounded-full text-rose-300">#Sokanak</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card: Ponpes Al Basyariyah 3 -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
-          <div class="h-44 bg-gradient-to-br from-violet-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/offline/albasyariyah3.png" alt="Ponpes Al Basyariyah 3" 
-                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
-                 onclick="openModal(this.src, 'Pondok Pesantren Al Basyariyah 3 - Bandung')"
-                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%231e1b4b%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%23a78bfa%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EPonpes Al Basyariyah 3%3C/text%3E%3C/svg%3E';">
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-tor-violet/40 text-white z-10 pointer-events-none">
-              <i class="far fa-calendar-alt mr-1"></i> 2025
-            </div>
-            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="p-5 flex-1 flex flex-col">
-            <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Pondok Pesantren Al Basyariyah 3</h3>
-              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Pemateri</span>
-            </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-map-pin text-xs"></i> Bandung, Jawa Barat
-            </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Praktik terbaik pengelolaan jejak digital dan pemanfaatan kecerdasan buatan (AI) untuk meningkatkan keamanan data pribadi.</p>
-            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fas fa-user-graduate mr-1"></i> 100+ peserta</span>
-              <span class="bg-tor-violet/10 px-2 py-0.5 rounded-full text-tor-violet-light">#DigitalFootprint</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card: Desa Sukapura -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
-          <div class="h-44 bg-gradient-to-br from-emerald-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/offline/desa-sukapura.png" alt="Desa Sukapura" 
-                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
-                 onclick="openModal(this.src, 'Desa Sukapura - Social Engineering Awareness')"
-                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%23064e3b%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2220%22 fill=%22%236ee7b7%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EDesa Sukapura%3C/text%3E%3C/svg%3E';">
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-emerald-500/40 text-white z-10 pointer-events-none">
-              <i class="far fa-calendar-alt mr-1"></i> 2025
-            </div>
-            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="p-5 flex-1 flex flex-col">
-            <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Desa Sukapura</h3>
-              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Narasumber</span>
-            </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-map-pin text-xs"></i> Bandung, Jawa Barat
-            </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Strategi mengenali dan menghindari rekayasa sosial (social engineering) serta melindungi diri dari manipulasi digital.</p>
-            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fas fa-user-graduate mr-1"></i> 30+ peserta</span>
-              <span class="bg-emerald-500/10 px-2 py-0.5 rounded-full text-emerald-300">#SocialEngineering</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card: Panti Asuhan -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
-          <div class="h-44 bg-gradient-to-br from-amber-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/offline/panti-asuhan.png" alt="Panti Asuhan" 
-                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
-                 onclick="openModal(this.src, 'Panti Asuhan Amal Mulia Qurani - Bandung')"
-                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%2378320f%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2220%22 fill=%22%23fcd34d%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EPanti Asuhan%3C/text%3E%3C/svg%3E';">
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-amber-500/40 text-white z-10 pointer-events-none">
-              <i class="far fa-calendar-alt mr-1"></i> 2025
-            </div>
-            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="p-5 flex-1 flex flex-col">
-            <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Panti Asuhan Amal Mulia Qurani</h3>
-              <span class="bg-tor-accent/15 text-tor-accent text-xs font-semibold px-2.5 py-0.5 rounded-full border border-tor-accent/30 flex-shrink-0 ml-2">Pemateri</span>
-            </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-map-pin text-xs"></i> Bandung, Jawa Barat
-            </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Pentingnya pendidikan digital inklusif dan penggunaan teknologi secara bijak.</p>
-            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fas fa-user-graduate mr-1"></i> 20+ peserta</span>
-              <span class="bg-amber-500/10 px-2 py-0.5 rounded-full text-amber-300">#DigitalInclusion</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ===== ONLINE EVENTS ===== -->
-    <section class="mb-18" style="animation: fadeSlideUp 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) 0.2s both;">
-      
-      <!-- Section Header -->
-      <div class="flex items-center gap-4 mb-8">
-        <div class="w-12 h-12 rounded-xl bg-blue-500/15 flex items-center justify-center text-blue-400 animate-pulse-glow flex-shrink-0">
-          <i class="fas fa-globe text-xl"></i>
+  
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-tools">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="sub-link" data-close-mobile>
+            <i class="fas fa-map-pin"></i> Metadata Cleaner
+          </a>
+          <a href="https://ricalnet.my.id/tools/quantum-hasher" class="sub-link" data-close-mobile>
+            <i class="fas fa-qrcode"></i> Quantum Hasher
+          </a>
+          <a href="https://ricalnet.my.id/tools/ip-intelligence" class="sub-link" data-close-mobile>
+            <i class="fas fa-map-pin"></i> IP Intelligence
+          </a>
+          <a href="https://ricalnet.my.id/tools/password-generator" class="sub-link" data-close-mobile>
+            <i class="fas fa-key"></i> Password Generator
+          </a>
+          <a href="https://ricalnet.my.id/tools/qr-builder" class="sub-link" data-close-mobile>
+            <i class="fas fa-qrcode"></i> QR Builder
+          </a>
+          <a href="https://ricalnet.my.id/tools/whiteboard" class="sub-link" data-close-mobile>
+            <i class="fas fa-pen-fancy"></i> Whiteboard
+          </a>
+          <a href="https://ricalnet.my.id/tools/chantik" class="sub-link" data-close-mobile>
+            <i class="fa-solid fa-floppy-disk"></i> Chantik
+          </a>
+          <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-user-secret"></i> Privacy Tools
+          </a>
         </div>
-        <h2 class="text-3xl md:text-4xl font-bold relative inline-block pb-3">
-          <span class="text-white">Online</span>
-          <span class="absolute bottom-0 left-0 w-16 h-1 bg-blue-400 rounded-full transition-all duration-300 hover:w-24"></span>
-        </h2>
       </div>
-
-      <!-- Online Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
-        <!-- Card: TransTRACK Security Awareness -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
-          <div class="h-44 bg-gradient-to-br from-blue-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/online/security-awreness-training.png" alt="TransTRACK Security Awareness" 
-                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
-                 onclick="openModal(this.src, 'TransTRACK - Security Awareness Training')"
-                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%231e3a8a%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%2393c5fd%22 text-anchor=%22middle%22 font-family=%22Inter%22%3ETranstrack Training%3C/text%3E%3C/svg%3E';">
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-            <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-blue-500/40 text-white z-10 pointer-events-none">
-              <i class="fas fa-video mr-1"></i> Zoom
-            </div>
-            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-blue-500/40 text-white z-10 pointer-events-none">
-              <i class="far fa-calendar-alt mr-1"></i> 2026
-            </div>
-            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="p-5 flex-1 flex flex-col">
-            <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">TransTRACK · Security Awareness</h3>
-              <span class="bg-blue-500/15 text-blue-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-500/30 flex-shrink-0 ml-2">Trainer</span>
-            </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-building"></i> TransTRACK
-            </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Membangun budaya keamanan siber di lingkungan korporat melalui pelatihan kesadaran keamanan.</p>
-            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fas fa-user-check mr-1"></i> 100 peserta internal</span>
-              <span class="bg-blue-500/10 px-2 py-0.5 rounded-full text-blue-300">#CyberAware</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card: Open Source Q&A -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
-          <div class="h-44 bg-gradient-to-br from-teal-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/online/q&a.jpeg" alt="Open Source Q&A" 
-                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
-                 onclick="openModal(this.src, 'Open Source Q&A - Cobra & Warriors Community')"
-                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%23134e4a%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%235eead4%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EOpen Source Q%26A%3C/text%3E%3C/svg%3E';">
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-            <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-teal-500/40 text-white z-10 pointer-events-none">
-              <i class="fab fa-discord mr-1"></i> Cobra & Warriors Community
-            </div>
-            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-teal-500/40 text-white z-10 pointer-events-none">
-              <i class="far fa-calendar-alt mr-1"></i> 2025
-            </div>
-            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="p-5 flex-1 flex flex-col">
-            <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Open Source Q&A</h3>
-              <span class="bg-blue-500/15 text-blue-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-500/30 flex-shrink-0 ml-2">Panelis</span>
-            </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-comments"></i> Sesi Tanya Jawab
-            </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Menjawab pertanyaan komunitas seputar ekosistem open source dan tren terkini di industri IT/ICT.</p>
-            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fas fa-question-circle mr-1"></i> Interaktif</span>
-              <span class="bg-teal-500/10 px-2 py-0.5 rounded-full text-teal-300">#OpenSource</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card: Responsi & Ngoprek -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
-          <div class="h-44 bg-gradient-to-br from-indigo-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/online/respek.jpg" alt="Responsi & Ngoprek" 
-                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
-                 onclick="openModal(this.src, 'Responsi & Ngoprek - Komunitas Tel-U')"
-                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%23312e81%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%23a5b4fc%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EResponsi %26 Ngoprek%3C/text%3E%3C/svg%3E';">
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-            <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-indigo-500/40 text-white z-10 pointer-events-none">
-              <i class="fas fa-user-group mr-1"></i> Microsoft Teams
-            </div>
-            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-indigo-500/40 text-white z-10 pointer-events-none">
-              <i class="far fa-calendar-alt mr-1"></i> 2024-2025
-            </div>
-            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="p-5 flex-1 flex flex-col">
-            <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Responsi & Ngoprek</h3>
-              <span class="bg-blue-500/15 text-blue-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-500/30 flex-shrink-0 ml-2">Instruktur</span>
-            </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-users"></i> Komunitas Tel-U
-            </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Sesi kolaboratif berbagi pengetahuan seputar telekomunikasi, komputasi awan, keamanan siber, pemrograman, dan elektronika.</p>
-            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fas fa-clock mr-1"></i> Reguler</span>
-              <span class="bg-indigo-500/10 px-2 py-0.5 rounded-full text-indigo-300">#SharingSession</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card: Membangun Infrastruktur Mandiri -->
-        <article class="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-tor-violet/10 group flex flex-col h-full">
-          <div class="h-44 bg-gradient-to-br from-purple-900/40 to-surface-dark relative overflow-hidden">
-            <img src="img/gallery/online/membangun-infrastruktur-voip-mandiri.jpeg" alt="Infrastruktur Mandiri FOSS" 
-                 class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 group-hover:scale-110"
-                 onclick="openModal(this.src, 'Membangun Infrastruktur Mandiri - Komunitas Tel-U')"
-                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22 viewBox=%220 0 400 200%22%3E%3Crect width=%22400%22 height=%22200%22 fill=%22%234c1d95%22/%3E%3Ctext x=%22200%22 y=%22110%22 font-size=%2218%22 fill=%22%23c4b5fd%22 text-anchor=%22middle%22 font-family=%22Inter%22%3EInfrastruktur Mandiri%3C/text%3E%3C/svg%3E';">
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-            <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-purple-500/40 text-white z-10 pointer-events-none">
-              <i class="fas fa-user-group mr-1"></i> Microsoft Teams
-            </div>
-            <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-xs border border-purple-500/40 text-white z-10 pointer-events-none">
-              <i class="far fa-calendar-alt mr-1"></i> 2025
-            </div>
-            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm w-8 h-8 rounded-full flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 pointer-events-none">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="p-5 flex-1 flex flex-col">
-            <div class="flex items-start justify-between mb-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-tor-violet-light transition-colors duration-300">Membangun Infrastruktur Mandiri</h3>
-              <span class="bg-blue-500/15 text-blue-400 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-500/30 flex-shrink-0 ml-2">Instruktur</span>
-            </div>
-            <p class="text-tor-violet-light/70 text-sm flex items-center gap-1.5 mb-3">
-              <i class="fas fa-users"></i> Komunitas Tel-U
-            </p>
-            <p class="text-gray-400 text-sm leading-relaxed flex-1">Mengoptimalkan perangkat lunak sumber terbuka (FOSS) untuk merancang dan mengelola infrastruktur TI yang mandiri dan efisien.</p>
-            <div class="flex items-center gap-3 mt-4 pt-3 border-t border-surface-border text-xs text-gray-500">
-              <span><i class="fab fa-linux mr-1"></i> Self-hosting</span>
-              <span class="bg-purple-500/10 px-2 py-0.5 rounded-full text-purple-300">#FOSS</span>
-            </div>
-          </div>
-        </article>
+  
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-about">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/about#our-mission" class="sub-link" data-close-mobile>
+            <i class="fas fa-bullseye"></i> Mission
+          </a>
+          <a href="https://ricalnet.my.id/#comparison" class="sub-link" data-close-mobile>
+            <i class="fas fa-arrows-left-right"></i> Comparison
+          </a>
+          <a href="https://ricalnet.my.id/#faq" class="sub-link" data-close-mobile>
+            <i class="fas fa-question-circle"></i> FAQ
+          </a>
+          <a href="https://ricalnet.my.id/#cta" class="sub-link" data-close-mobile>
+            <i class="fas fa-envelope"></i> Contact
+          </a>
+          <a href="https://ricalnet.my.id/about#cta-support" class="sub-link" data-close-mobile>
+            <i class="fas fa-hand-holding-heart"></i> Support
+          </a>
+        </div>
       </div>
-    </section>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="mt-auto pt-10 pb-6 text-center text-gray-500 text-sm border-t border-surface-border">
-      <p>
-        © Ricalnet – 
-        <a href="index.html" class="hover:text-tor-violet-light transition-colors duration-300">Beranda</a> – 
-        <a href="https://uptime.ricalnet.my.id/status/76qqqz4qq5q7hm" class="hover:text-tor-violet-light transition-colors duration-300" target="_blank" rel="noopener">Status Layanan</a> – 
-        <a href="https://github.com/ricalnet" class="hover:text-tor-violet-light transition-colors duration-300"><i class="fab fa-github"></i> Sumber</a>
-      </p>
-      <p class="text-xs text-tor-violet-light/40 mt-3 tracking-widest">#TechSovereignty · self-hosted · privacy-focused</p>
-    </footer>
-
-  </main>
-
-  <!-- ===== COPY TOAST ===== -->
-  <div id="copy-toast" class="fixed bottom-6 right-6 bg-gray-800/95 backdrop-blur-sm text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] opacity-0 translate-y-3 pointer-events-none transition-all duration-300">
-    <i class="fas fa-check-circle text-tor-accent mr-2"></i> Tersalin!
+  
+      <a href="https://ricalnet.my.id/#hidden-services" class="mt-3 block w-full text-center btn-sso justify-center"
+        data-close-mobile>
+        <i class="fas fa-key"></i> Login with SSO
+      </a>
+  
+      <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+        <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+          <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> RICALNET — Robust · Control · Access · Libre
+        </span>
+      </div>
+  
+    </div>
   </div>
-
+  <nav aria-label="Breadcrumb" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 text-xs">
+    <ol class="flex flex-wrap items-center gap-2 text-text-muted">
+      <li><a href="https://ricalnet.my.id/" class="hover:text-tor-violet transition-colors">Home</a></li>
+      <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
+      <li class="text-tor-violet font-medium">Gallery — Open Source Workshops & Events</li>
+    </ol>
+  </nav>
+  <section id="hero" class="relative overflow-hidden pt-[72px] pb-16 md:pt-24 md:pb-24 bg-surface-light">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto" data-aos="fade-up" data-aos-duration="800">
+        <span class="section-badge"><i class="fas fa-images"></i> Gallery</span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight mt-4">
+          <span class="text-text-primary">Spreading </span>
+          <span class="text-tor-violet">open‑source</span>
+          <span class="text-text-primary">, </span>
+          <span class="text-tor-violet">zero‑trust</span>
+          <span class="text-text-primary">, and </span>
+          <span class="text-tor-violet">Libre</span>
+          <span class="text-text-primary"> principles</span>
+        </h1>
+        <p class="text-text-secondary text-lg mt-4 leading-relaxed max-w-2xl mx-auto">
+          A visual journey of workshops, talks, and community engagements that teach and promote sovereign,
+          privacy‑first infrastructure — free from vendor lock‑in and built on open source.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section id="gallery-grid" class="py-8 pb-20 md:pb-28 bg-white/40 border-y border-surface-border/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-10" data-aos="fade-up" data-aos-duration="600">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="community">Community</button>
+        <button class="filter-btn" data-filter="events">Events</button>
+        <button class="filter-btn" data-filter="infrastructure">Infrastructure</button>
+        <button class="filter-btn" data-filter="tools">Tools</button>
+      </div>
+      <div class="gallery-grid" id="galleryContainer" data-aos="fade-up" data-aos-duration="700" data-aos-delay="100">
+      </div>
+      <div id="emptyState" class="hidden text-center py-16">
+        <i class="fas fa-search text-4xl text-text-muted/40 mb-4"></i>
+        <p class="text-text-secondary text-lg">No images match this filter.</p>
+        <button class="filter-btn active mt-4" data-filter="all">View all</button>
+      </div>
+    </div>
+  </section>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lb-close" id="lbClose" aria-label="Close lightbox">
+      <i class="fas fa-times"></i>
+    </button>
+    <button class="lb-nav prev" id="lbPrev" aria-label="Previous image">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="lb-nav next" id="lbNext" aria-label="Next image">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+    <div class="lb-content" id="lbContent">
+      <img src="" alt="Gallery image" id="lbImage" />
+    </div>
+    <div class="lb-caption" id="lbCaption"></div>
+  </div>
+  <footer class="relative overflow-hidden border-t border-tor-violet/10">
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
+    </div>
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
+    </div>
+  
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+  
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+  
+        <div class="col-span-2 md:col-span-3 lg:col-span-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
+              <img src="img/logo.png" alt="RICALNET open-source self-hosted infrastructure logo"
+                class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
+            </div>
+            <div>
+              <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+              <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust · Control
+                · Access · Libre</span>
+            </div>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
+            RICALNET — Robust Infrastructure for Control, Access, &amp; Libre NETwork.
+          </p>
+          <div class="flex flex-wrap items-center gap-3 mt-5">
+            <a href="https://github.com/ricalnet" target="_blank" rel="noopener"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fa-brands fa-github text-base"></i>
+            </a>
+            <a href="mailto:ricalnet@duck.com"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fas fa-envelope text-base"></i>
+            </a>
+            <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" target="_blank" rel="noopener"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fas fa-heartbeat text-base"></i>
+            </a>
+            <span
+              class="pgp-fingerprint text-[0.6rem] px-3 py-1.5 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+              onclick="copyPGP()" title="Click to copy PGP fingerprint">
+              <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+            </span>
+          </div>
+        </div>
+  
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Why Self‑Host</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/about#our-mission" class="footer-link">Mission</a></li>
+            <li><a href="https://ricalnet.my.id/resources" class="footer-link">Resources</a></li>
+            <li><a href="https://ricalnet.my.id/gallery" class="footer-link">Gallery</a></li>
+            <li><a href="https://docs.ricalnet.my.id" class="footer-link">Blog</a></li>
+            <li><a href="https://ricalnet.my.id/#cta" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+  
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Stack</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/#features" class="footer-link">Sovereign Infrastructure</a></li>
+            <li><a href="https://ricalnet.my.id/#private-digital-services" class="footer-link">What You Need</a></li>
+            <li><a href="https://ricalnet.my.id/#hidden-services" class="footer-link">Hidden Services</a></li>
+            <li><a href="https://ricalnet.my.id/tools/metadata-cleaner" class="footer-link">Metadata Cleaner</a></li>
+            <li><a href="https://ricalnet.my.id/tools/quantum-hasher" class="footer-link">Quantum Hasher</a></li>
+            <li><a href="https://link.ricalnet.my.id" class="footer-link">URL Shortener</a></li>
+          </ul>
+        </div>
+  
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Docs &amp; Resources</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
+                target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+            <li><a href="https://github.com/ricalnet/digital-independence" class="footer-link" target="_blank">Repository
+                <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+            <li><a href="https://ricalnet.my.id/about#cta-support" class="footer-link">Support</a></li>
+            <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
+          </ul>
+        </div>
+  
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Legal</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/resources#legal-resources" class="footer-link">Legal Resources</a></li>
+            <li><a href="https://ricalnet.my.id/terms-of-service" class="footer-link">Terms of Service</a></li>
+            <li><a href="https://ricalnet.my.id/privacy" class="footer-link">Privacy Policy</a></li>
+          </ul>
+        </div>
+  
+      </div>
+  
+      <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+        <p class="text-xs tracking-wide">
+          COPYRIGHT (CC BY) — <a href="https://ricalnet.my.id/" class="hover:text-tor-violet transition-colors">Open
+            Source Self-Hosted Infrastructure</a>
+        </p>
+        <div class="flex flex-wrap items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
+          <a href="https://ricalnet.my.id/"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#OpenSource</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/#pain-points"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#NoLockIn</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/#features"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#ZeroTrust</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/"
+            class="text-tor-violet font-semibold hover:text-tor-violet-dark transition-colors">#ControlAccessLibre</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <span
+            class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+            onclick="copyPGP()" title="Click to copy PGP fingerprint">
+            <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+          </span>
+        </div>
+      </div>
+  
+    </div>
+  </footer>
+  <script src="assets/js/aos.js">
+  </script>
   <script>
-    // ===== IMAGE MODAL POPUP =====
-    const modal = document.getElementById('image-modal');
-    const modalImg = document.getElementById('modal-img');
-    const modalTitle = document.getElementById('modal-title-text');
-    const modalResolution = document.getElementById('modal-resolution');
-    const modalDownload = document.getElementById('modal-download');
-
-    function openModal(src, title) {
-      modalTitle.textContent = title || 'Pratinjau Gambar';
-      
-      const img = new Image();
-      img.onload = function() {
-        modalImg.src = src;
-        modalResolution.textContent = `${img.naturalWidth} × ${img.naturalHeight} px`;
-        modalDownload.href = src;
-        modalDownload.download = title ? title.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.jpg' : 'gambar.jpg';
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      };
-      img.src = src;
-      
-      if (img.complete) {
-        modalImg.src = src;
-        modalResolution.textContent = `${img.naturalWidth} × ${img.naturalHeight} px`;
-        modalDownload.href = src;
-        modalDownload.download = title ? title.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.jpg' : 'gambar.jpg';
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function closeModal() {
-      modal.classList.add('closing');
-      setTimeout(() => {
-        modal.classList.remove('active', 'closing');
-        document.body.style.overflow = '';
-      }, 200);
-    }
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closeModal();
-      }
+    AOS.init({
+      once: true,
+      offset: 30,
+      easing: 'ease-out-expo',
+      duration: 900,
+      disable: window.innerWidth < 768 ? true : false,
     });
-
-    // ===== COPY TO CLIPBOARD =====
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        const toast = document.getElementById('copy-toast');
-        if (!toast) return;
-        toast.classList.add('!opacity-100', '!translate-y-0');
-        toast.classList.remove('opacity-0', 'translate-y-3');
-        clearTimeout(toast._timeout);
-        toast._timeout = setTimeout(() => {
-          toast.classList.add('opacity-0', 'translate-y-3');
-          toast.classList.remove('!opacity-100', '!translate-y-0');
-        }, 2000);
+    const PGP_FINGERPRINT = '45688382B815821F033115B8D92D6A10D29C8380';
+    function copyPGP() {
+      navigator.clipboard.writeText(PGP_FINGERPRINT).then(() => {
+        showToast('PGP fingerprint copied!');
       }).catch(() => {
-        alert('Gagal menyalin teks.');
+        const textArea = document.createElement('textarea');
+        textArea.value = PGP_FINGERPRINT;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showToast('PGP fingerprint copied!');
       });
     }
-
-    document.querySelectorAll('img').forEach(img => {
-      img.addEventListener('error', function() {
-        if (this.src.includes('img/gallery/')) {
-          this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%23161822"/%3E%3Ctext x="200" y="110" font-size="18" fill="%2394a3b8" text-anchor="middle" font-family="Inter"%3EGambar tidak tersedia%3C/text%3E%3C/svg%3E';
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] transition-all duration-300';
+      toast.innerHTML = '<i class="fas fa-check-circle text-tor-accent mr-2"></i> ' + message;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-4');
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Address copied!');
+      }).catch(() => {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showToast('Address copied!');
+      });
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     });
+    const galleryItems = [{
+      id: 1,
+      title: 'Lab Instructor at Telkom University',
+      subtitle: 'Mentorship · 2024–2026 · Telecom, Cloud, DevOps, Data & AI',
+      category: 'community',
+      src: 'img/gallery/offline/lab-instructor.JPG',
+      thumbnail: 'img/gallery/offline/lab-instructor.JPG'
+    }, {
+      id: 2,
+      title: 'Telkom University 5G Talk 2026',
+      subtitle: 'Speaker · 5G planning & implementation in Indonesia',
+      category: 'events',
+      src: 'img/gallery/offline/mobile-communication.png',
+      thumbnail: 'img/gallery/offline/mobile-communication.png'
+    }, {
+      id: 3,
+      title: 'IoT & AI Posyandu Training',
+      subtitle: 'Instructor · Desa Sukarame · IoT & AI for toddler nutrition monitoring',
+      category: 'events',
+      src: 'img/gallery/offline/desa-sukarame.jpg',
+      thumbnail: 'img/gallery/offline/desa-sukarame.jpg'
+    }, {
+      id: 4,
+      title: 'Digital Footprint Workshop',
+      subtitle: 'Presenter · Ponpes Al Basyariyah 3 · Managing digital footprints & AI security',
+      category: 'events',
+      src: 'img/gallery/offline/albasyariyah3.png',
+      thumbnail: 'img/gallery/offline/albasyariyah3.png'
+    }, {
+      id: 5,
+      title: 'Social Engineering Awareness',
+      subtitle: 'Speaker · Desa Sukapura · Recognizing and avoiding social engineering attacks',
+      category: 'events',
+      src: 'img/gallery/offline/desa-sukapura.png',
+      thumbnail: 'img/gallery/offline/desa-sukapura.png'
+    }, {
+      id: 6,
+      title: 'Digital Inclusion Workshop',
+      subtitle: 'Presenter · Panti Asuhan Amal Mulia Qurani · Inclusive digital education',
+      category: 'events',
+      src: 'img/gallery/offline/panti-asuhan.png',
+      thumbnail: 'img/gallery/offline/panti-asuhan.png'
+    }, {
+      id: 7,
+      title: 'Security Awareness Training',
+      subtitle: 'Trainer · TransTRACK · Building a cybersecurity culture (Zoom)',
+      category: 'events',
+      src: 'img/gallery/online/security-awreness-training.png',
+      thumbnail: 'img/gallery/online/security-awreness-training.png'
+    }, {
+      id: 8,
+      title: 'Open Source Q&A Panel',
+      subtitle: 'Panelist · Cobra & Warriors Community · Open-source ecosystem & IT trends',
+      category: 'community',
+      src: 'img/gallery/online/q&a.jpeg',
+      thumbnail: 'img/gallery/online/q&a.jpeg'
+    }, {
+      id: 9,
+      title: 'Responsi & Ngoprek Knowledge Sharing',
+      subtitle: 'Instructor · Tel-U Community · Telecom, cloud, cybersecurity, programming',
+      category: 'community',
+      src: 'img/gallery/online/respek.jpg',
+      thumbnail: 'img/gallery/online/respek.jpg'
+    }, {
+      id: 10,
+      title: 'Building Independent Infrastructure Workshop',
+      subtitle: 'Instructor · Tel-U Community · FOSS for independent, efficient IT infrastructure',
+      category: 'community',
+      src: 'img/gallery/online/membangun-infrastruktur-voip-mandiri.jpeg',
+      thumbnail: 'img/gallery/online/membangun-infrastruktur-voip-mandiri.jpeg'
+    }];
+    const container = document.getElementById('galleryContainer');
+    const emptyState = document.getElementById('emptyState');
+    let currentFilter = 'all';
+    let currentItems = [...galleryItems];
+    let lightboxIndex = 0;
+    function renderGallery(filter = 'all') {
+      currentFilter = filter;
+      const filtered = filter === 'all' ? galleryItems : galleryItems.filter(item => item.category === filter);
+      currentItems = filtered;
+      if (filtered.length === 0) {
+        container.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+      container.innerHTML = filtered.map((item, idx) => `
+                <div class="gallery-item" data-id="${item.id}" data-category="${item.category}" data-index="${idx}">
+                    <img src="${item.thumbnail}" alt="${item.title}" loading="lazy" />
+                    <div class="overlay">
+                        <div class="title">${item.title}</div>
+                        <div class="sub">${item.subtitle}</div>
+                    </div>
+                </div>
+            `).join('');
+      container.querySelectorAll('.gallery-item').forEach(el => {
+        el.addEventListener('click', function () {
+          const idx = parseInt(this.dataset.index);
+          openLightbox(idx);
+        });
+      });
+    }
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        renderGallery(filter);
+      });
+    });
+    const lightbox = document.getElementById('lightbox');
+    const lbImage = document.getElementById('lbImage');
+    const lbCaption = document.getElementById('lbCaption');
+    const lbClose = document.getElementById('lbClose');
+    const lbPrev = document.getElementById('lbPrev');
+    const lbNext = document.getElementById('lbNext');
+    function openLightbox(index) {
+      lightboxIndex = index;
+      updateLightbox();
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function updateLightbox() {
+      const item = currentItems[lightboxIndex];
+      if (!item) return;
+      lbImage.src = item.src;
+      lbImage.alt = item.title;
+      lbCaption.textContent = `${item.title} · ${item.subtitle}`;
+    }
+    function prevImage() {
+      if (currentItems.length === 0) return;
+      lightboxIndex = (lightboxIndex - 1 + currentItems.length) % currentItems.length;
+      updateLightbox();
+    }
+    function nextImage() {
+      if (currentItems.length === 0) return;
+      lightboxIndex = (lightboxIndex + 1) % currentItems.length;
+      updateLightbox();
+    }
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', prevImage);
+    lbNext.addEventListener('click', nextImage);
+    document.addEventListener('keydown', function (e) {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'ArrowRight') nextImage();
+    });
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === this) closeLightbox();
+    });
+    renderGallery('all');
   </script>
-
+  <script src="assets/js/components.js"></script>
 </body>
+
 </html>

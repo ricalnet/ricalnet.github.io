@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Whiteboard — Draw, Sketch & Create Online | RICALNET</title>
+    <meta name="description"
+        content="Free online whiteboard with pen, colors, eraser, undo/redo, and export. Draw, sketch, and create freely in your browser. 100% local — no uploads, no sign-up." />
+    <meta name="keywords"
+        content="whiteboard, online whiteboard, drawing tool, sketch, canvas, draw online, free whiteboard, ricalnet" />
+    <link rel="canonical" href="https://ricalnet.my.id/tools/whiteboard" />
+    <link rel="icon" type="image/x-icon" href="../img/logo.png" />
+
+    <meta property="og:title" content="Whiteboard — Draw, Sketch & Create Online | RICALNET" />
+    <meta property="og:description"
+        content="Free online whiteboard with pen, colors, eraser, undo/redo, and export. Draw, sketch, and create freely in your browser. 100% local." />
+    <meta property="og:url" content="https://ricalnet.my.id/tools/whiteboard" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://ricalnet.my.id/img/og-image.png" />
+    <meta property="og:image:alt" content="Whiteboard tool interface with drawing canvas and toolbar" />
+    <meta property="og:site_name" content="RICALNET" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Whiteboard — Draw, Sketch & Create Online | RICALNET" />
+    <meta name="twitter:description"
+        content="Free online whiteboard with pen, colors, eraser, undo/redo, and export. Draw, sketch, and create freely in your browser. 100% local." />
+    <meta name="twitter:image" content="https://ricalnet.my.id/img/og-image.png" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ricalnet.my.id/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://ricalnet.my.id/tools/" },
+        { "@type": "ListItem", "position": 3, "name": "Whiteboard", "item": "https://ricalnet.my.id/tools/whiteboard" }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Whiteboard",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "description": "Free online whiteboard with pen, colors, eraser, undo/redo, and export. Draw, sketch, and create freely in your browser. All processing is done locally.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "RICALNET"
+      },
+      "url": "https://ricalnet.my.id/tools/whiteboard",
+      "applicationSuite": "RICALNET Tools",
+      "featureList": "Pen, Eraser, Line, Rectangle, Circle, Color picker, Brush sizes, Undo/Redo, Clear canvas, Export PNG, Export JPG, Keyboard shortcuts"
+    }
+    </script>
+
+    <link href="../assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="../assets/fontawesome/css/solid.css" rel="stylesheet" />
+    <link href="../assets/fontawesome/css/brands.css" rel="stylesheet" />
+    <link href="../assets/css/fonts.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link href="../assets/css/aos.css" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'source-sans-pro': ['"Source Sans Pro"', 'Roboto', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        roboto: ['Roboto', '"Source Sans Pro"', 'Inter', 'system-ui', 'sans-serif'],
+                        inter: ['Inter', 'Roboto', '"Source Sans Pro"', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    colors: {
+                        tor: {
+                            violet: '#7c3aed',
+                            'violet-light': '#8b5cf6',
+                            'violet-dark': '#5b21b6',
+                            'violet-deep': '#4c1d95',
+                            'violet-soft': '#ede9fe',
+                            accent: '#68B030',
+                            'accent-cyan': '#06b6d4',
+                            'accent-amber': '#f59e0b',
+                        },
+                        surface: {
+                            light: '#faf9fe',
+                            card: '#ffffff',
+                            border: '#ede9f0',
+                            muted: '#f5f3fa',
+                            dark: '#0f0e1a',
+                        },
+                        text: {
+                            primary: '#0f0e1a',
+                            secondary: '#52506e',
+                            muted: '#9492ae',
+                            inverse: '#f8f7fc',
+                        }
+                    },
+                    boxShadow: {
+                        'elevated': '0 1px 3px rgba(0,0,0,0.02), 0 8px 40px rgba(124,58,237,0.06), 0 20px 80px rgba(124,58,237,0.04)',
+                        'elevated-lg': '0 1px 3px rgba(0,0,0,0.02), 0 16px 64px rgba(124,58,237,0.08), 0 32px 120px rgba(124,58,237,0.04)',
+                        'glow': '0 0 60px rgba(124,58,237,0.06)',
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-down': 'fadeDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-right': 'fadeRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-left': 'fadeLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'scale-in': 'scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-subtle': 'pulseSubtle 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeUp: { '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        fadeDown: { '0%': { opacity: '0', transform: 'translateY(-40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        fadeRight: { '0%': { opacity: '0', transform: 'translateX(-40px)' }, '100%': { opacity: '1', transform: 'translateX(0)' } },
+                        fadeLeft: { '0%': { opacity: '0', transform: 'translateX(40px)' }, '100%': { opacity: '1', transform: 'translateX(0)' } },
+                        scaleIn: { '0%': { opacity: '0', transform: 'scale(0.94)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-14px)' } },
+                        pulseSubtle: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0.6' } },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .wb-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(124, 58, 237, 0.06);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+        }
+
+        .wb-card:hover {
+            border-color: rgba(124, 58, 237, 0.12);
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 8px 48px rgba(124, 58, 237, 0.06);
+        }
+
+        .wb-tool-btn {
+            width: 2.6rem;
+            height: 2.6rem;
+            border-radius: 12px;
+            border: 1.5px solid #ede9f0;
+            background: white;
+            color: #52506e;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .wb-tool-btn:hover {
+            border-color: #7c3aed;
+            color: #7c3aed;
+            background: #faf9fe;
+        }
+
+        .wb-tool-btn.active {
+            border-color: #7c3aed;
+            background: #7c3aed;
+            color: white;
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.2);
+        }
+
+        .wb-tool-btn.active:hover {
+            background: #5b21b6;
+            border-color: #5b21b6;
+        }
+
+        .wb-tool-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .wb-color-picker {
+            width: 2.4rem;
+            height: 2.4rem;
+            border-radius: 50%;
+            border: 2.5px solid #ede9f0;
+            padding: 0.15rem;
+            cursor: pointer;
+            background: white;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .wb-color-picker:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+        }
+
+        .wb-color-picker:hover {
+            border-color: #7c3aed;
+        }
+
+        .wb-size-btn {
+            width: 2.2rem;
+            height: 2.2rem;
+            border-radius: 50%;
+            border: 1.5px solid #ede9f0;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            padding: 0;
+        }
+
+        .wb-size-btn:hover {
+            border-color: #7c3aed;
+            background: #faf9fe;
+        }
+
+        .wb-size-btn.active {
+            border-color: #7c3aed;
+            background: #7c3aed;
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.15);
+        }
+
+        .wb-size-btn .dot {
+            border-radius: 50%;
+            background: #0f0e1a;
+            flex-shrink: 0;
+        }
+
+        .wb-size-btn.active .dot {
+            background: white;
+        }
+
+        .wb-canvas-wrap {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid #ede9f0;
+            background: white;
+            position: relative;
+            cursor: crosshair;
+            touch-action: none;
+        }
+
+        .wb-canvas-wrap canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: white;
+            touch-action: none;
+        }
+
+        .wb-section-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #7c3aed;
+            font-weight: 700;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid rgba(124, 58, 237, 0.08);
+            margin-bottom: 0.75rem;
+        }
+
+        .wb-status {
+            font-size: 0.75rem;
+            color: #9492ae;
+        }
+
+        .wb-status strong {
+            color: #0f0e1a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            .wb-tool-btn {
+                width: 2.2rem;
+                height: 2.2rem;
+                font-size: 0.85rem;
+                border-radius: 10px;
+            }
+
+            .wb-color-picker {
+                width: 2rem;
+                height: 2rem;
+            }
+
+            .wb-size-btn {
+                width: 1.8rem;
+                height: 1.8rem;
+            }
+
+            .wb-canvas-wrap {
+                border-radius: 12px;
+            }
+        }
+
+        .wb-toolbar-scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            padding-bottom: 4px;
+        }
+
+        .wb-toolbar-scroll::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .wb-toolbar-scroll::-webkit-scrollbar-track {
+            background: #f5f3fa;
+            border-radius: 8px;
+        }
+
+        .wb-toolbar-scroll::-webkit-scrollbar-thumb {
+            background: #c4b5fd;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body
+    class="font-source-sans-pro bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+
+    <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div class="absolute inset-0 bg-grid-subtle"></div>
+        <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/5 rounded-full blur-[160px]"></div>
+        <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/3 rounded-full blur-[180px]"></div>
+        <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/4 rounded-full blur-[140px]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light"></div>
+    </div>
+
+    <header
+        class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-[72px]">
+                <a href="https://ricalnet.my.id" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+                    data-aos-duration="600">
+                    <img src="../img/logo.png" alt="RICALNET Logo"
+                        class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
+                    <div class="leading-tight hidden sm:block">
+                        <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+                        <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust
+                            · Control · Access · Libre</span>
+                    </div>
+                </a>
+                <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down"
+                    data-aos-duration="600">
+                    <a href="https://ricalnet.my.id/index#hero" class="nav-link">Home</a>
+                    <div class="relative group">
+                        <a href="../index#pain-points" class="nav-link flex items-center gap-1">
+                            Why Self‑Host
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/index#pain-points" class="dropdown-item">The Lock‑in Trap</a>
+                            <a href="https://ricalnet.my.id/index#how-it-works" class="dropdown-item">The Approach</a>
+                            <a href="https://ricalnet.my.id/index#features" class="dropdown-item">Sovereign Stack</a>
+                            <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal &amp;
+                                Advocacy</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/resources#hero" class="nav-link flex items-center gap-1">
+                            Resources
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                            <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal
+                                Resources</a>
+                            <a href="https://ricalnet.my.id/resources#in-house-tools" class="dropdown-item">In‑House
+                                Tools</a>
+                            <a href="https://ricalnet.my.id/resources" class="dropdown-item">All Resources</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/resources#hero"
+                            class="nav-link nav-link-active flex items-center gap-1">
+                            Tools
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="dropdown-item">Metadata
+                                Cleaner</a>
+                            <a href="https://ricalnet.my.id/tools/quantum-hasher" class="dropdown-item">Quantum Hasher</a>
+                            <a href="https://ricalnet.my.id/tools/ip-intelligence" class="dropdown-item">IP Intelligence</a>
+                            <a href="https://ricalnet.my.id/tools/password-generator" class="dropdown-item">Password
+                                Generator</a>
+                            <a href="https://ricalnet.my.id/tools/qr-builder" class="dropdown-item">QR Builder</a>
+                            <a href="https://ricalnet.my.id/tools/whiteboard" class="dropdown-item">Whiteboard</a>
+                            <a href="https://ricalnet.my.id/tools/chantik" class="dropdown-item">Chantik</a>
+                            <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/about#hero" class="nav-link flex items-center gap-1">
+                            About
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/about#our-mission" class="dropdown-item">Mission</a>
+                            <a href="https://ricalnet.my.id/index#comparison" class="dropdown-item">Comparison</a>
+                            <a href="https://ricalnet.my.id/index#faq" class="dropdown-item">FAQ</a>
+                            <a href="https://ricalnet.my.id/index#cta" class="dropdown-item">Contact</a>
+                            <a href="https://ricalnet.my.id/about#cta-support" class="dropdown-item">Support</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
+                    <a href="https://ricalnet.my.id/index#hidden-services" class="hidden lg:inline-flex btn-sso">
+                        <i class="fas fa-key"></i> Login with SSO
+                    </a>
+                    <button id="mobile-menu-toggle"
+                        class="lg:hidden w-9 h-9 rounded-full hover:bg-surface-muted flex items-center justify-center transition-colors"
+                        aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars text-text-secondary text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <img src="https://ricalnet.my.id/img/logo.png" alt="RICALNET" />
+                <span>RICALNET</span>
+            </div>
+            <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-scroll">
+            <a href="https://ricalnet.my.id/index#hero" class="nav-item" data-close-mobile>
+                <i class="fas fa-home"></i> Home
+            </a>
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-advocacy">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Why Self‑Host
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/index#pain-points" class="sub-link" data-close-mobile>
+                        <i class="fas fa-exclamation-triangle"></i> The Lock‑in Trap
+                    </a>
+                    <a href="https://ricalnet.my.id/index#how-it-works" class="sub-link" data-close-mobile>
+                        <i class="fas fa-route"></i> The Approach
+                    </a>
+                    <a href="https://ricalnet.my.id/index#features" class="sub-link" data-close-mobile>
+                        <i class="fas fa-star"></i> Sovereign Stack
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal &amp; Advocacy
+                    </a>
+                </div>
+            </div>
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-resources">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-lock"></i> Privacy Tools
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal Resources
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#in-house-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-cubes"></i> In‑House Tools
+                    </a>
+                    <a href="https://ricalnet.my.id/resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-folder-open"></i> All Resources
+                    </a>
+                </div>
+            </div>
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-tools">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> Metadata Cleaner
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/quantum-hasher" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> Quantum Hasher
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/ip-intelligence" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> IP Intelligence
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/password-generator" class="sub-link" data-close-mobile>
+                        <i class="fas fa-key"></i> Password Generator
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/qr-builder" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> QR Builder
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/whiteboard" class="sub-link" data-close-mobile>
+                        <i class="fas fa-pen-fancy"></i> Whiteboard
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/chantik" class="sub-link" data-close-mobile>
+                        <i class="fas fa-floppy-disk"></i> Chantik
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-user-secret"></i> Privacy Tools
+                    </a>
+                </div>
+            </div>
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-about">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/about#our-mission" class="sub-link" data-close-mobile>
+                        <i class="fas fa-bullseye"></i> Mission
+                    </a>
+                    <a href="https://ricalnet.my.id/index#comparison" class="sub-link" data-close-mobile>
+                        <i class="fas fa-arrows-left-right"></i> Comparison
+                    </a>
+                    <a href="https://ricalnet.my.id/index#faq" class="sub-link" data-close-mobile>
+                        <i class="fas fa-question-circle"></i> FAQ
+                    </a>
+                    <a href="https://ricalnet.my.id/index#cta" class="sub-link" data-close-mobile>
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                    <a href="https://ricalnet.my.id/about#cta-support" class="sub-link" data-close-mobile>
+                        <i class="fas fa-hand-holding-heart"></i> Support
+                    </a>
+                </div>
+            </div>
+            <a href="https://ricalnet.my.id/index#hidden-services"
+                class="mt-3 block w-full text-center btn-sso justify-center" data-close-mobile>
+                <i class="fas fa-key"></i> Login with SSO
+            </a>
+            <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+                <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+                    <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> RICALNET — Robust · Control · Access ·
+                    Libre
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <section class="relative overflow-hidden pt-[72px] pb-6 md:pt-24 md:pb-8 bg-surface-light">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto" data-aos="fade-up" data-aos-duration="700">
+                <div class="flex flex-wrap items-center justify-center gap-2 mb-4">
+                    <span class="badge-pill"><i class="fas fa-pen-fancy"></i> Whiteboard</span>
+                    <span class="badge-pill"
+                        style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);">
+                        <i class="fas fa-palette"></i> Draw &amp; Create
+                    </span>
+                    <span class="badge-pill"
+                        style="background:rgba(245,158,11,0.08);color:#b45309;border-color:rgba(245,158,11,0.12);">
+                        <i class="fas fa-arrow-rotate-right"></i> Undo / Redo
+                    </span>
+                </div>
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.08] tracking-tight">
+                    <span class="text-text-primary">Whiteboard </span>
+                    <span class="text-tor-violet">Studio</span>
+                </h1>
+                <p class="text-text-secondary text-base md:text-lg mt-3 max-w-2xl mx-auto leading-relaxed">
+                    Draw, sketch, and create freely. Full set of tools: pen, color picker, eraser,
+                    undo/redo, clear canvas, and export your artwork.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-12 md:pb-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="glass-card rounded-3xl p-4 md:p-6 lg:p-8 border border-tor-violet/10 shadow-elevated"
+                data-aos="fade-up" data-aos-delay="100">
+
+                <div class="flex flex-wrap items-center gap-2 md:gap-3 mb-4">
+
+                    <div class="flex items-center gap-1 md:gap-1.5 flex-wrap">
+                        <button id="tool-pen" class="wb-tool-btn active" data-tool="pen" title="Pen">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                        <button id="tool-eraser" class="wb-tool-btn" data-tool="eraser" title="Eraser">
+                            <i class="fas fa-eraser"></i>
+                        </button>
+                        <button id="tool-line" class="wb-tool-btn" data-tool="line" title="Line">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button id="tool-rect" class="wb-tool-btn" data-tool="rect" title="Rectangle">
+                            <i class="fas fa-square"></i>
+                        </button>
+                        <button id="tool-circle" class="wb-tool-btn" data-tool="circle" title="Circle">
+                            <i class="fas fa-circle"></i>
+                        </button>
+                    </div>
+
+                    <div class="w-px h-7 bg-surface-border/60 hidden sm:block"></div>
+
+                    <div class="flex items-center gap-1.5">
+                        <input type="color" id="pen-color" class="wb-color-picker" value="#0f0e1a" title="Pen color" />
+                        <button id="color-preset-black" class="wb-color-picker w-6 h-6 border-0 p-0"
+                            style="background:#0f0e1a; border-radius:50%; border:2px solid #ede9f0;"
+                            title="Black"></button>
+                        <button id="color-preset-red" class="wb-color-picker w-6 h-6 border-0 p-0"
+                            style="background:#ef4444; border-radius:50%; border:2px solid #ede9f0;"
+                            title="Red"></button>
+                        <button id="color-preset-blue" class="wb-color-picker w-6 h-6 border-0 p-0"
+                            style="background:#3b82f6; border-radius:50%; border:2px solid #ede9f0;"
+                            title="Blue"></button>
+                        <button id="color-preset-green" class="wb-color-picker w-6 h-6 border-0 p-0"
+                            style="background:#22c55e; border-radius:50%; border:2px solid #ede9f0;"
+                            title="Green"></button>
+                        <button id="color-preset-yellow" class="wb-color-picker w-6 h-6 border-0 p-0"
+                            style="background:#eab308; border-radius:50%; border:2px solid #ede9f0;"
+                            title="Yellow"></button>
+                    </div>
+
+                    <div class="w-px h-7 bg-surface-border/60 hidden sm:block"></div>
+
+                    <div class="flex items-center gap-1">
+                        <button class="wb-size-btn active" data-size="2">
+                            <span class="dot" style="width:3px;height:3px;"></span>
+                        </button>
+                        <button class="wb-size-btn" data-size="4">
+                            <span class="dot" style="width:5px;height:5px;"></span>
+                        </button>
+                        <button class="wb-size-btn" data-size="8">
+                            <span class="dot" style="width:9px;height:9px;"></span>
+                        </button>
+                        <button class="wb-size-btn" data-size="14">
+                            <span class="dot" style="width:15px;height:15px;"></span>
+                        </button>
+                        <button class="wb-size-btn" data-size="24">
+                            <span class="dot" style="width:25px;height:25px;"></span>
+                        </button>
+                    </div>
+
+                    <div class="w-px h-7 bg-surface-border/60 hidden sm:block"></div>
+
+                    <div class="flex items-center gap-1.5 flex-wrap">
+                        <button id="undo-btn" class="wb-tool-btn" title="Undo (Ctrl+Z)">
+                            <i class="fas fa-undo"></i>
+                        </button>
+                        <button id="redo-btn" class="wb-tool-btn" title="Redo (Ctrl+Y)">
+                            <i class="fas fa-redo"></i>
+                        </button>
+                        <button id="clear-btn" class="wb-tool-btn" title="Clear canvas">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <button id="export-png" class="wb-tool-btn" title="Export as PNG">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button id="export-jpg" class="wb-tool-btn" title="Export as JPG">
+                            <i class="fas fa-file-image"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="wb-canvas-wrap">
+                    <canvas id="whiteboard" width="1000" height="600"></canvas>
+                </div>
+
+                <div class="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-text-muted">
+                    <span class="wb-status">
+                        <strong id="tool-status">Pen</strong> · Size <strong id="size-status">2</strong> ·
+                        Color <span id="color-status" class="inline-block w-3 h-3 rounded-full align-middle"
+                            style="background:#0f0e1a;"></span>
+                    </span>
+                    <span class="wb-status">
+                        <i class="fas fa-arrows-pointer mr-1"></i>
+                        <span id="coord-status">0, 0</span>
+                    </span>
+                    <span class="wb-status">
+                        <i class="fas fa-layer-group mr-1"></i>
+                        Steps: <strong id="step-count">0</strong>
+                        <span class="hidden sm:inline">| <span id="canvas-size">1000 × 600</span></span>
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs text-text-muted"
+                data-aos="fade-up" data-aos-delay="150">
+                <span><kbd
+                        class="px-2 py-0.5 bg-surface-muted rounded border border-surface-border/60 text-[0.6rem] font-mono">Ctrl+Z</kbd>
+                    Undo</span>
+                <span><kbd
+                        class="px-2 py-0.5 bg-surface-muted rounded border border-surface-border/60 text-[0.6rem] font-mono">Ctrl+Y</kbd>
+                    Redo</span>
+                <span><kbd
+                        class="px-2 py-0.5 bg-surface-muted rounded border border-surface-border/60 text-[0.6rem] font-mono">E</kbd>
+                    Eraser</span>
+                <span><kbd
+                        class="px-2 py-0.5 bg-surface-muted rounded border border-surface-border/60 text-[0.6rem] font-mono">P</kbd>
+                    Pen</span>
+                <span><kbd
+                        class="px-2 py-0.5 bg-surface-muted rounded border border-surface-border/60 text-[0.6rem] font-mono">C</kbd>
+                    Clear</span>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="relative overflow-hidden border-t border-tor-violet/10">
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
+        </div>
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
+        </div>
+    
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+    
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+    
+                <div class="col-span-2 md:col-span-3 lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
+                            <img src="../img/logo.png" alt="RICALNET open-source self-hosted infrastructure logo"
+                                class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
+                        </div>
+                        <div>
+                            <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+                            <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust
+                                · Control
+                                · Access · Libre</span>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
+                        RICALNET — Robust Infrastructure for Control, Access, &amp; Libre NETwork.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 mt-5">
+                        <a href="https://github.com/ricalnet" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fa-brands fa-github text-base"></i>
+                        </a>
+                        <a href="mailto:ricalnet@duck.com"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-envelope text-base"></i>
+                        </a>
+                        <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-heartbeat text-base"></i>
+                        </a>
+                        <span
+                            class="pgp-fingerprint text-[0.6rem] px-3 py-1.5 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                            onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                            <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                        </span>
+                    </div>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Why Self‑Host</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/about#our-mission" class="footer-link">Mission</a></li>
+                        <li><a href="https://ricalnet.my.id/resources" class="footer-link">Resources</a></li>
+                        <li><a href="https://ricalnet.my.id/gallery" class="footer-link">Gallery</a></li>
+                        <li><a href="https://docs.ricalnet.my.id" class="footer-link">Blog</a></li>
+                        <li><a href="https://ricalnet.my.id/#cta" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Stack</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/#features" class="footer-link">Sovereign Infrastructure</a></li>
+                        <li><a href="https://ricalnet.my.id/#private-digital-services" class="footer-link">What You Need</a>
+                        </li>
+                        <li><a href="https://ricalnet.my.id/#hidden-services" class="footer-link">Hidden Services</a></li>
+                        <li><a href="https://ricalnet.my.id/tools/metadata-cleaner" class="footer-link">Metadata Cleaner</a>
+                        </li>
+                        <li><a href="https://ricalnet.my.id/tools/quantum-hasher" class="footer-link">Quantum Hasher</a>
+                        </li>
+                        <li><a href="https://link.ricalnet.my.id" class="footer-link">URL Shortener</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Docs &amp; Resources</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
+                                target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="https://github.com/ricalnet/digital-independence" class="footer-link"
+                                target="_blank">Repository <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="https://ricalnet.my.id/about#cta-support" class="footer-link">Support</a></li>
+                        <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Legal</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/resources#legal-resources" class="footer-link">Legal
+                                Resources</a></li>
+                        <li><a href="https://ricalnet.my.id/terms-of-service" class="footer-link">Terms of Service</a></li>
+                        <li><a href="https://ricalnet.my.id/privacy" class="footer-link">Privacy Policy</a></li>
+                    </ul>
+                </div>
+    
+            </div>
+    
+            <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+                <p class="text-xs tracking-wide">
+                    COPYRIGHT (CC BY) — <a href="https://ricalnet.my.id/"
+                        class="hover:text-tor-violet transition-colors">Open
+                        Source Self-Hosted Infrastructure</a>
+                </p>
+                <div class="flex flex-wrap items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
+                    <a href="https://ricalnet.my.id/"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#OpenSource</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/#pain-points"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#NoLockIn</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/#features"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#ZeroTrust</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/"
+                        class="text-tor-violet font-semibold hover:text-tor-violet-dark transition-colors">#ControlAccessLibre</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span
+                        class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                        onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                        <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                    </span>
+                </div>
+            </div>
+    
+        </div>
+    </footer>
+
+    <script src="../assets/js/aos.js"></script>
+    <script src="../assets/js/components.js"></script>
+
+    <script>
+        AOS.init({
+            once: true,
+            offset: 30,
+            easing: 'ease-out-expo',
+            duration: 900,
+            disable: window.innerWidth < 768 ? true : false,
+        });
+
+        const PGP_FINGERPRINT = '45688382B815821F033115B8D92D6A10D29C8380';
+
+        function copyPGP() {
+            navigator.clipboard.writeText(PGP_FINGERPRINT).then(() => {
+                showToast('PGP fingerprint copied!');
+            }).catch(() => {
+                const textArea = document.createElement('textarea');
+                textArea.value = PGP_FINGERPRINT;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast('PGP fingerprint copied!');
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] transition-all duration-300';
+            toast.innerHTML = '<i class="fas fa-check-circle text-tor-accent mr-2"></i> ' + message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        }
+
+        const canvas = document.getElementById('whiteboard');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            const rect = canvas.getBoundingClientRect();
+        }
+        window.addEventListener('resize', resizeCanvas);
+
+        const state = {
+            tool: 'pen',
+            color: '#0f0e1a',
+            size: 2,
+            isDrawing: false,
+            lastX: 0,
+            lastY: 0,
+            history: [],
+            historyIndex: -1,
+            maxHistory: 50,
+        };
+
+        function saveState() {
+            state.history = state.history.slice(0, state.historyIndex + 1);
+            const dataUrl = canvas.toDataURL('image/png');
+            state.history.push(dataUrl);
+            if (state.history.length > state.maxHistory) {
+                state.history.shift();
+            }
+            state.historyIndex = state.history.length - 1;
+            updateStepCount();
+        }
+
+        function undo() {
+            if (state.historyIndex > 0) {
+                state.historyIndex--;
+                restoreState(state.history[state.historyIndex]);
+                updateStepCount();
+            } else {
+                showToast('Nothing to undo');
+            }
+        }
+
+        function redo() {
+            if (state.historyIndex < state.history.length - 1) {
+                state.historyIndex++;
+                restoreState(state.history[state.historyIndex]);
+                updateStepCount();
+            } else {
+                showToast('Nothing to redo');
+            }
+        }
+
+        function restoreState(dataUrl) {
+            const img = new Image();
+            img.onload = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0);
+            };
+            img.src = dataUrl;
+        }
+
+        function updateStepCount() {
+            document.getElementById('step-count').textContent = state.historyIndex + 1;
+        }
+
+        function getCoords(e) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            let clientX, clientY;
+            if (e.touches) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+                e.preventDefault();
+            } else {
+                clientX = e.clientX;
+                clientY = e.clientY;
+            }
+            const x = (clientX - rect.left) * scaleX;
+            const y = (clientY - rect.top) * scaleY;
+            return { x: Math.min(Math.max(x, 0), canvas.width), y: Math.min(Math.max(y, 0), canvas.height) };
+        }
+
+        function startDrawing(e) {
+            e.preventDefault();
+            const pos = getCoords(e);
+            state.isDrawing = true;
+            state.lastX = pos.x;
+            state.lastY = pos.y;
+
+            if (state.tool === 'pen' || state.tool === 'eraser') {
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, state.size / 2, 0, Math.PI * 2);
+                ctx.fillStyle = state.tool === 'eraser' ? '#ffffff' : state.color;
+                ctx.fill();
+            }
+            updateCoordStatus(pos.x, pos.y);
+        }
+
+        function draw(e) {
+            e.preventDefault();
+            if (!state.isDrawing) return;
+            const pos = getCoords(e);
+            updateCoordStatus(pos.x, pos.y);
+
+            if (state.tool === 'pen' || state.tool === 'eraser') {
+                ctx.beginPath();
+                ctx.moveTo(state.lastX, state.lastY);
+                ctx.lineTo(pos.x, pos.y);
+                ctx.strokeStyle = state.tool === 'eraser' ? '#ffffff' : state.color;
+                ctx.lineWidth = state.size;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.stroke();
+                state.lastX = pos.x;
+                state.lastY = pos.y;
+            } else {
+                state._lastPos = pos;
+                if (state._lastPos && state.historyIndex >= 0) {
+                    const prev = state.history[state.historyIndex];
+                    if (prev) {
+                        restoreState(prev);
+                    }
+                    drawShape(state.lastX, state.lastY, pos.x, pos.y);
+                }
+            }
+        }
+
+        function endDrawing(e) {
+            if (!state.isDrawing) return;
+            state.isDrawing = false;
+            if (state.tool === 'pen' || state.tool === 'eraser') {
+                saveState();
+            } else {
+                if (state._lastPos) {
+                    const pos = state._lastPos;
+                    if (state.historyIndex >= 0 && state.history[state.historyIndex]) {
+                        restoreState(state.history[state.historyIndex]);
+                    }
+                    drawShape(state.lastX, state.lastY, pos.x, pos.y);
+                    saveState();
+                }
+                state._lastPos = null;
+            }
+            updateStepCount();
+        }
+
+        function drawShape(x1, y1, x2, y2) {
+            ctx.beginPath();
+            if (state.tool === 'line') {
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.strokeStyle = state.color;
+                ctx.lineWidth = state.size;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+            } else if (state.tool === 'rect') {
+                const w = x2 - x1;
+                const h = y2 - y1;
+                ctx.strokeStyle = state.color;
+                ctx.lineWidth = state.size;
+                ctx.strokeRect(x1, y1, w, h);
+            } else if (state.tool === 'circle') {
+                const radius = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+                ctx.arc(x1, y1, radius, 0, Math.PI * 2);
+                ctx.strokeStyle = state.color;
+                ctx.lineWidth = state.size;
+                ctx.stroke();
+            }
+        }
+
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', (e) => {
+            if (state.isDrawing) {
+                const pos = getCoords(e);
+                state._lastPos = pos;
+                if (state.tool === 'pen' || state.tool === 'eraser') {
+                    draw(e);
+                } else {
+                    if (state._lastPos && state.historyIndex >= 0) {
+                        const prev = state.history[state.historyIndex];
+                        if (prev) {
+                            restoreState(prev);
+                        }
+                        drawShape(state.lastX, state.lastY, pos.x, pos.y);
+                    }
+                }
+                updateCoordStatus(pos.x, pos.y);
+            } else {
+                const pos = getCoords(e);
+                updateCoordStatus(pos.x, pos.y);
+            }
+        });
+        canvas.addEventListener('mouseup', endDrawing);
+        canvas.addEventListener('mouseleave', (e) => {
+            if (state.isDrawing) {
+                endDrawing(e);
+            }
+        });
+
+        canvas.addEventListener('touchstart', startDrawing, { passive: false });
+        canvas.addEventListener('touchmove', (e) => {
+            if (state.isDrawing) {
+                const pos = getCoords(e);
+                state._lastPos = pos;
+                if (state.tool === 'pen' || state.tool === 'eraser') {
+                    draw(e);
+                } else {
+                    if (state._lastPos && state.historyIndex >= 0) {
+                        const prev = state.history[state.historyIndex];
+                        if (prev) {
+                            restoreState(prev);
+                        }
+                        drawShape(state.lastX, state.lastY, pos.x, pos.y);
+                    }
+                }
+                updateCoordStatus(pos.x, pos.y);
+            }
+        }, { passive: false });
+        canvas.addEventListener('touchend', endDrawing, { passive: false });
+
+        document.querySelectorAll('[data-tool]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('[data-tool]').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                state.tool = btn.dataset.tool;
+                document.getElementById('tool-status').textContent = state.tool.charAt(0).toUpperCase() + state.tool.slice(1);
+                canvas.style.cursor = state.tool === 'eraser' ? 'cell' : 'crosshair';
+            });
+        });
+
+        const colorInput = document.getElementById('pen-color');
+        colorInput.addEventListener('input', () => {
+            state.color = colorInput.value;
+            document.getElementById('color-status').style.background = state.color;
+        });
+
+        document.querySelectorAll('[id^="color-preset-"]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const color = btn.style.background;
+                state.color = color;
+                colorInput.value = color;
+                document.getElementById('color-status').style.background = color;
+            });
+        });
+
+        document.querySelectorAll('.wb-size-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.wb-size-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                state.size = parseInt(btn.dataset.size);
+                document.getElementById('size-status').textContent = state.size;
+            });
+        });
+
+        document.getElementById('undo-btn').addEventListener('click', undo);
+        document.getElementById('redo-btn').addEventListener('click', redo);
+
+        document.getElementById('clear-btn').addEventListener('click', () => {
+            if (confirm('Clear canvas?')) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                saveState();
+                updateStepCount();
+                showToast('Canvas cleared');
+            }
+        });
+
+        document.getElementById('export-png').addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = 'whiteboard.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            showToast('PNG exported');
+        });
+
+        document.getElementById('export-jpg').addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = 'whiteboard.jpg';
+            link.href = canvas.toDataURL('image/jpeg', 0.95);
+            link.click();
+            showToast('JPG exported');
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
+                e.preventDefault();
+                undo();
+            }
+            if ((e.ctrlKey || e.metaKey) && e.key === 'y') {
+                e.preventDefault();
+                redo();
+            }
+            if (e.key === 'e' || e.key === 'E') {
+                document.getElementById('tool-eraser').click();
+            }
+            if (e.key === 'p' || e.key === 'P') {
+                document.getElementById('tool-pen').click();
+            }
+            if (e.key === 'c' || e.key === 'C') {
+                document.getElementById('clear-btn').click();
+            }
+        });
+
+        function updateCoordStatus(x, y) {
+            document.getElementById('coord-status').textContent = `${Math.round(x)}, ${Math.round(y)}`;
+        }
+
+        function initCanvas() {
+            canvas.width = 1000;
+            canvas.height = 600;
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            saveState();
+            document.getElementById('canvas-size').textContent = `${canvas.width} × ${canvas.height}`;
+            document.getElementById('tool-pen').classList.add('active');
+            state.tool = 'pen';
+            document.getElementById('tool-status').textContent = 'Pen';
+            document.getElementById('color-status').style.background = state.color;
+            document.getElementById('size-status').textContent = state.size;
+        }
+
+        initCanvas();
+
+        const mobileToggle = document.getElementById('mobile-menu-toggle');
+        const mobileClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileToggle && mobileMenu) {
+            mobileToggle.addEventListener('click', () => {
+                const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+                mobileToggle.setAttribute('aria-expanded', !expanded);
+                mobileMenu.classList.toggle('open');
+                document.body.style.overflow = expanded ? '' : 'hidden';
+            });
+        }
+
+        if (mobileClose && mobileMenu) {
+            mobileClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+                if (mobileToggle) {
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        document.querySelectorAll('[data-close-mobile]').forEach(el => {
+            el.addEventListener('click', () => {
+                if (mobileMenu) {
+                    mobileMenu.classList.remove('open');
+                    document.body.style.overflow = '';
+                    if (mobileToggle) {
+                        mobileToggle.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.dataset.target;
+                const target = document.getElementById(targetId);
+                if (target) {
+                    const isOpen = target.classList.toggle('open');
+                    btn.classList.toggle('open');
+                    btn.setAttribute('aria-expanded', isOpen);
+                    const chevron = btn.querySelector('.fa-chevron-down');
+                    if (chevron) {
+                        chevron.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Chantik · ChaCha20 Authenticated Backup Protection | RICALNET</title>
+    <meta name="description"
+        content="Chantik — ChaCha20-authenticated backup protection for directories and Docker volumes. Encrypted, compressed, deduplicated, and retention-aware. Open source self-hosted backup." />
+    <meta name="keywords"
+        content="Chantik, ChaCha20 backup, encrypted backup, Docker volume backup, incremental backup, deduplication, authenticated encryption, open source backup" />
+    <link rel="canonical" href="https://ricalnet.my.id/tools/chantik" />
+    <link rel="alternate" hreflang="en" href="https://ricalnet.my.id/tools/chantik" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://ricalnet.my.id/sitemap.xml" />
+    <link rel="icon" type="image/x-icon" href="../img/logo.png" />
+    <meta property="og:title" content="Chantik · ChaCha20 Authenticated Backup Protection | RICALNET" />
+    <meta property="og:description"
+        content="Chantik — ChaCha20-authenticated backup protection for directories and Docker volumes. Encrypted, compressed, deduplicated, and retention-aware." />
+    <meta property="og:url" content="https://ricalnet.my.id/tools/chantik" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://ricalnet.my.id/img/og-chantik.png" />
+    <meta property="og:image:alt" content="Chantik backup tool — ChaCha20 authenticated encryption" />
+    <meta property="og:site_name" content="RICALNET" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Chantik · ChaCha20 Authenticated Backup Protection | RICALNET" />
+    <meta name="twitter:description"
+        content="Chantik — ChaCha20-authenticated backup protection for directories and Docker volumes. Encrypted, compressed, deduplicated, and retention-aware." />
+    <meta name="twitter:image" content="https://ricalnet.my.id/img/og-chantik.png" />
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Chantik — ChaCha20 Authenticated Backup Protection",
+        "description": "Chantik — ChaCha20-authenticated backup protection for directories and Docker volumes. Encrypted, compressed, deduplicated, and retention-aware.",
+        "url": "https://ricalnet.my.id/tools/chantik",
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ricalnet.my.id/" },
+                { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://ricalnet.my.id/tools" },
+                { "@type": "ListItem", "position": 3, "name": "Chantik", "item": "https://ricalnet.my.id/tools/chantik" }
+            ]
+        },
+        "mainEntity": {
+            "@type": "SoftwareApplication",
+            "name": "Chantik",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Linux",
+            "description": "ChaCha20-authenticated backup protection for directories and Docker volumes.",
+            "author": {
+                "@type": "Organization",
+                "name": "RICALNET"
+            }
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "RICALNET",
+        "url": "https://ricalnet.my.id/",
+        "logo": "https://ricalnet.my.id/img/logo.png",
+        "sameAs": ["https://github.com/ricalnet"],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "ricalnet@duck.com",
+            "contactType": "technical support"
+        }
+    }
+    </script>
+    <link href="../assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="../assets/fontawesome/css/solid.css" rel="stylesheet" />
+    <link href="../assets/fontawesome/css/brands.css" rel="stylesheet" />
+    <link href="../assets/css/fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link href="../assets/css/aos.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'source-sans-pro': ['"Source Sans Pro"', 'Roboto', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        roboto: ['Roboto', '"Source Sans Pro"', 'Inter', 'system-ui', 'sans-serif'],
+                        inter: ['Inter', 'Roboto', '"Source Sans Pro"', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    colors: {
+                        tor: {
+                            violet: '#7c3aed',
+                            'violet-light': '#8b5cf6',
+                            'violet-dark': '#5b21b6',
+                            'violet-deep': '#4c1d95',
+                            'violet-soft': '#ede9fe',
+                            accent: '#68B030',
+                            'accent-cyan': '#06b6d4',
+                            'accent-amber': '#f59e0b',
+                        },
+                        surface: {
+                            light: '#faf9fe',
+                            card: '#ffffff',
+                            border: '#ede9f0',
+                            muted: '#f5f3fa',
+                            dark: '#0f0e1a',
+                        },
+                        text: {
+                            primary: '#0f0e1a',
+                            secondary: '#52506e',
+                            muted: '#9492ae',
+                            inverse: '#f8f7fc',
+                        }
+                    },
+                    boxShadow: {
+                        'elevated': '0 1px 3px rgba(0,0,0,0.02), 0 8px 40px rgba(124,58,237,0.06), 0 20px 80px rgba(124,58,237,0.04)',
+                        'elevated-lg': '0 1px 3px rgba(0,0,0,0.02), 0 16px 64px rgba(124,58,237,0.08), 0 32px 120px rgba(124,58,237,0.04)',
+                        'glow': '0 0 60px rgba(124,58,237,0.06)',
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-down': 'fadeDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-right': 'fadeRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-left': 'fadeLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'scale-in': 'scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeRight: {
+                            '0%': { opacity: '0', transform: 'translateX(-40px)' }, '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        fadeLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(40px)' }, '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.94)' }, '100%': { opacity: '1', transform: 'scale(1)' }
+                        },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-14px)' } },
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body
+    class="font-source-sans-pro bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+    <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div class="absolute inset-0 bg-grid-subtle"></div>
+        <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/5 rounded-full blur-[160px]"></div>
+        <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/3 rounded-full blur-[180px]"></div>
+        <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/4 rounded-full blur-[140px]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light"></div>
+    </div>
+    <header
+        class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-[72px]">
+                <a href="https://ricalnet.my.id" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+                    data-aos-duration="600">
+                    <img src="../img/logo.png" alt="RICALNET Logo"
+                        class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
+                    <div class="leading-tight hidden sm:block">
+                        <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+                        <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust
+                            · Control · Access · Libre</span>
+                    </div>
+                </a>
+                <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down"
+                    data-aos-duration="600">
+                    <a href="https://ricalnet.my.id/index#hero" class="nav-link">Home</a>
+                    <div class="relative group">
+                        <a href="../index#pain-points" class="nav-link flex items-center gap-1">
+                            Why Self‑Host
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/index#pain-points" class="dropdown-item">The Lock‑in Trap</a>
+                            <a href="https://ricalnet.my.id/index#how-it-works" class="dropdown-item">The Approach</a>
+                            <a href="https://ricalnet.my.id/index#features" class="dropdown-item">Sovereign Stack</a>
+                            <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal &amp; Advocacy</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/resources#hero" class="nav-link flex items-center gap-1">
+                            Resources
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                            <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal Resources</a>
+                            <a href="https://ricalnet.my.id/resources#in-house-tools" class="dropdown-item">In‑House Tools</a>
+                            <a href="https://ricalnet.my.id/resources" class="dropdown-item">All Resources</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/resources#hero" class="nav-link nav-link-active flex items-center gap-1">
+                            Tools
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="dropdown-item">Metadata Cleaner</a>
+                            <a href="https://ricalnet.my.id/tools/quantum-hasher" class="dropdown-item">Quantum Hasher</a>
+                            <a href="https://ricalnet.my.id/tools/ip-intelligence" class="dropdown-item">IP Intelligence</a>
+                            <a href="https://ricalnet.my.id/tools/password-generator" class="dropdown-item">Password Generator</a>
+                            <a href="https://ricalnet.my.id/tools/qr-builder" class="dropdown-item">QR Builder</a>
+                            <a href="https://ricalnet.my.id/tools/whiteboard" class="dropdown-item">Whiteboard</a>
+                            <a href="https://ricalnet.my.id/tools/chantik" class="dropdown-item">Chantik</a>
+                            <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/about#hero" class="nav-link flex items-center gap-1">
+                            About
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/about#our-mission" class="dropdown-item">Mission</a>
+                            <a href="https://ricalnet.my.id/index#comparison" class="dropdown-item">Comparison</a>
+                            <a href="https://ricalnet.my.id/index#faq" class="dropdown-item">FAQ</a>
+                            <a href="https://ricalnet.my.id/index#cta" class="dropdown-item">Contact</a>
+                            <a href="https://ricalnet.my.id/about#cta-support" class="dropdown-item">Support</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
+                    <a href="https://ricalnet.my.id/index#hidden-services" class="hidden lg:inline-flex btn-sso">
+                        <i class="fas fa-key"></i> Login with SSO
+                    </a>
+                    <button id="mobile-menu-toggle"
+                        class="lg:hidden w-9 h-9 rounded-full hover:bg-surface-muted flex items-center justify-center transition-colors"
+                        aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars text-text-secondary text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <img src="https://ricalnet.my.id/img/logo.png" alt="RICALNET" />
+                <span>RICALNET</span>
+            </div>
+            <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-scroll">
+            <a href="https://ricalnet.my.id/index#hero" class="nav-item" data-close-mobile>
+                <i class="fas fa-home"></i> Home
+            </a>
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-advocacy">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Why Self‑Host
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/index#pain-points" class="sub-link" data-close-mobile>
+                        <i class="fas fa-exclamation-triangle"></i> The Lock‑in Trap
+                    </a>
+                    <a href="https://ricalnet.my.id/index#how-it-works" class="sub-link" data-close-mobile>
+                        <i class="fas fa-route"></i> The Approach
+                    </a>
+                    <a href="https://ricalnet.my.id/index#features" class="sub-link" data-close-mobile>
+                        <i class="fas fa-star"></i> Sovereign Stack
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal &amp; Advocacy
+                    </a>
+                </div>
+            </div>
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-resources">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-lock"></i> Privacy Tools
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal Resources
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#in-house-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-cubes"></i> In‑House Tools
+                    </a>
+                    <a href="https://ricalnet.my.id/resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-folder-open"></i> All Resources
+                    </a>
+                </div>
+            </div>
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-tools">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> Metadata Cleaner
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/quantum-hasher" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> Quantum Hasher
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/ip-intelligence" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> IP Intelligence
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/password-generator" class="sub-link" data-close-mobile>
+                        <i class="fas fa-key"></i> Password Generator
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/qr-builder" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> QR Builder
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/whiteboard" class="sub-link" data-close-mobile>
+                        <i class="fas fa-pen-fancy"></i> Whiteboard
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/chantik" class="sub-link" data-close-mobile>
+                        <i class="fas fa-floppy-disk"></i> Chantik
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-user-secret"></i> Privacy Tools
+                    </a>
+                </div>
+            </div>
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-about">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/about#our-mission" class="sub-link" data-close-mobile>
+                        <i class="fas fa-bullseye"></i> Mission
+                    </a>
+                    <a href="https://ricalnet.my.id/index#comparison" class="sub-link" data-close-mobile>
+                        <i class="fas fa-arrows-left-right"></i> Comparison
+                    </a>
+                    <a href="https://ricalnet.my.id/index#faq" class="sub-link" data-close-mobile>
+                        <i class="fas fa-question-circle"></i> FAQ
+                    </a>
+                    <a href="https://ricalnet.my.id/index#cta" class="sub-link" data-close-mobile>
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                    <a href="https://ricalnet.my.id/about#cta-support" class="sub-link" data-close-mobile>
+                        <i class="fas fa-hand-holding-heart"></i> Support
+                    </a>
+                </div>
+            </div>
+            <a href="https://ricalnet.my.id/index#hidden-services" class="mt-3 block w-full text-center btn-sso justify-center"
+                data-close-mobile>
+                <i class="fas fa-key"></i> Login with SSO
+            </a>
+            <div
+                class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+                <span
+                    class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+                    <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> RICALNET — Robust · Control · Access ·
+                    Libre
+                </span>
+            </div>
+        </div>
+    </div>
+    <nav aria-label="Breadcrumb" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 text-xs">
+        <ol class="flex flex-wrap items-center gap-2 text-text-muted">
+            <li><a href="https://ricalnet.my.id/" class="hover:text-tor-violet transition-colors">Home</a></li>
+            <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
+            <li><a href="https://ricalnet.my.id/tools" class="hover:text-tor-violet transition-colors">Tools</a></li>
+            <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
+            <li class="text-tor-violet font-medium">Chantik — ChaCha20 Backup Protection</li>
+        </ol>
+    </nav>
+    <section id="hero" class="relative overflow-hidden pt-[72px] pb-20 md:pt-24 md:pb-32 bg-surface-light">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+                <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="flex flex-wrap items-center gap-2 mb-6">
+                        <span class="badge-pill"><i class="fas fa-lock"></i> ChaCha20‑Poly1305</span>
+                        <span class="badge-pill"
+                            style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);"><i
+                                class="fas fa-shield-alt"></i> Authenticated Encryption</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] tracking-tight">
+                        <span class="text-text-primary">ChaCha20</span>
+                        <span class="text-tor-violet">Authenticated</span>
+                        <span class="text-text-primary">Backup Protection</span>
+                    </h1>
+                    <p class="text-text-secondary text-lg md:text-xl mt-6 max-w-lg leading-relaxed">
+                        Encrypt, compress, deduplicate, and rotate backups with military‑grade
+                        ChaCha20‑Poly1305. For directories, Docker volumes, and critical data — self‑hosted
+                        and open source.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-4 mt-8">
+                        <a href="https://github.com/ricalnet/chantik" target="_blank" rel="noopener"
+                            class="text-white btn-primary">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                        <a href="#features" class="btn-secondary">
+                            Explore Features <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-5 mt-8 text-sm text-text-muted">
+                        <span class="flex items-center gap-1.5"><i
+                                class="fas fa-check-circle text-tor-accent text-xs"></i> ChaCha20‑Poly1305</span>
+                        <span class="flex items-center gap-1.5"><i
+                                class="fas fa-check-circle text-tor-accent text-xs"></i> Incremental Backups</span>
+                        <span class="flex items-center gap-1.5"><i
+                                class="fas fa-check-circle text-tor-accent text-xs"></i> Docker Volumes</span>
+                    </div>
+                </div>
+                <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="200"
+                    class="relative flex justify-center lg:justify-end">
+                    <div class="relative w-full max-w-md lg:max-w-lg">
+                        <div class="absolute inset-0 bg-tor-violet/10 rounded-full blur-3xl scale-90"></div>
+                        <div
+                            class="relative glass-card rounded-3xl p-2 shadow-elevated-lg border border-tor-violet/10 overflow-hidden">
+                            <img src="../img/section/chantik/backup.png" alt="Chantik — ChaCha20 Backup Protection"
+                                class="rounded-2xl w-full h-auto object-cover img-shadow-soft" />
+                            <div class="absolute bottom-4 left-4 right-4 flex flex-wrap justify-between gap-2">
+                                <span
+                                    class="bg-white/90 backdrop-blur text-xs font-semibold text-text-primary px-3 py-1.5 rounded-full shadow-elevated border border-surface-border/60 flex items-center gap-1.5">
+                                    <i class="fas fa-shield-alt text-tor-violet"></i> ChaCha20
+                                </span>
+                                <span
+                                    class="bg-white/90 backdrop-blur text-xs font-semibold text-text-primary px-3 py-1.5 rounded-full shadow-elevated border border-surface-border/60 flex items-center gap-1.5">
+                                    <i class="fas fa-database text-tor-violet"></i> Deduplicated
+                                </span>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute -bottom-3 -left-3 bg-white rounded-full px-4 py-2.5 shadow-elevated border border-tor-violet/10 flex items-center gap-2 text-sm font-medium text-text-primary animate-float">
+                            <i class="fas fa-check-circle text-tor-accent"></i>
+                            <span>In ChaCha We Trust</span>
+                        </div>
+                        <div class="absolute -top-3 -right-3 bg-tor-violet text-white rounded-full px-4 py-2.5 shadow-elevated text-sm font-semibold animate-float"
+                            style="animation-delay:1.8s;">
+                            <i class="fas fa-terminal mr-1.5"></i> ./chantik.sh
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="features" class="py-20 md:py-28 bg-white/40 border-y border-surface-border/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <span class="section-badge"><i class="fas fa-star"></i> Features</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+                    <span class="text-text-primary">Backup that's </span>
+                    <span class="text-tor-violet">secure by design</span>
+                </h2>
+                <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+                    Chantik combines authenticated encryption, smart retention, and incremental backups
+                    into a single, battle‑tested tool.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div data-aos="fade-up" data-aos-delay="0"
+                    class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover">
+                    <div class="w-12 h-12 rounded-xl bg-tor-violet/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-lock text-tor-violet text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">ChaCha20‑Poly1305</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Authenticated encryption with a 256‑bit key. Your data stays confidential,
+                        tamper‑proof, and verifiable — with AES‑256‑CBC fallback for compatibility.
+                    </p>
+                    <div
+                        class="mt-3 text-xs text-text-muted font-mono bg-surface-muted/50 px-3 py-1.5 rounded-lg inline-block">
+                        🔑 PBKDF2 · 600,000 iterations
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100"
+                    class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-50 flex items-center justify-center mb-4">
+                        <i class="fas fa-link text-cyan-600 text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">Deduplication</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Fixed‑nonce encryption enables safe deduplication via hardlinks. Store identical
+                        encrypted blocks once — save storage and bandwidth without compromising security.
+                    </p>
+                    <div
+                        class="mt-3 text-xs text-text-muted font-mono bg-surface-muted/50 px-3 py-1.5 rounded-lg inline-block">
+                        🗜️ hardlink · jdupes support
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200"
+                    class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover">
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center mb-4">
+                        <i class="fas fa-clock text-amber-600 text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">Incremental Backups</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Save time and storage. Full backups run on a schedule (e.g., weekly); incremental
+                        backups capture only what changed. Restore from any point with ease.
+                    </p>
+                    <div
+                        class="mt-3 text-xs text-text-muted font-mono bg-surface-muted/50 px-3 py-1.5 rounded-lg inline-block">
+                        🔄 Full every 7 days · Incremental daily
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="50"
+                    class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center mb-4">
+                        <i class="fas fa-calendar-check text-emerald-600 text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">Smart Retention</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Keep what matters. Daily, weekly, and monthly retention policies automatically prune
+                        old backups — configurable to match your compliance and storage needs.
+                    </p>
+                    <div
+                        class="mt-3 text-xs text-text-muted font-mono bg-surface-muted/50 px-3 py-1.5 rounded-lg inline-block">
+                        📅 Daily=7 · Weekly=4 · Monthly=6
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="150"
+                    class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover">
+                    <div class="w-12 h-12 rounded-xl bg-tor-violet/10 flex items-center justify-center mb-4">
+                        <i class="fab fa-docker text-tor-violet text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">Docker Volume Backup</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Seamlessly back up Docker volumes with the same encryption and retention policies.
+                        Perfect for containerized services — restore volumes directly from the CLI.
+                    </p>
+                    <div
+                        class="mt-3 text-xs text-text-muted font-mono bg-surface-muted/50 px-3 py-1.5 rounded-lg inline-block">
+                        🐳 Volume detection · Direct restore
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="250"
+                    class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover">
+                    <div class="w-12 h-12 rounded-xl bg-rose-50 flex items-center justify-center mb-4">
+                        <i class="fas fa-bell text-rose-500 text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">Real‑time Notifications</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Get instant alerts via ntfy.sh. Success, failure, and restore events — with priority
+                        levels and tags — so you always know the status of your backups.
+                    </p>
+                    <div
+                        class="mt-3 text-xs text-text-muted font-mono bg-surface-muted/50 px-3 py-1.5 rounded-lg inline-block">
+                        🔔 ntfy.sh · Priority levels · Tags
+                    </div>
+                </div>
+            </div>
+            <div class="mt-10 text-center" data-aos="fade-up" data-aos-delay="200">
+                <a href="#quick-start"
+                    class="inline-flex items-center gap-2 text-white bg-tor-violet hover:bg-tor-violet-dark px-8 py-3.5 rounded-full font-semibold shadow-lg shadow-tor-violet/30 transition-all duration-300 hover:shadow-xl hover:shadow-tor-violet/40 hover:-translate-y-0.5">
+                    <i class="fas fa-rocket"></i> Get Started
+                    <i class="fas fa-arrow-right text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section id="security" class="py-20 md:py-28">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div data-aos="fade-right" data-aos-duration="700">
+                    <span class="section-badge"><i class="fas fa-shield-alt"></i> Security</span>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 leading-tight">
+                        <span class="text-text-primary">Authenticated encryption </span>
+                        <span class="text-tor-violet">you can trust</span>
+                    </h2>
+                    <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+                        Chantik doesn't just encrypt — it authenticates. Every backup is verified for
+                        integrity and authenticity, so you know your data hasn't been tampered with.
+                    </p>
+                    <div class="space-y-4 mt-6">
+                        <div class="flex items-start gap-3">
+                            <div
+                                class="w-6 h-6 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-tor-violet text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-text-primary">ChaCha20‑Poly1305</h4>
+                                <p class="text-text-secondary text-sm">Primary cipher with built‑in authentication.
+                                    Fallback to AES‑256‑CBC when needed.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div
+                                class="w-6 h-6 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-tor-violet text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-text-primary">PBKDF2 Key Derivation</h4>
+                                <p class="text-text-secondary text-sm">600,000 iterations (configurable) — brute‑force
+                                    resistant key stretching.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div
+                                class="w-6 h-6 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-tor-violet text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-text-primary">SHA256 Verification</h4>
+                                <p class="text-text-secondary text-sm">Every encrypted archive includes a checksum.
+                                    Verification runs automatically on backup and restore.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div
+                                class="w-6 h-6 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-tor-violet text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-text-primary">Fixed Nonce for Deduplication</h4>
+                                <p class="text-text-secondary text-sm">Deterministic encryption enables safe hardlink
+                                    deduplication — identical data, identical ciphertext.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 p-5 bg-tor-violet/5 border border-tor-violet/20 rounded-2xl">
+                        <p class="text-text-secondary text-sm flex items-center gap-2">
+                            <i class="fas fa-quote-left text-tor-violet text-xs"></i>
+                            <span><strong class="text-text-primary">In ChaCha We Trust</strong> — Authentically
+                                Secured.</span>
+                        </p>
+                    </div>
+                </div>
+                <div data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-tor-violet/5 rounded-3xl blur-2xl"></div>
+                        <img src="../img/section/chantik/secured.png" alt="Chantik security architecture"
+                            class="relative rounded-3xl shadow-elevated-lg border border-surface-border/60 w-full h-auto object-cover img-shadow-soft" />
+                        <div
+                            class="absolute -bottom-4 -right-4 bg-white rounded-2xl px-5 py-3 shadow-elevated border border-tor-violet/10 flex items-center gap-3">
+                            <i class="fas fa-shield-alt text-tor-violet text-lg"></i>
+                            <span class="text-sm font-medium text-text-primary">Zero‑Trust · Authenticated</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="quick-start" class="py-20 md:py-28 bg-white/40 border-y border-surface-border/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <span class="section-badge"><i class="fas fa-terminal"></i> Quick Start</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+                    <span class="text-text-primary">Backup in </span>
+                    <span class="text-tor-violet">minutes</span>
+                </h2>
+                <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+                    Clone, configure, and run. Chantik handles the rest — encryption, compression,
+                    deduplication, and retention.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+                <div data-aos="fade-right" data-aos-duration="700">
+                    <div class="space-y-5">
+                        <div
+                            class="flex gap-4 bg-white rounded-2xl p-5 shadow-elevated border border-surface-border/60">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-tor-violet/10 flex items-center justify-center flex-shrink-0">
+                                <span class="font-bold text-tor-violet text-sm">1</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-text-primary">Clone the repository</h4>
+                                <code
+                                    class="block text-xs bg-surface-muted/70 px-3 py-2 rounded-lg mt-1.5 font-mono text-text-secondary">
+                                git clone https://github.com/ricalnet/chantik.git
+                            </code>
+                            </div>
+                        </div>
+                        <div
+                            class="flex gap-4 bg-white rounded-2xl p-5 shadow-elevated border border-surface-border/60">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-tor-violet/10 flex items-center justify-center flex-shrink-0">
+                                <span class="font-bold text-tor-violet text-sm">2</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-text-primary">Generate encryption key</h4>
+                                <code
+                                    class="block text-xs bg-surface-muted/70 px-3 py-2 rounded-lg mt-1.5 font-mono text-text-secondary">
+                                openssl rand -base64 32 > encryption.key
+                            </code>
+                            </div>
+                        </div>
+                        <div
+                            class="flex gap-4 bg-white rounded-2xl p-5 shadow-elevated border border-surface-border/60">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-tor-violet/10 flex items-center justify-center flex-shrink-0">
+                                <span class="font-bold text-tor-violet text-sm">3</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-text-primary">Configure &amp; run</h4>
+                                <code
+                                    class="block text-xs bg-surface-muted/70 px-3 py-2 rounded-lg mt-1.5 font-mono text-text-secondary">
+                                cp chantik.conf.example chantik.conf
+                                <br>./chantik.sh
+                            </code>
+                            </div>
+                        </div>
+                        <div
+                            class="flex gap-4 bg-white rounded-2xl p-5 shadow-elevated border border-surface-border/60">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-tor-violet/10 flex items-center justify-center flex-shrink-0">
+                                <span class="font-bold text-tor-violet text-sm">4</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-text-primary">Verify your backup</h4>
+                                <code
+                                    class="block text-xs bg-surface-muted/70 px-3 py-2 rounded-lg mt-1.5 font-mono text-text-secondary">
+                                ./chantik.sh --verify-all
+                            </code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-5 bg-tor-violet/5 border border-tor-violet/20 rounded-2xl">
+                        <p class="text-text-secondary text-sm flex items-center gap-2">
+                            <i class="fas fa-book-open text-tor-violet"></i>
+                            <span>Full documentation, advanced config, and Docker volume examples at the <a
+                                    href="https://github.com/ricalnet/chantik" target="_blank" rel="noopener"
+                                    class="text-tor-violet font-semibold hover:underline">GitHub repo</a>.</span>
+                        </p>
+                    </div>
+                </div>
+                <div data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
+                    <div
+                        class="bg-white rounded-3xl shadow-elevated-lg border border-surface-border/60 overflow-hidden">
+                        <div
+                            class="bg-surface-muted/40 px-6 py-3 border-b border-surface-border/60 flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-400"></span>
+                            <span class="text-xs text-text-muted font-mono ml-2">chantik@backup:~$</span>
+                        </div>
+                        <div class="p-6 bg-[#0f0e1a] text-[#e2e1f0] font-mono text-sm leading-relaxed overflow-x-auto">
+                            <p><span class="text-emerald-400">$</span> ./chantik.sh</p>
+                            <p class="text-text-muted/60 mt-1">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+                            <p><span class="text-tor-violet-light">[2026-08-10 10:00:00]</span> 🕊️ Starting Chantik
+                                (v0.1.1)</p>
+                            <p><span class="text-tor-violet-light">[2026-08-10 10:00:00]</span> 💬
+                                ChaCha20-Authenticated Backup Protection</p>
+                            <p><span class="text-tor-violet-light">[2026-08-10 10:00:00]</span> 🙏 In ChaCha We Trust —
+                                Authentically Secured</p>
+                            <p class="text-text-muted/60 mt-1">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+                            <p><span class="text-emerald-400">✅</span> Configuration loaded successfully.</p>
+                            <p><span class="text-tor-violet-light">[2026-08-10 10:00:00]</span> 📁 Source:
+                                /home/user/data</p>
+                            <p><span class="text-tor-violet-light">[2026-08-10 10:00:00]</span> 🔒 Encryption: CHACHA20
+                            </p>
+                            <p><span class="text-tor-violet-light">[2026-08-10 10:00:01]</span> 📦 Performing FULL
+                                backup...</p>
+                            <p><span class="text-tor-violet-light">[2026-08-10 10:00:45]</span> ✅ FULL encrypted backup
+                                created</p>
+                            <p class="text-text-muted/60 mt-1">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+                            <p><span class="text-emerald-400">✅</span> Backup completed successfully</p>
+                            <p><span class="text-tor-violet-light">[2026-08-10 10:00:45]</span> 🕊️ Chantik — From
+                                ChaCha Comes Peace of Mind</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex flex-wrap items-center gap-3 text-xs text-text-muted">
+                        <span class="flex items-center gap-1.5"><i class="fas fa-check text-tor-accent"></i>
+                            ChaCha20‑Poly1305</span>
+                        <span class="flex items-center gap-1.5"><i class="fas fa-check text-tor-accent"></i> Gzip
+                            compression</span>
+                        <span class="flex items-center gap-1.5"><i class="fas fa-check text-tor-accent"></i> SHA256
+                            verified</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="use-cases" class="py-20 md:py-28">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <span class="section-badge"><i class="fas fa-users"></i> Who It's For</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+                    <span class="text-text-primary">Backup that fits </span>
+                    <span class="text-tor-violet">your world</span>
+                </h2>
+                <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+                    From homelab to enterprise — Chantik adapts to your infrastructure, not the other way around.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div data-aos="fade-up" data-aos-delay="0"
+                    class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-14 h-14 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-home text-tor-violet text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">Homelab Enthusiasts</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Protect your self‑hosted services, Docker containers, and personal data with
+                        enterprise‑grade encryption — without the enterprise price tag.
+                    </p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100"
+                    class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-14 h-14 rounded-full bg-amber-50 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-building text-amber-600 text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">SMBs &amp; Startups</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Secure critical business data, Docker volumes, and application state. Retain backups
+                        for compliance with smart retention policies.
+                    </p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200"
+                    class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-14 h-14 rounded-full bg-cyan-50 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-shield text-cyan-600 text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">Privacy Advocates</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Keep sensitive communications, activist data, and legal documents safe with
+                        authenticated encryption. No third‑party cloud, no surveillance.
+                    </p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="50"
+                    class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-14 h-14 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-server text-emerald-600 text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">DevOps Teams</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Automate backups with cron, get real‑time notifications, and restore Docker volumes in
+                        seconds. Git‑Ops friendly configuration.
+                    </p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="150"
+                    class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-14 h-14 rounded-full bg-rose-50 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-microchip text-rose-500 text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">Edge &amp; IoT</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Lightweight enough for Raspberry Pi and edge devices. Back up sensor data, configurations,
+                        and logs with minimal overhead.
+                    </p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="250"
+                    class="bg-white rounded-2xl p-7 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-14 h-14 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-database text-tor-violet text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-text-primary">Data Hoarders</h4>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Deduplication and incremental backups keep your archive manageable. Encrypt terabytes
+                        with confidence and verify every byte.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="cta" class="py-20 md:py-28 bg-white/40 border-y border-surface-border/60">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="relative glass-card rounded-3xl p-10 md:p-16 border border-tor-violet/10 shadow-elevated-lg overflow-hidden"
+                data-aos="zoom-in" data-aos-duration="800">
+                <div class="absolute inset-0 bg-tor-violet/5 pointer-events-none"></div>
+                <div
+                    class="absolute -top-32 -right-32 w-80 h-80 bg-tor-violet/5 rounded-full blur-3xl pointer-events-none">
+                </div>
+                <div
+                    class="absolute -bottom-32 -left-32 w-80 h-80 bg-cyan-400/5 rounded-full blur-3xl pointer-events-none">
+                </div>
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+                    <div class="lg:col-span-3">
+                        <span class="section-badge mb-4"><i class="fab fa-github"></i> Open Source</span>
+                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+                            <span class="text-text-primary">Start backing up </span>
+                            <span class="text-tor-violet">with confidence</span>
+                        </h2>
+                        <p class="text-text-secondary text-lg mt-4 leading-relaxed max-w-lg">
+                            Chantik is free, open source, and ready to use. Star the repo, try it out, and
+                            join a community that values security, privacy, and sovereignty.
+                        </p>
+                        <div class="flex flex-wrap gap-4 mt-6">
+                            <a href="https://github.com/ricalnet/chantik" target="_blank" rel="noopener"
+                                class="text-white btn-primary">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                            <a href="https://github.com/ricalnet/chantik/issues" target="_blank" rel="noopener"
+                                class="btn-secondary border-tor-violet/10 hover:border-tor-violet/20">
+                                <i class="fas fa-comment"></i> Feedback &amp; Issues
+                            </a>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-3 mt-4">
+                            <span class="text-text-muted text-sm flex items-center gap-2">
+                                <i class="fas fa-star text-tor-accent"></i> Star on GitHub
+                            </span>
+                            <span class="text-text-muted text-sm">·</span>
+                            <span class="text-text-muted text-sm flex items-center gap-2">
+                                <i class="fas fa-code-branch text-tor-violet"></i> MIT License
+                            </span>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 flex justify-center lg:justify-end">
+                        <div
+                            class="bg-white/80 rounded-3xl p-6 shadow-elevated border border-surface-border/60 w-full max-w-xs">
+                            <div class="flex items-center gap-3 mb-4">
+                                <img src="../img/logo.png" alt="Ricalnet"
+                                    class="w-12 h-12 rounded-full object-cover ring-2 ring-tor-violet/20" />
+                                <div>
+                                    <p class="font-bold text-text-primary">Chantik</p>
+                                    <p class="text-xs text-text-muted">ChaCha20 · Authenticated</p>
+                                </div>
+                            </div>
+                            <div class="space-y-2 text-sm text-text-secondary">
+                                <p><i class="fas fa-check-circle text-tor-accent mr-2"></i> ChaCha20‑Poly1305</p>
+                                <p><i class="fas fa-check-circle text-tor-accent mr-2"></i> Incremental backups</p>
+                                <p><i class="fas fa-check-circle text-tor-accent mr-2"></i> Docker volumes</p>
+                                <p><i class="fas fa-check-circle text-tor-accent mr-2"></i> Smart retention</p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-surface-border/60 flex items-center justify-between">
+                                <div class="flex gap-3">
+                                    <a href="https://github.com/ricalnet/chantik" target="_blank" rel="noopener"
+                                        class="text-text-muted hover:text-tor-violet transition-colors"><i
+                                            class="fa-brands fa-github text-lg"></i></a>
+                                    <a href="mailto:ricalnet@duck.com"
+                                        class="text-text-muted hover:text-tor-violet transition-colors"><i
+                                            class="fas fa-envelope text-lg"></i></a>
+                                    <a href="https://status.ricalnet.my.id" target="_blank" rel="noopener"
+                                        class="text-text-muted hover:text-tor-violet transition-colors"><i
+                                            class="fas fa-heartbeat text-lg"></i></a>
+                                </div>
+                                <span class="text-[0.6rem] text-text-muted font-mono">
+                                    <i class="fas fa-lock text-tor-accent-cyan"></i> v0.1.1
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="relative overflow-hidden border-t border-tor-violet/10">
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
+        </div>
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
+        </div>
+    
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+    
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+    
+                <div class="col-span-2 md:col-span-3 lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
+                            <img src="../img/logo.png" alt="RICALNET open-source self-hosted infrastructure logo"
+                                class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
+                        </div>
+                        <div>
+                            <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+                            <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust
+                                · Control
+                                · Access · Libre</span>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
+                        RICALNET — Robust Infrastructure for Control, Access, &amp; Libre NETwork.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 mt-5">
+                        <a href="https://github.com/ricalnet" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fa-brands fa-github text-base"></i>
+                        </a>
+                        <a href="mailto:ricalnet@duck.com"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-envelope text-base"></i>
+                        </a>
+                        <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-heartbeat text-base"></i>
+                        </a>
+                        <span
+                            class="pgp-fingerprint text-[0.6rem] px-3 py-1.5 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                            onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                            <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                        </span>
+                    </div>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Why Self‑Host</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/about#our-mission" class="footer-link">Mission</a></li>
+                        <li><a href="https://ricalnet.my.id/resources" class="footer-link">Resources</a></li>
+                        <li><a href="https://ricalnet.my.id/gallery" class="footer-link">Gallery</a></li>
+                        <li><a href="https://docs.ricalnet.my.id" class="footer-link">Blog</a></li>
+                        <li><a href="https://ricalnet.my.id/#cta" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Stack</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/#features" class="footer-link">Sovereign Infrastructure</a></li>
+                        <li><a href="https://ricalnet.my.id/#private-digital-services" class="footer-link">What You Need</a>
+                        </li>
+                        <li><a href="https://ricalnet.my.id/#hidden-services" class="footer-link">Hidden Services</a></li>
+                        <li><a href="https://ricalnet.my.id/tools/metadata-cleaner" class="footer-link">Metadata Cleaner</a></li>
+                        <li><a href="https://ricalnet.my.id/tools/quantum-hasher" class="footer-link">Quantum Hasher</a></li>
+                        <li><a href="https://link.ricalnet.my.id" class="footer-link">URL Shortener</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Docs &amp; Resources</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
+                                target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="https://github.com/ricalnet/digital-independence" class="footer-link"
+                                target="_blank">Repository <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="https://ricalnet.my.id/about#cta-support" class="footer-link">Support</a></li>
+                        <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Legal</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/resources#legal-resources" class="footer-link">Legal
+                                Resources</a></li>
+                        <li><a href="https://ricalnet.my.id/terms-of-service" class="footer-link">Terms of Service</a></li>
+                        <li><a href="https://ricalnet.my.id/privacy" class="footer-link">Privacy Policy</a></li>
+                    </ul>
+                </div>
+    
+            </div>
+    
+            <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+                <p class="text-xs tracking-wide">
+                    COPYRIGHT (CC BY) — <a href="https://ricalnet.my.id/"
+                        class="hover:text-tor-violet transition-colors">Open
+                        Source Self-Hosted Infrastructure</a>
+                </p>
+                <div class="flex flex-wrap items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
+                    <a href="https://ricalnet.my.id/"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#OpenSource</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/#pain-points"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#NoLockIn</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/#features"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#ZeroTrust</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/"
+                        class="text-tor-violet font-semibold hover:text-tor-violet-dark transition-colors">#ControlAccessLibre</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span
+                        class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                        onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                        <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                    </span>
+                </div>
+            </div>
+    
+        </div>
+    </footer>
+    <script src="../assets/js/aos.js">
+    </script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 30,
+            easing: 'ease-out-expo',
+            duration: 900,
+            disable: window.innerWidth < 768 ? true : false,
+        });
+        const PGP_FINGERPRINT = 'ABCD 1234 EFGH 5678 IJKL 9012 MNOP 3456 QRST 7890';
+        function copyPGP() {
+            navigator.clipboard.writeText(PGP_FINGERPRINT).then(() => {
+                showToast('PGP fingerprint copied!');
+            }).catch(() => {
+                const textArea = document.createElement('textarea');
+                textArea.value = PGP_FINGERPRINT;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast('PGP fingerprint copied!');
+            });
+        }
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] transition-all duration-300';
+            toast.innerHTML = '<i class="fas fa-check-circle text-tor-accent mr-2"></i> ' + message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        }
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Address copied!');
+            }).catch(() => {
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast('Address copied!');
+            });
+        }
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+    <script src="../assets/js/components.js">
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,3021 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Quantum Hasher — Hash, Verify, Compare & Batch Files | RICALNET</title>
+    <meta name="description"
+        content="Hash any text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC with secret key. Verify file integrity, batch hash multiple files, compare two hashes, and export/import history. 100% local." />
+    <meta name="keywords"
+        content="hash generator, sha256, sha512, md5, hmac, file integrity, checksum, verify hash, batch hashing, compare hashes, cryptographic hash, ricalnet" />
+    <link rel="canonical" href="https://ricalnet.my.id/tools/quantum-hasher" />
+    <link rel="icon" type="image/x-icon" href="../img/logo.png" />
+
+    <meta property="og:title" content="Quantum Hasher — Hash, Verify, Compare & Batch Files | RICALNET" />
+    <meta property="og:description"
+        content="Hash any text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC. Verify file integrity, batch hash multiple files, compare hashes, and export/import history. All local." />
+    <meta property="og:url" content="https://ricalnet.my.id/tools/quantum-hasher" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://ricalnet.my.id/img/og-image.png" />
+    <meta property="og:image:alt" content="Quantum Hasher tool interface showing hash generation and verification" />
+    <meta property="og:site_name" content="RICALNET" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Quantum Hasher — Hash, Verify, Compare & Batch Files | RICALNET" />
+    <meta name="twitter:description"
+        content="Hash any text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC. Verify file integrity, batch hash multiple files, compare hashes, and export/import history. 100% local." />
+    <meta name="twitter:image" content="https://ricalnet.my.id/img/og-image.png" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ricalnet.my.id/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://ricalnet.my.id/tools/" },
+        { "@type": "ListItem", "position": 3, "name": "Quantum Hasher", "item": "https://ricalnet.my.id/tools/quantum-hasher" }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Quantum Hasher",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "description": "Hash any text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC. Verify file integrity, batch hash multiple files, compare two hashes, and export/import history. All processing is done locally in your browser.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "RICALNET"
+      },
+      "url": "https://ricalnet.my.id/tools/quantum-hasher",
+      "applicationSuite": "RICALNET Tools",
+      "featureList": "SHA-1, SHA-256, SHA-384, SHA-512, MD5, HMAC, File verification, Batch hashing, Hash comparison, Export/Import history"
+    }
+    </script>
+
+    <link href="../assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="../assets/fontawesome/css/solid.css" rel="stylesheet" />
+    <link href="../assets/fontawesome/css/brands.css" rel="stylesheet" />
+    <link href="../assets/css/fonts.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link href="../assets/css/aos.css" rel="stylesheet" />
+
+    <script src="lib/quantum-hasher/crypto-js.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'source-sans-pro': ['"Source Sans Pro"', 'Roboto', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        roboto: ['Roboto', '"Source Sans Pro"', 'Inter', 'system-ui', 'sans-serif'],
+                        inter: ['Inter', 'Roboto', '"Source Sans Pro"', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    colors: {
+                        tor: {
+                            violet: '#7c3aed',
+                            'violet-light': '#8b5cf6',
+                            'violet-dark': '#5b21b6',
+                            'violet-deep': '#4c1d95',
+                            'violet-soft': '#ede9fe',
+                            accent: '#68B030',
+                            'accent-cyan': '#06b6d4',
+                            'accent-amber': '#f59e0b',
+                        },
+                        surface: {
+                            light: '#faf9fe',
+                            card: '#ffffff',
+                            border: '#ede9f0',
+                            muted: '#f5f3fa',
+                            dark: '#0f0e1a',
+                        },
+                        text: {
+                            primary: '#0f0e1a',
+                            secondary: '#52506e',
+                            muted: '#9492ae',
+                            inverse: '#f8f7fc',
+                        }
+                    },
+                    boxShadow: {
+                        'elevated': '0 1px 3px rgba(0,0,0,0.02), 0 8px 40px rgba(124,58,237,0.06), 0 20px 80px rgba(124,58,237,0.04)',
+                        'elevated-lg': '0 1px 3px rgba(0,0,0,0.02), 0 16px 64px rgba(124,58,237,0.08), 0 32px 120px rgba(124,58,237,0.04)',
+                        'glow': '0 0 60px rgba(124,58,237,0.06)',
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-down': 'fadeDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-right': 'fadeRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-left': 'fadeLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'scale-in': 'scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-subtle': 'pulseSubtle 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeUp: { '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        fadeDown: { '0%': { opacity: '0', transform: 'translateY(-40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        fadeRight: { '0%': { opacity: '0', transform: 'translateX(-40px)' }, '100%': { opacity: '1', transform: 'translateX(0)' } },
+                        fadeLeft: { '0%': { opacity: '0', transform: 'translateX(40px)' }, '100%': { opacity: '1', transform: 'translateX(0)' } },
+                        scaleIn: { '0%': { opacity: '0', transform: 'scale(0.94)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-14px)' } },
+                        pulseSubtle: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0.6' } },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .hash-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(124, 58, 237, 0.06);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+        }
+
+        .hash-card:hover {
+            border-color: rgba(124, 58, 237, 0.12);
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 8px 48px rgba(124, 58, 237, 0.06);
+        }
+
+        .hash-tab-btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            background: transparent;
+            color: #52506e;
+            position: relative;
+        }
+
+        .hash-tab-btn:hover {
+            color: #7c3aed;
+            background: rgba(124, 58, 237, 0.04);
+        }
+
+        .hash-tab-btn.active {
+            background: #7c3aed;
+            color: white;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.2);
+        }
+
+        .hash-tab-btn.active:hover {
+            background: #5b21b6;
+            box-shadow: 0 6px 28px rgba(124, 58, 237, 0.3);
+        }
+
+        .hash-tab-panel {
+            display: none;
+            animation: hashFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hash-tab-panel.active {
+            display: block;
+        }
+
+        @keyframes hashFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hash-result-box {
+            background: rgba(15, 14, 26, 0.03);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(124, 58, 237, 0.08);
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.85rem;
+            word-break: break-all;
+            min-height: 3.5rem;
+            color: #0f0e1a;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .hash-result-box:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.06);
+        }
+
+        .hash-result-box::selection {
+            background: rgba(124, 58, 237, 0.12);
+            color: #0f0e1a;
+        }
+
+        .hash-alg-btn {
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1.5px solid #ede9f0;
+            background: white;
+            color: #52506e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .hash-alg-btn:hover {
+            border-color: #7c3aed;
+            color: #7c3aed;
+            background: #faf9fe;
+        }
+
+        .hash-alg-btn.active {
+            border-color: #7c3aed;
+            background: #7c3aed;
+            color: white;
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.15);
+        }
+
+        .hash-alg-btn.active:hover {
+            background: #5b21b6;
+            border-color: #5b21b6;
+        }
+
+        .hash-gen-btn {
+            background: #7c3aed;
+            color: white;
+            font-weight: 600;
+            padding: 0.7rem 2rem;
+            border-radius: 9999px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 24px rgba(124, 58, 237, 0.2);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.95rem;
+        }
+
+        .hash-gen-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 40px rgba(124, 58, 237, 0.3);
+            background: #5b21b6;
+        }
+
+        .hash-gen-btn:active {
+            transform: scale(0.97);
+        }
+
+        .hash-gen-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .hash-copy-btn,
+        .hash-download-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: #0f0e1a;
+            font-weight: 500;
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1.5px solid #ede9f0;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+        }
+
+        .hash-copy-btn:hover,
+        .hash-download-btn:hover {
+            border-color: #7c3aed;
+            color: #7c3aed;
+            background: #faf9fe;
+        }
+
+        .hash-copy-btn.copied,
+        .hash-download-btn.copied {
+            border-color: #68B030;
+            color: #68B030;
+            background: rgba(104, 176, 48, 0.06);
+        }
+
+        .hash-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 14px;
+            border: 1.5px solid #ede9f0;
+            background: rgba(255, 255, 255, 0.7);
+            transition: all 0.2s ease;
+            color: #0f0e1a;
+            font-size: 0.95rem;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .hash-textarea:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.06);
+        }
+
+        .hash-textarea::placeholder {
+            color: #9492ae;
+        }
+
+        .hash-section-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #7c3aed;
+            font-weight: 700;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid rgba(124, 58, 237, 0.08);
+            margin-bottom: 0.75rem;
+        }
+
+        .hash-key-input {
+            width: 100%;
+            padding: 0.6rem 1rem;
+            border-radius: 12px;
+            border: 1.5px solid #ede9f0;
+            background: rgba(255, 255, 255, 0.7);
+            transition: all 0.2s ease;
+            color: #0f0e1a;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .hash-key-input:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.06);
+        }
+
+        .hash-key-input::placeholder {
+            color: #9492ae;
+        }
+
+        .hash-stats {
+            font-size: 0.7rem;
+            color: #9492ae;
+        }
+
+        .hash-stats strong {
+            color: #0f0e1a;
+            font-weight: 600;
+        }
+
+        .verify-drop-zone {
+            border: 2.5px dashed #ede9f0;
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .verify-drop-zone:hover {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.02);
+        }
+
+        .verify-drop-zone.dragover {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.05);
+            transform: scale(1.01);
+        }
+
+        .verify-drop-zone .icon {
+            font-size: 2.5rem;
+            color: #7c3aed;
+            opacity: 0.5;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .verify-drop-zone .text {
+            color: #52506e;
+            font-size: 0.9rem;
+        }
+
+        .verify-drop-zone .sub {
+            color: #9492ae;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        .verify-file-input {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .verify-preview {
+            margin-top: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: rgba(124, 58, 237, 0.04);
+            border-radius: 10px;
+            border: 1px solid rgba(124, 58, 237, 0.08);
+            font-size: 0.85rem;
+            color: #0f0e1a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .verify-preview .file-name {
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .verify-preview .file-size {
+            color: #9492ae;
+            font-size: 0.75rem;
+        }
+
+        .verify-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .verify-status.success {
+            background: rgba(104, 176, 48, 0.1);
+            color: #4a7c2a;
+            border: 1px solid rgba(104, 176, 48, 0.2);
+        }
+
+        .verify-status.fail {
+            background: rgba(239, 68, 68, 0.08);
+            color: #b91c1c;
+            border: 1px solid rgba(239, 68, 68, 0.15);
+        }
+
+        .verify-status.pending {
+            background: rgba(245, 158, 11, 0.08);
+            color: #b45309;
+            border: 1px solid rgba(245, 158, 11, 0.15);
+        }
+
+        .verify-status.idle {
+            background: rgba(124, 58, 237, 0.06);
+            color: #5b21b6;
+            border: 1px solid rgba(124, 58, 237, 0.08);
+        }
+
+        .verify-compare-box {
+            background: rgba(15, 14, 26, 0.02);
+            border-radius: 10px;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #ede9f0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            word-break: break-all;
+            color: #52506e;
+            max-height: 80px;
+            overflow-y: auto;
+        }
+
+        .verify-compare-box.match {
+            border-color: rgba(104, 176, 48, 0.3);
+            background: rgba(104, 176, 48, 0.03);
+        }
+
+        .verify-compare-box.mismatch {
+            border-color: rgba(239, 68, 68, 0.3);
+            background: rgba(239, 68, 68, 0.03);
+        }
+
+        .history-panel {
+            max-height: 300px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+
+        .history-panel::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .history-panel::-webkit-scrollbar-thumb {
+            background: #7c3aed;
+            border-radius: 9999px;
+        }
+
+        .history-item {
+            padding: 0.5rem 0.75rem;
+            border-radius: 10px;
+            border: 1px solid rgba(124, 58, 237, 0.06);
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .history-item:hover {
+            background: rgba(124, 58, 237, 0.04);
+            border-color: rgba(124, 58, 237, 0.12);
+        }
+
+        .history-item .h-alg {
+            font-size: 0.55rem;
+            font-weight: 700;
+            color: #7c3aed;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .history-item .h-hash {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            word-break: break-all;
+            color: #0f0e1a;
+        }
+
+        .history-item .h-time {
+            font-size: 0.6rem;
+            color: #9492ae;
+        }
+
+        .history-item .h-preview {
+            font-size: 0.65rem;
+            color: #52506e;
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .batch-drop-zone {
+            border: 2.5px dashed #ede9f0;
+            border-radius: 16px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .batch-drop-zone:hover {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.02);
+        }
+
+        .batch-drop-zone.dragover {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.06);
+            transform: scale(1.01);
+        }
+
+        .batch-drop-zone .icon {
+            font-size: 3rem;
+            color: #7c3aed;
+            opacity: 0.4;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .batch-drop-zone .text {
+            color: #52506e;
+            font-size: 1rem;
+        }
+
+        .batch-drop-zone .sub {
+            color: #9492ae;
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+        }
+
+        .batch-drop-zone .file-input-hidden {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .batch-table-wrap {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid rgba(124, 58, 237, 0.06);
+        }
+
+        .batch-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+
+        .batch-table th {
+            text-align: left;
+            padding: 0.6rem 0.75rem;
+            background: rgba(124, 58, 237, 0.04);
+            font-weight: 600;
+            color: #52506e;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.06);
+        }
+
+        .batch-table td {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.04);
+            vertical-align: middle;
+            word-break: break-all;
+        }
+
+        .batch-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .batch-table .hash-cell {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            max-width: 200px;
+            word-break: break-all;
+        }
+
+        .batch-table .file-cell {
+            font-weight: 500;
+            white-space: nowrap;
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .batch-table .size-cell {
+            color: #9492ae;
+            font-size: 0.7rem;
+            white-space: nowrap;
+        }
+
+        .batch-progress {
+            height: 4px;
+            background: rgba(124, 58, 237, 0.1);
+            border-radius: 9999px;
+            overflow: hidden;
+            margin-top: 0.75rem;
+            transition: opacity 0.3s;
+        }
+
+        .batch-progress .bar {
+            height: 100%;
+            background: #7c3aed;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .compare-box {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            word-break: break-all;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            border: 1.5px solid #ede9f0;
+            background: rgba(255, 255, 255, 0.5);
+            min-height: 4rem;
+            transition: all 0.3s ease;
+            resize: vertical;
+            width: 100%;
+            color: #0f0e1a;
+            line-height: 1.8;
+        }
+
+        .compare-box:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.06);
+        }
+
+        .compare-box.match {
+            border-color: rgba(104, 176, 48, 0.4);
+            background: rgba(104, 176, 48, 0.04);
+        }
+
+        .compare-box.mismatch {
+            border-color: rgba(239, 68, 68, 0.4);
+            background: rgba(239, 68, 68, 0.04);
+        }
+
+        .compare-result-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1.2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .compare-result-badge.match {
+            background: rgba(104, 176, 48, 0.12);
+            color: #4a7c2a;
+            border: 1.5px solid rgba(104, 176, 48, 0.25);
+        }
+
+        .compare-result-badge.mismatch {
+            background: rgba(239, 68, 68, 0.10);
+            color: #b91c1c;
+            border: 1.5px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .compare-result-badge.idle {
+            background: rgba(124, 58, 237, 0.06);
+            color: #5b21b6;
+            border: 1.5px solid rgba(124, 58, 237, 0.08);
+        }
+
+        .compare-alg-detect {
+            font-size: 0.6rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            background: rgba(124, 58, 237, 0.08);
+            color: #7c3aed;
+            display: inline-block;
+        }
+
+        .compare-diff-view {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            line-height: 1.8;
+            padding: 0.5rem 0.75rem;
+            border-radius: 10px;
+            background: rgba(15, 14, 26, 0.02);
+            border: 1px solid #ede9f0;
+            max-height: 120px;
+            overflow-y: auto;
+            word-break: break-all;
+        }
+
+        .compare-diff-view .diff-match {
+            color: #4a7c2a;
+            background: rgba(104, 176, 48, 0.08);
+            border-radius: 2px;
+        }
+
+        .compare-diff-view .diff-mismatch {
+            color: #b91c1c;
+            background: rgba(239, 68, 68, 0.10);
+            border-radius: 2px;
+            text-decoration: underline wavy #b91c1c;
+        }
+
+        .format-toggle {
+            display: inline-flex;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 9999px;
+            border: 1.5px solid #ede9f0;
+            overflow: hidden;
+            padding: 0.1rem;
+        }
+
+        .format-toggle button {
+            padding: 0.2rem 0.9rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            border: none;
+            background: transparent;
+            color: #52506e;
+            cursor: pointer;
+            border-radius: 9999px;
+            transition: all 0.2s;
+        }
+
+        .format-toggle button.active {
+            background: #7c3aed;
+            color: white;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2);
+        }
+
+        .format-toggle button:hover:not(.active) {
+            color: #7c3aed;
+        }
+
+        .history-action-btn {
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1.5px solid #ede9f0;
+            background: rgba(255, 255, 255, 0.8);
+            color: #52506e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .history-action-btn:hover {
+            border-color: #7c3aed;
+            color: #7c3aed;
+            background: #faf9fe;
+        }
+
+        .history-action-btn.primary {
+            background: #7c3aed;
+            color: white;
+            border-color: #7c3aed;
+        }
+
+        .history-action-btn.primary:hover {
+            background: #5b21b6;
+            border-color: #5b21b6;
+        }
+
+        .history-action-btn .file-input-hidden {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        @media (max-width: 640px) {
+            .hash-tab-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.75rem;
+            }
+
+            .hash-alg-btn {
+                padding: 0.3rem 0.75rem;
+                font-size: 0.7rem;
+            }
+
+            .hash-result-box {
+                font-size: 0.7rem;
+                padding: 0.5rem 0.75rem;
+            }
+
+            .hash-gen-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hash-copy-btn,
+            .hash-download-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .verify-drop-zone {
+                padding: 1.5rem 1rem;
+            }
+
+            .batch-drop-zone {
+                padding: 1.5rem 1rem;
+            }
+
+            .history-item .h-preview {
+                max-width: 80px;
+            }
+
+            .batch-table .hash-cell {
+                font-size: 0.6rem;
+            }
+
+            .batch-table .file-cell {
+                max-width: 80px;
+            }
+
+            .compare-box {
+                font-size: 0.65rem;
+                padding: 0.5rem 0.75rem;
+                min-height: 3rem;
+            }
+
+            .compare-diff-view {
+                font-size: 0.6rem;
+                max-height: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="font-source-sans-pro bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+
+    <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div class="absolute inset-0 bg-grid-subtle"></div>
+        <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/5 rounded-full blur-[160px]"></div>
+        <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/3 rounded-full blur-[180px]"></div>
+        <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/4 rounded-full blur-[140px]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light"></div>
+    </div>
+
+    <header
+        class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-[72px]">
+                <a href="https://ricalnet.my.id" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+                    data-aos-duration="600">
+                    <img src="../img/logo.png" alt="RICALNET Logo"
+                        class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
+                    <div class="leading-tight hidden sm:block">
+                        <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+                        <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust
+                            · Control · Access · Libre</span>
+                    </div>
+                </a>
+                <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down"
+                    data-aos-duration="600">
+                    <a href="https://ricalnet.my.id/index#hero" class="nav-link">Home</a>
+                    <div class="relative group">
+                        <a href="../index#pain-points" class="nav-link flex items-center gap-1">
+                            Why Self‑Host
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/index#pain-points" class="dropdown-item">The Lock‑in Trap</a>
+                            <a href="https://ricalnet.my.id/index#how-it-works" class="dropdown-item">The Approach</a>
+                            <a href="https://ricalnet.my.id/index#features" class="dropdown-item">Sovereign Stack</a>
+                            <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal &amp;
+                                Advocacy</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/resources#hero" class="nav-link flex items-center gap-1">
+                            Resources
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                            <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal
+                                Resources</a>
+                            <a href="https://ricalnet.my.id/resources#in-house-tools" class="dropdown-item">In‑House
+                                Tools</a>
+                            <a href="https://ricalnet.my.id/resources" class="dropdown-item">All Resources</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/resources#hero"
+                            class="nav-link nav-link-active flex items-center gap-1">
+                            Tools
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="dropdown-item">Metadata
+                                Cleaner</a>
+                            <a href="https://ricalnet.my.id/tools/quantum-hasher" class="dropdown-item">Quantum Hasher</a>
+                            <a href="https://ricalnet.my.id/tools/ip-intelligence" class="dropdown-item">IP Intelligence</a>
+                            <a href="https://ricalnet.my.id/tools/password-generator" class="dropdown-item">Password
+                                Generator</a>
+                            <a href="https://ricalnet.my.id/tools/qr-builder" class="dropdown-item">QR Builder</a>
+                            <a href="https://ricalnet.my.id/tools/whiteboard" class="dropdown-item">Whiteboard</a>
+                            <a href="https://ricalnet.my.id/tools/chantik" class="dropdown-item">Chantik</a>
+                            <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/about#hero" class="nav-link flex items-center gap-1">
+                            About
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/about#our-mission" class="dropdown-item">Mission</a>
+                            <a href="https://ricalnet.my.id/index#comparison" class="dropdown-item">Comparison</a>
+                            <a href="https://ricalnet.my.id/index#faq" class="dropdown-item">FAQ</a>
+                            <a href="https://ricalnet.my.id/index#cta" class="dropdown-item">Contact</a>
+                            <a href="https://ricalnet.my.id/about#cta-support" class="dropdown-item">Support</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
+                    <a href="https://ricalnet.my.id/index#hidden-services" class="hidden lg:inline-flex btn-sso">
+                        <i class="fas fa-key"></i> Login with SSO
+                    </a>
+                    <button id="mobile-menu-toggle"
+                        class="lg:hidden w-9 h-9 rounded-full hover:bg-surface-muted flex items-center justify-center transition-colors"
+                        aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars text-text-secondary text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <img src="https://ricalnet.my.id/img/logo.png" alt="RICALNET" />
+                <span>RICALNET</span>
+            </div>
+            <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-scroll">
+            <a href="https://ricalnet.my.id/index#hero" class="nav-item" data-close-mobile>
+                <i class="fas fa-home"></i> Home
+            </a>
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-advocacy">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Why Self‑Host
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/index#pain-points" class="sub-link" data-close-mobile>
+                        <i class="fas fa-exclamation-triangle"></i> The Lock‑in Trap
+                    </a>
+                    <a href="https://ricalnet.my.id/index#how-it-works" class="sub-link" data-close-mobile>
+                        <i class="fas fa-route"></i> The Approach
+                    </a>
+                    <a href="https://ricalnet.my.id/index#features" class="sub-link" data-close-mobile>
+                        <i class="fas fa-star"></i> Sovereign Stack
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal &amp; Advocacy
+                    </a>
+                </div>
+            </div>
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-resources">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-lock"></i> Privacy Tools
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal Resources
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#in-house-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-cubes"></i> In‑House Tools
+                    </a>
+                    <a href="https://ricalnet.my.id/resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-folder-open"></i> All Resources
+                    </a>
+                </div>
+            </div>
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-tools">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> Metadata Cleaner
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/quantum-hasher" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> Quantum Hasher
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/ip-intelligence" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> IP Intelligence
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/password-generator" class="sub-link" data-close-mobile>
+                        <i class="fas fa-key"></i> Password Generator
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/qr-builder" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> QR Builder
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/whiteboard" class="sub-link" data-close-mobile>
+                        <i class="fas fa-pen-fancy"></i> Whiteboard
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/chantik" class="sub-link" data-close-mobile>
+                        <i class="fas fa-floppy-disk"></i> Chantik
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-user-secret"></i> Privacy Tools
+                    </a>
+                </div>
+            </div>
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-about">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/about#our-mission" class="sub-link" data-close-mobile>
+                        <i class="fas fa-bullseye"></i> Mission
+                    </a>
+                    <a href="https://ricalnet.my.id/index#comparison" class="sub-link" data-close-mobile>
+                        <i class="fas fa-arrows-left-right"></i> Comparison
+                    </a>
+                    <a href="https://ricalnet.my.id/index#faq" class="sub-link" data-close-mobile>
+                        <i class="fas fa-question-circle"></i> FAQ
+                    </a>
+                    <a href="https://ricalnet.my.id/index#cta" class="sub-link" data-close-mobile>
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                    <a href="https://ricalnet.my.id/about#cta-support" class="sub-link" data-close-mobile>
+                        <i class="fas fa-hand-holding-heart"></i> Support
+                    </a>
+                </div>
+            </div>
+            <a href="https://ricalnet.my.id/index#hidden-services"
+                class="mt-3 block w-full text-center btn-sso justify-center" data-close-mobile>
+                <i class="fas fa-key"></i> Login with SSO
+            </a>
+            <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+                <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+                    <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> RICALNET — Robust · Control · Access ·
+                    Libre
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <section class="relative overflow-hidden pt-[72px] pb-6 md:pt-24 md:pb-8 bg-surface-light">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto" data-aos="fade-up" data-aos-duration="700">
+                <div class="flex flex-wrap items-center justify-center gap-2 mb-4">
+                    <span class="badge-pill"><i class="fas fa-fingerprint"></i> Quantum Hasher</span>
+                    <span class="badge-pill"
+                        style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);">
+                        <i class="fas fa-shield"></i> SHA · MD5 · HMAC
+                    </span>
+                    <span class="badge-pill"
+                        style="background:rgba(104,176,48,0.08);color:#4a7c2a;border-color:rgba(104,176,48,0.12);">
+                        <i class="fas fa-check-double"></i> Verify
+                    </span>
+                    <span class="badge-pill"
+                        style="background:rgba(245,158,11,0.08);color:#b45309;border-color:rgba(245,158,11,0.12);">
+                        <i class="fas fa-layer-group"></i> Batch
+                    </span>
+                    <span class="badge-pill"
+                        style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);">
+                        <i class="fas fa-arrow-right-arrow-left"></i> Compare
+                    </span>
+                </div>
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.08] tracking-tight">
+                    <span class="text-text-primary">Quantum </span>
+                    <span class="text-tor-violet">Hasher</span>
+                </h1>
+                <p class="text-text-secondary text-base md:text-lg mt-3 max-w-2xl mx-auto leading-relaxed">
+                    Hash any text with SHA‑1, SHA‑256, SHA‑384, SHA‑512, MD5, and HMAC with secret key.
+                    Verify file integrity, batch‑hash multiple files, compare two hashes, and backup your history — all
+                    locally in your browser.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-12 md:pb-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-6" data-aos="fade-up" data-aos-delay="100">
+                <button class="hash-tab-btn active" data-tab="hash"><i class="fas fa-hashtag mr-2"></i> Hash</button>
+                <button class="hash-tab-btn" data-tab="hmac"><i class="fas fa-key mr-2"></i> HMAC</button>
+                <button class="hash-tab-btn" data-tab="verify"><i class="fas fa-check-double mr-2"></i> Verify</button>
+                <button class="hash-tab-btn" data-tab="batch"><i class="fas fa-layer-group mr-2"></i> Batch</button>
+                <button class="hash-tab-btn" data-tab="compare"><i class="fas fa-arrow-right-arrow-left mr-2"></i>
+                    Compare</button>
+                <button class="hash-tab-btn" data-tab="history"><i class="fas fa-clock-rotate-left mr-2"></i>
+                    History</button>
+            </div>
+
+            <div id="tab-hash" class="hash-tab-panel active" data-aos="fade-up" data-aos-delay="150">
+                <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <div class="hash-section-title"><i class="fas fa-pen mr-2"></i>Input Text</div>
+                            <textarea id="hash-input" class="hash-textarea"
+                                placeholder="Enter text to hash…">The quick brown fox jumps over the lazy dog</textarea>
+                            <div class="mt-4 flex flex-wrap items-center gap-2">
+                                <span class="text-sm font-medium text-text-secondary mr-1">Algorithm:</span>
+                                <button class="hash-alg-btn active" data-alg="sha256">SHA-256</button>
+                                <button class="hash-alg-btn" data-alg="sha1">SHA-1</button>
+                                <button class="hash-alg-btn" data-alg="sha384">SHA-384</button>
+                                <button class="hash-alg-btn" data-alg="sha512">SHA-512</button>
+                                <button class="hash-alg-btn" data-alg="md5">MD5</button>
+                            </div>
+                            <div class="mt-6">
+                                <button id="hash-btn" class="hash-gen-btn w-full justify-center"><i
+                                        class="fas fa-fingerprint"></i> Generate Hash</button>
+                            </div>
+                            <div class="mt-3 text-xs text-text-muted text-center"><i
+                                    class="fas fa-shield-alt text-tor-violet mr-1.5"></i> All hashing is done locally in
+                                your browser. Nothing is sent to any server.</div>
+                        </div>
+                        <div>
+                            <div class="hash-section-title flex items-center justify-between">
+                                <span><i class="fas fa-file-lines mr-2"></i>Hash Result</span>
+                                <div class="format-toggle" id="hash-format-toggle">
+                                    <button class="active" data-format="lower">lower</button>
+                                    <button data-format="upper">UPPER</button>
+                                </div>
+                            </div>
+                            <div class="relative">
+                                <textarea id="hash-result" class="hash-result-box w-full resize-none" readonly
+                                    placeholder="Hash will appear here…" rows="4"></textarea>
+                                <div class="absolute top-2 right-2 flex gap-1.5">
+                                    <button id="hash-copy-btn" class="hash-copy-btn text-sm px-2.5 py-1"><i
+                                            class="fas fa-copy"></i> Copy</button>
+                                    <button id="hash-download-btn" class="hash-download-btn text-sm px-2.5 py-1"><i
+                                            class="fas fa-download"></i> Download</button>
+                                </div>
+                            </div>
+                            <div class="mt-3 flex flex-wrap items-center justify-between gap-2 hash-stats">
+                                <span><strong id="hash-len">0</strong> characters <span class="mx-1.5">·</span> <strong
+                                        id="hash-alg-label">SHA-256</strong></span>
+                                <span id="hash-status" class="text-tor-violet">Ready</span>
+                            </div>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="text-xs text-text-muted mr-1 self-center">Test:</span>
+                                <button
+                                    class="sample-hash-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                    data-text="The quick brown fox jumps over the lazy dog">Fox</button>
+                                <button
+                                    class="sample-hash-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                    data-text="Hello, world!">Hello</button>
+                                <button
+                                    class="sample-hash-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                    data-text="Ricalnet">Ricalnet</button>
+                                <button
+                                    class="sample-hash-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                    data-text="1234567890">Numbers</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-hmac" class="hash-tab-panel" data-aos="fade-up" data-aos-delay="150">
+                <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <div class="hash-section-title"><i class="fas fa-pen mr-2"></i>Message</div>
+                            <textarea id="hmac-input" class="hash-textarea"
+                                placeholder="Enter message to hash…">The quick brown fox jumps over the lazy dog</textarea>
+                            <div class="mt-4">
+                                <label class="hash-section-title block"><i class="fas fa-key mr-2"></i>Secret
+                                    Key</label>
+                                <input type="text" id="hmac-key" class="hash-key-input"
+                                    placeholder="Enter secret key for HMAC…" value="my-secret-key" />
+                            </div>
+                            <div class="mt-4 flex flex-wrap items-center gap-2">
+                                <span class="text-sm font-medium text-text-secondary mr-1">Algorithm:</span>
+                                <button class="hash-alg-btn active" data-hmac="sha256">SHA-256</button>
+                                <button class="hash-alg-btn" data-hmac="sha1">SHA-1</button>
+                                <button class="hash-alg-btn" data-hmac="sha384">SHA-384</button>
+                                <button class="hash-alg-btn" data-hmac="sha512">SHA-512</button>
+                                <button class="hash-alg-btn" data-hmac="md5">MD5</button>
+                            </div>
+                            <div class="mt-6">
+                                <button id="hmac-btn" class="hash-gen-btn w-full justify-center"><i
+                                        class="fas fa-fingerprint"></i> Generate HMAC</button>
+                            </div>
+                            <div class="mt-3 text-xs text-text-muted text-center"><i
+                                    class="fas fa-shield-alt text-tor-violet mr-1.5"></i> HMAC is generated locally.
+                                Your secret key never leaves your browser.</div>
+                        </div>
+                        <div>
+                            <div class="hash-section-title flex items-center justify-between">
+                                <span><i class="fas fa-file-lines mr-2"></i>HMAC Result</span>
+                                <div class="format-toggle" id="hmac-format-toggle">
+                                    <button class="active" data-format="lower">lower</button>
+                                    <button data-format="upper">UPPER</button>
+                                </div>
+                            </div>
+                            <div class="relative">
+                                <textarea id="hmac-result" class="hash-result-box w-full resize-none" readonly
+                                    placeholder="HMAC will appear here…" rows="4"></textarea>
+                                <div class="absolute top-2 right-2 flex gap-1.5">
+                                    <button id="hmac-copy-btn" class="hash-copy-btn text-sm px-2.5 py-1"><i
+                                            class="fas fa-copy"></i> Copy</button>
+                                    <button id="hmac-download-btn" class="hash-download-btn text-sm px-2.5 py-1"><i
+                                            class="fas fa-download"></i> Download</button>
+                                </div>
+                            </div>
+                            <div class="mt-3 flex flex-wrap items-center justify-between gap-2 hash-stats">
+                                <span><strong id="hmac-len">0</strong> characters <span class="mx-1.5">·</span> <strong
+                                        id="hmac-alg-label">SHA-256</strong></span>
+                                <span id="hmac-status" class="text-tor-violet">Ready</span>
+                            </div>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="text-xs text-text-muted mr-1 self-center">Test:</span>
+                                <button
+                                    class="sample-hmac-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                    data-text="The quick brown fox jumps over the lazy dog">Fox</button>
+                                <button
+                                    class="sample-hmac-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                    data-text="Hello, world!">Hello</button>
+                                <button
+                                    class="sample-hmac-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                                    data-text="Ricalnet">Ricalnet</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-verify" class="hash-tab-panel" data-aos="fade-up" data-aos-delay="150">
+                <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <div class="hash-section-title flex items-center justify-between">
+                                <span><i class="fas fa-upload mr-2"></i>Source</span>
+                                <div class="format-toggle" id="verify-format-toggle">
+                                    <button class="active" data-format="lower">lower</button>
+                                    <button data-format="upper">UPPER</button>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <button id="verify-mode-file" class="hash-alg-btn active" data-mode="file"><i
+                                        class="fas fa-file"></i> File</button>
+                                <button id="verify-mode-text" class="hash-alg-btn" data-mode="text"><i
+                                        class="fas fa-font"></i> Text</button>
+                            </div>
+                            <div id="verify-file-zone" class="verify-drop-zone relative">
+                                <input type="file" id="verify-file-input" class="verify-file-input" />
+                                <span class="icon"><i class="fas fa-cloud-upload-alt"></i></span>
+                                <div class="text">Drop a file here or click to browse</div>
+                                <div class="sub">Any file type supported</div>
+                            </div>
+                            <div id="verify-file-preview" class="verify-preview hidden">
+                                <span class="file-name" id="verify-file-name">file.txt</span>
+                                <span class="file-size" id="verify-file-size">0 bytes</span>
+                                <button id="verify-file-clear"
+                                    class="text-text-muted hover:text-red-500 transition-colors text-sm"><i
+                                        class="fas fa-times"></i></button>
+                            </div>
+                            <div id="verify-text-area" class="hidden mt-2">
+                                <textarea id="verify-text-input" class="hash-textarea" rows="3"
+                                    placeholder="Enter text to verify…">The quick brown fox jumps over the lazy dog</textarea>
+                            </div>
+                            <div class="mt-4 flex flex-wrap items-center gap-2">
+                                <span class="text-sm font-medium text-text-secondary mr-1">Algorithm:</span>
+                                <button class="hash-alg-btn active" data-veralg="sha256">SHA-256</button>
+                                <button class="hash-alg-btn" data-veralg="sha1">SHA-1</button>
+                                <button class="hash-alg-btn" data-veralg="sha384">SHA-384</button>
+                                <button class="hash-alg-btn" data-veralg="sha512">SHA-512</button>
+                                <button class="hash-alg-btn" data-veralg="md5">MD5</button>
+                            </div>
+                            <div class="mt-4">
+                                <label class="hash-section-title block"><i class="fas fa-bullseye mr-2"></i>Expected
+                                    Hash</label>
+                                <input type="text" id="verify-expected" class="hash-key-input"
+                                    placeholder="Paste the expected hash to compare…" />
+                            </div>
+                            <div class="mt-6 flex flex-wrap gap-3">
+                                <button id="verify-btn" class="hash-gen-btn"><i class="fas fa-check-double"></i>
+                                    Verify</button>
+                                <button id="verify-calc-btn" class="hash-gen-btn"
+                                    style="background:#6b7280; box-shadow:none;"><i class="fas fa-calculator"></i>
+                                    Compute Hash</button>
+                            </div>
+                            <div class="mt-3 text-xs text-text-muted text-center"><i
+                                    class="fas fa-shield-alt text-tor-violet mr-1.5"></i> File content is hashed
+                                locally. Nothing is uploaded to any server.</div>
+                        </div>
+                        <div>
+                            <div class="hash-section-title"><i class="fas fa-file-lines mr-2"></i>Verification Result
+                            </div>
+                            <div id="verify-status" class="verify-status idle mb-3"><i class="fas fa-circle"></i> Ready
+                            </div>
+                            <div class="mb-3"><span class="text-xs font-medium text-text-secondary">Computed
+                                    Hash:</span>
+                                <div id="verify-computed" class="verify-compare-box mt-1">—</div>
+                            </div>
+                            <div class="mb-3"><span class="text-xs font-medium text-text-secondary">Expected
+                                    Hash:</span>
+                                <div id="verify-expected-display" class="verify-compare-box mt-1">—</div>
+                            </div>
+                            <div id="verify-detail" class="hidden mt-2 text-sm">
+                                <div id="verify-match-detail" class="hidden text-tor-accent"><i
+                                        class="fas fa-check-circle mr-1.5"></i> <span class="font-medium">MATCH</span> —
+                                    The computed hash matches the expected hash. File integrity is verified.</div>
+                                <div id="verify-mismatch-detail" class="hidden text-red-500"><i
+                                        class="fas fa-times-circle mr-1.5"></i> <span
+                                        class="font-medium">MISMATCH</span> — The computed hash does NOT match the
+                                    expected hash. File may be corrupted or tampered.</div>
+                            </div>
+                            <div class="mt-4 p-3 bg-surface-muted/40 rounded-xl text-xs text-text-muted">
+                                <i class="fas fa-info-circle text-tor-violet mr-1.5"></i> <strong>Tip:</strong> Use this
+                                tool to verify file integrity by comparing the computed hash against a known checksum
+                                (e.g., from a software download page).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-batch" class="hash-tab-panel" data-aos="fade-up" data-aos-delay="150">
+                <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+                    <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                        <div class="hash-section-title mb-0"><i class="fas fa-layer-group mr-2"></i>Batch Hash</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-text-muted">Format:</span>
+                            <div class="format-toggle" id="batch-format-toggle">
+                                <button class="active" data-format="lower">lower</button>
+                                <button data-format="upper">UPPER</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="batch-drop-zone relative" id="batch-drop-zone">
+                        <input type="file" id="batch-file-input" multiple class="file-input-hidden" />
+                        <span class="icon"><i class="fas fa-cloud-upload-alt"></i></span>
+                        <div class="text">Drop files here or click to select</div>
+                        <div class="sub">Any file type supported</div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-4 mt-4">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="text-sm font-medium text-text-secondary">Algorithm:</span>
+                            <button class="hash-alg-btn active" data-batch-alg="sha256">SHA-256</button>
+                            <button class="hash-alg-btn" data-batch-alg="sha1">SHA-1</button>
+                            <button class="hash-alg-btn" data-batch-alg="sha384">SHA-384</button>
+                            <button class="hash-alg-btn" data-batch-alg="sha512">SHA-512</button>
+                            <button class="hash-alg-btn" data-batch-alg="md5">MD5</button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-4 mt-3">
+                        <button id="batch-hash-btn" class="hash-gen-btn" style="background:#7c3aed;"><i
+                                class="fas fa-play"></i> Hash All</button>
+                        <button id="batch-clear-btn" class="hash-copy-btn"><i class="fas fa-trash-can"></i>
+                            Clear</button>
+                        <button id="batch-download-btn" class="hash-download-btn" disabled><i
+                                class="fas fa-download"></i> Download All</button>
+                        <span id="batch-count" class="text-xs text-text-muted ml-2">0 files</span>
+                    </div>
+
+                    <div class="batch-progress" id="batch-progress">
+                        <div class="bar" id="batch-progress-bar"></div>
+                    </div>
+                    <div id="batch-status" class="text-xs text-text-muted mt-2">Drop files or click to select.</div>
+                    <div class="batch-table-wrap mt-4" id="batch-table-wrap" style="display:none;">
+                        <table class="batch-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>File</th>
+                                    <th>Size</th>
+                                    <th>Hash</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="batch-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-compare" class="hash-tab-panel" data-aos="fade-up" data-aos-delay="150">
+                <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+                    <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+                        <div class="hash-section-title mb-0"><i class="fas fa-arrow-right-arrow-left mr-2"></i>Compare
+                            Two Hashes</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-text-muted">Format:</span>
+                            <div class="format-toggle" id="compare-format-toggle">
+                                <button class="active" data-format="lower">lower</button>
+                                <button data-format="upper">UPPER</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <label class="text-sm font-medium text-text-secondary">Hash #1</label>
+                                <span id="compare-alg-1" class="compare-alg-detect">—</span>
+                            </div>
+                            <textarea id="compare-hash-1" class="compare-box" rows="3"
+                                placeholder="Paste first hash…">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</textarea>
+                            <div class="mt-1 flex justify-between text-xs text-text-muted">
+                                <span id="compare-len-1">0 characters</span>
+                                <button id="compare-clear-1" class="hover:text-tor-violet transition-colors"><i
+                                        class="fas fa-times"></i> clear</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <label class="text-sm font-medium text-text-secondary">Hash #2</label>
+                                <span id="compare-alg-2" class="compare-alg-detect">—</span>
+                            </div>
+                            <textarea id="compare-hash-2" class="compare-box" rows="3"
+                                placeholder="Paste second hash…">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</textarea>
+                            <div class="mt-1 flex justify-between text-xs text-text-muted">
+                                <span id="compare-len-2">0 characters</span>
+                                <button id="compare-clear-2" class="hover:text-tor-violet transition-colors"><i
+                                        class="fas fa-times"></i> clear</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex flex-wrap items-center gap-4">
+                        <button id="compare-btn" class="hash-gen-btn"><i class="fas fa-arrow-right-arrow-left"></i>
+                            Compare</button>
+                        <button id="compare-swap-btn" class="hash-copy-btn"><i class="fas fa-arrow-up-down"></i>
+                            Swap</button>
+                        <button id="compare-clear-btn" class="hash-copy-btn"><i class="fas fa-eraser"></i> Clear
+                            Both</button>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-surface-muted/30 rounded-xl border border-tor-violet/5"
+                        id="compare-result-container">
+                        <div class="flex items-center gap-3 flex-wrap">
+                            <span id="compare-result-badge" class="compare-result-badge idle">
+                                <i class="fas fa-circle"></i> Ready
+                            </span>
+                            <span id="compare-detail" class="text-sm text-text-muted">Paste two hashes and click
+                                Compare.</span>
+                        </div>
+
+                        <div id="compare-diff-container" class="hidden mt-3">
+                            <div class="text-xs font-medium text-text-secondary mb-1">Character-by-character comparison:
+                            </div>
+                            <div id="compare-diff-view" class="compare-diff-view"></div>
+                        </div>
+
+                        <div id="compare-stats" class="hidden mt-3 text-xs text-text-muted">
+                            <span id="compare-match-count">0</span> matching characters,
+                            <span id="compare-mismatch-count">0</span> mismatching characters.
+                            <span id="compare-length-diff" class="hidden text-amber-600">⚠️ Lengths differ!</span>
+                        </div>
+
+                        <div class="mt-3 text-xs text-text-muted border-t border-tor-violet/5 pt-3">
+                            <i class="fas fa-lightbulb text-tor-violet mr-1.5"></i>
+                            <strong>Tip:</strong> Hash algorithms are detected automatically from length: MD5 (32),
+                            SHA-1 (40), SHA-256 (64), SHA-384 (96), SHA-512 (128).
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-history" class="hash-tab-panel" data-aos="fade-up" data-aos-delay="150">
+                <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+                    <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+                        <div class="hash-section-title mb-0"><i class="fas fa-clock-rotate-left mr-2"></i>Hash History
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button id="history-export-btn" class="history-action-btn primary">
+                                <i class="fas fa-file-export"></i> Export
+                            </button>
+                            <label class="history-action-btn relative cursor-pointer">
+                                <i class="fas fa-file-import"></i> Import
+                                <input type="file" id="history-import-input" accept=".json" class="file-input-hidden" />
+                            </label>
+                            <button id="history-clear-btn"
+                                class="history-action-btn text-red-500 border-red-200 hover:border-red-400 hover:text-red-600">
+                                <i class="fas fa-trash-can"></i> Clear All
+                            </button>
+                        </div>
+                    </div>
+                    <div id="history-list" class="history-panel space-y-2">
+                        <div class="text-text-muted text-sm text-center py-8">No history yet. Generate a hash to get
+                            started.</div>
+                    </div>
+                    <div class="mt-3 text-xs text-text-muted text-center">
+                        <i class="fas fa-database mr-1.5"></i> History is stored locally in your browser.
+                        <span id="history-count">0</span> entries.
+                        <span class="mx-2">|</span>
+                        <i class="fas fa-arrow-up-from-bracket mr-1"></i> Export as JSON backup.
+                        <i class="fas fa-arrow-down-to-bracket ml-2 mr-1"></i> Import from backup.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 grid grid-cols-1 sm:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="hash-card rounded-2xl p-4 text-center">
+                    <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-shield text-tor-violet"></i>
+                    </div>
+                    <h4 class="font-semibold text-sm text-text-primary">SHA Family</h4>
+                    <p class="text-text-muted text-xs mt-1">SHA-1, SHA-256, SHA-384, SHA-512 — secure cryptographic hash
+                        functions.</p>
+                </div>
+                <div class="hash-card rounded-2xl p-4 text-center">
+                    <div class="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center mx-auto mb-2"><i
+                            class="fas fa-fingerprint text-amber-600"></i></div>
+                    <h4 class="font-semibold text-sm text-text-primary">MD5 &amp; HMAC</h4>
+                    <p class="text-text-muted text-xs mt-1">MD5 for checksums, HMAC for message authentication with a
+                        secret key.</p>
+                </div>
+                <div class="hash-card rounded-2xl p-4 text-center">
+                    <div class="w-10 h-10 rounded-full bg-cyan-50 flex items-center justify-center mx-auto mb-2"><i
+                            class="fas fa-arrow-right-arrow-left text-cyan-600"></i></div>
+                    <h4 class="font-semibold text-sm text-text-primary">Compare &amp; Verify</h4>
+                    <p class="text-text-muted text-xs mt-1">Compare two hashes side-by-side with visual diff. Detect
+                        algorithm automatically.</p>
+                </div>
+                <div class="hash-card rounded-2xl p-4 text-center">
+                    <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-2"><i
+                            class="fas fa-cloud-upload-alt text-emerald-600"></i></div>
+                    <h4 class="font-semibold text-sm text-text-primary">Export / Import</h4>
+                    <p class="text-text-muted text-xs mt-1">Backup your hash history to JSON or restore from backup.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="relative overflow-hidden border-t border-tor-violet/10">
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
+        </div>
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
+        </div>
+    
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+    
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+    
+                <div class="col-span-2 md:col-span-3 lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
+                            <img src="../img/logo.png" alt="RICALNET open-source self-hosted infrastructure logo"
+                                class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
+                        </div>
+                        <div>
+                            <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+                            <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust
+                                · Control
+                                · Access · Libre</span>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
+                        RICALNET — Robust Infrastructure for Control, Access, &amp; Libre NETwork.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 mt-5">
+                        <a href="https://github.com/ricalnet" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fa-brands fa-github text-base"></i>
+                        </a>
+                        <a href="mailto:ricalnet@duck.com"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-envelope text-base"></i>
+                        </a>
+                        <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-heartbeat text-base"></i>
+                        </a>
+                        <span
+                            class="pgp-fingerprint text-[0.6rem] px-3 py-1.5 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                            onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                            <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                        </span>
+                    </div>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Why Self‑Host</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/about#our-mission" class="footer-link">Mission</a></li>
+                        <li><a href="https://ricalnet.my.id/resources" class="footer-link">Resources</a></li>
+                        <li><a href="https://ricalnet.my.id/gallery" class="footer-link">Gallery</a></li>
+                        <li><a href="https://docs.ricalnet.my.id" class="footer-link">Blog</a></li>
+                        <li><a href="https://ricalnet.my.id/#cta" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Stack</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/#features" class="footer-link">Sovereign Infrastructure</a></li>
+                        <li><a href="https://ricalnet.my.id/#private-digital-services" class="footer-link">What You Need</a>
+                        </li>
+                        <li><a href="https://ricalnet.my.id/#hidden-services" class="footer-link">Hidden Services</a></li>
+                        <li><a href="https://ricalnet.my.id/tools/metadata-cleaner" class="footer-link">Metadata Cleaner</a>
+                        </li>
+                        <li><a href="https://ricalnet.my.id/tools/quantum-hasher" class="footer-link">Quantum Hasher</a>
+                        </li>
+                        <li><a href="https://link.ricalnet.my.id" class="footer-link">URL Shortener</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Docs &amp; Resources</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
+                                target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="https://github.com/ricalnet/digital-independence" class="footer-link"
+                                target="_blank">Repository <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="https://ricalnet.my.id/about#cta-support" class="footer-link">Support</a></li>
+                        <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Legal</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/resources#legal-resources" class="footer-link">Legal
+                                Resources</a></li>
+                        <li><a href="https://ricalnet.my.id/terms-of-service" class="footer-link">Terms of Service</a></li>
+                        <li><a href="https://ricalnet.my.id/privacy" class="footer-link">Privacy Policy</a></li>
+                    </ul>
+                </div>
+    
+            </div>
+    
+            <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+                <p class="text-xs tracking-wide">
+                    COPYRIGHT (CC BY) — <a href="https://ricalnet.my.id/"
+                        class="hover:text-tor-violet transition-colors">Open
+                        Source Self-Hosted Infrastructure</a>
+                </p>
+                <div class="flex flex-wrap items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
+                    <a href="https://ricalnet.my.id/"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#OpenSource</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/#pain-points"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#NoLockIn</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/#features"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#ZeroTrust</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/"
+                        class="text-tor-violet font-semibold hover:text-tor-violet-dark transition-colors">#ControlAccessLibre</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span
+                        class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                        onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                        <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                    </span>
+                </div>
+            </div>
+    
+        </div>
+    </footer>
+
+    <script src="../assets/js/aos.js"></script>
+    <script src="../assets/js/components.js"></script>
+
+    <script>
+        const PGP_FINGERPRINT = '45688382B815821F033115B8D92D6A10D29C8380';
+
+        function copyPGP() {
+            navigator.clipboard.writeText(PGP_FINGERPRINT).then(() => showToast('PGP fingerprint copied!'))
+                .catch(() => {
+                    const ta = document.createElement('textarea');
+                    ta.value = PGP_FINGERPRINT;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    showToast('PGP fingerprint copied!');
+                });
+        }
+
+        function showToast(msg) {
+            const t = document.createElement('div');
+            t.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] transition-all duration-300';
+            t.innerHTML = '<i class="fas fa-check-circle text-tor-accent mr-2"></i> ' + msg;
+            document.body.appendChild(t);
+            setTimeout(() => {
+                t.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => t.remove(), 300);
+            }, 2500);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => showToast('Copied!'))
+                .catch(() => {
+                    const ta = document.createElement('textarea');
+                    ta.value = text;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    showToast('Copied!');
+                });
+        }
+
+        function downloadHash(hash, filename) {
+            if (!hash) { showToast('No hash to download.'); return; }
+            const blob = new Blob([hash], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 5000);
+        }
+
+        let hashFormat = 'lower';
+
+        function applyFormat(hash) {
+            if (!hash) return hash;
+            return hashFormat === 'upper' ? hash.toUpperCase() : hash.toLowerCase();
+        }
+
+        document.querySelectorAll('.format-toggle').forEach(toggle => {
+            const btns = toggle.querySelectorAll('button');
+            btns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    hashFormat = btn.dataset.format;
+                    refreshAllDisplayedHashes();
+                    if (document.getElementById('tab-compare').classList.contains('active')) {
+                        compareHashes();
+                    }
+                    showToast('Format: ' + (hashFormat === 'upper' ? 'UPPERCASE' : 'lowercase'));
+                });
+            });
+        });
+
+        function refreshAllDisplayedHashes() {
+            if (hashDom._lastRawHash) {
+                hashDom.result.value = applyFormat(hashDom._lastRawHash);
+                hashDom._lastDisplayed = applyFormat(hashDom._lastRawHash);
+            }
+            if (hmacDom._lastRawHash) {
+                hmacDom.result.value = applyFormat(hmacDom._lastRawHash);
+                hmacDom._lastDisplayed = applyFormat(hmacDom._lastRawHash);
+            }
+            if (verifyDom._lastRawComputed) {
+                verifyDom.computed.textContent = applyFormat(verifyDom._lastRawComputed);
+                liveVerify();
+            }
+            renderBatchTable();
+            renderHistory();
+        }
+
+        const HISTORY_KEY = 'quantumHasherHistory';
+        const MAX_HISTORY = 20;
+
+        function getHistory() {
+            try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch { return []; }
+        }
+
+        function saveHistoryEntry(entry) {
+            const history = getHistory();
+            history.unshift({ ...entry, timestamp: Date.now() });
+            if (history.length > MAX_HISTORY) history.pop();
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+            renderHistory();
+        }
+
+        function clearHistory() {
+            if (confirm('Clear all hash history?')) {
+                localStorage.removeItem(HISTORY_KEY);
+                renderHistory();
+                showToast('History cleared.');
+            }
+        }
+
+        function renderHistory() {
+            const container = document.getElementById('history-list');
+            const countEl = document.getElementById('history-count');
+            const history = getHistory();
+            if (countEl) countEl.textContent = history.length;
+            if (!history.length) {
+                container.innerHTML = '<div class="text-text-muted text-sm text-center py-8">No history yet. Generate a hash to get started.</div>';
+                return;
+            }
+            let html = '';
+            history.forEach((item, index) => {
+                const time = new Date(item.timestamp).toLocaleString();
+                const preview = item.text ? (item.text.length > 40 ? item.text.substring(0, 40) + '…' : item.text) : '[file]';
+                const displayHash = applyFormat(item.hash);
+                html += `
+                    <div class="history-item flex flex-wrap items-center gap-2 justify-between" data-index="${index}">
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="h-alg">${item.algorithm || 'SHA-256'}</span>
+                                <span class="h-preview">${preview}</span>
+                            </div>
+                            <div class="h-hash">${displayHash}</div>
+                        </div>
+                        <div class="flex items-center gap-1.5 flex-shrink-0">
+                            <span class="h-time hidden sm:inline">${time}</span>
+                            <button class="history-copy-btn text-text-muted hover:text-tor-violet text-sm p-1" data-hash="${item.hash}" title="Copy hash"><i class="fas fa-copy"></i></button>
+                            <button class="history-load-btn text-text-muted hover:text-tor-violet text-sm p-1" data-hash="${item.hash}" data-text="${item.text || ''}" data-alg="${item.algorithm ? item.algorithm.toLowerCase().replace('hmac-', '') : 'sha256'}" title="Load into Hash tab"><i class="fas fa-arrow-right-to-bracket"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+            container.querySelectorAll('.history-copy-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const raw = btn.dataset.hash;
+                    copyToClipboard(applyFormat(raw));
+                    btn.classList.add('copied');
+                    setTimeout(() => btn.classList.remove('copied'), 2000);
+                });
+            });
+            container.querySelectorAll('.history-load-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const text = btn.dataset.text || '';
+                    const alg = btn.dataset.alg || 'sha256';
+                    switchTab('hash');
+                    hashDom.input.value = text;
+                    hashDom.algBtns.forEach(b => b.classList.toggle('active', b.dataset.alg === alg));
+                    currentHashAlg = alg;
+                    computeHash();
+                    showToast('Loaded into Hash tab');
+                });
+            });
+        }
+
+        function exportHistory() {
+            const history = getHistory();
+            if (history.length === 0) {
+                showToast('No history to export.');
+                return;
+            }
+            const data = {
+                exportedAt: new Date().toISOString(),
+                version: '1.0',
+                count: history.length,
+                entries: history
+            };
+            const json = JSON.stringify(data, null, 2);
+            const blob = new Blob([json], { type: 'application/json;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `quantum_hasher_history_${new Date().toISOString().slice(0, 10)}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 5000);
+            showToast(`Exported ${history.length} entries.`);
+        }
+
+        function importHistory(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    let entries = [];
+                    if (Array.isArray(data)) {
+                        entries = data;
+                    } else if (data.entries && Array.isArray(data.entries)) {
+                        entries = data.entries;
+                    } else {
+                        showToast('Invalid backup file format.');
+                        return;
+                    }
+                    if (entries.length === 0) {
+                        showToast('No entries found in backup.');
+                        return;
+                    }
+                    if (!confirm(`This will replace your current history (${getHistory().length} entries) with ${entries.length} entries from backup. Continue?`)) {
+                        return;
+                    }
+                    localStorage.setItem(HISTORY_KEY, JSON.stringify(entries));
+                    renderHistory();
+                    showToast(`Imported ${entries.length} entries successfully.`);
+                } catch (err) {
+                    showToast('Error reading backup file: ' + err.message);
+                }
+            };
+            reader.onerror = () => showToast('Error reading file.');
+            reader.readAsText(file);
+        }
+
+        AOS.init({
+            once: true,
+            offset: 30,
+            easing: 'ease-out-expo',
+            duration: 900,
+            disable: window.innerWidth < 768 ? true : false,
+        });
+
+        const tabButtons = document.querySelectorAll('.hash-tab-btn');
+        const tabPanels = {
+            hash: document.getElementById('tab-hash'),
+            hmac: document.getElementById('tab-hmac'),
+            verify: document.getElementById('tab-verify'),
+            batch: document.getElementById('tab-batch'),
+            compare: document.getElementById('tab-compare'),
+            history: document.getElementById('tab-history'),
+        };
+
+        function switchTab(tabId) {
+            tabButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tabId));
+            Object.keys(tabPanels).forEach(key => tabPanels[key].classList.toggle('active', key === tabId));
+            if (tabId === 'history') renderHistory();
+            if (tabId === 'hash') computeHash();
+            if (tabId === 'hmac') computeHmac();
+            if (tabId === 'batch') renderBatchTable();
+            if (tabId === 'compare') compareHashes();
+        }
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+        });
+
+        const hashDom = {
+            input: document.getElementById('hash-input'),
+            result: document.getElementById('hash-result'),
+            btn: document.getElementById('hash-btn'),
+            copyBtn: document.getElementById('hash-copy-btn'),
+            downloadBtn: document.getElementById('hash-download-btn'),
+            len: document.getElementById('hash-len'),
+            algLabel: document.getElementById('hash-alg-label'),
+            status: document.getElementById('hash-status'),
+            algBtns: document.querySelectorAll('#tab-hash .hash-alg-btn'),
+            _lastRawHash: null,
+            _lastDisplayed: null,
+        };
+
+        let currentHashAlg = 'sha256';
+
+        const algMap = {
+            'sha1': { label: 'SHA-1', fn: (text) => CryptoJS.SHA1(text).toString(CryptoJS.enc.Hex) },
+            'sha256': { label: 'SHA-256', fn: (text) => CryptoJS.SHA256(text).toString(CryptoJS.enc.Hex) },
+            'sha384': { label: 'SHA-384', fn: (text) => CryptoJS.SHA384(text).toString(CryptoJS.enc.Hex) },
+            'sha512': { label: 'SHA-512', fn: (text) => CryptoJS.SHA512(text).toString(CryptoJS.enc.Hex) },
+            'md5': { label: 'MD5', fn: (text) => CryptoJS.MD5(text).toString(CryptoJS.enc.Hex) },
+        };
+
+        function computeHash() {
+            const text = hashDom.input.value || '';
+            if (!text) {
+                hashDom.result.value = '';
+                hashDom.len.textContent = '0';
+                hashDom.status.textContent = 'Empty input';
+                hashDom.status.className = 'text-text-muted';
+                hashDom._lastRawHash = null;
+                return;
+            }
+            try {
+                const algo = algMap[currentHashAlg];
+                const raw = algo.fn(text);
+                hashDom._lastRawHash = raw;
+                const display = applyFormat(raw);
+                hashDom.result.value = display;
+                hashDom._lastDisplayed = display;
+                hashDom.len.textContent = display.length;
+                hashDom.algLabel.textContent = algo.label;
+                hashDom.status.textContent = '✓ Done';
+                hashDom.status.className = 'text-tor-violet';
+                saveHistoryEntry({ text, hash: raw, algorithm: currentHashAlg.toUpperCase(), type: 'hash' });
+            } catch (err) {
+                hashDom.result.value = 'Error: ' + err.message;
+                hashDom.status.textContent = 'Error';
+                hashDom.status.className = 'text-red-500';
+                hashDom._lastRawHash = null;
+            }
+        }
+
+        hashDom.algBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                hashDom.algBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentHashAlg = btn.dataset.alg;
+                computeHash();
+            });
+        });
+
+        hashDom.btn.addEventListener('click', computeHash);
+        hashDom.input.addEventListener('input', computeHash);
+
+        hashDom.copyBtn.addEventListener('click', () => {
+            const val = hashDom.result.value;
+            if (val) {
+                copyToClipboard(val);
+                hashDom.copyBtn.classList.add('copied');
+                setTimeout(() => hashDom.copyBtn.classList.remove('copied'), 2000);
+            } else showToast('Nothing to copy');
+        });
+
+        hashDom.downloadBtn.addEventListener('click', () => {
+            const val = hashDom._lastRawHash;
+            if (val) {
+                downloadHash(applyFormat(val), `hash_${currentHashAlg}.txt`);
+                hashDom.downloadBtn.classList.add('copied');
+                setTimeout(() => hashDom.downloadBtn.classList.remove('copied'), 2000);
+            } else showToast('No hash to download');
+        });
+
+        document.querySelectorAll('.sample-hash-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                hashDom.input.value = btn.dataset.text;
+                computeHash();
+            });
+        });
+
+        const hmacDom = {
+            input: document.getElementById('hmac-input'),
+            key: document.getElementById('hmac-key'),
+            result: document.getElementById('hmac-result'),
+            btn: document.getElementById('hmac-btn'),
+            copyBtn: document.getElementById('hmac-copy-btn'),
+            downloadBtn: document.getElementById('hmac-download-btn'),
+            len: document.getElementById('hmac-len'),
+            algLabel: document.getElementById('hmac-alg-label'),
+            status: document.getElementById('hmac-status'),
+            algBtns: document.querySelectorAll('#tab-hmac .hash-alg-btn'),
+            _lastRawHash: null,
+            _lastDisplayed: null,
+        };
+
+        let currentHmacAlg = 'sha256';
+
+        const hmacMap = {
+            'sha1': { label: 'SHA-1', fn: (text, key) => CryptoJS.HmacSHA1(text, key).toString(CryptoJS.enc.Hex) },
+            'sha256': { label: 'SHA-256', fn: (text, key) => CryptoJS.HmacSHA256(text, key).toString(CryptoJS.enc.Hex) },
+            'sha384': { label: 'SHA-384', fn: (text, key) => CryptoJS.HmacSHA384(text, key).toString(CryptoJS.enc.Hex) },
+            'sha512': { label: 'SHA-512', fn: (text, key) => CryptoJS.HmacSHA512(text, key).toString(CryptoJS.enc.Hex) },
+            'md5': { label: 'MD5', fn: (text, key) => CryptoJS.HmacMD5(text, key).toString(CryptoJS.enc.Hex) },
+        };
+
+        function computeHmac() {
+            const text = hmacDom.input.value || '';
+            const key = hmacDom.key.value || '';
+            if (!text) {
+                hmacDom.result.value = '';
+                hmacDom.len.textContent = '0';
+                hmacDom.status.textContent = 'Empty input';
+                hmacDom.status.className = 'text-text-muted';
+                hmacDom._lastRawHash = null;
+                return;
+            }
+            if (!key) {
+                hmacDom.result.value = '';
+                hmacDom.len.textContent = '0';
+                hmacDom.status.textContent = 'Missing secret key';
+                hmacDom.status.className = 'text-text-muted';
+                hmacDom._lastRawHash = null;
+                return;
+            }
+            try {
+                const algo = hmacMap[currentHmacAlg];
+                const raw = algo.fn(text, key);
+                hmacDom._lastRawHash = raw;
+                const display = applyFormat(raw);
+                hmacDom.result.value = display;
+                hmacDom._lastDisplayed = display;
+                hmacDom.len.textContent = display.length;
+                hmacDom.algLabel.textContent = algo.label;
+                hmacDom.status.textContent = '✓ Done';
+                hmacDom.status.className = 'text-tor-violet';
+                saveHistoryEntry({ text: text + ' [HMAC key: ' + key + ']', hash: raw, algorithm: 'HMAC-' + currentHmacAlg.toUpperCase(), type: 'hmac' });
+            } catch (err) {
+                hmacDom.result.value = 'Error: ' + err.message;
+                hmacDom.status.textContent = 'Error';
+                hmacDom.status.className = 'text-red-500';
+                hmacDom._lastRawHash = null;
+            }
+        }
+
+        hmacDom.algBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                hmacDom.algBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentHmacAlg = btn.dataset.hmac;
+                computeHmac();
+            });
+        });
+
+        hmacDom.btn.addEventListener('click', computeHmac);
+        hmacDom.input.addEventListener('input', computeHmac);
+        hmacDom.key.addEventListener('input', computeHmac);
+
+        hmacDom.copyBtn.addEventListener('click', () => {
+            const val = hmacDom.result.value;
+            if (val) {
+                copyToClipboard(val);
+                hmacDom.copyBtn.classList.add('copied');
+                setTimeout(() => hmacDom.copyBtn.classList.remove('copied'), 2000);
+            } else showToast('Nothing to copy');
+        });
+
+        hmacDom.downloadBtn.addEventListener('click', () => {
+            const val = hmacDom._lastRawHash;
+            if (val) {
+                downloadHash(applyFormat(val), `hmac_${currentHmacAlg}.txt`);
+                hmacDom.downloadBtn.classList.add('copied');
+                setTimeout(() => hmacDom.downloadBtn.classList.remove('copied'), 2000);
+            } else showToast('No HMAC to download');
+        });
+
+        document.querySelectorAll('.sample-hmac-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                hmacDom.input.value = btn.dataset.text;
+                computeHmac();
+            });
+        });
+
+        const verifyDom = {
+            modeFileBtn: document.getElementById('verify-mode-file'),
+            modeTextBtn: document.getElementById('verify-mode-text'),
+            fileZone: document.getElementById('verify-file-zone'),
+            fileInput: document.getElementById('verify-file-input'),
+            filePreview: document.getElementById('verify-file-preview'),
+            fileName: document.getElementById('verify-file-name'),
+            fileSize: document.getElementById('verify-file-size'),
+            fileClear: document.getElementById('verify-file-clear'),
+            textArea: document.getElementById('verify-text-area'),
+            textInput: document.getElementById('verify-text-input'),
+            expected: document.getElementById('verify-expected'),
+            verifyBtn: document.getElementById('verify-btn'),
+            calcBtn: document.getElementById('verify-calc-btn'),
+            status: document.getElementById('verify-status'),
+            computed: document.getElementById('verify-computed'),
+            expectedDisplay: document.getElementById('verify-expected-display'),
+            detail: document.getElementById('verify-detail'),
+            matchDetail: document.getElementById('verify-match-detail'),
+            mismatchDetail: document.getElementById('verify-mismatch-detail'),
+            algBtns: document.querySelectorAll('#tab-verify .hash-alg-btn'),
+            _lastRawComputed: null,
+            _lastRawExpected: null,
+        };
+
+        let verifyMode = 'file';
+        let currentVerAlg = 'sha256';
+        let currentFileData = null;
+        let currentFileHash = null;
+
+        const verAlgMap = {
+            'sha1': { label: 'SHA-1', fn: (data) => CryptoJS.SHA1(data).toString(CryptoJS.enc.Hex) },
+            'sha256': { label: 'SHA-256', fn: (data) => CryptoJS.SHA256(data).toString(CryptoJS.enc.Hex) },
+            'sha384': { label: 'SHA-384', fn: (data) => CryptoJS.SHA384(data).toString(CryptoJS.enc.Hex) },
+            'sha512': { label: 'SHA-512', fn: (data) => CryptoJS.SHA512(data).toString(CryptoJS.enc.Hex) },
+            'md5': { label: 'MD5', fn: (data) => CryptoJS.MD5(data).toString(CryptoJS.enc.Hex) },
+        };
+
+        verifyDom.modeFileBtn.addEventListener('click', () => {
+            verifyDom.modeFileBtn.classList.add('active');
+            verifyDom.modeTextBtn.classList.remove('active');
+            verifyMode = 'file';
+            verifyDom.fileZone.style.display = 'block';
+            if (currentFileData) verifyDom.filePreview.classList.remove('hidden');
+            verifyDom.textArea.classList.add('hidden');
+            clearVerifyResult();
+            liveVerify();
+        });
+
+        verifyDom.modeTextBtn.addEventListener('click', () => {
+            verifyDom.modeTextBtn.classList.add('active');
+            verifyDom.modeFileBtn.classList.remove('active');
+            verifyMode = 'text';
+            verifyDom.fileZone.style.display = 'none';
+            verifyDom.filePreview.classList.add('hidden');
+            verifyDom.textArea.classList.remove('hidden');
+            clearVerifyResult();
+            liveVerify();
+        });
+
+        verifyDom.fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) handleVerifyFile(e.target.files[0]);
+        });
+
+        verifyDom.fileZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            verifyDom.fileZone.classList.add('dragover');
+        });
+        verifyDom.fileZone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            verifyDom.fileZone.classList.remove('dragover');
+        });
+        verifyDom.fileZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            verifyDom.fileZone.classList.remove('dragover');
+            if (e.dataTransfer.files.length > 0) handleVerifyFile(e.dataTransfer.files[0]);
+        });
+
+        function handleVerifyFile(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const data = e.target.result;
+                currentFileData = data;
+                const algo = verAlgMap[currentVerAlg];
+                const wordArray = CryptoJS.lib.WordArray.create(data);
+                const raw = algo.fn(wordArray);
+                currentFileHash = raw;
+                verifyDom._lastRawComputed = raw;
+                const display = applyFormat(raw);
+                verifyDom.fileName.textContent = file.name;
+                verifyDom.fileSize.textContent = formatFileSize(file.size);
+                verifyDom.filePreview.classList.remove('hidden');
+                verifyDom.fileZone.style.display = 'none';
+                verifyDom.computed.textContent = display;
+                verifyDom.computed.className = 'verify-compare-box mt-1';
+                clearVerifyResult();
+                setVerifyStatus('idle', 'File loaded. Waiting for expected hash...');
+                showToast('File loaded: ' + file.name);
+                liveVerify();
+            };
+            reader.onerror = () => showToast('Error reading file');
+            reader.readAsArrayBuffer(file);
+        }
+
+        verifyDom.fileClear.addEventListener('click', () => {
+            currentFileData = null;
+            currentFileHash = null;
+            verifyDom._lastRawComputed = null;
+            verifyDom.filePreview.classList.add('hidden');
+            verifyDom.fileZone.style.display = 'block';
+            verifyDom.fileInput.value = '';
+            verifyDom.computed.textContent = '—';
+            verifyDom.computed.className = 'verify-compare-box mt-1';
+            clearVerifyResult();
+            setVerifyStatus('idle', 'Ready');
+            liveVerify();
+        });
+
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / 1048576).toFixed(1) + ' MB';
+        }
+
+        verifyDom.textInput.addEventListener('input', () => {
+            if (verifyMode === 'text') {
+                const text = verifyDom.textInput.value;
+                if (text) {
+                    const algo = verAlgMap[currentVerAlg];
+                    const raw = algo.fn(text);
+                    verifyDom._lastRawComputed = raw;
+                    const display = applyFormat(raw);
+                    verifyDom.computed.textContent = display;
+                    verifyDom.computed.className = 'verify-compare-box mt-1';
+                    setVerifyStatus('idle', 'Text loaded. Waiting for expected hash...');
+                } else {
+                    verifyDom._lastRawComputed = null;
+                    verifyDom.computed.textContent = '—';
+                    verifyDom.computed.className = 'verify-compare-box mt-1';
+                    setVerifyStatus('idle', 'Ready');
+                }
+                clearVerifyResult();
+                liveVerify();
+            }
+        });
+
+        verifyDom.algBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                verifyDom.algBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentVerAlg = btn.dataset.veralg;
+                if (verifyMode === 'file' && currentFileData) {
+                    const algo = verAlgMap[currentVerAlg];
+                    const wordArray = CryptoJS.lib.WordArray.create(currentFileData);
+                    const raw = algo.fn(wordArray);
+                    currentFileHash = raw;
+                    verifyDom._lastRawComputed = raw;
+                    verifyDom.computed.textContent = applyFormat(raw);
+                    verifyDom.computed.className = 'verify-compare-box mt-1';
+                } else if (verifyMode === 'text' && verifyDom.textInput.value) {
+                    const algo = verAlgMap[currentVerAlg];
+                    const raw = algo.fn(verifyDom.textInput.value);
+                    verifyDom._lastRawComputed = raw;
+                    verifyDom.computed.textContent = applyFormat(raw);
+                    verifyDom.computed.className = 'verify-compare-box mt-1';
+                }
+                clearVerifyResult();
+                setVerifyStatus('idle', 'Algorithm changed');
+                liveVerify();
+            });
+        });
+
+        verifyDom.calcBtn.addEventListener('click', () => {
+            computeVerifyHash();
+            showToast('Hash computed');
+        });
+
+        function computeVerifyHash() {
+            if (verifyMode === 'file' && currentFileData) {
+                const algo = verAlgMap[currentVerAlg];
+                const wordArray = CryptoJS.lib.WordArray.create(currentFileData);
+                const raw = algo.fn(wordArray);
+                currentFileHash = raw;
+                verifyDom._lastRawComputed = raw;
+                verifyDom.computed.textContent = applyFormat(raw);
+                verifyDom.computed.className = 'verify-compare-box mt-1';
+                setVerifyStatus('idle', 'Hash computed');
+                liveVerify();
+                return true;
+            } else if (verifyMode === 'text' && verifyDom.textInput.value) {
+                const algo = verAlgMap[currentVerAlg];
+                const raw = algo.fn(verifyDom.textInput.value);
+                verifyDom._lastRawComputed = raw;
+                verifyDom.computed.textContent = applyFormat(raw);
+                verifyDom.computed.className = 'verify-compare-box mt-1';
+                setVerifyStatus('idle', 'Hash computed');
+                liveVerify();
+                return true;
+            } else {
+                showToast('No data to hash. Please load a file or enter text.');
+                return false;
+            }
+        }
+
+        let liveVerifyTimeout = null;
+
+        function liveVerify() {
+            clearTimeout(liveVerifyTimeout);
+            liveVerifyTimeout = setTimeout(() => {
+                const computedRaw = verifyDom._lastRawComputed;
+                const expectedRaw = verifyDom.expected.value.trim();
+                verifyDom._lastRawExpected = expectedRaw || null;
+
+                if (!computedRaw) {
+                    verifyDom.detail.classList.add('hidden');
+                    verifyDom.matchDetail.classList.add('hidden');
+                    verifyDom.mismatchDetail.classList.add('hidden');
+                    verifyDom.computed.className = 'verify-compare-box mt-1';
+                    verifyDom.expectedDisplay.className = 'verify-compare-box mt-1';
+                    verifyDom.expectedDisplay.textContent = '—';
+                    setVerifyStatus('idle', 'Compute a hash first');
+                    return;
+                }
+
+                const computedDisplay = applyFormat(computedRaw);
+                verifyDom.computed.textContent = computedDisplay;
+
+                if (!expectedRaw) {
+                    verifyDom.detail.classList.add('hidden');
+                    verifyDom.matchDetail.classList.add('hidden');
+                    verifyDom.mismatchDetail.classList.add('hidden');
+                    verifyDom.expectedDisplay.textContent = '—';
+                    verifyDom.expectedDisplay.className = 'verify-compare-box mt-1';
+                    setVerifyStatus('idle', 'Enter expected hash');
+                    return;
+                }
+
+                const expectedDisplay = applyFormat(expectedRaw);
+                verifyDom.expectedDisplay.textContent = expectedDisplay;
+                verifyDom.expectedDisplay.className = 'verify-compare-box mt-1';
+
+                const match = computedRaw.toLowerCase() === expectedRaw.toLowerCase();
+                verifyDom.detail.classList.remove('hidden');
+                if (match) {
+                    verifyDom.matchDetail.classList.remove('hidden');
+                    verifyDom.mismatchDetail.classList.add('hidden');
+                    verifyDom.computed.className = 'verify-compare-box mt-1 match';
+                    verifyDom.expectedDisplay.className = 'verify-compare-box mt-1 match';
+                    setVerifyStatus('success', '✓ VERIFIED — Hash matches!');
+                } else {
+                    verifyDom.mismatchDetail.classList.remove('hidden');
+                    verifyDom.matchDetail.classList.add('hidden');
+                    verifyDom.computed.className = 'verify-compare-box mt-1 mismatch';
+                    verifyDom.expectedDisplay.className = 'verify-compare-box mt-1 mismatch';
+                    setVerifyStatus('fail', '✗ MISMATCH — Hash does not match');
+                }
+            }, 300);
+        }
+
+        verifyDom.verifyBtn.addEventListener('click', () => {
+            if (!verifyDom._lastRawComputed) {
+                const success = computeVerifyHash();
+                if (!success) return;
+            }
+            const expected = verifyDom.expected.value.trim();
+            if (!expected) { showToast('Please enter the expected hash.'); return; }
+            liveVerify();
+        });
+
+        verifyDom.expected.addEventListener('input', liveVerify);
+
+        function clearVerifyResult() {
+            verifyDom.detail.classList.add('hidden');
+            verifyDom.matchDetail.classList.add('hidden');
+            verifyDom.mismatchDetail.classList.add('hidden');
+            verifyDom.computed.className = 'verify-compare-box mt-1';
+            verifyDom.expectedDisplay.className = 'verify-compare-box mt-1';
+            verifyDom.expectedDisplay.textContent = '—';
+        }
+
+        function setVerifyStatus(type, message) {
+            const el = verifyDom.status;
+            el.className = 'verify-status ' + type;
+            const icons = { 'idle': 'fa-circle', 'success': 'fa-check-circle', 'fail': 'fa-times-circle', 'pending': 'fa-spinner fa-spin' };
+            el.innerHTML = '<i class="fas ' + (icons[type] || 'fa-circle') + '"></i> ' + message;
+        }
+
+        const batchDom = {
+            fileInput: document.getElementById('batch-file-input'),
+            dropZone: document.getElementById('batch-drop-zone'),
+            hashBtn: document.getElementById('batch-hash-btn'),
+            clearBtn: document.getElementById('batch-clear-btn'),
+            downloadBtn: document.getElementById('batch-download-btn'),
+            body: document.getElementById('batch-body'),
+            tableWrap: document.getElementById('batch-table-wrap'),
+            status: document.getElementById('batch-status'),
+            count: document.getElementById('batch-count'),
+            progressBar: document.getElementById('batch-progress-bar'),
+            progressWrap: document.getElementById('batch-progress'),
+            algBtns: document.querySelectorAll('#tab-batch .hash-alg-btn[data-batch-alg]'),
+        };
+
+        let batchFiles = [];
+        let batchHashing = false;
+        let currentBatchAlg = 'sha256';
+
+        const batchAlgMap = {
+            'sha1': (data) => CryptoJS.SHA1(data).toString(CryptoJS.enc.Hex),
+            'sha256': (data) => CryptoJS.SHA256(data).toString(CryptoJS.enc.Hex),
+            'sha384': (data) => CryptoJS.SHA384(data).toString(CryptoJS.enc.Hex),
+            'sha512': (data) => CryptoJS.SHA512(data).toString(CryptoJS.enc.Hex),
+            'md5': (data) => CryptoJS.MD5(data).toString(CryptoJS.enc.Hex),
+        };
+
+        batchDom.algBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                batchDom.algBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentBatchAlg = btn.dataset.batchAlg;
+                const hasHashes = batchFiles.some(f => f.hash);
+                if (hasHashes) {
+                    if (confirm('Changing algorithm will clear existing hashes. Continue?')) {
+                        batchFiles.forEach(f => f.hash = null);
+                        renderBatchTable();
+                        showToast('Algorithm changed to ' + currentBatchAlg.toUpperCase() + '. Click "Hash All" to re-hash.');
+                    } else {
+                        batchDom.algBtns.forEach(b => b.classList.remove('active'));
+                        batchDom.algBtns.forEach(b => {
+                            if (b.dataset.batchAlg === currentBatchAlg) b.classList.add('active');
+                        });
+                    }
+                } else {
+                    showToast('Algorithm: ' + currentBatchAlg.toUpperCase());
+                }
+            });
+        });
+
+        batchDom.dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            batchDom.dropZone.classList.add('dragover');
+        });
+
+        batchDom.dropZone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            batchDom.dropZone.classList.remove('dragover');
+        });
+
+        batchDom.dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            batchDom.dropZone.classList.remove('dragover');
+            const files = Array.from(e.dataTransfer.files);
+            if (files.length > 0) {
+                addBatchFiles(files);
+            }
+        });
+
+        batchDom.fileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            if (files.length > 0) {
+                addBatchFiles(files);
+            }
+            batchDom.fileInput.value = '';
+        });
+
+        function addBatchFiles(files) {
+            files.forEach(file => {
+                batchFiles.push({
+                    file: file,
+                    name: file.name,
+                    size: file.size,
+                    hash: null
+                });
+            });
+            renderBatchTable();
+            showToast(`${files.length} file(s) added.`);
+        }
+
+        batchDom.clearBtn.addEventListener('click', () => {
+            if (batchFiles.length === 0) return;
+            if (confirm('Clear all batch files?')) {
+                batchFiles = [];
+                renderBatchTable();
+                showToast('Batch cleared.');
+            }
+        });
+
+        batchDom.hashBtn.addEventListener('click', async () => {
+            if (batchHashing) return;
+            const pending = batchFiles.filter(f => !f.hash);
+            if (pending.length === 0) {
+                showToast('All files already hashed.');
+                return;
+            }
+            batchHashing = true;
+            batchDom.hashBtn.disabled = true;
+            batchDom.hashBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Hashing...';
+            batchDom.progressWrap.style.opacity = '1';
+            let done = 0;
+            const total = pending.length;
+
+            for (const item of pending) {
+                try {
+                    const data = await readFileAsArrayBuffer(item.file);
+                    const wordArray = CryptoJS.lib.WordArray.create(data);
+                    const hash = batchAlgMap[currentBatchAlg](wordArray);
+                    item.hash = hash;
+                } catch (err) {
+                    item.hash = 'Error: ' + err.message;
+                }
+                done++;
+                const pct = (done / total) * 100;
+                batchDom.progressBar.style.width = pct + '%';
+                renderBatchTable();
+            }
+
+            batchHashing = false;
+            batchDom.hashBtn.disabled = false;
+            batchDom.hashBtn.innerHTML = '<i class="fas fa-play"></i> Hash All';
+            setTimeout(() => { batchDom.progressWrap.style.opacity = '0'; }, 1500);
+            showToast('All files hashed with ' + currentBatchAlg.toUpperCase() + '.');
+        });
+
+        function readFileAsArrayBuffer(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result);
+                reader.onerror = (e) => reject(e.target.error);
+                reader.readAsArrayBuffer(file);
+            });
+        }
+
+        function renderBatchTable() {
+            const body = batchDom.body;
+            const wrap = batchDom.tableWrap;
+            const count = batchDom.count;
+            const downloadBtn = batchDom.downloadBtn;
+
+            count.textContent = batchFiles.length + ' files';
+
+            if (batchFiles.length === 0) {
+                wrap.style.display = 'none';
+                batchDom.status.textContent = 'Drop files or click to select.';
+                downloadBtn.disabled = true;
+                return;
+            }
+
+            wrap.style.display = 'block';
+            const hasAllHashes = batchFiles.every(f => f.hash);
+            downloadBtn.disabled = !hasAllHashes;
+
+            let html = '';
+            batchFiles.forEach((item, idx) => {
+                const sizeStr = formatFileSize(item.size);
+                const hashDisplay = item.hash ? applyFormat(item.hash) : '—';
+                html += `
+                    <tr>
+                        <td>${idx + 1}</td>
+                        <td class="file-cell" title="${item.name}">${item.name}</td>
+                        <td class="size-cell">${sizeStr}</td>
+                        <td class="hash-cell">${hashDisplay}</td>
+                        <td>
+                            ${item.hash && !item.hash.startsWith('Error') ? `<button class="batch-copy-hash text-text-muted hover:text-tor-violet text-sm p-1" data-hash="${item.hash}" title="Copy hash"><i class="fas fa-copy"></i></button>` : ''}
+                            ${item.hash && !item.hash.startsWith('Error') ? `<button class="batch-download-hash text-text-muted hover:text-tor-violet text-sm p-1" data-hash="${item.hash}" data-name="${item.name}" title="Download hash"><i class="fas fa-download"></i></button>` : ''}
+                            <button class="batch-remove-file text-text-muted hover:text-red-500 text-sm p-1" data-index="${idx}" title="Remove file"><i class="fas fa-times"></i></button>
+                        </td>
+                    </tr>
+                `;
+            });
+            body.innerHTML = html;
+
+            body.querySelectorAll('.batch-copy-hash').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const raw = btn.dataset.hash;
+                    copyToClipboard(applyFormat(raw));
+                    btn.classList.add('copied');
+                    setTimeout(() => btn.classList.remove('copied'), 2000);
+                });
+            });
+            body.querySelectorAll('.batch-download-hash').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const raw = btn.dataset.hash;
+                    const name = btn.dataset.name;
+                    downloadHash(applyFormat(raw), `hash_${name}.txt`);
+                });
+            });
+            body.querySelectorAll('.batch-remove-file').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const idx = parseInt(btn.dataset.index);
+                    batchFiles.splice(idx, 1);
+                    renderBatchTable();
+                    showToast('File removed.');
+                });
+            });
+
+            const hashedCount = batchFiles.filter(f => f.hash).length;
+            batchDom.status.textContent = hasAllHashes ?
+                `All ${batchFiles.length} files hashed with ${currentBatchAlg.toUpperCase()}. Ready to download.` :
+                `${hashedCount} / ${batchFiles.length} hashed. Algorithm: ${currentBatchAlg.toUpperCase()}`;
+        }
+
+        batchDom.downloadBtn.addEventListener('click', () => {
+            const hashed = batchFiles.filter(f => f.hash && !f.hash.startsWith('Error'));
+            if (hashed.length === 0) { showToast('No valid hashes to download.'); return; }
+            let content = '';
+            hashed.forEach(item => {
+                const display = applyFormat(item.hash);
+                content += `${display}  ${item.name}\n`;
+            });
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `batch_hashes_${currentBatchAlg}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 5000);
+            showToast('Downloaded batch hashes (' + currentBatchAlg.toUpperCase() + ').');
+        });
+
+        const compareDom = {
+            hash1: document.getElementById('compare-hash-1'),
+            hash2: document.getElementById('compare-hash-2'),
+            alg1: document.getElementById('compare-alg-1'),
+            alg2: document.getElementById('compare-alg-2'),
+            len1: document.getElementById('compare-len-1'),
+            len2: document.getElementById('compare-len-2'),
+            clear1: document.getElementById('compare-clear-1'),
+            clear2: document.getElementById('compare-clear-2'),
+            swapBtn: document.getElementById('compare-swap-btn'),
+            clearBtn: document.getElementById('compare-clear-btn'),
+            compareBtn: document.getElementById('compare-btn'),
+            resultBadge: document.getElementById('compare-result-badge'),
+            detail: document.getElementById('compare-detail'),
+            diffContainer: document.getElementById('compare-diff-container'),
+            diffView: document.getElementById('compare-diff-view'),
+            matchCount: document.getElementById('compare-match-count'),
+            mismatchCount: document.getElementById('compare-mismatch-count'),
+            lengthDiff: document.getElementById('compare-length-diff'),
+            stats: document.getElementById('compare-stats'),
+        };
+
+        function detectAlgorithm(hash) {
+            if (!hash || hash.trim() === '') return null;
+            const len = hash.trim().length;
+            const nameMap = { 32: 'MD5', 40: 'SHA-1', 64: 'SHA-256', 96: 'SHA-384', 128: 'SHA-512' };
+            const hex = /^[0-9a-fA-F]+$/.test(hash.trim());
+            if (!hex) return '⚠️ Not hex';
+            return nameMap[len] || `⚠️ Unknown (${len} chars)`;
+        }
+
+        function updateCompareFields() {
+            const h1 = compareDom.hash1.value.trim();
+            const h2 = compareDom.hash2.value.trim();
+
+            const alg1 = detectAlgorithm(h1);
+            const alg2 = detectAlgorithm(h2);
+            compareDom.alg1.textContent = alg1 || '—';
+            compareDom.alg2.textContent = alg2 || '—';
+            compareDom.alg1.className = 'compare-alg-detect' + (alg1 && !alg1.startsWith('⚠️') ? '' : ' opacity-50');
+            compareDom.alg2.className = 'compare-alg-detect' + (alg2 && !alg2.startsWith('⚠️') ? '' : ' opacity-50');
+
+            compareDom.len1.textContent = h1.length > 0 ? h1.length + ' characters' : '0 characters';
+            compareDom.len2.textContent = h2.length > 0 ? h2.length + ' characters' : '0 characters';
+
+            if (!h1 || !h2) {
+                compareDom.resultBadge.className = 'compare-result-badge idle';
+                compareDom.resultBadge.innerHTML = '<i class="fas fa-circle"></i> Ready';
+                compareDom.detail.textContent = 'Paste two hashes and click Compare.';
+                compareDom.diffContainer.classList.add('hidden');
+                compareDom.stats.classList.add('hidden');
+            }
+        }
+
+        function compareHashes() {
+            const h1Raw = compareDom.hash1.value.trim();
+            const h2Raw = compareDom.hash2.value.trim();
+
+            if (!h1Raw || !h2Raw) {
+                showToast('Please paste both hashes.');
+                return;
+            }
+
+            const h1 = h1Raw.toLowerCase();
+            const h2 = h2Raw.toLowerCase();
+
+            const isMatch = h1 === h2;
+            const len1 = h1.length;
+            const len2 = h2.length;
+
+            if (isMatch) {
+                compareDom.resultBadge.className = 'compare-result-badge match';
+                compareDom.resultBadge.innerHTML = '<i class="fas fa-check-circle"></i> ✅ MATCH';
+                compareDom.detail.textContent = 'The two hashes are identical!';
+                compareDom.detail.className = 'text-sm text-tor-accent';
+            } else {
+                compareDom.resultBadge.className = 'compare-result-badge mismatch';
+                compareDom.resultBadge.innerHTML = '<i class="fas fa-times-circle"></i> ❌ MISMATCH';
+                if (len1 !== len2) {
+                    compareDom.detail.textContent = `Lengths differ: ${len1} vs ${len2} characters.`;
+                    compareDom.detail.className = 'text-sm text-amber-600';
+                } else {
+                    compareDom.detail.textContent = 'The two hashes are different.';
+                    compareDom.detail.className = 'text-sm text-red-500';
+                }
+            }
+
+            compareDom.diffContainer.classList.remove('hidden');
+            compareDom.stats.classList.remove('hidden');
+
+            const maxLen = Math.max(len1, len2);
+            let diffHtml = '';
+            let matchCount = 0;
+            let mismatchCount = 0;
+
+            for (let i = 0; i < maxLen; i++) {
+                const char1 = i < len1 ? h1[i] : ' ';
+                const char2 = i < len2 ? h2[i] : ' ';
+                if (char1 === char2) {
+                    diffHtml += `<span class="diff-match">${char1}</span>`;
+                    matchCount++;
+                } else {
+                    diffHtml += `<span class="diff-mismatch" title="Mismatch at position ${i + 1}">${char1}</span>`;
+                    mismatchCount++;
+                }
+            }
+
+            compareDom.diffView.innerHTML = diffHtml;
+            compareDom.matchCount.textContent = matchCount;
+            compareDom.mismatchCount.textContent = mismatchCount;
+
+            if (len1 !== len2) {
+                compareDom.lengthDiff.classList.remove('hidden');
+            } else {
+                compareDom.lengthDiff.classList.add('hidden');
+            }
+
+            showToast(isMatch ? '✅ Hashes match!' : '❌ Hashes do not match.');
+        }
+
+        compareDom.compareBtn.addEventListener('click', compareHashes);
+
+        compareDom.swapBtn.addEventListener('click', () => {
+            const temp = compareDom.hash1.value;
+            compareDom.hash1.value = compareDom.hash2.value;
+            compareDom.hash2.value = temp;
+            updateCompareFields();
+            if (compareDom.hash1.value.trim() && compareDom.hash2.value.trim()) {
+                compareHashes();
+            }
+        });
+
+        compareDom.clear1.addEventListener('click', () => {
+            compareDom.hash1.value = '';
+            updateCompareFields();
+            compareDom.diffContainer.classList.add('hidden');
+            compareDom.stats.classList.add('hidden');
+            compareDom.resultBadge.className = 'compare-result-badge idle';
+            compareDom.resultBadge.innerHTML = '<i class="fas fa-circle"></i> Ready';
+            compareDom.detail.textContent = 'Paste two hashes and click Compare.';
+            compareDom.detail.className = 'text-sm text-text-muted';
+        });
+
+        compareDom.clear2.addEventListener('click', () => {
+            compareDom.hash2.value = '';
+            updateCompareFields();
+            compareDom.diffContainer.classList.add('hidden');
+            compareDom.stats.classList.add('hidden');
+            compareDom.resultBadge.className = 'compare-result-badge idle';
+            compareDom.resultBadge.innerHTML = '<i class="fas fa-circle"></i> Ready';
+            compareDom.detail.textContent = 'Paste two hashes and click Compare.';
+            compareDom.detail.className = 'text-sm text-text-muted';
+        });
+
+        compareDom.clearBtn.addEventListener('click', () => {
+            compareDom.hash1.value = '';
+            compareDom.hash2.value = '';
+            updateCompareFields();
+            compareDom.diffContainer.classList.add('hidden');
+            compareDom.stats.classList.add('hidden');
+            compareDom.resultBadge.className = 'compare-result-badge idle';
+            compareDom.resultBadge.innerHTML = '<i class="fas fa-circle"></i> Ready';
+            compareDom.detail.textContent = 'Paste two hashes and click Compare.';
+            compareDom.detail.className = 'text-sm text-text-muted';
+            showToast('Cleared both hashes.');
+        });
+
+        compareDom.hash1.addEventListener('input', updateCompareFields);
+        compareDom.hash2.addEventListener('input', updateCompareFields);
+
+        compareDom.hash1.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                compareHashes();
+            }
+        });
+        compareDom.hash2.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                compareHashes();
+            }
+        });
+
+        document.getElementById('history-export-btn')?.addEventListener('click', exportHistory);
+        document.getElementById('history-import-input')?.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                importHistory(e.target.files[0]);
+                e.target.value = '';
+            }
+        });
+        document.getElementById('history-clear-btn')?.addEventListener('click', clearHistory);
+
+        setTimeout(() => {
+            computeHash();
+            computeHmac();
+            setVerifyStatus('idle', 'Ready — load a file or enter text');
+            renderHistory();
+            renderBatchTable();
+            batchDom.progressWrap.style.opacity = '0';
+            updateCompareFields();
+        }, 300);
+
+        const mobileToggle = document.getElementById('mobile-menu-toggle');
+        const mobileClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileToggle && mobileMenu) {
+            mobileToggle.addEventListener('click', () => {
+                const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+                mobileToggle.setAttribute('aria-expanded', !expanded);
+                mobileMenu.classList.toggle('open');
+                document.body.style.overflow = expanded ? '' : 'hidden';
+            });
+        }
+        if (mobileClose && mobileMenu) {
+            mobileClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+                if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
+            });
+        }
+        document.querySelectorAll('[data-close-mobile]').forEach(el => {
+            el.addEventListener('click', () => {
+                if (mobileMenu) {
+                    mobileMenu.classList.remove('open');
+                    document.body.style.overflow = '';
+                    if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+        document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.dataset.target;
+                const target = document.getElementById(targetId);
+                if (target) {
+                    const isOpen = target.classList.toggle('open');
+                    btn.classList.toggle('open');
+                    btn.setAttribute('aria-expanded', isOpen);
+                    const chevron = btn.querySelector('.fa-chevron-down');
+                    if (chevron) chevron.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+                }
+            });
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
