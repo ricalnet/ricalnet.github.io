@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Free Hosting for Students — RICALNET Infrastructure</title>
+    <meta name="description"
+        content="Free Docker-based hosting for students in Indonesia. Deploy portfolios, assignments, or final year projects on RICALNET's sovereign infrastructure. Open source required." />
+    <meta name="keywords"
+        content="free hosting for students, Docker hosting, student projects, portfolio hosting, Indonesia, RICALNET, open source" />
+    <link rel="canonical" href="https://ricalnet.my.id/free-hosting" />
+    <link rel="alternate" hreflang="en" href="https://ricalnet.my.id/free-hosting" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://ricalnet.my.id/sitemap.xml" />
+    <link rel="icon" type="image/x-icon" href="img/logo.png" />
+    <meta property="og:title" content="Free Hosting for Students — RICALNET Infrastructure" />
+    <meta property="og:description"
+        content="Free Docker-based hosting for students in Indonesia. Deploy portfolios, assignments, or final year projects on RICALNET's sovereign infrastructure." />
+    <meta property="og:url" content="https://ricalnet.my.id/free-hosting" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://ricalnet.my.id/img/og-free-hosting.png" />
+    <meta property="og:image:alt" content="RICALNET free hosting for students" />
+    <meta property="og:site_name" content="RICALNET" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Free Hosting for Students — RICALNET Infrastructure" />
+    <meta name="twitter:description"
+        content="Free Docker-based hosting for students in Indonesia. Deploy portfolios, assignments, or final year projects on RICALNET's sovereign infrastructure." />
+    <meta name="twitter:image" content="https://ricalnet.my.id/img/og-free-hosting.png" />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Free Hosting for Students — RICALNET Infrastructure",
+            "description": "Free Docker-based hosting for students in Indonesia. Deploy portfolios, assignments, or final year projects.",
+            "url": "https://ricalnet.my.id/free-hosting",
+            "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ricalnet.my.id/" },
+                    { "@type": "ListItem", "position": 2, "name": "Free Hosting", "item": "https://ricalnet.my.id/free-hosting" }
+                ]
+            }
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "RICALNET",
+            "url": "https://ricalnet.my.id/",
+            "logo": "https://ricalnet.my.id/img/logo.png",
+            "sameAs": ["https://github.com/ricalnet"],
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "email": "ricalnet@duck.com",
+                "contactType": "technical support"
+            }
+        }
+    </script>
+    <link href="assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="assets/fontawesome/css/solid.css" rel="stylesheet" />
+    <link href="assets/fontawesome/css/brands.css" rel="stylesheet" />
+    <link href="assets/css/fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link href="assets/css/aos.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'source-sans-pro': ['"Source Sans Pro"', 'Inter', 'Roboto', 'system-ui', '-apple-system',
+                            'sans-serif'
+                        ],
+                        roboto: ['Roboto', '"Source Sans Pro"', 'Inter', 'system-ui', 'sans-serif'],
+                        inter: ['Inter', '"Source Sans Pro"', 'Roboto', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    colors: {
+                        tor: {
+                            violet: '#7c3aed',
+                            'violet-light': '#8b5cf6',
+                            'violet-dark': '#5b21b6',
+                            'violet-deep': '#4c1d95',
+                            'violet-soft': '#ede9fe',
+                            accent: '#68B030',
+                            'accent-cyan': '#06b6d4',
+                            'accent-amber': '#f59e0b',
+                        },
+                        surface: {
+                            light: '#faf9fe',
+                            card: '#ffffff',
+                            border: '#ede9f0',
+                            muted: '#f5f3fa',
+                            dark: '#0f0e1a',
+                        },
+                        text: {
+                            primary: '#0f0e1a',
+                            secondary: '#52506e',
+                            muted: '#9492ae',
+                            inverse: '#f8f7fc',
+                        }
+                    },
+                    boxShadow: {
+                        'elevated': '0 1px 3px rgba(0,0,0,0.02), 0 8px 40px rgba(124,58,237,0.06), 0 20px 80px rgba(124,58,237,0.04)',
+                        'elevated-lg': '0 1px 3px rgba(0,0,0,0.02), 0 16px 64px rgba(124,58,237,0.08), 0 32px 120px rgba(124,58,237,0.04)',
+                        'glow': '0 0 60px rgba(124,58,237,0.06)',
+                        'corporate': '0 1px 2px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.02), 0 16px 48px rgba(124,58,237,0.04)',
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-down': 'fadeDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-right': 'fadeRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-left': 'fadeLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'scale-in': 'scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeRight: {
+                            '0%': { opacity: '0', transform: 'translateX(-40px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        fadeLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(40px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.94)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' }
+                        },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-14px)' } },
+                        pulseSoft: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0.6' } },
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body
+    class="font-source-sans-pro bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+
+    <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div class="absolute inset-0 bg-grid-subtle"></div>
+        <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/5 rounded-full blur-[160px]"></div>
+        <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/3 rounded-full blur-[180px]"></div>
+        <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/4 rounded-full blur-[140px]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light"></div>
+    </div>
+
+    <header
+        class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-[72px]">
+    
+                <a href="https://ricalnet.my.id/" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+                    data-aos-duration="600">
+                    <img src="img/logo.png" alt="RICALNET Open Source Self-Hosted Infrastructure Logo"
+                        class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
+                    <div class="leading-tight hidden sm:block">
+                        <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+                        <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust ·
+                            Control ·
+                            Access · Libre</span>
+                    </div>
+                </a>
+    
+                <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down"
+                    data-aos-duration="600">
+                    <a href="https://ricalnet.my.id/#hero" class="nav-link">Home</a>
+    
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/#pain-points" class="nav-link flex items-center gap-1">
+                            Why Self‑Host
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/#pain-points" class="dropdown-item">The Lock‑in Trap</a>
+                            <a href="https://ricalnet.my.id/#how-it-works" class="dropdown-item">The Approach</a>
+                            <a href="https://ricalnet.my.id/#features" class="dropdown-item">Sovereign Stack</a>
+                            <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal &amp;
+                                Advocacy</a>
+                        </div>
+                    </div>
+    
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/resources#hero" class="nav-link flex items-center gap-1">
+                            Resources
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                            <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal
+                                Resources</a>
+                            <a href="https://ricalnet.my.id/resources#in-house-tools" class="dropdown-item">In‑House
+                                Tools</a>
+                            <a href="https://ricalnet.my.id/resources" class="dropdown-item">All Resources</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/resources#hero" class="nav-link flex items-center gap-1">
+                            Tools
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="dropdown-item">Metadata
+                                Cleaner</a>
+                            <a href="https://ricalnet.my.id/tools/quantum-hasher" class="dropdown-item">Quantum Hasher</a>
+                            <a href="https://ricalnet.my.id/tools/ip-intelligence" class="dropdown-item">IP Intelligence</a>
+                            <a href="https://ricalnet.my.id/tools/password-generator" class="dropdown-item">Password
+                                Generator</a>
+                            <a href="https://ricalnet.my.id/tools/qr-builder" class="dropdown-item">QR Builder</a>
+                            <a href="https://ricalnet.my.id/tools/whiteboard" class="dropdown-item">Whiteboard</a>
+                            <a href="https://ricalnet.my.id/tools/chantik" class="dropdown-item">Chantik</a>
+                            <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="https://ricalnet.my.id/about#hero" class="nav-link flex items-center gap-1">
+                            About
+                            <i
+                                class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="dropdown-panel absolute left-0 mt-2 z-50">
+                            <a href="https://ricalnet.my.id/about#our-mission" class="dropdown-item">Mission</a>
+                            <a href="https://ricalnet.my.id/#comparison" class="dropdown-item">Comparison</a>
+                            <a href="https://ricalnet.my.id/#faq" class="dropdown-item">FAQ</a>
+                            <a href="https://ricalnet.my.id/#cta" class="dropdown-item">Contact</a>
+                            <a href="https://ricalnet.my.id/about#cta-support" class="dropdown-item">Support</a>
+                        </div>
+                    </div>
+                    <a href="https://ricalnet.my.id/free-hosting" class="nav-link nav-link-active">For Students</a>
+                </nav>
+    
+                <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
+                    <a href="https://ricalnet.my.id/#hidden-services" class="hidden lg:inline-flex btn-sso">
+                        <i class="fas fa-key"></i> Login with SSO
+                    </a>
+                    <button id="mobile-menu-toggle"
+                        class="lg:hidden w-9 h-9 rounded-full hover:bg-surface-muted flex items-center justify-center transition-colors"
+                        aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars text-text-secondary text-lg"></i>
+                    </button>
+                </div>
+    
+            </div>
+        </div>
+    </header>
+    
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <img src="img/logo.png" alt="RICALNET" />
+                <span>RICALNET</span>
+            </div>
+            <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+    
+        <div class="mobile-menu-scroll">
+    
+            <a href="https://ricalnet.my.id/#hero" class="nav-item" data-close-mobile>
+                <i class="fas fa-home"></i> Home
+            </a>
+    
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-advocacy">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Why Self‑Host
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/#pain-points" class="sub-link" data-close-mobile>
+                        <i class="fas fa-exclamation-triangle"></i> The Lock‑in Trap
+                    </a>
+                    <a href="https://ricalnet.my.id/#how-it-works" class="sub-link" data-close-mobile>
+                        <i class="fas fa-route"></i> The Approach
+                    </a>
+                    <a href="https://ricalnet.my.id/#features" class="sub-link" data-close-mobile>
+                        <i class="fas fa-star"></i> Sovereign Stack
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal &amp; Advocacy
+                    </a>
+                </div>
+            </div>
+    
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-resources">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-lock"></i> Privacy Tools
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-gavel"></i> Legal Resources
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#in-house-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-cubes"></i> In‑House Tools
+                    </a>
+                    <a href="https://ricalnet.my.id/resources" class="sub-link" data-close-mobile>
+                        <i class="fas fa-folder-open"></i> All Resources
+                    </a>
+                </div>
+            </div>
+    
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-tools">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> Metadata Cleaner
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/quantum-hasher" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> Quantum Hasher
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/ip-intelligence" class="sub-link" data-close-mobile>
+                        <i class="fas fa-map-pin"></i> IP Intelligence
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/password-generator" class="sub-link" data-close-mobile>
+                        <i class="fas fa-key"></i> Password Generator
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/qr-builder" class="sub-link" data-close-mobile>
+                        <i class="fas fa-qrcode"></i> QR Builder
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/whiteboard" class="sub-link" data-close-mobile>
+                        <i class="fas fa-pen-fancy"></i> Whiteboard
+                    </a>
+                    <a href="https://ricalnet.my.id/tools/chantik" class="sub-link" data-close-mobile>
+                        <i class="fa-solid fa-floppy-disk"></i> Chantik
+                    </a>
+                    <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+                        <i class="fas fa-user-secret"></i> Privacy Tools
+                    </a>
+                </div>
+            </div>
+    
+            <div class="mobile-dropdown">
+                <button
+                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+                    aria-expanded="false" data-target="sub-about">
+                    <span class="flex items-center gap-2.5">
+                        <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
+                    </span>
+                    <i
+                        class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+                </button>
+                <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+                    <a href="https://ricalnet.my.id/about#our-mission" class="sub-link" data-close-mobile>
+                        <i class="fas fa-bullseye"></i> Mission
+                    </a>
+                    <a href="https://ricalnet.my.id/#comparison" class="sub-link" data-close-mobile>
+                        <i class="fas fa-arrows-left-right"></i> Comparison
+                    </a>
+                    <a href="https://ricalnet.my.id/#faq" class="sub-link" data-close-mobile>
+                        <i class="fas fa-question-circle"></i> FAQ
+                    </a>
+                    <a href="https://ricalnet.my.id/#cta" class="sub-link" data-close-mobile>
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                    <a href="https://ricalnet.my.id/about#cta-support" class="sub-link" data-close-mobile>
+                        <i class="fas fa-hand-holding-heart"></i> Support
+                    </a>
+                </div>
+            </div>
+            <a href="https://ricalnet.my.id/free-hosting" class="nav-item" data-close-mobile>
+                <i class="fas fa-server"></i> For Students
+            </a>
+    
+            <a href="https://ricalnet.my.id/#hidden-services" class="mt-3 block w-full text-center btn-sso justify-center"
+                data-close-mobile>
+                <i class="fas fa-key"></i> Login with SSO
+            </a>
+    
+            <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+                <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+                    <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> RICALNET — Robust · Control · Access · Libre
+                </span>
+            </div>
+    
+        </div>
+    </div>
+
+    <nav aria-label="Breadcrumb" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 text-xs">
+        <ol class="flex flex-wrap items-center gap-2 text-text-muted">
+            <li><a href="https://ricalnet.my.id/" class="hover:text-tor-violet transition-colors">Home</a></li>
+            <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
+            <li class="text-tor-violet font-medium">Free Hosting for Students</li>
+        </ol>
+    </nav>
+
+    <section id="hero" class="relative overflow-hidden pt-8 pb-16 md:pt-16 md:pb-28 bg-white/30">
+        <div class="absolute inset-0 -z-10">
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-tor-violet/3 rounded-full blur-[160px]">
+            </div>
+            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-400/5 rounded-full blur-[120px] opacity-60">
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+                <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="flex flex-wrap items-center gap-2 mb-5">
+                        <span class="badge-pill"><i class="fas fa-graduation-cap"></i> For Students in Indonesia</span>
+                        <span class="badge-pill"
+                            style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);"><i
+                                class="fab fa-docker"></i> Docker‑based</span>
+                        <span class="badge-pill"
+                            style="background:rgba(104,176,48,0.08);color:#3d7a1a;border-color:rgba(104,176,48,0.12);"><i
+                                class="fas fa-check-circle"></i> 100% Free</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight">
+                        <span class="text-text-primary">Free Hosting for </span>
+                        <span class="text-tor-violet">Students</span>
+                    </h1>
+                    <p class="text-text-secondary text-lg md:text-xl mt-5 max-w-lg leading-relaxed">
+                        Deploy your <strong class="text-text-primary">Docker‑based projects</strong> — portfolios,
+                        assignments, or final year projects — on RICALNET's sovereign infrastructure.
+                        <strong class="text-tor-violet">No cost. No lock‑in. No surveillance.</strong>
+                    </p>
+                    <div class="flex flex-wrap items-center gap-4 mt-7">
+                        <a href="#apply"
+                            class="inline-flex items-center gap-2 text-white bg-gradient-to-r from-tor-violet to-tor-violet-light hover:from-tor-violet-dark hover:to-tor-violet px-7 py-3.5 rounded-full font-semibold shadow-lg shadow-tor-violet/30 transition-all duration-300 hover:shadow-xl hover:shadow-tor-violet/40 hover:-translate-y-0.5">
+                            <i class="fas fa-paper-plane"></i> Apply Now
+                        </a>
+                        <a href="#who-its-for"
+                            class="inline-flex items-center gap-2 text-text-primary bg-white hover:bg-surface-muted px-6 py-3.5 rounded-full font-medium shadow-elevated border border-surface-border/60 transition-all duration-300 hover:shadow-elevated-lg hover:-translate-y-0.5">
+                            Learn More <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-5 mt-6 text-sm text-text-muted">
+                        <span class="flex items-center gap-1.5"><i
+                                class="fas fa-check-circle text-tor-accent text-xs"></i> Open‑source required</span>
+                        <span class="flex items-center gap-1.5"><i
+                                class="fas fa-check-circle text-tor-accent text-xs"></i> 1‑month retention</span>
+                        <span class="flex items-center gap-1.5"><i
+                                class="fas fa-check-circle text-tor-accent text-xs"></i> Infrastructure security</span>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="200"
+                    class="relative flex justify-center lg:justify-end">
+                    <div class="relative w-full max-w-md lg:max-w-lg">
+                        <div class="absolute inset-0 bg-tor-violet/10 rounded-full blur-3xl scale-90"></div>
+                        <div
+                            class="relative glass-card rounded-3xl p-2 shadow-elevated-lg border border-tor-violet/10 overflow-hidden">
+                            <img src="img/section/for-students/hero.png"
+                                alt="RICALNET free hosting for students — Docker-based projects on sovereign infrastructure"
+                                class="rounded-2xl w-full h-auto object-cover img-shadow-soft"
+                                onerror="this.onerror=null; this.src='img/section/for-students/hero.png';" />
+                            <div class="absolute bottom-4 left-4 right-4 flex flex-wrap justify-between gap-2">
+                                <span
+                                    class="bg-white/90 backdrop-blur text-xs font-semibold text-text-primary px-3 py-1.5 rounded-full shadow-elevated border border-surface-border/60 flex items-center gap-1.5">
+                                    <i class="fab fa-docker text-tor-violet"></i> Docker
+                                </span>
+                                <span
+                                    class="bg-white/90 backdrop-blur text-xs font-semibold text-text-primary px-3 py-1.5 rounded-full shadow-elevated border border-surface-border/60 flex items-center gap-1.5">
+                                    <i class="fas fa-code text-tor-violet"></i> Open‑Source
+                                </span>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute -bottom-3 -left-3 bg-white rounded-full px-4 py-2.5 shadow-elevated border border-tor-violet/10 flex items-center gap-2 text-sm font-medium text-text-primary animate-float">
+                            <i class="fas fa-graduation-cap text-tor-accent"></i>
+                            <span>Students apply free</span>
+                        </div>
+                        <div class="absolute -top-3 -right-3 bg-emerald-500 text-white rounded-full px-4 py-2.5 shadow-elevated text-sm font-semibold animate-float"
+                            style="animation-delay:1.8s;">
+                            <i class="fas fa-check-circle mr-1.5"></i> 100% Free
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="corporate-divider max-w-6xl mx-auto px-4"></div>
+
+    <section id="what-you-get" class="py-16 md:py-24 bg-white/30">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="section-badge"><i class="fas fa-gift"></i> What You Get</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+                    <span class="text-text-primary">Everything a student needs to </span>
+                    <span class="text-tor-violet">deploy with confidence</span>
+                </h2>
+                <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+                    No hidden costs. No vendor lock‑in. Just reliable, privacy‑first infrastructure for your projects.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="100">
+                <div
+                    class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-tor-violet/10 flex items-center justify-center mb-5">
+                        <i class="fab fa-docker text-2xl text-tor-violet"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary">Docker‑Based</h3>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Deploy any project with a <code
+                            class="bg-surface-muted px-1.5 py-0.5 rounded text-xs font-mono">docker-compose.yaml</code>
+                        or Dockerfile. RICALNET handles orchestration — you focus on code.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-cyan-50 flex items-center justify-center mb-5">
+                        <i class="fas fa-shield-alt text-2xl text-cyan-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary">Infrastructure Security</h3>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        RICALNET secures the infrastructure with automatic TLS.
+                        Application‑level security is the student's own responsibility.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-emerald-50 flex items-center justify-center mb-5">
+                        <i class="fas fa-infinity text-2xl text-emerald-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary">1‑Month Retention</h3>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Your project stays live for a minimum of one month. Need longer? Just reach out — RICALNET
+                        is flexible for active student projects.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-50 flex items-center justify-center mb-5">
+                        <i class="fas fa-code-branch text-2xl text-amber-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary">Open‑Source First</h3>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Your code stays public and open. It's not just hosting — it's contributing to the commons.
+                        Others can learn, fork, and build on your work.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-purple-50 flex items-center justify-center mb-5">
+                        <i class="fas fa-globe text-2xl text-tor-violet"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary">Public URL</h3>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Get a dedicated subdomain under <code
+                            class="bg-surface-muted px-1.5 py-0.5 rounded text-xs font-mono">*.ricalnet.my.id</code>
+                        — share your project with the world instantly.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-rose-50 flex items-center justify-center mb-5">
+                        <i class="fas fa-hand-holding-heart text-2xl text-rose-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary">No Hidden Costs</h3>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Zero fees. Zero egress charges. Zero per‑seat licenses. Just free hosting for open‑source
+                        projects — period.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="who-its-for" class="py-16 md:py-24 bg-white/40 border-y border-surface-border/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="section-badge"><i class="fas fa-users"></i> Who It's For</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+                    <span class="text-text-primary">Built for </span>
+                    <span class="text-tor-violet">students, makers, and dreamers</span>
+                </h2>
+                <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+                    If you're a student in Indonesia building something open‑source and containerized, you're welcome
+                    here.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+                <div data-aos="fade-right" data-aos-duration="700">
+                    <img src="img/section/for-students/who-its-for.png"
+                        alt="Students building open-source projects on RICALNET's free hosting"
+                        class="rounded-3xl shadow-elevated-lg border border-surface-border/60 w-full h-auto object-cover img-shadow-soft"
+                        onerror="this.onerror=null; this.src='img/section/for-students/who-its-for.png';" />
+                </div>
+
+                <div data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
+                    <div class="space-y-5">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-folder-open text-tor-violet"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-text-primary">Portfolio &amp; Personal Projects</h4>
+                                <p class="text-text-secondary text-sm leading-relaxed">Showcase your work. Deploy your
+                                    personal website, blog, or creative project — and keep it live for free.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-cyan-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-pencil-ruler text-cyan-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-text-primary">Assignments &amp; Coursework</h4>
+                                <p class="text-text-secondary text-sm leading-relaxed">Share your work with lecturers
+                                    and
+                                    peers.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-trophy text-amber-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-text-primary">Final Year Projects (FYP / Skripsi)</h4>
+                                <p class="text-text-secondary text-sm leading-relaxed">Impress your examiners with a fully deployed, publicly accessible system.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-cubes text-emerald-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-text-primary">Open‑Source Tools &amp; Libraries</h4>
+                                <p class="text-text-secondary text-sm leading-relaxed">Host a demo, a playground, or a
+                                    live
+                                    instance of your open‑source project. Let others see it in action.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="requirements" class="py-16 md:py-24 bg-white/30">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="section-badge"><i class="fas fa-clipboard-list"></i> Requirements</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+                    <span class="text-text-primary">Simple, clear, </span>
+                    <span class="text-tor-violet">easy to meet</span>
+                </h2>
+                <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+                    Three conditions. That's all it takes to get free hosting from RICALNET.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="100">
+                <div
+                    class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-tor-violet/10 flex items-center justify-center mb-5">
+                        <span class="text-2xl font-bold text-tor-violet"><i class="fab fa-docker"></i></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary mt-4">Docker‑Based</h3>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Your project must include a <code
+                            class="bg-surface-muted px-1.5 py-0.5 rounded text-xs font-mono">docker-compose.yaml</code>
+                        or a Dockerfile that builds and runs the application.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-tor-violet/10 flex items-center justify-center mb-5">
+                        <span class="text-2xl font-bold text-tor-violet"><i class="fas fa-code-branch"></i></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary mt-4">Open‑Source</h3>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        Your project's source code must be publicly available under a recognized open‑source license
+                        (MIT, GPL, Apache, etc.).
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-tor-violet/10 flex items-center justify-center mb-5">
+                        <span class="text-2xl font-bold text-tor-violet"><i class="fas fa-graduation-cap"></i></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary mt-4">Student</h3>
+                    <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                        You must be a student in Indonesia (any level — high school, university, or vocational).
+                        Proof of enrollment is required.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-8 p-5 bg-tor-violet/5 border border-tor-violet/20 rounded-2xl text-center" data-aos="fade-up"
+                data-aos-delay="200">
+                <p class="text-text-secondary text-sm flex items-center justify-center gap-2 flex-wrap">
+                    <i class="fas fa-check-circle text-tor-accent"></i>
+                    <span><strong class="text-text-primary">That's it.</strong> No hidden conditions. No fine print.
+                        Your project stays yours — RICALNET just provides the infrastructure.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="py-16 md:py-24 bg-white/40 border-y border-surface-border/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="section-badge"><i class="fas fa-route"></i> How It Works</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+                    <span class="text-text-primary">From application to </span>
+                    <span class="text-tor-violet">live deployment</span>
+                </h2>
+                <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+                    Three simple steps to get your project hosted on RICALNET's sovereign infrastructure.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
+                <div
+                    class="hidden lg:block absolute top-[72px] left-1/2 -translate-x-1/2 w-[50%] h-0.5 bg-tor-violet/20">
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="0">
+                    <div
+                        class="bg-white rounded-3xl overflow-hidden shadow-elevated border border-surface-border/60 card-hover h-full">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="img/section/for-students/apply.png"
+                                alt="Apply for free hosting with RICALNET — submit your project details"
+                                class="w-full h-full object-cover"
+                                onerror="this.onerror=null; this.src='img/section/home/assess.png';" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent">
+                            </div>
+                            <div
+                                class="absolute top-4 left-4 w-10 h-10 rounded-full bg-tor-violet flex items-center justify-center text-white font-bold shadow-lg text-sm">
+                                1
+                            </div>
+                        </div>
+                        <div class="p-8 text-center relative">
+                            <h4 class="text-xl font-bold text-text-primary mt-1">Apply with Your Project</h4>
+                            <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                                Send your project details — GitHub repo, Docker config, student ID, and a brief
+                                description —
+                                to <a href="mailto:ricalnet@duck.com"
+                                    class="text-tor-violet hover:underline">ricalnet@duck.com</a>.
+                                RICALNET responds within 48 hours.
+                            </p>
+                            <div class="mt-4 text-xs text-text-muted font-medium tracking-wider uppercase">↳ 48‑hour
+                                response</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="150">
+                    <div
+                        class="bg-white rounded-3xl overflow-hidden shadow-elevated border border-surface-border/60 card-hover h-full">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="img/section/for-students/deploy.png"
+                                alt="Deploy your Docker-based project on RICALNET infrastructure"
+                                class="w-full h-full object-cover"
+                                onerror="this.onerror=null; this.src='img/section/for-students/deploy.png';" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent">
+                            </div>
+                            <div
+                                class="absolute top-4 left-4 w-10 h-10 rounded-full bg-tor-violet flex items-center justify-center text-white font-bold shadow-lg text-sm">
+                                2
+                            </div>
+                        </div>
+                        <div class="p-8 text-center relative">
+                            <h4 class="text-xl font-bold text-text-primary mt-1">RICALNET Deploys &amp; Configures</h4>
+                            <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                                RICALNET spins up your Docker containers, configures TLS, sets up the subdomain, and
+                                applies infrastructure‑level security. Your project goes live — usually within 24 hours.
+                            </p>
+                            <div class="mt-4 text-xs text-text-muted font-medium tracking-wider uppercase">↳ 24‑hour
+                                deployment</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <div
+                        class="bg-white rounded-3xl overflow-hidden shadow-elevated border border-surface-border/60 card-hover h-full">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="img/section/for-students/live.png"
+                                alt="Your project goes live on RICALNET's sovereign infrastructure"
+                                class="w-full h-full object-cover"
+                                onerror="this.onerror=null; this.src='img/section/for-students/live.png';" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent">
+                            </div>
+                            <div
+                                class="absolute top-4 left-4 w-10 h-10 rounded-full bg-tor-violet flex items-center justify-center text-white font-bold shadow-lg text-sm">
+                                3
+                            </div>
+                        </div>
+                        <div class="p-8 text-center relative">
+                            <h4 class="text-xl font-bold text-text-primary mt-1">Go Live &amp; Share</h4>
+                            <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                                Your project is live at <code
+                                    class="bg-surface-muted px-1.5 py-0.5 rounded text-xs font-mono">your-project.ricalnet.my.id</code>.
+                                Share it with the world, your lecturers, or your collaborators. RICALNET handles the
+                                uptime.
+                            </p>
+                            <div class="mt-4 text-xs text-text-muted font-medium tracking-wider uppercase">↳ Live
+                                instantly</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 text-center" data-aos="fade-up" data-aos-delay="400">
+                <div
+                    class="inline-flex items-center gap-2 bg-surface-muted/60 rounded-full px-6 py-3 border border-surface-border/50">
+                    <i class="fas fa-clock text-tor-violet"></i>
+                    <span class="text-sm text-text-secondary">From application to live deployment in <strong
+                            class="text-text-primary">under 72 hours</strong> — usually faster.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="apply" class="py-16 md:py-24 bg-white/30">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="section-badge"><i class="fas fa-paper-plane"></i> Apply Now</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+                    <span class="text-text-primary">Ready to </span>
+                    <span class="text-tor-violet">deploy your project?</span>
+                </h2>
+                <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+                    Send RICALNET your project details and get onboarded within 48 hours.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="lg:col-span-2">
+                    <div
+                        class="bg-white rounded-3xl p-8 shadow-elevated-lg border border-tor-violet/10 relative overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-tor-violet/5 via-transparent to-transparent">
+                        </div>
+                        <div class="relative">
+                            <div class="flex items-center gap-3 mb-5">
+                                <img src="img/logo.png" alt="RICALNET"
+                                    class="w-12 h-12 rounded-full object-cover ring-2 ring-tor-violet/20" />
+                                <div>
+                                    <p class="font-bold text-text-primary">RICALNET for Students</p>
+                                    <p class="text-xs text-text-muted">Sovereign infrastructure for students</p>
+                                </div>
+                            </div>
+                            <div class="space-y-3 text-sm text-text-secondary">
+                                <p><i class="fas fa-check-circle text-tor-accent w-5"></i> Docker‑based projects</p>
+                                <p><i class="fas fa-check-circle text-tor-accent w-5"></i> Open‑source required</p>
+                                <p><i class="fas fa-check-circle text-tor-accent w-5"></i> 1‑month retention</p>
+                                <p><i class="fas fa-check-circle text-tor-accent w-5"></i> Infrastructure security</p>
+                                <p><i class="fas fa-check-circle text-tor-accent w-5"></i> Public subdomain</p>
+                            </div>
+                            <div class="mt-5 pt-5 border-t border-surface-border/60">
+                                <p class="text-xs text-text-muted">
+                                    <i class="fas fa-envelope text-tor-violet mr-1.5"></i>
+                                    Send your application to:
+                                </p>
+                                <a href="mailto:ricalnet@duck.com?subject=Free%20Hosting%20Application"
+                                    class="text-tor-violet font-semibold hover:underline text-sm">
+                                    ricalnet@duck.com
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-3">
+                    <div class="bg-white rounded-3xl p-8 md:p-10 shadow-elevated border border-surface-border/60">
+                        <h3 class="text-xl font-bold text-text-primary mb-4">What to Include in Your Application</h3>
+                        <ul class="space-y-3 text-text-secondary text-sm">
+                            <li class="flex items-start gap-3">
+                                <span
+                                    class="w-6 h-6 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i class="fas fa-link text-tor-violet text-xs"></i>
+                                </span>
+                                <span><strong class="text-text-primary">GitHub / GitLab URL</strong> — your project's
+                                    public repository</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span
+                                    class="w-6 h-6 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i class="fas fa-file-code text-tor-violet text-xs"></i>
+                                </span>
+                                <span><strong class="text-text-primary">Docker Config</strong> — <code
+                                        class="bg-surface-muted px-1.5 py-0.5 rounded text-xs font-mono">docker-compose.yaml</code>
+                                    or Dockerfile</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span
+                                    class="w-6 h-6 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i class="fas fa-graduation-cap text-tor-violet text-xs"></i>
+                                </span>
+                                <span><strong class="text-text-primary">Student Status</strong> — proof of enrollment
+                                    (student ID, enrollment letter, or institutional email)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span
+                                    class="w-6 h-6 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i class="fas fa-align-left text-tor-violet text-xs"></i>
+                                </span>
+                                <span><strong class="text-text-primary">Project Description</strong> — a brief
+                                    explanation (1‑2 paragraphs) of what your project does and who it's for</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span
+                                    class="w-6 h-6 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i class="fas fa-flag text-tor-violet text-xs"></i>
+                                </span>
+                                <span><strong class="text-text-primary">Preferred Subdomain</strong> — what you'd like
+                                    your project URL to be (e.g., <code
+                                        class="bg-surface-muted px-1.5 py-0.5 rounded text-xs font-mono">myproject.ricalnet.my.id</code>)</span>
+                            </li>
+                        </ul>
+                        <div class="mt-6 p-4 bg-tor-violet/5 border border-tor-violet/10 rounded-2xl">
+                            <p class="text-xs text-text-secondary flex items-start gap-2">
+                                <i class="fas fa-info-circle text-tor-violet mt-0.5"></i>
+                                <span><strong class="text-text-primary">Response time:</strong> RICALNET aims to respond
+                                    to every application within <strong class="text-tor-violet">48 hours</strong>.
+                                    If your project meets the requirements, RICALNET deploys it within 24 hours of
+                                    approval.</span>
+                            </p>
+                        </div>
+                        <div class="mt-6 flex flex-wrap gap-4">
+                            <a href="mailto:ricalnet@duck.com?subject=Free%20Hosting%20Application&body=Hi%20RICALNET%20Team%2C%0A%0AI'd%20like%20to%20apply%20for%20free%20hosting%20for%20my%20project.%0A%0AProject%20name%3A%20%0AGitHub%20URL%3A%20%0ADocker%20config%3A%20%0AStudent%20ID%3A%20%0ADescription%3A%20%0APreferred%20subdomain%3A%20%0A%0AThank%20you!"
+                                class="inline-flex items-center gap-2 text-white bg-gradient-to-r from-tor-violet to-tor-violet-light hover:from-tor-violet-dark hover:to-tor-violet px-7 py-3.5 rounded-full font-semibold shadow-lg shadow-tor-violet/30 transition-all duration-300 hover:shadow-xl hover:shadow-tor-violet/40 hover:-translate-y-0.5">
+                                <i class="fas fa-envelope"></i> Apply via Email
+                            </a>
+                            <a href="https://ricalnet.my.id/terms-of-service" target="_blank" rel="noopener"
+                                class="inline-flex items-center gap-2 text-text-primary bg-white hover:bg-surface-muted px-6 py-3.5 rounded-full font-medium shadow-elevated border border-surface-border/60 transition-all duration-300 hover:shadow-elevated-lg hover:-translate-y-0.5">
+                                <i class="fas fa-file-contract"></i> Terms of Service
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16 md:py-24 bg-white/40 border-y border-surface-border/60">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="section-badge"><i class="fas fa-question-circle"></i> FAQ</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+                    <span class="text-text-primary">Quick answers </span>
+                    <span class="text-tor-violet">to common questions</span>
+                </h2>
+            </div>
+
+            <div class="space-y-3" data-aos="fade-up" data-aos-delay="100">
+
+                <div
+                    class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+                    <div class="faq-question flex items-center justify-between p-6 cursor-pointer"
+                        onclick="toggleFaq(this)">
+                        <h4 class="text-base font-semibold text-text-primary">Who qualifies for free hosting?</h4>
+                        <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer px-6 pb-6">
+                        <p class="text-text-secondary text-sm leading-relaxed">
+                            <strong class="text-text-primary">Students</strong> of all levels in Indonesia — from high
+                            school to university. Your project must be Docker‑based and open‑source.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+                    <div class="faq-question flex items-center justify-between p-6 cursor-pointer"
+                        onclick="toggleFaq(this)">
+                        <h4 class="text-base font-semibold text-text-primary">How long can I host my project for free?
+                        </h4>
+                        <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer px-6 pb-6">
+                        <p class="text-text-secondary text-sm leading-relaxed">
+                            The standard retention period is <strong class="text-tor-violet">1 month</strong>. If your
+                            project is active and you'd like to keep it live longer, just reach out — RICALNET
+                            is flexible for students who are actively working on their projects.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+                    <div class="faq-question flex items-center justify-between p-6 cursor-pointer"
+                        onclick="toggleFaq(this)">
+                        <h4 class="text-base font-semibold text-text-primary">What kind of projects can I host?</h4>
+                        <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer px-6 pb-6">
+                        <p class="text-text-secondary text-sm leading-relaxed">
+                            Anything that runs in Docker! Portfolios, personal blogs, web applications, API services,
+                            final year projects, open‑source tools, assignment demos, and more. The only restriction:
+                            your project must be open‑source and not used for illegal activities.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+                    <div class="faq-question flex items-center justify-between p-6 cursor-pointer"
+                        onclick="toggleFaq(this)">
+                        <h4 class="text-base font-semibold text-text-primary">Do I get a custom domain?</h4>
+                        <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer px-6 pb-6">
+                        <p class="text-text-secondary text-sm leading-relaxed">
+                            You get a subdomain under <code
+                                class="bg-surface-muted px-1.5 py-0.5 rounded text-xs font-mono">*.ricalnet.my.id</code>
+                            — e.g., <code
+                                class="bg-surface-muted px-1.5 py-0.5 rounded text-xs font-mono">myproject.ricalnet.my.id</code>.
+                            If you have your own domain, RICALNET can help you point it to your project as well.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+                    <div class="faq-question flex items-center justify-between p-6 cursor-pointer"
+                        onclick="toggleFaq(this)">
+                        <h4 class="text-base font-semibold text-text-primary">Is my data safe and private?</h4>
+                        <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer px-6 pb-6">
+                        <p class="text-text-secondary text-sm leading-relaxed">
+                            <strong class="text-tor-violet">Infrastructure security is provided by RICALNET.</strong>
+                            This includes automatic TLS encryption.
+                            However, <strong class="text-text-primary">application‑level security</strong> — such as
+                            input validation, authentication logic, and data handling — is the responsibility of the
+                            student developer. RICALNET advises following secure coding practices.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-8 text-center" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-text-secondary text-sm">
+                    Still have questions? <a href="mailto:ricalnet@duck.com"
+                        class="text-tor-violet hover:underline font-medium">Reach out to RICALNET</a>
+                    — the team is here to help.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="relative overflow-hidden border-t border-tor-violet/10">
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
+        </div>
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
+        </div>
+    
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+    
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+    
+                <div class="col-span-2 md:col-span-3 lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
+                            <img src="img/logo.png" alt="RICALNET open-source self-hosted infrastructure logo"
+                                class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
+                        </div>
+                        <div>
+                            <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+                            <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust
+                                · Control
+                                · Access · Libre</span>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
+                        RICALNET — Robust Infrastructure for Control, Access, &amp; Libre NETwork.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 mt-5">
+                        <a href="https://github.com/ricalnet" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fa-brands fa-github text-base"></i>
+                        </a>
+                        <a href="mailto:ricalnet@duck.com"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-envelope text-base"></i>
+                        </a>
+                        <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" target="_blank" rel="noopener"
+                            class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+                            <i class="fas fa-heartbeat text-base"></i>
+                        </a>
+                        <span
+                            class="pgp-fingerprint text-[0.6rem] px-3 py-1.5 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                            onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                            <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                        </span>
+                    </div>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Why Self‑Host</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/about#our-mission" class="footer-link">Mission</a></li>
+                        <li><a href="https://ricalnet.my.id/resources" class="footer-link">Resources</a></li>
+                        <li><a href="https://ricalnet.my.id/gallery" class="footer-link">Gallery</a></li>
+                        <li><a href="https://docs.ricalnet.my.id" class="footer-link">Blog</a></li>
+                        <li><a href="https://ricalnet.my.id/#cta" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Stack</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/#features" class="footer-link">Sovereign Infrastructure</a></li>
+                        <li><a href="https://ricalnet.my.id/#private-digital-services" class="footer-link">What You Need</a>
+                        </li>
+                        <li><a href="https://ricalnet.my.id/#hidden-services" class="footer-link">Hidden Services</a></li>
+                        <li><a href="https://ricalnet.my.id/tools/metadata-cleaner" class="footer-link">Metadata Cleaner</a>
+                        </li>
+                        <li><a href="https://ricalnet.my.id/tools/quantum-hasher" class="footer-link">Quantum Hasher</a>
+                        </li>
+                        <li><a href="https://link.ricalnet.my.id" class="footer-link">URL Shortener</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Docs &amp; Resources</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
+                                target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="https://github.com/ricalnet/digital-independence" class="footer-link"
+                                target="_blank">Repository <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="https://ricalnet.my.id/about#cta-support" class="footer-link">Support</a></li>
+                        <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
+                    </ul>
+                </div>
+    
+                <div>
+                    <h4 class="footer-heading text-text-primary/60">Legal</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="https://ricalnet.my.id/resources#legal-resources" class="footer-link">Legal
+                                Resources</a></li>
+                        <li><a href="https://ricalnet.my.id/terms-of-service" class="footer-link">Terms of Service</a></li>
+                        <li><a href="https://ricalnet.my.id/privacy" class="footer-link">Privacy Policy</a></li>
+                    </ul>
+                </div>
+    
+            </div>
+    
+            <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+                <p class="text-xs tracking-wide">
+                    COPYRIGHT (CC BY) — <a href="https://ricalnet.my.id/"
+                        class="hover:text-tor-violet transition-colors">Open
+                        Source Self-Hosted Infrastructure</a>
+                </p>
+                <div class="flex flex-wrap items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
+                    <a href="https://ricalnet.my.id/"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#OpenSource</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/#pain-points"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#NoLockIn</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/#features"
+                        class="text-text-secondary/70 hover:text-tor-violet transition-colors">#ZeroTrust</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <a href="https://ricalnet.my.id/"
+                        class="text-tor-violet font-semibold hover:text-tor-violet-dark transition-colors">#ControlAccessLibre</a>
+                    <span class="w-px h-4 bg-tor-violet/10"></span>
+                    <span
+                        class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+                        onclick="copyPGP()" title="Click to copy PGP fingerprint">
+                        <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+                    </span>
+                </div>
+            </div>
+    
+        </div>
+    </footer>
+
+    <script src="assets/js/aos.js">
+    </script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 30,
+            easing: 'ease-out-expo',
+            duration: 900,
+            disable: window.innerWidth < 768 ? true : false,
+        });
+
+        const PGP_FINGERPRINT = '45688382B815821F033115B8D92D6A10D29C8380';
+
+        function copyPGP() {
+            navigator.clipboard.writeText(PGP_FINGERPRINT).then(() => {
+                showToast('PGP fingerprint copied!');
+            }).catch(() => {
+                const textArea = document.createElement('textarea');
+                textArea.value = PGP_FINGERPRINT;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast('PGP fingerprint copied!');
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className =
+                'fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] transition-all duration-300';
+            toast.innerHTML = '<i class="fas fa-check-circle text-tor-accent mr-2"></i> ' + message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        }
+
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon');
+            const isOpen = answer.classList.contains('open');
+
+            document.querySelectorAll('.faq-answer').forEach(el => {
+                if (el !== answer) {
+                    el.classList.remove('open');
+                    el.previousElementSibling.querySelector('.faq-icon').classList.remove('open');
+                }
+            });
+
+            if (isOpen) {
+                answer.classList.remove('open');
+                icon.classList.remove('open');
+            } else {
+                answer.classList.add('open');
+                icon.classList.add('open');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const firstFaq = document.querySelector('.faq-answer');
+            if (firstFaq) {
+                firstFaq.classList.add('open');
+                firstFaq.previousElementSibling.querySelector('.faq-icon').classList.add('open');
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        document.querySelectorAll('[data-close-mobile]').forEach(el => {
+            el.addEventListener('click', function () {
+                const menu = document.getElementById('mobile-menu');
+                if (menu) {
+                    menu.classList.remove('open');
+                    const toggle = document.getElementById('mobile-menu-toggle');
+                    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+                    document.body.classList.remove('mobile-menu-open');
+                }
+            });
+        });
+
+        document.getElementById('mobile-menu-toggle')?.addEventListener('click', function () {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) {
+                const isOpen = menu.classList.contains('open');
+                menu.classList.toggle('open');
+                this.setAttribute('aria-expanded', !isOpen);
+                document.body.classList.toggle('mobile-menu-open');
+            }
+        });
+
+        document.getElementById('mobile-menu-close')?.addEventListener('click', function () {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) {
+                menu.classList.remove('open');
+                const toggle = document.getElementById('mobile-menu-toggle');
+                if (toggle) toggle.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('mobile-menu-open');
+            }
+        });
+
+        document.querySelectorAll('.mobile-dropdown-toggle').forEach(button => {
+            button.addEventListener('click', function () {
+                const targetId = this.getAttribute('data-target');
+                const target = document.getElementById(targetId);
+                if (target) {
+                    const isOpen = target.classList.contains('open');
+                    target.classList.toggle('open');
+                    this.classList.toggle('open');
+                    this.setAttribute('aria-expanded', !isOpen);
+                }
+            });
+        });
+    </script>
+    <script src="assets/js/components.js">
+    </script>
+
+</body>
+
+</html>
