@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth overflow-x-hidden">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+  <title>Hosting Gratis Pelajar & Mahasiswa — Docker, Open Source | RICALNET</title>
+
+  <meta name="description"
+    content="Hosting Docker gratis untuk pelajar dan mahasiswa Indonesia. Deploy portofolio, tugas, atau skripsi di infrastruktur berdaulat RICALNET. Wajib open source. Tanpa biaya tersembunyi." />
+
+  <meta name="keywords"
+    content="hosting gratis pelajar, hosting mahasiswa, hosting Docker gratis, hosting portofolio, hosting skripsi, hosting open source, Indonesia, RICALNET, infrastruktur berdaulat" />
+
+  <link rel="canonical" href="https://ricalnet.my.id/free-hosting" />
+  <link rel="alternate" hreflang="id" href="https://ricalnet.my.id/free-hosting" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://ricalnet.my.id/sitemap.xml" />
+  <link rel="icon" type="image/x-icon" href="img/logo.png" />
+
+  <meta property="og:title" content="Hosting Gratis Pelajar & Mahasiswa — Docker, Open Source | RICALNET" />
+  <meta property="og:description"
+    content="Hosting Docker gratis untuk pelajar dan mahasiswa Indonesia. Deploy portofolio, tugas, atau skripsi di infrastruktur berdaulat RICALNET." />
+  <meta property="og:url" content="https://ricalnet.my.id/free-hosting" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://ricalnet.my.id/img/og-free-hosting.png" />
+  <meta property="og:image:alt" content="Hosting gratis RICALNET untuk pelajar dan mahasiswa Indonesia" />
+  <meta property="og:site_name" content="RICALNET" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hosting Gratis Pelajar & Mahasiswa — Docker, Open Source | RICALNET" />
+  <meta name="twitter:description"
+    content="Hosting Docker gratis untuk pelajar dan mahasiswa Indonesia. Deploy portofolio, tugas, atau skripsi di infrastruktur berdaulat RICALNET." />
+  <meta name="twitter:image" content="https://ricalnet.my.id/img/og-free-hosting.png" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Hosting Gratis Pelajar & Mahasiswa — Docker, Open Source",
+      "description": "Hosting Docker gratis untuk pelajar dan mahasiswa Indonesia. Deploy portofolio, tugas, atau skripsi di infrastruktur berdaulat RICALNET.",
+      "url": "https://ricalnet.my.id/free-hosting",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ricalnet.my.id/" },
+          { "@type": "ListItem", "position": 2, "name": "Hosting Gratis", "item": "https://ricalnet.my.id/free-hosting" }
+        ]
+      }
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "RICALNET",
+      "url": "https://ricalnet.my.id/",
+      "logo": "https://ricalnet.my.id/img/logo.png",
+      "sameAs": ["https://github.com/ricalnet"],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "ricalnet@duck.com",
+        "contactType": "technical support"
+      }
+    }
+  </script>
+
+  <link href="assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="assets/fontawesome/css/solid.css" rel="stylesheet" />
+  <link href="assets/fontawesome/css/brands.css" rel="stylesheet" />
+  <link href="assets/css/fonts.css" rel="stylesheet" />
+  <link href="assets/css/aos.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/tailwind.css" />
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css" />
+</head>
+
+<body
+  class="font-source-sans-pro bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+
+  <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
+    <div class="absolute inset-0 bg-grid-subtle"></div>
+    <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/5 rounded-full blur-[160px]"></div>
+    <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/3 rounded-full blur-[180px]"></div>
+    <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/4 rounded-full blur-[140px]"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light"></div>
+  </div>
+
+  <header
+    class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-[72px]">
+
+        <a href="https://ricalnet.my.id/" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+          data-aos-duration="600">
+          <img src="img/logo.png" alt="RICALNET open source self-hosted infrastructure logo"
+            class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
+          <div class="leading-tight hidden sm:block">
+            <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+            <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust · Control ·
+              Access · Libre</span>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down" data-aos-duration="600">
+          <a href="https://ricalnet.my.id/#hero" class="nav-link">Home</a>
+
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/#pain-points" class="nav-link flex items-center gap-1">
+              Why Self‑Host
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/#pain-points" class="dropdown-item">The Lock‑in Trap</a>
+              <a href="https://ricalnet.my.id/#how-it-works" class="dropdown-item">The Approach</a>
+              <a href="https://ricalnet.my.id/#features" class="dropdown-item">Sovereign Stack</a>
+              <a href="https://ricalnet.my.id/#comparison" class="dropdown-item">Comparison</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/resources#hero" class="nav-link flex items-center gap-1">
+              Resources
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+              <a href="https://ricalnet.my.id/resources#in-house-tools" class="dropdown-item">In‑House Tools</a>
+              <a href="https://ricalnet.my.id/resources#leaks" class="dropdown-item">Whistleblowing Platform</a>
+              <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal Resources</a>
+              <a href="https://ricalnet.my.id/resources" class="dropdown-item">All Resources</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/resources#hero" class="nav-link flex items-center gap-1">
+              Tools
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/tools/image-censor" class="dropdown-item">Image Censor</a>
+              <a href="https://ricalnet.my.id/tools/ip-intelligence" class="dropdown-item">IP Intelligence</a>
+              <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="dropdown-item">Metadata Cleaner</a>
+              <a href="https://ricalnet.my.id/tools/password-generator" class="dropdown-item">Password Generator</a>
+              <a href="https://ricalnet.my.id/tools/qr-builder" class="dropdown-item">QR Builder</a>
+              <a href="https://ricalnet.my.id/tools/quantum-hasher" class="dropdown-item">Quantum Hasher</a>
+              <a href="https://ricalnet.my.id/tools/whiteboard" class="dropdown-item">Whiteboard</a>
+              <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/about#hero" class="nav-link flex items-center gap-1">
+              About
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/about#our-mission" class="dropdown-item">Mission</a>
+              <a href="https://ricalnet.my.id/about#team" class="dropdown-item">Team</a>
+              <a href="https://ricalnet.my.id/about#cta-support" class="dropdown-item">Support</a>
+              <a href="https://ricalnet.my.id/#faq" class="dropdown-item">FAQ</a>
+              <a href="https://ricalnet.my.id/#cta" class="dropdown-item">Contact</a>
+            </div>
+          </div>
+          <a href="https://ricalnet.my.id/free-hosting" class="nav-link nav-link-active">For Students</a>
+        </nav>
+
+        <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
+          <a href="https://ricalnet.my.id/#hidden-services" class="hidden lg:inline-flex btn-sso">
+            <i class="fas fa-key"></i> Login with SSO
+          </a>
+          <button id="mobile-menu-toggle"
+            class="lg:hidden w-9 h-9 rounded-full hover:bg-surface-muted flex items-center justify-center transition-colors"
+            aria-label="Toggle menu" aria-expanded="false">
+            <i class="fas fa-bars text-text-secondary text-lg"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+
+    <div class="mobile-menu-header">
+      <div class="logo">
+        <img src="img/logo.png" alt="RICALNET" />
+        <span>RICALNET</span>
+      </div>
+      <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+        <i class="fas fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="mobile-menu-scroll">
+
+      <a href="https://ricalnet.my.id/#hero" class="nav-item" data-close-mobile>
+        <i class="fas fa-home"></i> Home
+      </a>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-advocacy">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Why Self‑Host
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/#pain-points" class="sub-link" data-close-mobile>
+            <i class="fas fa-exclamation-triangle"></i> The Lock‑in Trap
+          </a>
+          <a href="https://ricalnet.my.id/#how-it-works" class="sub-link" data-close-mobile>
+            <i class="fas fa-route"></i> The Approach
+          </a>
+          <a href="https://ricalnet.my.id/#features" class="sub-link" data-close-mobile>
+            <i class="fas fa-star"></i> Sovereign Stack
+          </a>
+          <a href="https://ricalnet.my.id/#comparison" class="sub-link" data-close-mobile>
+            <i class="fas fa-arrows-left-right"></i> Comparison
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-resources">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-lock"></i> Privacy Tools
+          </a>
+          <a href="https://ricalnet.my.id/resources#in-house-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-cubes"></i> In‑House Tools
+          </a>
+          <a href="https://ricalnet.my.id/resources#in-house-tools" class="sub-link" data-close-mobile>
+            <i class="fab fa-globaleaks"></i> Whistleblowing Platform
+          </a>
+          <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+            <i class="fas fa-gavel"></i> Legal Resources
+          </a>
+          <a href="https://ricalnet.my.id/resources" class="sub-link" data-close-mobile>
+            <i class="fas fa-folder-open"></i> All Resources
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-tools">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/tools/image-censor" class="sub-link" data-close-mobile>
+            <i class="fas fa-eye-slash"></i> Image Censor
+          </a>
+          <a href="https://ricalnet.my.id/tools/ip-intelligence" class="sub-link" data-close-mobile>
+            <i class="fas fa-map-pin"></i> IP Intelligence
+          </a>
+          <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="sub-link" data-close-mobile>
+            <i class="fas fa-map-pin"></i> Metadata Cleaner
+          </a>
+          <a href="https://ricalnet.my.id/tools/password-generator" class="sub-link" data-close-mobile>
+            <i class="fas fa-key"></i> Password Generator
+          </a>
+          <a href="https://ricalnet.my.id/tools/qr-builder" class="sub-link" data-close-mobile>
+            <i class="fas fa-qrcode"></i> QR Builder
+          </a>
+          <a href="https://ricalnet.my.id/tools/quantum-hasher" class="sub-link" data-close-mobile>
+            <i class="fas fa-qrcode"></i> Quantum Hasher
+          </a>
+          <a href="https://ricalnet.my.id/tools/whiteboard" class="sub-link" data-close-mobile>
+            <i class="fas fa-pen-fancy"></i> Whiteboard
+          </a>
+          <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-user-secret"></i> Privacy Tools
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-about">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/about#our-mission" class="sub-link" data-close-mobile>
+            <i class="fas fa-bullseye"></i> Mission
+          </a>
+          <a href="https://ricalnet.my.id/about#team" class="sub-link" data-close-mobile>
+            <i class="fas fa-users"></i> Team
+          </a>
+          <a href="https://ricalnet.my.id/about#cta-support" class="sub-link" data-close-mobile>
+            <i class="fas fa-hand-holding-heart"></i> Support
+          </a>
+          <a href="https://ricalnet.my.id/#faq" class="sub-link" data-close-mobile>
+            <i class="fas fa-question-circle"></i> FAQ
+          </a>
+          <a href="https://ricalnet.my.id/#cta" class="sub-link" data-close-mobile>
+            <i class="fas fa-envelope"></i> Contact
+          </a>
+        </div>
+      </div>
+      <a href="https://ricalnet.my.id/free-hosting" class="nav-item" data-close-mobile>
+        <i class="fas fa-server"></i> For Students
+      </a>
+
+      <a href="https://ricalnet.my.id/#hidden-services" class="mt-3 block w-full text-center btn-sso justify-center"
+        data-close-mobile>
+        <i class="fas fa-key"></i> Login with SSO
+      </a>
+
+      <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+        <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+          <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> RICALNET — Robust · Control · Access · Libre
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <nav aria-label="Breadcrumb" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 text-xs">
+    <ol class="flex flex-wrap items-center gap-2 text-text-muted">
+      <li><a href="https://ricalnet.my.id/" class="hover:text-tor-violet transition-colors">Home</a></li>
+      <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
+      <li class="text-tor-violet font-medium">Hosting Gratis Pelajar &amp; Mahasiswa</li>
+    </ol>
+  </nav>
+
+  <section id="hero" class="relative overflow-hidden pt-8 pb-16 md:pt-16 md:pb-28 bg-white/30">
+    <div class="absolute inset-0 -z-10">
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-tor-violet/3 rounded-full blur-[160px]">
+      </div>
+      <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-400/5 rounded-full blur-[120px] opacity-60"></div>
+    </div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+        <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+          <div class="flex flex-wrap items-center gap-2 mb-5">
+            <span class="badge-pill"><i class="fas fa-graduation-cap"></i> Untuk Pelajar &amp; Mahasiswa</span>
+            <span class="badge-pill"
+              style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);"><i
+                class="fab fa-docker"></i> Berbasis Docker</span>
+            <span class="badge-pill"
+              style="background:rgba(104,176,48,0.08);color:#3d7a1a;border-color:rgba(104,176,48,0.12);"><i
+                class="fas fa-check-circle"></i> 100% Gratis</span>
+          </div>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight">
+            <span class="text-text-primary">Hosting Gratis untuk </span>
+            <span class="text-tor-violet">Pelajar &amp; Mahasiswa</span>
+          </h1>
+          <p class="text-text-secondary text-lg md:text-xl mt-5 max-w-lg leading-relaxed">
+            Deploy proyek Docker Anda — portofolio, tugas, atau skripsi — di infrastruktur berdaulat RICALNET.
+            <strong class="text-tor-violet">Tanpa biaya. Tanpa lock‑in. Tanpa pengawasan.</strong>
+          </p>
+          <div class="flex flex-wrap items-center gap-4 mt-7">
+            <a href="#apply"
+              class="inline-flex items-center gap-2 text-white bg-gradient-to-r from-tor-violet to-tor-violet-light hover:from-tor-violet-dark hover:to-tor-violet px-7 py-3.5 rounded-full font-semibold shadow-lg shadow-tor-violet/30 transition-all duration-300 hover:shadow-xl hover:shadow-tor-violet/40 hover:-translate-y-0.5">
+              <i class="fas fa-paper-plane"></i> Daftar Sekarang
+            </a>
+            <a href="#who-its-for"
+              class="inline-flex items-center gap-2 text-text-primary bg-white hover:bg-surface-muted px-6 py-3.5 rounded-full font-medium shadow-elevated border border-surface-border/60 transition-all duration-300 hover:shadow-elevated-lg hover:-translate-y-0.5">
+              Pelajari Lebih Lanjut <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+          <div class="flex flex-wrap items-center gap-5 mt-6 text-sm text-text-muted">
+            <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-tor-accent text-xs"></i> Wajib
+              open‑source</span>
+            <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-tor-accent text-xs"></i> Retensi
+              1 bulan</span>
+            <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-tor-accent text-xs"></i> Keamanan
+              infrastruktur</span>
+          </div>
+        </div>
+
+        <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="200"
+          class="relative flex justify-center lg:justify-end">
+          <div class="relative w-full max-w-md lg:max-w-lg">
+            <div class="absolute inset-0 bg-tor-violet/10 rounded-full blur-3xl scale-90"></div>
+            <div
+              class="relative glass-card rounded-3xl p-2 shadow-elevated-lg border border-tor-violet/10 overflow-hidden">
+              <img src="img/section/for-students/hero.png"
+                alt="Hosting gratis RICALNET untuk pelajar dan mahasiswa — proyek Docker di infrastruktur berdaulat"
+                class="rounded-2xl w-full h-auto object-cover img-shadow-soft"
+                onerror="this.onerror=null; this.src='img/section/for-students/hero.png';" />
+              <div class="absolute bottom-4 left-4 right-4 flex flex-wrap justify-between gap-2">
+                <span
+                  class="bg-white/90 backdrop-blur text-xs font-semibold text-text-primary px-3 py-1.5 rounded-full shadow-elevated border border-surface-border/60 flex items-center gap-1.5">
+                  <i class="fab fa-docker text-tor-violet"></i> Docker
+                </span>
+                <span
+                  class="bg-white/90 backdrop-blur text-xs font-semibold text-text-primary px-3 py-1.5 rounded-full shadow-elevated border border-surface-border/60 flex items-center gap-1.5">
+                  <i class="fas fa-code text-tor-violet"></i> Open‑Source
+                </span>
+              </div>
+            </div>
+            <div
+              class="absolute -bottom-3 -left-3 bg-white rounded-full px-4 py-2.5 shadow-elevated border border-tor-violet/10 flex items-center gap-2 text-sm font-medium text-text-primary animate-float">
+              <i class="fas fa-graduation-cap text-tor-accent"></i>
+              <span>Pelajar &amp; mahasiswa daftar gratis</span>
+            </div>
+            <div
+              class="absolute -top-3 -right-3 bg-emerald-500 text-white rounded-full px-4 py-2.5 shadow-elevated text-sm font-semibold animate-float"
+              style="animation-delay:1.8s;">
+              <i class="fas fa-check-circle mr-1.5"></i> 100% Gratis
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="corporate-divider max-w-6xl mx-auto px-4"></div>
+
+  <section id="what-you-get" class="py-16 md:py-24 bg-white/30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <span class="section-badge"><i class="fas fa-gift"></i> Apa yang Anda Dapatkan</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+          <span class="text-text-primary">Semua yang pelajar butuhkan untuk </span>
+          <span class="text-tor-violet">deploy dengan percaya diri</span>
+        </h2>
+        <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+          Tanpa biaya tersembunyi. Tanpa vendor lock‑in. Hanya infrastruktur andal yang mengutamakan privasi.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-tor-violet/10 flex items-center justify-center mb-5">
+            <i class="fab fa-docker text-2xl text-tor-violet"></i>
+          </div>
+          <h3 class="text-xl font-bold text-text-primary">Berbasis Docker</h3>
+          <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+            Deploy proyek apa pun dengan <code
+              class="bg-surface-muted px-1.5 py-0.5 rounded text-xs font-mono">docker-compose.yaml</code>
+            atau Dockerfile. RICALNET menangani orkestrasi — Anda fokus pada kode.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-cyan-50 flex items-center justify-center mb-5">
+            <i class="fas fa-shield-alt text-2xl text-cyan-600"></i>
+          </div>
+          <h3 class="text-xl font-bold text-text-primary">Keamanan Infrastruktur</h3>
+          <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+            RICALNET mengamankan infrastruktur dengan TLS otomatis.
+            Keamanan tingkat aplikasi menjadi tanggung jawab pelajar.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-emerald-50 flex items-center justify-center mb-5">
+            <i class="fas fa-infinity text-2xl text-emerald-600"></i>
+          </div>
+          <h3 class="text-xl font-bold text-text-primary">Retensi 1 Bulan</h3>
+          <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+            Proyek Anda live minimal satu bulan. Butuh lebih lama? Hubungi saja — fleksibel untuk proyek pelajar yang aktif.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-50 flex items-center justify-center mb-5">
+            <i class="fas fa-code-branch text-2xl text-amber-600"></i>
+          </div>
+          <h3 class="text-xl font-bold text-text-primary">Mengutamakan Open‑Source</h3>
+          <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+            Kode Anda tetap publik dan terbuka. Ini bukan sekadar hosting — ini kontribusi untuk kepentingan bersama.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-purple-50 flex items-center justify-center mb-5">
+            <i class="fas fa-globe text-2xl text-tor-violet"></i>
+          </div>
+          <h3 class="text-xl font-bold text-text-primary">URL Publik</h3>
+          <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+            Dapatkan subdomain di <code
+              class="bg-surface-muted px-1.5 py-0.5 rounded text-xs font-mono">*.ricalnet.my.id</code>
+            — bagikan proyek Anda ke dunia secara instan.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-rose-50 flex items-center justify-center mb-5">
+            <i class="fas fa-hand-holding-heart text-2xl text-rose-500"></i>
+          </div>
+          <h3 class="text-xl font-bold text-text-primary">Tanpa Biaya Tersembunyi</h3>
+          <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+            Nol biaya. Nol biaya egress. Nol lisensi per pengguna. Hanya hosting gratis untuk proyek open‑source.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="who-its-for" class="py-16 md:py-24 bg-white/40 border-y border-surface-border/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <span class="section-badge"><i class="fas fa-users"></i> Untuk Siapa</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+          <span class="text-text-primary">Dibuat untuk </span>
+          <span class="text-tor-violet">pelajar, kreator, dan pemimpi</span>
+        </h2>
+        <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+          Jika Anda pelajar di Indonesia yang membangun sesuatu yang open‑source dan tercontainerisasi, Anda diterima di sini.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+        <div data-aos="fade-right" data-aos-duration="700">
+          <img src="img/section/for-students/who-its-for.png"
+            alt="Pelajar membangun proyek open-source di hosting gratis RICALNET"
+            class="rounded-3xl shadow-elevated-lg border border-surface-border/60 w-full h-auto object-cover img-shadow-soft"
+            onerror="this.onerror=null; this.src='img/section/for-students/who-its-for.png';" />
+        </div>
+
+        <div data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
+          <div class="space-y-5">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i class="fas fa-folder-open text-tor-violet"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-text-primary">Portofolio &amp; Proyek Pribadi</h4>
+                <p class="text-text-secondary text-sm leading-relaxed">Tampilkan karya Anda. Deploy
+                  website pribadi, blog, atau proyek kreatif — dan biarkan tetap live secara gratis.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-cyan-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i class="fas fa-pencil-ruler text-cyan-600"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-text-primary">Tugas &amp; Pekerjaan Kuliah</h4>
+                <p class="text-text-secondary text-sm leading-relaxed">Bagikan karya Anda dengan dosen
+                  dan teman sejawat.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i class="fas fa-trophy text-amber-600"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-text-primary">Proyek Akhir (Skripsi / Tugas Akhir)</h4>
+                <p class="text-text-secondary text-sm leading-relaxed">Buat kesan pada penguji Anda dengan sistem yang
+                  ter-deploy penuh dan dapat diakses publik.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i class="fas fa-cubes text-emerald-600"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-text-primary">Alat &amp; Pustaka Open‑Source</h4>
+                <p class="text-text-secondary text-sm leading-relaxed">Hosting demo, playground, atau
+                  instance live dari proyek open‑source Anda. Biarkan orang lain melihatnya beraksi.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="requirements" class="py-16 md:py-24 bg-white/30">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <span class="section-badge"><i class="fas fa-clipboard-list"></i> Persyaratan</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+          <span class="text-text-primary">Sederhana, jelas, </span>
+          <span class="text-tor-violet">mudah dipenuhi</span>
+        </h2>
+        <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+          Tiga syarat. Hanya itu yang dibutuhkan untuk hosting gratis dari RICALNET.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+          <div class="w-16 h-16 mx-auto rounded-full bg-tor-violet/10 flex items-center justify-center mb-5">
+            <span class="text-2xl font-bold text-tor-violet"><i class="fab fa-docker"></i></span>
+          </div>
+          <h3 class="text-xl font-bold text-text-primary mt-4">Berbasis Docker</h3>
+          <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+            Proyek Anda harus menyertakan <code
+              class="bg-surface-muted px-1.5 py-0.5 rounded text-xs font-mono">docker-compose.yaml</code>
+            atau Dockerfile.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+          <div class="w-16 h-16 mx-auto rounded-full bg-tor-violet/10 flex items-center justify-center mb-5">
+            <span class="text-2xl font-bold text-tor-violet"><i class="fas fa-code-branch"></i></span>
+          </div>
+          <h3 class="text-xl font-bold text-text-primary mt-4">Open‑Source</h3>
+          <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+            Kode sumber harus tersedia publik di bawah lisensi open‑source (MIT, GPL, Apache, dll.).
+          </p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover text-center">
+          <div class="w-16 h-16 mx-auto rounded-full bg-tor-violet/10 flex items-center justify-center mb-5">
+            <span class="text-2xl font-bold text-tor-violet"><i class="fas fa-graduation-cap"></i></span>
+          </div>
+          <h3 class="text-xl font-bold text-text-primary mt-4">Pelajar / Mahasiswa</h3>
+          <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+            Anda harus pelajar di Indonesia (SMA/SMK, universitas, atau vokasi). Bukti pendaftaran diperlukan.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-8 p-5 bg-tor-violet/5 border border-tor-violet/20 rounded-2xl text-center" data-aos="fade-up"
+        data-aos-delay="200">
+        <p class="text-text-secondary text-sm flex items-center justify-center gap-2 flex-wrap">
+          <i class="fas fa-check-circle text-tor-accent"></i>
+          <span><strong class="text-text-primary">Itu saja.</strong> Tanpa syarat tersembunyi. Proyek Anda tetap milik Anda — RICALNET hanya menyediakan infrastrukturnya.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="py-16 md:py-24 bg-white/40 border-y border-surface-border/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <span class="section-badge"><i class="fas fa-route"></i> Cara Kerjanya</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+          <span class="text-text-primary">Dari pendaftaran hingga </span>
+          <span class="text-tor-violet">deployment live</span>
+        </h2>
+        <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+          Tiga langkah sederhana untuk membuat proyek Anda live di infrastruktur berdaulat.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
+        <div class="hidden lg:block absolute top-[72px] left-1/2 -translate-x-1/2 w-[50%] h-0.5 bg-tor-violet/20"></div>
+
+        <div data-aos="fade-up" data-aos-delay="0">
+          <div class="bg-white rounded-3xl overflow-hidden shadow-elevated border border-surface-border/60 card-hover h-full">
+            <div class="h-48 overflow-hidden relative">
+              <img src="img/section/for-students/apply.png"
+                alt="Daftar hosting gratis dengan RICALNET — kirim detail proyek Anda"
+                class="w-full h-full object-cover"
+                onerror="this.onerror=null; this.src='img/section/home/assess.png';" />
+              <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+              <div
+                class="absolute top-4 left-4 w-10 h-10 rounded-full bg-tor-violet flex items-center justify-center text-white font-bold shadow-lg text-sm">
+                1
+              </div>
+            </div>
+            <div class="p-8 text-center relative">
+              <h4 class="text-xl font-bold text-text-primary mt-1">Daftar dengan Proyek Anda</h4>
+              <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                Kirim detail proyek — repo GitHub, dokumentasi, kartu pelajar, dan deskripsi singkat —
+                ke <a href="mailto:ricalnet@duck.com" class="text-tor-violet hover:underline">ricalnet@duck.com</a>.
+                Respons dalam 24 jam.
+              </p>
+              <div class="mt-4 text-xs text-text-muted font-medium tracking-wider uppercase">↳ Respons 24 jam</div>
+            </div>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="150">
+          <div class="bg-white rounded-3xl overflow-hidden shadow-elevated border border-surface-border/60 card-hover h-full">
+            <div class="h-48 overflow-hidden relative">
+              <img src="img/section/for-students/deploy.png"
+                alt="Deploy proyek berbasis Docker Anda di infrastruktur RICALNET"
+                class="w-full h-full object-cover"
+                onerror="this.onerror=null; this.src='img/section/for-students/deploy.png';" />
+              <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+              <div
+                class="absolute top-4 left-4 w-10 h-10 rounded-full bg-tor-violet flex items-center justify-center text-white font-bold shadow-lg text-sm">
+                2
+              </div>
+            </div>
+            <div class="p-8 text-center relative">
+              <h4 class="text-xl font-bold text-text-primary mt-1">RICALNET Men-deploy &amp; Mengkonfigurasi</h4>
+              <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                RICALNET menyalakan container Docker Anda, mengkonfigurasi TLS, menyiapkan subdomain, dan
+                menerapkan keamanan infrastruktur. Proyek Anda live — biasanya dalam 24 jam.
+              </p>
+              <div class="mt-4 text-xs text-text-muted font-medium tracking-wider uppercase">↳ Deployment 24 jam</div>
+            </div>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="300">
+          <div class="bg-white rounded-3xl overflow-hidden shadow-elevated border border-surface-border/60 card-hover h-full">
+            <div class="h-48 overflow-hidden relative">
+              <img src="img/section/for-students/live.png"
+                alt="Proyek Anda live di infrastruktur berdaulat RICALNET"
+                class="w-full h-full object-cover"
+                onerror="this.onerror=null; this.src='img/section/for-students/live.png';" />
+              <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+              <div
+                class="absolute top-4 left-4 w-10 h-10 rounded-full bg-tor-violet flex items-center justify-center text-white font-bold shadow-lg text-sm">
+                3
+              </div>
+            </div>
+            <div class="p-8 text-center relative">
+              <h4 class="text-xl font-bold text-text-primary mt-1">Live &amp; Bagikan</h4>
+              <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+                Proyek Anda live di <code
+                  class="bg-surface-muted px-1.5 py-0.5 rounded text-xs font-mono">proyek-anda.ricalnet.my.id</code>.
+                Bagikan ke dunia, dosen, atau kolaborator. RICALNET menangani uptime-nya.
+              </p>
+              <div class="mt-4 text-xs text-text-muted font-medium tracking-wider uppercase">↳ Live instan</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 text-center" data-aos="fade-up" data-aos-delay="400">
+        <div
+          class="inline-flex items-center gap-2 bg-surface-muted/60 rounded-full px-6 py-3 border border-surface-border/50">
+          <i class="fas fa-clock text-tor-violet"></i>
+          <span class="text-sm text-text-secondary">Dari pendaftaran hingga live dalam <strong
+              class="text-text-primary">kurang dari 48 jam</strong> — biasanya lebih cepat.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="apply" class="py-16 md:py-24 bg-white/30">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <span class="section-badge"><i class="fas fa-paper-plane"></i> Daftar Sekarang</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+          <span class="text-text-primary">Siap </span>
+          <span class="text-tor-violet">deploy proyek Anda?</span>
+        </h2>
+        <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+          Kirim detail proyek Anda dan onboarding dalam 24 jam.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-3xl p-8 shadow-elevated-lg border border-tor-violet/10 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-tor-violet/5 via-transparent to-transparent"></div>
+            <div class="relative">
+              <div class="flex items-center gap-3 mb-5">
+                <img src="img/logo.png" alt="RICALNET"
+                  class="w-12 h-12 rounded-full object-cover ring-2 ring-tor-violet/20" />
+                <div>
+                  <p class="font-bold text-text-primary">RICALNET untuk Pelajar</p>
+                  <p class="text-xs text-text-muted">Infrastruktur berdaulat untuk pelajar</p>
+                </div>
+              </div>
+              <div class="space-y-3 text-sm text-text-secondary">
+                <p><i class="fas fa-check-circle text-tor-accent w-5"></i> Proyek berbasis Docker</p>
+                <p><i class="fas fa-check-circle text-tor-accent w-5"></i> Wajib open‑source</p>
+                <p><i class="fas fa-check-circle text-tor-accent w-5"></i> Retensi 1 bulan</p>
+                <p><i class="fas fa-check-circle text-tor-accent w-5"></i> Keamanan infrastruktur</p>
+                <p><i class="fas fa-check-circle text-tor-accent w-5"></i> Subdomain publik</p>
+              </div>
+              <div class="mt-5 pt-5 border-t border-surface-border/60">
+                <p class="text-xs text-text-muted">
+                  <i class="fas fa-envelope text-tor-violet mr-1.5"></i>
+                  Kirim lamaran ke:
+                </p>
+                <a href="mailto:ricalnet@duck.com?subject=Free%20Hosting%20Application"
+                  class="text-tor-violet font-semibold hover:underline text-sm">
+                  ricalnet@duck.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-3">
+          <div class="bg-white rounded-3xl p-8 md:p-10 shadow-elevated border border-surface-border/60">
+            <h3 class="text-xl font-bold text-text-primary mb-4">Apa yang Harus Disertakan</h3>
+            <ul class="space-y-3 text-text-secondary text-sm">
+              <li class="flex items-start gap-3">
+                <span
+                  class="w-6 h-6 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <i class="fas fa-link text-tor-violet text-xs"></i>
+                </span>
+                <span><strong class="text-text-primary">URL GitHub / GitLab</strong> — repositori publik
+                  proyek Anda</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span
+                  class="w-6 h-6 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <i class="fas fa-file-code text-tor-violet text-xs"></i>
+                </span>
+                <span><strong class="text-text-primary">Konfigurasi Docker</strong> — <code
+                    class="bg-surface-muted px-1.5 py-0.5 rounded text-xs font-mono">docker-compose.yaml</code>
+                  atau Dockerfile</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span
+                  class="w-6 h-6 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <i class="fas fa-graduation-cap text-tor-violet text-xs"></i>
+                </span>
+                <span><strong class="text-text-primary">Status Pelajar</strong> — bukti pendaftaran
+                  (kartu pelajar atau email institusi)</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span
+                  class="w-6 h-6 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <i class="fas fa-align-left text-tor-violet text-xs"></i>
+                </span>
+                <span><strong class="text-text-primary">Deskripsi Proyek</strong> — penjelasan singkat
+                  (1‑2 paragraf) tentang fungsi dan target pengguna proyek</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span
+                  class="w-6 h-6 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <i class="fas fa-flag text-tor-violet text-xs"></i>
+                </span>
+                <span><strong class="text-text-primary">Subdomain Pilihan</strong> — URL yang Anda
+                  inginkan (mis. <code
+                    class="bg-surface-muted px-1.5 py-0.5 rounded text-xs font-mono">proyekku.ricalnet.my.id</code>)</span>
+              </li>
+            </ul>
+            <div class="mt-6 p-4 bg-tor-violet/5 border border-tor-violet/10 rounded-2xl">
+              <p class="text-xs text-text-secondary flex items-start gap-2">
+                <i class="fas fa-info-circle text-tor-violet mt-0.5"></i>
+                <span><strong class="text-text-primary">Waktu respons:</strong> RICALNET menargetkan merespons
+                  setiap lamaran dalam <strong class="text-tor-violet">24 jam</strong>.
+                  Jika proyek Anda memenuhi syarat, RICALNET deploy dalam 24 jam setelah persetujuan.</span>
+              </p>
+            </div>
+            <div class="mt-6 flex flex-wrap gap-4">
+              <a href="mailto:ricalnet@duck.com?subject=Free%20Hosting%20Application&body=Hi%20RICALNET%20Team%2C%0A%0AI'd%20like%20to%20apply%20for%20free%20hosting%20for%20my%20project.%0A%0AProject%20name%3A%20%0AGitHub%20URL%3A%20%0ADocker%20config%3A%20%0AStudent%20ID%3A%20%0ADescription%3A%20%0APreferred%20subdomain%3A%20%0A%0AThank%20you!"
+                class="inline-flex items-center gap-2 text-white bg-gradient-to-r from-tor-violet to-tor-violet-light hover:from-tor-violet-dark hover:to-tor-violet px-7 py-3.5 rounded-full font-semibold shadow-lg shadow-tor-violet/30 transition-all duration-300 hover:shadow-xl hover:shadow-tor-violet/40 hover:-translate-y-0.5">
+                <i class="fas fa-envelope"></i> Daftar via Email
+              </a>
+              <a href="https://ricalnet.my.id/terms-of-service" target="_blank" rel="noopener"
+                class="inline-flex items-center gap-2 text-text-primary bg-white hover:bg-surface-muted px-6 py-3.5 rounded-full font-medium shadow-elevated border border-surface-border/60 transition-all duration-300 hover:shadow-elevated-lg hover:-translate-y-0.5">
+                <i class="fas fa-file-contract"></i> Ketentuan Layanan
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="py-16 md:py-24 bg-white/40 border-y border-surface-border/60">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <span class="section-badge"><i class="fas fa-question-circle"></i> FAQ</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+          <span class="text-text-primary">Jawaban cepat </span>
+          <span class="text-tor-violet">untuk pertanyaan umum</span>
+        </h2>
+      </div>
+
+      <div class="space-y-3" data-aos="fade-up" data-aos-delay="100">
+
+        <div
+          class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Siapa yang berhak mendapatkan hosting gratis?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              <strong class="text-text-primary">Pelajar &amp; mahasiswa</strong> semua jenjang di Indonesia — dari
+              SMA/SMK hingga universitas. Proyek Anda harus berbasis Docker dan open‑source.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Berapa lama saya bisa hosting gratis?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              Retensi standar <strong class="text-tor-violet">1 bulan</strong>. Jika proyek
+              Anda aktif dan ingin tetap live lebih lama, hubungi saja — RICALNET
+              fleksibel untuk pelajar yang aktif.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Jenis proyek apa yang bisa saya hosting?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              Apa pun yang berjalan di Docker! Portofolio, blog, aplikasi web, layanan API,
+              proyek akhir, alat open‑source, demo tugas, dan banyak lagi. Syaratnya:
+              proyek Anda harus open‑source dan tidak digunakan untuk aktivitas ilegal.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Apakah saya mendapatkan domain kustom?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              Anda mendapatkan subdomain di <code
+                class="bg-surface-muted px-1.5 py-0.5 rounded text-xs font-mono">*.ricalnet.my.id</code>
+              — mis. <code class="bg-surface-muted px-1.5 py-0.5 rounded text-xs font-mono">proyekku.ricalnet.my.id</code>.
+              Punya domain sendiri? RICALNET dapat membantu mengarahkannya ke proyek Anda.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Apakah data saya aman dan privat?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              <strong class="text-tor-violet">Keamanan infrastruktur disediakan oleh RICALNET.</strong>
+              Termasuk enkripsi TLS otomatis.
+              Namun, <strong class="text-text-primary">keamanan tingkat aplikasi</strong> — seperti
+              validasi input, logika autentikasi, dan penanganan data — adalah tanggung jawab
+              pengembang pelajar. Ikuti praktik pengkodean yang aman.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-8 text-center" data-aos="fade-up" data-aos-delay="200">
+        <p class="text-text-secondary text-sm">
+          Masih punya pertanyaan? <a href="mailto:ricalnet@duck.com"
+            class="text-tor-violet hover:underline font-medium">Hubungi RICALNET</a>
+          — tim siap membantu.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="relative overflow-hidden border-t border-tor-violet/10">
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
+    </div>
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+    </div>
+    <div
+      class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+
+        <div class="col-span-2 md:col-span-3 lg:col-span-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
+              <img src="img/logo.png" alt="RICALNET open-source self-hosted infrastructure logo"
+                class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
+            </div>
+            <div>
+              <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+              <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust · Control
+                · Access · Libre</span>
+            </div>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
+            Self-hosted, open-source infrastructure. Control. Access. Libre.
+          </p>
+          <div class="flex flex-wrap items-center gap-3 mt-5">
+            <a href="https://git.ricalnet.my.id/rical" target="_blank" rel="noopener"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fa-brands fa-forgejo text-base"></i>
+            </a>
+            <a href="mailto:ricalnet@duck.com"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fas fa-envelope text-base"></i>
+            </a>
+            <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" target="_blank" rel="noopener"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fas fa-heartbeat text-base"></i>
+            </a>
+            <span
+              class="pgp-fingerprint text-[0.6rem] px-3 py-1.5 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+              onclick="copyPGP()" title="Click to copy PGP fingerprint">
+              <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Why Self‑Host</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/#pain-points" class="footer-link">The Lock-in Trap</a></li>
+            <li><a href="https://ricalnet.my.id/#how-it-works" class="footer-link">The Approach</a></li>
+            <li><a href="https://ricalnet.my.id/gallery" class="footer-link">Sovereign Stack</a></li>
+            <li><a href="https://ricalnet.my.id/#comparison" class="footer-link">Comparison</a></li>
+            <li><a href="https://ricalnet.my.id/about#our-mission" class="footer-link">Mission</a></li>
+            <li><a href="https://ricalnet.my.id/about" class="footer-link">About</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Stack</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/#features" class="footer-link">Sovereign Infrastructure</a></li>
+            <li><a href="https://ricalnet.my.id/resources#privacy-tools" class="footer-link">Privacy Tools</a></li>
+            <li><a href="https://ricalnet.my.id/tools/metadata-cleaner" class="footer-link">Metadata Cleaner</a></li>
+            <li><a href="https://ricalnet.my.id/tools/image-censor" class="footer-link">Image Censor</a></li>
+            <li><a href="https://search.ricalnet.my.id" class="footer-link">Sovereign Search</a></li>
+            <li><a href="https://translate.ricalnet.my.id" class="footer-link">Private Translation</a></li>
+            <li><a href="https://link.ricalnet.my.id" class="footer-link">Link Shortener</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Docs &amp; Resources</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
+                target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+            <li><a href="https://git.ricalnet.my.id/rical/digital-independence" class="footer-link"
+                target="_blank">Repository <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+            <li><a href="https://ricalnet.my.id/free-hosting" class="footer-link">For Students</a></li>
+            <li><a href="https://ricalnet.my.id/about#cta-support" class="footer-link">Support</a></li>
+            <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Legal</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/resources#legal-resources" class="footer-link">Legal Resources</a></li>
+            <li><a href="https://ricalnet.my.id/terms-of-service" class="footer-link">Terms of Service</a></li>
+            <li><a href="https://ricalnet.my.id/privacy" class="footer-link">Privacy Policy</a></li>
+            <li><a href="https://leaks.ricalnet.my.id" class="footer-link">Leaks</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+        <p class="text-xs tracking-wide">
+          &copy; RICALNET — <a href="https://git.ricalnet.my.id/rical/ricalnet-web/src/branch/main/LICENSE" class="hover:text-tor-violet transition-colors">MIT License</a>
+        </p>
+        <div class="flex flex-wrap items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
+          <a href="https://ricalnet.my.id/"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#OpenSource</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/#pain-points"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#NoLockIn</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/#features"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#ZeroTrust</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/"
+            class="text-tor-violet font-semibold hover:text-tor-violet-dark transition-colors">#ControlAccessLibre</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <span
+            class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+            onclick="copyPGP()" title="Click to copy PGP fingerprint">
+            <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="assets/js/aos.js">
+  </script>
+  <script>
+    AOS.init({
+      once: true,
+      offset: 30,
+      easing: 'ease-out-expo',
+      duration: 900,
+      disable: window.innerWidth < 768 ? true : false,
+    });
+
+    const PGP_FINGERPRINT = '45688382B815821F033115B8D92D6A10D29C8380';
+
+    function copyPGP() {
+      navigator.clipboard.writeText(PGP_FINGERPRINT).then(() => {
+        showToast('PGP fingerprint copied!');
+      }).catch(() => {
+        const textArea = document.createElement('textarea');
+        textArea.value = PGP_FINGERPRINT;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showToast('PGP fingerprint copied!');
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className =
+        'fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-3 rounded-full text-sm shadow-2xl border border-tor-violet/30 z-[9999] transition-all duration-300';
+      toast.innerHTML = '<i class="fas fa-check-circle text-tor-accent mr-2"></i> ' + message;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-4');
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
+
+    function toggleFaq(element) {
+      const answer = element.nextElementSibling;
+      const icon = element.querySelector('.faq-icon');
+      const isOpen = answer.classList.contains('open');
+
+      document.querySelectorAll('.faq-answer').forEach(el => {
+        if (el !== answer) {
+          el.classList.remove('open');
+          el.previousElementSibling.querySelector('.faq-icon').classList.remove('open');
+        }
+      });
+
+      if (isOpen) {
+        answer.classList.remove('open');
+        icon.classList.remove('open');
+      } else {
+        answer.classList.add('open');
+        icon.classList.add('open');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const firstFaq = document.querySelector('.faq-answer');
+      if (firstFaq) {
+        firstFaq.classList.add('open');
+        firstFaq.previousElementSibling.querySelector('.faq-icon').classList.add('open');
+      }
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    document.querySelectorAll('[data-close-mobile]').forEach(el => {
+      el.addEventListener('click', function () {
+        const menu = document.getElementById('mobile-menu');
+        if (menu) {
+          menu.classList.remove('open');
+          const toggle = document.getElementById('mobile-menu-toggle');
+          if (toggle) toggle.setAttribute('aria-expanded', 'false');
+          document.body.classList.remove('mobile-menu-open');
+        }
+      });
+    });
+
+    document.getElementById('mobile-menu-toggle')?.addEventListener('click', function () {
+      const menu = document.getElementById('mobile-menu');
+      if (menu) {
+        const isOpen = menu.classList.contains('open');
+        menu.classList.toggle('open');
+        this.setAttribute('aria-expanded', !isOpen);
+        document.body.classList.toggle('mobile-menu-open');
+      }
+    });
+
+    document.getElementById('mobile-menu-close')?.addEventListener('click', function () {
+      const menu = document.getElementById('mobile-menu');
+      if (menu) {
+        menu.classList.remove('open');
+        const toggle = document.getElementById('mobile-menu-toggle');
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('mobile-menu-open');
+      }
+    });
+
+    document.querySelectorAll('.mobile-dropdown-toggle').forEach(button => {
+      button.addEventListener('click', function () {
+        const targetId = this.getAttribute('data-target');
+        const target = document.getElementById(targetId);
+        if (target) {
+          const isOpen = target.classList.contains('open');
+          target.classList.toggle('open');
+          this.classList.toggle('open');
+          this.setAttribute('aria-expanded', !isOpen);
+        }
+      });
+    });
+  </script>
+
+  <script src="assets/js/components.js">
+  </script>
+
+</body>
+
+</html>

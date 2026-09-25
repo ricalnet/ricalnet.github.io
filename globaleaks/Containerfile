@@ -1,0 +1,19 @@
+FROM debian:trixie-slim
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    gnupg net-tools curl wget ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN wget -O /tmp/install.sh https://deb.globaleaks.org/install.sh \
+    && chmod +x /tmp/install.sh \
+    && /tmp/install.sh -y -n \
+    && rm -f /tmp/install.sh
+
+USER 1000
+
+VOLUME /var/globaleaks
+EXPOSE 8080 8443
+
+CMD ["/usr/bin/globaleaks", "-n"]

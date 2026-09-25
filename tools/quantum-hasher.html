@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+  <title>Quantum Hasher — Hash, Verify & Compare Files | RICALNET</title>
+
+  <meta name="description"
+    content="Hash text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC. Verify file integrity, batch hash, compare hashes, and backup history. Runs in your browser — nothing uploaded. Built for homelabbers, activists, journalists, and enterprises." />
+
+  <meta name="keywords"
+    content="hash generator, sha256, sha512, md5, hmac, file integrity, checksum, verify hash, batch hashing, compare hashes, cryptographic hash, file verification, RICALNET" />
+
+  <link rel="canonical" href="https://ricalnet.my.id/tools/quantum-hasher" />
+  <link rel="icon" type="image/x-icon" href="../img/logo.png" />
+
+  <meta property="og:title" content="Quantum Hasher — Hash, Verify & Compare Files | RICALNET" />
+  <meta property="og:description"
+    content="Hash text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC. Verify file integrity, batch hash, compare hashes, and backup history. All local." />
+  <meta property="og:url" content="https://ricalnet.my.id/tools/quantum-hasher" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://ricalnet.my.id/img/og-image.png" />
+  <meta property="og:image:alt" content="Quantum Hasher tool interface showing hash generation and verification" />
+  <meta property="og:site_name" content="RICALNET" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Quantum Hasher — Hash, Verify & Compare Files | RICALNET" />
+  <meta name="twitter:description"
+    content="Hash text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC. Verify file integrity, batch hash, compare hashes. 100% local." />
+  <meta name="twitter:image" content="https://ricalnet.my.id/img/og-image.png" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ricalnet.my.id/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://ricalnet.my.id/tools/" },
+        { "@type": "ListItem", "position": 3, "name": "Quantum Hasher", "item": "https://ricalnet.my.id/tools/quantum-hasher" }
+      ]
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Quantum Hasher",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "description": "Hash text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC. Verify file integrity, batch hash multiple files, compare two hashes, and export/import history. Runs entirely in your browser. Built for homelabbers, activists, journalists, and enterprises.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "RICALNET"
+      },
+      "url": "https://ricalnet.my.id/tools/quantum-hasher",
+      "applicationSuite": "RICALNET Tools",
+      "featureList": "SHA-1, SHA-256, SHA-384, SHA-512, MD5, HMAC, File verification, Batch hashing, Hash comparison, Export/Import history"
+    }
+  </script>
+
+  <link href="../assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="../assets/fontawesome/css/solid.css" rel="stylesheet" />
+  <link href="../assets/fontawesome/css/brands.css" rel="stylesheet" />
+  <link href="../assets/css/fonts.css" rel="stylesheet" />
+  <link href="../assets/css/aos.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../assets/css/tailwind.css" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+
+  <link rel="stylesheet" href="css/quantum-hasher.css">
+
+  <script src="lib/quantum-hasher/crypto-js.min.js"></script>
+</head>
+
+<body
+  class="font-source-sans-pro bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+
+  <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
+    <div class="absolute inset-0 bg-grid-subtle"></div>
+    <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/5 rounded-full blur-[160px]"></div>
+    <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/3 rounded-full blur-[180px]"></div>
+    <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/4 rounded-full blur-[140px]"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light"></div>
+  </div>
+
+  <header
+    class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-[72px]">
+
+        <a href="https://ricalnet.my.id/" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+          data-aos-duration="600">
+          <img src="../img/logo.png" alt="RICALNET open source self-hosted infrastructure logo"
+            class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
+          <div class="leading-tight hidden sm:block">
+            <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+            <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust · Control ·
+              Access · Libre</span>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down" data-aos-duration="600">
+          <a href="https://ricalnet.my.id/#hero" class="nav-link">Home</a>
+
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/#pain-points" class="nav-link flex items-center gap-1">
+              Why Self‑Host
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/#pain-points" class="dropdown-item">The Lock‑in Trap</a>
+              <a href="https://ricalnet.my.id/#how-it-works" class="dropdown-item">The Approach</a>
+              <a href="https://ricalnet.my.id/#features" class="dropdown-item">Sovereign Stack</a>
+              <a href="https://ricalnet.my.id/#comparison" class="dropdown-item">Comparison</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/resources#hero" class="nav-link flex items-center gap-1">
+              Resources
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+              <a href="https://ricalnet.my.id/resources#in-house-tools" class="dropdown-item">In‑House Tools</a>
+              <a href="https://ricalnet.my.id/resources#leaks" class="dropdown-item">Whistleblowing Platform</a>
+              <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal Resources</a>
+              <a href="https://ricalnet.my.id/resources" class="dropdown-item">All Resources</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/resources#hero" class="nav-link nav-link-active flex items-center gap-1">
+              Tools
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/tools/image-censor" class="dropdown-item">Image Censor</a>
+              <a href="https://ricalnet.my.id/tools/ip-intelligence" class="dropdown-item">IP Intelligence</a>
+              <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="dropdown-item">Metadata Cleaner</a>
+              <a href="https://ricalnet.my.id/tools/password-generator" class="dropdown-item">Password Generator</a>
+              <a href="https://ricalnet.my.id/tools/qr-builder" class="dropdown-item">QR Builder</a>
+              <a href="https://ricalnet.my.id/tools/quantum-hasher" class="dropdown-item">Quantum Hasher</a>
+              <a href="https://ricalnet.my.id/tools/whiteboard" class="dropdown-item">Whiteboard</a>
+              <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/about#hero" class="nav-link flex items-center gap-1">
+              About
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/about#our-mission" class="dropdown-item">Mission</a>
+              <a href="https://ricalnet.my.id/about#team" class="dropdown-item">Team</a>
+              <a href="https://ricalnet.my.id/about#cta-support" class="dropdown-item">Support</a>
+              <a href="https://ricalnet.my.id/#faq" class="dropdown-item">FAQ</a>
+              <a href="https://ricalnet.my.id/#cta" class="dropdown-item">Contact</a>
+            </div>
+          </div>
+          <a href="https://ricalnet.my.id/free-hosting" class="nav-link">For Students</a>
+        </nav>
+
+        <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
+          <a href="https://ricalnet.my.id/#hidden-services" class="hidden lg:inline-flex btn-sso">
+            <i class="fas fa-key"></i> Login with SSO
+          </a>
+          <button id="mobile-menu-toggle"
+            class="lg:hidden w-9 h-9 rounded-full hover:bg-surface-muted flex items-center justify-center transition-colors"
+            aria-label="Toggle menu" aria-expanded="false">
+            <i class="fas fa-bars text-text-secondary text-lg"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+
+    <div class="mobile-menu-header">
+      <div class="logo">
+        <img src="../img/logo.png" alt="RICALNET" />
+        <span>RICALNET</span>
+      </div>
+      <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+        <i class="fas fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="mobile-menu-scroll">
+
+      <a href="https://ricalnet.my.id/#hero" class="nav-item" data-close-mobile>
+        <i class="fas fa-home"></i> Home
+      </a>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-advocacy">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Why Self‑Host
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/#pain-points" class="sub-link" data-close-mobile>
+            <i class="fas fa-exclamation-triangle"></i> The Lock‑in Trap
+          </a>
+          <a href="https://ricalnet.my.id/#how-it-works" class="sub-link" data-close-mobile>
+            <i class="fas fa-route"></i> The Approach
+          </a>
+          <a href="https://ricalnet.my.id/#features" class="sub-link" data-close-mobile>
+            <i class="fas fa-star"></i> Sovereign Stack
+          </a>
+          <a href="https://ricalnet.my.id/#comparison" class="sub-link" data-close-mobile>
+            <i class="fas fa-arrows-left-right"></i> Comparison
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-resources">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-lock"></i> Privacy Tools
+          </a>
+          <a href="https://ricalnet.my.id/resources#in-house-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-cubes"></i> In‑House Tools
+          </a>
+          <a href="https://ricalnet.my.id/resources#in-house-tools" class="sub-link" data-close-mobile>
+            <i class="fab fa-globaleaks"></i> Whistleblowing Platform
+          </a>
+          <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+            <i class="fas fa-gavel"></i> Legal Resources
+          </a>
+          <a href="https://ricalnet.my.id/resources" class="sub-link" data-close-mobile>
+            <i class="fas fa-folder-open"></i> All Resources
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-tools">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/tools/image-censor" class="sub-link" data-close-mobile>
+            <i class="fas fa-eye-slash"></i> Image Censor
+          </a>
+          <a href="https://ricalnet.my.id/tools/ip-intelligence" class="sub-link" data-close-mobile>
+            <i class="fas fa-map-pin"></i> IP Intelligence
+          </a>
+          <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="sub-link" data-close-mobile>
+            <i class="fas fa-map-pin"></i> Metadata Cleaner
+          </a>
+          <a href="https://ricalnet.my.id/tools/password-generator" class="sub-link" data-close-mobile>
+            <i class="fas fa-key"></i> Password Generator
+          </a>
+          <a href="https://ricalnet.my.id/tools/qr-builder" class="sub-link" data-close-mobile>
+            <i class="fas fa-qrcode"></i> QR Builder
+          </a>
+          <a href="https://ricalnet.my.id/tools/quantum-hasher" class="sub-link" data-close-mobile>
+            <i class="fas fa-qrcode"></i> Quantum Hasher
+          </a>
+          <a href="https://ricalnet.my.id/tools/whiteboard" class="sub-link" data-close-mobile>
+            <i class="fas fa-pen-fancy"></i> Whiteboard
+          </a>
+          <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-user-secret"></i> Privacy Tools
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-about">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/about#our-mission" class="sub-link" data-close-mobile>
+            <i class="fas fa-bullseye"></i> Mission
+          </a>
+          <a href="https://ricalnet.my.id/about#team" class="sub-link" data-close-mobile>
+            <i class="fas fa-users"></i> Team
+          </a>
+          <a href="https://ricalnet.my.id/about#cta-support" class="sub-link" data-close-mobile>
+            <i class="fas fa-hand-holding-heart"></i> Support
+          </a>
+          <a href="https://ricalnet.my.id/#faq" class="sub-link" data-close-mobile>
+            <i class="fas fa-question-circle"></i> FAQ
+          </a>
+          <a href="https://ricalnet.my.id/#cta" class="sub-link" data-close-mobile>
+            <i class="fas fa-envelope"></i> Contact
+          </a>
+        </div>
+      </div>
+      <a href="https://ricalnet.my.id/free-hosting" class="nav-item" data-close-mobile>
+        <i class="fas fa-server"></i> For Students
+      </a>
+
+      <a href="https://ricalnet.my.id/#hidden-services" class="mt-3 block w-full text-center btn-sso justify-center"
+        data-close-mobile>
+        <i class="fas fa-key"></i> Login with SSO
+      </a>
+
+      <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+        <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+          <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> RICALNET — Robust · Control · Access · Libre
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <nav aria-label="Breadcrumb" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 text-xs">
+    <ol class="flex flex-wrap items-center gap-2 text-text-muted">
+      <li><a href="https://ricalnet.my.id" class="hover:text-tor-violet transition-colors">Home</a></li>
+      <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
+      <li><a href="https://ricalnet.my.id/resources#privacy-tools" class="hover:text-tor-violet transition-colors">Resources</a></li>
+      <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
+      <li class="text-tor-violet font-medium">Quantum Hasher</li>
+    </ol>
+  </nav>
+
+  <section class="relative overflow-hidden pt-[72px] pb-6 md:pt-6 md:pb-8 bg-surface-light">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto" data-aos="fade-up" data-aos-duration="700">
+        <div class="flex flex-wrap items-center justify-center gap-2 mb-4">
+          <span class="badge-pill"><i class="fas fa-fingerprint"></i> Quantum Hasher</span>
+          <span class="badge-pill"
+            style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);">
+            <i class="fas fa-shield"></i> SHA · MD5 · HMAC
+          </span>
+          <span class="badge-pill"
+            style="background:rgba(104,176,48,0.08);color:#4a7c2a;border-color:rgba(104,176,48,0.12);">
+            <i class="fas fa-check-double"></i> Verify
+          </span>
+          <span class="badge-pill"
+            style="background:rgba(245,158,11,0.08);color:#b45309;border-color:rgba(245,158,11,0.12);">
+            <i class="fas fa-layer-group"></i> Batch
+          </span>
+          <span class="badge-pill"
+            style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);">
+            <i class="fas fa-arrow-right-arrow-left"></i> Compare
+          </span>
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.08] tracking-tight">
+          <span class="text-text-primary">Quantum </span>
+          <span class="text-tor-violet">Hasher</span>
+        </h1>
+        <p class="text-text-secondary text-base md:text-lg mt-3 max-w-2xl mx-auto leading-relaxed">
+          Hash text with SHA‑1, SHA‑256, SHA‑384, SHA‑512, MD5, and HMAC.
+          Verify file integrity, batch‑hash, compare hashes, and backup history — all locally in your browser.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-12 md:pb-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-6" data-aos="fade-up" data-aos-delay="100"
+        role="tablist" aria-label="Tool tabs">
+        <button class="hash-tab-btn active" data-tab="hash" role="tab" aria-selected="true">
+          <i class="fas fa-hashtag"></i> Hash
+        </button>
+        <button class="hash-tab-btn" data-tab="hmac" role="tab" aria-selected="false">
+          <i class="fas fa-key"></i> HMAC
+        </button>
+        <button class="hash-tab-btn" data-tab="verify" role="tab" aria-selected="false">
+          <i class="fas fa-check-double"></i> Verify
+        </button>
+        <button class="hash-tab-btn" data-tab="batch" role="tab" aria-selected="false">
+          <i class="fas fa-layer-group"></i> Batch
+        </button>
+        <button class="hash-tab-btn" data-tab="compare" role="tab" aria-selected="false">
+          <i class="fas fa-arrow-right-arrow-left"></i> Compare
+        </button>
+        <button class="hash-tab-btn" data-tab="history" role="tab" aria-selected="false">
+          <i class="fas fa-clock-rotate-left"></i> History
+        </button>
+      </div>
+
+      <div id="tab-hash" class="hash-tab-panel active" role="tabpanel" data-aos="fade-up" data-aos-delay="150">
+        <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <div class="hash-section-title"><i class="fas fa-pen mr-2"></i>Input Text</div>
+              <textarea id="hash-input" class="hash-textarea" spellcheck="false"
+                placeholder="Enter text to hash…">The quick brown fox jumps over the lazy dog</textarea>
+              <div class="mt-4 flex flex-wrap items-center gap-2">
+                <span class="text-sm font-medium text-text-secondary mr-1">Algorithm:</span>
+                <button class="hash-alg-btn active" data-alg="sha256" type="button">SHA-256</button>
+                <button class="hash-alg-btn" data-alg="sha1" type="button">SHA-1</button>
+                <button class="hash-alg-btn" data-alg="sha384" type="button">SHA-384</button>
+                <button class="hash-alg-btn" data-alg="sha512" type="button">SHA-512</button>
+                <button class="hash-alg-btn" data-alg="md5" type="button">MD5</button>
+              </div>
+              <div class="mt-6">
+                <button id="hash-btn" class="hash-gen-btn w-full justify-center" type="button">
+                  <i class="fas fa-fingerprint"></i> Generate Hash
+                </button>
+              </div>
+              <div class="mt-3 text-xs text-text-muted text-center">
+                <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i>
+                Hashing is done locally in your browser. Nothing is sent to any server.
+              </div>
+            </div>
+            <div>
+              <div class="hash-section-title justify-between">
+                <span><i class="fas fa-file-lines mr-2"></i>Hash Result</span>
+                <div class="format-toggle" id="hash-format-toggle">
+                  <button class="active" data-format="lower" type="button">lower</button>
+                  <button data-format="upper" type="button">UPPER</button>
+                </div>
+              </div>
+              <div class="relative">
+                <textarea id="hash-result" class="hash-result-box w-full resize-none" readonly
+                  placeholder="Hash will appear here…" rows="4" spellcheck="false"></textarea>
+                <div class="absolute top-2 right-2 flex gap-1.5">
+                  <button id="hash-copy-btn" class="hash-copy-btn" type="button" title="Copy hash">
+                    <i class="fas fa-copy"></i> Copy
+                  </button>
+                  <button id="hash-download-btn" class="hash-download-btn" type="button" title="Download as .txt">
+                    <i class="fas fa-download"></i> Download
+                  </button>
+                </div>
+              </div>
+              <div class="mt-3 flex flex-wrap items-center justify-between gap-2 hash-stats">
+                <span>
+                  <strong id="hash-len">0</strong> characters
+                  <span class="mx-1.5">·</span>
+                  <strong id="hash-alg-label">SHA-256</strong>
+                </span>
+                <span id="hash-status" class="text-tor-violet">Ready</span>
+              </div>
+              <div class="mt-4 flex flex-wrap gap-1.5 items-center">
+                <span class="text-xs text-text-muted mr-1">Test:</span>
+                <button class="sample-hash-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                  data-text="The quick brown fox jumps over the lazy dog" type="button">Fox</button>
+                <button class="sample-hash-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                  data-text="Hello, world!" type="button">Hello</button>
+                <button class="sample-hash-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                  data-text="RICALNET" type="button">RICALNET</button>
+                <button class="sample-hash-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                  data-text="1234567890" type="button">Numbers</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-hmac" class="hash-tab-panel" role="tabpanel" data-aos="fade-up" data-aos-delay="150">
+        <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <div class="hash-section-title"><i class="fas fa-pen mr-2"></i>Message</div>
+              <textarea id="hmac-input" class="hash-textarea" spellcheck="false"
+                placeholder="Enter message to hash…">The quick brown fox jumps over the lazy dog</textarea>
+              <div class="mt-4">
+                <label class="hash-section-title block"><i class="fas fa-key mr-2"></i>Secret Key</label>
+                <input type="text" id="hmac-key" class="hash-key-input" spellcheck="false"
+                  placeholder="Enter secret key for HMAC…" value="my-secret-key" autocomplete="off" />
+              </div>
+              <div class="mt-4 flex flex-wrap items-center gap-2">
+                <span class="text-sm font-medium text-text-secondary mr-1">Algorithm:</span>
+                <button class="hash-alg-btn active" data-hmac="sha256" type="button">SHA-256</button>
+                <button class="hash-alg-btn" data-hmac="sha1" type="button">SHA-1</button>
+                <button class="hash-alg-btn" data-hmac="sha384" type="button">SHA-384</button>
+                <button class="hash-alg-btn" data-hmac="sha512" type="button">SHA-512</button>
+                <button class="hash-alg-btn" data-hmac="md5" type="button">MD5</button>
+              </div>
+              <div class="mt-6">
+                <button id="hmac-btn" class="hash-gen-btn w-full justify-center" type="button">
+                  <i class="fas fa-fingerprint"></i> Generate HMAC
+                </button>
+              </div>
+              <div class="mt-3 text-xs text-text-muted text-center">
+                <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i>
+                HMAC is generated locally. Your secret key never leaves your browser.
+              </div>
+            </div>
+            <div>
+              <div class="hash-section-title justify-between">
+                <span><i class="fas fa-file-lines mr-2"></i>HMAC Result</span>
+                <div class="format-toggle" id="hmac-format-toggle">
+                  <button class="active" data-format="lower" type="button">lower</button>
+                  <button data-format="upper" type="button">UPPER</button>
+                </div>
+              </div>
+              <div class="relative">
+                <textarea id="hmac-result" class="hash-result-box w-full resize-none" readonly
+                  placeholder="HMAC will appear here…" rows="4" spellcheck="false"></textarea>
+                <div class="absolute top-2 right-2 flex gap-1.5">
+                  <button id="hmac-copy-btn" class="hash-copy-btn" type="button" title="Copy HMAC">
+                    <i class="fas fa-copy"></i> Copy
+                  </button>
+                  <button id="hmac-download-btn" class="hash-download-btn" type="button" title="Download as .txt">
+                    <i class="fas fa-download"></i> Download
+                  </button>
+                </div>
+              </div>
+              <div class="mt-3 flex flex-wrap items-center justify-between gap-2 hash-stats">
+                <span>
+                  <strong id="hmac-len">0</strong> characters
+                  <span class="mx-1.5">·</span>
+                  <strong id="hmac-alg-label">SHA-256</strong>
+                </span>
+                <span id="hmac-status" class="text-tor-violet">Ready</span>
+              </div>
+              <div class="mt-4 flex flex-wrap gap-1.5 items-center">
+                <span class="text-xs text-text-muted mr-1">Test:</span>
+                <button class="sample-hmac-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                  data-text="The quick brown fox jumps over the lazy dog" type="button">Fox</button>
+                <button class="sample-hmac-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                  data-text="Hello, world!" type="button">Hello</button>
+                <button class="sample-hmac-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                  data-text="Ricalnet" type="button">Ricalnet</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-verify" class="hash-tab-panel" role="tabpanel" data-aos="fade-up" data-aos-delay="150">
+        <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <div class="hash-section-title justify-between">
+                <span><i class="fas fa-upload mr-2"></i>Source</span>
+                <div class="format-toggle" id="verify-format-toggle">
+                  <button class="active" data-format="lower" type="button">lower</button>
+                  <button data-format="upper" type="button">UPPER</button>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <button id="verify-mode-file" class="hash-alg-btn active" data-mode="file" type="button">
+                  <i class="fas fa-file mr-1"></i> File
+                </button>
+                <button id="verify-mode-text" class="hash-alg-btn" data-mode="text" type="button">
+                  <i class="fas fa-font mr-1"></i> Text
+                </button>
+              </div>
+              <div id="verify-file-zone" class="drop-zone-common">
+                <input type="file" id="verify-file-input" class="file-input-hidden" aria-label="Choose file to verify" />
+                <span class="icon"><i class="fas fa-cloud-upload-alt"></i></span>
+                <div class="text">Drop a file here or click to browse</div>
+                <div class="sub">Any file type supported</div>
+              </div>
+              <div id="verify-file-preview" class="verify-preview hidden">
+                <span class="file-name" id="verify-file-name">file.txt</span>
+                <span class="file-size" id="verify-file-size">0 bytes</span>
+                <button id="verify-file-clear" class="text-text-muted hover:text-red-500 transition-colors text-sm"
+                  type="button" aria-label="Clear file"><i class="fas fa-times"></i></button>
+              </div>
+              <div id="verify-text-area" class="hidden mt-2">
+                <textarea id="verify-text-input" class="hash-textarea" rows="3" spellcheck="false"
+                  placeholder="Enter text to verify…">The quick brown fox jumps over the lazy dog</textarea>
+              </div>
+              <div class="mt-4 flex flex-wrap items-center gap-2">
+                <span class="text-sm font-medium text-text-secondary mr-1">Algorithm:</span>
+                <button class="hash-alg-btn active" data-veralg="sha256" type="button">SHA-256</button>
+                <button class="hash-alg-btn" data-veralg="sha1" type="button">SHA-1</button>
+                <button class="hash-alg-btn" data-veralg="sha384" type="button">SHA-384</button>
+                <button class="hash-alg-btn" data-veralg="sha512" type="button">SHA-512</button>
+                <button class="hash-alg-btn" data-veralg="md5" type="button">MD5</button>
+              </div>
+              <div class="mt-4">
+                <label class="hash-section-title block" for="verify-expected">
+                  <i class="fas fa-bullseye mr-2"></i>Expected Hash
+                </label>
+                <input type="text" id="verify-expected" class="hash-key-input" spellcheck="false"
+                  placeholder="Paste the expected hash to compare…" autocomplete="off" />
+              </div>
+              <div class="mt-6 flex flex-wrap gap-3">
+                <button id="verify-btn" class="hash-gen-btn" type="button">
+                  <i class="fas fa-check-double"></i> Verify
+                </button>
+                <button id="verify-calc-btn" class="hash-copy-btn !py-2.5 !px-5 !text-sm" type="button">
+                  <i class="fas fa-calculator"></i> Compute Hash
+                </button>
+              </div>
+              <div class="mt-3 text-xs text-text-muted text-center">
+                <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i>
+                File content is hashed locally. Nothing is uploaded to any server.
+              </div>
+            </div>
+            <div>
+              <div class="hash-section-title"><i class="fas fa-file-lines mr-2"></i>Verification Result</div>
+              <div id="verify-status" class="verify-status idle mb-3">
+                <i class="fas fa-circle"></i> Ready
+              </div>
+              <div class="mb-3">
+                <span class="text-xs font-medium text-text-secondary">Computed Hash:</span>
+                <div id="verify-computed" class="verify-compare-box mt-1">—</div>
+              </div>
+              <div class="mb-3">
+                <span class="text-xs font-medium text-text-secondary">Expected Hash:</span>
+                <div id="verify-expected-display" class="verify-compare-box mt-1">—</div>
+              </div>
+              <div id="verify-detail" class="hidden mt-2 text-sm">
+                <div id="verify-match-detail" class="hidden text-tor-accent flex items-start gap-1.5">
+                  <i class="fas fa-check-circle mt-0.5"></i>
+                  <span><span class="font-semibold">MATCH</span> — The computed hash matches the expected hash.
+                    File integrity is verified.</span>
+                </div>
+                <div id="verify-mismatch-detail" class="hidden text-red-500 flex items-start gap-1.5">
+                  <i class="fas fa-times-circle mt-0.5"></i>
+                  <span><span class="font-semibold">MISMATCH</span> — The computed hash does NOT match the
+                    expected hash. File may be corrupted or tampered.</span>
+                </div>
+              </div>
+              <div class="mt-4 p-3 bg-surface-muted/40 rounded-xl text-xs text-text-muted">
+                <i class="fas fa-info-circle text-tor-violet mr-1.5"></i>
+                <strong>Tip:</strong> Use this tool to verify file integrity by comparing the computed hash
+                against a known checksum (e.g., from a software download page).
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-batch" class="hash-tab-panel" role="tabpanel" data-aos="fade-up" data-aos-delay="150">
+        <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div class="hash-section-title mb-0"><i class="fas fa-layer-group mr-2"></i>Batch Hash</div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-text-muted">Format:</span>
+              <div class="format-toggle" id="batch-format-toggle">
+                <button class="active" data-format="lower" type="button">lower</button>
+                <button data-format="upper" type="button">UPPER</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="drop-zone-common" id="batch-drop-zone">
+            <input type="file" id="batch-file-input" multiple class="file-input-hidden"
+              aria-label="Choose files to batch hash" />
+            <span class="icon"><i class="fas fa-cloud-upload-alt"></i></span>
+            <div class="text">Drop files here or click to select</div>
+            <div class="sub">Any file type supported · Multiple files allowed</div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-4 mt-4">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-sm font-medium text-text-secondary">Algorithm:</span>
+              <button class="hash-alg-btn active" data-batch-alg="sha256" type="button">SHA-256</button>
+              <button class="hash-alg-btn" data-batch-alg="sha1" type="button">SHA-1</button>
+              <button class="hash-alg-btn" data-batch-alg="sha384" type="button">SHA-384</button>
+              <button class="hash-alg-btn" data-batch-alg="sha512" type="button">SHA-512</button>
+              <button class="hash-alg-btn" data-batch-alg="md5" type="button">MD5</button>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-4 mt-3">
+            <button id="batch-hash-btn" class="hash-gen-btn" type="button">
+              <i class="fas fa-play"></i> Hash All
+            </button>
+            <button id="batch-clear-btn" class="hash-copy-btn !py-2.5 !px-5 !text-sm" type="button">
+              <i class="fas fa-trash-can"></i> Clear
+            </button>
+            <button id="batch-download-btn" class="hash-download-btn !py-2.5 !px-5 !text-sm" type="button" disabled>
+              <i class="fas fa-download"></i> Download All
+            </button>
+            <span id="batch-count" class="text-xs text-text-muted ml-2">0 files</span>
+          </div>
+
+          <div class="batch-progress" id="batch-progress" style="opacity:0;">
+            <div class="bar" id="batch-progress-bar"></div>
+          </div>
+          <div id="batch-status" class="text-xs text-text-muted mt-2">Drop files or click to select.</div>
+          <div class="batch-table-wrap mt-4" id="batch-table-wrap" style="display:none;">
+            <table class="batch-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>File</th>
+                  <th>Size</th>
+                  <th>Hash</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="batch-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-compare" class="hash-tab-panel" role="tabpanel" data-aos="fade-up" data-aos-delay="150">
+        <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+          <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+            <div class="hash-section-title mb-0"><i class="fas fa-arrow-right-arrow-left mr-2"></i>Compare Two
+              Hashes</div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-text-muted">Format:</span>
+              <div class="format-toggle" id="compare-format-toggle">
+                <button class="active" data-format="lower" type="button">lower</button>
+                <button data-format="upper" type="button">UPPER</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="text-sm font-medium text-text-secondary" for="compare-hash-1">Hash #1</label>
+                <span id="compare-alg-1" class="compare-alg-detect">—</span>
+              </div>
+              <textarea id="compare-hash-1" class="compare-box" rows="3" spellcheck="false"
+                placeholder="Paste first hash…">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</textarea>
+              <div class="mt-1 flex justify-between text-xs text-text-muted">
+                <span id="compare-len-1">0 characters</span>
+                <button id="compare-clear-1" class="hover:text-tor-violet transition-colors" type="button">
+                  <i class="fas fa-times mr-1"></i>clear
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="text-sm font-medium text-text-secondary" for="compare-hash-2">Hash #2</label>
+                <span id="compare-alg-2" class="compare-alg-detect">—</span>
+              </div>
+              <textarea id="compare-hash-2" class="compare-box" rows="3" spellcheck="false"
+                placeholder="Paste second hash…">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</textarea>
+              <div class="mt-1 flex justify-between text-xs text-text-muted">
+                <span id="compare-len-2">0 characters</span>
+                <button id="compare-clear-2" class="hover:text-tor-violet transition-colors" type="button">
+                  <i class="fas fa-times mr-1"></i>clear
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center gap-3">
+            <button id="compare-btn" class="hash-gen-btn" type="button">
+              <i class="fas fa-arrow-right-arrow-left"></i> Compare
+            </button>
+            <button id="compare-swap-btn" class="hash-copy-btn !py-2.5 !px-5 !text-sm" type="button">
+              <i class="fas fa-arrow-up-down"></i> Swap
+            </button>
+            <button id="compare-clear-btn" class="hash-copy-btn !py-2.5 !px-5 !text-sm" type="button">
+              <i class="fas fa-eraser"></i> Clear Both
+            </button>
+          </div>
+
+          <div class="mt-6 p-4 bg-surface-muted/30 rounded-xl border border-tor-violet/5"
+            id="compare-result-container">
+            <div class="flex items-center gap-3 flex-wrap">
+              <span id="compare-result-badge" class="compare-result-badge idle">
+                <i class="fas fa-circle"></i> Ready
+              </span>
+              <span id="compare-detail" class="text-sm text-text-muted">Paste two hashes and click
+                Compare.</span>
+            </div>
+
+            <div id="compare-diff-container" class="hidden mt-3">
+              <div class="text-xs font-medium text-text-secondary mb-1">Character-by-character comparison:</div>
+              <div id="compare-diff-view" class="compare-diff-view"></div>
+            </div>
+
+            <div id="compare-stats" class="hidden mt-3 text-xs text-text-muted">
+              <span id="compare-match-count">0</span> matching characters,
+              <span id="compare-mismatch-count">0</span> mismatching characters.
+              <span id="compare-length-diff" class="hidden text-amber-600">⚠️ Lengths differ!</span>
+            </div>
+
+            <div class="mt-3 text-xs text-text-muted border-t border-tor-violet/5 pt-3">
+              <i class="fas fa-lightbulb text-tor-violet mr-1.5"></i>
+              <strong>Tip:</strong> Hash algorithms are detected automatically from length: MD5 (32),
+              SHA-1 (40), SHA-256 (64), SHA-384 (96), SHA-512 (128).
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-history" class="hash-tab-panel" role="tabpanel" data-aos="fade-up" data-aos-delay="150">
+        <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+          <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+            <div class="hash-section-title mb-0"><i class="fas fa-clock-rotate-left mr-2"></i>Hash History</div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button id="history-export-btn" class="history-action-btn primary" type="button">
+                <i class="fas fa-file-export"></i> Export
+              </button>
+              <label class="history-action-btn relative cursor-pointer">
+                <i class="fas fa-file-import"></i> Import
+                <input type="file" id="history-import-input" accept=".json" class="file-input-hidden" />
+              </label>
+              <button id="history-clear-btn"
+                class="history-action-btn text-red-500 !border-red-200 hover:!border-red-400 hover:!text-red-600"
+                type="button">
+                <i class="fas fa-trash-can"></i> Clear All
+              </button>
+            </div>
+          </div>
+          <div id="history-list" class="history-panel space-y-2">
+            <div class="text-text-muted text-sm text-center py-8">No history yet. Generate a hash to get
+              started.</div>
+          </div>
+          <div class="mt-3 text-xs text-text-muted text-center">
+            <i class="fas fa-database mr-1.5"></i> History is stored locally in your browser.
+            <span id="history-count">0</span> entries.
+            <span class="mx-2">|</span>
+            <i class="fas fa-arrow-up-from-bracket mr-1"></i> Export as JSON backup.
+            <i class="fas fa-arrow-down-to-bracket ml-2 mr-1"></i> Import from backup.
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="bg-white rounded-2xl p-4 text-center border border-tor-violet/5 shadow-elevated card-hover">
+          <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-2">
+            <i class="fas fa-shield text-tor-violet"></i>
+          </div>
+          <h4 class="font-semibold text-sm text-text-primary">SHA Family</h4>
+          <p class="text-text-muted text-xs mt-1">SHA-1, SHA-256, SHA-384, SHA-512 — secure cryptographic hash
+            functions.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-4 text-center border border-tor-violet/5 shadow-elevated card-hover">
+          <div class="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center mx-auto mb-2">
+            <i class="fas fa-fingerprint text-amber-600"></i>
+          </div>
+          <h4 class="font-semibold text-sm text-text-primary">MD5 &amp; HMAC</h4>
+          <p class="text-text-muted text-xs mt-1">MD5 for checksums, HMAC for message authentication with a
+            secret key.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-4 text-center border border-tor-violet/5 shadow-elevated card-hover">
+          <div class="w-10 h-10 rounded-full bg-cyan-50 flex items-center justify-center mx-auto mb-2">
+            <i class="fas fa-arrow-right-arrow-left text-cyan-600"></i>
+          </div>
+          <h4 class="font-semibold text-sm text-text-primary">Compare &amp; Verify</h4>
+          <p class="text-text-muted text-xs mt-1">Compare two hashes side-by-side with visual diff. Detect
+            algorithm automatically.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-4 text-center border border-tor-violet/5 shadow-elevated card-hover">
+          <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-2">
+            <i class="fas fa-cloud-upload-alt text-emerald-600"></i>
+          </div>
+          <h4 class="font-semibold text-sm text-text-primary">Export / Import</h4>
+          <p class="text-text-muted text-xs mt-1">Backup your hash history to JSON or restore from backup.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="relative overflow-hidden border-t border-tor-violet/10">
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
+    </div>
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+    </div>
+    <div
+      class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+
+        <div class="col-span-2 md:col-span-3 lg:col-span-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
+              <img src="../img/logo.png" alt="RICALNET open-source self-hosted infrastructure logo"
+                class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
+            </div>
+            <div>
+              <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+              <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust · Control
+                · Access · Libre</span>
+            </div>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
+            Self-hosted, open-source infrastructure. Control. Access. Libre.
+          </p>
+          <div class="flex flex-wrap items-center gap-3 mt-5">
+            <a href="https://git.ricalnet.my.id/rical" target="_blank" rel="noopener"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fa-brands fa-forgejo text-base"></i>
+            </a>
+            <a href="mailto:ricalnet@duck.com"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fas fa-envelope text-base"></i>
+            </a>
+            <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" target="_blank" rel="noopener"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fas fa-heartbeat text-base"></i>
+            </a>
+            <span
+              class="pgp-fingerprint text-[0.6rem] px-3 py-1.5 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+              onclick="copyPGP()" title="Click to copy PGP fingerprint">
+              <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Why Self‑Host</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/#pain-points" class="footer-link">The Lock-in Trap</a></li>
+            <li><a href="https://ricalnet.my.id/#how-it-works" class="footer-link">The Approach</a></li>
+            <li><a href="https://ricalnet.my.id/gallery" class="footer-link">Sovereign Stack</a></li>
+            <li><a href="https://ricalnet.my.id/#comparison" class="footer-link">Comparison</a></li>
+            <li><a href="https://ricalnet.my.id/about#our-mission" class="footer-link">Mission</a></li>
+            <li><a href="https://ricalnet.my.id/about" class="footer-link">About</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Stack</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/#features" class="footer-link">Sovereign Infrastructure</a></li>
+            <li><a href="https://ricalnet.my.id/resources#privacy-tools" class="footer-link">Privacy Tools</a></li>
+            <li><a href="https://ricalnet.my.id/tools/metadata-cleaner" class="footer-link">Metadata Cleaner</a></li>
+            <li><a href="https://ricalnet.my.id/tools/image-censor" class="footer-link">Image Censor</a></li>
+            <li><a href="https://search.ricalnet.my.id" class="footer-link">Sovereign Search</a></li>
+            <li><a href="https://translate.ricalnet.my.id" class="footer-link">Private Translation</a></li>
+            <li><a href="https://link.ricalnet.my.id" class="footer-link">Link Shortener</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Docs &amp; Resources</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
+                target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+            <li><a href="https://git.ricalnet.my.id/rical/digital-independence" class="footer-link"
+                target="_blank">Repository <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+            <li><a href="https://ricalnet.my.id/free-hosting" class="footer-link">For Students</a></li>
+            <li><a href="https://ricalnet.my.id/about#cta-support" class="footer-link">Support</a></li>
+            <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Legal</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/resources#legal-resources" class="footer-link">Legal Resources</a></li>
+            <li><a href="https://ricalnet.my.id/terms-of-service" class="footer-link">Terms of Service</a></li>
+            <li><a href="https://ricalnet.my.id/privacy" class="footer-link">Privacy Policy</a></li>
+            <li><a href="https://leaks.ricalnet.my.id" class="footer-link">Leaks</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+        <p class="text-xs tracking-wide">
+          &copy; RICALNET — <a href="https://git.ricalnet.my.id/rical/ricalnet-web/src/branch/main/LICENSE" class="hover:text-tor-violet transition-colors">MIT License</a>
+        </p>
+        <div class="flex flex-wrap items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
+          <a href="https://ricalnet.my.id/"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#OpenSource</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/#pain-points"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#NoLockIn</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/#features"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#ZeroTrust</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/"
+            class="text-tor-violet font-semibold hover:text-tor-violet-dark transition-colors">#ControlAccessLibre</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <span
+            class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+            onclick="copyPGP()" title="Click to copy PGP fingerprint">
+            <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="../assets/js/aos.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="js/quantum-hasher.js"></script>
+
+</body>
+
+</html>

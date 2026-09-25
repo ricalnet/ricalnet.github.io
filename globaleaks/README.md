@@ -1,0 +1,1 @@
+[Solusi Build Native GlobaLeaks di ARM64 Tanpa Emulasi QEMU](https://docs.ricalnet.my.id/posts/solusi-build-native-globaleaks-di-arm64-tanpa-emulasi-qemu/)

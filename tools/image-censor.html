@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+  <title>Image Censor — Pixelate, Blur & Redact Photos Free | RICALNET</title>
+
+  <meta name="description"
+    content="Free client-side image censor. Pixelate, blur, or solid-redact any region. 100% offline, zero uploads — built for homelabbers, activists, journalists, and enterprises. Your images never leave your browser." />
+
+  <meta name="keywords"
+    content="image censor, pixelate image, blur image, redact image, censor photo, privacy tool, client-side, offline, metadata redaction, secure image editor, RICALNET" />
+
+  <link rel="canonical" href="https://ricalnet.my.id/tools/image-censor" />
+  <link rel="alternate" hreflang="en" href="https://ricalnet.my.id/tools/image-censor" />
+  <link rel="icon" type="image/x-icon" href="../img/logo.png" />
+
+  <meta property="og:title" content="Image Censor — Pixelate, Blur & Redact Photos Free | RICALNET" />
+  <meta property="og:description"
+    content="Free client-side image censor. Pixelate, blur, or solid-redact any region. 100% offline, zero uploads — for homelabbers, activists, journalists, and enterprises." />
+  <meta property="og:url" content="https://ricalnet.my.id/tools/image-censor" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://ricalnet.my.id/img/og-image.png" />
+  <meta property="og:site_name" content="RICALNET" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Image Censor — Pixelate, Blur & Redact Photos Free | RICALNET" />
+  <meta name="twitter:description"
+    content="Free client-side image censor. Pixelate, blur, or solid-redact any region. 100% offline, zero uploads — for homelabbers, activists, journalists, and enterprises." />
+  <meta name="twitter:image" content="https://ricalnet.my.id/img/og-image.png" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "RICALNET Image Censor",
+      "description": "Client-side image censor tool with pixelate, blur, and solid redaction modes. No uploads, fully offline. Built for homelabbers, activists, journalists, and enterprises.",
+      "url": "https://ricalnet.my.id/tools/image-censor",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "RICALNET"
+      }
+    }
+  </script>
+
+  <link href="../assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="../assets/fontawesome/css/solid.css" rel="stylesheet" />
+  <link href="../assets/fontawesome/css/brands.css" rel="stylesheet" />
+  <link href="../assets/css/fonts.css" rel="stylesheet" />
+  <link href="../assets/css/aos.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../assets/css/tailwind.css" />
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components.css" />
+
+  <link rel="stylesheet" href="css/image-censor.css">
+</head>
+
+<body
+  class="font-source-sans-pro bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+
+  <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
+    <div class="absolute inset-0 bg-grid-subtle"></div>
+    <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/5 rounded-full blur-[160px]"></div>
+    <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/3 rounded-full blur-[180px]"></div>
+    <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/4 rounded-full blur-[140px]"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light"></div>
+  </div>
+
+  <header
+    class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-[72px]">
+
+        <a href="https://ricalnet.my.id/" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+          data-aos-duration="600">
+          <img src="../img/logo.png" alt="RICALNET open source self-hosted infrastructure logo"
+            class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
+          <div class="leading-tight hidden sm:block">
+            <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+            <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust · Control ·
+              Access · Libre</span>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down" data-aos-duration="600">
+          <a href="https://ricalnet.my.id/#hero" class="nav-link">Home</a>
+
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/#pain-points" class="nav-link flex items-center gap-1">
+              Why Self‑Host
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/#pain-points" class="dropdown-item">The Lock‑in Trap</a>
+              <a href="https://ricalnet.my.id/#how-it-works" class="dropdown-item">The Approach</a>
+              <a href="https://ricalnet.my.id/#features" class="dropdown-item">Sovereign Stack</a>
+              <a href="https://ricalnet.my.id/#comparison" class="dropdown-item">Comparison</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/resources#hero" class="nav-link flex items-center gap-1">
+              Resources
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+              <a href="https://ricalnet.my.id/resources#in-house-tools" class="dropdown-item">In‑House Tools</a>
+              <a href="https://ricalnet.my.id/resources#leaks" class="dropdown-item">Whistleblowing Platform</a>
+              <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal Resources</a>
+              <a href="https://ricalnet.my.id/resources" class="dropdown-item">All Resources</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/resources#hero" class="nav-link nav-link-active flex items-center gap-1">
+              Tools
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/tools/image-censor" class="dropdown-item">Image Censor</a>
+              <a href="https://ricalnet.my.id/tools/ip-intelligence" class="dropdown-item">IP Intelligence</a>
+              <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="dropdown-item">Metadata Cleaner</a>
+              <a href="https://ricalnet.my.id/tools/password-generator" class="dropdown-item">Password Generator</a>
+              <a href="https://ricalnet.my.id/tools/qr-builder" class="dropdown-item">QR Builder</a>
+              <a href="https://ricalnet.my.id/tools/quantum-hasher" class="dropdown-item">Quantum Hasher</a>
+              <a href="https://ricalnet.my.id/tools/whiteboard" class="dropdown-item">Whiteboard</a>
+              <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/about#hero" class="nav-link flex items-center gap-1">
+              About
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/about#our-mission" class="dropdown-item">Mission</a>
+              <a href="https://ricalnet.my.id/about#team" class="dropdown-item">Team</a>
+              <a href="https://ricalnet.my.id/about#cta-support" class="dropdown-item">Support</a>
+              <a href="https://ricalnet.my.id/#faq" class="dropdown-item">FAQ</a>
+              <a href="https://ricalnet.my.id/#cta" class="dropdown-item">Contact</a>
+            </div>
+          </div>
+          <a href="https://ricalnet.my.id/free-hosting" class="nav-link">For Students</a>
+        </nav>
+
+        <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
+          <a href="https://ricalnet.my.id/#hidden-services" class="hidden lg:inline-flex btn-sso">
+            <i class="fas fa-key"></i> Login with SSO
+          </a>
+          <button id="mobile-menu-toggle"
+            class="lg:hidden w-9 h-9 rounded-full hover:bg-surface-muted flex items-center justify-center transition-colors"
+            aria-label="Toggle menu" aria-expanded="false">
+            <i class="fas fa-bars text-text-secondary text-lg"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+
+    <div class="mobile-menu-header">
+      <div class="logo">
+        <img src="../img/logo.png" alt="RICALNET" />
+        <span>RICALNET</span>
+      </div>
+      <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+        <i class="fas fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="mobile-menu-scroll">
+
+      <a href="https://ricalnet.my.id/#hero" class="nav-item" data-close-mobile>
+        <i class="fas fa-home"></i> Home
+      </a>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-advocacy">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Why Self‑Host
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/#pain-points" class="sub-link" data-close-mobile>
+            <i class="fas fa-exclamation-triangle"></i> The Lock‑in Trap
+          </a>
+          <a href="https://ricalnet.my.id/#how-it-works" class="sub-link" data-close-mobile>
+            <i class="fas fa-route"></i> The Approach
+          </a>
+          <a href="https://ricalnet.my.id/#features" class="sub-link" data-close-mobile>
+            <i class="fas fa-star"></i> Sovereign Stack
+          </a>
+          <a href="https://ricalnet.my.id/#comparison" class="sub-link" data-close-mobile>
+            <i class="fas fa-arrows-left-right"></i> Comparison
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-resources">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-lock"></i> Privacy Tools
+          </a>
+          <a href="https://ricalnet.my.id/resources#in-house-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-cubes"></i> In‑House Tools
+          </a>
+          <a href="https://ricalnet.my.id/resources#in-house-tools" class="sub-link" data-close-mobile>
+            <i class="fab fa-globaleaks"></i> Whistleblowing Platform
+          </a>
+          <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+            <i class="fas fa-gavel"></i> Legal Resources
+          </a>
+          <a href="https://ricalnet.my.id/resources" class="sub-link" data-close-mobile>
+            <i class="fas fa-folder-open"></i> All Resources
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-tools">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/tools/image-censor" class="sub-link" data-close-mobile>
+            <i class="fas fa-eye-slash"></i> Image Censor
+          </a>
+          <a href="https://ricalnet.my.id/tools/ip-intelligence" class="sub-link" data-close-mobile>
+            <i class="fas fa-map-pin"></i> IP Intelligence
+          </a>
+          <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="sub-link" data-close-mobile>
+            <i class="fas fa-map-pin"></i> Metadata Cleaner
+          </a>
+          <a href="https://ricalnet.my.id/tools/password-generator" class="sub-link" data-close-mobile>
+            <i class="fas fa-key"></i> Password Generator
+          </a>
+          <a href="https://ricalnet.my.id/tools/qr-builder" class="sub-link" data-close-mobile>
+            <i class="fas fa-qrcode"></i> QR Builder
+          </a>
+          <a href="https://ricalnet.my.id/tools/quantum-hasher" class="sub-link" data-close-mobile>
+            <i class="fas fa-qrcode"></i> Quantum Hasher
+          </a>
+          <a href="https://ricalnet.my.id/tools/whiteboard" class="sub-link" data-close-mobile>
+            <i class="fas fa-pen-fancy"></i> Whiteboard
+          </a>
+          <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-user-secret"></i> Privacy Tools
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-about">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/about#our-mission" class="sub-link" data-close-mobile>
+            <i class="fas fa-bullseye"></i> Mission
+          </a>
+          <a href="https://ricalnet.my.id/about#team" class="sub-link" data-close-mobile>
+            <i class="fas fa-users"></i> Team
+          </a>
+          <a href="https://ricalnet.my.id/about#cta-support" class="sub-link" data-close-mobile>
+            <i class="fas fa-hand-holding-heart"></i> Support
+          </a>
+          <a href="https://ricalnet.my.id/#faq" class="sub-link" data-close-mobile>
+            <i class="fas fa-question-circle"></i> FAQ
+          </a>
+          <a href="https://ricalnet.my.id/#cta" class="sub-link" data-close-mobile>
+            <i class="fas fa-envelope"></i> Contact
+          </a>
+        </div>
+      </div>
+      <a href="https://ricalnet.my.id/free-hosting" class="nav-item" data-close-mobile>
+        <i class="fas fa-server"></i> For Students
+      </a>
+
+      <a href="https://ricalnet.my.id/#hidden-services" class="mt-3 block w-full text-center btn-sso justify-center"
+        data-close-mobile>
+        <i class="fas fa-key"></i> Login with SSO
+      </a>
+
+      <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+        <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+          <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> RICALNET — Robust · Control · Access · Libre
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <nav aria-label="Breadcrumb" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 text-xs">
+    <ol class="flex flex-wrap items-center gap-2 text-text-muted">
+      <li><a href="https://ricalnet.my.id" class="hover:text-tor-violet transition-colors">Home</a></li>
+      <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
+      <li><a href="https://ricalnet.my.id/resources#privacy-tools" class="hover:text-tor-violet transition-colors">Resources</a></li>
+      <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
+      <li class="text-tor-violet font-medium">Image Censor</li>
+    </ol>
+  </nav>
+
+  <section id="hero" class="relative overflow-hidden pt-8 pb-16 md:pt-12 md:pb-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center max-w-3xl mx-auto mb-12" data-aos="fade-up">
+        <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
+          <span class="badge-pill"><i class="fas fa-eye-slash"></i> Client‑Side Only</span>
+          <span class="badge-pill"
+            style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);"><i
+              class="fas fa-shield-alt"></i> Zero Uploads</span>
+          <span class="badge-pill"
+            style="background:rgba(104,176,48,0.08);color:#3d6b1e;border-color:rgba(104,176,48,0.15);"><i
+              class="fas fa-bolt"></i> Instant</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight">
+          <span class="text-text-primary">Image Censor</span>
+          <span class="text-tor-violet"> — Pixelate, Blur & Solid</span>
+        </h1>
+        <p class="text-text-secondary text-lg md:text-xl mt-6 max-w-2xl mx-auto leading-relaxed">
+          Redact sensitive info from images instantly. <strong class="text-text-primary">Pixelate</strong>,
+          <strong class="text-text-primary">blur</strong>, or
+          <strong class="text-text-primary">solid‑fill</strong> any region. Runs
+          <strong class="text-tor-violet">100% in your browser</strong> — no uploads, no servers, no logs.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10 items-start">
+
+        <div class="lg:col-span-3" data-aos="fade-up" data-aos-duration="700" data-aos-delay="100">
+          <div class="bg-white rounded-3xl shadow-elevated border border-surface-border/60 overflow-hidden">
+
+            <div class="p-4 sm:p-5 border-b border-surface-border/50 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-tor-violet/10 flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-crop-simple text-tor-violet text-sm"></i>
+                </div>
+                <div>
+                  <h2 class="text-sm font-bold text-text-primary">Workspace</h2>
+                  <p class="text-[0.65rem] text-text-muted">Draw a rectangle to redact</p>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2">
+                <button id="uploadBtn" class="censor-action-btn secondary !text-xs !py-1.5 !px-3.5">
+                  <i class="fas fa-upload"></i> Open
+                </button>
+                <input type="file" id="fileInput" accept="image/*" class="hidden" />
+                <button id="pasteBtn" class="censor-action-btn secondary !text-xs !py-1.5 !px-3.5">
+                  <i class="fas fa-paste"></i> Paste
+                </button>
+                <button id="resetBtn" class="censor-action-btn danger !text-xs !py-1.5 !px-3.5" disabled>
+                  <i class="fas fa-rotate-left"></i> Reset
+                </button>
+              </div>
+            </div>
+
+            <div id="workspace" class="censor-workspace p-4 sm:p-6">
+              <div id="uploadPlaceholder" class="upload-placeholder">
+                <div class="icon-wrap">
+                  <i class="fas fa-image"></i>
+                </div>
+                <h3>Drop an image here</h3>
+                <p>or click to browse. PNG, JPG, WebP, GIF — max 20 MB.</p>
+                <span class="shortcut-hint">
+                  <i class="fas fa-keyboard"></i>
+                  <kbd>Ctrl</kbd>+<kbd>V</kbd> to paste from clipboard
+                </span>
+              </div>
+
+              <div id="canvasWrap" class="censor-canvas-wrap hidden">
+                <canvas id="censorCanvas"></canvas>
+              </div>
+            </div>
+
+            <div class="p-4 sm:p-5 border-t border-surface-border/50 flex flex-wrap items-center justify-between gap-4">
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="text-[0.65rem] font-semibold text-text-muted uppercase tracking-wider">Mode:</span>
+                <div class="flex flex-wrap gap-2" role="radiogroup" aria-label="Censor mode">
+                  <button class="censor-mode-btn active" data-mode="pixelate" role="radio" aria-checked="true">
+                    <i class="fas fa-square"></i> Pixelate
+                  </button>
+                  <button class="censor-mode-btn" data-mode="blur" role="radio" aria-checked="false">
+                    <i class="fas fa-droplet"></i> Blur
+                  </button>
+                  <button class="censor-mode-btn" data-mode="solid" role="radio" aria-checked="false">
+                    <i class="fas fa-fill-drip"></i> Solid
+                  </button>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3 min-w-[180px]">
+                <span class="text-[0.65rem] font-semibold text-text-muted uppercase tracking-wider whitespace-nowrap">Size:</span>
+                <input type="range" id="sizeSlider" class="censor-size-slider" min="4" max="48" value="12"
+                  aria-label="Redaction size" />
+                <span id="sizeValue" class="text-[0.7rem] font-bold text-tor-violet font-mono w-7 text-right">12</span>
+              </div>
+            </div>
+
+            <div class="px-4 sm:px-5 pb-4 sm:pb-5">
+              <div class="censor-progress">
+                <div class="bar" id="progressBar"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="lg:col-span-2 space-y-5" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
+
+          <div class="bg-white rounded-3xl shadow-elevated border border-surface-border/60 p-5">
+            <h3 class="text-sm font-bold text-text-primary mb-4 flex items-center gap-2">
+              <i class="fas fa-sliders text-tor-violet"></i> Controls
+            </h3>
+
+            <div class="space-y-4">
+              <div>
+                <label class="text-[0.6rem] font-semibold text-text-muted uppercase tracking-wider block mb-1.5">Solid
+                  Color</label>
+                <div class="flex items-center gap-3">
+                  <input type="color" id="solidColor" value="#0f0e1a"
+                    class="w-10 h-10 rounded-xl border border-surface-border/60 cursor-pointer bg-transparent" />
+                  <span id="colorHex" class="text-xs font-mono text-text-secondary">#0f0e1a</span>
+                </div>
+              </div>
+
+              <div class="pt-2 border-t border-surface-border/40">
+                <label class="text-[0.6rem] font-semibold text-text-muted uppercase tracking-wider block mb-1.5">Undo
+                  History</label>
+                <div id="historyList" class="flex flex-wrap gap-1.5 min-h-[2rem]">
+                  <span class="text-[0.6rem] text-text-muted italic">No edits yet</span>
+                </div>
+                <button id="undoBtn" class="censor-action-btn secondary w-full mt-3 !text-xs !py-2" disabled>
+                  <i class="fas fa-rotate-left"></i> Undo Last
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-3xl shadow-elevated border border-surface-border/60 p-5">
+            <h3 class="text-sm font-bold text-text-primary mb-4 flex items-center gap-2">
+              <i class="fas fa-chart-simple text-tor-violet"></i> Statistics
+            </h3>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div class="censor-stat">
+                <span class="label">Dimensions</span>
+                <span class="value text-sm" id="statDimensions">—</span>
+              </div>
+              <div class="censor-stat">
+                <span class="label">Redactions</span>
+                <span class="value" id="statRedactions">0</span>
+              </div>
+              <div class="censor-stat">
+                <span class="label">File Size</span>
+                <span class="value text-sm" id="statFileSize">—</span>
+              </div>
+              <div class="censor-stat">
+                <span class="label">Format</span>
+                <span class="value text-sm" id="statFormat">—</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-3xl shadow-elevated border border-surface-border/60 p-5">
+            <h3 class="text-sm font-bold text-text-primary mb-4 flex items-center gap-2">
+              <i class="fas fa-download text-tor-violet"></i> Export
+            </h3>
+
+            <div class="space-y-2.5">
+              <button id="downloadPng" class="censor-action-btn primary w-full" disabled>
+                <i class="fas fa-file-image"></i> Download PNG
+              </button>
+              <button id="downloadJpg" class="censor-action-btn secondary w-full" disabled>
+                <i class="fas fa-file-image"></i> Download JPG
+              </button>
+              <button id="downloadWebp" class="censor-action-btn secondary w-full" disabled>
+                <i class="fas fa-file-image"></i> Download WebP
+              </button>
+            </div>
+
+            <div class="mt-4 p-3 bg-surface-muted/50 rounded-xl border border-surface-border/40">
+              <p class="text-[0.6rem] text-text-muted leading-relaxed flex items-start gap-2">
+                <i class="fas fa-shield-alt text-tor-accent-cyan mt-0.5 flex-shrink-0"></i>
+                <span>Images are processed <strong class="text-text-primary">entirely on your device</strong>. Nothing
+                  is ever uploaded, stored, or transmitted.</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-tor-violet/5 to-cyan-400/5 rounded-3xl border border-tor-violet/10 p-5">
+            <h3 class="text-sm font-bold text-text-primary mb-3 flex items-center gap-2">
+              <i class="fas fa-lightbulb text-tor-violet"></i> Tips
+            </h3>
+            <ul class="space-y-2 text-[0.7rem] text-text-secondary leading-relaxed">
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check-circle text-tor-violet text-[0.5rem] mt-1 flex-shrink-0"></i>
+                <span>Use <strong>Pixelate</strong> for a classic censored look.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check-circle text-tor-violet text-[0.5rem] mt-1 flex-shrink-0"></i>
+                <span>Use <strong>Blur</strong> for a softer, less obvious redaction.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check-circle text-tor-violet text-[0.5rem] mt-1 flex-shrink-0"></i>
+                <span>Use <strong>Solid</strong> for max privacy — no data leaks through.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check-circle text-tor-violet text-[0.5rem] mt-1 flex-shrink-0"></i>
+                <span>Drag to draw a rectangle over any region.</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="py-16 md:py-24 bg-white/40 border-y border-surface-border/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <span class="section-badge"><i class="fas fa-route"></i> How It Works</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+          <span class="text-text-primary">Redact in </span>
+          <span class="text-tor-violet">three simple steps</span>
+        </h2>
+        <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+          No account, no install, no uploads. Just open the tool and start censoring.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div data-aos="fade-up" data-aos-delay="0">
+          <div
+            class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover h-full text-center">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-tor-violet/10 flex items-center justify-center mb-5">
+              <i class="fas fa-upload text-tor-violet text-xl"></i>
+            </div>
+            <h4 class="text-xl font-bold text-text-primary">1. Load</h4>
+            <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+              Drag & drop, paste from clipboard, or browse. Your image never leaves your device.
+            </p>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="150">
+          <div
+            class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover h-full text-center">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-tor-violet/10 flex items-center justify-center mb-5">
+              <i class="fas fa-crop-simple text-tor-violet text-xl"></i>
+            </div>
+            <h4 class="text-xl font-bold text-text-primary">2. Censor</h4>
+            <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+              Choose a mode (pixelate, blur, solid), then drag to draw rectangles over sensitive areas.
+            </p>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="300">
+          <div
+            class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover h-full text-center">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-tor-violet/10 flex items-center justify-center mb-5">
+              <i class="fas fa-download text-tor-violet text-xl"></i>
+            </div>
+            <h4 class="text-xl font-bold text-text-primary">3. Download</h4>
+            <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+              Export as PNG, JPG, or WebP. Full quality preserved — only the redacted areas are altered.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <span class="section-badge"><i class="fas fa-question-circle"></i> FAQ</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+          <span class="text-text-primary">Common </span>
+          <span class="text-tor-violet">questions</span>
+        </h2>
+      </div>
+
+      <div class="space-y-3" data-aos="fade-up" data-aos-delay="100">
+
+        <div
+          class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Is my image uploaded to a server?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              <strong class="text-text-primary">No.</strong> All processing runs entirely in your browser using HTML5
+              Canvas. Your image never leaves your device — no uploads, no servers, no logs. You can disconnect from
+              the internet after the page loads.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">What's the difference between pixelate, blur, and
+              solid?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              <strong class="text-text-primary">Pixelate</strong> averages blocks of pixels for a mosaic effect.
+              <strong class="text-text-primary">Blur</strong> applies a Gaussian blur for a soft, less obvious
+              redaction. <strong class="text-text-primary">Solid</strong> fills the region with an opaque color — the
+              most secure option, since no original data remains underneath.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Can I undo a redaction?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              Yes — the tool keeps a history of every edit. Click <strong class="text-text-primary">Undo Last</strong>
+              to step back, or <strong class="text-text-primary">Reset</strong> to restore the original image. History
+              is stored in memory only and disappears when you close the page.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">What image formats are supported?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              The tool accepts any image format your browser can render: PNG, JPG, WebP, GIF, BMP, SVG, AVIF. Export is
+              available in PNG (lossless), JPG, and WebP. Maximum file size is 20 MB.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="relative overflow-hidden border-t border-tor-violet/10">
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
+    </div>
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+    </div>
+    <div
+      class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+
+        <div class="col-span-2 md:col-span-3 lg:col-span-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
+              <img src="../img/logo.png" alt="RICALNET open-source self-hosted infrastructure logo"
+                class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
+            </div>
+            <div>
+              <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+              <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust · Control
+                · Access · Libre</span>
+            </div>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
+            Self-hosted, open-source infrastructure. Control. Access. Libre.
+          </p>
+          <div class="flex flex-wrap items-center gap-3 mt-5">
+            <a href="https://git.ricalnet.my.id/rical" target="_blank" rel="noopener"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fa-brands fa-forgejo text-base"></i>
+            </a>
+            <a href="mailto:ricalnet@duck.com"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fas fa-envelope text-base"></i>
+            </a>
+            <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" target="_blank" rel="noopener"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fas fa-heartbeat text-base"></i>
+            </a>
+            <span
+              class="pgp-fingerprint text-[0.6rem] px-3 py-1.5 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+              onclick="copyPGP()" title="Click to copy PGP fingerprint">
+              <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Why Self‑Host</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/#pain-points" class="footer-link">The Lock-in Trap</a></li>
+            <li><a href="https://ricalnet.my.id/#how-it-works" class="footer-link">The Approach</a></li>
+            <li><a href="https://ricalnet.my.id/gallery" class="footer-link">Sovereign Stack</a></li>
+            <li><a href="https://ricalnet.my.id/#comparison" class="footer-link">Comparison</a></li>
+            <li><a href="https://ricalnet.my.id/about#our-mission" class="footer-link">Mission</a></li>
+            <li><a href="https://ricalnet.my.id/about" class="footer-link">About</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Stack</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/#features" class="footer-link">Sovereign Infrastructure</a></li>
+            <li><a href="https://ricalnet.my.id/resources#privacy-tools" class="footer-link">Privacy Tools</a></li>
+            <li><a href="https://ricalnet.my.id/tools/metadata-cleaner" class="footer-link">Metadata Cleaner</a></li>
+            <li><a href="https://ricalnet.my.id/tools/image-censor" class="footer-link">Image Censor</a></li>
+            <li><a href="https://search.ricalnet.my.id" class="footer-link">Sovereign Search</a></li>
+            <li><a href="https://translate.ricalnet.my.id" class="footer-link">Private Translation</a></li>
+            <li><a href="https://link.ricalnet.my.id" class="footer-link">Link Shortener</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Docs &amp; Resources</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
+                target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+            <li><a href="https://git.ricalnet.my.id/rical/digital-independence" class="footer-link"
+                target="_blank">Repository <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+            <li><a href="https://ricalnet.my.id/free-hosting" class="footer-link">For Students</a></li>
+            <li><a href="https://ricalnet.my.id/about#cta-support" class="footer-link">Support</a></li>
+            <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Legal</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/resources#legal-resources" class="footer-link">Legal Resources</a></li>
+            <li><a href="https://ricalnet.my.id/terms-of-service" class="footer-link">Terms of Service</a></li>
+            <li><a href="https://ricalnet.my.id/privacy" class="footer-link">Privacy Policy</a></li>
+            <li><a href="https://leaks.ricalnet.my.id" class="footer-link">Leaks</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+        <p class="text-xs tracking-wide">
+          &copy; RICALNET — <a href="https://git.ricalnet.my.id/rical/ricalnet-web/src/branch/main/LICENSE" class="hover:text-tor-violet transition-colors">MIT License</a>
+        </p>
+        <div class="flex flex-wrap items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
+          <a href="https://ricalnet.my.id/"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#OpenSource</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/#pain-points"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#NoLockIn</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/#features"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#ZeroTrust</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/"
+            class="text-tor-violet font-semibold hover:text-tor-violet-dark transition-colors">#ControlAccessLibre</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <span
+            class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+            onclick="copyPGP()" title="Click to copy PGP fingerprint">
+            <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="../assets/js/aos.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="js/image-censor.js"></script>
+
+</body>
+
+</html>

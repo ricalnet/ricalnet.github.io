@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+  <title>QR Builder — Generate & Read QR Codes Online | RICALNET</title>
+
+  <meta name="description"
+    content="Generate custom QR codes from text or URLs, and decode QR codes from images. Custom colors, error correction levels, no uploads — all local in your browser. Built for homelabbers, activists, journalists, and enterprises." />
+
+  <meta name="keywords"
+    content="qr code generator, qr code reader, create qr code, scan qr code, custom qr, qr builder, wifi qr code, url qr, RICALNET" />
+
+  <link rel="canonical" href="https://ricalnet.my.id/tools/qr-builder" />
+  <link rel="icon" type="image/x-icon" href="../img/logo.png" />
+
+  <meta property="og:title" content="QR Builder — Generate & Read QR Codes Online | RICALNET" />
+  <meta property="og:description"
+    content="Generate custom QR codes from text or URLs, and decode QR codes from images. Custom colors, error correction. 100% local, no uploads." />
+  <meta property="og:url" content="https://ricalnet.my.id/tools/qr-builder" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://ricalnet.my.id/img/og-image.png" />
+  <meta property="og:image:alt" content="QR Builder tool interface showing QR code generation" />
+  <meta property="og:site_name" content="RICALNET" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="QR Builder — Generate & Read QR Codes Online | RICALNET" />
+  <meta name="twitter:description"
+    content="Generate custom QR codes from text or URLs, and decode QR codes from images. 100% local." />
+  <meta name="twitter:image" content="https://ricalnet.my.id/img/og-image.png" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ricalnet.my.id/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://ricalnet.my.id/tools/" },
+        { "@type": "ListItem", "position": 3, "name": "QR Builder", "item": "https://ricalnet.my.id/tools/qr-builder" }
+      ]
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "QR Builder",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "description": "Generate custom QR codes from text or URLs, and decode QR codes from images. Runs entirely in your browser. Built for homelabbers, activists, journalists, and enterprises.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "RICALNET"
+      },
+      "url": "https://ricalnet.my.id/tools/qr-builder",
+      "applicationSuite": "RICALNET Tools",
+      "featureList": "QR code generation, QR code decoding, Custom colors, Error correction levels, Size control, Wi-Fi QR, URL QR"
+    }
+  </script>
+
+  <link href="../assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="../assets/fontawesome/css/solid.css" rel="stylesheet" />
+  <link href="../assets/fontawesome/css/brands.css" rel="stylesheet" />
+  <link href="../assets/css/fonts.css" rel="stylesheet" />
+  <link href="../assets/css/aos.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../assets/css/tailwind.css" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+
+  <link rel="stylesheet" href="css/qr-builder.css">
+
+  <script src="lib/qr-builder/qrcode.min.js"></script>
+  <script src="lib/qr-builder/jsqr.js"></script>
+</head>
+
+<body
+  class="font-source-sans-pro bg-surface-light text-text-primary antialiased selection:bg-tor-violet/20 selection:text-text-primary overflow-x-hidden max-w-full">
+
+  <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
+    <div class="absolute inset-0 bg-grid-subtle"></div>
+    <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/5 rounded-full blur-[160px]"></div>
+    <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/3 rounded-full blur-[180px]"></div>
+    <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/4 rounded-full blur-[140px]"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light"></div>
+  </div>
+
+  <header
+    class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-border/60 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-[72px]">
+
+        <a href="https://ricalnet.my.id/" class="flex items-center gap-3 flex-shrink-0 group" data-aos="fade-right"
+          data-aos-duration="600">
+          <img src="../img/logo.png" alt="RICALNET open source self-hosted infrastructure logo"
+            class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-tor-violet/20 group-hover:ring-tor-violet/50 transition-all duration-300" />
+          <div class="leading-tight hidden sm:block">
+            <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+            <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust · Control ·
+              Access · Libre</span>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-6" aria-label="Main" data-aos="fade-down" data-aos-duration="600">
+          <a href="https://ricalnet.my.id/#hero" class="nav-link">Home</a>
+
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/#pain-points" class="nav-link flex items-center gap-1">
+              Why Self‑Host
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/#pain-points" class="dropdown-item">The Lock‑in Trap</a>
+              <a href="https://ricalnet.my.id/#how-it-works" class="dropdown-item">The Approach</a>
+              <a href="https://ricalnet.my.id/#features" class="dropdown-item">Sovereign Stack</a>
+              <a href="https://ricalnet.my.id/#comparison" class="dropdown-item">Comparison</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/resources#hero" class="nav-link flex items-center gap-1">
+              Resources
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+              <a href="https://ricalnet.my.id/resources#in-house-tools" class="dropdown-item">In‑House Tools</a>
+              <a href="https://ricalnet.my.id/resources#leaks" class="dropdown-item">Whistleblowing Platform</a>
+              <a href="https://ricalnet.my.id/resources#legal-resources" class="dropdown-item">Legal Resources</a>
+              <a href="https://ricalnet.my.id/resources" class="dropdown-item">All Resources</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/resources#hero" class="nav-link nav-link-active flex items-center gap-1">
+              Tools
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/tools/image-censor" class="dropdown-item">Image Censor</a>
+              <a href="https://ricalnet.my.id/tools/ip-intelligence" class="dropdown-item">IP Intelligence</a>
+              <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="dropdown-item">Metadata Cleaner</a>
+              <a href="https://ricalnet.my.id/tools/password-generator" class="dropdown-item">Password Generator</a>
+              <a href="https://ricalnet.my.id/tools/qr-builder" class="dropdown-item">QR Builder</a>
+              <a href="https://ricalnet.my.id/tools/quantum-hasher" class="dropdown-item">Quantum Hasher</a>
+              <a href="https://ricalnet.my.id/tools/whiteboard" class="dropdown-item">Whiteboard</a>
+              <a href="https://ricalnet.my.id/resources#privacy-tools" class="dropdown-item">Privacy Tools</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <a href="https://ricalnet.my.id/about#hero" class="nav-link flex items-center gap-1">
+              About
+              <i class="fas fa-chevron-down text-[0.5rem] transition-transform duration-200 group-hover:rotate-180"></i>
+            </a>
+            <div class="dropdown-panel absolute left-0 mt-2 z-50">
+              <a href="https://ricalnet.my.id/about#our-mission" class="dropdown-item">Mission</a>
+              <a href="https://ricalnet.my.id/about#team" class="dropdown-item">Team</a>
+              <a href="https://ricalnet.my.id/about#cta-support" class="dropdown-item">Support</a>
+              <a href="https://ricalnet.my.id/#faq" class="dropdown-item">FAQ</a>
+              <a href="https://ricalnet.my.id/#cta" class="dropdown-item">Contact</a>
+            </div>
+          </div>
+          <a href="https://ricalnet.my.id/free-hosting" class="nav-link">For Students</a>
+        </nav>
+
+        <div class="flex items-center gap-3" data-aos="fade-left" data-aos-duration="600">
+          <a href="https://ricalnet.my.id/#hidden-services" class="hidden lg:inline-flex btn-sso">
+            <i class="fas fa-key"></i> Login with SSO
+          </a>
+          <button id="mobile-menu-toggle"
+            class="lg:hidden w-9 h-9 rounded-full hover:bg-surface-muted flex items-center justify-center transition-colors"
+            aria-label="Toggle menu" aria-expanded="false">
+            <i class="fas fa-bars text-text-secondary text-lg"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+
+    <div class="mobile-menu-header">
+      <div class="logo">
+        <img src="../img/logo.png" alt="RICALNET" />
+        <span>RICALNET</span>
+      </div>
+      <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
+        <i class="fas fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="mobile-menu-scroll">
+
+      <a href="https://ricalnet.my.id/#hero" class="nav-item" data-close-mobile>
+        <i class="fas fa-home"></i> Home
+      </a>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-advocacy">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-gavel text-tor-violet w-5 text-center"></i> Why Self‑Host
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-advocacy" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/#pain-points" class="sub-link" data-close-mobile>
+            <i class="fas fa-exclamation-triangle"></i> The Lock‑in Trap
+          </a>
+          <a href="https://ricalnet.my.id/#how-it-works" class="sub-link" data-close-mobile>
+            <i class="fas fa-route"></i> The Approach
+          </a>
+          <a href="https://ricalnet.my.id/#features" class="sub-link" data-close-mobile>
+            <i class="fas fa-star"></i> Sovereign Stack
+          </a>
+          <a href="https://ricalnet.my.id/#comparison" class="sub-link" data-close-mobile>
+            <i class="fas fa-arrows-left-right"></i> Comparison
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-resources">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-folder-open text-tor-violet w-5 text-center"></i> Resources
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-resources" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-lock"></i> Privacy Tools
+          </a>
+          <a href="https://ricalnet.my.id/resources#in-house-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-cubes"></i> In‑House Tools
+          </a>
+          <a href="https://ricalnet.my.id/resources#in-house-tools" class="sub-link" data-close-mobile>
+            <i class="fab fa-globaleaks"></i> Whistleblowing Platform
+          </a>
+          <a href="https://ricalnet.my.id/resources#legal-resources" class="sub-link" data-close-mobile>
+            <i class="fas fa-gavel"></i> Legal Resources
+          </a>
+          <a href="https://ricalnet.my.id/resources" class="sub-link" data-close-mobile>
+            <i class="fas fa-folder-open"></i> All Resources
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-tools">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-screwdriver-wrench text-tor-violet w-5 text-center"></i> Tools
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-tools" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/tools/image-censor" class="sub-link" data-close-mobile>
+            <i class="fas fa-eye-slash"></i> Image Censor
+          </a>
+          <a href="https://ricalnet.my.id/tools/ip-intelligence" class="sub-link" data-close-mobile>
+            <i class="fas fa-map-pin"></i> IP Intelligence
+          </a>
+          <a href="https://ricalnet.my.id/tools/metadata-cleaner" class="sub-link" data-close-mobile>
+            <i class="fas fa-map-pin"></i> Metadata Cleaner
+          </a>
+          <a href="https://ricalnet.my.id/tools/password-generator" class="sub-link" data-close-mobile>
+            <i class="fas fa-key"></i> Password Generator
+          </a>
+          <a href="https://ricalnet.my.id/tools/qr-builder" class="sub-link" data-close-mobile>
+            <i class="fas fa-qrcode"></i> QR Builder
+          </a>
+          <a href="https://ricalnet.my.id/tools/quantum-hasher" class="sub-link" data-close-mobile>
+            <i class="fas fa-qrcode"></i> Quantum Hasher
+          </a>
+          <a href="https://ricalnet.my.id/tools/whiteboard" class="sub-link" data-close-mobile>
+            <i class="fas fa-pen-fancy"></i> Whiteboard
+          </a>
+          <a href="https://ricalnet.my.id/resources#privacy-tools" class="sub-link" data-close-mobile>
+            <i class="fas fa-user-secret"></i> Privacy Tools
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-dropdown">
+        <button
+          class="mobile-dropdown-toggle w-full flex items-center justify-between py-2.5 px-3 rounded-xl text-text-primary font-medium hover:bg-tor-violet/5 transition-colors group"
+          aria-expanded="false" data-target="sub-about">
+          <span class="flex items-center gap-2.5">
+            <i class="fas fa-info-circle text-tor-violet w-5 text-center"></i> About
+          </span>
+          <i
+            class="fas fa-chevron-down text-text-muted text-xs transition-transform duration-300 group-[.open]:rotate-180"></i>
+        </button>
+        <div id="sub-about" class="mobile-sub-menu pl-6 border-l-2 border-tor-violet/10 ml-2">
+          <a href="https://ricalnet.my.id/about#our-mission" class="sub-link" data-close-mobile>
+            <i class="fas fa-bullseye"></i> Mission
+          </a>
+          <a href="https://ricalnet.my.id/about#team" class="sub-link" data-close-mobile>
+            <i class="fas fa-users"></i> Team
+          </a>
+          <a href="https://ricalnet.my.id/about#cta-support" class="sub-link" data-close-mobile>
+            <i class="fas fa-hand-holding-heart"></i> Support
+          </a>
+          <a href="https://ricalnet.my.id/#faq" class="sub-link" data-close-mobile>
+            <i class="fas fa-question-circle"></i> FAQ
+          </a>
+          <a href="https://ricalnet.my.id/#cta" class="sub-link" data-close-mobile>
+            <i class="fas fa-envelope"></i> Contact
+          </a>
+        </div>
+      </div>
+      <a href="https://ricalnet.my.id/free-hosting" class="nav-item" data-close-mobile>
+        <i class="fas fa-server"></i> For Students
+      </a>
+
+      <a href="https://ricalnet.my.id/#hidden-services" class="mt-3 block w-full text-center btn-sso justify-center"
+        data-close-mobile>
+        <i class="fas fa-key"></i> Login with SSO
+      </a>
+
+      <div class="mt-6 text-center text-[0.6rem] text-text-muted uppercase tracking-[0.12em] font-medium opacity-50">
+        <span class="inline-block px-3 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-tor-violet/5">
+          <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i> RICALNET — Robust · Control · Access · Libre
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <nav aria-label="Breadcrumb" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 text-xs">
+    <ol class="flex flex-wrap items-center gap-2 text-text-muted">
+      <li><a href="https://ricalnet.my.id" class="hover:text-tor-violet transition-colors">Home</a></li>
+      <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
+      <li><a href="https://ricalnet.my.id/resources#privacy-tools" class="hover:text-tor-violet transition-colors">Resources</a></li>
+      <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
+      <li class="text-tor-violet font-medium">QR Builder</li>
+    </ol>
+  </nav>
+
+  <section class="relative overflow-hidden pt-[72px] pb-8 md:pt-8 md:pb-12 bg-surface-light">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto" data-aos="fade-up" data-aos-duration="700">
+        <div class="flex flex-wrap items-center justify-center gap-2 mb-5">
+          <span class="badge-pill"><i class="fas fa-qrcode"></i> QR Builder</span>
+          <span class="badge-pill"
+            style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);">
+            <i class="fas fa-arrows-rotate"></i> Generate &amp; Read
+          </span>
+          <span class="badge-pill"
+            style="background:rgba(245,158,11,0.08);color:#b45309;border-color:rgba(245,158,11,0.12);">
+            <i class="fas fa-image"></i> Image Decode
+          </span>
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight">
+          <span class="text-text-primary">QR </span>
+          <span class="text-tor-violet">Builder</span>
+        </h1>
+        <p class="text-text-secondary text-lg md:text-xl mt-4 max-w-2xl mx-auto leading-relaxed">
+          Generate custom QR codes from text or URLs — and decode QR codes from images.
+          Simple, private, and built for digital sovereignty.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-16 md:pb-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-8" data-aos="fade-up" data-aos-delay="100"
+        role="tablist" aria-label="QR Builder tabs">
+        <button class="qr-tab-btn active" data-tab="generate" role="tab" aria-selected="true" type="button">
+          <i class="fas fa-pen-ruler mr-2"></i> Generate QR
+        </button>
+        <button class="qr-tab-btn" data-tab="read" role="tab" aria-selected="false" type="button">
+          <i class="fas fa-camera mr-2"></i> Read QR
+        </button>
+      </div>
+
+      <div id="tab-generate" class="qr-tab-panel active" role="tabpanel" data-aos="fade-up" data-aos-delay="150">
+
+        <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+            <div>
+
+              <div class="mb-5">
+                <label for="qr-text" class="qr-setting-label block mb-1.5">
+                  Text or URL
+                  <span id="qr-char-count" class="text-text-muted text-xs font-normal ml-1">(0 chars)</span>
+                </label>
+                <textarea id="qr-text" rows="2" spellcheck="false"
+                  class="w-full px-4 py-2.5 rounded-xl border border-surface-border/60 bg-white/60 focus:border-tor-violet focus:ring-4 focus:ring-tor-violet/10 transition-all duration-200 text-text-primary placeholder:text-text-muted/50 text-sm resize-y"
+                  placeholder="Enter text or URL to encode…">https://ricalnet.my.id</textarea>
+                <div class="mt-2 flex flex-wrap gap-1.5">
+                  <button type="button"
+                    class="sample-text-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                    data-text="https://ricalnet.my.id">Ricalnet</button>
+                  <button type="button"
+                    class="sample-text-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                    data-text="https://git.ricalnet.my.id/rical">Forgejo</button>
+                  <button type="button"
+                    class="sample-text-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                    data-text="Hello, world! 👋">Hello</button>
+                  <button type="button"
+                    class="sample-text-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                    data-text="mailto:ricalnet@duck.com">Email</button>
+                  <button type="button"
+                    class="sample-text-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
+                    data-text="WIFI:T:WPA;S:MyNetwork;P:MyPassword123;;">Wi‑Fi</button>
+                </div>
+              </div>
+
+              <div class="mb-5">
+                <div class="flex items-center justify-between">
+                  <label for="qr-size" class="qr-setting-label">Size (px)</label>
+                  <span id="qr-size-display" class="text-sm font-bold text-tor-violet font-mono">256</span>
+                </div>
+                <input type="range" id="qr-size" class="qr-range-input mt-1.5" min="100" max="1024" step="8"
+                  value="256" />
+                <div class="flex justify-between text-[0.55rem] text-text-muted mt-0.5 px-0.5">
+                  <span>100</span>
+                  <span>1024</span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4 mb-5">
+                <div>
+                  <label class="qr-setting-label block mb-1.5">Foreground</label>
+                  <input type="color" id="qr-fg" class="qr-color-input" value="#0f0e1a" />
+                </div>
+                <div>
+                  <label class="qr-setting-label block mb-1.5">Background</label>
+                  <input type="color" id="qr-bg" class="qr-color-input" value="#ffffff" />
+                </div>
+              </div>
+
+              <button id="qr-advanced-toggle" class="qr-advanced-toggle" type="button">
+                <i class="fas fa-chevron-down"></i> Advanced Options
+              </button>
+
+              <div id="qr-advanced-panel" class="qr-advanced-panel">
+
+                <div class="mb-4">
+                  <label for="qr-ec" class="qr-setting-label block mb-1.5">Error Correction Level</label>
+                  <select id="qr-ec" class="qr-dropdown w-full">
+                    <option value="L">L — Low (7%)</option>
+                    <option value="M" selected>M — Medium (15%)</option>
+                    <option value="Q">Q — Quartile (25%)</option>
+                    <option value="H">H — High (30%)</option>
+                  </select>
+                  <p class="qr-setting-desc mt-1">Higher correction = more robust but larger QR code.</p>
+                </div>
+
+                <div class="mb-4">
+                  <label for="qr-margin" class="qr-setting-label block mb-1.5">
+                    Quiet Zone (margin)
+                    <span id="qr-margin-display" class="text-tor-violet font-bold ml-1">4</span>
+                  </label>
+                  <input type="range" id="qr-margin" class="qr-range-input" min="0" max="10" value="4" />
+                  <p class="qr-setting-desc mt-1">White space around the QR code. 4 is standard for scanners.</p>
+                </div>
+
+                <div class="mb-4">
+                  <label class="qr-setting-label block mb-1.5">Color Presets</label>
+                  <div class="flex flex-wrap gap-2" id="qr-presets">
+                    <button type="button" class="preset-btn w-8 h-8 rounded-lg border-2 border-white shadow-md transition-transform hover:scale-110"
+                      data-fg="#0f0e1a" data-bg="#ffffff" style="background: linear-gradient(135deg, #0f0e1a 50%, #ffffff 50%);" title="Classic Black & White"></button>
+                    <button type="button" class="preset-btn w-8 h-8 rounded-lg border-2 border-white shadow-md transition-transform hover:scale-110"
+                      data-fg="#7c3aed" data-bg="#ffffff" style="background: linear-gradient(135deg, #7c3aed 50%, #ffffff 50%);" title="Ricalnet Violet"></button>
+                    <button type="button" class="preset-btn w-8 h-8 rounded-lg border-2 border-white shadow-md transition-transform hover:scale-110"
+                      data-fg="#ffffff" data-bg="#0f0e1a" style="background: linear-gradient(135deg, #ffffff 50%, #0f0e1a 50%);" title="Dark Mode"></button>
+                    <button type="button" class="preset-btn w-8 h-8 rounded-lg border-2 border-white shadow-md transition-transform hover:scale-110"
+                      data-fg="#1e40af" data-bg="#dbeafe" style="background: linear-gradient(135deg, #1e40af 50%, #dbeafe 50%);" title="Ocean Blue"></button>
+                    <button type="button" class="preset-btn w-8 h-8 rounded-lg border-2 border-white shadow-md transition-transform hover:scale-110"
+                      data-fg="#065f46" data-bg="#d1fae5" style="background: linear-gradient(135deg, #065f46 50%, #d1fae5 50%);" title="Forest Green"></button>
+                    <button type="button" class="preset-btn w-8 h-8 rounded-lg border-2 border-white shadow-md transition-transform hover:scale-110"
+                      data-fg="#b91c1c" data-bg="#fef2f2" style="background: linear-gradient(135deg, #b91c1c 50%, #fef2f2 50%);" title="Ruby Red"></button>
+                  </div>
+                </div>
+
+              </div>
+
+              <button id="qr-generate-btn" class="qr-gen-btn w-full justify-center mt-5" type="button">
+                <i class="fas fa-qrcode"></i>
+                Generate QR Code
+              </button>
+
+              <div class="mt-3 text-xs text-text-muted text-center">
+                <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i>
+                Generated in your browser. Nothing is sent to any server.
+              </div>
+
+            </div>
+
+            <div>
+
+              <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+                <span class="qr-setting-label">Your QR Code</span>
+                <div class="flex gap-2 flex-wrap">
+                  <button id="qr-copy-img-btn" class="qr-download-btn text-sm px-3 py-1.5" disabled type="button">
+                    <i class="fas fa-copy"></i> Copy
+                  </button>
+                  <button id="qr-download-btn" class="qr-download-btn text-sm px-3 py-1.5" disabled type="button">
+                    <i class="fas fa-download"></i> PNG
+                  </button>
+                  <button id="qr-download-svg-btn" class="qr-download-btn text-sm px-3 py-1.5 hidden" disabled type="button">
+                    <i class="fas fa-download"></i> SVG
+                  </button>
+                </div>
+              </div>
+
+              <div id="qr-display" class="qr-display-container">
+                <div id="qrcode"></div>
+                <div id="qr-placeholder" class="qr-placeholder">
+                  <i class="fas fa-qrcode"></i>
+                  Enter text and click Generate
+                </div>
+              </div>
+
+              <div id="qr-info" class="mt-3 hidden">
+                <div class="qr-info-strip">
+                  <span><i class="fas fa-font text-tor-violet/60 mr-1"></i> <strong id="qr-info-chars">0</strong> chars</span>
+                  <span><i class="fas fa-expand text-tor-violet/60 mr-1"></i> <strong id="qr-info-size">0×0</strong> px</span>
+                  <span><i class="fas fa-shield text-tor-violet/60 mr-1"></i> EC <strong id="qr-info-ec">M</strong></span>
+                  <span><i class="fas fa-microchip text-tor-violet/60 mr-1"></i> v<strong id="qr-info-version">—</strong></span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="tab-read" class="qr-tab-panel" role="tabpanel" data-aos="fade-up" data-aos-delay="150">
+
+        <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+            <div>
+
+              <div class="qr-section-title"><i class="fas fa-upload mr-2"></i>Upload QR Code Image</div>
+
+              <div id="qr-drop-zone" class="qr-drop-zone">
+                <input type="file" id="qr-file-input" class="qr-file-input" accept="image/*"
+                  aria-label="Upload QR code image" />
+                <span class="icon"><i class="fas fa-cloud-upload-alt"></i></span>
+                <div class="text">Drop an image here or click to browse</div>
+                <div class="sub">Supports PNG, JPG, BMP, WEBP · Max 10 MB</div>
+              </div>
+
+              <div id="qr-preview-container" class="qr-preview-container hidden">
+                <img id="qr-preview" alt="QR code preview" />
+              </div>
+
+              <div class="flex flex-wrap gap-3 mt-4">
+                <button id="qr-decode-btn" class="qr-gen-btn flex-1 justify-center" disabled type="button">
+                  <i class="fas fa-qrcode"></i>
+                  Decode QR Code
+                </button>
+                <button id="qr-clear-btn" class="qr-download-btn" disabled type="button">
+                  <i class="fas fa-times"></i> Clear
+                </button>
+              </div>
+
+              <div class="mt-3 text-xs text-text-muted text-center">
+                <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i>
+                All processing is local. Your images are never uploaded.
+              </div>
+
+            </div>
+
+            <div>
+
+              <div class="qr-section-title"><i class="fas fa-file-lines mr-2"></i>Decoded Result</div>
+
+              <div id="qr-result-container">
+                <div id="qr-result-placeholder" class="text-text-muted text-sm py-8 text-center">
+                  <i class="fas fa-qrcode text-3xl block mb-3 opacity-30"></i>
+                  Upload a QR code image and click "Decode QR Code" to see the result.
+                </div>
+
+                <div id="qr-result-content" class="hidden">
+                  <div class="flex items-center gap-2 mb-2 flex-wrap">
+                    <span id="qr-type-label" class="qr-type-badge">
+                      <i class="fas fa-font"></i> Text
+                    </span>
+                    <button id="qr-result-copy" class="qr-copy-btn text-sm px-3 py-1.5 ml-auto" type="button">
+                      <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <button id="qr-result-open" class="qr-copy-btn text-sm px-3 py-1.5 hidden" type="button">
+                      <i class="fas fa-arrow-up-right-from-square"></i> Open
+                    </button>
+                  </div>
+                  <div id="qr-result-text" class="qr-result-box"></div>
+                  <div id="qr-result-meta" class="mt-2 text-xs text-text-muted flex flex-wrap gap-x-4 gap-y-1">
+                    <span><i class="fas fa-font mr-1"></i> <strong id="qr-result-chars">0</strong> chars</span>
+                    <span><i class="fas fa-location-crosshairs mr-1"></i> Location: <strong id="qr-result-loc">—</strong></span>
+                  </div>
+                </div>
+
+                <div id="qr-result-error" class="hidden text-red-500 text-sm mt-4">
+                  <i class="fas fa-exclamation-circle mr-1.5"></i>
+                  <span id="qr-error-msg">Could not decode QR code. Please try a different image.</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="qr-card rounded-2xl p-4 text-center">
+          <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-2">
+            <i class="fas fa-palette text-tor-violet"></i>
+          </div>
+          <h4 class="font-semibold text-sm text-text-primary">Custom Colors</h4>
+          <p class="text-text-muted text-xs mt-1">Match your brand or style with custom foreground and
+            background colors.</p>
+        </div>
+        <div class="qr-card rounded-2xl p-4 text-center">
+          <div class="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center mx-auto mb-2">
+            <i class="fas fa-shield text-amber-600"></i>
+          </div>
+          <h4 class="font-semibold text-sm text-text-primary">Error Correction</h4>
+          <p class="text-text-muted text-xs mt-1">Choose from L, M, Q, H levels to balance size and
+            robustness.</p>
+        </div>
+        <div class="qr-card rounded-2xl p-4 text-center">
+          <div class="w-10 h-10 rounded-full bg-cyan-50 flex items-center justify-center mx-auto mb-2">
+            <i class="fas fa-camera text-cyan-600"></i>
+          </div>
+          <h4 class="font-semibold text-sm text-text-primary">Read QR Codes</h4>
+          <p class="text-text-muted text-xs mt-1">Upload any QR code image and decode its content instantly.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="relative overflow-hidden border-t border-tor-violet/10">
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
+    </div>
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/20 to-transparent">
+    </div>
+    <div
+      class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tor-violet/10 to-transparent">
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-tor-violet/10">
+
+        <div class="col-span-2 md:col-span-3 lg:col-span-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
+              <img src="../img/logo.png" alt="RICALNET open-source self-hosted infrastructure logo"
+                class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
+            </div>
+            <div>
+              <span class="block text-base font-bold text-text-primary tracking-tight">RICALNET</span>
+              <span class="block text-[0.5rem] font-medium text-text-muted uppercase tracking-[0.12em]">Robust · Control
+                · Access · Libre</span>
+            </div>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed max-w-xs">
+            Self-hosted, open-source infrastructure. Control. Access. Libre.
+          </p>
+          <div class="flex flex-wrap items-center gap-3 mt-5">
+            <a href="https://git.ricalnet.my.id/rical" target="_blank" rel="noopener"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fa-brands fa-forgejo text-base"></i>
+            </a>
+            <a href="mailto:ricalnet@duck.com"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fas fa-envelope text-base"></i>
+            </a>
+            <a href="https://status.ricalnet.my.id/status/76qqqz4qq5q7hm" target="_blank" rel="noopener"
+              class="w-9 h-9 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center text-text-muted hover:text-tor-violet hover:bg-tor-violet/10 transition-all duration-200 shadow-elevated border border-tor-violet/5">
+              <i class="fas fa-heartbeat text-base"></i>
+            </a>
+            <span
+              class="pgp-fingerprint text-[0.6rem] px-3 py-1.5 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+              onclick="copyPGP()" title="Click to copy PGP fingerprint">
+              <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Why Self‑Host</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/#pain-points" class="footer-link">The Lock-in Trap</a></li>
+            <li><a href="https://ricalnet.my.id/#how-it-works" class="footer-link">The Approach</a></li>
+            <li><a href="https://ricalnet.my.id/gallery" class="footer-link">Sovereign Stack</a></li>
+            <li><a href="https://ricalnet.my.id/#comparison" class="footer-link">Comparison</a></li>
+            <li><a href="https://ricalnet.my.id/about#our-mission" class="footer-link">Mission</a></li>
+            <li><a href="https://ricalnet.my.id/about" class="footer-link">About</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Stack</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/#features" class="footer-link">Sovereign Infrastructure</a></li>
+            <li><a href="https://ricalnet.my.id/resources#privacy-tools" class="footer-link">Privacy Tools</a></li>
+            <li><a href="https://ricalnet.my.id/tools/metadata-cleaner" class="footer-link">Metadata Cleaner</a></li>
+            <li><a href="https://ricalnet.my.id/tools/image-censor" class="footer-link">Image Censor</a></li>
+            <li><a href="https://search.ricalnet.my.id" class="footer-link">Sovereign Search</a></li>
+            <li><a href="https://translate.ricalnet.my.id" class="footer-link">Private Translation</a></li>
+            <li><a href="https://link.ricalnet.my.id" class="footer-link">Link Shortener</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Docs &amp; Resources</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://docs.ricalnet.my.id/categories/digital-independence/" class="footer-link"
+                target="_blank">Documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+            <li><a href="https://git.ricalnet.my.id/rical/digital-independence" class="footer-link"
+                target="_blank">Repository <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+            <li><a href="https://ricalnet.my.id/free-hosting" class="footer-link">For Students</a></li>
+            <li><a href="https://ricalnet.my.id/about#cta-support" class="footer-link">Support</a></li>
+            <li><a href="https://status.ricalnet.my.id" class="footer-link"> Service Status</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading text-text-primary/60">Legal</h4>
+          <ul class="space-y-2.5">
+            <li><a href="https://ricalnet.my.id/resources#legal-resources" class="footer-link">Legal Resources</a></li>
+            <li><a href="https://ricalnet.my.id/terms-of-service" class="footer-link">Terms of Service</a></li>
+            <li><a href="https://ricalnet.my.id/privacy" class="footer-link">Privacy Policy</a></li>
+            <li><a href="https://leaks.ricalnet.my.id" class="footer-link">Leaks</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
+        <p class="text-xs tracking-wide">
+          &copy; RICALNET — <a href="https://git.ricalnet.my.id/rical/ricalnet-web/src/branch/main/LICENSE" class="hover:text-tor-violet transition-colors">MIT License</a>
+        </p>
+        <div class="flex flex-wrap items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
+          <a href="https://ricalnet.my.id/"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#OpenSource</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/#pain-points"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#NoLockIn</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/#features"
+            class="text-text-secondary/70 hover:text-tor-violet transition-colors">#ZeroTrust</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <a href="https://ricalnet.my.id/"
+            class="text-tor-violet font-semibold hover:text-tor-violet-dark transition-colors">#ControlAccessLibre</a>
+          <span class="w-px h-4 bg-tor-violet/10"></span>
+          <span
+            class="pgp-fingerprint text-[0.55rem] px-2.5 py-1 bg-white/60 backdrop-blur-sm border-tor-violet/10 hover:bg-tor-violet/10"
+            onclick="copyPGP()" title="Click to copy PGP fingerprint">
+            <i class="fas fa-lock text-tor-accent-cyan"></i> PGP
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="../assets/js/aos.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="js/qr-builder.js"></script>
+
+</body>
+
+</html>

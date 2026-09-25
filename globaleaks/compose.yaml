@@ -1,0 +1,33 @@
+x-podman:
+  in_pod: false
+
+services:
+  globaleaks:
+    image: localhost/globaleaks-arm64:latest
+    container_name: globaleaks
+    userns_mode: "keep-id"
+
+    ports:
+      - "127.0.0.1:4443:8443"
+
+    volumes:
+      - ./globaleaks-data:/var/globaleaks:U
+
+    tmpfs:
+      - /run/globaleaks:mode=1777,noexec,nosuid,nodev,size=64m
+
+    read_only: true
+
+    cap_drop:
+      - ALL
+
+    security_opt:
+      - no-new-privileges:true
+
+    mem_limit: "1g"
+    memswap_limit: "1g"
+    cpus: "1.0"
+    pids_limit: 256
+
+    restart: unless-stopped
+    stop_grace_period: 1m

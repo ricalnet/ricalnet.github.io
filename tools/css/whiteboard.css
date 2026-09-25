@@ -1,0 +1,237 @@
+.wb-tool-btn {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 12px;
+  border: 1.5px solid #ede9f0;
+  background: white;
+  color: #52506e;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.wb-tool-btn:hover:not(:disabled) {
+  border-color: #7c3aed;
+  color: #7c3aed;
+  background: #faf9fe;
+  transform: translateY(-1px);
+}
+
+.wb-tool-btn.active {
+  border-color: #7c3aed;
+  background: #7c3aed;
+  color: white;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.2);
+}
+
+.wb-tool-btn.active:hover {
+  background: #5b21b6;
+  border-color: #5b21b6;
+  color: white;
+}
+
+.wb-tool-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.wb-tool-btn:focus-visible {
+  outline: 2px solid #7c3aed;
+  outline-offset: 2px;
+}
+
+.wb-color-picker {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 2.5px solid #ede9f0;
+  padding: 0.15rem;
+  cursor: pointer;
+  background: white;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.wb-color-picker:focus {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+}
+
+.wb-color-picker:hover {
+  border-color: #7c3aed;
+}
+
+.wb-color-preset {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  border: 2.5px solid #ede9f0;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.wb-color-preset:hover {
+  transform: scale(1.12);
+  border-color: #7c3aed;
+}
+
+.wb-color-preset.active {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+  transform: scale(1.08);
+}
+
+.wb-color-preset.active::after {
+  content: '\f00c';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.65rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.wb-size-btn {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  border: 1.5px solid #ede9f0;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.wb-size-btn:hover {
+  border-color: #7c3aed;
+  background: #faf9fe;
+  transform: scale(1.05);
+}
+
+.wb-size-btn.active {
+  border-color: #7c3aed;
+  background: #7c3aed;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.15);
+}
+
+.wb-size-btn .dot {
+  border-radius: 50%;
+  background: #0f0e1a;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.wb-size-btn.active .dot {
+  background: white;
+}
+
+.wb-canvas-wrap {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid #ede9f0;
+  background: white;
+  position: relative;
+  cursor: crosshair;
+  touch-action: none;
+  transition: border-color 0.2s ease;
+}
+
+.wb-canvas-wrap:hover {
+  border-color: rgba(124, 58, 237, 0.2);
+}
+
+.wb-canvas-wrap canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: white;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.wb-section-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #7c3aed;
+  font-weight: 700;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid rgba(124, 58, 237, 0.08);
+  margin-bottom: 0.75rem;
+}
+
+.wb-status {
+  font-size: 0.75rem;
+  color: #9492ae;
+}
+
+.wb-status strong {
+  color: #0f0e1a;
+  font-weight: 600;
+}
+
+.wb-divider {
+  width: 1px;
+  height: 1.75rem;
+  background: rgba(124, 58, 237, 0.1);
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .wb-tool-btn {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 0.85rem;
+    border-radius: 10px;
+  }
+
+  .wb-color-picker {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .wb-color-preset {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .wb-size-btn {
+    width: 1.85rem;
+    height: 1.85rem;
+  }
+
+  .wb-canvas-wrap {
+    border-radius: 12px;
+  }
+
+  .wb-divider {
+    height: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wb-tool-btn,
+  .wb-color-picker,
+  .wb-color-preset,
+  .wb-size-btn,
+  .wb-canvas-wrap {
+    transition: none !important;
+  }
+}
