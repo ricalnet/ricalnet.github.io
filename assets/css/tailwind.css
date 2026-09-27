@@ -3795,6 +3795,10 @@ video {
     grid-column: span 3 / span 3;
   }
 
+  .md\:mb-14 {
+    margin-bottom: 3.5rem;
+  }
+
   .md\:mb-16 {
     margin-bottom: 4rem;
   }

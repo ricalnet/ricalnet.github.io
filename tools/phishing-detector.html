@@ -5,64 +5,78 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
-  <title>QR Builder — Generate & Read QR Codes Online | RICALNET</title>
+  <title>Phishing Detector — RICALNET | Analyze URLs for Threats</title>
 
   <meta name="description"
-    content="Generate custom QR codes from text or URLs, and decode QR codes from images. Custom colors, error correction levels, no uploads — all local in your browser. Built for homelabbers, activists, journalists, and enterprises." />
+    content="Analyze URLs for phishing threats with RICALNET's open-source, zero-trust detector. Privacy-first, real-time heuristics. No logs. Scan a link now." />
 
   <meta name="keywords"
-    content="qr code generator, qr code reader, create qr code, scan qr code, custom qr, qr builder, wifi qr code, url qr, RICALNET" />
+    content="phishing detector, url analyzer, phishing detection, cybersecurity, open source security, zero-trust, RICALNET" />
 
-  <link rel="canonical" href="https://ricalnet.my.id/tools/qr-builder" />
+  <link rel="canonical" href="https://ricalnet.my.id/tools/phishing-detector" />
   <link rel="icon" type="image/x-icon" href="../img/logo.webp" />
 
-  <meta property="og:title" content="QR Builder — Generate & Read QR Codes Online | RICALNET" />
+  <meta property="og:title" content="Phishing Detector — RICALNET" />
   <meta property="og:description"
-    content="Generate custom QR codes from text or URLs, and decode QR codes from images. Custom colors, error correction. 100% local, no uploads." />
-  <meta property="og:url" content="https://ricalnet.my.id/tools/qr-builder" />
+    content="Analyze URLs for phishing threats. Open-source, zero-trust, privacy-first." />
+  <meta property="og:url" content="https://ricalnet.my.id/tools/phishing-detector" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://ricalnet.my.id/img/og-image.webp" />
-  <meta property="og:image:alt" content="QR Builder tool interface showing QR code generation" />
+  <meta property="og:image:alt" content="RICALNET phishing detector dashboard" />
   <meta property="og:site_name" content="RICALNET" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="QR Builder — Generate & Read QR Codes Online | RICALNET" />
+  <meta name="twitter:title" content="Phishing Detector — RICALNET" />
   <meta name="twitter:description"
-    content="Generate custom QR codes from text or URLs, and decode QR codes from images. 100% local." />
+    content="Analyze URLs for phishing threats. Open-source, zero-trust, privacy-first." />
   <meta name="twitter:image" content="https://ricalnet.my.id/img/og-image.webp" />
 
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ricalnet.my.id/" },
-        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://ricalnet.my.id/tools/" },
-        { "@type": "ListItem", "position": 3, "name": "QR Builder", "item": "https://ricalnet.my.id/tools/qr-builder" }
-      ]
-    }
-  </script>
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "QR Builder",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "All",
-      "description": "Generate custom QR codes from text or URLs, and decode QR codes from images. Runs entirely in your browser. Built for homelabbers, activists, journalists, and enterprises.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
+      "@type": "WebPage",
+      "name": "Phishing Detector — RICALNET",
+      "description": "Analyze URLs for phishing threats. Open-source, zero-trust, privacy-first.",
+      "url": "https://ricalnet.my.id/tools/phishing-detector",
+      "about": {
+        "@type": "Thing",
+        "name": "Phishing Detection Tool"
       },
-      "author": {
-        "@type": "Organization",
-        "name": "RICALNET"
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ricalnet.my.id/"
+        }, {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tools",
+          "item": "https://ricalnet.my.id/resources#in-house-tools"
+        }, {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Phishing Detector",
+          "item": "https://ricalnet.my.id/tools/phishing-detector"
+        }]
       },
-      "url": "https://ricalnet.my.id/tools/qr-builder",
-      "applicationSuite": "RICALNET Tools",
-      "featureList": "QR code generation, QR code decoding, Custom colors, Error correction levels, Size control, Wi-Fi QR, URL QR"
+      "mainEntity": {
+        "@type": "SoftwareApplication",
+        "name": "RICALNET Phishing Detector",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "Web",
+        "description": "Open-source phishing URL analysis tool with zero-trust security",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "RICALNET"
+        }
+      }
     }
   </script>
 
@@ -71,15 +85,10 @@
   <link href="../assets/fontawesome/css/brands.css" rel="stylesheet" />
   <link href="../assets/css/fonts.css" rel="stylesheet" />
   <link href="../assets/css/aos.css" rel="stylesheet" />
-
   <link rel="stylesheet" href="../assets/css/tailwind.css" />
-  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/main.css">
   <link rel="stylesheet" href="../assets/css/components.css" />
-
-  <link rel="stylesheet" href="css/qr-builder.css">
-
-  <script src="lib/qr-builder/qrcode.min.js"></script>
-  <script src="lib/qr-builder/jsqr.js"></script>
+  <link rel="stylesheet" href="css/phishing-detector.css">
 </head>
 
 <body
@@ -352,323 +361,106 @@
 
   <nav aria-label="Breadcrumb" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 text-xs">
     <ol class="flex flex-wrap items-center gap-2 text-text-muted">
-      <li><a href="https://ricalnet.my.id" class="hover:text-tor-violet transition-colors">Home</a></li>
+      <li><a href="https://ricalnet.my.id/" class="hover:text-tor-violet transition-colors">Home</a></li>
       <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
-      <li><a href="https://ricalnet.my.id/resources#privacy-tools" class="hover:text-tor-violet transition-colors">Resources</a></li>
+      <li><a href="https://ricalnet.my.id/resources#in-house-tools" class="hover:text-tor-violet transition-colors">In‑House Tools</a></li>
       <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
-      <li class="text-tor-violet font-medium">QR Builder</li>
+      <li class="text-tor-violet font-medium">Phishing Detector</li>
     </ol>
   </nav>
 
-  <section class="relative overflow-hidden pt-[72px] pb-8 md:pt-8 md:pb-12 bg-surface-light">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto" data-aos="fade-up" data-aos-duration="700">
-        <div class="flex flex-wrap items-center justify-center gap-2 mb-5">
-          <span class="badge-pill"><i class="fas fa-qrcode"></i> QR Builder</span>
-          <span class="badge-pill"
-            style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);">
-            <i class="fas fa-arrows-rotate"></i> Generate &amp; Read
-          </span>
-          <span class="badge-pill"
-            style="background:rgba(245,158,11,0.08);color:#b45309;border-color:rgba(245,158,11,0.12);">
-            <i class="fas fa-image"></i> Image Decode
-          </span>
-        </div>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight">
-          <span class="text-text-primary">QR </span>
-          <span class="text-tor-violet">Builder</span>
-        </h1>
-        <p class="text-text-secondary text-lg md:text-xl mt-4 max-w-2xl mx-auto leading-relaxed">
-          Generate custom QR codes from text or URLs — and decode QR codes from images.
-          Simple, private, and built for digital sovereignty.
-        </p>
-      </div>
-    </div>
-  </section>
+  <main class="relative pt-8 pb-20 md:pb-28">
 
-  <section class="pb-16 md:pb-24">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div class="flex flex-wrap items-center justify-center gap-2 mb-8" data-aos="fade-up" data-aos-delay="100"
-        role="tablist" aria-label="QR Builder tabs">
-        <button class="qr-tab-btn active" data-tab="generate" role="tab" aria-selected="true" type="button">
-          <i class="fas fa-pen-ruler mr-2"></i> Generate QR
-        </button>
-        <button class="qr-tab-btn" data-tab="read" role="tab" aria-selected="false" type="button">
-          <i class="fas fa-camera mr-2"></i> Read QR
-        </button>
+      <div class="text-center mb-10 md:mb-14" data-aos="fade-up" data-aos-duration="700">
+        <div class="flex flex-wrap items-center justify-center gap-2 mb-5">
+          <span class="badge-pill"><i class="fas fa-shield-alt"></i> Zero‑Trust</span>
+          <span class="badge-pill" style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);">
+            <i class="fas fa-lock"></i> Privacy‑First
+          </span>
+          <span class="badge-pill" style="background:rgba(104,176,48,0.08);color:#3f6212;border-color:rgba(104,176,48,0.12);">
+            <i class="fas fa-code"></i> Open Source
+          </span>
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight">
+          <span class="text-text-primary">Phishing </span>
+          <span class="text-tor-violet">Detector</span>
+        </h1>
+        <p class="text-text-secondary text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
+          Secure your digital footprint. Instantly analyze suspicious URLs with our open-source, zero-trust engine. No data stored, no vendor lock-in—just transparent, client-side security.
+        </p>
       </div>
 
-      <div id="tab-generate" class="qr-tab-panel active" role="tabpanel" data-aos="fade-up" data-aos-delay="150">
-
-        <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
-
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-            <div>
-
-              <div class="mb-5">
-                <label for="qr-text" class="qr-setting-label block mb-1.5">
-                  Text or URL
-                  <span id="qr-char-count" class="text-text-muted text-xs font-normal ml-1">(0 chars)</span>
-                </label>
-                <textarea id="qr-text" rows="2" spellcheck="false"
-                  class="w-full px-4 py-2.5 rounded-xl border border-surface-border/60 bg-white/60 focus:border-tor-violet focus:ring-4 focus:ring-tor-violet/10 transition-all duration-200 text-text-primary placeholder:text-text-muted/50 text-sm resize-y"
-                  placeholder="Enter text or URL to encode…">https://ricalnet.my.id</textarea>
-                <div class="mt-2 flex flex-wrap gap-1.5">
-                  <button type="button"
-                    class="sample-text-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
-                    data-text="https://ricalnet.my.id">Ricalnet</button>
-                  <button type="button"
-                    class="sample-text-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
-                    data-text="https://git.ricalnet.my.id/rical">Forgejo</button>
-                  <button type="button"
-                    class="sample-text-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
-                    data-text="Hello, world! 👋">Hello</button>
-                  <button type="button"
-                    class="sample-text-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
-                    data-text="mailto:ricalnet@duck.com">Email</button>
-                  <button type="button"
-                    class="sample-text-btn text-xs px-2.5 py-1 rounded-full border border-surface-border/60 bg-white/60 hover:bg-white hover:border-tor-violet/20 transition-all"
-                    data-text="WIFI:T:WPA;S:MyNetwork;P:MyPassword123;;">Wi‑Fi</button>
-                </div>
-              </div>
-
-              <div class="mb-5">
-                <div class="flex items-center justify-between">
-                  <label for="qr-size" class="qr-setting-label">Size (px)</label>
-                  <span id="qr-size-display" class="text-sm font-bold text-tor-violet font-mono">256</span>
-                </div>
-                <input type="range" id="qr-size" class="qr-range-input mt-1.5" min="100" max="1024" step="8"
-                  value="256" />
-                <div class="flex justify-between text-[0.55rem] text-text-muted mt-0.5 px-0.5">
-                  <span>100</span>
-                  <span>1024</span>
-                </div>
-              </div>
-
-              <div class="grid grid-cols-2 gap-4 mb-5">
-                <div>
-                  <label class="qr-setting-label block mb-1.5">Foreground</label>
-                  <input type="color" id="qr-fg" class="qr-color-input" value="#0f0e1a" />
-                </div>
-                <div>
-                  <label class="qr-setting-label block mb-1.5">Background</label>
-                  <input type="color" id="qr-bg" class="qr-color-input" value="#ffffff" />
-                </div>
-              </div>
-
-              <button id="qr-advanced-toggle" class="qr-advanced-toggle" type="button">
-                <i class="fas fa-chevron-down"></i> Advanced Options
-              </button>
-
-              <div id="qr-advanced-panel" class="qr-advanced-panel">
-
-                <div class="mb-4">
-                  <label for="qr-ec" class="qr-setting-label block mb-1.5">Error Correction Level</label>
-                  <select id="qr-ec" class="qr-dropdown w-full">
-                    <option value="L">L — Low (7%)</option>
-                    <option value="M" selected>M — Medium (15%)</option>
-                    <option value="Q">Q — Quartile (25%)</option>
-                    <option value="H">H — High (30%)</option>
-                  </select>
-                  <p class="qr-setting-desc mt-1">Higher correction = more robust but larger QR code.</p>
-                </div>
-
-                <div class="mb-4">
-                  <label for="qr-margin" class="qr-setting-label block mb-1.5">
-                    Quiet Zone (margin)
-                    <span id="qr-margin-display" class="text-tor-violet font-bold ml-1">4</span>
-                  </label>
-                  <input type="range" id="qr-margin" class="qr-range-input" min="0" max="10" value="4" />
-                  <p class="qr-setting-desc mt-1">White space around the QR code. 4 is standard for scanners.</p>
-                </div>
-
-                <div class="mb-4">
-                  <label class="qr-setting-label block mb-1.5">Color Presets</label>
-                  <div class="flex flex-wrap gap-2" id="qr-presets">
-                    <button type="button" class="preset-btn w-8 h-8 rounded-lg border-2 border-white shadow-md transition-transform hover:scale-110"
-                      data-fg="#0f0e1a" data-bg="#ffffff" style="background: linear-gradient(135deg, #0f0e1a 50%, #ffffff 50%);" title="Classic Black & White"></button>
-                    <button type="button" class="preset-btn w-8 h-8 rounded-lg border-2 border-white shadow-md transition-transform hover:scale-110"
-                      data-fg="#7c3aed" data-bg="#ffffff" style="background: linear-gradient(135deg, #7c3aed 50%, #ffffff 50%);" title="Ricalnet Violet"></button>
-                    <button type="button" class="preset-btn w-8 h-8 rounded-lg border-2 border-white shadow-md transition-transform hover:scale-110"
-                      data-fg="#ffffff" data-bg="#0f0e1a" style="background: linear-gradient(135deg, #ffffff 50%, #0f0e1a 50%);" title="Dark Mode"></button>
-                    <button type="button" class="preset-btn w-8 h-8 rounded-lg border-2 border-white shadow-md transition-transform hover:scale-110"
-                      data-fg="#1e40af" data-bg="#dbeafe" style="background: linear-gradient(135deg, #1e40af 50%, #dbeafe 50%);" title="Ocean Blue"></button>
-                    <button type="button" class="preset-btn w-8 h-8 rounded-lg border-2 border-white shadow-md transition-transform hover:scale-110"
-                      data-fg="#065f46" data-bg="#d1fae5" style="background: linear-gradient(135deg, #065f46 50%, #d1fae5 50%);" title="Forest Green"></button>
-                    <button type="button" class="preset-btn w-8 h-8 rounded-lg border-2 border-white shadow-md transition-transform hover:scale-110"
-                      data-fg="#b91c1c" data-bg="#fef2f2" style="background: linear-gradient(135deg, #b91c1c 50%, #fef2f2 50%);" title="Ruby Red"></button>
-                  </div>
-                </div>
-
-              </div>
-
-              <button id="qr-generate-btn" class="qr-gen-btn w-full justify-center mt-5" type="button">
-                <i class="fas fa-qrcode"></i>
-                Generate QR Code
-              </button>
-
-              <div class="mt-3 text-xs text-text-muted text-center">
-                <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i>
-                Generated in your browser. Nothing is sent to any server.
-              </div>
-
-            </div>
-
-            <div>
-
-              <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
-                <span class="qr-setting-label">Your QR Code</span>
-                <div class="flex gap-2 flex-wrap">
-                  <button id="qr-copy-img-btn" class="qr-download-btn text-sm px-3 py-1.5" disabled type="button">
-                    <i class="fas fa-copy"></i> Copy
-                  </button>
-                  <button id="qr-download-btn" class="qr-download-btn text-sm px-3 py-1.5" disabled type="button">
-                    <i class="fas fa-download"></i> PNG
-                  </button>
-                  <button id="qr-download-svg-btn" class="qr-download-btn text-sm px-3 py-1.5 hidden" disabled type="button">
-                    <i class="fas fa-download"></i> SVG
-                  </button>
-                </div>
-              </div>
-
-              <div id="qr-display" class="qr-display-container">
-                <div id="qrcode"></div>
-                <div id="qr-placeholder" class="qr-placeholder">
-                  <i class="fas fa-qrcode"></i>
-                  Enter text and click Generate
-                </div>
-              </div>
-
-              <div id="qr-info" class="mt-3 hidden">
-                <div class="qr-info-strip">
-                  <span><i class="fas fa-font text-tor-violet/60 mr-1"></i> <strong id="qr-info-chars">0</strong> chars</span>
-                  <span><i class="fas fa-expand text-tor-violet/60 mr-1"></i> <strong id="qr-info-size">0×0</strong> px</span>
-                  <span><i class="fas fa-shield text-tor-violet/60 mr-1"></i> EC <strong id="qr-info-ec">M</strong></span>
-                  <span><i class="fas fa-microchip text-tor-violet/60 mr-1"></i> v<strong id="qr-info-version">—</strong></span>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
+      <div class="detector-shell p-6 md:p-8 mb-8" data-aos="fade-up" data-aos-delay="100">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="pulse-dot"></span>
+          <span class="text-xs font-semibold text-text-muted uppercase tracking-wider">Live Analysis</span>
+          <span class="ml-auto tech-badge"><i class="fas fa-microchip"></i> Heuristic Engine</span>
         </div>
 
+        <div class="relative">
+          <input type="url" id="url-input" class="url-input" placeholder="https://example.com/login/verify?token=abc123"
+            autocomplete="off" spellcheck="false" />
+          <button id="scan-btn" class="scan-btn">
+            <i class="fas fa-search"></i>
+            <span>Analyze</span>
+          </button>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3 mt-4 text-xs text-text-muted">
+          <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-tor-accent text-[0.6rem]"></i> No
+            logs</span>
+          <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-tor-accent text-[0.6rem]"></i>
+            Client‑side</span>
+          <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-tor-accent text-[0.6rem]"></i>
+            Real‑time</span>
+        </div>
       </div>
 
-      <div id="tab-read" class="qr-tab-panel" role="tabpanel" data-aos="fade-up" data-aos-delay="150">
+      <div id="result-container" class="mb-8"></div>
 
-        <div class="glass-card rounded-3xl p-6 md:p-8 lg:p-10 border border-tor-violet/10 shadow-elevated">
-
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-            <div>
-
-              <div class="qr-section-title"><i class="fas fa-upload mr-2"></i>Upload QR Code Image</div>
-
-              <div id="qr-drop-zone" class="qr-drop-zone">
-                <input type="file" id="qr-file-input" class="qr-file-input" accept="image/*"
-                  aria-label="Upload QR code image" />
-                <span class="icon"><i class="fas fa-cloud-upload-alt"></i></span>
-                <div class="text">Drop an image here or click to browse</div>
-                <div class="sub">Supports PNG, JPG, BMP, WEBP · Max 10 MB</div>
-              </div>
-
-              <div id="qr-preview-container" class="qr-preview-container hidden">
-                <img id="qr-preview" alt="QR code preview" />
-              </div>
-
-              <div class="flex flex-wrap gap-3 mt-4">
-                <button id="qr-decode-btn" class="qr-gen-btn flex-1 justify-center" disabled type="button">
-                  <i class="fas fa-qrcode"></i>
-                  Decode QR Code
-                </button>
-                <button id="qr-clear-btn" class="qr-download-btn" disabled type="button">
-                  <i class="fas fa-times"></i> Clear
-                </button>
-              </div>
-
-              <div class="mt-3 text-xs text-text-muted text-center">
-                <i class="fas fa-shield-alt text-tor-violet mr-1.5"></i>
-                All processing is local. Your images are never uploaded.
-              </div>
-
-            </div>
-
-            <div>
-
-              <div class="qr-section-title"><i class="fas fa-file-lines mr-2"></i>Decoded Result</div>
-
-              <div id="qr-result-container">
-                <div id="qr-result-placeholder" class="text-text-muted text-sm py-8 text-center">
-                  <i class="fas fa-qrcode text-3xl block mb-3 opacity-30"></i>
-                  Upload a QR code image and click "Decode QR Code" to see the result.
-                </div>
-
-                <div id="qr-result-content" class="hidden">
-                  <div class="flex items-center gap-2 mb-2 flex-wrap">
-                    <span id="qr-type-label" class="qr-type-badge">
-                      <i class="fas fa-font"></i> Text
-                    </span>
-                    <button id="qr-result-copy" class="qr-copy-btn text-sm px-3 py-1.5 ml-auto" type="button">
-                      <i class="fas fa-copy"></i> Copy
-                    </button>
-                    <button id="qr-result-open" class="qr-copy-btn text-sm px-3 py-1.5 hidden" type="button">
-                      <i class="fas fa-arrow-up-right-from-square"></i> Open
-                    </button>
-                  </div>
-                  <div id="qr-result-text" class="qr-result-box"></div>
-                  <div id="qr-result-meta" class="mt-2 text-xs text-text-muted flex flex-wrap gap-x-4 gap-y-1">
-                    <span><i class="fas fa-font mr-1"></i> <strong id="qr-result-chars">0</strong> chars</span>
-                    <span><i class="fas fa-location-crosshairs mr-1"></i> Location: <strong id="qr-result-loc">—</strong></span>
-                  </div>
-                </div>
-
-                <div id="qr-result-error" class="hidden text-red-500 text-sm mt-4">
-                  <i class="fas fa-exclamation-circle mr-1.5"></i>
-                  <span id="qr-error-msg">Could not decode QR code. Please try a different image.</span>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
+      <div class="detector-shell p-5 md:p-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-sm font-semibold text-text-primary flex items-center gap-2">
+            <i class="fas fa-clock-rotate-left text-tor-violet text-xs"></i>
+            Recent Scans
+          </h3>
+          <button id="clear-history" class="text-xs text-text-muted hover:text-tor-violet transition-colors">
+            <i class="fas fa-trash-can text-[0.6rem] mr-1"></i> Clear
+          </button>
         </div>
-
+        <div id="history-list" class="space-y-2">
+          <p class="text-xs text-text-muted text-center py-4">No recent scans</p>
+        </div>
       </div>
 
-      <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="qr-card rounded-2xl p-4 text-center">
-          <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-2">
-            <i class="fas fa-palette text-tor-violet"></i>
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-5 border border-surface-border/40">
+          <div class="w-8 h-8 rounded-lg bg-tor-violet/10 flex items-center justify-center mb-3">
+            <i class="fas fa-magnifying-glass text-tor-violet text-xs"></i>
           </div>
-          <h4 class="font-semibold text-sm text-text-primary">Custom Colors</h4>
-          <p class="text-text-muted text-xs mt-1">Match your brand or style with custom foreground and
-            background colors.</p>
+          <h4 class="text-sm font-semibold text-text-primary">Heuristic Analysis</h4>
+          <p class="text-xs text-text-secondary mt-1 leading-relaxed">Detects phishing patterns by analyzing URL structure, suspicious keywords, and known attack vectors.</p>
         </div>
-        <div class="qr-card rounded-2xl p-4 text-center">
-          <div class="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center mx-auto mb-2">
-            <i class="fas fa-shield text-amber-600"></i>
+        <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-5 border border-surface-border/40">
+          <div class="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center mb-3">
+            <i class="fas fa-link text-cyan-600 text-xs"></i>
           </div>
-          <h4 class="font-semibold text-sm text-text-primary">Error Correction</h4>
-          <p class="text-text-muted text-xs mt-1">Choose from L, M, Q, H levels to balance size and
-            robustness.</p>
+          <h4 class="text-sm font-semibold text-text-primary">Domain Intelligence</h4>
+          <p class="text-xs text-text-secondary mt-1 leading-relaxed">Evaluates domain reputation, TLD risk, and homoglyph attacks in real-time, without external APIs.</p>
         </div>
-        <div class="qr-card rounded-2xl p-4 text-center">
-          <div class="w-10 h-10 rounded-full bg-cyan-50 flex items-center justify-center mx-auto mb-2">
-            <i class="fas fa-camera text-cyan-600"></i>
+        <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-5 border border-surface-border/40">
+          <div class="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center mb-3">
+            <i class="fas fa-shield text-amber-600 text-xs"></i>
           </div>
-          <h4 class="font-semibold text-sm text-text-primary">Read QR Codes</h4>
-          <p class="text-text-muted text-xs mt-1">Upload any QR code image and decode its content instantly.
-          </p>
+          <h4 class="text-sm font-semibold text-text-primary">Privacy-First Architecture</h4>
+          <p class="text-xs text-text-secondary mt-1 leading-relaxed">Your data never leaves your browser. All analysis is performed client-side for maximum privacy.</p>
         </div>
       </div>
 
     </div>
-  </section>
+  </main>
 
   <footer class="relative overflow-hidden border-t border-tor-violet/10">
     <div
@@ -800,8 +592,7 @@
 
   <script src="../assets/js/aos.js"></script>
   <script src="../assets/js/components.js"></script>
-  <script src="js/qr-builder.js"></script>
-
+  <script src="js/phishing-detector.js"></script>
 </body>
 
 </html>
