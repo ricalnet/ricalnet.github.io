@@ -2,8 +2,8 @@
 
 Clone repository:
 ```bash
-git clone https://git.ricalnet.my.id/rical/ricalnet-web.git ~/ricalnet-web
-cd ~/ricalnet-web
+git clone https://git.ricalnet.my.id/RICALNET/website.git ~/website
+cd ~/website
 ```
 
 Install Tailwind CSS v3:
@@ -23,7 +23,7 @@ npx tailwindcss -i ./assets/css/tailwind-input.css -o ./assets/css/tailwind.css 
 Masuk ke folder project dan jalankan watcher:
 
 ```bash
-cd ~/ricalnet-web
+cd ~/website
 chmod +x watch-tailwind.sh
 ./watch-tailwind.sh
 ```
@@ -85,9 +85,9 @@ git push
 
 ### External Privacy Tools
 - [NipeX](https://git.ricalnet.my.id/rical/nipex)
-- [Obfs4 Bridge](https://git.ricalnet.my.id/rical/digital-independence)
+- [Obfs4 Bridge](https://git.ricalnet.my.id/RICALNET/digital-independence)
 
 ## In-House Tools
 
-- [Digital Independence](https://git.ricalnet.my.id/rical/digital-independence)
+- [Digital Independence](https://git.ricalnet.my.id/RICALNET/digital-independence)
 - [Chantik](https://git.ricalnet.my.id/rical/chantik)
