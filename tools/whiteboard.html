@@ -5,65 +5,71 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
-  <title>Whiteboard — Draw, Sketch & Export Online | RICALNET</title>
+  <title>Whiteboard — Draw, Sketch & Export | RICALNET</title>
 
   <meta name="description"
-    content="Free online whiteboard with pen, colors, eraser, shapes, undo/redo, and PNG/JPG export. Runs in your browser — no uploads, no sign-up, no tracking. Built for homelabbers, activists, journalists, and enterprises." />
-
+    content="Free online whiteboard with pen, colors, shapes, undo/redo, and PNG/JPG export. 100% offline, zero uploads, no sign-up." />
+  
   <meta name="keywords"
     content="whiteboard, online whiteboard, drawing tool, sketch, canvas, draw online, free whiteboard, diagram tool, wireframe, threat model, RICALNET" />
 
   <link rel="canonical" href="https://ricalnet.my.id/tools/whiteboard" />
+  <link rel="alternate" hreflang="en" href="https://ricalnet.my.id/tools/whiteboard" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://ricalnet.my.id/sitemap.xml" />
   <link rel="icon" type="image/x-icon" href="../assets/img/logo.webp" />
 
-  <meta property="og:title" content="Whiteboard — Draw, Sketch & Export Online | RICALNET" />
+  <meta property="og:title" content="Whiteboard — Draw, Sketch & Export | RICALNET" />
   <meta property="og:description"
-    content="Free online whiteboard with pen, colors, eraser, shapes, undo/redo, and PNG/JPG export. Runs in your browser — nothing uploaded." />
+    content="Free online whiteboard with pen, colors, shapes, undo/redo, and PNG/JPG export. 100% offline, zero uploads, no sign-up." />
   <meta property="og:url" content="https://ricalnet.my.id/tools/whiteboard" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://ricalnet.my.id/assets/img/og-image.webp" />
-  <meta property="og:image:alt" content="Whiteboard tool interface with drawing canvas and toolbar" />
+  <meta property="og:image" content="https://ricalnet.my.id/assets/img/og-image-whiteboard.webp" />
+  <meta property="og:image:alt" content="RICALNET Whiteboard — draw, sketch, and export in your browser" />
   <meta property="og:site_name" content="RICALNET" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Whiteboard — Draw, Sketch & Export Online | RICALNET" />
+  <meta name="twitter:title" content="Whiteboard — Draw, Sketch & Export | RICALNET" />
   <meta name="twitter:description"
-    content="Free online whiteboard with pen, colors, eraser, shapes, undo/redo, and export. 100% local." />
-  <meta name="twitter:image" content="https://ricalnet.my.id/assets/img/og-image.webp" />
+    content="Free online whiteboard with pen, colors, shapes, undo/redo, and PNG/JPG export. 100% offline, zero uploads, no sign-up." />
+  <meta name="twitter:image" content="https://ricalnet.my.id/assets/img/og-image-whiteboard.webp" />
+  <meta name="twitter:image:alt" content="RICALNET Whiteboard — draw, sketch, and export in your browser" />
 
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "RICALNET Whiteboard",
+    "description": "Draw, sketch, and annotate with pen, eraser, shapes, custom colors, and undo/redo. Export as PNG or JPG — entirely client-side.",
+    "url": "https://ricalnet.my.id/tools/whiteboard",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript. Uses HTML5 Canvas.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "RICALNET",
+      "url": "https://ricalnet.my.id/",
+      "logo": "https://ricalnet.my.id/assets/img/logo.webp",
+      "sameAs": ["https://git.ricalnet.my.id/RICALNET"],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "contact@ricalnet.my.id",
+        "contactType": "technical support"
+      }
+    },
+    "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ricalnet.my.id/" },
-        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://ricalnet.my.id/tools/" },
+        { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://ricalnet.my.id/resources" },
         { "@type": "ListItem", "position": 3, "name": "Whiteboard", "item": "https://ricalnet.my.id/tools/whiteboard" }
       ]
     }
-  </script>
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Whiteboard",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "All",
-      "description": "Free online whiteboard with pen, colors, eraser, shapes, undo/redo, and PNG/JPG export. Runs entirely in your browser. Built for homelabbers, activists, journalists, and enterprises.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "RICALNET"
-      },
-      "url": "https://ricalnet.my.id/tools/whiteboard",
-      "applicationSuite": "RICALNET Tools",
-      "featureList": "Pen, Eraser, Line, Rectangle, Circle, Color picker, Brush sizes, Undo/Redo, Clear canvas, Export PNG, Export JPG, Keyboard shortcuts"
-    }
+  }
   </script>
 
   <link href="../assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
@@ -353,7 +359,7 @@
       <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
       <li><a href="https://ricalnet.my.id/resources#privacy-tools" class="hover:text-tor-violet transition-colors">Resources</a></li>
       <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
-      <li class="text-tor-violet font-medium">Whiteboard Studio</li>
+      <li class="text-tor-violet font-medium">Whiteboard</li>
     </ol>
   </nav>
 
@@ -376,8 +382,8 @@
           </span>
         </div>
         <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.08] tracking-tight">
-          <span class="text-text-primary">Whiteboard </span>
-          <span class="text-tor-violet">Studio</span>
+          <span class="text-text-primary">Whiteboard</span>
+          <span class="text-tor-violet"> — Draw, Sketch, Export</span>
         </h1>
         <p class="text-text-secondary text-base md:text-lg mt-3 max-w-2xl mx-auto leading-relaxed">
           Draw, sketch, and create freely. Pen, colors, eraser, shapes, undo/redo, clear, and export —
@@ -526,6 +532,163 @@
           Clear</span>
       </div>
 
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="bg-white rounded-2xl p-4 text-center border border-tor-violet/5 shadow-elevated card-hover">
+          <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center mx-auto mb-2">
+            <i class="fas fa-pen-fancy text-tor-violet"></i>
+          </div>
+          <h4 class="font-semibold text-sm text-text-primary">Free Drawing</h4>
+          <p class="text-text-muted text-xs mt-1">Pen, eraser, and 5 brush sizes for freehand sketching.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-4 text-center border border-tor-violet/5 shadow-elevated card-hover">
+          <div class="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center mx-auto mb-2">
+            <i class="fas fa-shapes text-amber-600"></i>
+          </div>
+          <h4 class="font-semibold text-sm text-text-primary">Shapes</h4>
+          <p class="text-text-muted text-xs mt-1">Line, rectangle, and circle tools for diagrams and wireframes.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-4 text-center border border-tor-violet/5 shadow-elevated card-hover">
+          <div class="w-10 h-10 rounded-full bg-cyan-50 flex items-center justify-center mx-auto mb-2">
+            <i class="fas fa-palette text-cyan-600"></i>
+          </div>
+          <h4 class="font-semibold text-sm text-text-primary">Custom Colors</h4>
+          <p class="text-text-muted text-xs mt-1">Color picker plus six presets. Match any brand or style.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-4 text-center border border-tor-violet/5 shadow-elevated card-hover">
+          <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-2">
+            <i class="fas fa-download text-emerald-600"></i>
+          </div>
+          <h4 class="font-semibold text-sm text-text-primary">Export</h4>
+          <p class="text-text-muted text-xs mt-1">Download your drawing as high-quality PNG or JPG.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="how-it-works" class="py-16 md:py-24 bg-white/40 border-y border-surface-border/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <span class="section-badge"><i class="fas fa-route"></i> How It Works</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+          <span class="text-text-primary">Draw, refine, </span>
+          <span class="text-tor-violet">export</span>
+        </h2>
+        <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+          Everything runs in your browser. No sign-up, no uploads, no tracking.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div data-aos="fade-up" data-aos-delay="0">
+          <div class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover h-full text-center">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-tor-violet/10 flex items-center justify-center mb-5">
+              <i class="fas fa-pen-fancy text-tor-violet text-xl"></i>
+            </div>
+            <h4 class="text-xl font-bold text-text-primary">1. Draw</h4>
+            <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+              Pick a tool, color, and brush size. Draw freehand with the pen, or add shapes for structured diagrams.
+            </p>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="150">
+          <div class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover h-full text-center">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-tor-violet/10 flex items-center justify-center mb-5">
+              <i class="fas fa-undo text-tor-violet text-xl"></i>
+            </div>
+            <h4 class="text-xl font-bold text-text-primary">2. Refine</h4>
+            <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+              Undo and redo any action. Use the eraser for small fixes, or clear the canvas to start fresh.
+              Keyboard shortcuts make it fast.
+            </p>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="300">
+          <div class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover h-full text-center">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-tor-violet/10 flex items-center justify-center mb-5">
+              <i class="fas fa-download text-tor-violet text-xl"></i>
+            </div>
+            <h4 class="text-xl font-bold text-text-primary">3. Export</h4>
+            <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+              Download your canvas as PNG (lossless) or JPG (smaller file). Perfect for sharing, docs, and design work.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <span class="section-badge"><i class="fas fa-question-circle"></i> FAQ</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+          <span class="text-text-primary">Common </span>
+          <span class="text-tor-violet">questions</span>
+        </h2>
+      </div>
+
+      <div class="space-y-3" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Is my drawing saved or uploaded anywhere?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              <strong class="text-text-primary">No.</strong> Your drawing exists only in your browser's memory — it's
+              never uploaded, stored, or tracked. Close the tab and it's gone. Use the export buttons to save your work
+              as PNG or JPG before you leave.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Can I use keyboard shortcuts?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              <strong class="text-text-primary">Yes.</strong> P for Pen, E for Eraser, L for Line, R for Rectangle,
+              O for Circle, C to Clear. Ctrl+Z for Undo, Ctrl+Y for Redo. Shortcuts work anywhere on the page —
+              no need to click first.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Does it work on mobile or tablet?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              <strong class="text-text-primary">Yes.</strong> The canvas supports touch and stylus input on modern
+              browsers. For the best experience, use a tablet with a stylus or a desktop with a mouse — precise
+              drawing is easier with a pointer.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">What file formats can I export?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              Two formats: <strong class="text-text-primary">PNG</strong> for lossless, sharp output — ideal for
+              diagrams, wireframes, and screenshots. <strong class="text-text-primary">JPG</strong> for smaller file
+              sizes — good for photos and quick shares where perfect quality isn't critical.
+            </p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 

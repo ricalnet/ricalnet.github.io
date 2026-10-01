@@ -1,3 +1,36 @@
+function toggleFaq(element) {
+  const answer = element.nextElementSibling;
+  const icon = element.querySelector('.faq-icon');
+  if (!answer) return;
+
+  const isOpen = answer.classList.contains('open');
+
+  document.querySelectorAll('.faq-answer').forEach(el => {
+    if (el !== answer) {
+      el.classList.remove('open');
+      const prevIcon = el.previousElementSibling?.querySelector('.faq-icon');
+      if (prevIcon) prevIcon.classList.remove('open');
+    }
+  });
+
+  if (isOpen) {
+    answer.classList.remove('open');
+    if (icon) icon.classList.remove('open');
+  } else {
+    answer.classList.add('open');
+    if (icon) icon.classList.add('open');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const firstFaq = document.querySelector('.faq-answer');
+  if (firstFaq) {
+    firstFaq.classList.add('open');
+    const icon = firstFaq.previousElementSibling?.querySelector('.faq-icon');
+    if (icon) icon.classList.add('open');
+  }
+});
+
 const PGP_FINGERPRINT = '45688382B815821F033115B8D92D6A10D29C8380';
 
 function copyPGP() {

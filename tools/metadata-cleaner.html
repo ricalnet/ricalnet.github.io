@@ -5,64 +5,71 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
-  <title>Metadata Cleaner — Strip EXIF, PDF & Office Metadata | RICALNET</title>
+  <title>Metadata Cleaner — Strip EXIF, PDF & Office | RICALNET</title>
 
   <meta name="description"
-    content="Remove hidden metadata from PDFs, images, and Office files. Strip EXIF, GPS, author, and custom properties. Runs in your browser — nothing is uploaded. Built for homelabbers, activists, journalists, and enterprises." />
-
+    content="Remove hidden metadata from PDFs, images, and Office files. Strip EXIF, GPS, author — 100% offline, zero uploads." />
+    
   <meta name="keywords"
     content="metadata cleaner, remove exif, strip metadata, pdf metadata remover, image metadata cleaner, office metadata, privacy tool, local processing, EXIF GPS remover, document sanitizer, RICALNET" />
 
   <link rel="canonical" href="https://ricalnet.my.id/tools/metadata-cleaner" />
+  <link rel="alternate" hreflang="en" href="https://ricalnet.my.id/tools/metadata-cleaner" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://ricalnet.my.id/sitemap.xml" />
   <link rel="icon" type="image/x-icon" href="../assets/img/logo.webp" />
 
-  <meta property="og:title" content="Metadata Cleaner — Strip EXIF, PDF & Office Metadata | RICALNET" />
+  <meta property="og:title" content="Metadata Cleaner — Strip EXIF, PDF & Office | RICALNET" />
   <meta property="og:description"
-    content="Remove hidden metadata from PDFs, images, and Office files. Strip EXIF, GPS, author, and custom properties. Runs in your browser — nothing is uploaded." />
+    content="Remove hidden metadata from PDFs, images, and Office files. Strip EXIF, GPS, author — 100% offline, zero uploads." />
   <meta property="og:url" content="https://ricalnet.my.id/tools/metadata-cleaner" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://ricalnet.my.id/assets/img/og-image.webp" />
-  <meta property="og:image:alt" content="Metadata Cleaner tool interface" />
+  <meta property="og:image" content="https://ricalnet.my.id/assets/img/og-image-metadata-cleaner.webp" />
+  <meta property="og:image:alt" content="RICALNET Metadata Cleaner — strip EXIF, PDF, and Office metadata in your browser" />
   <meta property="og:site_name" content="RICALNET" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Metadata Cleaner — Strip EXIF, PDF & Office Metadata" />
+  <meta name="twitter:title" content="Metadata Cleaner — Strip EXIF, PDF & Office | RICALNET" />
   <meta name="twitter:description"
-    content="Remove hidden metadata from PDFs, images, and Office files. Strip EXIF, GPS, author. All local, nothing uploaded." />
-  <meta name="twitter:image" content="https://ricalnet.my.id/assets/img/og-image.webp" />
+    content="Remove hidden metadata from PDFs, images, and Office files. Strip EXIF, GPS, author — 100% offline, zero uploads." />
+  <meta name="twitter:image" content="https://ricalnet.my.id/assets/img/og-image-metadata-cleaner.webp" />
+  <meta name="twitter:image:alt" content="RICALNET Metadata Cleaner — strip EXIF, PDF, and Office metadata in your browser" />
 
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "RICALNET Metadata Cleaner",
+    "description": "Strip hidden metadata from PDF, JPG, PNG, DOCX, PPTX, XLSX and more. Runs locally in your browser — no uploads.",
+    "url": "https://ricalnet.my.id/tools/metadata-cleaner",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript. Uses exifr, pdf-lib, JSZip, and FileSaver.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "RICALNET",
+      "url": "https://ricalnet.my.id/",
+      "logo": "https://ricalnet.my.id/assets/img/logo.webp",
+      "sameAs": ["https://git.ricalnet.my.id/RICALNET"],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "contact@ricalnet.my.id",
+        "contactType": "technical support"
+      }
+    },
+    "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ricalnet.my.id/" },
-        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://ricalnet.my.id/tools/" },
+        { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://ricalnet.my.id/resources" },
         { "@type": "ListItem", "position": 3, "name": "Metadata Cleaner", "item": "https://ricalnet.my.id/tools/metadata-cleaner" }
       ]
     }
-  </script>
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Metadata Cleaner",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "All",
-      "description": "Strip hidden metadata from PDF, JPG, PNG, DOCX, PPTX, XLSX and more. Runs locally in your browser — no uploads. Built for homelabbers, activists, journalists, and enterprises.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "RICALNET"
-      },
-      "url": "https://ricalnet.my.id/tools/metadata-cleaner",
-      "applicationSuite": "RICALNET Tools"
-    }
+  }
   </script>
 
   <link href="../assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
@@ -76,11 +83,6 @@
   <link rel="stylesheet" href="../assets/css/components.css" />
 
   <link rel="stylesheet" href="css/metadata-cleaner.css">
-
-  <script src="lib/metadata-cleaner/exifr.min.js"></script>
-  <script src="lib/metadata-cleaner/FileSaver.min.js"></script>
-  <script src="lib/metadata-cleaner/jszip.min.js"></script>
-  <script src="lib/metadata-cleaner/pdf-lib.min.js"></script>
 </head>
 
 <body
@@ -370,15 +372,16 @@
             <i class="fas fa-microchip"></i> 100% Local
           </span>
           <span class="badge-pill" style="background:rgba(245,158,11,0.08);color:#b45309;border-color:rgba(245,158,11,0.12);">
-            <i class="fas fa-chart-simple"></i> Risk Score
+            <i class="fas fa-file-zipper"></i> Bulk Download
           </span>
           <span class="badge-pill" style="background:rgba(6,182,212,0.08);color:#0e7490;border-color:rgba(6,182,212,0.12);">
-            <i class="fas fa-image"></i> Preview
+            <i class="fas fa-layer-group"></i> Multi-format
           </span>
         </div>
         <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.08] tracking-tight">
           <span class="text-text-primary">Metadata</span>
           <span class="text-tor-violet"> Cleaner</span>
+          <span class="text-text-primary"> — Your Files, Your Privacy</span>
         </h1>
         <p class="text-text-secondary text-lg md:text-xl max-w-2xl leading-relaxed">
           Strip hidden metadata from PDFs, images, and Office documents.
@@ -514,6 +517,77 @@
     </div>
   </section>
 
+  <section id="faq" class="py-16 md:py-24 bg-white/40 border-y border-surface-border/60">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <span class="section-badge"><i class="fas fa-question-circle"></i> FAQ</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+          <span class="text-text-primary">Common </span>
+          <span class="text-tor-violet">questions</span>
+        </h2>
+      </div>
+
+      <div class="space-y-3" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Are my files uploaded to a server?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              <strong class="text-text-primary">No.</strong> All processing runs entirely in your browser using open-source
+              JavaScript libraries (exifr, pdf-lib, JSZip). Your files never leave your device — no uploads, no servers,
+              no logs. You can disconnect from the internet after the page loads.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">What metadata gets removed?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              For <strong class="text-text-primary">PDFs</strong>: author, creator, producer, dates, subject, keywords,
+              custom properties. For <strong class="text-text-primary">images</strong>: EXIF, IPTC, XMP — GPS coordinates,
+              camera model, timestamp, software, copyright. For <strong class="text-text-primary">Office files</strong>:
+              author, last-modified-by, company, revision, dates, template.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Will cleaning affect my file content?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              No. Only metadata is stripped — the actual content (text, images, formatting, layout) is preserved
+              unchanged. PDFs and Office files retain their structure and rendering.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Can I clean multiple files at once?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              <strong class="text-text-primary">Yes.</strong> Drop multiple files at once — the tool handles batch
+              processing. You can download each cleaned file individually or grab everything as a single ZIP archive.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <footer class="relative overflow-hidden border-t border-tor-violet/10">
     <div
       class="absolute inset-0 bg-gradient-to-br from-tor-violet/10 via-tor-violet/5 to-transparent pointer-events-none">
@@ -645,6 +719,11 @@
   <script src="../assets/js/aos.js"></script>
   <script src="../assets/js/components.js"></script>
   <script src="js/metadata-cleaner.js"></script>
+
+  <script defer src="lib/metadata-cleaner/exifr.min.js"></script>
+  <script defer src="lib/metadata-cleaner/FileSaver.min.js"></script>
+  <script defer src="lib/metadata-cleaner/jszip.min.js"></script>
+  <script defer src="lib/metadata-cleaner/pdf-lib.min.js"></script>
 
 </body>
 

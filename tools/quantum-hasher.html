@@ -5,65 +5,71 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
-  <title>Quantum Hasher — Hash, Verify & Compare Files | RICALNET</title>
+  <title>Quantum Hasher — Hash, Verify & Compare | RICALNET</title>
 
   <meta name="description"
-    content="Hash text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC. Verify file integrity, batch hash, compare hashes, and backup history. Runs in your browser — nothing uploaded. Built for homelabbers, activists, journalists, and enterprises." />
+    content="Hash text and files with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC. Verify integrity, batch-hash, and compare — 100% offline, zero uploads." />
 
   <meta name="keywords"
     content="hash generator, sha256, sha512, md5, hmac, file integrity, checksum, verify hash, batch hashing, compare hashes, cryptographic hash, file verification, RICALNET" />
 
   <link rel="canonical" href="https://ricalnet.my.id/tools/quantum-hasher" />
+  <link rel="alternate" hreflang="en" href="https://ricalnet.my.id/tools/quantum-hasher" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://ricalnet.my.id/sitemap.xml" />
   <link rel="icon" type="image/x-icon" href="../assets/img/logo.webp" />
 
-  <meta property="og:title" content="Quantum Hasher — Hash, Verify & Compare Files | RICALNET" />
+  <meta property="og:title" content="Quantum Hasher — Hash, Verify & Compare | RICALNET" />
   <meta property="og:description"
-    content="Hash text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC. Verify file integrity, batch hash, compare hashes, and backup history. All local." />
+    content="Hash text and files with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC. Verify integrity, batch-hash, and compare — 100% offline, zero uploads." />
   <meta property="og:url" content="https://ricalnet.my.id/tools/quantum-hasher" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://ricalnet.my.id/assets/img/og-image.webp" />
-  <meta property="og:image:alt" content="Quantum Hasher tool interface showing hash generation and verification" />
+  <meta property="og:image" content="https://ricalnet.my.id/assets/img/og-image-quantum-hasher.webp" />
+  <meta property="og:image:alt" content="RICALNET Quantum Hasher — hash, verify, and compare with SHA, MD5, and HMAC" />
   <meta property="og:site_name" content="RICALNET" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Quantum Hasher — Hash, Verify & Compare Files | RICALNET" />
+  <meta name="twitter:title" content="Quantum Hasher — Hash, Verify & Compare | RICALNET" />
   <meta name="twitter:description"
-    content="Hash text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC. Verify file integrity, batch hash, compare hashes. 100% local." />
-  <meta name="twitter:image" content="https://ricalnet.my.id/assets/img/og-image.webp" />
+    content="Hash text and files with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC. Verify integrity, batch-hash, and compare — 100% offline, zero uploads." />
+  <meta name="twitter:image" content="https://ricalnet.my.id/assets/img/og-image-quantum-hasher.webp" />
+  <meta name="twitter:image:alt" content="RICALNET Quantum Hasher — hash, verify, and compare with SHA, MD5, and HMAC" />
 
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "RICALNET Quantum Hasher",
+    "description": "Hash text and files with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC. Verify integrity, batch-hash, compare hashes, and export history — all client-side.",
+    "url": "https://ricalnet.my.id/tools/quantum-hasher",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript. Uses the Web Crypto API and crypto-js for hashing.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "RICALNET",
+      "url": "https://ricalnet.my.id/",
+      "logo": "https://ricalnet.my.id/assets/img/logo.webp",
+      "sameAs": ["https://git.ricalnet.my.id/RICALNET"],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "contact@ricalnet.my.id",
+        "contactType": "technical support"
+      }
+    },
+    "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ricalnet.my.id/" },
-        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://ricalnet.my.id/tools/" },
+        { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://ricalnet.my.id/resources" },
         { "@type": "ListItem", "position": 3, "name": "Quantum Hasher", "item": "https://ricalnet.my.id/tools/quantum-hasher" }
       ]
     }
-  </script>
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Quantum Hasher",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "All",
-      "description": "Hash text with SHA-1, SHA-256, SHA-384, SHA-512, MD5, and HMAC. Verify file integrity, batch hash multiple files, compare two hashes, and export/import history. Runs entirely in your browser. Built for homelabbers, activists, journalists, and enterprises.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "RICALNET"
-      },
-      "url": "https://ricalnet.my.id/tools/quantum-hasher",
-      "applicationSuite": "RICALNET Tools",
-      "featureList": "SHA-1, SHA-256, SHA-384, SHA-512, MD5, HMAC, File verification, Batch hashing, Hash comparison, Export/Import history"
-    }
+  }
   </script>
 
   <link href="../assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
@@ -384,6 +390,7 @@
         <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.08] tracking-tight">
           <span class="text-text-primary">Quantum </span>
           <span class="text-tor-violet">Hasher</span>
+          <span class="text-text-primary"> — Hash, Verify & Compare</span>
         </h1>
         <p class="text-text-secondary text-base md:text-lg mt-3 max-w-2xl mx-auto leading-relaxed">
           Hash text with SHA‑1, SHA‑256, SHA‑384, SHA‑512, MD5, and HMAC.
@@ -878,6 +885,133 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <section id="how-it-works" class="py-16 md:py-24 bg-white/40 border-y border-surface-border/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <span class="section-badge"><i class="fas fa-route"></i> How It Works</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+          <span class="text-text-primary">Six tools, </span>
+          <span class="text-tor-violet">one workspace</span>
+        </h2>
+        <p class="text-text-secondary text-lg mt-4 leading-relaxed">
+          Everything runs in your browser. Nothing is uploaded, logged, or transmitted.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div data-aos="fade-up" data-aos-delay="0">
+          <div class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover h-full text-center">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-tor-violet/10 flex items-center justify-center mb-5">
+              <i class="fas fa-hashtag text-tor-violet text-xl"></i>
+            </div>
+            <h4 class="text-xl font-bold text-text-primary">1. Hash & HMAC</h4>
+            <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+              Generate cryptographic hashes with SHA-1, SHA-256, SHA-384, SHA-512, or MD5. Add HMAC for keyed message authentication.
+            </p>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="150">
+          <div class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover h-full text-center">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-tor-violet/10 flex items-center justify-center mb-5">
+              <i class="fas fa-check-double text-tor-violet text-xl"></i>
+            </div>
+            <h4 class="text-xl font-bold text-text-primary">2. Verify & Batch</h4>
+            <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+              Verify file integrity by comparing computed hash against expected. Batch-hash multiple files at once with progress tracking.
+            </p>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="300">
+          <div class="bg-white rounded-3xl p-8 shadow-elevated border border-surface-border/60 card-hover h-full text-center">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-tor-violet/10 flex items-center justify-center mb-5">
+              <i class="fas fa-arrow-right-arrow-left text-tor-violet text-xl"></i>
+            </div>
+            <h4 class="text-xl font-bold text-text-primary">3. Compare & Export</h4>
+            <p class="text-text-secondary text-sm mt-2 leading-relaxed">
+              Compare two hashes with character-by-character diff. Auto-detect algorithm from length. Export/import history as JSON.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <span class="section-badge"><i class="fas fa-question-circle"></i> FAQ</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+          <span class="text-text-primary">Common </span>
+          <span class="text-tor-violet">questions</span>
+        </h2>
+      </div>
+
+      <div class="space-y-3" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Is my text or file sent to a server?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              <strong class="text-text-primary">No.</strong> All hashing runs entirely in your browser using the Web Crypto API
+              and open-source crypto-js. Your data — text, files, or secret keys — never leaves your device.
+              No uploads, no servers, no logs.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Which hash algorithm should I use?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              <strong class="text-text-primary">SHA-256</strong> is the modern standard — fast, secure, widely supported.
+              <strong class="text-text-primary">SHA-512</strong> offers stronger security for high-value data.
+              <strong class="text-text-primary">SHA-1</strong> and <strong class="text-text-primary">MD5</strong> are
+              considered cryptographically broken — use them only for legacy checksums, not for security.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">What's HMAC, and when do I need it?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              <strong class="text-text-primary">HMAC</strong> (Hash-based Message Authentication Code) combines a hash
+              with a secret key to prove both integrity <em>and</em> authenticity. Use it for API request signing,
+              webhook verification, JWT validation, or any scenario where you need to verify that a message came from
+              someone who knows the key.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">How does file verification work?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              Paste a known hash (from a software download page, for example) into the <strong class="text-text-primary">Verify</strong>
+              tab, upload the file, and click "Verify". The tool computes the file's hash locally and compares it
+              against the expected value — a MATCH confirms the file is intact and unmodified.
+            </p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 

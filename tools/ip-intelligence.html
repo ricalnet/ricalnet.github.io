@@ -8,8 +8,8 @@
   <title>IP Intelligence — Geolocation, Whois & Reputation | RICALNET</title>
 
   <meta name="description"
-    content="Look up any IP, domain, or URL. Get geolocation, network, country data, whois, and reputation — all in one place. Bulk lookup supported. Free, open source, no tracking. Built for homelabbers, activists, journalists, and enterprises." />
-
+    content="Look up any IP, domain, or URL. Geolocation, network, whois, and reputation — bulk lookup supported. Free, open source, no tracking." />
+    
   <meta name="keywords"
     content="IP intelligence, IP lookup, geolocation, whois, IP reputation, bulk IP lookup, network data, AbuseIPDB, security assessment, threat intel, RICALNET" />
 
@@ -20,62 +20,56 @@
 
   <meta property="og:title" content="IP Intelligence — Geolocation, Whois & Reputation | RICALNET" />
   <meta property="og:description"
-    content="Look up any IP, domain, or URL. Get geolocation, network, country data, whois, and reputation — all in one place. Free and open source." />
+    content="Look up any IP, domain, or URL. Geolocation, network, whois, and reputation — bulk lookup supported. Free, open source." />
   <meta property="og:url" content="https://ricalnet.my.id/tools/ip-intelligence" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://ricalnet.my.id/assets/img/og-ipintel.webp" />
-  <meta property="og:image:alt" content="IP Intelligence tool — geolocation, network, whois" />
+  <meta property="og:image" content="https://ricalnet.my.id/assets/img/og-image-ip-intelligence.webp" />
+  <meta property="og:image:alt" content="RICALNET IP Intelligence — geolocation, network, whois, and reputation lookup" />
   <meta property="og:site_name" content="RICALNET" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="IP Intelligence — Geolocation, Whois & Reputation" />
+  <meta name="twitter:title" content="IP Intelligence — Geolocation, Whois & Reputation | RICALNET" />
   <meta name="twitter:description"
-    content="Look up any IP, domain, or URL. Geolocation, network, country, whois, and reputation. Free and open source." />
-  <meta name="twitter:image" content="https://ricalnet.my.id/assets/img/og-ipintel.webp" />
+    content="Look up any IP, domain, or URL. Geolocation, network, whois, and reputation — bulk lookup supported. Free, open source." />
+  <meta name="twitter:image" content="https://ricalnet.my.id/assets/img/og-image-ip-intelligence.webp" />
+  <meta name="twitter:image:alt" content="RICALNET IP Intelligence — geolocation, network, whois, and reputation lookup" />
 
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "IP Intelligence — Geolocation, Whois & Reputation",
-      "description": "Look up any IP, domain, or URL. Get geolocation, network, country data, whois, and reputation scores.",
-      "url": "https://ricalnet.my.id/tools/ip-intelligence",
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ricalnet.my.id/" },
-          { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://ricalnet.my.id/tools" },
-          { "@type": "ListItem", "position": 3, "name": "IP Intelligence", "item": "https://ricalnet.my.id/tools/ip-intelligence" }
-        ]
-      },
-      "mainEntity": {
-        "@type": "SoftwareApplication",
-        "name": "IP Intelligence Tool",
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "All",
-        "description": "IP geolocation, network, whois, and reputation lookup tool.",
-        "author": {
-          "@type": "Organization",
-          "name": "RICALNET"
-        }
-      }
-    }
-  </script>
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "RICALNET IP Intelligence",
+    "description": "IP intelligence tool — geolocation, network, whois, and reputation lookup. Bulk lookup supported. No tracking.",
+    "url": "https://ricalnet.my.id/tools/ip-intelligence",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript. Uses Leaflet for map rendering.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
       "@type": "Organization",
       "name": "RICALNET",
       "url": "https://ricalnet.my.id/",
       "logo": "https://ricalnet.my.id/assets/img/logo.webp",
-      "sameAs": ["https://github.com/ricalnet"],
+      "sameAs": ["https://git.ricalnet.my.id/RICALNET"],
       "contactPoint": {
         "@type": "ContactPoint",
         "email": "contact@ricalnet.my.id",
         "contactType": "technical support"
       }
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ricalnet.my.id/" },
+        { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://ricalnet.my.id/resources" },
+        { "@type": "ListItem", "position": 3, "name": "IP Intelligence", "item": "https://ricalnet.my.id/tools/ip-intelligence" }
+      ]
     }
+  }
   </script>
 
   <link href="../assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
@@ -393,6 +387,7 @@
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight">
           <span class="text-text-primary">IP </span>
           <span class="text-tor-violet">Intelligence</span>
+          <span class="text-text-primary"> at Your Fingertips</span>
         </h1>
         <p class="text-text-secondary text-lg md:text-xl mt-4 max-w-2xl mx-auto leading-relaxed">
           Look up any IP, domain, or URL. Get geolocation, network, country data, whois, and reputation —
@@ -843,6 +838,77 @@
       </div>
     </div>
   </div>
+
+  <section id="faq" class="py-16 md:py-24 bg-white/40 border-y border-surface-border/60">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <span class="section-badge"><i class="fas fa-question-circle"></i> FAQ</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
+          <span class="text-text-primary">Common </span>
+          <span class="text-tor-violet">questions</span>
+        </h2>
+      </div>
+
+      <div class="space-y-3" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Is my query logged or tracked?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              <strong class="text-text-primary">No.</strong> RICALNET IP Intelligence does not log your queries or track
+              which IPs you look up. Lookups are proxied through our infrastructure for privacy, and no query history is
+              stored on our servers.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">What data sources power the results?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              Geolocation and network data come from public, open-source intelligence sources. Reputation scores are
+              pulled from <strong class="text-text-primary">AbuseIPDB</strong>. Whois lookups use public registry data.
+              All sources are clearly labelled in the results.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Can I do bulk lookups?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              <strong class="text-text-primary">Yes.</strong> Switch to Bulk mode and paste up to 20 IPs (one per line).
+              Results are shown in a table with country, city, organization, and status. You can export the full set as
+              CSV or click any row to view details.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-surface-border/60 overflow-hidden shadow-elevated hover:shadow-elevated-lg transition-all duration-300">
+          <div class="faq-question flex items-center justify-between p-6 cursor-pointer" onclick="toggleFaq(this)">
+            <h4 class="text-base font-semibold text-text-primary">Does it work for private or internal IPs?</h4>
+            <i class="fas fa-chevron-down text-text-muted faq-icon transition-transform duration-300"></i>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-text-secondary text-sm leading-relaxed">
+              Private IPs (RFC 1918 like 192.168.x.x, 10.x.x.x) will return local network information only — they don't
+              exist on the public internet. Public IPv4 and IPv6 addresses work fully.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <footer class="relative overflow-hidden border-t border-tor-violet/10">
     <div

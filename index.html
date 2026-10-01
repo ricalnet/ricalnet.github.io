@@ -5,20 +5,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 
-  <title>RICALNET — Self-Hosted Open Source Infrastructure | No Lock-In</title>
+  <title>RICALNET — Digital Sovereignty in Practice | Self-Hosted Open Source Infrastructure</title>
 
   <meta name="description"
-    content="Run your own infrastructure with RICALNET. Open-source, zero-trust, and cost-efficient. 25+ privacy tools. No vendor lock-in. No hidden fees. Deploy in minutes." />
+    content="Run your own infrastructure with RICALNET. Open-source, zero-trust, and cost-efficient. 25+ privacy tools with no vendor lock-in. Deploy in minutes." />
 
   <meta name="keywords"
-    content="self-hosted infrastructure, open source tools, zero-trust security, no vendor lock-in, privacy tools, sovereign cloud, metadata cleaner, quantum hasher, image censor, IP intelligence, password generator, QR builder, whiteboard, RICALNET" />
+    content="digital sovereignty, self-hosted infrastructure, open source infrastructure, zero-trust security, no vendor lock-in, privacy tools, sovereign cloud, metadata cleaner, quantum hasher, image censor, IP intelligence, password generator, QR builder, whiteboard, RICALNET" />
 
   <link rel="canonical" href="https://ricalnet.my.id/" />
   <link rel="alternate" hreflang="en" href="https://ricalnet.my.id/" />
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://ricalnet.my.id/sitemap.xml" />
   <link rel="icon" type="image/x-icon" href="assets/img/logo.webp" />
 
-  <meta property="og:title" content="RICALNET — Self-Hosted Open Source Infrastructure" />
+  <meta property="og:title" content="RICALNET — Digital Sovereignty in Practice" />
   <meta property="og:description"
     content="Run your own infrastructure. Open-source, zero-trust, cost-efficient. 25+ privacy tools. No vendor lock-in." />
   <meta property="og:url" content="https://ricalnet.my.id/" />
@@ -28,67 +28,91 @@
   <meta property="og:site_name" content="RICALNET" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="RICALNET — Self-Hosted Open Source Infrastructure" />
+  <meta name="twitter:title" content="RICALNET — Digital Sovereignty in Practice" />
   <meta name="twitter:description"
     content="Run your own infrastructure. Open-source, zero-trust, cost-efficient. 25+ privacy tools. No vendor lock-in." />
   <meta name="twitter:image" content="https://ricalnet.my.id/assets/img/og-image.webp" />
 
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "RICALNET — Self-Hosted Open Source Infrastructure",
-      "description": "Run your own infrastructure. Open-source, zero-trust, cost-efficient. No vendor lock-in.",
-      "url": "https://ricalnet.my.id/",
-      "about": {
-        "@type": "Thing",
-        "name": "Self-Hosted Open Source Infrastructure"
-      },
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [{
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://ricalnet.my.id/"
-        }]
-      },
-      "mainEntity": {
-        "@type": "SoftwareApplication",
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://ricalnet.my.id/#organization",
         "name": "RICALNET",
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "Linux",
-        "description": "Open-source self-hosted infrastructure stack with zero-trust security",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
+        "description": "Open-source self-hosted infrastructure provider",
+        "url": "https://ricalnet.my.id/",
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "https://ricalnet.my.id/#logo",
+          "url": "https://ricalnet.my.id/assets/img/logo.webp",
+          "contentUrl": "https://ricalnet.my.id/assets/img/logo.webp",
+          "caption": "RICALNET"
         },
-        "author": {
-          "@type": "Organization",
-          "name": "RICALNET"
+        "image": { "@id": "https://ricalnet.my.id/#logo" },
+        "sameAs": [
+          "https://git.ricalnet.my.id/RICALNET"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "contact@ricalnet.my.id",
+          "contactType": "technical support",
+          "areaServed": "Worldwide",
+          "availableLanguage": ["English", "Indonesian"]
         }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://ricalnet.my.id/#website",
+        "url": "https://ricalnet.my.id/",
+        "name": "RICALNET",
+        "description": "Run your own infrastructure. Open-source, zero-trust, cost-efficient. No vendor lock-in.",
+        "publisher": { "@id": "https://ricalnet.my.id/#organization" },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://ricalnet.my.id/#webpage",
+        "url": "https://ricalnet.my.id/",
+        "name": "RICALNET — Digital Sovereignty in Practice",
+        "description": "Run your own infrastructure. Open-source, zero-trust, cost-efficient. No vendor lock-in.",
+        "isPartOf": { "@id": "https://ricalnet.my.id/#website" },
+        "about": {
+          "@type": "Thing",
+          "name": "Self-Hosted Open Source Infrastructure"
+        },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://ricalnet.my.id/"
+            }
+          ]
+        },
+        "mainEntity": {
+          "@type": "SoftwareApplication",
+          "@id": "https://ricalnet.my.id/#software",
+          "name": "RICALNET",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Linux",
+          "description": "Open-source self-hosted infrastructure stack with zero-trust security",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          },
+          "author": { "@id": "https://ricalnet.my.id/#organization" },
+          "publisher": { "@id": "https://ricalnet.my.id/#organization" }
+        },
+        "inLanguage": "en"
       }
-    }
-  </script>
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "RICALNET",
-      "description": "Open-source self-hosted infrastructure provider",
-      "url": "https://ricalnet.my.id/",
-      "logo": "https://ricalnet.my.id/assets/img/logo.webp",
-      "sameAs": [
-        "https://github.com/ricalnet"
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "email": "contact@ricalnet.my.id",
-        "contactType": "technical support"
-      }
-    }
+    ]
+  }
   </script>
 
   <link href="assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
@@ -107,9 +131,9 @@
 
   <div class="fixed inset-0 -z-20 pointer-events-none overflow-hidden" aria-hidden="true">
     <div class="absolute inset-0 bg-grid-subtle"></div>
-    <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/5 rounded-full blur-[160px]"></div>
-    <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/3 rounded-full blur-[180px]"></div>
-    <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/4 rounded-full blur-[140px]"></div>
+    <div class="absolute top-0 -left-40 w-[700px] h-[700px] bg-tor-violet/[0.04] rounded-full blur-[180px]"></div>
+    <div class="absolute top-1/3 -right-40 w-[800px] h-[800px] bg-cyan-400/[0.03] rounded-full blur-[200px]"></div>
+    <div class="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-tor-violet/[0.03] rounded-full blur-[160px]"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-light/50 to-surface-light"></div>
   </div>
 
@@ -374,7 +398,7 @@
     <ol class="flex flex-wrap items-center gap-2 text-text-muted">
       <li><a href="https://ricalnet.my.id/" class="hover:text-tor-violet transition-colors">Home</a></li>
       <li><i class="fas fa-chevron-right text-[0.45rem]"></i></li>
-      <li class="text-tor-violet font-medium">Self-Hosted Open Source Infrastructure</li>
+      <li class="text-tor-violet font-medium">Digital Sovereignty in Practice</li>
     </ol>
   </nav>
 
@@ -396,7 +420,7 @@
           <p class="text-text-secondary text-lg md:text-xl mt-6 max-w-lg leading-relaxed">
             <strong class="text-text-primary">RICALNET</strong> gives you the tools to run your own infrastructure.
             <strong class="text-tor-violet">No vendor lock‑in. No hidden costs. Zero‑trust by default.</strong>
-            Built for homelabbers, activists, journalists, and enterprises.
+            Built for homelabbers, activists, journalists, and enterprises who want to own their digital systems.
           </p>
           <div class="flex flex-wrap items-center gap-4 mt-8">
             <a href="#cta" class="text-white btn-primary">
@@ -469,7 +493,8 @@
           <p class="text-text-secondary text-lg leading-relaxed">
             <strong class="text-text-primary">RICALNET</strong> is a
             <strong class="text-tor-violet">self-hosted, open-source infrastructure platform</strong>
-            for homelabbers, activists, journalists, and enterprises. Escape vendor lock‑in and regain digital sovereignty with battle‑tested tools.
+            for homelabbers, activists, journalists, and enterprises. Escape vendor lock‑in and regain digital
+            sovereignty with battle‑tested tools.
           </p>
           <ul class="mt-6 space-y-3">
             <li class="flex items-start gap-3">
@@ -521,7 +546,7 @@
       </div>
     </div>
   </section>
-  
+
   <section id="community-meetup" class="py-12 md:py-16 bg-surface-light relative overflow-hidden">
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
       <div class="absolute top-0 left-1/4 w-96 h-96 bg-tor-violet/5 rounded-full blur-[120px]"></div>
@@ -531,7 +556,8 @@
     <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="text-center max-w-2xl mx-auto mb-10" data-aos="fade-up" data-aos-duration="700">
-        <span class="section-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-tor-violet/8 border border-tor-violet/15 text-tor-violet text-xs font-semibold tracking-wide uppercase">
+        <span
+          class="section-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-tor-violet/8 border border-tor-violet/15 text-tor-violet text-xs font-semibold tracking-wide uppercase">
           <i class="fas fa-calendar-check"></i> Community Meetup
         </span>
         <h2 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight mt-3">
@@ -539,36 +565,39 @@
           <span class="text-tor-violet">Meetup</span>
         </h2>
         <p class="text-text-secondary text-base mt-3 leading-relaxed">
-          A practical community meetup on privacy, digital sovereignty, and how to stay safe while defending human rights.
+          A practical community meetup on privacy, digital sovereignty, and how to stay safe while defending human
+          rights.
         </p>
       </div>
 
       <div class="mb-12" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
-        <div class="relative bg-white/70 backdrop-blur-sm rounded-3xl overflow-hidden border border-surface-border/60 hover:border-tor-violet/30 shadow-elevated hover:shadow-2xl transition-all duration-500">
+        <div
+          class="relative bg-white/70 backdrop-blur-sm rounded-3xl overflow-hidden border border-surface-border/60 hover:border-tor-violet/30 shadow-elevated hover:shadow-2xl transition-all duration-500">
           <div class="grid grid-cols-1 lg:grid-cols-2">
 
             <div class="relative overflow-hidden bg-tor-violet/5 flex items-center justify-center p-4 sm:p-6 lg:p-8">
               <div class="absolute top-4 left-4 z-10 flex flex-wrap gap-2">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-tor-violet text-white text-[0.65rem] font-bold uppercase tracking-wider shadow-lg">
+                <span
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-tor-violet text-white text-[0.65rem] font-bold uppercase tracking-wider shadow-lg">
                   <i class="fas fa-star"></i> Featured Event
                 </span>
-                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-tor-violet text-[0.65rem] font-bold uppercase tracking-wider shadow-lg">
+                <span
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-tor-violet text-[0.65rem] font-bold uppercase tracking-wider shadow-lg">
                   <i class="fas fa-clock"></i> Upcoming
                 </span>
               </div>
 
-              <img
-                src="assets/img/gallery/online/community-meetup-surveillance.webp"
-                alt="RICALNET Community Meetup poster — Surveillance, Digital Sovereignty & Self-Defense: Protecting Activism, Free Speech, and Whistleblowers"
+              <img src="assets/img/gallery/online/community-meetup-surveillance.webp"
+                alt="RICALNET community meetup on digital sovereignty and self-defense"
                 class="w-full h-auto max-w-md lg:max-w-full rounded-2xl shadow-xl ring-1 ring-tor-violet/10 object-contain"
-                loading="lazy"
-              />
+                loading="lazy" />
             </div>
 
             <div class="p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
 
               <div class="hidden lg:flex items-center gap-3 mb-4">
-                <div class="flex flex-col items-center justify-center w-16 h-16 rounded-2xl bg-tor-violet/10 border border-tor-violet/20 flex-shrink-0">
+                <div
+                  class="flex flex-col items-center justify-center w-16 h-16 rounded-2xl bg-tor-violet/10 border border-tor-violet/20 flex-shrink-0">
                   <span class="text-tor-violet text-[0.6rem] font-bold uppercase tracking-wider">Oct</span>
                   <span class="text-text-primary text-2xl font-bold leading-none">02</span>
                 </div>
@@ -581,13 +610,16 @@
               </div>
 
               <div class="flex flex-wrap items-center gap-2 mb-3">
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tor-violet/10 text-tor-violet text-[0.65rem] font-semibold uppercase tracking-wide">
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tor-violet/10 text-tor-violet text-[0.65rem] font-semibold uppercase tracking-wide">
                   <i class="fas fa-users"></i> Community Meetup
                 </span>
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-600 text-[0.65rem] font-semibold uppercase tracking-wide">
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-600 text-[0.65rem] font-semibold uppercase tracking-wide">
                   <i class="fas fa-shield-alt"></i> Digital Sovereignty
                 </span>
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 text-[0.65rem] font-semibold uppercase tracking-wide">
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 text-[0.65rem] font-semibold uppercase tracking-wide">
                   <i class="fas fa-globe"></i> Online
                 </span>
               </div>
@@ -605,15 +637,19 @@
               </p>
 
               <div class="mb-5">
-                <div class="text-[0.6rem] text-text-muted uppercase tracking-wider font-semibold mb-2">Speakers &amp; Moderator</div>
+                <div class="text-[0.6rem] text-text-muted uppercase tracking-wider font-semibold mb-2">Speakers &amp;
+                  Moderator</div>
                 <div class="flex flex-wrap items-center gap-2">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-muted text-text-primary text-xs font-medium">
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-muted text-text-primary text-xs font-medium">
                     <i class="fas fa-user-tie text-tor-violet/70"></i> Ceisya Regalunga
                   </span>
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-muted text-text-primary text-xs font-medium">
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-muted text-text-primary text-xs font-medium">
                     <i class="fas fa-user-tie text-tor-violet/70"></i> Risnanda Pascal
                   </span>
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-tor-violet/10 text-tor-violet text-xs font-medium">
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-tor-violet/10 text-tor-violet text-xs font-medium">
                     <i class="fas fa-microphone text-tor-violet"></i> Azuki · Moderator
                   </span>
                 </div>
@@ -659,13 +695,11 @@
               </div>
 
               <div class="flex flex-wrap items-center gap-3">
-                <a href="https://link.ricalnet.my.id/community-meetup"
-                  target="_blank" rel="noopener"
+                <a href="https://link.ricalnet.my.id/community-meetup" target="_blank" rel="noopener"
                   class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-tor-violet text-white text-sm font-semibold hover:bg-tor-violet-dark transition-all duration-300 shadow-lg shadow-tor-violet/25 hover:shadow-tor-violet/40 hover:-translate-y-0.5">
                   <i class="fas fa-calendar-plus"></i> Register Now
                 </a>
-                <button
-                  onclick="copyToClipboard('https://link.ricalnet.my.id/community-meetup')"
+                <button onclick="copyToClipboard('https://link.ricalnet.my.id/community-meetup')"
                   class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-text-primary text-sm font-semibold border border-surface-border hover:border-tor-violet/30 hover:text-tor-violet transition-all duration-300">
                   <i class="fas fa-share-nodes"></i> Share
                 </button>
@@ -693,7 +727,8 @@
           <span class="text-tor-violet">Here's how to break free.</span>
         </h2>
         <p class="text-text-secondary text-lg mt-4 leading-relaxed">
-          Proprietary clouds trap you with punitive migration costs, opaque pricing, and constant surveillance. RICALNET builds the escape route.
+          Proprietary clouds trap you with punitive migration costs, opaque pricing, and constant surveillance.
+          RICALNET builds the escape route.
         </p>
       </div>
 
@@ -707,7 +742,8 @@
               </div>
               <div>
                 <h4 class="font-semibold text-text-primary">Vendor Lock‑in</h4>
-                <p class="text-sm text-text-secondary mt-1">Proprietary APIs and data formats keep you tethered. RICALNET uses open standards so you can leave anytime.</p>
+                <p class="text-sm text-text-secondary mt-1">Proprietary APIs and data formats keep you tethered.
+                  RICALNET uses open standards so you can leave anytime.</p>
               </div>
             </div>
             <div class="bg-red-50/60 border border-red-200/50 rounded-2xl p-6 flex gap-4 card-hover">
@@ -716,7 +752,8 @@
               </div>
               <div>
                 <h4 class="font-semibold text-text-primary">Cost Inflation</h4>
-                <p class="text-sm text-text-secondary mt-1">Cloud bills are unpredictable. Egress fees. Per‑seat licensing. Self‑hosting cuts costs up to 10x.</p>
+                <p class="text-sm text-text-secondary mt-1">Cloud bills are unpredictable. Egress fees. Per‑seat
+                  licensing. Self‑hosting cuts costs up to 10x.</p>
               </div>
             </div>
             <div class="bg-red-50/60 border border-red-200/50 rounded-2xl p-6 flex gap-4 card-hover">
@@ -725,7 +762,8 @@
               </div>
               <div>
                 <h4 class="font-semibold text-text-primary">Surveillance &amp; Data Harvesting</h4>
-                <p class="text-sm text-text-secondary mt-1">Your usage and content are mined for profit. Self‑hosted services keep your data under your control.
+                <p class="text-sm text-text-secondary mt-1">Your usage and content are mined for profit. Self‑hosted
+                  services keep your data under your control.
                 </p>
               </div>
             </div>
@@ -738,7 +776,8 @@
               <div>
                 <h4 class="font-bold text-text-primary">The Solution</h4>
                 <p class="text-text-secondary text-sm leading-relaxed">
-                  RICALNET gives you a stable, open‑source stack you can deploy in hours. Battle‑tested configs, in‑house security tools, zero lock‑in. Just freedom.
+                  RICALNET gives you a stable, open‑source stack you can deploy in hours. Battle‑tested configs,
+                  in‑house security tools, zero lock‑in. Just freedom.
                 </p>
                 <a href="#resources"
                   class="inline-flex items-center gap-2 mt-3 text-tor-violet font-semibold hover:gap-3 transition-all duration-300 text-sm">
@@ -776,7 +815,8 @@
           <span class="text-tor-violet">One step at a time.</span>
         </h2>
         <p class="text-text-secondary text-lg mt-4 leading-relaxed">
-          From zero to self‑hosted. RICALNET gives you the blueprints and tools to build infrastructure that answers to you.
+          From zero to self‑hosted. RICALNET gives you the blueprints and tools to build infrastructure that answers to
+          you.
         </p>
       </div>
 
@@ -796,7 +836,8 @@
                 class="w-14 h-14 mx-auto -mt-10 rounded-2xl bg-tor-violet flex items-center justify-center text-xl font-bold text-white shadow-elevated relative z-10">
                 1</div>
               <h4 class="text-xl font-bold text-text-primary mt-3">Assess &amp; Design</h4>
-              <p class="text-text-secondary text-sm mt-2 leading-relaxed">Map out the services you need — storage, chat, AI, identity. Open, modular blueprints that scale from Raspberry Pi to global cluster.</p>
+              <p class="text-text-secondary text-sm mt-2 leading-relaxed">Map out the services you need — storage, chat,
+                AI, identity. Open, modular blueprints that scale from Raspberry Pi to global cluster.</p>
               <div class="mt-4 text-xs text-text-muted font-medium tracking-wider uppercase">↳ 1–2 weeks</div>
             </div>
           </div>
@@ -815,7 +856,8 @@
                 class="w-14 h-14 mx-auto -mt-10 rounded-2xl bg-tor-violet flex items-center justify-center text-xl font-bold text-white shadow-elevated relative z-10">
                 2</div>
               <h4 class="text-xl font-bold text-text-primary mt-3">Deploy &amp; Configure</h4>
-              <p class="text-text-secondary text-sm mt-2 leading-relaxed">Spin up containers with battle‑tested Podman Compose scripts. Set up zero‑trust auth, connect services, go live — no guesswork.</p>
+              <p class="text-text-secondary text-sm mt-2 leading-relaxed">Spin up containers with battle‑tested Podman
+                Compose scripts. Set up zero‑trust auth, connect services, go live — no guesswork.</p>
               <div class="mt-4 text-xs text-text-muted font-medium tracking-wider uppercase">↳ 4–8 weeks</div>
             </div>
           </div>
@@ -834,7 +876,8 @@
                 class="w-14 h-14 mx-auto -mt-10 rounded-2xl bg-tor-violet flex items-center justify-center text-xl font-bold text-white shadow-elevated relative z-10">
                 3</div>
               <h4 class="text-xl font-bold text-text-primary mt-3">Operate &amp; Evolve</h4>
-              <p class="text-text-secondary text-sm mt-2 leading-relaxed">Monitor, update, and scale with confidence. Tools and docs keep you in control — no vendor dependency, no forced upgrades.</p>
+              <p class="text-text-secondary text-sm mt-2 leading-relaxed">Monitor, update, and scale with confidence.
+                Tools and docs keep you in control — no vendor dependency, no forced upgrades.</p>
               <div class="mt-4 text-xs text-text-muted font-medium tracking-wider uppercase">↳ Ongoing</div>
             </div>
           </div>
@@ -876,7 +919,8 @@
                   class="fas fa-user-lock text-tor-violet"></i></div>
               <div>
                 <h4 class="font-semibold text-text-primary">Zero‑Trust by Default</h4>
-                <p class="text-text-secondary text-sm">Every access is authenticated, authorized, and encrypted. Proactive security, not implicit trust.</p>
+                <p class="text-text-secondary text-sm">Every access is authenticated, authorized, and encrypted.
+                  Proactive security, not implicit trust.</p>
               </div>
             </div>
             <div class="flex gap-4 bg-white rounded-2xl p-5 shadow-elevated border border-surface-border/60 card-hover">
@@ -884,7 +928,8 @@
                   class="fas fa-handshake text-tor-violet"></i></div>
               <div>
                 <h4 class="font-semibold text-text-primary">No Vendor Lock‑in</h4>
-                <p class="text-text-secondary text-sm">All components are open‑source and portable. Migrate, replace, or extend without exit fees.</p>
+                <p class="text-text-secondary text-sm">All components are open‑source and portable. Migrate, replace, or
+                  extend without exit fees.</p>
               </div>
             </div>
             <div class="flex gap-4 bg-white rounded-2xl p-5 shadow-elevated border border-surface-border/60 card-hover">
@@ -892,7 +937,8 @@
                   class="fas fa-id-card text-tor-violet"></i></div>
               <div>
                 <h4 class="font-semibold text-text-primary">Identity Sovereignty</h4>
-                <p class="text-text-secondary text-sm">OIDC, SAML, LDAP — your users, your policies. Unified access across all services, managed by you.</p>
+                <p class="text-text-secondary text-sm">OIDC, SAML, LDAP — your users, your policies. Unified access
+                  across all services, managed by you.</p>
               </div>
             </div>
             <div class="flex gap-4 bg-white rounded-2xl p-5 shadow-elevated border border-surface-border/60 card-hover">
@@ -900,295 +946,309 @@
                   class="fas fa-shield-alt text-tor-violet"></i></div>
               <div>
                 <h4 class="font-semibold text-text-primary">Cost‑Efficient Operations</h4>
-                <p class="text-text-secondary text-sm">Pay only for hardware, electricity, and bandwidth. No per‑seat licenses, no egress fees.</p>
+                <p class="text-text-secondary text-sm">Pay only for hardware, electricity, and bandwidth. No per‑seat
+                  licenses, no egress fees.</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-    <div id="private-digital-services" data-aos="fade-up" data-aos-delay="200">
-      <div class="flex items-center gap-3 mb-3">
-        <div
-          class="w-10 h-10 rounded-xl bg-gradient-to-br from-tor-violet to-tor-violet-light flex items-center justify-center shadow-md shadow-tor-violet/20">
-          <i class="fas fa-crown text-white text-sm"></i>
+      <div id="private-digital-services" data-aos="fade-up" data-aos-delay="200">
+        <div class="flex items-center gap-3 mb-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-tor-violet to-tor-violet-light flex items-center justify-center shadow-md shadow-tor-violet/20">
+            <i class="fas fa-crown text-white text-sm"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-text-primary tracking-tight">Private Digital Services</h3>
+          <span
+            class="ml-auto text-[0.55rem] font-semibold uppercase tracking-[0.15em] text-text-muted bg-surface-muted px-3 py-1 rounded-full border border-surface-border/40">Flagship</span>
         </div>
-        <h3 class="text-2xl font-bold text-text-primary tracking-tight">Private Digital Services</h3>
-        <span
-          class="ml-auto text-[0.55rem] font-semibold uppercase tracking-[0.15em] text-text-muted bg-surface-muted px-3 py-1 rounded-full border border-surface-border/40">Flagship</span>
-      </div>
-      <p class="text-text-secondary text-sm mb-8 max-w-2xl leading-relaxed">
-        Three cornerstone services built for complete digital sovereignty — deploy them today and take full control.
-      </p>
+        <p class="text-text-secondary text-sm mb-8 max-w-2xl leading-relaxed">
+          Three cornerstone services built for complete digital sovereignty — deploy them today and take full control.
+        </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <div
-          class="group bg-white rounded-3xl shadow-elevated border border-surface-border/60 overflow-hidden transition-all duration-500 hover:shadow-elevated-lg hover:border-tor-violet/20 hover:-translate-y-1">
-          <div class="relative h-48 overflow-hidden bg-tor-violet/10">
+          <div
+            class="group bg-white rounded-3xl shadow-elevated border border-surface-border/60 overflow-hidden transition-all duration-500 hover:shadow-elevated-lg hover:border-tor-violet/20 hover:-translate-y-1">
+            <div class="relative h-48 overflow-hidden bg-tor-violet/10">
 
-            <img src="assets/img/section/home/dipen.webp"
-              alt="Digital Independence Repo — Forgejo self-hosted Git platform"
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              loading="lazy" />
+              <img src="assets/img/section/home/dipen.webp"
+                alt="Digital Independence Repo — Forgejo self-hosted Git platform"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy" />
 
-            <div class="absolute inset-0 bg-gradient-to-br from-tor-violet/90 via-tor-violet/75 to-indigo-700/80"></div>
-            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(255,255,255,0.15)_0%,_transparent_60%)]"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-br from-tor-violet/90 via-tor-violet/75 to-indigo-700/80">
+              </div>
+              <div
+                class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(255,255,255,0.15)_0%,_transparent_60%)]">
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
 
-            <div class="relative z-10 flex items-center justify-center h-full">
-              <div class="flex items-center gap-5">
-                <div
-                  class="w-20 h-20 rounded-2xl bg-white/15 backdrop-blur-md shadow-elevated border border-white/20 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  <i
-                    class="fa-brands fa-forgejo text-4xl text-white group-hover:text-white transition-colors duration-300"></i>
-                </div>
-                <div>
-                  <div class="flex items-center gap-2">
-                    <span
-                      class="text-sm font-mono bg-white/20 backdrop-blur-sm text-white px-2.5 py-0.5 rounded-full border border-white/25 text-[0.55rem] font-bold uppercase tracking-wider">Repo</span>
-                    <span class="text-xs text-white/90 flex items-center gap-1">
-                      <i class="fas fa-circle text-emerald-300 text-[0.4rem]"></i> Maintained
-                    </span>
+              <div class="relative z-10 flex items-center justify-center h-full">
+                <div class="flex items-center gap-5">
+                  <div
+                    class="w-20 h-20 rounded-2xl bg-white/15 backdrop-blur-md shadow-elevated border border-white/20 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                    <i
+                      class="fa-brands fa-forgejo text-4xl text-white group-hover:text-white transition-colors duration-300"></i>
                   </div>
-                  <h4 class="text-xl font-bold text-white mt-1 tracking-tight drop-shadow-md">Dipen</h4>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <span
+                        class="text-sm font-mono bg-white/20 backdrop-blur-sm text-white px-2.5 py-0.5 rounded-full border border-white/25 text-[0.55rem] font-bold uppercase tracking-wider">Repo</span>
+                      <span class="text-xs text-white/90 flex items-center gap-1">
+                        <i class="fas fa-circle text-emerald-300 text-[0.4rem]"></i> Maintained
+                      </span>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mt-1 tracking-tight drop-shadow-md">Dipen</h4>
+                  </div>
                 </div>
               </div>
+
+              <div class="absolute bottom-4 right-4 flex gap-1.5 z-10">
+                <span
+                  class="bg-white/90 backdrop-blur-md text-emerald-700 text-[0.5rem] font-semibold px-2 py-0.5 rounded-full border border-white/40 flex items-center gap-1 shadow-md">
+                  <i class="fas fa-check-circle text-[0.4rem]"></i> Stable · Open‑Source
+                </span>
+              </div>
             </div>
 
-            <div class="absolute bottom-4 right-4 flex gap-1.5 z-10">
-              <span
-                class="bg-white/90 backdrop-blur-md text-emerald-700 text-[0.5rem] font-semibold px-2 py-0.5 rounded-full border border-white/40 flex items-center gap-1 shadow-md">
-                <i class="fas fa-check-circle text-[0.4rem]"></i> Stable · Open‑Source
-              </span>
+            <div class="p-6 pt-5">
+              <p class="text-text-secondary text-sm leading-relaxed">
+                A curated, battle‑tested collection of Podman Compose stacks and infrastructure-as-code templates.
+                Deploy a complete sovereign cloud in minutes.
+              </p>
+
+              <div class="mt-4 grid grid-cols-2 gap-2">
+                <div class="flex items-start gap-2">
+                  <i class="fas fa-check-circle text-tor-violet text-xs mt-0.5"></i>
+                  <span class="text-text-secondary text-xs">25+ pre‑configured services</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <i class="fas fa-check-circle text-tor-violet text-xs mt-0.5"></i>
+                  <span class="text-text-secondary text-xs">Zero‑trust by default</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <i class="fas fa-check-circle text-tor-violet text-xs mt-0.5"></i>
+                  <span class="text-text-secondary text-xs">TOR &amp; OIDC</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <i class="fas fa-check-circle text-tor-violet text-xs mt-0.5"></i>
+                  <span class="text-text-secondary text-xs">Weekly security updates</span>
+                </div>
+              </div>
+
+              <div class="mt-5 flex flex-wrap items-center gap-3 pt-4 border-t border-surface-border/50">
+                <a href="https://git.ricalnet.my.id/RICALNET/digital-independence" target="_blank" rel="noopener"
+                  class="inline-flex items-center gap-2 text-sm font-semibold text-white bg-gradient-to-r from-tor-violet to-tor-violet-light hover:from-tor-violet-dark hover:to-tor-violet px-5 py-2.5 rounded-full shadow-md shadow-tor-violet/25 hover:shadow-lg hover:shadow-tor-violet/35 transition-all duration-300">
+                  <i class="fa-brands fa-forgejo"></i> Forgejo
+                  <i
+                    class="fas fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-0.5"></i>
+                </a>
+                <button
+                  onclick="copyToClipboard('git clone https://git.ricalnet.my.id/RICALNET/digital-independence.git')"
+                  class="inline-flex items-center gap-1.5 text-xs text-text-muted hover:text-tor-violet transition-colors bg-surface-muted hover:bg-tor-violet/10 px-3 py-1.5 rounded-full border border-surface-border/40">
+                  <i class="fas fa-copy"></i> <span class="font-mono text-[0.6rem]">clone</span>
+                </button>
+              </div>
             </div>
           </div>
 
-          <div class="p-6 pt-5">
-            <p class="text-text-secondary text-sm leading-relaxed">
-              A curated, battle‑tested collection of Podman Compose stacks and infrastructure-as-code templates. Deploy a complete sovereign cloud in minutes.
-            </p>
+          <div
+            class="group bg-white rounded-3xl shadow-elevated border border-surface-border/60 overflow-hidden transition-all duration-500 hover:shadow-elevated-lg hover:border-cyan-400/30 hover:-translate-y-1">
+            <div class="relative h-48 overflow-hidden bg-cyan-500/10">
 
-            <div class="mt-4 grid grid-cols-2 gap-2">
-              <div class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-tor-violet text-xs mt-0.5"></i>
-                <span class="text-text-secondary text-xs">25+ pre‑configured services</span>
+              <img src="assets/img/section/home/chantik.webp"
+                alt="Chantik — Encrypted backup system with client-side encryption"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy" />
+
+              <div class="absolute inset-0 bg-gradient-to-br from-cyan-600/90 via-sky-600/80 to-cyan-800/85"></div>
+              <div
+                class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.18)_0%,_transparent_60%)]">
               </div>
-              <div class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-tor-violet text-xs mt-0.5"></i>
-                <span class="text-text-secondary text-xs">Zero‑trust by default</span>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+
+              <div class="relative z-10 flex items-center justify-center h-full">
+                <div class="flex items-center gap-5">
+                  <div
+                    class="w-20 h-20 rounded-2xl bg-white/15 backdrop-blur-md shadow-elevated border border-white/20 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                    <i
+                      class="fa-solid fa-floppy-disk text-4xl text-white group-hover:text-white transition-colors duration-300"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <span
+                        class="text-sm font-mono bg-white/20 backdrop-blur-sm text-white px-2.5 py-0.5 rounded-full border border-white/25 text-[0.55rem] font-bold uppercase tracking-wider">Encrypted</span>
+                      <span class="text-xs text-white/90 flex items-center gap-1">
+                        <i class="fas fa-circle text-emerald-300 text-[0.4rem]"></i> Maintained
+                      </span>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mt-1 tracking-tight drop-shadow-md">Chantik</h4>
+                    <p class="text-[0.6rem] text-white/80 tracking-wider uppercase font-medium">Encrypted Backup
+                      System
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-tor-violet text-xs mt-0.5"></i>
-                <span class="text-text-secondary text-xs">TOR &amp; OIDC</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-tor-violet text-xs mt-0.5"></i>
-                <span class="text-text-secondary text-xs">Weekly security updates</span>
+
+              <div class="absolute bottom-4 right-4 flex gap-1.5 z-10">
+                <span
+                  class="bg-white/90 backdrop-blur-md text-emerald-700 text-[0.5rem] font-semibold px-2 py-0.5 rounded-full border border-white/40 flex items-center gap-1 shadow-md">
+                  <i class="fas fa-shield-alt text-[0.4rem]"></i> ChaCha20‑Poly1305 + PBKDF2
+                </span>
               </div>
             </div>
 
-            <div class="mt-5 flex flex-wrap items-center gap-3 pt-4 border-t border-surface-border/50">
-              <a href="https://git.ricalnet.my.id/RICALNET/digital-independence" target="_blank" rel="noopener"
-                class="inline-flex items-center gap-2 text-sm font-semibold text-white bg-gradient-to-r from-tor-violet to-tor-violet-light hover:from-tor-violet-dark hover:to-tor-violet px-5 py-2.5 rounded-full shadow-md shadow-tor-violet/25 hover:shadow-lg hover:shadow-tor-violet/35 transition-all duration-300">
-                <i class="fa-brands fa-forgejo"></i> Forgejo
-                <i
-                  class="fas fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-0.5"></i>
-              </a>
-              <button onclick="copyToClipboard('git clone https://git.ricalnet.my.id/RICALNET/digital-independence.git')"
-                class="inline-flex items-center gap-1.5 text-xs text-text-muted hover:text-tor-violet transition-colors bg-surface-muted hover:bg-tor-violet/10 px-3 py-1.5 rounded-full border border-surface-border/40">
-                <i class="fas fa-copy"></i> <span class="font-mono text-[0.6rem]">clone</span>
-              </button>
+            <div class="p-6 pt-5">
+              <p class="text-text-secondary text-sm leading-relaxed">
+                Zero‑knowledge, end‑to‑end encrypted backup with client‑side encryption, immutable snapshots, and
+                geographic redundancy. Your data stays yours.
+              </p>
+
+              <div class="mt-4 grid grid-cols-2 gap-2">
+                <div class="flex items-start gap-2">
+                  <i class="fas fa-check-circle text-cyan-500 text-xs mt-0.5"></i>
+                  <span class="text-text-secondary text-xs">Client‑side encryption</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <i class="fas fa-check-circle text-cyan-500 text-xs mt-0.5"></i>
+                  <span class="text-text-secondary text-xs">Immutable snapshots</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <i class="fas fa-check-circle text-cyan-500 text-xs mt-0.5"></i>
+                  <span class="text-text-secondary text-xs">Geo‑redundant storage</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <i class="fas fa-check-circle text-cyan-500 text-xs mt-0.5"></i>
+                  <span class="text-text-secondary text-xs">Point‑in‑time recovery</span>
+                </div>
+              </div>
+
+              <div class="mt-5 flex flex-wrap items-center gap-3 pt-4 border-t border-surface-border/50">
+                <a href="https://git.ricalnet.my.id/rical/chantik" target="_blank" rel="noopener"
+                  class="inline-flex items-center gap-2 text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-sky-500 hover:from-cyan-600 hover:to-sky-600 px-5 py-2.5 rounded-full shadow-md shadow-cyan-500/25 hover:shadow-lg hover:shadow-cyan-500/35 transition-all duration-300">
+                  <i class="fa-solid fa-floppy-disk"></i> Launch Chantik
+                  <i
+                    class="fas fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-0.5"></i>
+                </a>
+                <button onclick="copyToClipboard('git clone https://git.ricalnet.my.id/rical/chantik.git')"
+                  class="inline-flex items-center gap-1.5 text-xs text-text-muted hover:text-cyan-600 transition-colors bg-surface-muted hover:bg-cyan-50 px-3 py-1.5 rounded-full border border-surface-border/40">
+                  <i class="fas fa-copy"></i> <span class="font-mono text-[0.6rem]">clone</span>
+                </button>
+              </div>
             </div>
           </div>
+
+          <div
+            class="group bg-white rounded-3xl shadow-elevated border border-surface-border/60 overflow-hidden transition-all duration-500 hover:shadow-elevated-lg hover:border-amber-400/30 hover:-translate-y-1">
+            <div class="relative h-48 overflow-hidden bg-amber-500/10">
+
+              <img src="assets/img/section/home/leaks.webp"
+                alt="GlobaLeaks — Anonymous whistleblowing platform accessible via Tor"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy" />
+
+              <div class="absolute inset-0 bg-gradient-to-br from-amber-600/90 via-orange-600/80 to-amber-800/85">
+              </div>
+              <div
+                class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(255,255,255,0.18)_0%,_transparent_60%)]">
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+
+              <div class="relative z-10 flex items-center justify-center h-full">
+                <div class="flex items-center gap-5">
+                  <div
+                    class="w-20 h-20 rounded-2xl bg-white/15 backdrop-blur-md shadow-elevated border border-white/20 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                    <i
+                      class="fab fa-globaleaks text-4xl text-white group-hover:text-white transition-colors duration-300"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <span
+                        class="text-sm font-mono bg-white/20 backdrop-blur-sm text-white px-2.5 py-0.5 rounded-full border border-white/25 text-[0.55rem] font-bold uppercase tracking-wider">Secure</span>
+                      <span class="text-xs text-white/90 flex items-center gap-1">
+                        <i class="fas fa-circle text-emerald-300 text-[0.4rem]"></i> Maintained
+                      </span>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mt-1 tracking-tight drop-shadow-md">GlobaLeaks</h4>
+                    <p class="text-[0.6rem] text-white/80 tracking-wider uppercase font-medium">Whistleblowing
+                      Platform
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="absolute bottom-4 right-4 flex gap-1.5 z-10">
+                <span
+                  class="bg-white/90 backdrop-blur-md text-emerald-700 text-[0.5rem] font-semibold px-2 py-0.5 rounded-full border border-white/40 flex items-center gap-1 shadow-md">
+                  <i class="fas fa-shield-alt text-[0.4rem]"></i> Tor + End‑to‑End Encrypted
+                </span>
+              </div>
+            </div>
+
+            <div class="p-6 pt-5">
+              <p class="text-text-secondary text-sm leading-relaxed">
+                Anonymous, encrypted whistleblowing platform accessible via Tor. Protect sources, secure submissions,
+                and enable safe reporting on human rights abuses — no logs, no trace.
+              </p>
+
+              <div class="mt-4 grid grid-cols-2 gap-2">
+                <div class="flex items-start gap-2">
+                  <i class="fas fa-check-circle text-amber-500 text-xs mt-0.5"></i>
+                  <span class="text-text-secondary text-xs">Anonymous submissions</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <i class="fas fa-check-circle text-amber-500 text-xs mt-0.5"></i>
+                  <span class="text-text-secondary text-xs">Tor hidden service</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <i class="fas fa-check-circle text-amber-500 text-xs mt-0.5"></i>
+                  <span class="text-text-secondary text-xs">Source protection</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <i class="fas fa-check-circle text-amber-500 text-xs mt-0.5"></i>
+                  <span class="text-text-secondary text-xs">Zero‑knowledge encryption</span>
+                </div>
+              </div>
+
+              <div class="mt-5 flex flex-wrap items-center gap-3 pt-4 border-t border-surface-border/50">
+                <a href="mailto:contact@ricalnet.my.id?subject=Becoming%20a%20GlobaLeaks%20Recipient&body=Hello%20RICALNET%20Team%2C%0A%0AI%20would%20like%20to%20become%20a%20recipient%20on%20your%20GlobaLeaks%20platform.%0A%0AOrganization%3A%20%0AContact%20Person%3A%20%0APurpose%3A%20%0A%0AThank%20you."
+                  class="inline-flex items-center gap-2 text-sm font-semibold text-white bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 px-5 py-2.5 rounded-full shadow-md shadow-amber-500/25 hover:shadow-lg hover:shadow-amber-500/35 transition-all duration-300">
+                  <i class="fas fa-hand-holding-heart"></i> Becoming a Recipient
+                  <i
+                    class="fas fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-0.5"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div
-          class="group bg-white rounded-3xl shadow-elevated border border-surface-border/60 overflow-hidden transition-all duration-500 hover:shadow-elevated-lg hover:border-cyan-400/30 hover:-translate-y-1">
-          <div class="relative h-48 overflow-hidden bg-cyan-500/10">
-
-            <img src="assets/img/section//home/chantik.webp"
-              alt="Chantik — Encrypted backup system with client-side encryption"
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              loading="lazy" />
-
-            <div class="absolute inset-0 bg-gradient-to-br from-cyan-600/90 via-sky-600/80 to-cyan-800/85"></div>
-            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.18)_0%,_transparent_60%)]"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-
-            <div class="relative z-10 flex items-center justify-center h-full">
-              <div class="flex items-center gap-5">
-                <div
-                  class="w-20 h-20 rounded-2xl bg-white/15 backdrop-blur-md shadow-elevated border border-white/20 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  <i
-                    class="fa-solid fa-floppy-disk text-4xl text-white group-hover:text-white transition-colors duration-300"></i>
-                </div>
-                <div>
-                  <div class="flex items-center gap-2">
-                    <span
-                      class="text-sm font-mono bg-white/20 backdrop-blur-sm text-white px-2.5 py-0.5 rounded-full border border-white/25 text-[0.55rem] font-bold uppercase tracking-wider">Encrypted</span>
-                    <span class="text-xs text-white/90 flex items-center gap-1">
-                      <i class="fas fa-circle text-emerald-300 text-[0.4rem]"></i> Maintained
-                    </span>
-                  </div>
-                  <h4 class="text-xl font-bold text-white mt-1 tracking-tight drop-shadow-md">Chantik</h4>
-                  <p class="text-[0.6rem] text-white/80 tracking-wider uppercase font-medium">Encrypted Backup
-                    System
-                  </p>
-                </div>
-              </div>
+          class="mt-8 p-5 bg-gradient-to-r from-tor-violet/5 via-cyan-400/5 to-tor-violet/5 rounded-2xl border border-tor-violet/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-rocket text-tor-violet"></i>
             </div>
-
-            <div class="absolute bottom-4 right-4 flex gap-1.5 z-10">
-              <span
-                class="bg-white/90 backdrop-blur-md text-emerald-700 text-[0.5rem] font-semibold px-2 py-0.5 rounded-full border border-white/40 flex items-center gap-1 shadow-md">
-                <i class="fas fa-shield-alt text-[0.4rem]"></i> ChaCha20‑Poly1305 + PBKDF2
-              </span>
+            <div>
+              <p class="text-sm font-semibold text-text-primary">Ready to deploy your sovereign stack?</p>
+              <p class="text-xs text-text-muted">All three services are open‑source, self‑hosted, and stable.</p>
             </div>
           </div>
-
-          <div class="p-6 pt-5">
-            <p class="text-text-secondary text-sm leading-relaxed">
-              Zero‑knowledge, end‑to‑end encrypted backup with client‑side encryption, immutable snapshots, and geographic redundancy. Your data stays yours.
-            </p>
-
-            <div class="mt-4 grid grid-cols-2 gap-2">
-              <div class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-cyan-500 text-xs mt-0.5"></i>
-                <span class="text-text-secondary text-xs">Client‑side encryption</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-cyan-500 text-xs mt-0.5"></i>
-                <span class="text-text-secondary text-xs">Immutable snapshots</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-cyan-500 text-xs mt-0.5"></i>
-                <span class="text-text-secondary text-xs">Geo‑redundant storage</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-cyan-500 text-xs mt-0.5"></i>
-                <span class="text-text-secondary text-xs">Point‑in‑time recovery</span>
-              </div>
-            </div>
-
-            <div class="mt-5 flex flex-wrap items-center gap-3 pt-4 border-t border-surface-border/50">
-              <a href="https://git.ricalnet.my.id/rical/chantik" target="_blank" rel="noopener"
-                class="inline-flex items-center gap-2 text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-sky-500 hover:from-cyan-600 hover:to-sky-600 px-5 py-2.5 rounded-full shadow-md shadow-cyan-500/25 hover:shadow-lg hover:shadow-cyan-500/35 transition-all duration-300">
-                <i class="fa-solid fa-floppy-disk"></i> Launch Chantik
-                <i
-                  class="fas fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-0.5"></i>
-              </a>
-              <button onclick="copyToClipboard('git clone https://git.ricalnet.my.id/rical/chantik.git')"
-                class="inline-flex items-center gap-1.5 text-xs text-text-muted hover:text-cyan-600 transition-colors bg-surface-muted hover:bg-cyan-50 px-3 py-1.5 rounded-full border border-surface-border/40">
-                <i class="fas fa-copy"></i> <span class="font-mono text-[0.6rem]">clone</span>
-              </button>
-            </div>
+          <div class="flex items-center gap-3 flex-shrink-0">
+            <a href="https://git.ricalnet.my.id/rical" target="_blank" rel="noopener"
+              class="inline-flex items-center gap-2 text-sm font-medium text-text-primary bg-white px-4 py-2 rounded-full shadow-elevated border border-surface-border/60 hover:border-tor-violet/20 hover:shadow-elevated-lg transition-all duration-300">
+              <i class="fa-brands fa-forgejo"></i> Explore Repo
+            </a>
+            <a href="mailto:contact@ricalnet.my.id?subject=Deploy%20Sovereign%20Stack"
+              class="inline-flex items-center gap-2 text-sm font-medium text-white bg-tor-violet hover:bg-tor-violet-dark px-4 py-2 rounded-full shadow-md shadow-tor-violet/25 transition-all duration-300">
+              <i class="fas fa-envelope"></i> Get Help
+            </a>
           </div>
-        </div>
-
-        <div
-          class="group bg-white rounded-3xl shadow-elevated border border-surface-border/60 overflow-hidden transition-all duration-500 hover:shadow-elevated-lg hover:border-amber-400/30 hover:-translate-y-1">
-          <div class="relative h-48 overflow-hidden bg-amber-500/10">
-
-            <img src="assets/img/section/home/leaks.webp"
-              alt="GlobaLeaks — Anonymous whistleblowing platform accessible via Tor"
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              loading="lazy" />
-
-            <div class="absolute inset-0 bg-gradient-to-br from-amber-600/90 via-orange-600/80 to-amber-800/85"></div>
-            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(255,255,255,0.18)_0%,_transparent_60%)]"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-
-            <div class="relative z-10 flex items-center justify-center h-full">
-              <div class="flex items-center gap-5">
-                <div
-                  class="w-20 h-20 rounded-2xl bg-white/15 backdrop-blur-md shadow-elevated border border-white/20 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  <i
-                    class="fab fa-globaleaks text-4xl text-white group-hover:text-white transition-colors duration-300"></i>
-                </div>
-                <div>
-                  <div class="flex items-center gap-2">
-                    <span
-                      class="text-sm font-mono bg-white/20 backdrop-blur-sm text-white px-2.5 py-0.5 rounded-full border border-white/25 text-[0.55rem] font-bold uppercase tracking-wider">Secure</span>
-                    <span class="text-xs text-white/90 flex items-center gap-1">
-                      <i class="fas fa-circle text-emerald-300 text-[0.4rem]"></i> Maintained
-                    </span>
-                  </div>
-                  <h4 class="text-xl font-bold text-white mt-1 tracking-tight drop-shadow-md">GlobaLeaks</h4>
-                  <p class="text-[0.6rem] text-white/80 tracking-wider uppercase font-medium">Whistleblowing Platform
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="absolute bottom-4 right-4 flex gap-1.5 z-10">
-              <span
-                class="bg-white/90 backdrop-blur-md text-emerald-700 text-[0.5rem] font-semibold px-2 py-0.5 rounded-full border border-white/40 flex items-center gap-1 shadow-md">
-                <i class="fas fa-shield-alt text-[0.4rem]"></i> Tor + End‑to‑End Encrypted
-              </span>
-            </div>
-          </div>
-
-          <div class="p-6 pt-5">
-            <p class="text-text-secondary text-sm leading-relaxed">
-              Anonymous, encrypted whistleblowing platform accessible via Tor. Protect sources, secure submissions, and enable safe reporting on human rights abuses — no logs, no trace.
-            </p>
-
-            <div class="mt-4 grid grid-cols-2 gap-2">
-              <div class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-amber-500 text-xs mt-0.5"></i>
-                <span class="text-text-secondary text-xs">Anonymous submissions</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-amber-500 text-xs mt-0.5"></i>
-                <span class="text-text-secondary text-xs">Tor hidden service</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-amber-500 text-xs mt-0.5"></i>
-                <span class="text-text-secondary text-xs">Source protection</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-amber-500 text-xs mt-0.5"></i>
-                <span class="text-text-secondary text-xs">Zero‑knowledge encryption</span>
-              </div>
-            </div>
-
-            <div class="mt-5 flex flex-wrap items-center gap-3 pt-4 border-t border-surface-border/50">
-              <a href="mailto:contact@ricalnet.my.id?subject=Becoming%20a%20GlobaLeaks%20Recipient&body=Hello%20RICALNET%20Team%2C%0A%0AI%20would%20like%20to%20become%20a%20recipient%20on%20your%20GlobaLeaks%20platform.%0A%0AOrganization%3A%20%0AContact%20Person%3A%20%0APurpose%3A%20%0A%0AThank%20you."
-                class="inline-flex items-center gap-2 text-sm font-semibold text-white bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 px-5 py-2.5 rounded-full shadow-md shadow-amber-500/25 hover:shadow-lg hover:shadow-amber-500/35 transition-all duration-300">
-                <i class="fas fa-hand-holding-heart"></i> Becoming a Recipient
-                <i
-                  class="fas fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-0.5"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div
-        class="mt-8 p-5 bg-gradient-to-r from-tor-violet/5 via-cyan-400/5 to-tor-violet/5 rounded-2xl border border-tor-violet/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-tor-violet/10 flex items-center justify-center flex-shrink-0">
-            <i class="fas fa-rocket text-tor-violet"></i>
-          </div>
-          <div>
-            <p class="text-sm font-semibold text-text-primary">Ready to deploy your sovereign stack?</p>
-            <p class="text-xs text-text-muted">All three services are open‑source, self‑hosted, and stable.</p>
-          </div>
-        </div>
-        <div class="flex items-center gap-3 flex-shrink-0">
-          <a href="https://git.ricalnet.my.id/rical" target="_blank" rel="noopener"
-            class="inline-flex items-center gap-2 text-sm font-medium text-text-primary bg-white px-4 py-2 rounded-full shadow-elevated border border-surface-border/60 hover:border-tor-violet/20 hover:shadow-elevated-lg transition-all duration-300">
-            <i class="fa-brands fa-forgejo"></i> Explore Repo
-          </a>
-          <a href="mailto:contact@ricalnet.my.id?subject=Deploy%20Sovereign%20Stack"
-            class="inline-flex items-center gap-2 text-sm font-medium text-white bg-tor-violet hover:bg-tor-violet-dark px-4 py-2 rounded-full shadow-md shadow-tor-violet/25 transition-all duration-300">
-            <i class="fas fa-envelope"></i> Get Help
-          </a>
         </div>
       </div>
-    </div>
     </div>
   </section>
 
@@ -1227,7 +1287,8 @@
                   <td class="py-3 px-3 font-medium text-text-primary">Data Sovereignty</td>
                   <td class="text-center py-3 px-3 text-tor-accent"><i class="fas fa-check-circle"></i> Full</td>
                   <td class="text-center py-3 px-3 text-red-400"><i class="fas fa-times-circle"></i> None</td>
-                  <td class="text-center py-3 px-3 text-yellow-500"><i class="fas fa-minus-circle"></i> You manage</td>
+                  <td class="text-center py-3 px-3 text-yellow-500"><i class="fas fa-minus-circle"></i> You manage
+                  </td>
                 </tr>
                 <tr class="hover:bg-surface-muted/20 transition-colors">
                   <td class="py-3 px-3 font-medium text-text-primary">Zero‑Trust Security</td>
@@ -1243,14 +1304,18 @@
                 </tr>
                 <tr class="hover:bg-surface-muted/20 transition-colors">
                   <td class="py-3 px-3 font-medium text-text-primary">Cost Predictability</td>
-                  <td class="text-center py-3 px-3 text-tor-accent"><i class="fas fa-check-circle"></i> Low &amp; fixed
+                  <td class="text-center py-3 px-3 text-tor-accent"><i class="fas fa-check-circle"></i> Low &amp;
+                    fixed
                   </td>
-                  <td class="text-center py-3 px-3 text-red-400"><i class="fas fa-times-circle"></i> Unpredictable</td>
-                  <td class="text-center py-3 px-3 text-yellow-500"><i class="fas fa-minus-circle"></i> Variable</td>
+                  <td class="text-center py-3 px-3 text-red-400"><i class="fas fa-times-circle"></i> Unpredictable
+                  </td>
+                  <td class="text-center py-3 px-3 text-yellow-500"><i class="fas fa-minus-circle"></i> Variable
+                  </td>
                 </tr>
                 <tr class="hover:bg-surface-muted/20 transition-colors">
                   <td class="py-3 px-3 font-medium text-text-primary">Managed Operations</td>
-                  <td class="text-center py-3 px-3 text-tor-accent"><i class="fas fa-check-circle"></i> Included (repo)
+                  <td class="text-center py-3 px-3 text-tor-accent"><i class="fas fa-check-circle"></i> Included
+                    (repo)
                   </td>
                   <td class="text-center py-3 px-3 text-yellow-500"><i class="fas fa-minus-circle"></i> Extra</td>
                   <td class="text-center py-3 px-3 text-red-400"><i class="fas fa-times-circle"></i> None</td>
@@ -1267,55 +1332,13 @@
           </div>
           <p class="text-text-secondary text-sm mt-4 leading-relaxed">
             <i class="fas fa-arrow-right text-tor-violet mr-1.5"></i>
-            With RICALNET, you get a pre‑built, open‑source stack that eliminates lock‑in, slashes costs, and gives you full privacy. <strong class="text-tor-violet">The choice is clear.</strong>
+            With RICALNET, you get a pre‑built, open‑source stack that eliminates lock‑in, slashes costs, and gives you
+            full privacy. <strong class="text-tor-violet">The choice is clear.</strong>
           </p>
         </div>
       </div>
     </div>
   </section>
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "What is RICALNET and how does it help with vendor lock-in?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "RICALNET is a self-hosted, open-source infrastructure platform with ready-to-use Podman Compose configs for 25+ privacy services. It breaks vendor lock-in by using open standards and portable components."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Is RICALNET suitable for enterprises?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. RICALNET is built for enterprises that want to escape cloud lock-in, cut costs, and keep data sovereignty. Consulting and turnkey deployment are available."
-        }
-      }, {
-        "@type": "Question",
-        "name": "How much does it cost to run RICALNET?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Very little. You pay only for hardware, electricity, and bandwidth. Most services run on a $5-10/month VPS for personal use, or a Raspberry Pi for near-zero recurring costs."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Do I need to be a developer to use RICALNET?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Not at all. The repo is designed for anyone comfortable with the command line. It includes detailed guides, one-command deployment scripts. For enterprises, consulting and managed deployment are available."
-        }
-      }, {
-        "@type": "Question",
-        "name": "How does RICALNET ensure zero-trust security?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The architecture includes network segmentation, strict access controls, and regular updates. Monitoring and alerting are built in."
-        }
-      }]
-    }
-  </script>
 
   <section id="faq" class="py-20 md:py-28 bg-white/40 border-y border-surface-border/60">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1340,7 +1363,9 @@
           </div>
           <div class="faq-answer px-6 pb-6">
             <p class="text-text-secondary text-sm leading-relaxed">
-              RICALNET offers a <strong class="text-text-primary">public repository</strong> with ready‑to‑use Podman Compose configs for 25+ privacy services — all open‑source and self‑hostable. No proprietary lock‑in, no recurring fees.
+              RICALNET offers a <strong class="text-text-primary">public repository</strong> with ready‑to‑use Podman
+              Compose configs for 25+ privacy services — all open‑source and self‑hostable. No proprietary lock‑in, no
+              recurring fees.
             </p>
           </div>
         </div>
@@ -1353,7 +1378,9 @@
           </div>
           <div class="faq-answer px-6 pb-6">
             <p class="text-text-secondary text-sm leading-relaxed">
-              Not at all. The repo is designed for anyone comfortable with the command line. Docs include detailed guides, one‑command deployment scripts, and an interactive menu. For enterprises, consulting and managed deployment are available. For homelabbers, it's a practical, educational project.
+              Not at all. The repo is designed for anyone comfortable with the command line. Docs include detailed
+              guides, one‑command deployment scripts, and an interactive menu. For enterprises, consulting and managed
+              deployment are available. For homelabbers, it's a practical, educational project.
             </p>
           </div>
         </div>
@@ -1366,7 +1393,8 @@
           </div>
           <div class="faq-answer px-6 pb-6">
             <p class="text-text-secondary text-sm leading-relaxed">
-              The architecture includes network segmentation, strict access controls, and regular updates. Monitoring and alerting detect anomalies. You have full control to harden as needed.
+              The architecture includes network segmentation, strict access controls, and regular updates. Monitoring
+              and alerting detect anomalies. You have full control to harden as needed.
             </p>
           </div>
         </div>
@@ -1379,7 +1407,9 @@
           </div>
           <div class="faq-answer px-6 pb-6">
             <p class="text-text-secondary text-sm leading-relaxed">
-              <strong class="text-tor-violet">Very little.</strong> You pay only for hardware (or VPS), electricity, and bandwidth. Most services run on a $5–$10/month VPS for personal use, or a Raspberry Pi for near‑zero recurring cost. No per‑user licenses, no egress fees, no minimum spend.
+              <strong class="text-tor-violet">Very little.</strong> You pay only for hardware (or VPS), electricity,
+              and bandwidth. Most services run on a $5–$10/month VPS for personal use, or a Raspberry Pi for near‑zero
+              recurring cost. No per‑user licenses, no egress fees, no minimum spend.
             </p>
           </div>
         </div>
@@ -1392,7 +1422,9 @@
           </div>
           <div class="faq-answer px-6 pb-6">
             <p class="text-text-secondary text-sm leading-relaxed">
-              <strong class="text-tor-violet">Clone the repo, run the setup script, and you're up in minutes.</strong> Step‑by‑step guides cover everything from homelab to internal enterprise. For enterprise or activist deployments, RICALNET offers consultation and turnkey solutions. Just <a
+              <strong class="text-tor-violet">Clone the repo, run the setup script, and you're up in minutes.</strong>
+              Step‑by‑step guides cover everything from homelab to internal enterprise. For enterprise or activist
+              deployments, RICALNET offers consultation and turnkey solutions. Just <a
                 href="mailto:contact@ricalnet.my.id" class="text-tor-violet hover:underline">reach out</a>.
             </p>
           </div>
@@ -1421,10 +1453,13 @@
               <span class="text-tor-violet">digital life.</span>
             </h2>
             <p class="text-text-secondary text-lg mt-4 leading-relaxed max-w-lg">
-              Whether you're an enterprise escaping cloud lock‑in, an activist protecting communications, a journalist securing sources, or a homelabber exploring self‑hosting — you'll find the tools to start. No contracts. No vendor dependency. Just freedom.
+              Whether you're an enterprise escaping cloud lock‑in, an activist protecting communications, a journalist
+              securing sources, or a homelabber exploring self‑hosting — you'll find the tools to start. No contracts.
+              No vendor dependency. Just freedom.
             </p>
             <div class="flex flex-wrap gap-4 mt-6">
-              <a href="mailto:contact@ricalnet.my.id?subject=Sovereign%20Stack%20Inquiry" class="text-white btn-primary">
+              <a href="mailto:contact@ricalnet.my.id?subject=Sovereign%20Stack%20Inquiry"
+                class="text-white btn-primary">
                 <i class="fas fa-envelope"></i> Get the Stack
               </a>
               <a href="#features" class="btn-secondary border-tor-violet/10 hover:border-tor-violet/20">
@@ -1463,7 +1498,8 @@
                   <a href="https://git.ricalnet.my.id/rical" target="_blank" rel="noopener"
                     class="text-text-muted hover:text-tor-violet transition-colors"><i
                       class="fa-brands fa-forgejo text-lg"></i></a>
-                  <a href="mailto:contact@ricalnet.my.id" class="text-text-muted hover:text-tor-violet transition-colors"><i
+                  <a href="mailto:contact@ricalnet.my.id"
+                    class="text-text-muted hover:text-tor-violet transition-colors"><i
                       class="fas fa-envelope text-lg"></i></a>
                   <a href="https://status.ricalnet.my.id" target="_blank" rel="noopener"
                     class="text-text-muted hover:text-tor-violet transition-colors"><i
@@ -1488,7 +1524,8 @@
       <span class="section-badge"><i class="fas fa-shield-alt"></i> RICALNET Onion Services</span>
 
       <p class="text-xl md:text-2xl lg:text-3xl text-text-primary mt-6 leading-relaxed max-w-3xl mx-auto">
-        Onion Services give journalists and activists four sovereign tools—SSO, encrypted chat, cloud, and AI assistant—without surveillance, lock-in, or hidden fees. Just secure infrastructure. No permission needed.
+        Onion Services give journalists and activists four sovereign tools—SSO, encrypted chat, cloud, and AI
+        assistant—without surveillance, lock-in, or hidden fees. Just secure infrastructure. No permission needed.
       </p>
 
       <div class="mt-10 max-w-2xl mx-auto w-full" data-aos="fade-up" data-aos-delay="100">
@@ -1655,7 +1692,8 @@
             <span class="text-text-primary"> Hub for Privacy</span>
           </h2>
           <p class="text-text-secondary text-lg leading-relaxed">
-            RICALNET curates everything you need to break free from vendor lock‑in: a public repo with stable Podman stacks, in‑house security tools, legal templates, and documentation.
+            RICALNET curates everything you need to break free from vendor lock‑in: a public repo with stable Podman
+            stacks, in‑house security tools, legal templates, and documentation.
           </p>
 
           <div class="space-y-3">
@@ -1665,7 +1703,8 @@
               </div>
               <div>
                 <h4 class="font-semibold text-text-primary">Privacy Tools</h4>
-                <p class="text-text-secondary text-sm">VPN, email encryption, secure browsers, and identity protection — all open‑source and self‑hostable.</p>
+                <p class="text-text-secondary text-sm">VPN, email encryption, secure browsers, and identity protection —
+                  all open‑source and self‑hostable.</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
@@ -1674,7 +1713,8 @@
               </div>
               <div>
                 <h4 class="font-semibold text-text-primary">Legal &amp; Advocacy</h4>
-                <p class="text-text-secondary text-sm">Privacy policy templates, regulatory analysis, and digital rights guides — stay compliant and protected.</p>
+                <p class="text-text-secondary text-sm">Privacy policy templates, regulatory analysis, and digital
+                  rights guides — stay compliant and protected.</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
@@ -1721,7 +1761,8 @@
         <div class="col-span-2 md:col-span-3 lg:col-span-1">
           <div class="flex items-center gap-3 mb-4">
             <div class="bg-white/60 backdrop-blur-sm rounded-full p-1.5 shadow-elevated border border-tor-violet/10">
-              <img src="https://ricalnet.my.id/assets/img/logo.webp" alt="RICALNET open-source self-hosted infrastructure logo"
+              <img src="https://ricalnet.my.id/assets/img/logo.webp"
+                alt="RICALNET open-source self-hosted infrastructure logo"
                 class="w-10 h-10 rounded-full object-cover ring-2 ring-tor-violet/20" />
             </div>
             <div>
@@ -1806,7 +1847,9 @@
 
       <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
         <p class="text-xs tracking-wide">
-          &copy; RICALNET — <a href="https://git.ricalnet.my.id/RICALNET/website/src/branch/main/LICENSE" class="hover:text-tor-violet transition-colors">MIT License</a>
+          &copy; RICALNET — <a
+            href="https://git.ricalnet.my.id/RICALNET/website/src/branch/main/LICENSE"
+            class="hover:text-tor-violet transition-colors">MIT License</a>
         </p>
         <div class="flex flex-wrap items-center gap-4 text-[0.6rem] tracking-[0.1em] uppercase font-medium">
           <a href="https://ricalnet.my.id/"
@@ -1832,8 +1875,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/aos.js">
-  </script>
+  <script src="assets/js/aos.js"></script>
   <script>
     AOS.init({
       once: true,
